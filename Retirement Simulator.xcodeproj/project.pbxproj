@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
+		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
+		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
+		00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A36BDE136C6CAE008A5C4C /* InfoPlist.strings */; };
+		00A36BE3136C6CAE008A5C4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36BE2136C6CAE008A5C4C /* main.m */; };
+		00A36BE6136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36BE5136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m */; };
+		00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A36BE7136C6CAE008A5C4C /* MainWindow.xib */; };
+		00A36BEC136C6CAE008A5C4C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36BEB136C6CAE008A5C4C /* FirstViewController.m */; };
+		00A36BEF136C6CAE008A5C4C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36BEE136C6CAE008A5C4C /* SecondViewController.m */; };
+		00A36BF2136C6CAE008A5C4C /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A36BF0136C6CAE008A5C4C /* FirstView.xib */; };
+		00A36BF5136C6CAE008A5C4C /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A36BF3136C6CAE008A5C4C /* SecondView.xib */; };
+		00A36BFC136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
+		00A36BFD136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
+		00A36BFE136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
+		00A36C06136C6CAE008A5C4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C04136C6CAE008A5C4C /* InfoPlist.strings */; };
+		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
+		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00A36BC8136C6CAD008A5C4C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00A36BD0136C6CAE008A5C4C;
+			remoteInfo = "Retirement Simulator";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		00A36BDD136C6CAE008A5C4C /* Retirement Simulator-Info.plist */ = {isa = PBXFileReference; path = "Retirement Simulator-Info.plist"; sourceTree = "<group>"; };
+		00A36BDF136C6CAE008A5C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00A36BE1136C6CAE008A5C4C /* Retirement Simulator-Prefix.pch */ = {isa = PBXFileReference; path = "Retirement Simulator-Prefix.pch"; sourceTree = "<group>"; };
+		00A36BE2136C6CAE008A5C4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		00A36BE4136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.h */ = {isa = PBXFileReference; path = Retirement_SimulatorAppDelegate.h; sourceTree = "<group>"; };
+		00A36BE5136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorAppDelegate.m; sourceTree = "<group>"; };
+		00A36BE8136C6CAE008A5C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		00A36BEA136C6CAE008A5C4C /* FirstViewController.h */ = {isa = PBXFileReference; path = FirstViewController.h; sourceTree = "<group>"; };
+		00A36BEB136C6CAE008A5C4C /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		00A36BED136C6CAE008A5C4C /* SecondViewController.h */ = {isa = PBXFileReference; path = SecondViewController.h; sourceTree = "<group>"; };
+		00A36BEE136C6CAE008A5C4C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		00A36BF1136C6CAE008A5C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
+		00A36BF4136C6CAE008A5C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
+		00A36BFB136C6CAE008A5C4C /* Retirement SimulatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Retirement SimulatorTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A36C03136C6CAE008A5C4C /* Retirement SimulatorTests-Info.plist */ = {isa = PBXFileReference; path = "Retirement SimulatorTests-Info.plist"; sourceTree = "<group>"; };
+		00A36C05136C6CAE008A5C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */ = {isa = PBXFileReference; path = "Retirement SimulatorTests-Prefix.pch"; sourceTree = "<group>"; };
+		00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Retirement_SimulatorTests.h; sourceTree = "<group>"; };
+		00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00A36BCE136C6CAE008A5C4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */,
+				00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */,
+				00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A36BF7136C6CAE008A5C4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A36BFC136C6CAE008A5C4C /* UIKit.framework in Frameworks */,
+				00A36BFD136C6CAE008A5C4C /* Foundation.framework in Frameworks */,
+				00A36BFE136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00A36BC6136C6CAD008A5C4C = {
+			isa = PBXGroup;
+			children = (
+				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
+				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
+				00A36BD4136C6CAE008A5C4C /* Frameworks */,
+				00A36BD2136C6CAE008A5C4C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00A36BD2136C6CAE008A5C4C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */,
+				00A36BFB136C6CAE008A5C4C /* Retirement SimulatorTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00A36BD4136C6CAE008A5C4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00A36BD5136C6CAE008A5C4C /* UIKit.framework */,
+				00A36BD7136C6CAE008A5C4C /* Foundation.framework */,
+				00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				00A36BE4136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.h */,
+				00A36BE5136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m */,
+				00A36BE7136C6CAE008A5C4C /* MainWindow.xib */,
+				00A36BEA136C6CAE008A5C4C /* FirstViewController.h */,
+				00A36BEB136C6CAE008A5C4C /* FirstViewController.m */,
+				00A36BED136C6CAE008A5C4C /* SecondViewController.h */,
+				00A36BEE136C6CAE008A5C4C /* SecondViewController.m */,
+				00A36BF0136C6CAE008A5C4C /* FirstView.xib */,
+				00A36BF3136C6CAE008A5C4C /* SecondView.xib */,
+				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
+			);
+			path = "Retirement Simulator";
+			sourceTree = "<group>";
+		};
+		00A36BDC136C6CAE008A5C4C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00A36BDD136C6CAE008A5C4C /* Retirement Simulator-Info.plist */,
+				00A36BDE136C6CAE008A5C4C /* InfoPlist.strings */,
+				00A36BE1136C6CAE008A5C4C /* Retirement Simulator-Prefix.pch */,
+				00A36BE2136C6CAE008A5C4C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */,
+				00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */,
+				00A36C02136C6CAE008A5C4C /* Supporting Files */,
+			);
+			path = "Retirement SimulatorTests";
+			sourceTree = "<group>";
+		};
+		00A36C02136C6CAE008A5C4C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00A36C03136C6CAE008A5C4C /* Retirement SimulatorTests-Info.plist */,
+				00A36C04136C6CAE008A5C4C /* InfoPlist.strings */,
+				00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00A36BD0136C6CAE008A5C4C /* Retirement Simulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00A36C0E136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement Simulator" */;
+			buildPhases = (
+				00A36BCD136C6CAE008A5C4C /* Sources */,
+				00A36BCE136C6CAE008A5C4C /* Frameworks */,
+				00A36BCF136C6CAE008A5C4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Retirement Simulator";
+			productName = "Retirement Simulator";
+			productReference = 00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		00A36BFA136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00A36C11136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement SimulatorTests" */;
+			buildPhases = (
+				00A36BF6136C6CAE008A5C4C /* Sources */,
+				00A36BF7136C6CAE008A5C4C /* Frameworks */,
+				00A36BF8136C6CAE008A5C4C /* Resources */,
+				00A36BF9136C6CAE008A5C4C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00A36C00136C6CAE008A5C4C /* PBXTargetDependency */,
+			);
+			name = "Retirement SimulatorTests";
+			productName = "Retirement SimulatorTests";
+			productReference = 00A36BFB136C6CAE008A5C4C /* Retirement SimulatorTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00A36BC8136C6CAD008A5C4C /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 00A36BCB136C6CAD008A5C4C /* Build configuration list for PBXProject "Retirement Simulator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 00A36BC6136C6CAD008A5C4C;
+			productRefGroup = 00A36BD2136C6CAE008A5C4C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00A36BD0136C6CAE008A5C4C /* Retirement Simulator */,
+				00A36BFA136C6CAE008A5C4C /* Retirement SimulatorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00A36BCF136C6CAE008A5C4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
+				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
+				00A36BF2136C6CAE008A5C4C /* FirstView.xib in Resources */,
+				00A36BF5136C6CAE008A5C4C /* SecondView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A36BF8136C6CAE008A5C4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A36C06136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
+				00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00A36BF9136C6CAE008A5C4C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00A36BCD136C6CAE008A5C4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A36BE3136C6CAE008A5C4C /* main.m in Sources */,
+				00A36BE6136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m in Sources */,
+				00A36BEC136C6CAE008A5C4C /* FirstViewController.m in Sources */,
+				00A36BEF136C6CAE008A5C4C /* SecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A36BF6136C6CAE008A5C4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00A36C00136C6CAE008A5C4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00A36BD0136C6CAE008A5C4C /* Retirement Simulator */;
+			targetProxy = 00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		00A36BDE136C6CAE008A5C4C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00A36BDF136C6CAE008A5C4C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		00A36BE7136C6CAE008A5C4C /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00A36BE8136C6CAE008A5C4C /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		00A36BF0136C6CAE008A5C4C /* FirstView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00A36BF1136C6CAE008A5C4C /* en */,
+			);
+			name = FirstView.xib;
+			sourceTree = "<group>";
+		};
+		00A36BF3136C6CAE008A5C4C /* SecondView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00A36BF4136C6CAE008A5C4C /* en */,
+			);
+			name = SecondView.xib;
+			sourceTree = "<group>";
+		};
+		00A36C04136C6CAE008A5C4C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00A36C05136C6CAE008A5C4C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00A36C0C136C6CAE008A5C4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		00A36C0D136C6CAE008A5C4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		00A36C0F136C6CAE008A5C4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Retirement Simulator/Retirement Simulator-Prefix.pch";
+				INFOPLIST_FILE = "Retirement Simulator/Retirement Simulator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		00A36C10136C6CAE008A5C4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Retirement Simulator/Retirement Simulator-Prefix.pch";
+				INFOPLIST_FILE = "Retirement Simulator/Retirement Simulator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		00A36C12136C6CAE008A5C4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Retirement Simulator.app/Retirement Simulator";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Retirement SimulatorTests/Retirement SimulatorTests-Prefix.pch";
+				INFOPLIST_FILE = "Retirement SimulatorTests/Retirement SimulatorTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		00A36C13136C6CAE008A5C4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Retirement Simulator.app/Retirement Simulator";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Retirement SimulatorTests/Retirement SimulatorTests-Prefix.pch";
+				INFOPLIST_FILE = "Retirement SimulatorTests/Retirement SimulatorTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00A36BCB136C6CAD008A5C4C /* Build configuration list for PBXProject "Retirement Simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A36C0C136C6CAE008A5C4C /* Debug */,
+				00A36C0D136C6CAE008A5C4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00A36C0E136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement Simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A36C0F136C6CAE008A5C4C /* Debug */,
+				00A36C10136C6CAE008A5C4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		00A36C11136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement SimulatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A36C12136C6CAE008A5C4C /* Debug */,
+				00A36C13136C6CAE008A5C4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00A36BC8136C6CAD008A5C4C /* Project object */;
+}
