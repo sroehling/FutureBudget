@@ -24,6 +24,8 @@
 		00A36C06136C6CAE008A5C4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C04136C6CAE008A5C4C /* InfoPlist.strings */; };
 		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
+		00A36C17136D9723008A5C4C /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C15136D9723008A5C4C /* InputViewController.m */; };
+		00A36C18136D9723008A5C4C /* InputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C16136D9723008A5C4C /* InputViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Retirement SimulatorTests-Prefix.pch"; sourceTree = "<group>"; };
 		00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Retirement_SimulatorTests.h; sourceTree = "<group>"; };
 		00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorTests.m; sourceTree = "<group>"; };
+		00A36C14136D9723008A5C4C /* InputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
+		00A36C15136D9723008A5C4C /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
+		00A36C16136D9723008A5C4C /* InputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +133,9 @@
 				00A36BF0136C6CAE008A5C4C /* FirstView.xib */,
 				00A36BF3136C6CAE008A5C4C /* SecondView.xib */,
 				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
+				00A36C14136D9723008A5C4C /* InputViewController.h */,
+				00A36C15136D9723008A5C4C /* InputViewController.m */,
+				00A36C16136D9723008A5C4C /* InputViewController.xib */,
 			);
 			path = "Retirement Simulator";
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
 				00A36BF2136C6CAE008A5C4C /* FirstView.xib in Resources */,
 				00A36BF5136C6CAE008A5C4C /* SecondView.xib in Resources */,
+				00A36C18136D9723008A5C4C /* InputViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +282,7 @@
 				00A36BE6136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m in Sources */,
 				00A36BEC136C6CAE008A5C4C /* FirstViewController.m in Sources */,
 				00A36BEF136C6CAE008A5C4C /* SecondViewController.m in Sources */,
+				00A36C17136D9723008A5C4C /* InputViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
