@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		004F5D06136F170500E0C4A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,6 +77,7 @@
 				00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */,
 				00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */,
 				00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */,
+				004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +116,7 @@
 		00A36BD4136C6CAE008A5C4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				004F5D06136F170500E0C4A3 /* CoreData.framework */,
 				00A36BD5136C6CAE008A5C4C /* UIKit.framework */,
 				00A36BD7136C6CAE008A5C4C /* Foundation.framework */,
 				00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */,
@@ -471,6 +475,7 @@
 				00A36C10136C6CAE008A5C4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00A36C11136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement SimulatorTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +484,7 @@
 				00A36C13136C6CAE008A5C4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
