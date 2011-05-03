@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import <CoreData/CoreData.h>
 
-@interface InputViewController : UIViewController {
+@interface InputViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     
 }
+
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @end
