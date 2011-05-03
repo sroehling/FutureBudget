@@ -8,6 +8,7 @@
 
 #import "InputViewController.h"
 #import "DataModelController.h"
+#import "Input.h"
 
 @interface InputViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -83,12 +84,10 @@
 {
     // Create a new instance of the entity managed by the fetched results controller.
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:@"Testing 1,2,3" forKey:@"name"];
+
+	Input *newInput  = [NSEntityDescription insertNewObjectForEntityForName:@"Input" 
+                                inManagedObjectContext:context];
+    newInput.name = @"Testing 1,2,3";
     
     // Save the context.
     NSError *error = nil;
