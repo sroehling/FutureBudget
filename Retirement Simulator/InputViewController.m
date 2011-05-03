@@ -8,7 +8,9 @@
 
 #import "InputViewController.h"
 #import "DataModelController.h"
+
 #import "OneTimeExpenseInput.h"
+#import "OneTimeExpenseViewController.h"
 
 @interface InputViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -85,10 +87,11 @@
     // Create a new instance of the entity managed by the fetched results controller.
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
 
-	OneTimeExpenseInput *newInput  = [NSEntityDescription insertNewObjectForEntityForName:@"OneTimeExpenseInput" 
+	OneTimeExpenseInput *newInput  = (OneTimeExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:@"OneTimeExpenseInput" 
                                 inManagedObjectContext:context];
     newInput.name = @"Testing 1,2,3";
-//    newInput.amount = 2000.0;
+    newInput.amount = [NSNumber numberWithInt:2000];
+    newInput.transactionDate = [NSDate date];
     
     // Save the context.
     NSError *error = nil;
@@ -167,14 +170,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+{    
+    // Create and push a detail view controller.
+	OneTimeExpenseViewController *detailViewController = [[OneTimeExpenseViewController alloc] 
+                                    initWithStyle:UITableViewStyleGrouped];
+    OneTimeExpenseInput *selectedInput = (OneTimeExpenseInput *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+    // Pass the selected book to the new view controller.
+     NSLog(@"input = %@",[selectedInput description]);
+    detailViewController.expense = selectedInput;
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
 }
 
 
