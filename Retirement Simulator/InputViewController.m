@@ -8,7 +8,7 @@
 
 #import "InputViewController.h"
 #import "DataModelController.h"
-#import "Input.h"
+#import "OneTimeExpenseInput.h"
 
 @interface InputViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -85,9 +85,10 @@
     // Create a new instance of the entity managed by the fetched results controller.
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
 
-	Input *newInput  = [NSEntityDescription insertNewObjectForEntityForName:@"Input" 
+	OneTimeExpenseInput *newInput  = [NSEntityDescription insertNewObjectForEntityForName:@"OneTimeExpenseInput" 
                                 inManagedObjectContext:context];
     newInput.name = @"Testing 1,2,3";
+//    newInput.amount = 2000.0;
     
     // Save the context.
     NSError *error = nil;
@@ -193,7 +194,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *managedObjectContext = [[DataModelController theDataModelController] managedObjectContext];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Input" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"OneTimeExpenseInput" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
