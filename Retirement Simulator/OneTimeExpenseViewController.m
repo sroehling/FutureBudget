@@ -8,6 +8,9 @@
 
 #import "OneTimeExpenseViewController.h"
 #import "OneTimeExpenseInput.h"
+#import "DateFieldEditViewController.h"
+#import "TextFieldEditViewController.h"
+#import "NumberFieldEditViewController.h"
 
 
 @implementation OneTimeExpenseViewController
@@ -42,6 +45,14 @@
 
     // Do any additional setup after loading the view from its nib.
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    // Redisplay the data - notably, this is invoked when returning 
+    // from an editor for one of the field values,
+    // causing the display of these values to refresh if changed.
+    [self.tableView reloadData];
+}
+
 
 - (void)viewDidUnload
 {
@@ -102,7 +113,8 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Only allow selection if editing.
-    return (self.editing) ? indexPath : nil;
+  //  return (self.editing) ? indexPath : nil;
+    return indexPath;
 }
 
 /**
@@ -110,34 +122,41 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	if (!self.editing) return;
+//	if (!self.editing) return;
 	
-    /*
-    EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
-    
-    controller.editedObject = book;
     switch (indexPath.row) {
         case 0: {
-            controller.editedFieldKey = @"title";
-            controller.editedFieldName = NSLocalizedString(@"title", @"display name for title");
-            controller.editingDate = NO;
+            TextFieldEditViewController *nameEditController = 
+                [[TextFieldEditViewController alloc] initWithNibName:@"TextFieldEditViewController" bundle:nil];
+            nameEditController.editedObject = self.expense;
+            nameEditController.editedFieldKey = @"name";
+            nameEditController.editedFieldName = @"Input Name";
+            [self.navigationController 
+             pushViewController:nameEditController animated:YES];
+            [nameEditController release];
         } break;
         case 1: {
-            controller.editedFieldKey = @"author";
-			controller.editedFieldName = NSLocalizedString(@"author", @"display name for author");
-			controller.editingDate = NO;
+            NumberFieldEditViewController *amountEditController = 
+            [[NumberFieldEditViewController alloc] initWithNibName:@"NumberFieldEditViewController" bundle:nil];
+            amountEditController.editedObject = self.expense;
+            amountEditController.editedFieldKey = @"amount";
+            amountEditController.editedFieldName = @"Amount";
+            [self.navigationController 
+             pushViewController:amountEditController animated:YES];
+            [amountEditController release];
         } break;
         case 2: {
-            controller.editedFieldKey = @"copyright";
-			controller.editedFieldName = NSLocalizedString(@"copyright", @"display name for copyright");
-			controller.editingDate = YES;
+            DateFieldEditViewController *dateController = 
+            [[DateFieldEditViewController alloc] initWithNibName:@"DateFieldEditViewController" bundle:nil];
+            dateController.editedObject = self.expense;
+            dateController.editedFieldKey = @"transactionDate";
+            dateController.editedFieldName = @"Date";
+            [self.navigationController 
+                pushViewController:dateController animated:YES];
+            [dateController release];
         } break;
     }
-	
-    [self.navigationController pushViewController:controller animated:YES];
-	[controller release];
-
-*/     
+	     
 }
 
 
@@ -145,6 +164,11 @@
 	return UITableViewCellEditingStyleNone;
 }
 
+
+- (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellAccessoryDetailDisclosureButton;
+}
 
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 	return NO;

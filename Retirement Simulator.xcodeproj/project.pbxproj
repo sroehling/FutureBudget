@@ -13,6 +13,12 @@
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
 		004F5D24137079AD00E0C4A3 /* OneTimeExpenseInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D23137079AD00E0C4A3 /* OneTimeExpenseInput.m */; };
 		004F5D3F13708D7500E0C4A3 /* OneTimeExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D3D13708D7400E0C4A3 /* OneTimeExpenseViewController.m */; };
+		004F5D5A1371B3C100E0C4A3 /* DateFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */; };
+		004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */; };
+		004F5D5F1371BE6C00E0C4A3 /* TextFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D5D1371BE6B00E0C4A3 /* TextFieldEditViewController.m */; };
+		004F5D601371BE6C00E0C4A3 /* TextFieldEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D5E1371BE6C00E0C4A3 /* TextFieldEditViewController.xib */; };
+		004F5D641371DD0A00E0C4A3 /* NumberFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D621371DD0900E0C4A3 /* NumberFieldEditViewController.m */; };
+		004F5D651371DD0A00E0C4A3 /* NumberFieldEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D631371DD0900E0C4A3 /* NumberFieldEditViewController.xib */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -55,6 +61,15 @@
 		004F5D23137079AD00E0C4A3 /* OneTimeExpenseInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneTimeExpenseInput.m; sourceTree = "<group>"; };
 		004F5D3C13708D7400E0C4A3 /* OneTimeExpenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneTimeExpenseViewController.h; sourceTree = "<group>"; };
 		004F5D3D13708D7400E0C4A3 /* OneTimeExpenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneTimeExpenseViewController.m; sourceTree = "<group>"; };
+		004F5D571371B3C100E0C4A3 /* DateFieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFieldEditViewController.h; sourceTree = "<group>"; };
+		004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFieldEditViewController.m; sourceTree = "<group>"; };
+		004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateFieldEditViewController.xib; sourceTree = "<group>"; };
+		004F5D5C1371BE6B00E0C4A3 /* TextFieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditViewController.h; sourceTree = "<group>"; };
+		004F5D5D1371BE6B00E0C4A3 /* TextFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditViewController.m; sourceTree = "<group>"; };
+		004F5D5E1371BE6C00E0C4A3 /* TextFieldEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldEditViewController.xib; sourceTree = "<group>"; };
+		004F5D611371DD0900E0C4A3 /* NumberFieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldEditViewController.h; sourceTree = "<group>"; };
+		004F5D621371DD0900E0C4A3 /* NumberFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldEditViewController.m; sourceTree = "<group>"; };
+		004F5D631371DD0900E0C4A3 /* NumberFieldEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberFieldEditViewController.xib; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,6 +123,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		004F5D511371B34800E0C4A3 /* Field Editors */ = {
+			isa = PBXGroup;
+			children = (
+				004F5D571371B3C100E0C4A3 /* DateFieldEditViewController.h */,
+				004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */,
+				004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */,
+				004F5D5C1371BE6B00E0C4A3 /* TextFieldEditViewController.h */,
+				004F5D5D1371BE6B00E0C4A3 /* TextFieldEditViewController.m */,
+				004F5D5E1371BE6C00E0C4A3 /* TextFieldEditViewController.xib */,
+				004F5D611371DD0900E0C4A3 /* NumberFieldEditViewController.h */,
+				004F5D621371DD0900E0C4A3 /* NumberFieldEditViewController.m */,
+				004F5D631371DD0900E0C4A3 /* NumberFieldEditViewController.xib */,
+			);
+			name = "Field Editors";
+			sourceTree = "<group>";
+		};
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +172,7 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				004F5D511371B34800E0C4A3 /* Field Editors */,
 				00A36BE4136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.h */,
 				00A36BE5136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m */,
 				00A36BE7136C6CAE008A5C4C /* MainWindow.xib */,
@@ -270,6 +302,9 @@
 				00A36BF2136C6CAE008A5C4C /* FirstView.xib in Resources */,
 				00A36BF5136C6CAE008A5C4C /* SecondView.xib in Resources */,
 				00A36C18136D9723008A5C4C /* InputViewController.xib in Resources */,
+				004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */,
+				004F5D601371BE6C00E0C4A3 /* TextFieldEditViewController.xib in Resources */,
+				004F5D651371DD0A00E0C4A3 /* NumberFieldEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +350,9 @@
 				004F5D1113706F7100E0C4A3 /* Input.m in Sources */,
 				004F5D24137079AD00E0C4A3 /* OneTimeExpenseInput.m in Sources */,
 				004F5D3F13708D7500E0C4A3 /* OneTimeExpenseViewController.m in Sources */,
+				004F5D5A1371B3C100E0C4A3 /* DateFieldEditViewController.m in Sources */,
+				004F5D5F1371BE6C00E0C4A3 /* TextFieldEditViewController.m in Sources */,
+				004F5D641371DD0A00E0C4A3 /* NumberFieldEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
