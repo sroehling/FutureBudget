@@ -10,6 +10,7 @@
 
 
 @implementation Input
-@dynamic name;
+@dynamic name,inputType;
+
 
 @end

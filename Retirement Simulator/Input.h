@@ -14,5 +14,6 @@
 @private
 }
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString *inputType;
 
 @end

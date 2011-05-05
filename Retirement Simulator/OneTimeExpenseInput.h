@@ -17,4 +17,5 @@
 @property (nonatomic, retain) NSNumber * amount;
 @property (nonatomic, retain) NSDate * transactionDate;
 
+
 @end

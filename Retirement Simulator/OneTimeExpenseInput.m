@@ -13,4 +13,5 @@
 @dynamic amount;
 @dynamic transactionDate;
 
+
 @end

@@ -90,6 +90,7 @@
 	OneTimeExpenseInput *newInput  = (OneTimeExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:@"OneTimeExpenseInput" 
                                 inManagedObjectContext:context];
     newInput.name = @"Testing 1,2,3";
+    newInput.inputType = @"Expense";
     newInput.amount = [NSNumber numberWithInt:2000];
     newInput.transactionDate = [NSDate date];
     
@@ -109,6 +110,17 @@
 
 
 #pragma mark - Table view data implementation
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [[self.fetchedResultsController sections] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	// Display the input type as section headings.
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+}
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -213,7 +225,7 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"inputType" cacheName:@"Root"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
