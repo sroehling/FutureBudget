@@ -27,7 +27,7 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in Retirement SimulatorTests");
+    NSLog(@"Unit tests are not implemented yet in Retirement SimulatorTests");
 }
 
 @end

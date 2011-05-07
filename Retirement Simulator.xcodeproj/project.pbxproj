@@ -21,6 +21,10 @@
 		004F5D651371DD0A00E0C4A3 /* NumberFieldEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D631371DD0900E0C4A3 /* NumberFieldEditViewController.xib */; };
 		004F5D741373191600E0C4A3 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D721373191600E0C4A3 /* ResultsViewController.m */; };
 		004F5D751373191600E0C4A3 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D731373191600E0C4A3 /* ResultsViewController.xib */; };
+		004F5D8013733BC100E0C4A3 /* SimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D7F13733BC100E0C4A3 /* SimEngine.m */; };
+		004F5D8B1374566200E0C4A3 /* TestSimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8A1374566200E0C4A3 /* TestSimEngine.m */; };
+		004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */; };
+		004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D9613749AB300E0C4A3 /* TestSimEvent.m */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -71,6 +75,16 @@
 		004F5D711373191600E0C4A3 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		004F5D721373191600E0C4A3 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		004F5D731373191600E0C4A3 /* ResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
+		004F5D791373376900E0C4A3 /* SimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEventCreator.h; sourceTree = "<group>"; };
+		004F5D7A137337F700E0C4A3 /* SimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEvent.h; sourceTree = "<group>"; };
+		004F5D7E13733BC100E0C4A3 /* SimEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEngine.h; sourceTree = "<group>"; };
+		004F5D7F13733BC100E0C4A3 /* SimEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimEngine.m; sourceTree = "<group>"; };
+		004F5D891374566200E0C4A3 /* TestSimEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSimEngine.h; sourceTree = "<group>"; };
+		004F5D8A1374566200E0C4A3 /* TestSimEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEngine.m; sourceTree = "<group>"; };
+		004F5D8C13745ADB00E0C4A3 /* TestSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSimEventCreator.h; sourceTree = "<group>"; };
+		004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEventCreator.m; sourceTree = "<group>"; };
+		004F5D9513749AB300E0C4A3 /* TestSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSimEvent.h; sourceTree = "<group>"; };
+		004F5D9613749AB300E0C4A3 /* TestSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEvent.m; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,6 +194,17 @@
 			name = "Data Model";
 			sourceTree = "<group>";
 		};
+		004F5D7713732CA300E0C4A3 /* Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				004F5D791373376900E0C4A3 /* SimEventCreator.h */,
+				004F5D7A137337F700E0C4A3 /* SimEvent.h */,
+				004F5D7E13733BC100E0C4A3 /* SimEngine.h */,
+				004F5D7F13733BC100E0C4A3 /* SimEngine.m */,
+			);
+			name = Simulator;
+			sourceTree = "<group>";
+		};
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +238,7 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				004F5D7713732CA300E0C4A3 /* Simulator */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				004F5D701373188900E0C4A3 /* Results View */,
 				004F5D6F1373175D00E0C4A3 /* Input View */,
@@ -240,6 +266,12 @@
 				00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */,
 				00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */,
 				00A36C02136C6CAE008A5C4C /* Supporting Files */,
+				004F5D891374566200E0C4A3 /* TestSimEngine.h */,
+				004F5D8A1374566200E0C4A3 /* TestSimEngine.m */,
+				004F5D8C13745ADB00E0C4A3 /* TestSimEventCreator.h */,
+				004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */,
+				004F5D9513749AB300E0C4A3 /* TestSimEvent.h */,
+				004F5D9613749AB300E0C4A3 /* TestSimEvent.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -375,6 +407,7 @@
 				004F5D5F1371BE6C00E0C4A3 /* TextFieldEditViewController.m in Sources */,
 				004F5D641371DD0A00E0C4A3 /* NumberFieldEditViewController.m in Sources */,
 				004F5D741373191600E0C4A3 /* ResultsViewController.m in Sources */,
+				004F5D8013733BC100E0C4A3 /* SimEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +416,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */,
+				004F5D8B1374566200E0C4A3 /* TestSimEngine.m in Sources */,
+				004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */,
+				004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
