@@ -16,6 +16,9 @@
     
     @private
     
+    // TBD - Should these private member variable names have a "_" suffice 
+    // (or whatever is conventional for objective C)
+    
     NSDateFormatter *dateFormatter;
     NSCalendar *gregorian;
     NSDateComponents *resultsOffsetComponents;

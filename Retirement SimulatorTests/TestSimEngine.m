@@ -5,6 +5,11 @@
 //  Created by Steve Roehling on 5/6/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
+// TODO - Additional tests needed, include (but not limited to):
+//     - Stream of multiple events
+//     - Event and results happen on same date
+//     - Multiple results between events
+//     - Multiple events between results
 
 #import "SimEngine.h"
 
