@@ -151,6 +151,26 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+// Convenience method to retrieve all the objects for a given entity name.
+- (NSSet *)fetchObjectsForEntityName:(NSString *)entityName
+{
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:entityName 
+                                   inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    [request setEntity:entity];
+    
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request 
+                                                                error:&error];
+    if (error != nil)
+    {
+        [NSException raise:NSGenericException format:[error description] arguments:nil];
+    }
+    
+    return [NSSet setWithArray:results];
+}
 
 
 @end

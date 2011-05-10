@@ -25,6 +25,8 @@
 		004F5D8B1374566200E0C4A3 /* TestSimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8A1374566200E0C4A3 /* TestSimEngine.m */; };
 		004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */; };
 		004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D9613749AB300E0C4A3 /* TestSimEvent.m */; };
+		005731EF13787AFD008D13C1 /* ExpenseInputSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* ExpenseInputSimEventCreator.m */; };
+		005731F213787E37008D13C1 /* ExpenseInputSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F113787E37008D13C1 /* ExpenseInputSimEvent.m */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -85,6 +87,10 @@
 		004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEventCreator.m; sourceTree = "<group>"; };
 		004F5D9513749AB300E0C4A3 /* TestSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSimEvent.h; sourceTree = "<group>"; };
 		004F5D9613749AB300E0C4A3 /* TestSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEvent.m; sourceTree = "<group>"; };
+		005731ED13787AFD008D13C1 /* ExpenseInputSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseInputSimEventCreator.h; sourceTree = "<group>"; };
+		005731EE13787AFD008D13C1 /* ExpenseInputSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseInputSimEventCreator.m; sourceTree = "<group>"; };
+		005731F013787E37008D13C1 /* ExpenseInputSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseInputSimEvent.h; sourceTree = "<group>"; };
+		005731F113787E37008D13C1 /* ExpenseInputSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseInputSimEvent.m; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -194,7 +200,7 @@
 			name = "Data Model";
 			sourceTree = "<group>";
 		};
-		004F5D7713732CA300E0C4A3 /* Simulator */ = {
+		004F5D7713732CA300E0C4A3 /* Simulator Engine */ = {
 			isa = PBXGroup;
 			children = (
 				004F5D791373376900E0C4A3 /* SimEventCreator.h */,
@@ -202,7 +208,18 @@
 				004F5D7E13733BC100E0C4A3 /* SimEngine.h */,
 				004F5D7F13733BC100E0C4A3 /* SimEngine.m */,
 			);
-			name = Simulator;
+			name = "Simulator Engine";
+			sourceTree = "<group>";
+		};
+		005731EC137874A1008D13C1 /* Simulator Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				005731ED13787AFD008D13C1 /* ExpenseInputSimEventCreator.h */,
+				005731EE13787AFD008D13C1 /* ExpenseInputSimEventCreator.m */,
+				005731F013787E37008D13C1 /* ExpenseInputSimEvent.h */,
+				005731F113787E37008D13C1 /* ExpenseInputSimEvent.m */,
+			);
+			name = "Simulator Inputs";
 			sourceTree = "<group>";
 		};
 		00A36BC6136C6CAD008A5C4C = {
@@ -238,7 +255,8 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
-				004F5D7713732CA300E0C4A3 /* Simulator */,
+				005731EC137874A1008D13C1 /* Simulator Inputs */,
+				004F5D7713732CA300E0C4A3 /* Simulator Engine */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				004F5D701373188900E0C4A3 /* Results View */,
 				004F5D6F1373175D00E0C4A3 /* Input View */,
@@ -408,6 +426,8 @@
 				004F5D641371DD0A00E0C4A3 /* NumberFieldEditViewController.m in Sources */,
 				004F5D741373191600E0C4A3 /* ResultsViewController.m in Sources */,
 				004F5D8013733BC100E0C4A3 /* SimEngine.m in Sources */,
+				005731EF13787AFD008D13C1 /* ExpenseInputSimEventCreator.m in Sources */,
+				005731F213787E37008D13C1 /* ExpenseInputSimEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
