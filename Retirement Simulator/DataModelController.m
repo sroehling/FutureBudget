@@ -7,6 +7,7 @@
 //
 
 #import "DataModelController.h"
+#import "EventRepeatFrequency.h"
 
 
 @implementation DataModelController
@@ -25,6 +26,40 @@
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];
     [super dealloc];
+}
+
+- (void)initOneRepeatFrequencyWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+	EventRepeatFrequency *repeatFrequency  = (EventRepeatFrequency*)
+    [NSEntityDescription insertNewObjectForEntityForName:@"EventRepeatFrequency" 
+                                  inManagedObjectContext:context];
+    repeatFrequency.period = [NSNumber numberWithInt:thePeriod];
+    [repeatFrequency setPeriodWithPeriodEnum:kEventPeriodOnce];
+    repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
+
+}
+
+- (void)initializeDatabaseDefaults
+{
+    NSLog(@"Initializing database with default data ...");
+    
+    
+    if(![self entitiesExistForEntityName:@"EventRepeatFrequency"])
+    {
+        [self initOneRepeatFrequencyWithPeriod:kEventPeriodOnce andMultiplier:1];
+        [self initOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:1];
+        [self initOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:2];
+        [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:1];
+        [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:3];
+        [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:6];
+        [self initOneRepeatFrequencyWithPeriod:kEventPeriodYear andMultiplier:1];        
+    }
+        
+    [self saveContext];
+
+    
 }
 
 
@@ -170,6 +205,19 @@
     }
     
     return [NSSet setWithArray:results];
+}
+
+- (bool) entitiesExistForEntityName:(NSString *)entityName
+{
+    NSSet *entities = [self fetchObjectsForEntityName:entityName];
+    if([entities count] > 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 

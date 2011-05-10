@@ -20,7 +20,9 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void) initializeDatabaseDefaults;
 - (NSSet *)fetchObjectsForEntityName:(NSString *)entityName;
+- (bool) entitiesExistForEntityName:(NSString *)entityName;
 
 
 @end

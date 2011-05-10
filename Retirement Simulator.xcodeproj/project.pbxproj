@@ -27,6 +27,7 @@
 		004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D9613749AB300E0C4A3 /* TestSimEvent.m */; };
 		005731EF13787AFD008D13C1 /* ExpenseInputSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* ExpenseInputSimEventCreator.m */; };
 		005731F213787E37008D13C1 /* ExpenseInputSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F113787E37008D13C1 /* ExpenseInputSimEvent.m */; };
+		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -91,6 +92,8 @@
 		005731EE13787AFD008D13C1 /* ExpenseInputSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseInputSimEventCreator.m; sourceTree = "<group>"; };
 		005731F013787E37008D13C1 /* ExpenseInputSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseInputSimEvent.h; sourceTree = "<group>"; };
 		005731F113787E37008D13C1 /* ExpenseInputSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseInputSimEvent.m; sourceTree = "<group>"; };
+		005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeatFrequency.h; sourceTree = "<group>"; };
+		005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeatFrequency.m; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -196,6 +199,8 @@
 				004F5D1013706F7100E0C4A3 /* Input.m */,
 				004F5D22137079AD00E0C4A3 /* OneTimeExpenseInput.h */,
 				004F5D23137079AD00E0C4A3 /* OneTimeExpenseInput.m */,
+				005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */,
+				005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				004F5D8013733BC100E0C4A3 /* SimEngine.m in Sources */,
 				005731EF13787AFD008D13C1 /* ExpenseInputSimEventCreator.m in Sources */,
 				005731F213787E37008D13C1 /* ExpenseInputSimEvent.m in Sources */,
+				005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
