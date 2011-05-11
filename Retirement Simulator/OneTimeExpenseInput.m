@@ -12,6 +12,7 @@
 @implementation OneTimeExpenseInput
 @dynamic amount;
 @dynamic transactionDate;
+@dynamic repeatFrequency;
 
 
 @end

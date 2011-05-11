@@ -11,6 +11,7 @@
 
 #import "OneTimeExpenseInput.h"
 #import "OneTimeExpenseViewController.h"
+#import "EventRepeatFrequency.h"
 
 @interface InputViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -93,6 +94,12 @@
     newInput.inputType = @"Expense";
     newInput.amount = [NSNumber numberWithInt:2000];
     newInput.transactionDate = [NSDate date];
+    
+    NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
+    assert([repeatFrequencies count] >0);
+    
+    newInput.repeatFrequency = (EventRepeatFrequency *)[repeatFrequencies objectAtIndex:0];
+    NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
     
     // Save the context.
     NSError *error = nil;

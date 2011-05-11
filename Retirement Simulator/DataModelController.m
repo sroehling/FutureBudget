@@ -36,8 +36,9 @@
     [NSEntityDescription insertNewObjectForEntityForName:@"EventRepeatFrequency" 
                                   inManagedObjectContext:context];
     repeatFrequency.period = [NSNumber numberWithInt:thePeriod];
-    [repeatFrequency setPeriodWithPeriodEnum:kEventPeriodOnce];
+    [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
     repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
+    NSLog(@"New default repeat frequency: %@",repeatFrequency.description);
 
 }
 
@@ -82,7 +83,7 @@
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
         {
             /*
-             Replace this implementation with code to handle the error appropriately.
+             TODO: Replace this implementation with code to handle the error appropriately.
              
              abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
              */
@@ -206,6 +207,29 @@
     
     return [NSSet setWithArray:results];
 }
+
+- (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName sortKey:(NSString*)theSortKey
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:theSortKey ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:&sortDescriptor count:1];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+	NSError *error = nil;
+	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if (error != nil)
+    {
+        [NSException raise:NSGenericException format:[error description] arguments:nil];
+    }
+
+    return fetchedObjects;
+}
+
+
 
 - (bool) entitiesExistForEntityName:(NSString *)entityName
 {

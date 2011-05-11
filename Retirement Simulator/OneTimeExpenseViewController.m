@@ -11,6 +11,8 @@
 #import "DateFieldEditViewController.h"
 #import "TextFieldEditViewController.h"
 #import "NumberFieldEditViewController.h"
+#import "RepeatFrequencyEditViewController.h"
+#import "EventRepeatFrequency.h"
 
 
 @implementation OneTimeExpenseViewController
@@ -79,7 +81,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // 3 rows
-    return 3;
+    return 4;
 }
 
 
@@ -105,6 +107,10 @@
         case 2:
 			cell.textLabel.text = @"Date";
 			cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.expense.transactionDate];
+			break;
+        case 3:
+			cell.textLabel.text = @"Repeat";
+			cell.detailTextLabel.text = self.expense.repeatFrequency.description;
 			break;
     }
     return cell;
@@ -155,6 +161,15 @@
                 pushViewController:dateController animated:YES];
             [dateController release];
         } break;
+        case 3: {
+            RepeatFrequencyEditViewController *repeatController = 
+            [[RepeatFrequencyEditViewController alloc] initWithNibName:@"RepeatFrequencyEditViewController" bundle:nil];
+            repeatController.expenseInput = self.expense;
+            [self.navigationController 
+             pushViewController:repeatController animated:YES];
+            [repeatController release];
+        } break;
+
     }
 	     
 }

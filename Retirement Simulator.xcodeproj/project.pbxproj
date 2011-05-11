@@ -28,6 +28,8 @@
 		005731EF13787AFD008D13C1 /* ExpenseInputSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* ExpenseInputSimEventCreator.m */; };
 		005731F213787E37008D13C1 /* ExpenseInputSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F113787E37008D13C1 /* ExpenseInputSimEvent.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
+		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
+		005731FA1379D42B008D13C1 /* RepeatFrequencyEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 005731F81379D42B008D13C1 /* RepeatFrequencyEditViewController.xib */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -94,6 +96,9 @@
 		005731F113787E37008D13C1 /* ExpenseInputSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseInputSimEvent.m; sourceTree = "<group>"; };
 		005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeatFrequency.h; sourceTree = "<group>"; };
 		005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeatFrequency.m; sourceTree = "<group>"; };
+		005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyEditViewController.h; sourceTree = "<group>"; };
+		005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyEditViewController.m; sourceTree = "<group>"; };
+		005731F81379D42B008D13C1 /* RepeatFrequencyEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepeatFrequencyEditViewController.xib; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -175,6 +180,9 @@
 				00A36C16136D9723008A5C4C /* InputViewController.xib */,
 				004F5D3C13708D7400E0C4A3 /* OneTimeExpenseViewController.h */,
 				004F5D3D13708D7400E0C4A3 /* OneTimeExpenseViewController.m */,
+				005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */,
+				005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */,
+				005731F81379D42B008D13C1 /* RepeatFrequencyEditViewController.xib */,
 			);
 			name = "Input View";
 			sourceTree = "<group>";
@@ -383,6 +391,7 @@
 				004F5D601371BE6C00E0C4A3 /* TextFieldEditViewController.xib in Resources */,
 				004F5D651371DD0A00E0C4A3 /* NumberFieldEditViewController.xib in Resources */,
 				004F5D751373191600E0C4A3 /* ResultsViewController.xib in Resources */,
+				005731FA1379D42B008D13C1 /* RepeatFrequencyEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +443,7 @@
 				005731EF13787AFD008D13C1 /* ExpenseInputSimEventCreator.m in Sources */,
 				005731F213787E37008D13C1 /* ExpenseInputSimEvent.m in Sources */,
 				005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */,
+				005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

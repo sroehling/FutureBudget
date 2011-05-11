@@ -10,12 +10,14 @@
 #import <CoreData/CoreData.h>
 #import "Input.h"
 
+@class EventRepeatFrequency;
 
 @interface OneTimeExpenseInput : Input {
 @private
 }
 @property (nonatomic, retain) NSNumber * amount;
 @property (nonatomic, retain) NSDate * transactionDate;
+@property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
 
 
 @end
