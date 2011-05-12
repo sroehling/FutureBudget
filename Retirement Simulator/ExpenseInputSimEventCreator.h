@@ -14,13 +14,12 @@
 
 @interface ExpenseInputSimEventCreator : NSObject <SimEventCreator> {
     @private
-        int numEventsCreated;
         OneTimeExpenseInput *expense;
         EventRepeater *eventRepeater;
 }
 
 - (id)initWithExpense:(OneTimeExpenseInput*)theExpense;
 
-@property(nonatomic,retain) OneTimeExpenseInput *expense;
+@property(nonatomic,assign) OneTimeExpenseInput *expense;
 
 @end

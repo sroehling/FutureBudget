@@ -44,7 +44,7 @@
 {
     DataModelController *theController = [DataModelController theDataModelController];
     NSSet *inputs = [theController fetchObjectsForEntityName:@"OneTimeExpenseInput"];
-    
+     
     NSLog(@"Starting sim engine test ...");
     
     SimEngine *simEngine = [[SimEngine alloc] init ];
@@ -55,7 +55,7 @@
             [[ExpenseInputSimEventCreator alloc]initWithExpense:input];
         [simEngine.eventCreators addObject:expenseEventCreator];
         [expenseEventCreator release];
-        NSLog(@"Results View - Inputs: %@", input.name);
+        NSLog(@"Results View - Inputs: %@ %d", input.name, input.retainCount);
     }
    
     [simEngine runSim];

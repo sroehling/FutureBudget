@@ -37,8 +37,10 @@
 
 - (void)resetSimEventCreation
 {
-    numEventsCreated = 0;
-    [eventRepeater release];
+    if(eventRepeater!=nil)
+    {
+        [eventRepeater release];
+    }
     eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:expense.repeatFrequency 
                      andStartDate:expense.transactionDate];
@@ -70,8 +72,11 @@
 - (void)dealloc {
     // release owned objects here
     [super dealloc]; // pretty important.
-    [expense release];
-    [eventRepeater release];
+    if(eventRepeater!=nil)
+    {
+        [eventRepeater release];
+    }
+
     
 }
 

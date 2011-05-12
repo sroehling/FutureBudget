@@ -25,6 +25,7 @@
 - (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName 
                                       sortKey:(NSString*)theSortKey;
 - (bool) entitiesExistForEntityName:(NSString *)entityName;
-
+- (NSFetchRequest*)createSortedFetchRequestWithEntityName:(NSString *)entityName
+                                               andSortKey:(NSString*)theSortKey;
 
 @end

@@ -62,13 +62,6 @@
 
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -86,10 +79,9 @@
 - (void)insertNewObject
 {
     // Create a new instance of the entity managed by the fetched results controller.
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-
-	OneTimeExpenseInput *newInput  = (OneTimeExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:@"OneTimeExpenseInput" 
-                                inManagedObjectContext:context];
+ 
+	OneTimeExpenseInput *newInput  = (OneTimeExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"OneTimeExpenseInput" 
+        inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
     newInput.name = @"Testing 1,2,3";
     newInput.inputType = @"Expense";
     newInput.amount = [NSNumber numberWithInt:2000];
@@ -100,7 +92,7 @@
     
     newInput.repeatFrequency = (EventRepeatFrequency *)[repeatFrequencies objectAtIndex:0];
     NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
-    
+ 
     [[DataModelController theDataModelController] saveContext];
 }
 
@@ -156,18 +148,7 @@
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
-        // Save the context.
-        NSError *error = nil;
-        if (![context save:&error])
-        {
-            /*
-             TODO - Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
+        [[DataModelController theDataModelController]saveContext];
     }   
 }
 
@@ -200,35 +181,19 @@
         return __fetchedResultsController;
     }
     
-    /*
-     Set up the fetched results controller.
-     */
     // Create the fetch request for the entity.
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *managedObjectContext = [[DataModelController theDataModelController] managedObjectContext];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"OneTimeExpenseInput" inManagedObjectContext:managedObjectContext];
-    [fetchRequest setEntity:entity];
     
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    NSFetchRequest *fetchRequest = [[DataModelController theDataModelController] 
+                      createSortedFetchRequestWithEntityName:@"Input" andSortKey:@"name"];
     
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"inputType" cacheName:@"Root"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[DataModelController theDataModelController] managedObjectContext] sectionNameKeyPath:@"inputType" cacheName:@"Root"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
     [aFetchedResultsController release];
-    [fetchRequest release];
-    [sortDescriptor release];
-    [sortDescriptors release];
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error])
@@ -305,19 +270,6 @@ newIndexPath:(NSIndexPath *)newIndexPath
 {
     return UITableViewCellAccessoryDisclosureIndicator;
 }
-
-
-/*
- // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
- {
- // In the simplest, most efficient, case, reload the table view.
- [self.tableView reloadData];
- }
- */
-
-
 
 
 @end

@@ -77,10 +77,9 @@
 - (void)saveContext
 {
     NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil)
+    if (self.managedObjectContext!= nil)
     {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
+        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error])
         {
             /*
              TODO: Replace this implementation with code to handle the error appropriately.
@@ -171,7 +170,7 @@
          
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        [NSException raise:NSGenericException format:[error description] arguments:nil];
     }    
     
     return __persistentStoreCoordinator;
@@ -187,6 +186,52 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+
+- (NSFetchRequest*)createSortedFetchRequestWithEntityName:(NSString *)entityName
+                                               andSortKey:(NSString*)theSortKey
+{
+    assert(entityName!=nil);
+    assert(theSortKey!=nil);
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:theSortKey ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    
+    [fetchRequest autorelease];
+    [sortDescriptor release];
+    [sortDescriptors release];
+
+    return fetchRequest;
+    
+}
+
+- (NSArray*)executeFetchOrThrow:(NSFetchRequest*)fetchReq
+{
+    assert(fetchReq != nil);
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchReq 
+                                                                error:&error];
+    if (error != nil)
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        [NSException raise:NSGenericException format:[error description] arguments:nil];
+    }
+    return results;
+}
+
 // Convenience method to retrieve all the objects for a given entity name.
 - (NSSet *)fetchObjectsForEntityName:(NSString *)entityName
 {
@@ -197,42 +242,17 @@
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     [request setEntity:entity];
     
-    NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:request 
-                                                                error:&error];
-    if (error != nil)
-    {
-        [NSException raise:NSGenericException format:[error description] arguments:nil];
-    }
     
-    return [NSSet setWithArray:results];
+     return [NSSet setWithArray:[self executeFetchOrThrow:request]];
 }
 
 - (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName sortKey:(NSString*)theSortKey
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
+{    
+    NSFetchRequest *fetchRequest = [self createSortedFetchRequestWithEntityName:entityName andSortKey:theSortKey];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:theSortKey ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:&sortDescriptor count:1];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-	NSError *error = nil;
-	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    
-    if (error != nil)
-    {
-        [NSException raise:NSGenericException format:[error description] arguments:nil];
-    }
-    
-    [sortDescriptor release];
-    [fetchRequest release];
-    [sortDescriptors release];
+	return [self executeFetchOrThrow:fetchRequest];
 
-    return fetchedObjects;
 }
-
 
 
 - (bool) entitiesExistForEntityName:(NSString *)entityName
