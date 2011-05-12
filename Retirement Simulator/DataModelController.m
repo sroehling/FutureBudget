@@ -225,6 +225,10 @@
     {
         [NSException raise:NSGenericException format:[error description] arguments:nil];
     }
+    
+    [sortDescriptor release];
+    [fetchRequest release];
+    [sortDescriptors release];
 
     return fetchedObjects;
 }

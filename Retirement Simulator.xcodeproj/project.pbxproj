@@ -45,6 +45,7 @@
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
 		00A36C17136D9723008A5C4C /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C15136D9723008A5C4C /* InputViewController.m */; };
 		00A36C18136D9723008A5C4C /* InputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C16136D9723008A5C4C /* InputViewController.xib */; };
+		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,8 @@
 		00A36C14136D9723008A5C4C /* InputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
 		00A36C15136D9723008A5C4C /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
 		00A36C16136D9723008A5C4C /* InputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputViewController.xib; sourceTree = "<group>"; };
+		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
+		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,8 @@
 				005731EE13787AFD008D13C1 /* ExpenseInputSimEventCreator.m */,
 				005731F013787E37008D13C1 /* ExpenseInputSimEvent.h */,
 				005731F113787E37008D13C1 /* ExpenseInputSimEvent.m */,
+				00F42095137B510A00980A88 /* EventRepeater.h */,
+				00F42096137B510A00980A88 /* EventRepeater.m */,
 			);
 			name = "Simulator Inputs";
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 				005731F213787E37008D13C1 /* ExpenseInputSimEvent.m in Sources */,
 				005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */,
 				005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */,
+				00F42097137B510A00980A88 /* EventRepeater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

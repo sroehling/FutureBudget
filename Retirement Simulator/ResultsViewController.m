@@ -52,8 +52,7 @@
     {
         
         ExpenseInputSimEventCreator *expenseEventCreator =
-            [[ExpenseInputSimEventCreator alloc]init];
-        expenseEventCreator.expense = input;
+            [[ExpenseInputSimEventCreator alloc]initWithExpense:input];
         [simEngine.eventCreators addObject:expenseEventCreator];
         [expenseEventCreator release];
         NSLog(@"Results View - Inputs: %@", input.name);
