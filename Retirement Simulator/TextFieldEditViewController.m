@@ -7,6 +7,7 @@
 //
 
 #import "TextFieldEditViewController.h"
+#import "DataModelController.h"
 
 
 @implementation TextFieldEditViewController
@@ -48,6 +49,8 @@
 //	[undoManager setActionName:[NSString stringWithFormat:@"%@", editedFieldName]];
 	
     [editedObject setValue:textField.text forKey:editedFieldKey];
+    
+    [[DataModelController theDataModelController] saveContext];
 	
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -112,6 +112,8 @@
     // Update the type of the recipe instance
     expenseInput.repeatFrequency = [repeatFrequencies objectAtIndex:indexPath.row];
     
+    [[DataModelController theDataModelController] saveContext];
+    
     // Deselect the row.
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

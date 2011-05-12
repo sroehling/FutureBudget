@@ -7,6 +7,7 @@
 //
 
 #import "DateFieldEditViewController.h"
+#import "DataModelController.h"
 
 @implementation DateFieldEditViewController
 
@@ -33,6 +34,8 @@
     // Pass current value to the edited object, then pop.
     [editedObject setValue:datePicker.date forKey:editedFieldKey];
 	
+    [[DataModelController theDataModelController] saveContext];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

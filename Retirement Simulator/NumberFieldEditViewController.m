@@ -7,6 +7,7 @@
 //
 
 #import "NumberFieldEditViewController.h"
+#import "DataModelController.h"
 
 
 @implementation NumberFieldEditViewController
@@ -47,7 +48,9 @@
     {
         [editedObject setValue:theValue forKey:editedFieldKey];       
     }
- 	
+    
+ 	[[DataModelController theDataModelController] saveContext];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
