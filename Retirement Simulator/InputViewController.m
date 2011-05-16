@@ -13,6 +13,13 @@
 #import "OneTimeExpenseViewController.h"
 #import "EventRepeatFrequency.h"
 
+#import "ManagedObjectFieldInfo.h"
+#import "TextFieldEditInfo.h"
+#import "NumberFieldEditInfo.h"
+#import "DateFieldEditInfo.h"
+#import "RepeatFrequencyFieldEditInfo.h"
+#import "GenericFieldBasedTableEditViewController.h"
+
 @interface InputViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
@@ -161,14 +168,36 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     // Create and push a detail view controller.
-	OneTimeExpenseViewController *detailViewController = [[OneTimeExpenseViewController alloc] 
-                                    initWithStyle:UITableViewStyleGrouped];
+    
+    
+    
     OneTimeExpenseInput *selectedInput = (OneTimeExpenseInput *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
     // Pass the selected book to the new view controller.
      NSLog(@"input = %@",[selectedInput description]);
-    detailViewController.expense = selectedInput;
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController release];
+    
+    NSMutableArray *detailFieldEditInfo = [[NSMutableArray alloc] init ];
+    
+    ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+         initWithManagedObject:selectedInput andFieldKey:@"name" andFieldLabel:@"Input Name"] autorelease];
+    [detailFieldEditInfo addObject:[[[TextFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease]];
+
+    fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+         initWithManagedObject:selectedInput andFieldKey:@"amount" andFieldLabel:@"Amount"] autorelease];
+    [detailFieldEditInfo addObject:[[[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease]];
+
+    fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+        initWithManagedObject:selectedInput andFieldKey:@"transactionDate" andFieldLabel:@"Date"] autorelease];
+    [detailFieldEditInfo addObject:[[[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease]];
+    
+    fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+        initWithManagedObject:selectedInput andFieldKey:@"repeatFrequency" andFieldLabel:@"Repeat"] autorelease];
+    [detailFieldEditInfo addObject:[[[RepeatFrequencyFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease]];
+    
+    GenericFieldBasedTableEditViewController *inputDetailViewController = 
+    [[[GenericFieldBasedTableEditViewController alloc] initWithFieldEditInfo:detailFieldEditInfo] autorelease];
+   
+
+	[self.navigationController pushViewController:inputDetailViewController animated:YES];
 }
 
 
