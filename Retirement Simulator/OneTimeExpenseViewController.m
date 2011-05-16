@@ -130,41 +130,45 @@
 	
 //	if (!self.editing) return;
 	
+    ManagedObjectFieldInfo *fieldInfo;
+    
     switch (indexPath.row) {
         case 0: {
+            fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                initWithManagedObject:self.expense andFieldKey:@"name" andFieldLabel:@"Input Name"] 
+                         autorelease];
             TextFieldEditViewController *nameEditController = 
-                [[TextFieldEditViewController alloc] initWithNibName:@"TextFieldEditViewController" bundle:nil];
-            nameEditController.editedObject = self.expense;
-            nameEditController.editedFieldKey = @"name";
-            nameEditController.editedFieldName = @"Input Name";
+                [[TextFieldEditViewController alloc] initWithNibName:@"TextFieldEditViewController" andFieldInfo:fieldInfo];
             [self.navigationController 
              pushViewController:nameEditController animated:YES];
             [nameEditController release];
         } break;
         case 1: {
+            fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                          initWithManagedObject:self.expense andFieldKey:@"amount" andFieldLabel:@"Amount"] 
+                         autorelease];
             NumberFieldEditViewController *amountEditController = 
-            [[NumberFieldEditViewController alloc] initWithNibName:@"NumberFieldEditViewController" bundle:nil];
-            amountEditController.editedObject = self.expense;
-            amountEditController.editedFieldKey = @"amount";
-            amountEditController.editedFieldName = @"Amount";
+            [[NumberFieldEditViewController alloc] initWithNibName:@"NumberFieldEditViewController" andFieldInfo:fieldInfo];
             [self.navigationController 
              pushViewController:amountEditController animated:YES];
             [amountEditController release];
         } break;
         case 2: {
+            fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                          initWithManagedObject:self.expense andFieldKey:@"transactionDate" andFieldLabel:@"Date"] 
+                         autorelease];
             DateFieldEditViewController *dateController = 
-            [[DateFieldEditViewController alloc] initWithNibName:@"DateFieldEditViewController" bundle:nil];
-            dateController.editedObject = self.expense;
-            dateController.editedFieldKey = @"transactionDate";
-            dateController.editedFieldName = @"Date";
+            [[DateFieldEditViewController alloc] initWithNibName:@"DateFieldEditViewController" andFieldInfo:fieldInfo];
             [self.navigationController 
                 pushViewController:dateController animated:YES];
             [dateController release];
         } break;
         case 3: {
+            fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                          initWithManagedObject:self.expense andFieldKey:@"repeatFrequency" andFieldLabel:@"Repeat"] 
+                         autorelease];
             RepeatFrequencyEditViewController *repeatController = 
-            [[RepeatFrequencyEditViewController alloc] initWithNibName:@"RepeatFrequencyEditViewController" bundle:nil];
-            repeatController.expenseInput = self.expense;
+            [[RepeatFrequencyEditViewController alloc] initWithNibName:@"RepeatFrequencyEditViewController" andFieldInfo:fieldInfo];
             [self.navigationController 
              pushViewController:repeatController animated:YES];
             [repeatController release];

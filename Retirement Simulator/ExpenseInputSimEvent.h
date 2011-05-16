@@ -23,6 +23,8 @@
 - (id) initWithEventCreator:(id<SimEventCreator>)eventCreator;
 
 @property (nonatomic, retain) NSDate *eventDate;
+// TBD - Should we turn expense into an asssigned attribute, since it is referenced/owned elsewhere
+
 @property(nonatomic,retain)OneTimeExpenseInput *expense;
 @property (nonatomic, assign) id<SimEventCreator> originatingEventCreator;
 

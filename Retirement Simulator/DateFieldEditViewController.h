@@ -7,24 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FieldEditViewController.h"
 
-
-@interface DateFieldEditViewController : UIViewController {
-    NSManagedObject *editedObject;
-    NSString *editedFieldKey;
-    NSString *editedFieldName;
-	
+@interface DateFieldEditViewController : FieldEditViewController {
 	UIDatePicker *datePicker;
-
 }
 
-@property (nonatomic, retain) NSManagedObject *editedObject;
-@property (nonatomic, retain) NSString *editedFieldKey;
-@property (nonatomic, retain) NSString *editedFieldName;
-
 @property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
-
-- (IBAction)cancel;
-- (IBAction)save;
 
 @end

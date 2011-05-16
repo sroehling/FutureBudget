@@ -8,25 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FieldEditViewController.h"
 
-@interface TextFieldEditViewController : UIViewController {
+@interface TextFieldEditViewController : FieldEditViewController {
 
-	UITextField *textField;
-    
-    NSManagedObject *editedObject;
-    NSString *editedFieldKey;
-    NSString *editedFieldName;
-	
+	UITextField *textField;	
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *textField;
 
-@property (nonatomic, retain) NSManagedObject *editedObject;
-@property (nonatomic, retain) NSString *editedFieldKey;
-@property (nonatomic, retain) NSString *editedFieldName;
-
-
-- (IBAction)cancel;
-- (IBAction)save;
 
 @end

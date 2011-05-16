@@ -8,26 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FieldEditViewController.h"
 
-@interface NumberFieldEditViewController : UIViewController {
+@interface NumberFieldEditViewController : FieldEditViewController {
 	UITextField *textField;
-    
-    NSManagedObject *editedObject;
-    NSString *editedFieldKey;
-    NSString *editedFieldName;
-    
     NSNumberFormatter *numberFormatter;
 	
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *textField;
-
-@property (nonatomic, retain) NSManagedObject *editedObject;
-@property (nonatomic, retain) NSString *editedFieldKey;
-@property (nonatomic, retain) NSString *editedFieldName;
 @property (nonatomic, retain) NSNumberFormatter *numberFormatter;
-
-- (IBAction)cancel;
-- (IBAction)save;
 
 @end

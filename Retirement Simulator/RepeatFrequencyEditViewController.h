@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class OneTimeExpenseInput;
+#import "FieldEditTableViewController.h"
+#import "EventRepeatFrequency.h"
 
-@interface RepeatFrequencyEditViewController : UITableViewController {
+@interface RepeatFrequencyEditViewController : FieldEditTableViewController {
 @private
-    OneTimeExpenseInput *expenseInput;
     NSArray *repeatFrequencies;
+    EventRepeatFrequency *currentFrequency;
 }
 
-@property (nonatomic, retain) OneTimeExpenseInput *expenseInput;
 @property (nonatomic, retain) NSArray *repeatFrequencies;
+@property(nonatomic,retain) EventRepeatFrequency *currentFrequency;
 
 @end

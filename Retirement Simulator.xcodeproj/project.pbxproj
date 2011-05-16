@@ -45,7 +45,15 @@
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
 		00A36C17136D9723008A5C4C /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C15136D9723008A5C4C /* InputViewController.m */; };
 		00A36C18136D9723008A5C4C /* InputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C16136D9723008A5C4C /* InputViewController.xib */; };
+		00ADB2ED138191B700064651 /* RepeatFrequencyFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */; };
+		00ADB2F1138199BC00064651 /* ManagedObjectFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */; };
+		00ADB2F413819ED500064651 /* FieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F313819ED500064651 /* FieldEditViewController.m */; };
+		00ADB2F71381B33A00064651 /* FieldEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F61381B33900064651 /* FieldEditTableViewController.m */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
+		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
+		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
+		00F420A6137DD5C100980A88 /* TextFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A5137DD5C100980A88 /* TextFieldEditInfo.m */; };
+		00F420A9137DDBD000980A88 /* ManagedObjectFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,8 +128,25 @@
 		00A36C14136D9723008A5C4C /* InputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
 		00A36C15136D9723008A5C4C /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
 		00A36C16136D9723008A5C4C /* InputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputViewController.xib; sourceTree = "<group>"; };
+		00ADB2EB138191B700064651 /* RepeatFrequencyFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyFieldEditInfo.h; sourceTree = "<group>"; };
+		00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyFieldEditInfo.m; sourceTree = "<group>"; };
+		00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectFieldEditInfo.h; sourceTree = "<group>"; };
+		00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectFieldEditInfo.m; sourceTree = "<group>"; };
+		00ADB2F213819ED400064651 /* FieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditViewController.h; sourceTree = "<group>"; };
+		00ADB2F313819ED500064651 /* FieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldEditViewController.m; sourceTree = "<group>"; };
+		00ADB2F51381B33800064651 /* FieldEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditTableViewController.h; sourceTree = "<group>"; };
+		00ADB2F61381B33900064651 /* FieldEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldEditTableViewController.m; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
+		00F4209D137DB78700980A88 /* FieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditInfo.h; sourceTree = "<group>"; };
+		00F4209E137DC04800980A88 /* DateFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFieldEditInfo.h; sourceTree = "<group>"; };
+		00F4209F137DC04800980A88 /* DateFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFieldEditInfo.m; sourceTree = "<group>"; };
+		00F420A1137DD45500980A88 /* NumberFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldEditInfo.h; sourceTree = "<group>"; };
+		00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldEditInfo.m; sourceTree = "<group>"; };
+		00F420A4137DD5C000980A88 /* TextFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditInfo.h; sourceTree = "<group>"; };
+		00F420A5137DD5C100980A88 /* TextFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditInfo.m; sourceTree = "<group>"; };
+		00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectFieldInfo.h; sourceTree = "<group>"; };
+		00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectFieldInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +186,21 @@
 				004F5D611371DD0900E0C4A3 /* NumberFieldEditViewController.h */,
 				004F5D621371DD0900E0C4A3 /* NumberFieldEditViewController.m */,
 				004F5D631371DD0900E0C4A3 /* NumberFieldEditViewController.xib */,
+				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
+				00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */,
+				00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */,
+				00F4209E137DC04800980A88 /* DateFieldEditInfo.h */,
+				00F4209F137DC04800980A88 /* DateFieldEditInfo.m */,
+				00F420A1137DD45500980A88 /* NumberFieldEditInfo.h */,
+				00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */,
+				00F420A4137DD5C000980A88 /* TextFieldEditInfo.h */,
+				00F420A5137DD5C100980A88 /* TextFieldEditInfo.m */,
+				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
+				00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */,
+				00ADB2F213819ED400064651 /* FieldEditViewController.h */,
+				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
+				00ADB2F51381B33800064651 /* FieldEditTableViewController.h */,
+				00ADB2F61381B33900064651 /* FieldEditTableViewController.m */,
 			);
 			name = "Field Editors";
 			sourceTree = "<group>";
@@ -186,6 +226,8 @@
 				005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */,
 				005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */,
 				005731F81379D42B008D13C1 /* RepeatFrequencyEditViewController.xib */,
+				00ADB2EB138191B700064651 /* RepeatFrequencyFieldEditInfo.h */,
+				00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */,
 			);
 			name = "Input View";
 			sourceTree = "<group>";
@@ -450,6 +492,14 @@
 				005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */,
 				005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */,
 				00F42097137B510A00980A88 /* EventRepeater.m in Sources */,
+				00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */,
+				00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */,
+				00F420A6137DD5C100980A88 /* TextFieldEditInfo.m in Sources */,
+				00F420A9137DDBD000980A88 /* ManagedObjectFieldInfo.m in Sources */,
+				00ADB2ED138191B700064651 /* RepeatFrequencyFieldEditInfo.m in Sources */,
+				00ADB2F1138199BC00064651 /* ManagedObjectFieldEditInfo.m in Sources */,
+				00ADB2F413819ED500064651 /* FieldEditViewController.m in Sources */,
+				00ADB2F71381B33A00064651 /* FieldEditTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
