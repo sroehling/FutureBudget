@@ -7,7 +7,7 @@
 //
 
 #import "ExpenseInputSimEvent.h"
-#import "OneTimeExpenseInput.h"
+#import "ExpenseInput.h"
 
 @implementation ExpenseInputSimEvent
 

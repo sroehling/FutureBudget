@@ -11,7 +11,7 @@
 		004F5D0B136F26BE00E0C4A3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D09136F26BE00E0C4A3 /* DataModel.xcdatamodeld */; };
 		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
-		004F5D24137079AD00E0C4A3 /* OneTimeExpenseInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D23137079AD00E0C4A3 /* OneTimeExpenseInput.m */; };
+		004F5D24137079AD00E0C4A3 /* ExpenseInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D23137079AD00E0C4A3 /* ExpenseInput.m */; };
 		004F5D5A1371B3C100E0C4A3 /* DateFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */; };
 		004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */; };
 		004F5D5F1371BE6C00E0C4A3 /* TextFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D5D1371BE6B00E0C4A3 /* TextFieldEditViewController.m */; };
@@ -74,8 +74,8 @@
 		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
 		004F5D0F13706F7100E0C4A3 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		004F5D1013706F7100E0C4A3 /* Input.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Input.m; sourceTree = "<group>"; };
-		004F5D22137079AD00E0C4A3 /* OneTimeExpenseInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneTimeExpenseInput.h; sourceTree = "<group>"; };
-		004F5D23137079AD00E0C4A3 /* OneTimeExpenseInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneTimeExpenseInput.m; sourceTree = "<group>"; };
+		004F5D22137079AD00E0C4A3 /* ExpenseInput.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ExpenseInput.h; sourceTree = "<group>"; };
+		004F5D23137079AD00E0C4A3 /* ExpenseInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseInput.m; sourceTree = "<group>"; };
 		004F5D571371B3C100E0C4A3 /* DateFieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFieldEditViewController.h; sourceTree = "<group>"; };
 		004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFieldEditViewController.m; sourceTree = "<group>"; };
 		004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateFieldEditViewController.xib; sourceTree = "<group>"; };
@@ -138,6 +138,7 @@
 		00ADB2FB1381C1DC00064651 /* GenericFieldBasedTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableEditViewController.h; sourceTree = "<group>"; };
 		00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableEditViewController.m; sourceTree = "<group>"; };
 		00ADB2FD1381C1DF00064651 /* GenericFieldBasedTableEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericFieldBasedTableEditViewController.xib; sourceTree = "<group>"; };
+		00ADB3001382CB2B00064651 /* InputVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputVisitor.h; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 		00F4209D137DB78700980A88 /* FieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditInfo.h; sourceTree = "<group>"; };
@@ -253,10 +254,11 @@
 				004F5D0D136F52D200E0C4A3 /* DataModelController.m */,
 				004F5D0F13706F7100E0C4A3 /* Input.h */,
 				004F5D1013706F7100E0C4A3 /* Input.m */,
-				004F5D22137079AD00E0C4A3 /* OneTimeExpenseInput.h */,
-				004F5D23137079AD00E0C4A3 /* OneTimeExpenseInput.m */,
+				004F5D22137079AD00E0C4A3 /* ExpenseInput.h */,
+				004F5D23137079AD00E0C4A3 /* ExpenseInput.m */,
 				005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */,
 				005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */,
+				00ADB3001382CB2B00064651 /* InputVisitor.h */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -484,7 +486,7 @@
 				004F5D0B136F26BE00E0C4A3 /* DataModel.xcdatamodeld in Sources */,
 				004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */,
 				004F5D1113706F7100E0C4A3 /* Input.m in Sources */,
-				004F5D24137079AD00E0C4A3 /* OneTimeExpenseInput.m in Sources */,
+				004F5D24137079AD00E0C4A3 /* ExpenseInput.m in Sources */,
 				004F5D5A1371B3C100E0C4A3 /* DateFieldEditViewController.m in Sources */,
 				004F5D5F1371BE6C00E0C4A3 /* TextFieldEditViewController.m in Sources */,
 				004F5D641371DD0A00E0C4A3 /* NumberFieldEditViewController.m in Sources */,

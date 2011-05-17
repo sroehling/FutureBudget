@@ -9,7 +9,7 @@
 #import "ExpenseInputSimEventCreator.h"
 #import "ExpenseInputSimEvent.h"
 
-#import "OneTimeExpenseInput.h"
+#import "ExpenseInput.h"
 #import "EventRepeater.h"
 
 @protocol SimEventCreator;
@@ -20,7 +20,7 @@
 
 
 
-- (id)initWithExpense:(OneTimeExpenseInput*)theExpense
+- (id)initWithExpense:(ExpenseInput*)theExpense
 {
     self = [super init];
     if(self)

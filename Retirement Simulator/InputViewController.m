@@ -9,8 +9,7 @@
 #import "InputViewController.h"
 #import "DataModelController.h"
 
-#import "OneTimeExpenseInput.h"
-#import "OneTimeExpenseViewController.h"
+#import "ExpenseInput.h"
 #import "EventRepeatFrequency.h"
 
 #import "ManagedObjectFieldInfo.h"
@@ -87,7 +86,7 @@
 {
     // Create a new instance of the entity managed by the fetched results controller.
  
-	OneTimeExpenseInput *newInput  = (OneTimeExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"OneTimeExpenseInput" 
+	ExpenseInput *newInput  = (ExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"ExpenseInput" 
         inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
     newInput.name = @"Testing 1,2,3";
     newInput.inputType = @"Expense";
@@ -171,7 +170,7 @@
     
     
     
-    OneTimeExpenseInput *selectedInput = (OneTimeExpenseInput *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+    ExpenseInput *selectedInput = (ExpenseInput *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
     // Pass the selected book to the new view controller.
      NSLog(@"input = %@",[selectedInput description]);
     

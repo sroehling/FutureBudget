@@ -8,7 +8,7 @@
 
 #import "ResultsViewController.h"
 #import "DataModelController.h"
-#import "OneTimeExpenseInput.h"
+#import "ExpenseInput.h"
 #import "ExpenseInputSimEventCreator.h"
 #import "SimEngine.h"
 
@@ -43,12 +43,12 @@
 - (void) runSimulatorForResults
 {
     DataModelController *theController = [DataModelController theDataModelController];
-    NSSet *inputs = [theController fetchObjectsForEntityName:@"OneTimeExpenseInput"];
+    NSSet *inputs = [theController fetchObjectsForEntityName:@"ExpenseInput"];
      
     NSLog(@"Starting sim engine test ...");
     
     SimEngine *simEngine = [[SimEngine alloc] init ];
-    for(OneTimeExpenseInput *input in inputs)
+    for(ExpenseInput *input in inputs)
     {
         
         ExpenseInputSimEventCreator *expenseEventCreator =

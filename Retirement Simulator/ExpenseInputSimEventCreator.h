@@ -10,16 +10,16 @@
 
 #import "SimEventCreator.h"
 
-@class OneTimeExpenseInput,EventRepeater;
+@class ExpenseInput,EventRepeater;
 
 @interface ExpenseInputSimEventCreator : NSObject <SimEventCreator> {
     @private
-        OneTimeExpenseInput *expense;
+        ExpenseInput *expense;
         EventRepeater *eventRepeater;
 }
 
-- (id)initWithExpense:(OneTimeExpenseInput*)theExpense;
+- (id)initWithExpense:(ExpenseInput*)theExpense;
 
-@property(nonatomic,assign) OneTimeExpenseInput *expense;
+@property(nonatomic,assign) ExpenseInput *expense;
 
 @end
