@@ -13,6 +13,7 @@
 #import "EventRepeatFrequency.h"
 
 #import "DetailInputViewCreator.h"
+#import "InputTypeSelectionViewController.h"
 
 @interface InputViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -79,23 +80,10 @@
 
 - (void)insertNewObject
 {
-    // Create a new instance of the entity managed by the fetched results controller.
- 
-	ExpenseInput *newInput  = (ExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"ExpenseInput" 
-        inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
-    newInput.name = @"Testing 1,2,3";
-    newInput.inputType = @"Expense";
-    newInput.amount = [NSNumber numberWithInt:2000];
-    newInput.transactionDate = [NSDate date];
-    
-    NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
-    assert([repeatFrequencies count] >0);
-    
-    newInput.repeatFrequency = (EventRepeatFrequency *)[repeatFrequencies objectAtIndex:0];
-    NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
- 
-    [[DataModelController theDataModelController] saveContext];
-}
+    InputTypeSelectionViewController *inputTypeViewController = 
+        [[[InputTypeSelectionViewController alloc ]initWithStyle:UITableViewStyleGrouped] autorelease];
+    [self.navigationController pushViewController:inputTypeViewController animated:YES];
+ }
 
 
 #pragma mark - Table view data implementation

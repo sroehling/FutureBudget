@@ -7,14 +7,15 @@
 //
 
 #import "InputEventCreatorCreator.h"
-#import "ExpenseInputSimEventCreator.h"
+#import "CashFlowSimEventCreator.h"
 #import "DataModelController.h"
 #import "SimEngine.h"
+#import "ExpenseInput.h"
+#import "IncomeInput.h"
 #import "Input.h"
 
 @implementation InputEventCreatorCreator 
 
-//@synthesize currentSimEventCreator=currentSimEventCreator_;
 @synthesize currSimEventCreator;
 
 - (void)reset
@@ -29,13 +30,16 @@
 
 - (void) visitIncome:(IncomeInput *)income
 {
-    assert(0); // not implemented yet
+    CashFlowSimEventCreator *theCreator = 
+    [[CashFlowSimEventCreator alloc]initWithCashFlow:income];
+    self.currSimEventCreator = theCreator;
+    [theCreator release];
 }
 
 - (void)visitExpense:(ExpenseInput*)expense
 {
-    ExpenseInputSimEventCreator *theCreator = 
-        [[ExpenseInputSimEventCreator alloc]initWithExpense:expense];
+    CashFlowSimEventCreator *theCreator = 
+        [[CashFlowSimEventCreator alloc]initWithCashFlow:expense];
     self.currSimEventCreator = theCreator;
     [theCreator release];
 }

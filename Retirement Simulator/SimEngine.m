@@ -18,7 +18,7 @@
 -(id)init {    
     if((self =[super init]))
     {        
-        eventCreators =[[NSMutableArray alloc] init];
+        self.eventCreators =[[[NSMutableArray alloc] init] autorelease];
         
         eventList = [[NSMutableArray alloc] init];
         
@@ -154,7 +154,7 @@
     
     [self resetSimulator];
     
-    NSDate *planEndDate = [dateFormatter dateFromString:@"2020-12-31"];
+    NSDate *planEndDate = [dateFormatter dateFromString:@"2012-12-31"];
     NSLog(@"Plan end date: %@",[dateFormatter stringFromDate:planEndDate]);
     
     while ([nextResultsCheckpointDate compare:planEndDate] == NSOrderedAscending) 
