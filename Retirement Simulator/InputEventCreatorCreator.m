@@ -22,6 +22,16 @@
     self.currSimEventCreator = nil;
 }
 
+- (void)visitCashFlow:(CashFlowInput *)cashFlow
+{
+    
+}
+
+- (void) visitIncome:(IncomeInput *)income
+{
+    assert(0); // not implemented yet
+}
+
 - (void)visitExpense:(ExpenseInput*)expense
 {
     ExpenseInputSimEventCreator *theCreator = 

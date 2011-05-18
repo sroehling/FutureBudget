@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #import "InputVisitor.h"
+@class Input;
 
 
 @interface DetailInputViewCreator : NSObject <InputVisitor> {
-    UIViewController *detailViewController;
+    NSMutableArray *detailFieldEditInfo;
 }
 
-@property (nonatomic,retain)UIViewController *detailViewController;
+@property (nonatomic,retain)NSMutableArray *detailFieldEditInfo;
+
+
+- (UIViewController *)createDetailViewForInput:(Input*)input;
 
 @end

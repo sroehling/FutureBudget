@@ -1,20 +1,21 @@
 //
-//  ExpenseInput.m
+//  IncomeInput.m
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 5/3/11.
+//  Created by Steve Roehling on 5/18/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ExpenseInput.h"
+#import "IncomeInput.h"
 #import "InputVisitor.h"
 
-@implementation ExpenseInput
+@implementation IncomeInput
+
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
 {
     [super acceptInputVisitor:inputVisitor];
-    [inputVisitor visitExpense:self];
+    [inputVisitor visitIncome:self];
 }
 
 @end

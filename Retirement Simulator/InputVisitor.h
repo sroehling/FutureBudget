@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class CashFlowInput;
 @class ExpenseInput;
+@class IncomeInput;
 
 @protocol InputVisitor <NSObject>
 
+- (void)visitCashFlow:(CashFlowInput*)cashFlow;
 - (void)visitExpense:(ExpenseInput*)expense;
+- (void)visitIncome:(IncomeInput*)income;
 
 @end

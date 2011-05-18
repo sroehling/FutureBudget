@@ -1,8 +1,8 @@
 //
-//  ExpenseInput.h
+//  IncomeInput.h
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 5/3/11.
+//  Created by Steve Roehling on 5/18/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,11 +10,9 @@
 #import <CoreData/CoreData.h>
 #import "CashFlowInput.h"
 
-@class EventRepeatFrequency;
 
-@interface ExpenseInput : CashFlowInput {
+@interface IncomeInput : CashFlowInput {
 @private
 }
-
 
 @end

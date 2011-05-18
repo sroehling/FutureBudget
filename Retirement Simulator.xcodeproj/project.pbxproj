@@ -52,6 +52,8 @@
 		00ADB3031382D1BF00064651 /* DetailInputViewCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */; };
 		00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */; };
 		00ADB3141383705300064651 /* InputEventCreatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3131383705300064651 /* InputEventCreatorCreator.m */; };
+		00ADB31713842FCA00064651 /* CashFlowInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB31613842FC800064651 /* CashFlowInput.m */; };
+		00ADB31A1384330800064651 /* IncomeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3191384330700064651 /* IncomeInput.m */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
 		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
 		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
@@ -145,6 +147,10 @@
 		00ADB3101383220E00064651 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		00ADB3121383705200064651 /* InputEventCreatorCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputEventCreatorCreator.h; sourceTree = "<group>"; };
 		00ADB3131383705300064651 /* InputEventCreatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputEventCreatorCreator.m; sourceTree = "<group>"; };
+		00ADB31513842FC700064651 /* CashFlowInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowInput.h; sourceTree = "<group>"; };
+		00ADB31613842FC800064651 /* CashFlowInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowInput.m; sourceTree = "<group>"; };
+		00ADB3181384330600064651 /* IncomeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeInput.h; sourceTree = "<group>"; };
+		00ADB3191384330700064651 /* IncomeInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeInput.m; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 		00F4209D137DB78700980A88 /* FieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditInfo.h; sourceTree = "<group>"; };
@@ -267,6 +273,10 @@
 				005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */,
 				005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */,
 				00ADB3001382CB2B00064651 /* InputVisitor.h */,
+				00ADB31513842FC700064651 /* CashFlowInput.h */,
+				00ADB31613842FC800064651 /* CashFlowInput.m */,
+				00ADB3181384330600064651 /* IncomeInput.h */,
+				00ADB3191384330700064651 /* IncomeInput.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -518,6 +528,8 @@
 				00ADB3031382D1BF00064651 /* DetailInputViewCreator.m in Sources */,
 				00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */,
 				00ADB3141383705300064651 /* InputEventCreatorCreator.m in Sources */,
+				00ADB31713842FCA00064651 /* CashFlowInput.m in Sources */,
+				00ADB31A1384330800064651 /* IncomeInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

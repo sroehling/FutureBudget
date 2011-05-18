@@ -18,48 +18,74 @@
 
 @implementation DetailInputViewCreator
 
-@synthesize detailViewController;
+@synthesize detailFieldEditInfo;
 
-- (void)visitExpense:(ExpenseInput*)expense
+- (id) init
 {
-    NSMutableArray *detailFieldEditInfo = [[NSMutableArray alloc] init ];
+    self = [super init];
+    if(self)
+    {
+        self.detailFieldEditInfo = [[[NSMutableArray alloc] init ] autorelease];
+    }
+    return self;
+}
+
+- (UIViewController *)createDetailViewForInput:(Input*)input
+{
+    [self.detailFieldEditInfo removeAllObjects];
     
+    [input acceptInputVisitor:self];
+    assert([detailFieldEditInfo count] > 0); // Need at least one field definition to be valid
+    
+    UIViewController *detailViewController = 
+        [[[GenericFieldBasedTableEditViewController alloc] initWithFieldEditInfo:detailFieldEditInfo] autorelease];
+    return detailViewController;
+
+}
+
+- (void) visitCashFlow:(CashFlowInput *)cashFlow
+{
     ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                                          initWithManagedObject:expense andFieldKey:@"name" andFieldLabel:@"Input Name"];
+                                         initWithManagedObject:cashFlow andFieldKey:@"name" andFieldLabel:@"Input Name"];
     ManagedObjectFieldEditInfo *fieldEditInfo = [[TextFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
     [detailFieldEditInfo addObject:fieldEditInfo];
     [fieldEditInfo release];
     [fieldInfo release];
     
     fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                  initWithManagedObject:expense andFieldKey:@"amount" andFieldLabel:@"Amount"];
+                 initWithManagedObject:cashFlow andFieldKey:@"amount" andFieldLabel:@"Amount"];
     fieldEditInfo = [[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
     [detailFieldEditInfo addObject:fieldEditInfo];
     [fieldEditInfo release];
     [fieldInfo release];
     
     fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                  initWithManagedObject:expense andFieldKey:@"transactionDate" andFieldLabel:@"Date"];
+                 initWithManagedObject:cashFlow andFieldKey:@"transactionDate" andFieldLabel:@"Date"];
     fieldEditInfo = [[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
     [detailFieldEditInfo addObject:fieldEditInfo];
     [fieldEditInfo release];
     [fieldInfo release];
     
     fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                  initWithManagedObject:expense andFieldKey:@"repeatFrequency" andFieldLabel:@"Repeat"];
+                 initWithManagedObject:cashFlow andFieldKey:@"repeatFrequency" andFieldLabel:@"Repeat"];
     fieldEditInfo = [[RepeatFrequencyFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
     [detailFieldEditInfo addObject:fieldEditInfo];
     [fieldEditInfo release];
     [fieldInfo release];
-    
-    detailViewController = 
-        [[GenericFieldBasedTableEditViewController alloc] initWithFieldEditInfo:detailFieldEditInfo];
-    [detailFieldEditInfo release];
 }
+
+- (void)visitExpense:(ExpenseInput*)expense
+{
+}
+
+- (void)visitIncome:(IncomeInput*)input
+{
+}
+
 
 - (void)dealloc
 {
-    [detailViewController release];
+    [detailFieldEditInfo release];
     [super dealloc];
 }
 

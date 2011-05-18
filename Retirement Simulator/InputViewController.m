@@ -168,10 +168,10 @@
      NSLog(@"input = %@",[selectedInput description]);
     
     DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc] init] autorelease];
-    [selectedInput acceptInputVisitor:detailViewCreator];
-    UIViewController *detailView = detailViewCreator.detailViewController;
-
+    
+    UIViewController *detailView = [detailViewCreator createDetailViewForInput:selectedInput];
     assert(detailView != nil);
+    
 	[self.navigationController pushViewController:detailView animated:YES];
 }
 
