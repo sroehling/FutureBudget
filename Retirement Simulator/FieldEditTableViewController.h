@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "ManagedObjectFieldInfo.h"
 
-@interface FieldEditTableViewController : UIViewController {
+@interface FieldEditTableViewController : UITableViewController {
     ManagedObjectFieldInfo *fieldInfo;
 }
 
 @property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
 
-- (id) initWithNibName:(NSString *)nibName andFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo;
+
+- (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo;
 - (void) commidFieldEdit;
 - (void) initFieldUI;
 

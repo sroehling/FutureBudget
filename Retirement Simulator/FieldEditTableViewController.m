@@ -14,10 +14,9 @@
 
 @synthesize fieldInfo;
 
-- (id) initWithNibName:(NSString *)nibName andFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo
+- (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo
 {
-    assert(nibName != nil);
-    self = [super initWithNibName:nibName bundle:nil];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if(self)
     {
         assert(theFieldInfo != nil);

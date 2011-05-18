@@ -25,7 +25,7 @@
     
     
     RepeatFrequencyEditViewController *repeatController = 
-    [[RepeatFrequencyEditViewController alloc] initWithNibName:@"RepeatFrequencyEditViewController" andFieldInfo:fieldInfo];
+    [[RepeatFrequencyEditViewController alloc] initWithFieldInfo:fieldInfo];
     [repeatController autorelease];
     return repeatController;
 

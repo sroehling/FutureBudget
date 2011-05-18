@@ -27,7 +27,6 @@
 		005731F213787E37008D13C1 /* CashFlowInputSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F113787E37008D13C1 /* CashFlowInputSimEvent.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
-		005731FA1379D42B008D13C1 /* RepeatFrequencyEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 005731F81379D42B008D13C1 /* RepeatFrequencyEditViewController.xib */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -48,7 +47,6 @@
 		00ADB2F413819ED500064651 /* FieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F313819ED500064651 /* FieldEditViewController.m */; };
 		00ADB2F71381B33A00064651 /* FieldEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F61381B33900064651 /* FieldEditTableViewController.m */; };
 		00ADB2FE1381C1E000064651 /* GenericFieldBasedTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */; };
-		00ADB2FF1381C1E000064651 /* GenericFieldBasedTableEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00ADB2FD1381C1DF00064651 /* GenericFieldBasedTableEditViewController.xib */; };
 		00ADB3031382D1BF00064651 /* DetailInputViewCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */; };
 		00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */; };
 		00ADB3141383705300064651 /* InputEventCreatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3131383705300064651 /* InputEventCreatorCreator.m */; };
@@ -103,15 +101,14 @@
 		004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEventCreator.m; sourceTree = "<group>"; };
 		004F5D9513749AB300E0C4A3 /* TestSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSimEvent.h; sourceTree = "<group>"; };
 		004F5D9613749AB300E0C4A3 /* TestSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEvent.m; sourceTree = "<group>"; };
-		005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CashFlowSimEventCreator.h; sourceTree = "<group>"; };
+		005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowSimEventCreator.h; sourceTree = "<group>"; };
 		005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowSimEventCreator.m; sourceTree = "<group>"; };
-		005731F013787E37008D13C1 /* CashFlowInputSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CashFlowInputSimEvent.h; sourceTree = "<group>"; };
+		005731F013787E37008D13C1 /* CashFlowInputSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowInputSimEvent.h; sourceTree = "<group>"; };
 		005731F113787E37008D13C1 /* CashFlowInputSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowInputSimEvent.m; sourceTree = "<group>"; };
 		005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeatFrequency.h; sourceTree = "<group>"; };
 		005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeatFrequency.m; sourceTree = "<group>"; };
 		005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyEditViewController.h; sourceTree = "<group>"; };
 		005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyEditViewController.m; sourceTree = "<group>"; };
-		005731F81379D42B008D13C1 /* RepeatFrequencyEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepeatFrequencyEditViewController.xib; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -142,7 +139,6 @@
 		00ADB2F61381B33900064651 /* FieldEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldEditTableViewController.m; sourceTree = "<group>"; };
 		00ADB2FB1381C1DC00064651 /* GenericFieldBasedTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableEditViewController.h; sourceTree = "<group>"; };
 		00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableEditViewController.m; sourceTree = "<group>"; };
-		00ADB2FD1381C1DF00064651 /* GenericFieldBasedTableEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericFieldBasedTableEditViewController.xib; sourceTree = "<group>"; };
 		00ADB3001382CB2B00064651 /* InputVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputVisitor.h; sourceTree = "<group>"; };
 		00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInputViewCreator.h; sourceTree = "<group>"; };
 		00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInputViewCreator.m; sourceTree = "<group>"; };
@@ -200,7 +196,6 @@
 			children = (
 				00ADB2FB1381C1DC00064651 /* GenericFieldBasedTableEditViewController.h */,
 				00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */,
-				00ADB2FD1381C1DF00064651 /* GenericFieldBasedTableEditViewController.xib */,
 				004F5D571371B3C100E0C4A3 /* DateFieldEditViewController.h */,
 				004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */,
 				004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */,
@@ -247,7 +242,6 @@
 				00A36C16136D9723008A5C4C /* InputViewController.xib */,
 				005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */,
 				005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */,
-				005731F81379D42B008D13C1 /* RepeatFrequencyEditViewController.xib */,
 				00ADB2EB138191B700064651 /* RepeatFrequencyFieldEditInfo.h */,
 				00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */,
 				00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */,
@@ -473,8 +467,6 @@
 				004F5D601371BE6C00E0C4A3 /* TextFieldEditViewController.xib in Resources */,
 				004F5D651371DD0A00E0C4A3 /* NumberFieldEditViewController.xib in Resources */,
 				004F5D751373191600E0C4A3 /* ResultsViewController.xib in Resources */,
-				005731FA1379D42B008D13C1 /* RepeatFrequencyEditViewController.xib in Resources */,
-				00ADB2FF1381C1E000064651 /* GenericFieldBasedTableEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
