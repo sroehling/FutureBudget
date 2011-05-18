@@ -8,58 +8,34 @@
 
 #import "ResultsViewController.h"
 #import "DataModelController.h"
-#import "ExpenseInput.h"
-#import "ExpenseInputSimEventCreator.h"
+#import "InputEventCreatorCreator.h"
 #import "SimEngine.h"
 
 @implementation ResultsViewController
 
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)dealloc
 {
     [super dealloc];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - Simulator interface
 
 - (void) runSimulatorForResults
 {
-    DataModelController *theController = [DataModelController theDataModelController];
-    NSSet *inputs = [theController fetchObjectsForEntityName:@"ExpenseInput"];
      
-    NSLog(@"Starting sim engine test ...");
+    NSLog(@"Starting simulation run...");
     
     SimEngine *simEngine = [[SimEngine alloc] init ];
-    for(ExpenseInput *input in inputs)
-    {
-        
-        ExpenseInputSimEventCreator *expenseEventCreator =
-            [[ExpenseInputSimEventCreator alloc]initWithExpense:input];
-        [simEngine.eventCreators addObject:expenseEventCreator];
-        [expenseEventCreator release];
-        NSLog(@"Results View - Inputs: %@ %d", input.name, input.retainCount);
-    }
-   
+    
+    InputEventCreatorCreator *eventCreatorCreator = 
+        [[[InputEventCreatorCreator alloc] init]autorelease];
+    [eventCreatorCreator populateSimEngine:simEngine];
+       
     [simEngine runSim];
-    NSLog(@"... Done testing sim engine");
+    
+    NSLog(@"... Done running simulation");
     
     [simEngine release];
 
@@ -69,18 +45,6 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (void)viewWillAppear:(BOOL)animated {
 	

@@ -16,8 +16,8 @@
 - (id) initWithEventCreator:(id<SimEventCreator>)eventCreator {
     self = [super init];
     if (self != nil) {
-        eventDate = [[NSDate alloc]init]; // today
-        originatingEventCreator = eventCreator;
+        self.eventDate = [[NSDate alloc]init]; // today
+        self.originatingEventCreator = eventCreator;
     }
     return self;
 }

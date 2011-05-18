@@ -25,6 +25,8 @@
     
     NSDate *nextResultsCheckpointDate;
     
+    NSMutableArray *eventCreators;
+    
 }
 
 - (void)runSim;
