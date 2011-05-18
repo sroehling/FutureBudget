@@ -30,4 +30,10 @@
     return [fieldInfo textLabel];
 }
 
+- (void)dealloc
+{
+    [fieldInfo release];
+    [super dealloc];
+}
+
 @end

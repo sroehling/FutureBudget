@@ -19,5 +19,4 @@
 @property (nonatomic, retain) NSDate * transactionDate;
 @property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
 
-
 @end

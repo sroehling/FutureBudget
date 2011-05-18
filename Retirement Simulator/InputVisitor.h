@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class ExpenseInput;
 
 @protocol InputVisitor <NSObject>
 
-- visitExpense:(ExpenseInput*)expense;
+- (void)visitExpense:(ExpenseInput*)expense;
 
 @end

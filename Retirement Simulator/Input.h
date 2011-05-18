@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@protocol InputVisitor;
 
 @interface Input : NSManagedObject {
 @private
 }
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString *inputType;
+
+-(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor;
 
 @end

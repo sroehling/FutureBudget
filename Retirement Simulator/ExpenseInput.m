@@ -7,12 +7,17 @@
 //
 
 #import "ExpenseInput.h"
-
+#import "InputVisitor.h"
 
 @implementation ExpenseInput
 @dynamic amount;
 @dynamic transactionDate;
 @dynamic repeatFrequency;
 
+
+-(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
+{
+    [inputVisitor visitExpense:self];
+}
 
 @end

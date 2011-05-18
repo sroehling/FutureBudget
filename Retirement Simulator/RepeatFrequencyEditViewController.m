@@ -9,7 +9,6 @@
 #import "RepeatFrequencyEditViewController.h"
 #import "DataModelController.h"
 #import "EventRepeatFrequency.h"
-#import "ExpenseInput.h"
 #import "ManagedObjectFieldInfo.h"
 
 // TBD - Can this class be made into a generic "Core Data object Checklist" controller?

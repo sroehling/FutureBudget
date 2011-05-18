@@ -13,4 +13,9 @@
 @dynamic name,inputType;
 
 
+-(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
+{
+    // no-op
+}
+
 @end
