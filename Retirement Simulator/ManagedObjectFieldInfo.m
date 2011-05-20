@@ -30,6 +30,7 @@
 
         assert(theManagedObject != nil);
         self.managedObject = theManagedObject;
+        
     }
     return self;
 }
@@ -37,6 +38,8 @@
 
 - (id)getFieldValue
 {
+    // Note that valueForKey will raise an exception
+    // if fieldKey is not supported.
     id fieldValue = [self.managedObject  valueForKey:self.fieldKey];
     assert(fieldValue != nil);
     return fieldValue;

@@ -15,6 +15,7 @@
 @dynamic amount;
 @dynamic transactionDate;
 @dynamic repeatFrequency;
+@dynamic amountGrowthRate;
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
 {

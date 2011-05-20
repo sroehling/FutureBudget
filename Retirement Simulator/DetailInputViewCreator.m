@@ -8,12 +8,14 @@
 
 #import "DetailInputViewCreator.h"
 #import "ExpenseInput.h"
+#import "IncomeInput.h"
 
 #import "ManagedObjectFieldInfo.h"
 #import "TextFieldEditInfo.h"
 #import "NumberFieldEditInfo.h"
 #import "DateFieldEditInfo.h"
 #import "RepeatFrequencyFieldEditInfo.h"
+#import "DateSensitiveValueFieldEditInfo.h"
 #import "GenericFieldBasedTableEditViewController.h"
 
 @implementation DetailInputViewCreator
@@ -60,6 +62,14 @@
     [fieldInfo release];
     
     fieldInfo = [[ManagedObjectFieldInfo alloc] 
+                 initWithManagedObject:cashFlow andFieldKey:@"amountGrowthRate" andFieldLabel:@"Amount Growth Rate"];
+    fieldEditInfo = [[DateSensitiveValueFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
+    [detailFieldEditInfo addObject:fieldEditInfo];
+    [fieldEditInfo release];
+    [fieldInfo release];
+
+    
+    fieldInfo = [[ManagedObjectFieldInfo alloc] 
                  initWithManagedObject:cashFlow andFieldKey:@"transactionDate" andFieldLabel:@"Date"];
     fieldEditInfo = [[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
     [detailFieldEditInfo addObject:fieldEditInfo];
@@ -75,7 +85,7 @@
 }
 
 - (void)visitExpense:(ExpenseInput*)expense
-{
+{    
 }
 
 - (void)visitIncome:(IncomeInput*)input

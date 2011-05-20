@@ -11,11 +11,14 @@
 #import "Input.h"
 
 @class EventRepeatFrequency;
+@class DateSensitiveValue;
 
 @interface CashFlowInput : Input {
 @private
 }
+// TBD - Should amount be a variable value? (like growth rates)
 @property (nonatomic, retain) NSNumber * amount;
+@property (nonatomic,retain) DateSensitiveValue *amountGrowthRate; 
 @property (nonatomic, retain) NSDate * transactionDate;
 @property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
 

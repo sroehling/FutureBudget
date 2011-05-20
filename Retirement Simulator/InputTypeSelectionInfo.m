@@ -11,6 +11,7 @@
 #import "IncomeInput.h"
 #import "DataModelController.h"
 #import "EventRepeatFrequency.h"
+#import "FixedValue.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -34,11 +35,18 @@
     newInput.inputType = @"Expense";
     newInput.amount = [NSNumber numberWithInt:2000];
     newInput.transactionDate = [NSDate date];
+
+    FixedValue *fixedGrowthRate = (FixedValue*)[NSEntityDescription insertNewObjectForEntityForName:            @"FixedValue" inManagedObjectContext:
+        [[DataModelController theDataModelController] managedObjectContext]];
+    fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
+    newInput.amountGrowthRate = fixedGrowthRate; 
     
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
     assert([repeatFrequencies count] >0);
     
     newInput.repeatFrequency = (EventRepeatFrequency *)[repeatFrequencies objectAtIndex:0];
+    assert(newInput.repeatFrequency != nil);
+
     NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
     
     [[DataModelController theDataModelController] saveContext];
@@ -57,10 +65,16 @@
     newInput.amount = [NSNumber numberWithInt:2000];
     newInput.transactionDate = [NSDate date];
     
+    FixedValue *fixedGrowthRate = (FixedValue*)[NSEntityDescription insertNewObjectForEntityForName:            @"FixedValue" inManagedObjectContext:
+            [[DataModelController theDataModelController] managedObjectContext]];
+    fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
+    newInput.amountGrowthRate = fixedGrowthRate; 
+    
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
     assert([repeatFrequencies count] >0);
     
     newInput.repeatFrequency = (EventRepeatFrequency *)[repeatFrequencies objectAtIndex:0];
+    assert(newInput.repeatFrequency != nil);
     NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
     
     [[DataModelController theDataModelController] saveContext];

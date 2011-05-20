@@ -30,7 +30,7 @@
 {
     self.repeatFrequencies = [[DataModelController theDataModelController]
                               fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];    
-    currentFrequency = [self.fieldInfo getFieldValue];
+    self.currentFrequency = [self.fieldInfo getFieldValue];
 }
 
 
@@ -39,6 +39,7 @@
 {
     [super dealloc];
     [repeatFrequencies release];
+    [currentFrequency release];
     
 }
 
@@ -88,7 +89,7 @@
     [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];    
     
     // Update the current frequency
-    currentFrequency = [repeatFrequencies objectAtIndex:indexPath.row];
+    self.currentFrequency = [repeatFrequencies objectAtIndex:indexPath.row];
     assert(currentFrequency!=nil);
     
     // Deselect the row.
