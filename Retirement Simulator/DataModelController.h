@@ -27,5 +27,6 @@
 - (bool) entitiesExistForEntityName:(NSString *)entityName;
 - (NSFetchRequest*)createSortedFetchRequestWithEntityName:(NSString *)entityName
                                                andSortKey:(NSString*)theSortKey;
+- (id)insertObject:(NSString*)entityName;
 
 @end

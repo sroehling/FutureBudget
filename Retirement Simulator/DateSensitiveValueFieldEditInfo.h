@@ -10,7 +10,10 @@
 #import "ManagedObjectFieldEditInfo.h"
 
 @interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo {
-    
+    @private 
+    NSString *variableValueEntityName;
 }
+
+@property(nonatomic,retain) NSString *variableValueEntityName;
 
 @end

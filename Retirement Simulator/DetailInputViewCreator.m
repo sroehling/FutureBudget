@@ -63,9 +63,10 @@
     
     fieldInfo = [[ManagedObjectFieldInfo alloc] 
                  initWithManagedObject:cashFlow andFieldKey:@"amountGrowthRate" andFieldLabel:@"Amount Growth Rate"];
-    fieldEditInfo = [[DateSensitiveValueFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
-    [detailFieldEditInfo addObject:fieldEditInfo];
-    [fieldEditInfo release];
+    DateSensitiveValueFieldEditInfo *dsFieldEditInfo = 
+        [[[DateSensitiveValueFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+    dsFieldEditInfo.variableValueEntityName = @"InflationRate";
+    [detailFieldEditInfo addObject:dsFieldEditInfo];
     [fieldInfo release];
 
     

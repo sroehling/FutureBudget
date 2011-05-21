@@ -269,4 +269,12 @@
 }
 
 
+- (id)insertObject:(NSString*)entityName
+{
+    assert(entityName != nil);
+    assert([entityName length] >0);
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName 
+            inManagedObjectContext:self.managedObjectContext];
+}
+
 @end
