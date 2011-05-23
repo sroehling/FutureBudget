@@ -95,6 +95,7 @@
         self.currentFixedValue = fixedValue;
     }
 
+    viewPushed = NO;
 
     
 }
@@ -104,6 +105,37 @@
     // from an editor for one of the field values,
     // causing the display of these values to refresh if changed.
     [self refreshTable];
+    viewPushed = NO;
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // Used the viewPushed property to track whether the view is disappearing because
+    // the back button is being pressed or if we're pushing into another view. Only
+    // when the back button is pressed to we check if we need to delete the fixed
+    // value object.
+    if(viewPushed)
+    {
+        viewPushed = NO;
+    }
+    else
+    {
+        // If upon unloading the view the fixed value is no longer selected,
+        // we can delete it. This is because fixed values are only referenced
+        // by a single input, unlike variable/shared values which can be referenced
+        // by multiple inputs.
+        if(self.currentValue != self.currentFixedValue)
+        {
+            [[DataModelController theDataModelController].managedObjectContext 
+             deleteObject:self.currentFixedValue];
+            [[DataModelController theDataModelController] saveContext];
+        }
+        self.currentValue = nil;
+        self.currentFixedValue = nil;
+        
+    }
 }
 
 - (IBAction)addVariableValue {
@@ -183,7 +215,9 @@
     {
         assert(indexPath.section == VARIABLE_VALUE_SECTION);
         VariableValue *valueForRow = [self.variableValues objectAtIndex:indexPath.row];
-  //      cell.textLabel.text = valueForRow.name;
+        cell.accessoryType = 
+        (self.currentValue == valueForRow)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
+
         cell.detailTextLabel.text = valueForRow.name;
     }
     return cell;
@@ -192,39 +226,96 @@
 
 
 - (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Only allow selection if editing.
-    return (self.editing) ? indexPath : nil;
+    return indexPath;
+}
+
+-(void)uncheckCurrentSelection
+{
+    NSIndexPath *selectionIndexPath;
+    if(self.currentValue == self.currentFixedValue)
+    {
+        selectionIndexPath = [NSIndexPath 
+                              indexPathForRow:0 inSection:FIXED_VALUE_SECTION];
+        
+    }
+    else
+    {
+        NSInteger index = [self.variableValues indexOfObject:self.currentValue];
+        assert(index >= 0);
+        assert(index < [self.variableValues count]);
+        selectionIndexPath = [NSIndexPath indexPathForRow:index inSection:VARIABLE_VALUE_SECTION];
+    }
+    UITableViewCell *checkedCell = [self.tableView cellForRowAtIndexPath:selectionIndexPath];
+    assert(checkedCell!=nil);
+    checkedCell.accessoryType = UITableViewCellAccessoryNone;
+
+}
+
+- (void)checkNewSelection:(NSIndexPath*)newPath
+{
+    UITableViewCell *checkedCell = [self.tableView cellForRowAtIndexPath:newPath];
+    assert(checkedCell!=nil);
+    checkedCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    // Deselect the row.
+    [self.tableView deselectRowAtIndexPath:newPath animated:YES];
+    
+    if(newPath.section == FIXED_VALUE_SECTION)
+    {
+        self.currentValue = self.currentFixedValue;
+    }
+    else
+    {
+        VariableValue *selectedValue = [self.variableValues objectAtIndex:newPath.row];
+        assert(selectedValue != nil);
+        self.currentValue = selectedValue;
+    }
+    
+    // When selecting (putting a checkmark) on a new value, update the field value immediately.
+    // TBD - is this the desired behavior - or should there be a manual "save" operation, like
+    // the for the other field edits.
+    [self commidFieldEdit];
+
 }
 
 /**
  Manage row selection: If a row is selected, create a new editing view controller to edit the property associated with the selected row.
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	if (!self.editing) return;
-    
-    
-    UIViewController *controller;
-    if(indexPath.section == FIXED_VALUE_SECTION)
+	    
+    if(self.editing)
     {
-        assert(indexPath.row == 0);
+        UIViewController *controller;
+        if(indexPath.section == FIXED_VALUE_SECTION)
+        {
+            assert(indexPath.row == 0);
+            
+            ManagedObjectFieldInfo *fixedValueFieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                                                            initWithManagedObject:currentFixedValue 
+                                                            andFieldKey:@"value" andFieldLabel:@"Value"] autorelease];
+            
+            
+            NumberFieldEditViewController *numberController = 
+            [[[NumberFieldEditViewController alloc] initWithNibName:@"NumberFieldEditViewController" 
+                                                       andFieldInfo:fixedValueFieldInfo] autorelease];
+            controller = numberController;
+        }
+        else
+        {
+            assert(indexPath.section == VARIABLE_VALUE_SECTION);
+            assert(0);
+        }
+        viewPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
         
-        ManagedObjectFieldInfo *fixedValueFieldInfo = [[[ManagedObjectFieldInfo alloc] 
-              initWithManagedObject:currentFixedValue 
-                    andFieldKey:@"value" andFieldLabel:@"Value"] autorelease];
-        
-
-        NumberFieldEditViewController *numberController = 
-        [[[NumberFieldEditViewController alloc] initWithNibName:@"NumberFieldEditViewController" 
-                                                  andFieldInfo:fixedValueFieldInfo] autorelease];
-        controller = numberController;
-     }
+    }
     else
     {
-        assert(indexPath.section == VARIABLE_VALUE_SECTION);
-        assert(0);
+        // Move the checkmark to the newly selected value
+        [self uncheckCurrentSelection];
+        [self checkNewSelection:indexPath];
+
     }
-    [self.navigationController pushViewController:controller animated:YES];
 	
 }
 

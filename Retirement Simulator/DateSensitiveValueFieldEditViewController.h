@@ -21,6 +21,7 @@
         NSNumberFormatter *numberFormatter;
         NSString *variableValueEntityName;
         UIBarButtonItem *addVariableValueButton;
+        BOOL viewPushed;
         
     
 }
