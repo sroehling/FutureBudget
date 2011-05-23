@@ -18,7 +18,6 @@
         FixedValue *currentFixedValue;
         NSArray *variableValues;
         ManagedObjectFieldInfo *fieldInfo;
-        NSNumberFormatter *numberFormatter;
         NSString *variableValueEntityName;
         UIBarButtonItem *addVariableValueButton;
         BOOL viewPushed;
@@ -36,6 +35,5 @@
 @property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
 @property(nonatomic,retain) UIBarButtonItem *addVariableValueButton;
 
-@property (nonatomic, retain) NSNumberFormatter *numberFormatter;
 
 @end

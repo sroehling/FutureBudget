@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NSNumber * startingValue;
 @property (nonatomic, retain) NSSet* valueChanges;
 
+- (void)addValueChangesObject:(DateSensitiveValueChange *)value;
+
 @end

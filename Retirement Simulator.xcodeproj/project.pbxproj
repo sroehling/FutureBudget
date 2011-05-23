@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003AD12C138ABF7D00CB3CB5 /* VariableValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */; };
+		003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */; };
+		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
+		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
+		003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD138138AF55C00CB3CB5 /* NumberHelper.m */; };
 		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
 		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
@@ -79,6 +84,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueViewController.h; sourceTree = "<group>"; };
+		003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueViewController.m; sourceTree = "<group>"; };
+		003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHelper.h; sourceTree = "<group>"; };
+		003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHelper.m; sourceTree = "<group>"; };
+		003AD131138ACBE800CB3CB5 /* StringValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValidation.h; sourceTree = "<group>"; };
+		003AD132138ACBE800CB3CB5 /* StringValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringValidation.m; sourceTree = "<group>"; };
+		003AD134138AD88400CB3CB5 /* TableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewHelper.h; sourceTree = "<group>"; };
+		003AD135138AD88400CB3CB5 /* TableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewHelper.m; sourceTree = "<group>"; };
+		003AD137138AF55C00CB3CB5 /* NumberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberHelper.h; sourceTree = "<group>"; };
+		003AD138138AF55C00CB3CB5 /* NumberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberHelper.m; sourceTree = "<group>"; };
 		004F5D06136F170500E0C4A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		004F5D0C136F52D200E0C4A3 /* DataModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelController.h; sourceTree = "<group>"; };
 		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
@@ -212,6 +227,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		003AD12D138AC83000CB3CB5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */,
+				003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */,
+				003AD131138ACBE800CB3CB5 /* StringValidation.h */,
+				003AD132138ACBE800CB3CB5 /* StringValidation.m */,
+				003AD134138AD88400CB3CB5 /* TableViewHelper.h */,
+				003AD135138AD88400CB3CB5 /* TableViewHelper.m */,
+				003AD137138AF55C00CB3CB5 /* NumberHelper.h */,
+				003AD138138AF55C00CB3CB5 /* NumberHelper.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		004F5D511371B34800E0C4A3 /* Field Editors */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +285,7 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
-		004F5D6F1373175D00E0C4A3 /* Input View */ = {
+		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
 				00A36C14136D9723008A5C4C /* InputViewController.h */,
@@ -275,8 +305,10 @@
 				00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */,
 				00637A861385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.h */,
 				00637A871385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m */,
+				003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */,
+				003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */,
 			);
-			name = "Input View";
+			name = "Input Views";
 			sourceTree = "<group>";
 		};
 		004F5D701373188900E0C4A3 /* Results View */ = {
@@ -379,11 +411,12 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				003AD12D138AC83000CB3CB5 /* Helper */,
 				005731EC137874A1008D13C1 /* Simulator Inputs */,
 				004F5D7713732CA300E0C4A3 /* Simulator Engine */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				004F5D701373188900E0C4A3 /* Results View */,
-				004F5D6F1373175D00E0C4A3 /* Input View */,
+				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004F5D6E1373170C00E0C4A3 /* Application */,
 				004F5D511371B34800E0C4A3 /* Field Editors */,
 				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
@@ -576,6 +609,11 @@
 				00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */,
 				00637A881385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m in Sources */,
 				00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */,
+				003AD12C138ABF7D00CB3CB5 /* VariableValueViewController.m in Sources */,
+				003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */,
+				003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */,
+				003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */,
+				003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,11 @@
 #import "NumberFieldEditViewController.h"
 #import "ManagedObjectFieldInfo.h"
 #import "FixedValue.h"
+#import "VariableValueViewController.h"
 #import "VariableValue.h"
+#import "TableViewHelper.h"
+#import "StringValidation.h"
+#import "NumberHelper.h"
 
 @implementation DateSensitiveValueFieldEditViewController
 
@@ -21,7 +25,6 @@
 @synthesize currentValue;
 @synthesize variableValues;
 @synthesize variableValueEntityName;
-@synthesize numberFormatter;
 @synthesize fieldInfo;
 @synthesize currentFixedValue;
 @synthesize addVariableValueButton;
@@ -46,8 +49,7 @@
 
 - (void) updateVariableValues
 {
-    assert(variableValueEntityName != nil);
-    assert([variableValueEntityName length] > 0);
+    assert([StringValidation nonEmptyString:variableValueEntityName]);
     self.variableValues = [[DataModelController theDataModelController]
                            fetchSortedObjectsWithEntityName:self.variableValueEntityName sortKey:@"name"];
 
@@ -69,11 +71,6 @@
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.allowsSelectionDuringEditing = YES;
-    
-    
-    self.numberFormatter = [[[NSNumberFormatter alloc] init] autorelease];
- //   [self.numberFormatter setNumberStyle:NSNumberFormatterPercentStyle];
-    [self.numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     
     [self updateVariableValues];
     
@@ -193,20 +190,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
-		cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:self.tableView];
+    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
     if(indexPath.section == FIXED_VALUE_SECTION)
     {
         assert(indexPath.row == 0);
         cell.textLabel.text = @"Value";
-        NSLog(@"Setting value: %@",[self.numberFormatter stringFromNumber:self.currentFixedValue.value]);
-        cell.detailTextLabel.text = [self.numberFormatter stringFromNumber:self.currentFixedValue.value];
+        cell.detailTextLabel.text = [[NumberHelper theHelper] 
+                        stringFromNumber:self.currentFixedValue.value];
         cell.accessoryType = 
             (self.currentValue == self.currentFixedValue)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
 
@@ -289,21 +281,15 @@
         if(indexPath.section == FIXED_VALUE_SECTION)
         {
             assert(indexPath.row == 0);
-            
-            ManagedObjectFieldInfo *fixedValueFieldInfo = [[[ManagedObjectFieldInfo alloc] 
-                                                            initWithManagedObject:currentFixedValue 
-                                                            andFieldKey:@"value" andFieldLabel:@"Value"] autorelease];
-            
-            
-            NumberFieldEditViewController *numberController = 
-            [[[NumberFieldEditViewController alloc] initWithNibName:@"NumberFieldEditViewController" 
-                                                       andFieldInfo:fixedValueFieldInfo] autorelease];
-            controller = numberController;
+            controller = [NumberFieldEditViewController createControllerForObject:currentFixedValue 
+                    andFieldKey:@"value" andFieldLabel:@"Value"];            
         }
         else
         {
             assert(indexPath.section == VARIABLE_VALUE_SECTION);
-            assert(0);
+            VariableValue *selectedValue = [self.variableValues objectAtIndex:indexPath.row];
+            assert(selectedValue != nil);
+            controller = [[VariableValueViewController alloc] initWithVariableValue:selectedValue];
         }
         viewPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];

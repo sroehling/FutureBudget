@@ -19,4 +19,8 @@
 @property (nonatomic, retain) IBOutlet UITextField *textField;
 @property (nonatomic, retain) NSNumberFormatter *numberFormatter;
 
++(NumberFieldEditViewController*)createControllerForObject:
+    (NSManagedObject*)managedObject 
+     andFieldKey:(NSString*)key andFieldLabel:(NSString*)label;
+
 @end

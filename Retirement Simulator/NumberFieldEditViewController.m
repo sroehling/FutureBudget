@@ -8,11 +8,32 @@
 
 #import "NumberFieldEditViewController.h"
 #import "DataModelController.h"
+#import "StringValidation.h"
 
 
 @implementation NumberFieldEditViewController
 
 @synthesize textField,numberFormatter;
+
++(NumberFieldEditViewController*)createControllerForObject:
+    (NSManagedObject*)managedObject 
+    andFieldKey:(NSString*)key andFieldLabel:(NSString*)label;
+{
+    assert(managedObject != nil);
+    assert([StringValidation nonEmptyString:key]);
+    assert([StringValidation nonEmptyString:label]);
+
+    ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+          initWithManagedObject:managedObject 
+          andFieldKey:key andFieldLabel:label] autorelease];
+    
+    
+    NumberFieldEditViewController *numberController = 
+    [[[NumberFieldEditViewController alloc] initWithNibName:@"NumberFieldEditViewController" 
+                                               andFieldInfo:fieldInfo] autorelease];
+    return numberController;
+
+}
 
 - (void) commidFieldEdit
 {

@@ -17,5 +17,8 @@
 
 @property (nonatomic, retain) IBOutlet UITextField *textField;
 
++(TextFieldEditViewController*)createControllerForObject:
+        (NSManagedObject*)managedObject 
+        andFieldKey:(NSString*)key andFieldLabel:(NSString*)label;
 
 @end
