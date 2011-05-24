@@ -22,6 +22,7 @@
 - (void) initFieldUI
 {
     datePicker.hidden = NO;
+    datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.date = [fieldInfo getFieldValue];
 
 }

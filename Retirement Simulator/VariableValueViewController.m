@@ -8,6 +8,8 @@
 
 #import "VariableValueViewController.h"
 #import "DataModelController.h"
+#import "ManagedObjectFieldInfo.h"
+#import "GenericFieldBasedTableEditViewController.h"
 #import "VariableValue.h"
 #import "DateSensitiveValueChange.h"
 #import "NumberFieldEditViewController.h"
@@ -15,6 +17,12 @@
 #import "CollectionHelper.h"
 #import "TableViewHelper.h"
 #import "NumberHelper.h"
+
+#import "ManagedObjectFieldInfo.h"
+#import "TextFieldEditInfo.h"
+#import "NumberFieldEditInfo.h"
+#import "DateFieldEditInfo.h"
+
 
 
 @implementation VariableValueViewController
@@ -102,6 +110,24 @@
     return 2;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *title = nil;
+    // Return a title or nil as appropriate for the section.
+    switch (section) {
+        case SECTION_MAIN:
+            title = @"Starting Value";
+            break;
+        case SECTION_VALUE_CHANGES:
+            title = @"Value Changes";
+            break;
+        default:
+            assert(0);
+            break;
+    }
+    return title;;
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
@@ -140,6 +166,10 @@
     else
     {
         assert(indexPath.section == SECTION_VALUE_CHANGES);
+        DateSensitiveValueChange *valueChange = 
+            (DateSensitiveValueChange*)[self.valueChanges objectAtIndex:indexPath.row];
+        assert(valueChange != nil);
+
         cell.detailTextLabel.text = @"Value Change";
     }    
     return cell;
@@ -171,7 +201,27 @@
         else
         {
             assert(indexPath.section == SECTION_VALUE_CHANGES);
-            assert(0);
+            
+            NSMutableArray *detailFieldEditInfo = [[[NSMutableArray alloc] init ] autorelease];
+            
+            DateSensitiveValueChange *valueChange = 
+                (DateSensitiveValueChange*)[self.valueChanges objectAtIndex:indexPath.row];
+            assert(valueChange != nil);
+            
+            ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                initWithManagedObject:valueChange 
+                andFieldKey:@"startDate" andFieldLabel:@"Date"] autorelease];
+            ManagedObjectFieldEditInfo *fieldEditInfo = [[[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+            [detailFieldEditInfo addObject:fieldEditInfo];
+            
+            fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                  initWithManagedObject:valueChange 
+                andFieldKey:@"newValue" andFieldLabel:@"New Value"] autorelease];
+            fieldEditInfo = [[[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+            [detailFieldEditInfo addObject:fieldEditInfo];
+
+            controller = [[[GenericFieldBasedTableEditViewController alloc] initWithFieldEditInfo:detailFieldEditInfo] autorelease];
+            
         }
         assert(controller != nil);
         [self.navigationController pushViewController:controller animated:YES];
