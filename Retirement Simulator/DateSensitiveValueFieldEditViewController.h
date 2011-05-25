@@ -11,11 +11,13 @@
 @class DateSensitiveValue;
 @class ManagedObjectFieldInfo;
 @class FixedValue;
+@class NumberFieldEditInfo;
 
 @interface DateSensitiveValueFieldEditViewController : UITableViewController {
     @private
         DateSensitiveValue *currentValue;
         FixedValue *currentFixedValue;
+        NumberFieldEditInfo *fixedValueFieldEditInfo;
         NSArray *variableValues;
         ManagedObjectFieldInfo *fieldInfo;
         NSString *variableValueEntityName;
@@ -34,6 +36,7 @@
 @property(nonatomic,retain) NSString *variableValueEntityName;
 @property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
 @property(nonatomic,retain) UIBarButtonItem *addVariableValueButton;
+@property(nonatomic,retain) NumberFieldEditInfo *fixedValueFieldEditInfo;
 
 
 @end

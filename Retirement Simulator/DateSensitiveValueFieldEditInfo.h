@@ -9,11 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "ManagedObjectFieldEditInfo.h"
 
-@interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo {
+#import "FieldEditInfo.h"
+
+@interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private 
     NSString *variableValueEntityName;
 }
 
 @property(nonatomic,retain) NSString *variableValueEntityName;
+
++ (DateSensitiveValueFieldEditInfo*)createForObject:(NSManagedObject*)obj 
+                                             andKey:(NSString*)key
+      andLabel:(NSString*)label andEntityName:(NSString*)entityName;
 
 @end

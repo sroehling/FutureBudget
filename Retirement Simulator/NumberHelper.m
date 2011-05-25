@@ -12,6 +12,7 @@
 @implementation NumberHelper
 
 @synthesize numberFormatter;
+@synthesize decimalFormatter;
 
 +(NumberHelper*)theHelper
 {  
@@ -28,8 +29,13 @@
     self = [super init];
     if(self)
     {
-        self.numberFormatter = [[NSNumberFormatter alloc]init];
+        self.numberFormatter = [[[NSNumberFormatter alloc]init] autorelease];
         [self.numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+        self.decimalFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+        [self.decimalFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+    
     }
     return self;
 }
@@ -58,6 +64,7 @@
 {
     [super dealloc];
     [numberFormatter release];
+    [decimalFormatter release];
 }
 
 

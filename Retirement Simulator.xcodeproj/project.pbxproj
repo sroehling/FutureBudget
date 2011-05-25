@@ -12,6 +12,10 @@
 		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
 		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
 		003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD138138AF55C00CB3CB5 /* NumberHelper.m */; };
+		003AD14C138C352200CB3CB5 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD14B138C352100CB3CB5 /* TextFieldCell.m */; };
+		003AD14E138C354800CB3CB5 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AD14D138C354700CB3CB5 /* TextFieldCell.xib */; };
+		003AD150138C6CA900CB3CB5 /* NumberFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */; };
+		003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */; };
 		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
 		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
@@ -94,6 +98,12 @@
 		003AD135138AD88400CB3CB5 /* TableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewHelper.m; sourceTree = "<group>"; };
 		003AD137138AF55C00CB3CB5 /* NumberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberHelper.h; sourceTree = "<group>"; };
 		003AD138138AF55C00CB3CB5 /* NumberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberHelper.m; sourceTree = "<group>"; };
+		003AD14A138C352100CB3CB5 /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
+		003AD14B138C352100CB3CB5 /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
+		003AD14D138C354700CB3CB5 /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberFieldCell.xib; sourceTree = "<group>"; };
+		003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldCell.h; sourceTree = "<group>"; };
+		003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldCell.m; sourceTree = "<group>"; };
 		004F5D06136F170500E0C4A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		004F5D0C136F52D200E0C4A3 /* DataModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelController.h; sourceTree = "<group>"; };
 		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
@@ -271,6 +281,12 @@
 				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
 				00ADB2F51381B33800064651 /* FieldEditTableViewController.h */,
 				00ADB2F61381B33900064651 /* FieldEditTableViewController.m */,
+				003AD14A138C352100CB3CB5 /* TextFieldCell.h */,
+				003AD14B138C352100CB3CB5 /* TextFieldCell.m */,
+				003AD14D138C354700CB3CB5 /* TextFieldCell.xib */,
+				003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */,
+				003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */,
+				003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */,
 			);
 			name = "Field Editors";
 			sourceTree = "<group>";
@@ -535,6 +551,8 @@
 				004F5D601371BE6C00E0C4A3 /* TextFieldEditViewController.xib in Resources */,
 				004F5D651371DD0A00E0C4A3 /* NumberFieldEditViewController.xib in Resources */,
 				004F5D751373191600E0C4A3 /* ResultsViewController.xib in Resources */,
+				003AD14E138C354800CB3CB5 /* TextFieldCell.xib in Resources */,
+				003AD150138C6CA900CB3CB5 /* NumberFieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +632,8 @@
 				003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */,
 				003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */,
 				003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */,
+				003AD14C138C352200CB3CB5 /* TextFieldCell.m in Sources */,
+				003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

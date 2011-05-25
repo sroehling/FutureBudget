@@ -15,4 +15,7 @@
     
 }
 
++ (RepeatFrequencyFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
+                                        andLabel:(NSString*)label;
+
 @end

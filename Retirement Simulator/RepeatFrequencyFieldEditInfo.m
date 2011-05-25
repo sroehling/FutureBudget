@@ -9,9 +9,26 @@
 #import "RepeatFrequencyFieldEditInfo.h"
 #import "RepeatFrequencyEditViewController.h"
 #import "EventRepeatFrequency.h"
-
+#import "TableViewHelper.h"
+#import "StringValidation.h"
 
 @implementation RepeatFrequencyFieldEditInfo
+
++ (RepeatFrequencyFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
+                             andLabel:(NSString*)label
+{
+    assert(obj != nil);
+    assert([StringValidation nonEmptyString:key]);
+    assert([StringValidation nonEmptyString:label]);
+    
+    ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
+                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
+    RepeatFrequencyFieldEditInfo *fieldEditInfo = [[RepeatFrequencyFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
+    [fieldEditInfo autorelease];
+    [fieldInfo release];
+    
+    return fieldEditInfo;
+}
 
 - (NSString*)detailTextLabel
 {
@@ -31,5 +48,20 @@
 
 }
 
+- (BOOL)hasFieldEditController
+{
+    return TRUE;
+}
+
+- (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
+{
+    assert(tableView!=nil);
+    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:tableView];
+    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = [self textLabel];
+    cell.detailTextLabel.text = [self detailTextLabel];
+    return cell;
+}
 
 @end

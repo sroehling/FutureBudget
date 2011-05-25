@@ -11,13 +11,21 @@
 #import "FieldEditInfo.h"
 #import "ManagedObjectFieldEditInfo.h"
 
+@class NumberFieldCell;
 
 @interface NumberFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
-    
+@private
+    NumberFieldCell *numberCell;    
     NSNumberFormatter *numberFormatter;
 
 }
 
+@property (nonatomic, assign) IBOutlet NumberFieldCell *numberCell;
+
 @property (nonatomic, retain) NSNumberFormatter *numberFormatter;
+
++ (NumberFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
+                             andLabel:(NSString*)label;
+
 
 @end

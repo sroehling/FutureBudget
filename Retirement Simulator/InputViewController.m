@@ -115,6 +115,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     // Configure the cell.
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -256,11 +257,6 @@ newIndexPath:(NSIndexPath *)newIndexPath
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-}
-
-- (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 

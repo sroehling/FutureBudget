@@ -47,42 +47,22 @@
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
-    ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                                         initWithManagedObject:cashFlow andFieldKey:@"name" andFieldLabel:@"Input Name"];
-    ManagedObjectFieldEditInfo *fieldEditInfo = [[TextFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
-    [detailFieldEditInfo addObject:fieldEditInfo];
-    [fieldEditInfo release];
-    [fieldInfo release];
-    
-    fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                 initWithManagedObject:cashFlow andFieldKey:@"amount" andFieldLabel:@"Amount"];
-    fieldEditInfo = [[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
-    [detailFieldEditInfo addObject:fieldEditInfo];
-    [fieldEditInfo release];
-    [fieldInfo release];
-    
-    fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                 initWithManagedObject:cashFlow andFieldKey:@"amountGrowthRate" andFieldLabel:@"Amount Growth Rate"];
-    DateSensitiveValueFieldEditInfo *dsFieldEditInfo = 
-        [[[DateSensitiveValueFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
-    dsFieldEditInfo.variableValueEntityName = @"InflationRate";
-    [detailFieldEditInfo addObject:dsFieldEditInfo];
-    [fieldInfo release];
+    [detailFieldEditInfo addObject:
+        [TextFieldEditInfo createForObject:cashFlow andKey:@"name" andLabel:@"Name"]];    
+    [detailFieldEditInfo addObject:
+        [NumberFieldEditInfo createForObject:cashFlow andKey:@"amount" andLabel:@"Amount"]];
+ 
+    [detailFieldEditInfo addObject:
+        [DateSensitiveValueFieldEditInfo 
+         createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Amount Growth Rate" 
+         andEntityName:@"InflationRate"]];
 
-    
-    fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                 initWithManagedObject:cashFlow andFieldKey:@"transactionDate" andFieldLabel:@"Date"];
-    fieldEditInfo = [[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
-    [detailFieldEditInfo addObject:fieldEditInfo];
-    [fieldEditInfo release];
-    [fieldInfo release];
-    
-    fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                 initWithManagedObject:cashFlow andFieldKey:@"repeatFrequency" andFieldLabel:@"Repeat"];
-    fieldEditInfo = [[RepeatFrequencyFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
-    [detailFieldEditInfo addObject:fieldEditInfo];
-    [fieldEditInfo release];
-    [fieldInfo release];
+    [detailFieldEditInfo addObject:
+     [DateFieldEditInfo createForObject:cashFlow andKey:@"transactionDate" andLabel:@"Date"]];
+
+    [detailFieldEditInfo addObject:
+     [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" andLabel:@"Repeat"]];
+        
 }
 
 - (void)visitExpense:(ExpenseInput*)expense

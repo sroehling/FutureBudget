@@ -13,6 +13,10 @@
 
 - (NSString*)textLabel;
 - (NSString*)detailTextLabel;
+
+- (BOOL)hasFieldEditController;
 - (UIViewController*)fieldEditController;
+
+- (UITableViewCell*)cellForFieldEdit:(UITableView*)tableView;
 
 @end

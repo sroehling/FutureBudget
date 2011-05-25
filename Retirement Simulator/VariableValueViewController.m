@@ -30,6 +30,8 @@
 @synthesize variableValue;
 @synthesize valueChanges;
 @synthesize addValueChangeButton;
+@synthesize nameFieldEditInfo;
+@synthesize startingValFieldEditInfo;
 
 #define SECTION_MAIN 0
 #define SECTION_VALUE_CHANGES 1
@@ -41,6 +43,11 @@
     {
         assert(theValue != nil);
         self.variableValue = theValue;
+        
+        self.nameFieldEditInfo = [TextFieldEditInfo createForObject:self.variableValue 
+                    andKey:@"name" andLabel:@"Name"];
+        self.startingValFieldEditInfo = [NumberFieldEditInfo createForObject:self.variableValue
+                    andKey:@"startingValue" andLabel:@"Starting"];
     }
     return self;
 }
@@ -51,6 +58,8 @@
     [variableValue release];
     [valueChanges release];
     [addValueChangeButton release];
+    [nameFieldEditInfo release];
+    [startingValFieldEditInfo release];
 }
 
 
@@ -86,6 +95,8 @@
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.allowsSelectionDuringEditing = YES;
+    
+    
 
 }
 
@@ -144,27 +155,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:self.tableView];
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UITableViewCell *cell;
     
     if(indexPath.section == SECTION_MAIN)
     {
         assert([[NumberHelper theHelper]valueInRange:indexPath.row lower:0 upper:1]);
         if(indexPath.row == 0)
         {
-            cell.textLabel.text = @"Name";
-            cell.detailTextLabel.text = self.variableValue.name;
+            cell = [self.nameFieldEditInfo cellForFieldEdit:self.tableView];
             
         }
         else
         {
-            cell.textLabel.text = @"Starting Value";
-            cell.detailTextLabel.text = [[NumberHelper theHelper]stringFromNumber:self.variableValue.startingValue];
+            cell = [self.startingValFieldEditInfo cellForFieldEdit:self.tableView];
         }
         
     }
     else
     {
+        cell = [TableViewHelper reuseOrAllocCell:self.tableView];
+            cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
         assert(indexPath.section == SECTION_VALUE_CHANGES);
         DateSensitiveValueChange *valueChange = 
             (DateSensitiveValueChange*)[self.valueChanges objectAtIndex:indexPath.row];
@@ -172,6 +183,7 @@
 
         cell.detailTextLabel.text = @"Value Change";
     }    
+    assert(cell != nil);
     return cell;
 }
 
@@ -202,24 +214,16 @@
         {
             assert(indexPath.section == SECTION_VALUE_CHANGES);
             
-            NSMutableArray *detailFieldEditInfo = [[[NSMutableArray alloc] init ] autorelease];
             
             DateSensitiveValueChange *valueChange = 
                 (DateSensitiveValueChange*)[self.valueChanges objectAtIndex:indexPath.row];
             assert(valueChange != nil);
+ 
+            NSMutableArray *detailFieldEditInfo = [[[NSMutableArray alloc] init ] autorelease];
             
-            ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
-                initWithManagedObject:valueChange 
-                andFieldKey:@"startDate" andFieldLabel:@"Date"] autorelease];
-            ManagedObjectFieldEditInfo *fieldEditInfo = [[[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
-            [detailFieldEditInfo addObject:fieldEditInfo];
-            
-            fieldInfo = [[[ManagedObjectFieldInfo alloc] 
-                  initWithManagedObject:valueChange 
-                andFieldKey:@"newValue" andFieldLabel:@"New Value"] autorelease];
-            fieldEditInfo = [[[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
-            [detailFieldEditInfo addObject:fieldEditInfo];
-
+            [detailFieldEditInfo addObject:[DateFieldEditInfo createForObject:valueChange andKey:@"startDate" andLabel:@"Date"]];
+            [detailFieldEditInfo addObject:[NumberFieldEditInfo createForObject:valueChange andKey:@"newValue" andLabel:@"New Value"]];
+           
             controller = [[[GenericFieldBasedTableEditViewController alloc] initWithFieldEditInfo:detailFieldEditInfo] autorelease];
             
         }

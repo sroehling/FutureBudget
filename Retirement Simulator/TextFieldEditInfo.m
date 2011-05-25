@@ -8,9 +8,31 @@
 
 #import "TextFieldEditInfo.h"
 #import "TextFieldEditViewController.h"
+#import "TextFieldCell.h"
+#import "ManagedObjectFieldInfo.h"
+#import "ManagedObjectFieldEditInfo.h"
+#import "StringValidation.h"
 
 
 @implementation TextFieldEditInfo
+
+@synthesize textCell;
+
++ (TextFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
+                        andLabel:(NSString*)label
+{
+    assert(obj != nil);
+    assert([StringValidation nonEmptyString:key]);
+    assert([StringValidation nonEmptyString:label]);
+    
+    ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
+        initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
+    TextFieldEditInfo *fieldEditInfo = [[TextFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
+    [fieldEditInfo autorelease];
+    [fieldInfo release];
+    
+    return fieldEditInfo;
+}
 
 - (NSString*)detailTextLabel
 {
@@ -19,12 +41,37 @@
 
 - (UIViewController*)fieldEditController
 {
-    TextFieldEditViewController *textEditController = 
-    [[TextFieldEditViewController alloc] initWithNibName:@"TextFieldEditViewController"
-                                            andFieldInfo:self.fieldInfo];
-    [textEditController autorelease];
-    return textEditController;    
+    assert(0);
+    return nil;    
 }
 
+- (BOOL)hasFieldEditController
+{
+    return FALSE;
+}
+
+- (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
+{
+    assert(tableView!=nil);
+    
+    static NSString *TextCellIdentifier = @"TextFieldCell";
+    
+    TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:TextCellIdentifier];
+    if (cell == nil) {
+		[[NSBundle mainBundle] loadNibNamed:@"TextFieldCell" owner:self options:nil];
+        cell = self.textCell;
+		self.textCell = nil;
+    }
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.editingAccessoryType = UITableViewCellAccessoryNone;
+
+    cell.fieldEditInfo = self;
+    cell.label.text = [self textLabel];
+    cell.textField.text = [self detailTextLabel];
+    cell.textField.placeholder = @"Enter Text";
+
+    return cell;
+
+}
 
 @end

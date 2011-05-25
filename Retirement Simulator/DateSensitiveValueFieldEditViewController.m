@@ -15,6 +15,7 @@
 #import "VariableValue.h"
 #import "TableViewHelper.h"
 #import "StringValidation.h"
+#import "NumberfieldEditInfo.h"
 #import "NumberHelper.h"
 
 @implementation DateSensitiveValueFieldEditViewController
@@ -28,6 +29,9 @@
 @synthesize fieldInfo;
 @synthesize currentFixedValue;
 @synthesize addVariableValueButton;
+@synthesize fixedValueFieldEditInfo;
+
+
 
 - (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo
 {
@@ -91,6 +95,8 @@
         fixedValue.value = [NSNumber numberWithDouble:0.0];
         self.currentFixedValue = fixedValue;
     }
+    self.fixedValueFieldEditInfo = [NumberFieldEditInfo createForObject:self.currentFixedValue 
+                        andKey:@"value" andLabel:@"Value"];
 
     viewPushed = NO;
 
@@ -190,25 +196,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:self.tableView];
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UITableViewCell *cell;
 	
     if(indexPath.section == FIXED_VALUE_SECTION)
     {
         assert(indexPath.row == 0);
-        cell.textLabel.text = @"Value";
-        cell.detailTextLabel.text = [[NumberHelper theHelper] 
-                        stringFromNumber:self.currentFixedValue.value];
+        cell = [self.fixedValueFieldEditInfo cellForFieldEdit:self.tableView];
         cell.accessoryType = 
             (self.currentValue == self.currentFixedValue)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
 
     }
     else
     {
+        cell = [TableViewHelper reuseOrAllocCell:self.tableView];
         assert(indexPath.section == VARIABLE_VALUE_SECTION);
         VariableValue *valueForRow = [self.variableValues objectAtIndex:indexPath.row];
         cell.accessoryType = 
         (self.currentValue == valueForRow)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
+        cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         cell.detailTextLabel.text = valueForRow.name;
     }
@@ -326,6 +331,7 @@
     [variableValueEntityName release];
     [fieldInfo release];
     [addVariableValueButton release];
+    [fixedValueFieldEditInfo release];
 
 }
 

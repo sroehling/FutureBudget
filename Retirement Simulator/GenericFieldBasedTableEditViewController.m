@@ -8,6 +8,7 @@
 
 #import "GenericFieldBasedTableEditViewController.h"
 #import "FieldEditInfo.h"
+#import "DataModelController.h"
 
 
 @implementation GenericFieldBasedTableEditViewController
@@ -22,6 +23,11 @@
         assert(theFieldEditInfo!=nil);
         assert([theFieldEditInfo count] > 0);
         self.fieldEditInfo = theFieldEditInfo;
+        
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        self.tableView.allowsSelectionDuringEditing = YES;
+
     }
     return self;
 }
@@ -100,43 +106,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
-		cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
-    id<FieldEditInfo> fieldEditInfoForRow = [self fieldEditInfoAtIndex:indexPath.row];
-	    
-    cell.textLabel.text = [fieldEditInfoForRow textLabel];
-    cell.detailTextLabel.text = [fieldEditInfoForRow detailTextLabel];
-    
+    id<FieldEditInfo> fieldEditInfoForRow = [self fieldEditInfoAtIndex:indexPath.row];    
+    UITableViewCell *cell = [fieldEditInfoForRow cellForFieldEdit:tableView];
+    assert(cell != nil);
     return cell;
 }
 
 
 - (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Only allow selection if editing.
-    //  return (self.editing) ? indexPath : nil;
     return indexPath;
 }
+
+
 
 /**
  Manage row selection: If a row is selected, create a new editing view controller to edit the property associated with the selected row.
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-    //	if (!self.editing) return;
-    
     id<FieldEditInfo> fieldEditInfoForRow = [self fieldEditInfoAtIndex:indexPath.row];
     
-    UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
-    assert(viewControllerForRow != nil);
-    [self.navigationController pushViewController:viewControllerForRow animated:YES];
-	
-     
+    // Deselect the row.
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if([fieldEditInfoForRow hasFieldEditController])
+    {
+        UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
+        assert(viewControllerForRow != nil);
+        [self.navigationController pushViewController:viewControllerForRow animated:YES];       
+    }
 }
 
 
@@ -145,14 +144,29 @@
 }
 
 
-- (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellAccessoryDetailDisclosureButton;
-}
-
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 	return NO;
 }
+
+#pragma mark -
+#pragma mark Editing
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    
+    [super setEditing:editing animated:animated];
+    
+	[self.navigationItem setHidesBackButton:editing animated:NO];
+	
+    if(editing)
+    {
+    }
+    else
+    {        
+        // Done editing - save context
+        [[DataModelController theDataModelController] saveContext];
+    }
+}
+
 
 
 @end

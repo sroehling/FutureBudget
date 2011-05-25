@@ -12,6 +12,7 @@
 @interface NumberHelper : NSObject {
     @private
         NSNumberFormatter *numberFormatter;
+    NSNumberFormatter *decimalFormatter;
 }
 
 +(NumberHelper*)theHelper; // singleton
@@ -20,5 +21,6 @@
 - (BOOL)valueInRange:(NSInteger)value lower:(NSInteger)low upper:(NSInteger)up;
 
 @property(nonatomic,retain) NSNumberFormatter *numberFormatter;
+@property(nonatomic,retain) NSNumberFormatter *decimalFormatter;
 
 @end
