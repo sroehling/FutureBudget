@@ -25,4 +25,21 @@
 }
 
 
++(void)popControllerByDepth:(UIViewController*)currentViewController popDepth:(NSInteger)popDepth
+{
+    assert(currentViewController != nil);
+    assert(popDepth >= 1);
+    
+    NSArray*allViewControllers = currentViewController.navigationController.viewControllers;
+    NSInteger currentDepthIndex =[allViewControllers count]-1;
+    assert((currentDepthIndex - popDepth) >=0);
+    UIViewController *controllerAtPopToDepth = [allViewControllers 
+                                                objectAtIndex:(currentDepthIndex-popDepth)];
+    assert(controllerAtPopToDepth != nil);
+    [currentViewController.navigationController 
+        popToViewController:controllerAtPopToDepth animated: YES];
+    
+}
+
+
 @end

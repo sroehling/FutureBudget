@@ -277,4 +277,13 @@
             inManagedObjectContext:self.managedObjectContext];
 }
 
+- (void)deleteObject:(NSManagedObject*)theObj
+{
+    assert(theObj != nil);
+    [self.managedObjectContext deleteObject:theObj];
+    [self saveContext];
+    
+}
+
+
 @end

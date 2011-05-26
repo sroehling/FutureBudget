@@ -20,4 +20,7 @@
 - (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo;
 - (NSString*) textLabel;
 
+- (BOOL)fieldIsInitializedInParentObject;
+- (void)disableFieldAccess;
+
 @end

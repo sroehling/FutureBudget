@@ -87,8 +87,17 @@
     
     cell.fieldEditInfo = self;
     cell.label.text = [self textLabel];
-    cell.textField.text = [self detailTextLabel];
-    cell.textField.placeholder = @"Enter Text";
+    
+    // Only try to initialize the text in the field if the field's
+    // value has been initialized in the parent object. If it hasn't,
+    // the text field will be left blank and the placeholder value
+    // will be shown.
+    if([self.fieldInfo fieldIsInitializedInParentObject])
+    {
+        cell.textField.text = [self detailTextLabel];
+    }
+
+    cell.textField.placeholder = @"Enter a Value";
     
     return cell;
     

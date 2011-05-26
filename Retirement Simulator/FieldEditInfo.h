@@ -17,6 +17,9 @@
 - (BOOL)hasFieldEditController;
 - (UIViewController*)fieldEditController;
 
+- (BOOL)fieldIsInitializedInParentObject;
+- (void)disableFieldAccess;
+
 - (UITableViewCell*)cellForFieldEdit:(UITableView*)tableView;
 
 @end

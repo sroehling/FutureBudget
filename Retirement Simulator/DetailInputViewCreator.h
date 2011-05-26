@@ -20,5 +20,6 @@
 
 
 - (UIViewController *)createDetailViewForInput:(Input*)input;
+- (UIViewController *)createAddViewForInput:(Input *)input;
 
 @end

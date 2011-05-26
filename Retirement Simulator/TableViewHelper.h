@@ -14,5 +14,6 @@
 }
 
 +(UITableViewCell*)reuseOrAllocCell:(UITableView*)tableView;
++(void)popControllerByDepth:(UIViewController*)currentViewController popDepth:(int)popDepth;
 
 @end

@@ -17,6 +17,7 @@
 #import "RepeatFrequencyFieldEditInfo.h"
 #import "DateSensitiveValueFieldEditInfo.h"
 #import "GenericFieldBasedTableEditViewController.h"
+#import "GenericFieldBasedTableAddViewController.h"
 
 @implementation DetailInputViewCreator
 
@@ -32,16 +33,32 @@
     return self;
 }
 
-- (UIViewController *)createDetailViewForInput:(Input*)input
+- (void) populateFieldInfoForInput:(Input *)input
 {
     [self.detailFieldEditInfo removeAllObjects];
     
     [input acceptInputVisitor:self];
     assert([detailFieldEditInfo count] > 0); // Need at least one field definition to be valid
+
+}
+
+- (UIViewController *)createDetailViewForInput:(Input*)input
+{
+    [self populateFieldInfoForInput:input];
     
     UIViewController *detailViewController = 
         [[[GenericFieldBasedTableEditViewController alloc] initWithFieldEditInfo:detailFieldEditInfo] autorelease];
     return detailViewController;
+
+}
+
+- (UIViewController *)createAddViewForInput:(Input *)input
+{
+    [self populateFieldInfoForInput:input];
+    
+    UIViewController *addViewController = 
+    [[[GenericFieldBasedTableAddViewController alloc] initWithFieldEditInfo:detailFieldEditInfo andNewObject:input] autorelease];
+    return addViewController;
 
 }
 

@@ -12,6 +12,7 @@
 @interface InputTypeSelectionViewController : UITableViewController {
     @private
         NSMutableArray *inputTypes;
+        BOOL typeSelected;
 }
 
 @property(nonatomic,retain) NSMutableArray *inputTypes;

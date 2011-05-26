@@ -13,6 +13,8 @@
     NSString *fieldLabel;
     NSString *fieldKey;
     NSManagedObject *managedObject;
+    
+    BOOL fieldAccessEnabled;
 }
 
 -(id)initWithManagedObject:(NSManagedObject*)managedObject
@@ -26,7 +28,9 @@
 
 - (id)getFieldValue;
 - (void)setFieldValue:(id)newValue;
+- (BOOL)fieldIsInitializedInParentObject;
 
+- (void)disableFieldAccess;
 
 - (NSString*)textLabel;
 

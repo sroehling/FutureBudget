@@ -131,9 +131,7 @@
         // by multiple inputs.
         if(self.currentValue != self.currentFixedValue)
         {
-            [[DataModelController theDataModelController].managedObjectContext 
-             deleteObject:self.currentFixedValue];
-            [[DataModelController theDataModelController] saveContext];
+            [[DataModelController theDataModelController] deleteObject:self.currentValue];
         }
         self.currentValue = nil;
         self.currentFixedValue = nil;

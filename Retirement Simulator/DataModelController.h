@@ -28,5 +28,6 @@
 - (NSFetchRequest*)createSortedFetchRequestWithEntityName:(NSString *)entityName
                                                andSortKey:(NSString*)theSortKey;
 - (id)insertObject:(NSString*)entityName;
+- (void)deleteObject:(NSManagedObject*)theObj;
 
 @end

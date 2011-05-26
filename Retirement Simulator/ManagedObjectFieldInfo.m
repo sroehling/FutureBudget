@@ -7,7 +7,7 @@
 //
 
 #import "ManagedObjectFieldInfo.h"
-
+#import "DataModelController.h"
 
 @implementation ManagedObjectFieldInfo
 
@@ -31,6 +31,8 @@
         assert(theManagedObject != nil);
         self.managedObject = theManagedObject;
         
+        fieldAccessEnabled = TRUE;
+        
     }
     return self;
 }
@@ -40,14 +42,39 @@
 {
     // Note that valueForKey will raise an exception
     // if fieldKey is not supported.
+    assert(fieldAccessEnabled);
     id fieldValue = [self.managedObject  valueForKey:self.fieldKey];
     assert(fieldValue != nil);
     return fieldValue;
 }
 
+- (BOOL)fieldIsInitializedInParentObject
+{
+    assert(fieldAccessEnabled);
+    
+    id fieldValue = [self.managedObject  valueForKey:self.fieldKey];
+    if(fieldValue != nil)
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+- (void)disableFieldAccess
+{
+    fieldAccessEnabled = FALSE;
+}
+
 - (void)setFieldValue:(id)newValue
 {
-    [self.managedObject setValue:newValue forKey:self.fieldKey];
+    if(fieldAccessEnabled)
+    {
+        [self.managedObject setValue:newValue forKey:self.fieldKey];
+        [[DataModelController theDataModelController] saveContext];
+    }
 }
 
 

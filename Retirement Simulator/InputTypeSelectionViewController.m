@@ -8,6 +8,7 @@
 
 #import "InputTypeSelectionViewController.h"
 #import "InputTypeSelectionInfo.h"
+#import "DetailInputViewCreator.h"
 
 
 @implementation InputTypeSelectionViewController
@@ -33,9 +34,12 @@
     typeInfo.description = @"Expense";
     
     [self.inputTypes addObject:typeInfo];
+    
+    typeSelected = FALSE;
 
 
 }
+
 
 - (void)dealloc
 {
@@ -84,9 +88,17 @@
     InputTypeSelectionInfo *typeInfo = [self.inputTypes objectAtIndex:indexPath.row];
     assert(typeInfo!=nil);
     
-    [typeInfo createInput]; // create the managed (core data) object for the given input
+    Input *newInput = [typeInfo createInput]; // create the managed (core data) object for the given input
     
-    [self.navigationController popViewControllerAnimated:YES];
+    DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc] init] autorelease];
+    
+    UIViewController *addView = [detailViewCreator createAddViewForInput:newInput];
+    assert(addView != nil);
+    
+    typeSelected = TRUE;
+    
+	[self.navigationController pushViewController:addView animated:YES];  
+    
 }
 
 @end

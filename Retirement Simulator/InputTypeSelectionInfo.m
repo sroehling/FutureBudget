@@ -18,22 +18,25 @@
 
 @synthesize description;
 
--(void)createInput
+-(Input*)createInput
 {
     assert(0); // must be overridden
+    return nil;
 }
 
 @end
 
 @implementation ExpenseInputTypeSelectionInfo
 
--(void)createInput
+-(Input*)createInput
 {
     ExpenseInput *newInput  = (ExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"ExpenseInput" 
          inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
-    newInput.name = @"New Expense";
+    // The following fields are not initialized upon creation, since the user
+    // must provide a value (one can't be defaulted).
+    //      newInput.name
+    //      newInput.amount
     newInput.inputType = @"Expense";
-    newInput.amount = [NSNumber numberWithInt:2000];
     newInput.transactionDate = [NSDate date];
 
     FixedValue *fixedGrowthRate = (FixedValue*)[NSEntityDescription insertNewObjectForEntityForName:            @"FixedValue" inManagedObjectContext:
@@ -50,19 +53,23 @@
     NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
     
     [[DataModelController theDataModelController] saveContext];
+    
+    return newInput;
 }
 
 @end
 
 @implementation IncomeInputTypeSelectionInfo
 
--(void)createInput
+-(Input*)createInput
 {
     IncomeInput *newInput  = (IncomeInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"IncomeInput" 
         inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
-    newInput.name = @"New Income";
+    // The following fields are not initialized upon creation, since the user
+    // must provide a value (one can't be defaulted).
+    //      newInput.name
+    //      newInput.amount
     newInput.inputType = @"Income";
-    newInput.amount = [NSNumber numberWithInt:2000];
     newInput.transactionDate = [NSDate date];
     
     FixedValue *fixedGrowthRate = (FixedValue*)[NSEntityDescription insertNewObjectForEntityForName:            @"FixedValue" inManagedObjectContext:
@@ -78,6 +85,8 @@
     NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
     
     [[DataModelController theDataModelController] saveContext];
+    
+    return newInput;
   
 }
 

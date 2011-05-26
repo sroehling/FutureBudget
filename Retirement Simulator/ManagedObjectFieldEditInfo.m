@@ -36,4 +36,14 @@
     [super dealloc];
 }
 
+- (BOOL)fieldIsInitializedInParentObject
+{
+    return [self.fieldInfo fieldIsInitializedInParentObject];
+}
+
+- (void)disableFieldAccess
+{
+    [self.fieldInfo disableFieldAccess];
+}
+
 @end

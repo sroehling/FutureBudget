@@ -43,6 +43,7 @@
 		00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */; };
 		00637A881385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A871385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m */; };
 		00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A8A1386D99A001E02F1 /* InflationRate.m */; };
+		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -155,6 +156,8 @@
 		00637A871385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFieldEditViewController.m; sourceTree = "<group>"; };
 		00637A891386D999001E02F1 /* InflationRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InflationRate.h; sourceTree = "<group>"; };
 		00637A8A1386D99A001E02F1 /* InflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InflationRate.m; sourceTree = "<group>"; };
+		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
+		00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableAddViewController.m; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -287,6 +290,8 @@
 				003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */,
 				003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */,
 				003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */,
+				00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */,
+				00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */,
 			);
 			name = "Field Editors";
 			sourceTree = "<group>";
@@ -634,6 +639,7 @@
 				003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */,
 				003AD14C138C352200CB3CB5 /* TextFieldCell.m in Sources */,
 				003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */,
+				00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

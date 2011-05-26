@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class Input;
 
 @interface InputTypeSelectionInfo : NSObject {
     @private
 #warning Need to replace description with another name
     NSString *description;
+
 }
 
 @property(nonatomic,retain) NSString *description;
 
-- (void)createInput; // must be overriden
+- (Input*)createInput; // must be overriden
 
 @end
 
