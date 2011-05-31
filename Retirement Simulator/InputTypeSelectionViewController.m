@@ -9,6 +9,7 @@
 #import "InputTypeSelectionViewController.h"
 #import "InputTypeSelectionInfo.h"
 #import "DetailInputViewCreator.h"
+#import "TableViewHelper.h"
 
 
 @implementation InputTypeSelectionViewController
@@ -19,6 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIBarButtonItem *cancelButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelButtonItem;
+
     
     // Do any additional setup after loading the view from its nib.
     self.title = @"Input Type";
@@ -40,6 +45,11 @@
 
 }
 
+
+- (IBAction)cancel
+{
+    [self.navigationController popViewControllerAnimated:TRUE];
+}
 
 - (void)dealloc
 {
