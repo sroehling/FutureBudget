@@ -19,26 +19,20 @@
 #import "GenericFieldBasedTableEditViewController.h"
 #import "GenericFieldBasedTableAddViewController.h"
 
+#import "SectionInfo.h"
+#import "FormInfo.h"
+#import "FormPopulator.h"
+
 @implementation DetailInputViewCreator
 
-@synthesize detailFieldEditInfo;
 
-- (id) init
-{
-    self = [super init];
-    if(self)
-    {
-        self.detailFieldEditInfo = [[[NSMutableArray alloc] init ] autorelease];
-    }
-    return self;
-}
 
 - (void) populateFieldInfoForInput:(Input *)input
 {
-    [self.detailFieldEditInfo removeAllObjects];
+    [formPopulator release];
+    formPopulator = [[FormPopulator alloc] init];
     
     [input acceptInputVisitor:self];
-    assert([detailFieldEditInfo count] > 0); // Need at least one field definition to be valid
 
 }
 
@@ -46,8 +40,9 @@
 {
     [self populateFieldInfoForInput:input];
     
+    
     UIViewController *detailViewController = 
-        [[[GenericFieldBasedTableEditViewController alloc] initWithFieldEditInfo:detailFieldEditInfo] autorelease];
+        [[[GenericFieldBasedTableEditViewController alloc] initWithFormInfo:formPopulator.formInfo] autorelease];
     return detailViewController;
 
 }
@@ -57,27 +52,30 @@
     [self populateFieldInfoForInput:input];
     
     UIViewController *addViewController = 
-    [[[GenericFieldBasedTableAddViewController alloc] initWithFieldEditInfo:detailFieldEditInfo andNewObject:input] autorelease];
+    [[[GenericFieldBasedTableAddViewController alloc] initWithFormInfo:formPopulator.formInfo andNewObject:input] autorelease];
     return addViewController;
 
 }
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
-    [detailFieldEditInfo addObject:
-        [TextFieldEditInfo createForObject:cashFlow andKey:@"name" andLabel:@"Name"]];    
-    [detailFieldEditInfo addObject:
-        [NumberFieldEditInfo createForObject:cashFlow andKey:@"amount" andLabel:@"Amount"]];
- 
-    [detailFieldEditInfo addObject:
+    SectionInfo *sectionInfo = [formPopulator nextSection];
+    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:cashFlow andKey:@"name" andLabel:@"Name"]];
+    
+    sectionInfo = [formPopulator nextSection];
+    sectionInfo.title = @"Amount";
+    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:cashFlow andKey:@"amount" andLabel:@"Amount"]];
+    [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Amount Growth Rate" 
+         createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Inflation" 
          andEntityName:@"InflationRate"]];
 
-    [detailFieldEditInfo addObject:
-     [DateFieldEditInfo createForObject:cashFlow andKey:@"transactionDate" andLabel:@"Date"]];
 
-    [detailFieldEditInfo addObject:
+    sectionInfo = [formPopulator nextSection];
+    sectionInfo.title = @"Occurences";
+    [sectionInfo addFieldEditInfo:
+     [DateFieldEditInfo createForObject:cashFlow andKey:@"transactionDate" andLabel:@"First"]];
+    [sectionInfo addFieldEditInfo:
      [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" andLabel:@"Repeat"]];
         
 }
@@ -93,7 +91,7 @@
 
 - (void)dealloc
 {
-    [detailFieldEditInfo release];
+    [formPopulator release];
     [super dealloc];
 }
 

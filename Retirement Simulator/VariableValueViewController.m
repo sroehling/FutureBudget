@@ -20,8 +20,11 @@
 
 #import "ManagedObjectFieldInfo.h"
 #import "TextFieldEditInfo.h"
+#import "FormPopulator.h"
 #import "NumberFieldEditInfo.h"
 #import "DateFieldEditInfo.h"
+#import "SectionInfo.h"
+
 
 
 
@@ -218,13 +221,16 @@
             DateSensitiveValueChange *valueChange = 
                 (DateSensitiveValueChange*)[self.valueChanges objectAtIndex:indexPath.row];
             assert(valueChange != nil);
- 
-            NSMutableArray *detailFieldEditInfo = [[[NSMutableArray alloc] init ] autorelease];
             
-            [detailFieldEditInfo addObject:[DateFieldEditInfo createForObject:valueChange andKey:@"startDate" andLabel:@"Date"]];
-            [detailFieldEditInfo addObject:[NumberFieldEditInfo createForObject:valueChange andKey:@"newValue" andLabel:@"New Value"]];
-           
-            controller = [[[GenericFieldBasedTableEditViewController alloc] initWithFieldEditInfo:detailFieldEditInfo] autorelease];
+            
+            FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+
+            SectionInfo *sectionInfo = [formPopulator nextSection];
+            [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:valueChange andKey:@"startDate" andLabel:@"Date"]];
+            [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:valueChange andKey:@"newValue" andLabel:@"New Value"]];
+
+ 
+            controller = [[[GenericFieldBasedTableEditViewController alloc] initWithFormInfo:formPopulator.formInfo] autorelease];
             
         }
         assert(controller != nil);

@@ -1,0 +1,28 @@
+//
+//  SectionInfo.h
+//  Retirement Simulator
+//
+//  Created by Steve Roehling on 5/26/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#import "FieldEditInfo.h"
+
+@interface SectionInfo : NSObject {
+@private
+    NSMutableArray *fieldEditInfo;
+    NSString *title;
+}
+
+@property(nonatomic,retain) NSString *title;
+
+- (void) addFieldEditInfo:(id<FieldEditInfo>)fieldEditInfo;
+
+- (id<FieldEditInfo>)fieldEditInfoAtRowIndex:(NSUInteger)rowIndex;
+- (NSInteger)numFields;
+- (BOOL)allFieldsInitialized;
+- (void)disableFieldChanges;
+    
+@end

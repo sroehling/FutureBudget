@@ -11,12 +11,12 @@
 #import "InputVisitor.h"
 @class Input;
 
+@class FormPopulator;
+
 
 @interface DetailInputViewCreator : NSObject <InputVisitor> {
-    NSMutableArray *detailFieldEditInfo;
+    FormPopulator *formPopulator;
 }
-
-@property (nonatomic,retain)NSMutableArray *detailFieldEditInfo;
 
 
 - (UIViewController *)createDetailViewForInput:(Input*)input;

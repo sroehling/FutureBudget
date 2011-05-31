@@ -8,21 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+#import "GenericFieldBasedTableViewController.h"
 
-@interface GenericFieldBasedTableAddViewController : UITableViewController {
+
+@interface GenericFieldBasedTableAddViewController : GenericFieldBasedTableViewController {
 @private
-    NSMutableArray *fieldEditInfo;
     NSManagedObject *newObject;
     UIBarButtonItem *saveButton;
     NSInteger popDepth;
 }
 
-@property(nonatomic,retain) NSMutableArray *fieldEditInfo;
 @property(nonatomic,retain) NSManagedObject *newObject;
 @property(nonatomic,retain) UIBarButtonItem *saveButton;
 @property(nonatomic) NSInteger popDepth;
 
--(id)initWithFieldEditInfo:(NSMutableArray *)theFieldEditInfo andNewObject:(NSManagedObject*)newObj;
+-(id)initWithFormInfo:(FormInfo*)formInfo andNewObject:(NSManagedObject*)newObj;
 - (void)managedObjectsSaved;
 
 @end

@@ -8,14 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "GenericFieldBasedTableViewController.h"
 
-@interface GenericFieldBasedTableEditViewController : UITableViewController <NSFetchedResultsControllerDelegate>{
-    @private
-        NSMutableArray *fieldEditInfo;
+@interface GenericFieldBasedTableEditViewController : GenericFieldBasedTableViewController {
 }
 
-@property(nonatomic,retain) NSMutableArray *fieldEditInfo;
-
--(id)initWithFieldEditInfo:(NSMutableArray *)theFieldEditInfo;
+- (id)initWithFormInfo:(FormInfo*)theFormInfo;
 
 @end

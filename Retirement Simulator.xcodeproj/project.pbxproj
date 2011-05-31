@@ -44,6 +44,10 @@
 		00637A881385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A871385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m */; };
 		00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A8A1386D99A001E02F1 /* InflationRate.m */; };
 		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
+		00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAB138EC87A00663C7F /* SectionInfo.m */; };
+		00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAE138ECA8700663C7F /* FormInfo.m */; };
+		00A14BB2138FEBE800663C7F /* FormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BB1138FEBE600663C7F /* FormPopulator.m */; };
+		00A14BB5138FF53700663C7F /* GenericFieldBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -158,6 +162,14 @@
 		00637A8A1386D99A001E02F1 /* InflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InflationRate.m; sourceTree = "<group>"; };
 		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
 		00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableAddViewController.m; sourceTree = "<group>"; };
+		00A14BAA138EC87900663C7F /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
+		00A14BAB138EC87A00663C7F /* SectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInfo.m; sourceTree = "<group>"; };
+		00A14BAD138ECA8600663C7F /* FormInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInfo.h; sourceTree = "<group>"; };
+		00A14BAE138ECA8700663C7F /* FormInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInfo.m; sourceTree = "<group>"; };
+		00A14BB0138FEBE400663C7F /* FormPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPopulator.h; sourceTree = "<group>"; };
+		00A14BB1138FEBE600663C7F /* FormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPopulator.m; sourceTree = "<group>"; };
+		00A14BB3138FF53400663C7F /* GenericFieldBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableViewController.h; sourceTree = "<group>"; };
+		00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableViewController.m; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -269,8 +281,8 @@
 				004F5D611371DD0900E0C4A3 /* NumberFieldEditViewController.h */,
 				004F5D621371DD0900E0C4A3 /* NumberFieldEditViewController.m */,
 				004F5D631371DD0900E0C4A3 /* NumberFieldEditViewController.xib */,
-				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
 				00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */,
+				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
 				00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */,
 				00F4209E137DC04800980A88 /* DateFieldEditInfo.h */,
 				00F4209F137DC04800980A88 /* DateFieldEditInfo.m */,
@@ -292,6 +304,14 @@
 				003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */,
 				00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */,
 				00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */,
+				00A14BAA138EC87900663C7F /* SectionInfo.h */,
+				00A14BAB138EC87A00663C7F /* SectionInfo.m */,
+				00A14BAD138ECA8600663C7F /* FormInfo.h */,
+				00A14BAE138ECA8700663C7F /* FormInfo.m */,
+				00A14BB0138FEBE400663C7F /* FormPopulator.h */,
+				00A14BB1138FEBE600663C7F /* FormPopulator.m */,
+				00A14BB3138FF53400663C7F /* GenericFieldBasedTableViewController.h */,
+				00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */,
 			);
 			name = "Field Editors";
 			sourceTree = "<group>";
@@ -640,6 +660,10 @@
 				003AD14C138C352200CB3CB5 /* TextFieldCell.m in Sources */,
 				003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */,
 				00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */,
+				00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */,
+				00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */,
+				00A14BB2138FEBE800663C7F /* FormPopulator.m in Sources */,
+				00A14BB5138FF53700663C7F /* GenericFieldBasedTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
