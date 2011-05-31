@@ -54,7 +54,15 @@
 #pragma mark View Lifecycle
 
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.title = self.formInfo.title;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
+    
+    
     // Redisplay the data - notably, this is invoked when returning 
     // from an editor for one of the field values,
     // causing the display of these values to refresh if changed.

@@ -82,10 +82,12 @@
 
 - (void)visitExpense:(ExpenseInput*)expense
 {    
+    formPopulator.formInfo.title = @"Expense";
 }
 
 - (void)visitIncome:(IncomeInput*)input
 {
+    formPopulator.formInfo.title = @"Income";
 }
 
 

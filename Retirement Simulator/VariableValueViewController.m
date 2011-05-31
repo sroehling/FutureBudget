@@ -20,6 +20,7 @@
 
 #import "ManagedObjectFieldInfo.h"
 #import "TextFieldEditInfo.h"
+#import "FormInfo.h"
 #import "FormPopulator.h"
 #import "NumberFieldEditInfo.h"
 #import "DateFieldEditInfo.h"
@@ -224,6 +225,7 @@
             
             
             FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+            formPopulator.formInfo.title = @"Value Change";
 
             SectionInfo *sectionInfo = [formPopulator nextSection];
             [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:valueChange andKey:@"startDate" andLabel:@"Date"]];

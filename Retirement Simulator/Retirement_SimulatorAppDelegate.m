@@ -21,6 +21,12 @@
 {
     // Override point for customization after application launch.
     
+    
+    // Delete the persistent cache of information for results controllers: Otherwise,
+    // the app was throwing exceptions with a message "The persistent cache of 
+    // section information does not match the current configuration."
+    [NSFetchedResultsController deleteCacheWithName:nil];
+    
     [[DataModelController theDataModelController] initializeDatabaseDefaults];
     
     // Add the tab bar controller's current view as a subview of the window
