@@ -17,6 +17,14 @@
 @synthesize label, textField;
 @synthesize fieldEditInfo;
 
+// Note a connection is made in the XIB file
+// to invoke this for the "Did End on Exit" event
+-(IBAction)textFieldDismissKeyboard:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
+
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated 
 {
 	[super setEditing:editing animated:animated];
