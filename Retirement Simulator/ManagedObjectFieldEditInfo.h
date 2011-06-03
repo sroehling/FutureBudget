@@ -23,4 +23,6 @@
 - (BOOL)fieldIsInitializedInParentObject;
 - (void)disableFieldAccess;
 
+- (NSManagedObject*) managedObject;
+
 @end

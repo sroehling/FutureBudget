@@ -60,6 +60,30 @@
     return [indexedSection fieldEditInfoAtRowIndex:indexPath.row];
 }
 
+
+- (NSManagedObject*)objectAtPath:(NSIndexPath *)indexPath
+{
+    id<FieldEditInfo> feAtPath = [self fieldEditInfoIndexPath:indexPath];
+    assert(feAtPath != nil);
+    return feAtPath.managedObject;
+}
+
+- (NSIndexPath*)pathForObject:(NSManagedObject *)object
+{
+    NSInteger sectionNum = 0;
+    for(SectionInfo* sectionInfo in sections)
+    {
+        NSInteger objectRowNum = [sectionInfo findObjectRow:object];
+        if(objectRowNum >= 0)
+        {
+            return [NSIndexPath indexPathForRow:objectRowNum inSection:sectionNum];
+        }
+        sectionNum++;
+    }
+    assert(0); // should not get here - object must be found
+    return nil;
+}
+
 - (BOOL)allFieldsInitialized
 {
     for(SectionInfo* sectionInfo in sections)

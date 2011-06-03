@@ -24,5 +24,10 @@
 - (NSInteger)numFields;
 - (BOOL)allFieldsInitialized;
 - (void)disableFieldChanges;
+- (NSInteger)findObjectRow:(NSManagedObject*)object;
+
+- (CGFloat)sectionViewRightOffset;
+- (UIView*)viewForSectionHeader:(CGFloat)tableWidth;
+- (CGFloat)viewHeightForSection;
     
 @end

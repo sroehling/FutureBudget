@@ -46,4 +46,9 @@
     [self.fieldInfo disableFieldAccess];
 }
 
+- (NSManagedObject*) managedObject
+{
+    return self.fieldInfo.managedObject;
+}
+
 @end

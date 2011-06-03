@@ -53,16 +53,27 @@
 #pragma mark -
 #pragma mark View Lifecycle
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = self.formInfo.title;
+    self.tableView.allowsSelectionDuringEditing = TRUE;
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    // A title is needed, since when child views are pushed on the view
+    // stack, a back button is needed to get back to this view. The back
+    // button only appears if the parent (this view) has a non-zero-length
+    // title.
+    assert([self.formInfo.title length] > 0); 
     
+    self.title = self.formInfo.title;
+
+    
+    [super viewWillAppear:animated];
+    
+
     // Redisplay the data - notably, this is invoked when returning 
     // from an editor for one of the field values,
     // causing the display of these values to refresh if changed.
@@ -84,6 +95,30 @@
 {
     SectionInfo* sectionInfo = [self.formInfo sectionInfoAtIndex:section];
     return sectionInfo.title;
+}
+
+#define CUSTOM_SECTION_HEIGHT 22.0
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+        // create the parent view that will hold header Label
+    
+        SectionInfo* sectionInfo = [self.formInfo sectionInfoAtIndex:section];
+        if([sectionInfo.title length] > 0)
+        {
+            return [sectionInfo viewForSectionHeader:tableView.bounds.size.width];
+        }
+        else
+        {
+            return nil;
+        }
+    
+    
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return CUSTOM_SECTION_HEIGHT;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

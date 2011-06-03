@@ -38,5 +38,10 @@
     return nextSection;
 }
 
+- (void)nextCustomSection:(SectionInfo*)customSection
+{
+    [formInfo addSection:customSection];
+}
+
 
 @end

@@ -12,6 +12,7 @@
 #import "DataModelController.h"
 #import "EventRepeatFrequency.h"
 #import "FixedValue.h"
+#import "FixedDate.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -39,8 +40,8 @@
     newInput.inputType = @"Expense";
     newInput.transactionDate = [NSDate date];
 
-    FixedValue *fixedGrowthRate = (FixedValue*)[NSEntityDescription insertNewObjectForEntityForName:            @"FixedValue" inManagedObjectContext:
-        [[DataModelController theDataModelController] managedObjectContext]];
+    FixedValue *fixedGrowthRate = 
+        (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
     fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
     newInput.amountGrowthRate = fixedGrowthRate; 
     
@@ -72,10 +73,14 @@
     newInput.inputType = @"Income";
     newInput.transactionDate = [NSDate date];
     
-    FixedValue *fixedGrowthRate = (FixedValue*)[NSEntityDescription insertNewObjectForEntityForName:            @"FixedValue" inManagedObjectContext:
-            [[DataModelController theDataModelController] managedObjectContext]];
+    FixedValue *fixedGrowthRate = 
+        (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
     fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
     newInput.amountGrowthRate = fixedGrowthRate; 
+    
+    FixedDate *fixedDate = (FixedDate*)[[DataModelController theDataModelController] insertObject:@"FixedDate"];
+    fixedDate.date = [NSDate date];
+    newInput.startDate = fixedDate;
     
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
     assert([repeatFrequencies count] >0);

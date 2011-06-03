@@ -15,18 +15,12 @@
 @implementation GenericFieldBasedTableEditViewController
 
 
-- (id)initWithFormInfo:(FormInfo*)theFormInfo
+- (void)viewDidLoad
 {
-    self = [super initWithFormInfo:theFormInfo];
-    if(self)
-    {
-        self.navigationItem.rightBarButtonItem = self.editButtonItem;
-        self.tableView.allowsSelectionDuringEditing = YES;
-
-    }
-    return self;
+    [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+   
 }
-
 
 #pragma mark -
 #pragma mark Table view data source methods

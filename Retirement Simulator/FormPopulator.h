@@ -18,6 +18,11 @@
 
 @property(nonatomic,retain) FormInfo *formInfo;
 
+// Advance to the next section, allocating a default SectionInfo Object
 - (SectionInfo*) nextSection;
+
+// Advance to the next section, using a custom 
+// SectionInfo object (derived from SectionInfo)
+- (void)nextCustomSection:(SectionInfo*)customSection;
 
 @end

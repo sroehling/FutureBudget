@@ -73,6 +73,10 @@
     return self;
 }
 
+- (id) initWithFormInfo:(FormInfo *)formInfo
+{
+    assert(0); // should not be called - call version above with new object
+}
 
 - (void)dealloc
 {

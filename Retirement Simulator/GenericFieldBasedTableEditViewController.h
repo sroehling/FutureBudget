@@ -13,6 +13,5 @@
 @interface GenericFieldBasedTableEditViewController : GenericFieldBasedTableViewController {
 }
 
-- (id)initWithFormInfo:(FormInfo*)theFormInfo;
 
 @end

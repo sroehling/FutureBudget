@@ -72,10 +72,27 @@
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     assert(tableView!=nil);
+    
     UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:tableView];
+    
     cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [self textLabel];
-    cell.detailTextLabel.text = [self detailTextLabel];
+    
+    
+    // Only try to initialize the text in the field if the field's
+    // value has been initialized in the parent object. If it hasn't,
+    // the text field will be left blank and the placeholder value
+    // will be shown.
+    if([self.fieldInfo fieldIsInitializedInParentObject])
+    {
+        cell.detailTextLabel.text = [self detailTextLabel];
+    }
+    else
+    {
+        cell.detailTextLabel.text = @"Enter a Date";
+    }
+
+    
     return cell;
 }
 

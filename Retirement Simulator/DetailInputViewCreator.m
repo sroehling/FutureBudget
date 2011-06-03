@@ -14,6 +14,7 @@
 #import "TextFieldEditInfo.h"
 #import "NumberFieldEditInfo.h"
 #import "DateFieldEditInfo.h"
+#import "VariableDateFieldEditInfo.h"
 #import "RepeatFrequencyFieldEditInfo.h"
 #import "DateSensitiveValueFieldEditInfo.h"
 #import "GenericFieldBasedTableEditViewController.h"
@@ -75,6 +76,7 @@
     sectionInfo.title = @"Occurences";
     [sectionInfo addFieldEditInfo:
      [DateFieldEditInfo createForObject:cashFlow andKey:@"transactionDate" andLabel:@"First"]];
+    [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" andLabel:@"Start"]];
     [sectionInfo addFieldEditInfo:
      [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" andLabel:@"Repeat"]];
         

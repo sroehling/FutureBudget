@@ -24,11 +24,16 @@
 
 - (id<FieldEditInfo>)fieldEditInfoIndexPath:(NSIndexPath *)indexPath;
 
+- (NSManagedObject*)objectAtPath:(NSIndexPath *)indexPath;
+- (NSIndexPath*)pathForObject:(NSManagedObject *)object;
+
 - (NSUInteger)numSections;
 - (SectionInfo*)sectionInfoAtIndex:(NSUInteger)sectionIndex;
 
 - (BOOL)allFieldsInitialized;
 - (void)disableFieldChanges;
+
+
 
 
 @end
