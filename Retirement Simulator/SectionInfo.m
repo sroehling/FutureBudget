@@ -93,7 +93,7 @@
 
 
 
-- (UIView*)viewForSectionHeader:(CGFloat)tableWidth
+- (UIView*)viewForSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing
 {
     assert(tableWidth>0.0);
     // Returning nil will cause the view to revert to the default
@@ -111,7 +111,7 @@
         headerLabel.highlightedTextColor = [UIColor whiteColor];
         headerLabel.font = [UIFont boldSystemFontOfSize:14];
         // Calculate the label width in consideration of both the offset on the LHS and RHS
-        CGFloat labelWidth = tableWidth - 10.0 - [self sectionViewRightOffset];
+        CGFloat labelWidth = tableWidth - 10.0 - [self sectionViewRightOffset:editing];
         headerLabel.frame = CGRectMake(10.0, 0.0, labelWidth, CUSTOM_SECTION_VIEW_HEIGHT);
         headerLabel.text = self.title;
         [customView addSubview:headerLabel];
@@ -128,7 +128,7 @@
 
 }
 
-- (CGFloat)sectionViewRightOffset
+- (CGFloat)sectionViewRightOffset:(BOOL)editing
 {
     return 0.0;
 }

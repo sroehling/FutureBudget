@@ -33,7 +33,7 @@
 - (BOOL)allFieldsInitialized;
 - (void)disableFieldChanges;
 
-
+- (NSIndexSet*)sectionIndicesNeedingRefreshForEditMode;
 
 
 @end

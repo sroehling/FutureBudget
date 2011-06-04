@@ -26,8 +26,8 @@
 - (void)disableFieldChanges;
 - (NSInteger)findObjectRow:(NSManagedObject*)object;
 
-- (CGFloat)sectionViewRightOffset;
-- (UIView*)viewForSectionHeader:(CGFloat)tableWidth;
+- (CGFloat)sectionViewRightOffset:(BOOL)editing;
+- (UIView*)viewForSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing;
 - (CGFloat)viewHeightForSection;
     
 @end

@@ -104,4 +104,12 @@
     }
 }
 
+- (NSIndexSet*)sectionIndicesNeedingRefreshForEditMode
+{
+    // TODO - Return just the sections needing updating, rather than all the sections
+    NSRange sectionRange = NSMakeRange(0,[sections count]);
+    return [[[NSIndexSet alloc] initWithIndexesInRange:sectionRange] autorelease];
+    
+}
+
 @end

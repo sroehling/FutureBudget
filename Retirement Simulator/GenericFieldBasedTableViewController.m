@@ -106,7 +106,8 @@
         SectionInfo* sectionInfo = [self.formInfo sectionInfoAtIndex:section];
         if([sectionInfo.title length] > 0)
         {
-            return [sectionInfo viewForSectionHeader:tableView.bounds.size.width];
+            return [sectionInfo viewForSectionHeader:tableView.bounds.size.width
+                                         andEditMode:self.editing];
         }
         else
         {
@@ -154,6 +155,19 @@
 - (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Only allow selection if editing.
     return indexPath;
+}
+
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    
+    [super setEditing:editing animated:animated];
+
+    // Reload the sections depending upon if we're in edit mode or not. This is needed for sections
+
+    NSIndexSet *sectionIndices = [self.formInfo sectionIndicesNeedingRefreshForEditMode];
+    [self.tableView reloadSections:sectionIndices 
+                  withRowAnimation:UITableViewRowAnimationNone];
+
 }
 
 
