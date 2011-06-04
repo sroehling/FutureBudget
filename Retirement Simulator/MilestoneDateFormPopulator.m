@@ -34,8 +34,9 @@
 - (UIViewController*)milestoneDateAddViewController:(MilestoneDate*)milestoneDate
 {
     [self populateForMilestoneDate:milestoneDate];
-    UIViewController *controller = [[[GenericFieldBasedTableAddViewController alloc]
+    GenericFieldBasedTableAddViewController *controller = [[[GenericFieldBasedTableAddViewController alloc]
                  initWithFormInfo:self.formInfo andNewObject:milestoneDate] autorelease];
+    controller.popDepth =1;
     return controller;
     
 }

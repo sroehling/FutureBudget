@@ -10,8 +10,13 @@
 
 
 @interface DateHelper : NSObject {
-    
+    @private
+        NSDateFormatter *mediumDateFormatter;
 }
+
++(DateHelper*)theHelper; // singleton
+
+@property(nonatomic,retain)  NSDateFormatter *mediumDateFormatter;
 
 + (NSDate*)today;
 

@@ -13,6 +13,7 @@
 #import "MilestoneDate.h"
 #import "FormInfo.h"
 #import "SectionInfo.h"
+#import "DateHelper.h"
 #import "MilestoneDateFormPopulator.h"
 
 @implementation MilestoneDateFieldEditInfo
@@ -44,12 +45,13 @@
 
 - (NSString*)detailTextLabel
 {
-    return self.milestoneDate.name;
+    return [[[DateHelper theHelper] mediumDateFormatter]
+            stringFromDate:self.milestoneDate.date];
 }
 
 - (NSString*)textLabel
 {
-    return @"Date";
+    return self.milestoneDate.name;
 }
 
 - (UIViewController*)fieldEditController
@@ -66,7 +68,13 @@
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     assert(tableView!=nil);
-    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:tableView];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Milestones"];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] 
+            initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Milestones"] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
     cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [self textLabel];

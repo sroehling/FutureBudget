@@ -62,7 +62,6 @@
     [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:self.fixedDate 
                                     andKey:@"date" andLabel:@"Date"]];
     
-    sectionInfo = [[[MilestoneDateSectionInfo alloc] init ] autorelease];
     MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] init ] autorelease];
     mdSectionInfo.title =  @"Milestone Date";
     mdSectionInfo.parentViewController = parentController;

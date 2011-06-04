@@ -292,7 +292,8 @@
             assert(indexPath.section == VARIABLE_VALUE_SECTION);
             VariableValue *selectedValue = [self.variableValues objectAtIndex:indexPath.row];
             assert(selectedValue != nil);
-            controller = [[VariableValueViewController alloc] initWithVariableValue:selectedValue];
+            controller = [[[VariableValueViewController alloc] 
+                initWithVariableValue:selectedValue] autorelease];
         }
         viewPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];

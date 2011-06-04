@@ -8,6 +8,7 @@
 
 #import "DateFieldEditViewController.h"
 #import "DataModelController.h"
+#import "DateHelper.h"
 
 @implementation DateFieldEditViewController
 
@@ -23,8 +24,15 @@
 {
     datePicker.hidden = NO;
     datePicker.datePickerMode = UIDatePickerModeDate;
-    datePicker.date = [fieldInfo getFieldValue];
-
+    
+    if([fieldInfo fieldIsInitializedInParentObject])
+    {
+        datePicker.date = [fieldInfo getFieldValue];
+    }
+    else
+    {
+        datePicker.date = [DateHelper today];
+    }
 }
 
 
@@ -32,8 +40,6 @@
     [datePicker release];
 	[super dealloc];
 }
-
-
 
 
 @end
