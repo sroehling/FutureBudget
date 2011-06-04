@@ -22,6 +22,14 @@
 @synthesize fieldInfo;
 @synthesize fixedDate;
 
+- (FixedDate*)tmpFixedDate
+{
+    FixedDate *tmpDate = (FixedDate*)[[DataModelController theDataModelController] 
+                                           insertObject:@"FixedDate"];
+    tmpDate.date = [[NSDate alloc] init];
+    return tmpDate;
+}
+
 - (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo
 {
     self = [super init];
@@ -30,20 +38,24 @@
         assert(vdFieldInfo != nil);
         self.fieldInfo = vdFieldInfo;
         
-        
-        VariableDate *vdFromField = [self.fieldInfo getFieldValue];
-        assert(vdFromField != nil);
-        
-        if([vdFromField isKindOfClass:[FixedDate class]])
+        if([self.fieldInfo fieldIsInitializedInParentObject])
         {
-            self.fixedDate = (FixedDate*)vdFromField;
+            VariableDate *vdFromField = [self.fieldInfo getFieldValue];
+            if([vdFromField isKindOfClass:[FixedDate class]])
+            {
+                self.fixedDate = (FixedDate*)vdFromField;
+            }           
+            else
+            {
+                self.fixedDate = [self tmpFixedDate];
+            }
         }
+                
         else
         {
-            FixedDate *tmpFixedDate = (FixedDate*)[[DataModelController theDataModelController] 
-                                                   insertObject:@"FixedDate"];
-            tmpFixedDate.date = [[NSDate alloc] init];
-            self.fixedDate = tmpFixedDate;
+            // TODO - Need to make sure the tmpFixedDate is deleted if not assigned to the 
+            // vdFieldInfo
+            self.fixedDate = [self tmpFixedDate];
         }
 
     }

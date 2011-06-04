@@ -26,7 +26,10 @@
     assert(theFormInfoCreator != nil);
     
     // Initially pass in an empty FormInfo object. It will be fully
-    // re-populatee with viewDidLoad.
+    // re-populatee with viewDidLoad. The reason the FormInfo can't
+    // be fully populated here is because theFormInfoCreator is passed
+    // a reference to this view controller (self) for the creation, and
+    // self isn't fully instantiated yet.
     FormInfo *initialFormInfo = [[[FormInfo alloc]init ] autorelease];
     initialFormInfo.title = @"Dummy";
     
@@ -63,7 +66,14 @@
 -(void) refreshTable
 {
     self.formInfo = [self.formInfoCreator createFormInfo:self];
-    self.currentValueIndex = [self.formInfo pathForObject:self.currentValue];
+    if(self.currentValue != nil)
+    {
+        self.currentValueIndex = [self.formInfo pathForObject:self.currentValue];        
+    }
+    else
+    {
+        self.currentValueIndex = nil;
+    }
     [self.tableView reloadData];
 }
 
@@ -117,11 +127,14 @@
 
 -(void)uncheckCurrentSelection
 {
-    assert(self.currentValue != nil);
-    NSIndexPath *selectionIndexPath = [self.formInfo pathForObject:self.currentValue];
-    UITableViewCell *checkedCell = [self.tableView cellForRowAtIndexPath:selectionIndexPath];
-    assert(checkedCell!=nil);
-    checkedCell.accessoryType = UITableViewCellAccessoryNone;
+    if(self.currentValue != nil)
+    {
+        NSIndexPath *selectionIndexPath = [self.formInfo pathForObject:self.currentValue];      
+        UITableViewCell *checkedCell = [self.tableView cellForRowAtIndexPath:selectionIndexPath];
+        assert(checkedCell!=nil);
+        checkedCell.accessoryType = UITableViewCellAccessoryNone;
+    }
+
 }
 
 - (void)checkNewSelection:(NSIndexPath*)newPath
@@ -143,19 +156,26 @@
 {
     UITableViewCell *theCell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     assert(theCell != nil);
-    assert(self.currentValue != nil);
-     NSIndexPath *selectionIndexPath = [self.formInfo pathForObject:self.currentValue];
-    if(selectionIndexPath.section == indexPath.section && 
-       selectionIndexPath.row == indexPath.row)
-    {
-        theCell.accessoryType = UITableViewCellAccessoryCheckmark;
 
+    if(self.currentValue != nil)
+    {
+        NSIndexPath *selectionIndexPath = [self.formInfo pathForObject:self.currentValue];
+        if(selectionIndexPath.section == indexPath.section && 
+           selectionIndexPath.row == indexPath.row)
+        {
+            theCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+        }
+        else
+        {
+            theCell.accessoryType = UITableViewCellAccessoryNone;
+        }        
     }
     else
     {
         theCell.accessoryType = UITableViewCellAccessoryNone;
     }
-    return theCell;
+   return theCell;
 }
 
 
@@ -186,16 +206,10 @@
     
 	[self.navigationItem setHidesBackButton:editing animated:NO];
 	
-    if(editing)
+    if(!editing)
     {
-   //     self.navigationItem.leftBarButtonItem = self.addVariableValueButton;
-    }
-    else
-    {
-        self.navigationItem.leftBarButtonItem = nil;
-        
         // Done editing - save context
-     //   [[DataModelController theDataModelController] saveContext];
+        [[DataModelController theDataModelController] saveContext];
     }
 }
 
@@ -204,16 +218,18 @@
 {
     [super viewDidLoad];
     
-    
-    /*
-    self.addVariableValueButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addVariableValue)] autorelease];
-    
-    */
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.allowsSelectionDuringEditing = YES;
    
     self.formInfo = [self.formInfoCreator createFormInfo:self];
-    [self updateCurrentValue:[self.assignedField getFieldValue]];
+    
+    // Only update the current value (i.e., the initial value checked-off in the table)
+    // if a value has already been set in the property of the object being
+    // modified.
+    if([self.assignedField fieldIsInitializedInParentObject])
+    {
+        [self updateCurrentValue:[self.assignedField getFieldValue]];      
+    }
  
     
     /*

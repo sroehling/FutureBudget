@@ -12,6 +12,7 @@
 #import "TableViewHelper.h"
 #import "SelectableObjectTableEditViewController.h"
 #import "StringValidation.h"
+#import "DateHelper.h"
 
 @implementation VariableDateFieldEditInfo
 
@@ -34,9 +35,9 @@
 
 - (NSString*)detailTextLabel
 {
-    
-//    VariableDate *varDate = [self.fieldInfo getFieldValue];
-    return @"VariableDate";
+    assert([self.fieldInfo fieldIsInitializedInParentObject]);
+    VariableDate *varDate = [self.fieldInfo getFieldValue];
+    return [[[DateHelper theHelper] mediumDateFormatter] stringFromDate:varDate.date];
 }
 
 - (UIViewController*)fieldEditController
@@ -57,14 +58,32 @@
     return TRUE;
 }
 
+
+
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     assert(tableView!=nil);
+    
     UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:tableView];
     cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [self textLabel];
-    cell.detailTextLabel.text = [self detailTextLabel];
+
+    if([self.fieldInfo fieldIsInitializedInParentObject])
+    {
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.text = [self detailTextLabel];
+    }
+    else
+    {
+        // Set the text color on the label to light gray to indicate that
+        // the value needs to be filled in (the same as a placeholder
+        // in a text field).
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+        cell.detailTextLabel.text = @"Enter a Date";
+
+    }
+    
     return cell;
 }
 
