@@ -16,6 +16,8 @@
 
 @implementation VariableDateFieldEditInfo
 
+#define TABLE_CELL_BLUE_TEXT_COLOR [UIColor colorWithRed:0.22 green:0.33 blue:0.53 alpha:1.0]
+
 
 + (VariableDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                                         andLabel:(NSString*)label
@@ -71,7 +73,7 @@
 
     if([self.fieldInfo fieldIsInitializedInParentObject])
     {
-        cell.detailTextLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.textColor = TABLE_CELL_BLUE_TEXT_COLOR;
         cell.detailTextLabel.text = [self detailTextLabel];
     }
     else
