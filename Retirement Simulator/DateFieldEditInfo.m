@@ -10,11 +10,10 @@
 #import "DateFieldEditViewController.h"
 #import "TableViewHelper.h"
 #import "StringValidation.h"
+#import "DateHelper.h"
 
 
 @implementation DateFieldEditInfo
-
-@synthesize dateFormatter;
 
 
 + (DateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
@@ -36,7 +35,8 @@
 
 - (NSString*)detailTextLabel
 {
-    return [self.dateFormatter stringFromDate:[self.fieldInfo getFieldValue]];
+    return [[[DateHelper theHelper] mediumDateFormatter]
+        stringFromDate:[self.fieldInfo getFieldValue]];
 }
 
 - (UIViewController*)fieldEditController
@@ -49,18 +49,9 @@
 
 }
 
-- (NSDateFormatter *)dateFormatter {	
-	if (dateFormatter == nil) {
-		dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-	}
-	return dateFormatter;
-}
 
 - (void)dealloc {
     [super dealloc];
-    [dateFormatter release];
 }
 
 - (BOOL)hasFieldEditController

@@ -14,10 +14,7 @@
 
 @interface DateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
 
-    NSDateFormatter *dateFormatter;
 }
-
-@property (nonatomic, retain) NSDateFormatter *dateFormatter;
 
 + (DateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                              andLabel:(NSString*)label;
