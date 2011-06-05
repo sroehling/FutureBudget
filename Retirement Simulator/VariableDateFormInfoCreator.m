@@ -31,6 +31,7 @@
 }
 
 - (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo
+    andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
 {
     self = [super init];
     if(self)
@@ -47,15 +48,13 @@
             }           
             else
             {
-                self.fixedDate = [self tmpFixedDate];
+                self.fixedDate = (FixedDate*)[theDefaultFieldInfo getFieldValue];
             }
         }
                 
         else
         {
-            // TODO - Need to make sure the tmpFixedDate is deleted if not assigned to the 
-            // vdFieldInfo
-            self.fixedDate = [self tmpFixedDate];
+            self.fixedDate = (FixedDate*)[theDefaultFieldInfo getFieldValue];
         }
 
     }

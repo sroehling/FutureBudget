@@ -12,9 +12,13 @@
 #import "ManagedObjectFieldEditInfo.h"
 
 @interface VariableDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
-    
+    @private
+        ManagedObjectFieldInfo *defaultValFieldInfo;
 }
 
+@property(nonatomic,retain) ManagedObjectFieldInfo *defaultValFieldInfo;
+
 + (VariableDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                                        andLabel:(NSString*)label;
+              andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey;
+
 @end

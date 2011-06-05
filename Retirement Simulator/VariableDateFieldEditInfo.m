@@ -13,24 +13,54 @@
 #import "SelectableObjectTableEditViewController.h"
 #import "StringValidation.h"
 #import "DateHelper.h"
+#import "ManagedObjectFieldInfo.h"
+#import "ColorHelper.h"
 
 @implementation VariableDateFieldEditInfo
 
-#define TABLE_CELL_BLUE_TEXT_COLOR [UIColor colorWithRed:0.22 green:0.33 blue:0.53 alpha:1.0]
+
+@synthesize defaultValFieldInfo;
+
+
+- (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo andDefaultValFieldInfo:
+        (ManagedObjectFieldInfo*)theDefaultFieldInfo
+{
+    self = [super initWithFieldInfo:theFieldInfo];
+    if(self)
+    {
+        assert(theDefaultFieldInfo!=nil);
+        assert([theDefaultFieldInfo fieldIsInitializedInParentObject]);
+        self.defaultValFieldInfo = theDefaultFieldInfo;
+    }
+    return self;
+}
+
+- (id) initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo
+{
+    assert(0); // should not call this version of init
+}
 
 
 + (VariableDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                                        andLabel:(NSString*)label
+                                     andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
+    assert([StringValidation nonEmptyString:defaultValKey]);
     
-    ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
-    VariableDateFieldEditInfo *fieldEditInfo = [[VariableDateFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
-    [fieldEditInfo autorelease];
-    [fieldInfo release];
+    ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label] autorelease];
+ 
+    
+    ManagedObjectFieldInfo *defaultValFieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                                          initWithManagedObject:obj 
+                        andFieldKey:defaultValKey andFieldLabel:label] autorelease];
+
+    
+    VariableDateFieldEditInfo *fieldEditInfo = [[[VariableDateFieldEditInfo alloc] 
+        initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo] autorelease];
+
     
     return fieldEditInfo;
 }
@@ -46,10 +76,12 @@
 {
     
     VariableDateFormInfoCreator *formInfoCreator = 
-        [[[VariableDateFormInfoCreator alloc] initWithVariableDateFieldInfo:self.fieldInfo] autorelease];
+        [[[VariableDateFormInfoCreator alloc] initWithVariableDateFieldInfo:self.fieldInfo 
+          andDefaultValFieldInfo:self.defaultValFieldInfo] autorelease];
     
     SelectableObjectTableEditViewController *viewController = 
-    [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:formInfoCreator andAssignedField:self.fieldInfo] autorelease];
+    [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:formInfoCreator 
+            andAssignedField:self.fieldInfo] autorelease];
 
     return viewController;
     
@@ -73,7 +105,7 @@
 
     if([self.fieldInfo fieldIsInitializedInParentObject])
     {
-        cell.detailTextLabel.textColor = TABLE_CELL_BLUE_TEXT_COLOR;
+        cell.detailTextLabel.textColor = [ColorHelper blueTableTextColor];
         cell.detailTextLabel.text = [self detailTextLabel];
     }
     else
@@ -81,7 +113,7 @@
         // Set the text color on the label to light gray to indicate that
         // the value needs to be filled in (the same as a placeholder
         // in a text field).
-        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+        cell.detailTextLabel.textColor = [ColorHelper promptTextColor];
         cell.detailTextLabel.text = @"Enter a Date";
 
     }

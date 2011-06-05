@@ -45,6 +45,10 @@
     fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
     newInput.amountGrowthRate = fixedGrowthRate; 
     
+    FixedDate *fixedDate = (FixedDate*)[[DataModelController theDataModelController] insertObject:@"FixedDate"];
+    fixedDate.date = [NSDate date];
+    newInput.fixedStartDate = fixedDate;
+    
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
     assert([repeatFrequencies count] >0);
     
@@ -70,6 +74,7 @@
     // must provide a value (one can't be defaulted).
     //      newInput.name
     //      newInput.amount
+    //      newInput.startDate
     newInput.inputType = @"Income";
     newInput.transactionDate = [NSDate date];
     
@@ -80,7 +85,7 @@
     
     FixedDate *fixedDate = (FixedDate*)[[DataModelController theDataModelController] insertObject:@"FixedDate"];
     fixedDate.date = [NSDate date];
-    newInput.startDate = fixedDate;
+    newInput.fixedStartDate = fixedDate;
     
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
     assert([repeatFrequencies count] >0);

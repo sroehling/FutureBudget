@@ -37,6 +37,11 @@
     return self;
 }
 
+-(id) init
+{
+    assert(0); // should not call this version of init.
+}
+
 
 - (id)getFieldValue
 {

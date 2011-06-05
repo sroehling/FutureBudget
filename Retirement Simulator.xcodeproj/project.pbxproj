@@ -85,6 +85,7 @@
 		00EC1FA013992B8B0085B25C /* MilestoneDateSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F9F13992B8A0085B25C /* MilestoneDateSectionInfo.m */; };
 		00EC1FA613997F860085B25C /* MilestoneDateFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */; };
 		00EC1FA913998A090085B25C /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FA813998A090085B25C /* DateHelper.m */; };
+		00EC1FAC139BD27F0085B25C /* ColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FAB139BD27C0085B25C /* ColorHelper.m */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
 		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
 		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
@@ -245,6 +246,8 @@
 		00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MilestoneDateFormPopulator.m; sourceTree = "<group>"; };
 		00EC1FA713998A090085B25C /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
 		00EC1FA813998A090085B25C /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
+		00EC1FAA139BD27B0085B25C /* ColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorHelper.h; sourceTree = "<group>"; };
+		00EC1FAB139BD27C0085B25C /* ColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorHelper.m; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 		00F4209D137DB78700980A88 /* FieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditInfo.h; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 				003AD138138AF55C00CB3CB5 /* NumberHelper.m */,
 				00EC1FA713998A090085B25C /* DateHelper.h */,
 				00EC1FA813998A090085B25C /* DateHelper.m */,
+				00EC1FAA139BD27B0085B25C /* ColorHelper.h */,
+				00EC1FAB139BD27C0085B25C /* ColorHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -726,6 +731,7 @@
 				00EC1FA013992B8B0085B25C /* MilestoneDateSectionInfo.m in Sources */,
 				00EC1FA613997F860085B25C /* MilestoneDateFormPopulator.m in Sources */,
 				00EC1FA913998A090085B25C /* DateHelper.m in Sources */,
+				00EC1FAC139BD27F0085B25C /* ColorHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

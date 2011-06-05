@@ -16,9 +16,11 @@
     @private
         ManagedObjectFieldInfo *fieldInfo;
         FixedDate *fixedDate;
+        ManagedObjectFieldInfo *defaultValFieldInfo;
 }
 
-- (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo;
+- (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo 
+             andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo;
 
 @property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
 @property(nonatomic,retain) FixedDate *fixedDate;

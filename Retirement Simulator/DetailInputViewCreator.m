@@ -76,7 +76,7 @@
     sectionInfo.title = @"Occurences";
     [sectionInfo addFieldEditInfo:
      [DateFieldEditInfo createForObject:cashFlow andKey:@"transactionDate" andLabel:@"First"]];
-    [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" andLabel:@"Start"]];
+    [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" andLabel:@"Start" andDefaultValueKey:@"fixedStartDate"]];
     [sectionInfo addFieldEditInfo:
      [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" andLabel:@"Repeat"]];
         

@@ -13,6 +13,7 @@
 @class EventRepeatFrequency;
 @class DateSensitiveValue;
 @class VariableDate;
+@class FixedDate;
 
 @interface CashFlowInput : Input {
 @private
@@ -23,5 +24,13 @@
 @property (nonatomic, retain) NSDate * transactionDate;
 @property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
 @property (nonatomic,retain) VariableDate *startDate;
+
+
+// fixedStartDate is used to hold onto a single fixed
+// date value the user can select. If the user then
+// selects a milestone date, he/she can come back and select
+// the same fixed start date, rather than the fixed
+// date reverting back to zero.
+@property(nonatomic,retain) FixedDate *fixedStartDate;
 
 @end

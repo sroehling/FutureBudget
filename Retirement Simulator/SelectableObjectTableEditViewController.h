@@ -26,8 +26,6 @@
         NSManagedObject *currentValue;
     
         NSIndexPath *currentValueIndex;
-    
-        
 }
 
 
@@ -36,8 +34,7 @@
 @property(nonatomic,retain) NSManagedObject *currentValue;
 @property(nonatomic,retain) NSIndexPath *currentValueIndex;
 
-
 -(id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
-          andAssignedField:(ManagedObjectFieldInfo*)theAssignedField;
+            andAssignedField:(ManagedObjectFieldInfo*)theAssignedField;
 
 @end
