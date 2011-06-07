@@ -1,0 +1,63 @@
+//
+//  VariableValueSectionInfo.m
+//  Retirement Simulator
+//
+//  Created by Steve Roehling on 6/5/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import "VariableValueSectionInfo.h"
+#import "NumberFieldEditInfo.h"
+#import "TextFieldEditInfo.h"
+#import "DataModelController.h"
+#import "GenericFieldBasedTableAddViewController.h"
+#import "FormPopulator.h"
+#import "FormInfo.h"
+#import "SectionInfo.h"
+#import "VariableValue.h"
+#import "DataModelController.h"
+
+@implementation VariableValueSectionInfo
+
+@synthesize varValueEntityName;
+
+- (void)addObjectButtonPressed
+{
+    assert(self.parentViewController != nil);
+    NSLog(@"Add Variable Value");
+    assert([self.varValueEntityName length] >0);
+    
+    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    
+    formPopulator.formInfo.title = @"Variable Value";
+    
+    VariableValue *newVariableValue = (VariableValue*)[[DataModelController theDataModelController] insertObject:self.varValueEntityName];
+    // The following properties must be filled in before the new objectwill be created.
+    //    newVariableValue.name
+    //    newVariableValue.startingValue
+    [[DataModelController theDataModelController] saveContext];
+
+    
+    SectionInfo *sectionInfo = [formPopulator nextSection];
+    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:newVariableValue 
+             andKey:@"name" andLabel:@"Name"]];
+    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:newVariableValue 
+             andKey:@"startingValue" andLabel:@"Starting Value"]];
+    
+    GenericFieldBasedTableAddViewController *controller = 
+        [[[GenericFieldBasedTableAddViewController alloc]
+            initWithFormInfo:formPopulator.formInfo andNewObject:newVariableValue] autorelease];
+    controller.popDepth =1;
+
+    
+    [self.parentViewController.navigationController pushViewController:controller animated:YES];
+    
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+    [varValueEntityName release];
+}
+
+@end

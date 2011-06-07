@@ -41,7 +41,6 @@
 		00637A7F1385D4FA001E02F1 /* VariableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7E1385D4FA001E02F1 /* VariableValue.m */; };
 		00637A821385D509001E02F1 /* FixedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A811385D509001E02F1 /* FixedValue.m */; };
 		00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */; };
-		00637A881385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A871385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m */; };
 		00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A8A1386D99A001E02F1 /* InflationRate.m */; };
 		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
 		00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAB138EC87A00663C7F /* SectionInfo.m */; };
@@ -86,6 +85,10 @@
 		00EC1FA613997F860085B25C /* MilestoneDateFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */; };
 		00EC1FA913998A090085B25C /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FA813998A090085B25C /* DateHelper.m */; };
 		00EC1FAC139BD27F0085B25C /* ColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FAB139BD27C0085B25C /* ColorHelper.m */; };
+		00EC1FAF139BDB460085B25C /* DateSensitiveValueFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */; };
+		00EC1FB5139BE2560085B25C /* AddObjectSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */; };
+		00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */; };
+		00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
 		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
 		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
@@ -167,8 +170,6 @@
 		00637A811385D509001E02F1 /* FixedValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedValue.m; sourceTree = "<group>"; };
 		00637A831385D824001E02F1 /* DateSensitiveValueFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueFieldEditInfo.h; sourceTree = "<group>"; };
 		00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFieldEditInfo.m; sourceTree = "<group>"; };
-		00637A861385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueFieldEditViewController.h; sourceTree = "<group>"; };
-		00637A871385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFieldEditViewController.m; sourceTree = "<group>"; };
 		00637A891386D999001E02F1 /* InflationRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InflationRate.h; sourceTree = "<group>"; };
 		00637A8A1386D99A001E02F1 /* InflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InflationRate.m; sourceTree = "<group>"; };
 		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
@@ -248,6 +249,14 @@
 		00EC1FA813998A090085B25C /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
 		00EC1FAA139BD27B0085B25C /* ColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorHelper.h; sourceTree = "<group>"; };
 		00EC1FAB139BD27C0085B25C /* ColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorHelper.m; sourceTree = "<group>"; };
+		00EC1FAD139BDB210085B25C /* DateSensitiveValueFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueFormInfoCreator.h; sourceTree = "<group>"; };
+		00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFormInfoCreator.m; sourceTree = "<group>"; };
+		00EC1FB3139BE24D0085B25C /* AddObjectSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddObjectSectionInfo.h; sourceTree = "<group>"; };
+		00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddObjectSectionInfo.m; sourceTree = "<group>"; };
+		00EC1FB6139BE3E40085B25C /* VariableValueSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueSectionInfo.h; sourceTree = "<group>"; };
+		00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueSectionInfo.m; sourceTree = "<group>"; };
+		00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFieldEditInfo.h; sourceTree = "<group>"; };
+		00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueFieldEditInfo.m; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 		00F4209D137DB78700980A88 /* FieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditInfo.h; sourceTree = "<group>"; };
@@ -353,6 +362,8 @@
 				00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */,
 				00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */,
 				00A57F6C1396DCF9004E148B /* FormInfoCreator.h */,
+				00EC1FB3139BE24D0085B25C /* AddObjectSectionInfo.h */,
+				00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */,
 			);
 			name = "Field Editors";
 			sourceTree = "<group>";
@@ -385,8 +396,6 @@
 				00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */,
 				00637A831385D824001E02F1 /* DateSensitiveValueFieldEditInfo.h */,
 				00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */,
-				00637A861385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.h */,
-				00637A871385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m */,
 				003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */,
 				003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */,
 				00EC1F8B139736D40085B25C /* VariableDateFormInfoCreator.h */,
@@ -399,6 +408,12 @@
 				00EC1F9F13992B8A0085B25C /* MilestoneDateSectionInfo.m */,
 				00EC1FA413997F830085B25C /* MilestoneDateFormPopulator.h */,
 				00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */,
+				00EC1FAD139BDB210085B25C /* DateSensitiveValueFormInfoCreator.h */,
+				00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */,
+				00EC1FB6139BE3E40085B25C /* VariableValueSectionInfo.h */,
+				00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */,
+				00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */,
+				00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */,
 			);
 			name = "Input Views";
 			sourceTree = "<group>";
@@ -707,7 +722,6 @@
 				00637A7F1385D4FA001E02F1 /* VariableValue.m in Sources */,
 				00637A821385D509001E02F1 /* FixedValue.m in Sources */,
 				00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */,
-				00637A881385DCF2001E02F1 /* DateSensitiveValueFieldEditViewController.m in Sources */,
 				00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */,
 				003AD12C138ABF7D00CB3CB5 /* VariableValueViewController.m in Sources */,
 				003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */,
@@ -732,6 +746,10 @@
 				00EC1FA613997F860085B25C /* MilestoneDateFormPopulator.m in Sources */,
 				00EC1FA913998A090085B25C /* DateHelper.m in Sources */,
 				00EC1FAC139BD27F0085B25C /* ColorHelper.m in Sources */,
+				00EC1FAF139BDB460085B25C /* DateSensitiveValueFormInfoCreator.m in Sources */,
+				00EC1FB5139BE2560085B25C /* AddObjectSectionInfo.m in Sources */,
+				00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */,
+				00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,7 +41,6 @@
 {
     [self populateFieldInfoForInput:input];
     
-    
     UIViewController *detailViewController = 
         [[[GenericFieldBasedTableEditViewController alloc] initWithFormInfo:formPopulator.formInfo] autorelease];
     return detailViewController;
@@ -66,10 +65,11 @@
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = @"Amount";
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:cashFlow andKey:@"amount" andLabel:@"Amount"]];
+
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
          createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Inflation" 
-         andEntityName:@"InflationRate"]];
+         andEntityName:@"InflationRate" andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
 
 
     sectionInfo = [formPopulator nextSection];

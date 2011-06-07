@@ -25,25 +25,23 @@
     return nil;
 }
 
-@end
-
-@implementation ExpenseInputTypeSelectionInfo
-
--(Input*)createInput
+-(void)populateCashFlowInputProperties:(CashFlowInput*)newInput
 {
-    ExpenseInput *newInput  = (ExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"ExpenseInput" 
-         inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
     // The following fields are not initialized upon creation, since the user
     // must provide a value (one can't be defaulted).
     //      newInput.name
     //      newInput.amount
-    newInput.inputType = @"Expense";
+    //      newInput.startDate
+    //      newInput.amountGrowthRate
+    
     newInput.transactionDate = [NSDate date];
-
+    
     FixedValue *fixedGrowthRate = 
-        (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
+    (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
     fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
-    newInput.amountGrowthRate = fixedGrowthRate; 
+    newInput.defaultFixedGrowthRate = fixedGrowthRate;
+    //   newInput.amountGrowthRate = fixedGrowthRate;
+    
     
     FixedDate *fixedDate = (FixedDate*)[[DataModelController theDataModelController] insertObject:@"FixedDate"];
     fixedDate.date = [NSDate date];
@@ -54,8 +52,23 @@
     
     newInput.repeatFrequency = (EventRepeatFrequency *)[repeatFrequencies objectAtIndex:0];
     assert(newInput.repeatFrequency != nil);
-
     NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
+    
+}
+
+
+@end
+
+@implementation ExpenseInputTypeSelectionInfo
+
+
+-(Input*)createInput
+{
+    ExpenseInput *newInput  = (ExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"ExpenseInput" 
+         inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
+
+    newInput.inputType = @"Expense";    
+    [self populateCashFlowInputProperties:newInput];
     
     [[DataModelController theDataModelController] saveContext];
     
@@ -70,29 +83,9 @@
 {
     IncomeInput *newInput  = (IncomeInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"IncomeInput" 
         inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
-    // The following fields are not initialized upon creation, since the user
-    // must provide a value (one can't be defaulted).
-    //      newInput.name
-    //      newInput.amount
-    //      newInput.startDate
+
     newInput.inputType = @"Income";
-    newInput.transactionDate = [NSDate date];
-    
-    FixedValue *fixedGrowthRate = 
-        (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
-    fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
-    newInput.amountGrowthRate = fixedGrowthRate; 
-    
-    FixedDate *fixedDate = (FixedDate*)[[DataModelController theDataModelController] insertObject:@"FixedDate"];
-    fixedDate.date = [NSDate date];
-    newInput.fixedStartDate = fixedDate;
-    
-    NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
-    assert([repeatFrequencies count] >0);
-    
-    newInput.repeatFrequency = (EventRepeatFrequency *)[repeatFrequencies objectAtIndex:0];
-    assert(newInput.repeatFrequency != nil);
-    NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
+    [self populateCashFlowInputProperties:newInput];
     
     [[DataModelController theDataModelController] saveContext];
     

@@ -120,6 +120,7 @@
 - (void)updateCurrentValue:(NSManagedObject*)newVal
 {
     assert(newVal != nil);
+    NSLog(@"Updating current value to: %@",[newVal description]);
     self.currentValue = newVal;
     self.currentValueIndex = [self.formInfo pathForObject:newVal];
     

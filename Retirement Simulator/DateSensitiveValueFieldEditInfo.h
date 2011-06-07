@@ -14,12 +14,18 @@
 @interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private 
     NSString *variableValueEntityName;
+    ManagedObjectFieldInfo *defafaultFixedValFieldInfo;
 }
 
 @property(nonatomic,retain) NSString *variableValueEntityName;
 
+- (id)initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo andDefaultFixedValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo;
+
+@property(nonatomic,retain) ManagedObjectFieldInfo *defafaultFixedValFieldInfo;
+
 + (DateSensitiveValueFieldEditInfo*)createForObject:(NSManagedObject*)obj 
                                              andKey:(NSString*)key
-      andLabel:(NSString*)label andEntityName:(NSString*)entityName;
+      andLabel:(NSString*)label andEntityName:(NSString*)entityName
+        andDefaultFixedValKey:(NSString*)defaultFixedValKey;
 
 @end

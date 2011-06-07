@@ -14,11 +14,7 @@
 
 @implementation MilestoneDateSectionInfo
 
-@synthesize parentViewController;
-
-#define ADD_MILESTONE_BUTTON_WIDTH 50.0
-
-- (void)addMilestone
+- (void)addObjectButtonPressed
 {
     assert(self.parentViewController != nil);
     NSLog(@"Add milestone");
@@ -31,47 +27,8 @@
     UIViewController *controller =  [formPopulator milestoneDateAddViewController:newMilestoneDate];
     
     [self.parentViewController.navigationController pushViewController:controller animated:YES];
-    
-
 }
 
-- (UIView*)viewForSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing
-{
-    UIView *headerView = [super viewForSectionHeader:tableWidth andEditMode:editing];
-    assert(headerView != nil); // must have a custom view for milestone dates
-
-    if(editing)
-    {
-        UIButton *addMilestoneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        addMilestoneButton.frame = CGRectMake(tableWidth-ADD_MILESTONE_BUTTON_WIDTH, 0.0, 
-            ADD_MILESTONE_BUTTON_WIDTH, [self viewHeightForSection]);
-        [addMilestoneButton setTitle:@"Add" forState:UIControlStateNormal];
-        [addMilestoneButton addTarget:self action:@selector(addMilestone) 
-             forControlEvents:UIControlEventTouchUpInside];
-        // add button to right corner of section        
-        [headerView addSubview:addMilestoneButton];
-    }
-    return headerView;
-}
-     
-    
-
-- (CGFloat)sectionViewRightOffset:(BOOL)editing
-{
-    if(editing)
-    {
-        return ADD_MILESTONE_BUTTON_WIDTH;
-    }
-    else
-    {
-        return 0.0;
-    }
-}
-
-- (void) dealloc
-{
-    [super dealloc];
-}
 
 
 @end

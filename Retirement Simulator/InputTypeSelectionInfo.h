@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Input;
+@class CashFlowInput;
 
 @interface InputTypeSelectionInfo : NSObject {
     @private
@@ -20,6 +21,8 @@
 @property(nonatomic,retain) NSString *description;
 
 - (Input*)createInput; // must be overriden
+
+-(void)populateCashFlowInputProperties:(CashFlowInput*)newInput;
 
 @end
 

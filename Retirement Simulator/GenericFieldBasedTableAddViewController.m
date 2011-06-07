@@ -114,8 +114,9 @@
     // Redisplay the data - notably, this is invoked when returning 
     // from an editor for one of the field values,
     // causing the display of these values to refresh if changed.
-    self.editing = TRUE;
     [super viewWillAppear:animated];
+    self.editing = TRUE;
+
 }
 
 

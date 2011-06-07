@@ -167,7 +167,6 @@
     NSIndexSet *sectionIndices = [self.formInfo sectionIndicesNeedingRefreshForEditMode];
     [self.tableView reloadSections:sectionIndices 
                   withRowAnimation:UITableViewRowAnimationNone];
-
 }
 
 

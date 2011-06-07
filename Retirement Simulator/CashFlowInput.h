@@ -14,6 +14,7 @@
 @class DateSensitiveValue;
 @class VariableDate;
 @class FixedDate;
+@class FixedValue;
 
 @interface CashFlowInput : Input {
 @private
@@ -32,5 +33,9 @@
 // the same fixed start date, rather than the fixed
 // date reverting back to zero.
 @property(nonatomic,retain) FixedDate *fixedStartDate;
+
+// defaultFixedGrowthRate serves the same purpose as 
+// fixedStartDate.
+@property(nonatomic,retain) FixedValue *defaultFixedGrowthRate;
 
 @end

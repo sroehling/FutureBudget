@@ -22,14 +22,6 @@
 @synthesize fieldInfo;
 @synthesize fixedDate;
 
-- (FixedDate*)tmpFixedDate
-{
-    FixedDate *tmpDate = (FixedDate*)[[DataModelController theDataModelController] 
-                                           insertObject:@"FixedDate"];
-    tmpDate.date = [[NSDate alloc] init];
-    return tmpDate;
-}
-
 - (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo
     andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
 {
