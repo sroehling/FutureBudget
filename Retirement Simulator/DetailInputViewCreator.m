@@ -19,6 +19,7 @@
 #import "DateSensitiveValueFieldEditInfo.h"
 #import "GenericFieldBasedTableEditViewController.h"
 #import "GenericFieldBasedTableAddViewController.h"
+#import "EventRepeatFrequency.h"
 
 #import "SectionInfo.h"
 #import "FormInfo.h"
@@ -26,27 +27,38 @@
 
 @implementation DetailInputViewCreator
 
+@synthesize input;
+
+-(id) initWithInput:(Input*)theInput
+{
+    self = [super init];
+    if(self)
+    {
+        assert(theInput!=nil);
+        self.input = theInput;
+    }
+    return self;
+}
+
+-(id) init
+{
+    assert(0); // should not be called
+}
 
 
-- (void) populateFieldInfoForInput:(Input *)input
+- (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
     [formPopulator release];
     formPopulator = [[FormPopulator alloc] init];
     
-    [input acceptInputVisitor:self];
-
-}
-
-- (UIViewController *)createDetailViewForInput:(Input*)input
-{
-    [self populateFieldInfoForInput:input];
+    [self.input acceptInputVisitor:self];
     
-    UIViewController *detailViewController = 
-        [[[GenericFieldBasedTableEditViewController alloc] initWithFormInfo:formPopulator.formInfo] autorelease];
-    return detailViewController;
+    return formPopulator.formInfo;
 
 }
 
+
+/*
 - (UIViewController *)createAddViewForInput:(Input *)input
 {
     [self populateFieldInfoForInput:input];
@@ -56,11 +68,14 @@
     return addViewController;
 
 }
+ */
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
     SectionInfo *sectionInfo = [formPopulator nextSection];
     [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:cashFlow andKey:@"name" andLabel:@"Name"]];
+    
+    // Amount section
     
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = @"Amount";
@@ -71,15 +86,33 @@
          createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Inflation" 
          andEntityName:@"InflationRate" andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
 
+    // Occurences section
 
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = @"Occurences";
     [sectionInfo addFieldEditInfo:
      [DateFieldEditInfo createForObject:cashFlow andKey:@"transactionDate" andLabel:@"First"]];
+    
     [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" andLabel:@"Start" andDefaultValueKey:@"fixedStartDate"]];
-    [sectionInfo addFieldEditInfo:
-     [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" andLabel:@"Repeat"]];
+
+
+    RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" andLabel:@"Repeat"];
+    [sectionInfo addFieldEditInfo:repeatFrequencyInfo];
+    
+    // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
+    // than "Once", such that an end date is needed. TBD - Should the end date in this case default to 
+    // "Plan end date".
+     if([repeatFrequencyInfo.fieldInfo fieldIsInitializedInParentObject])
+    {
+        EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)[repeatFrequencyInfo.fieldInfo getFieldValue];
+        assert(repeatFreq != nil);
+        if([repeatFreq  eventRepeatsMoreThanOnce])
+        {
+            [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"endDate" andLabel:@"End" andDefaultValueKey:@"fixedEndDate"]];           
+        }
         
+    }
+    
 }
 
 - (void)visitExpense:(ExpenseInput*)expense

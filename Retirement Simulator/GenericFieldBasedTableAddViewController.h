@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "GenericFieldBasedTableViewController.h"
+#import "FormInfoCreator.h"
 
 
 @interface GenericFieldBasedTableAddViewController : GenericFieldBasedTableViewController {
@@ -22,7 +23,7 @@
 @property(nonatomic,retain) UIBarButtonItem *saveButton;
 @property(nonatomic) NSInteger popDepth;
 
--(id)initWithFormInfo:(FormInfo*)formInfo andNewObject:(NSManagedObject*)newObj;
 - (void)managedObjectsSaved;
+- (id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator andNewObject:(NSManagedObject*)newObj;
 
 @end

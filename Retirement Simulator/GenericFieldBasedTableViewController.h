@@ -9,14 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @class FormInfo;
+#import "FormInfoCreator.h"
 
 @interface GenericFieldBasedTableViewController : UITableViewController {
     @private
         FormInfo *formInfo;
+    
+        // formInfoCreator is used to initially populate, then repopulate the 
+        // view as needed.
+        id<FormInfoCreator> formInfoCreator;
 }
 
 @property(nonatomic,retain) FormInfo *formInfo;
+@property(nonatomic,retain) id<FormInfoCreator> formInfoCreator;
 
-- (id)initWithFormInfo:(FormInfo*)formInfo;
+- (id)initWithFormInfoCreator:(id<FormInfoCreator>) theFormInfoCreator;        
+
 
 @end

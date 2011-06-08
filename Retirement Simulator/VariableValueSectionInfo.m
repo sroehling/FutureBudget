@@ -16,6 +16,7 @@
 #import "SectionInfo.h"
 #import "VariableValue.h"
 #import "DataModelController.h"
+#import "StaticFormInfoCreator.h"
 
 @implementation VariableValueSectionInfo
 
@@ -46,7 +47,8 @@
     
     GenericFieldBasedTableAddViewController *controller = 
         [[[GenericFieldBasedTableAddViewController alloc]
-            initWithFormInfo:formPopulator.formInfo andNewObject:newVariableValue] autorelease];
+          initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:formPopulator.formInfo]
+          andNewObject:newVariableValue] autorelease];
     controller.popDepth =1;
 
     

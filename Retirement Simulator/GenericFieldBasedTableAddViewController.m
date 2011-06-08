@@ -49,33 +49,16 @@
 
 #define DEFAULT_POP_DEPTH 2
 
--(id)initWithFormInfo:(FormInfo*)formInfo andNewObject:(NSManagedObject*)newObj
+
+- (id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator andNewObject:(NSManagedObject*)newObj
 {
-    self = [super initWithFormInfo:formInfo];
-    if(self)
-    {        
+    self = [super initWithFormInfoCreator:theFormInfoCreator];
+    {
         assert(newObj != nil);
         self.newObject = newObj;
-        
-        UIBarButtonItem *cancelButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
-        self.navigationItem.leftBarButtonItem = cancelButtonItem;
-        
-        UIBarButtonItem *saveButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save)] autorelease];
-        self.navigationItem.rightBarButtonItem = saveButtonItem;
-        self.saveButton = saveButtonItem;
-        self.saveButton.enabled = FALSE;
-        
         self.popDepth = DEFAULT_POP_DEPTH;
-        
-        [self startObservingObjectChangeNotifications];
-        
     }
     return self;
-}
-
-- (id) initWithFormInfo:(FormInfo *)formInfo
-{
-    assert(0); // should not be called - call version above with new object
 }
 
 - (void)dealloc
@@ -109,6 +92,24 @@
 
 
 #pragma mark - View lifecycle
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIBarButtonItem *cancelButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelButtonItem;
+    
+    UIBarButtonItem *saveButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save)] autorelease];
+    self.navigationItem.rightBarButtonItem = saveButtonItem;
+    self.saveButton = saveButtonItem;
+    self.saveButton.enabled = FALSE;
+    
+    self.popDepth = DEFAULT_POP_DEPTH;
+    
+    [self startObservingObjectChangeNotifications];
+   
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     // Redisplay the data - notably, this is invoked when returning 

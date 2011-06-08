@@ -14,6 +14,7 @@
 
 #import "DetailInputViewCreator.h"
 #import "InputTypeSelectionViewController.h"
+#import "GenericFieldBasedTableEditViewController.h"
 
 @interface InputViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -164,12 +165,14 @@
     Input *selectedInput = (Input*)[[self fetchedResultsController] objectAtIndexPath:indexPath];
      NSLog(@"input = %@",[selectedInput description]);
     
-    DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc] init] autorelease];
     
-    UIViewController *detailView = [detailViewCreator createDetailViewForInput:selectedInput];
-    assert(detailView != nil);
+    // TODO - Need to setup the input view, so it can repopulate the fields on the fly
+    DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc] initWithInput:selectedInput] autorelease];
+  
+    UIViewController *detailViewController = 
+    [[[GenericFieldBasedTableEditViewController alloc] initWithFormInfoCreator:detailViewCreator] autorelease];
     
-	[self.navigationController pushViewController:detailView animated:YES];
+	[self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 

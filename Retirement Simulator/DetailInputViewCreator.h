@@ -9,17 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #import "InputVisitor.h"
-@class Input;
+#import "FormInfoCreator.h"
 
+@class Input;
 @class FormPopulator;
 
 
-@interface DetailInputViewCreator : NSObject <InputVisitor> {
+@interface DetailInputViewCreator : NSObject <InputVisitor,FormInfoCreator> {
     FormPopulator *formPopulator;
+    Input *input;
 }
 
+@property(nonatomic,retain) Input *input;
 
-- (UIViewController *)createDetailViewForInput:(Input*)input;
-- (UIViewController *)createAddViewForInput:(Input *)input;
+-(id) initWithInput:(Input*)theInput;
 
 @end

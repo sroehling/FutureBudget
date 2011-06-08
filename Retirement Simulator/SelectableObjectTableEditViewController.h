@@ -18,10 +18,6 @@
         // the LHS of the assignment
         ManagedObjectFieldInfo *assignedField;
     
-        // formInfoCreator is used to initially populate, then repopulate the 
-        // view as needed.
-        id<FormInfoCreator> formInfoCreator;
-    
         // The currently selected value, serves as the RHS of the assignement
         NSManagedObject *currentValue;
     
@@ -30,7 +26,6 @@
 
 
 @property(nonatomic,retain) ManagedObjectFieldInfo *assignedField;
-@property(nonatomic,retain) id<FormInfoCreator> formInfoCreator;
 @property(nonatomic,retain) NSManagedObject *currentValue;
 @property(nonatomic,retain) NSIndexPath *currentValueIndex;
 

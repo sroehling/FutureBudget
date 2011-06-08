@@ -14,15 +14,29 @@
 @implementation GenericFieldBasedTableViewController
 
 @synthesize formInfo;
+@synthesize formInfoCreator;
 
-- (id)initWithFormInfo:(FormInfo*)theFormInfo
+
+- (id)initWithFormInfoCreator:(id<FormInfoCreator>) theFormInfoCreator
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self)
     {
-        self.formInfo = theFormInfo;
+        assert(theFormInfoCreator != nil);
+        self.formInfoCreator = theFormInfoCreator;
+        
+        // Initially pass in an empty FormInfo object. It will be fully
+        // re-populatee with viewDidLoad. The reason the FormInfo can't
+        // be fully populated here is because theFormInfoCreator is passed
+        // a reference to this view controller (self) for the creation, and
+        // self isn't fully instantiated yet.
+        FormInfo *initialFormInfo = [[[FormInfo alloc]init ] autorelease];
+        initialFormInfo.title = @"Dummy";
+
+        self.formInfo = initialFormInfo;
     }
     return self;
+    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -39,6 +53,7 @@
 {
     [super dealloc];
     [formInfo release];
+    [formInfoCreator release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,11 +71,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    if(self.formInfoCreator != nil)
+    {
+        self.formInfo = [self.formInfoCreator createFormInfo:self];
+    }
+    
     self.tableView.allowsSelectionDuringEditing = TRUE;
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    if(self.formInfoCreator != nil)
+    {
+        self.formInfo = [self.formInfoCreator createFormInfo:self];
+    }
     
     // A title is needed, since when child views are pushed on the view
     // stack, a back button is needed to get back to this view. The back

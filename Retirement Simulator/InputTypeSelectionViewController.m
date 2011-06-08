@@ -8,8 +8,10 @@
 
 #import "InputTypeSelectionViewController.h"
 #import "InputTypeSelectionInfo.h"
+#import "Input.h"
 #import "DetailInputViewCreator.h"
 #import "TableViewHelper.h"
+#import "GenericFieldBasedTableAddViewController.h"
 
 
 @implementation InputTypeSelectionViewController
@@ -100,9 +102,13 @@
     
     Input *newInput = [typeInfo createInput]; // create the managed (core data) object for the given input
     
-    DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc] init] autorelease];
+    DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc] 
+                        initWithInput:newInput] autorelease];
     
-    UIViewController *addView = [detailViewCreator createAddViewForInput:newInput];
+    
+    UIViewController *addView =  [[[GenericFieldBasedTableAddViewController alloc] 
+        initWithFormInfoCreator:detailViewCreator andNewObject:newInput] autorelease];
+
     assert(addView != nil);
     
     typeSelected = TRUE;

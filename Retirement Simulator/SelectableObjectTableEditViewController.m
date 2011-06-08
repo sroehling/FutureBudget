@@ -16,31 +16,24 @@
 @implementation SelectableObjectTableEditViewController
 
 @synthesize assignedField;
-@synthesize formInfoCreator;
 @synthesize currentValue;
 @synthesize currentValueIndex;
 
 - (id) initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
           andAssignedField:(ManagedObjectFieldInfo*)theAssignedField
 {
-    assert(theFormInfoCreator != nil);
-    
-    // Initially pass in an empty FormInfo object. It will be fully
-    // re-populatee with viewDidLoad. The reason the FormInfo can't
-    // be fully populated here is because theFormInfoCreator is passed
-    // a reference to this view controller (self) for the creation, and
-    // self isn't fully instantiated yet.
-    FormInfo *initialFormInfo = [[[FormInfo alloc]init ] autorelease];
-    initialFormInfo.title = @"Dummy";
-    
-    self = [super initWithFormInfo:initialFormInfo];
+    self = [super initWithFormInfoCreator:theFormInfoCreator];
     if(self)
     {
         assert(theAssignedField != nil);
         self.assignedField = theAssignedField;
-        self.formInfoCreator = theFormInfoCreator;
     }
     return self;
+}
+
+-(id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator
+{
+    assert(0); // must call init method with assigned field info
 }
 
 
@@ -49,7 +42,6 @@
     [super dealloc];
     
     [assignedField release];
-    [formInfoCreator release];
     [currentValue release];
     [currentValueIndex release];
 }
@@ -63,9 +55,13 @@
     [self.assignedField setFieldValue:self.currentValue]; 
 }
 
--(void) refreshTable
-{
-    self.formInfo = [self.formInfoCreator createFormInfo:self];
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    // Redisplay the data - notably, this is invoked when returning 
+    // from an editor for one of the field values,
+    // causing the display of these values to refresh if changed.
     if(self.currentValue != nil)
     {
         self.currentValueIndex = [self.formInfo pathForObject:self.currentValue];        
@@ -75,47 +71,9 @@
         self.currentValueIndex = nil;
     }
     [self.tableView reloadData];
+
 }
 
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    // Redisplay the data - notably, this is invoked when returning 
-    // from an editor for one of the field values,
-    // causing the display of these values to refresh if changed.
-   [self refreshTable];
-//    viewPushed = NO; */
-}
-
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    /*
-    [super viewWillDisappear:animated];
-    // Used the viewPushed property to track whether the view is disappearing because
-    // the back button is being pressed or if we're pushing into another view. Only
-    // when the back button is pressed to we check if we need to delete the fixed
-    // value object.
-    if(viewPushed)
-    {
-        viewPushed = NO;
-    }
-    else
-    {
-        // If upon unloading the view the fixed value is no longer selected,
-        // we can delete it. This is because fixed values are only referenced
-        // by a single input, unlike variable/shared values which can be referenced
-        // by multiple inputs.
-        if(self.currentValue != self.currentFixedValue)
-        {
-            [[DataModelController theDataModelController] deleteObject:self.currentValue];
-        }
-        self.currentValue = nil;
-        self.currentFixedValue = nil;
-        
-    } */
-}
 
 - (void)updateCurrentValue:(NSManagedObject*)newVal
 {
@@ -222,7 +180,6 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.allowsSelectionDuringEditing = YES;
    
-    self.formInfo = [self.formInfoCreator createFormInfo:self];
     
     // Only update the current value (i.e., the initial value checked-off in the table)
     // if a value has already been set in the property of the object being
@@ -230,13 +187,7 @@
     if([self.assignedField fieldIsInitializedInParentObject])
     {
         [self updateCurrentValue:[self.assignedField getFieldValue]];      
-    }
- 
-    
-    /*
-    viewPushed = NO;
-    */
-    
+    }    
 }
 
 

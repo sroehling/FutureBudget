@@ -101,5 +101,18 @@
     return descriptionStr;
 }
 
+- (BOOL)eventRepeatsMoreThanOnce
+{
+    EventPeriod periodEnum = (EventPeriod)[[self period] intValue];
+    if(periodEnum == kEventPeriodOnce)
+    {
+        return FALSE;
+    }
+    else
+    {
+        return TRUE;
+    }
+}
+
 
 @end

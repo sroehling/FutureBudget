@@ -32,20 +32,26 @@
     //      newInput.name
     //      newInput.amount
     //      newInput.startDate
+    //      newInput.endDate
     //      newInput.amountGrowthRate
     
     newInput.transactionDate = [NSDate date];
+    
     
     FixedValue *fixedGrowthRate = 
     (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
     fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
     newInput.defaultFixedGrowthRate = fixedGrowthRate;
-    //   newInput.amountGrowthRate = fixedGrowthRate;
     
+    FixedDate *fixedStartDate = (FixedDate*)[[
+                DataModelController theDataModelController] insertObject:@"FixedDate"];
+    fixedStartDate.date = [NSDate date];
+    newInput.fixedStartDate = fixedStartDate;
     
-    FixedDate *fixedDate = (FixedDate*)[[DataModelController theDataModelController] insertObject:@"FixedDate"];
-    fixedDate.date = [NSDate date];
-    newInput.fixedStartDate = fixedDate;
+    FixedDate *fixedEndDate = (FixedDate*)[[
+            DataModelController theDataModelController] insertObject:@"FixedDate"];
+    fixedEndDate.date = [NSDate date];
+    newInput.fixedEndDate = fixedEndDate;
     
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:@"EventRepeatFrequency" sortKey:@"period"];
     assert([repeatFrequencies count] >0);

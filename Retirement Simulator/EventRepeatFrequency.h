@@ -26,8 +26,10 @@ typedef enum
 @property (nonatomic, retain) NSNumber * period;
 @property (nonatomic, retain) NSNumber * periodMultiplier;
 
+
 - (void)setPeriodWithPeriodEnum:(EventPeriod)thePeriod;
 - (NSString*)description;
+- (BOOL)eventRepeatsMoreThanOnce;
 
 @end
 

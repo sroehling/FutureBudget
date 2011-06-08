@@ -16,6 +16,7 @@
 #import "MilestoneDate.h"
 #import "GenericFieldBasedTableEditViewController.h"
 #import "GenericFieldBasedTableAddViewController.h"
+#import "StaticFormInfoCreator.h"
 
 @implementation MilestoneDateFormPopulator
 
@@ -35,7 +36,8 @@
 {
     [self populateForMilestoneDate:milestoneDate];
     GenericFieldBasedTableAddViewController *controller = [[[GenericFieldBasedTableAddViewController alloc]
-                 initWithFormInfo:self.formInfo andNewObject:milestoneDate] autorelease];
+         initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:self.formInfo] 
+        andNewObject:milestoneDate] autorelease];
     controller.popDepth =1;
     return controller;
     

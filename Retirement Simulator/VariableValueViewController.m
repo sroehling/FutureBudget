@@ -14,6 +14,7 @@
 #import "DateSensitiveValueChange.h"
 #import "NumberFieldEditViewController.h"
 #import "TextFieldEditViewController.h"
+#import "StaticFormInfoCreator.h"
 #import "CollectionHelper.h"
 #import "TableViewHelper.h"
 #import "NumberHelper.h"
@@ -232,7 +233,9 @@
             [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:valueChange andKey:@"newValue" andLabel:@"New Value"]];
 
  
-            controller = [[[GenericFieldBasedTableEditViewController alloc] initWithFormInfo:formPopulator.formInfo] autorelease];
+            controller = [[[GenericFieldBasedTableEditViewController alloc] 
+                           initWithFormInfoCreator:[StaticFormInfoCreator 
+                                createWithFormInfo:formPopulator.formInfo]] autorelease];
             
         }
         assert(controller != nil);

@@ -18,6 +18,8 @@
 @dynamic amountGrowthRate;
 @dynamic startDate;
 @dynamic fixedStartDate;
+@dynamic endDate;
+@dynamic fixedEndDate;
 @dynamic defaultFixedGrowthRate;
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
