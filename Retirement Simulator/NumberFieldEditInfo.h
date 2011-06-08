@@ -25,7 +25,9 @@
 @property (nonatomic, retain) NSNumberFormatter *numberFormatter;
 
 + (NumberFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                             andLabel:(NSString*)label;
-
+                               andLabel:(NSString*)label 
+                     andNumberFormatter:(NSNumberFormatter*)numFormatter;
+- (id) initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
+      andNumberFormatter:(NSNumberFormatter*)numFormatter;
 
 @end

@@ -17,21 +17,27 @@
 #import "SectionInfo.h"
 #import "DateHelper.h"
 #import "VariableValueViewController.h"
+#import "VariableValueRuntimeInfo.h"
 
 
 @implementation VariableValueFieldEditInfo
 
 
 @synthesize variableVal;
+@synthesize varValRuntimeInfo;
 
 
 - (id)initWithVariableValue:(VariableValue*)varValue
+	   andVarValRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
 {
-    assert(varValue != nil);
+
     self = [super init];
     if(self)
     {
-        self.variableVal = varValue;
+		assert(varValue != nil);
+		self.variableVal = varValue;
+		assert(theVarValRuntimeInfo != nil);
+		self.varValRuntimeInfo = theVarValRuntimeInfo;
     }
     return self;
 }
@@ -45,7 +51,7 @@
 - (NSString*)detailTextLabel
 {
     // TBD - Should we only show starting value, or something else
-    return [[[NumberHelper theHelper] numberFormatter ] stringFromNumber:self.variableVal.startingValue];
+    return [self.varValRuntimeInfo.valueFormatter stringFromNumber:self.variableVal.startingValue];
 }
 
 - (NSString*)textLabel
@@ -56,7 +62,7 @@
 - (UIViewController*)fieldEditController
 {
     UIViewController *controller = [[[VariableValueViewController alloc] 
-                   initWithVariableValue:self.variableVal] autorelease];
+                   initWithVariableValue:self.variableVal andVarValueRuntimeInfo:self.varValRuntimeInfo] autorelease];
     return controller;
 }
 

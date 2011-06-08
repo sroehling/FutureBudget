@@ -23,11 +23,11 @@
 
 @synthesize defaultFixedVal;
 @synthesize fieldInfo;
-@synthesize varValueEntityName;
+@synthesize varValRuntimeInfo;
 
 - (id)initWithVariableValueFieldInfo:(ManagedObjectFieldInfo*)vvFieldInfo
-             andDefaultFixedVal:(FixedValue*)theDefaultFixedVal
-               andVarValueEntityName:(NSString*)entityName
+                  andDefaultFixedVal:(FixedValue*)theDefaultFixedVal
+				andVarValRuntimeInfo:(VariableValueRuntimeInfo *) theVarValRuntimeInfo
 {
     self = [super init];
     if(self)
@@ -38,8 +38,8 @@
         assert(theDefaultFixedVal != nil);
         self.defaultFixedVal = theDefaultFixedVal;
         
-        assert([StringValidation nonEmptyString:entityName]);
-        self.varValueEntityName = entityName;
+		assert(theVarValRuntimeInfo != nil);
+		self.varValRuntimeInfo = theVarValRuntimeInfo;
     }
     return self;
 }
@@ -55,20 +55,23 @@
     SectionInfo *sectionInfo = [formPopulator nextSection];
     sectionInfo.title = @"Fixed Value";
     
-    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:self.defaultFixedVal andKey:@"value" andLabel:@"Value"]];
+    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
+            createForObject:self.defaultFixedVal andKey:@"value" andLabel:@"Value"
+			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
     
-    VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc] init ] autorelease];
+    VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
+						initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
     vvSectionInfo.title =  @"Variable Values";
     vvSectionInfo.parentViewController = parentController;
-    vvSectionInfo.varValueEntityName = self.varValueEntityName;
     sectionInfo = vvSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];
     
     NSArray *variableValues = [[DataModelController theDataModelController]
-     fetchSortedObjectsWithEntityName:self.varValueEntityName sortKey:@"name"];
+     fetchSortedObjectsWithEntityName:self.varValRuntimeInfo.entityName sortKey:@"name"];
     for (VariableValue *varValue in variableValues)
     {
-        VariableValueFieldEditInfo *vvFieldInfo = [[[VariableValueFieldEditInfo alloc]initWithVariableValue:varValue] autorelease];
+        VariableValueFieldEditInfo *vvFieldInfo = [[[VariableValueFieldEditInfo alloc]initWithVariableValue:varValue
+				andVarValRuntimeInfo:self.varValRuntimeInfo] autorelease];
         // Create the row information for the given milestone date.
         [sectionInfo addFieldEditInfo:vvFieldInfo];
     }
@@ -80,6 +83,7 @@
     [super dealloc];
     [defaultFixedVal release];
     [fieldInfo release];
+	[varValRuntimeInfo release];
 }
 
 @end

@@ -21,19 +21,38 @@
 
 
 + (NumberFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                             andLabel:(NSString*)label
+                               andLabel:(NSString*)label 
+                        andNumberFormatter:(NSNumberFormatter*)numFormatter
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
     
     ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
-    NumberFieldEditInfo *fieldEditInfo = [[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
+              initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
+    NumberFieldEditInfo *fieldEditInfo = [[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo andNumberFormatter:numFormatter];
     [fieldEditInfo autorelease];
     [fieldInfo release];
     
     return fieldEditInfo;
+}
+
+- (id) initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
+      andNumberFormatter:(NSNumberFormatter*)numFormatter
+{
+    self = [super initWithFieldInfo:theFieldInfo];
+    if(self)
+    {
+        assert(numFormatter != nil);
+        self.numberFormatter = numFormatter;
+    }
+    return self;
+}
+
+- (id) initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo
+{
+    assert(0); // should not call
+    return nil;
 }
 
 - (NSString*)detailTextLabel

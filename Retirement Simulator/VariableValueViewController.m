@@ -24,6 +24,7 @@
 #import "FormInfo.h"
 #import "FormPopulator.h"
 #import "NumberFieldEditInfo.h"
+#import "VariableValueRuntimeInfo.h"
 #import "DateFieldEditInfo.h"
 #import "SectionInfo.h"
 
@@ -37,22 +38,27 @@
 @synthesize addValueChangeButton;
 @synthesize nameFieldEditInfo;
 @synthesize startingValFieldEditInfo;
+@synthesize varValRuntimeInfo;
 
 #define SECTION_MAIN 0
 #define SECTION_VALUE_CHANGES 1
 
 - (id)initWithVariableValue:(VariableValue*)theValue
+	andVarValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self)
     {
         assert(theValue != nil);
         self.variableValue = theValue;
+		
+		assert(theVarValRuntimeInfo != nil);
+		self.varValRuntimeInfo = theVarValRuntimeInfo;
         
         self.nameFieldEditInfo = [TextFieldEditInfo createForObject:self.variableValue 
                     andKey:@"name" andLabel:@"Name"];
         self.startingValFieldEditInfo = [NumberFieldEditInfo createForObject:self.variableValue
-                    andKey:@"startingValue" andLabel:@"Starting"];
+                    andKey:@"startingValue" andLabel:@"Starting" andNumberFormatter:self.varValRuntimeInfo.valueFormatter];
     }
     return self;
 }
@@ -65,6 +71,7 @@
     [addValueChangeButton release];
     [nameFieldEditInfo release];
     [startingValFieldEditInfo release];
+	[varValRuntimeInfo release];
 }
 
 
@@ -230,7 +237,9 @@
 
             SectionInfo *sectionInfo = [formPopulator nextSection];
             [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:valueChange andKey:@"startDate" andLabel:@"Date"]];
-            [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:valueChange andKey:@"newValue" andLabel:@"New Value"]];
+            [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
+                    createForObject:valueChange andKey:@"newValue" andLabel:@"New Value"
+					andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
 
  
             controller = [[[GenericFieldBasedTableEditViewController alloc] 

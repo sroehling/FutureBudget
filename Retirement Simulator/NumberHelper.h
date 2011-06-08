@@ -13,6 +13,8 @@
     @private
         NSNumberFormatter *numberFormatter;
     NSNumberFormatter *decimalFormatter;
+    NSNumberFormatter *currencyFormatter;
+    NSNumberFormatter *percentFormatter;
 }
 
 +(NumberHelper*)theHelper; // singleton
@@ -21,6 +23,9 @@
 - (BOOL)valueInRange:(NSInteger)value lower:(NSInteger)low upper:(NSInteger)up;
 
 @property(nonatomic,retain) NSNumberFormatter *numberFormatter;
+@property(nonatomic,retain) NSNumberFormatter *currencyFormatter;
 @property(nonatomic,retain) NSNumberFormatter *decimalFormatter;
+@property(nonatomic,retain) NSNumberFormatter *percentFormatter;
+
 
 @end

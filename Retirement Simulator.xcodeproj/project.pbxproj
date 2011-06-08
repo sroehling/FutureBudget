@@ -17,6 +17,7 @@
 		003AD150138C6CA900CB3CB5 /* NumberFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */; };
 		003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */; };
 		004A599E139ECA5C009FEF25 /* StaticFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */; };
+		004A59A1139F2E7C009FEF25 /* VariableValueRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */; };
 		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
 		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
@@ -126,6 +127,8 @@
 		003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldCell.m; sourceTree = "<group>"; };
 		004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticFormInfoCreator.h; sourceTree = "<group>"; };
 		004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticFormInfoCreator.m; sourceTree = "<group>"; };
+		004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueRuntimeInfo.h; sourceTree = "<group>"; };
+		004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueRuntimeInfo.m; sourceTree = "<group>"; };
 		004F5D06136F170500E0C4A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		004F5D0C136F52D200E0C4A3 /* DataModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelController.h; sourceTree = "<group>"; };
 		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
@@ -399,26 +402,28 @@
 				00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */,
 				00ADB3201384520E00064651 /* InputTypeSelectionInfo.h */,
 				00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */,
-				00637A831385D824001E02F1 /* DateSensitiveValueFieldEditInfo.h */,
-				00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */,
-				003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */,
-				003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */,
-				00EC1F8B139736D40085B25C /* VariableDateFormInfoCreator.h */,
-				00EC1F8C139736D40085B25C /* VariableDateFormInfoCreator.m */,
-				00EC1F9813973BE40085B25C /* VariableDateFieldEditInfo.h */,
-				00EC1F9913973BE40085B25C /* VariableDateFieldEditInfo.m */,
 				00EC1F9B13981E270085B25C /* MilestoneDateFieldEditInfo.h */,
 				00EC1F9C13981E270085B25C /* MilestoneDateFieldEditInfo.m */,
 				00EC1F9E13992B880085B25C /* MilestoneDateSectionInfo.h */,
 				00EC1F9F13992B8A0085B25C /* MilestoneDateSectionInfo.m */,
 				00EC1FA413997F830085B25C /* MilestoneDateFormPopulator.h */,
 				00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */,
+				00EC1F8B139736D40085B25C /* VariableDateFormInfoCreator.h */,
+				00EC1F8C139736D40085B25C /* VariableDateFormInfoCreator.m */,
+				00EC1F9813973BE40085B25C /* VariableDateFieldEditInfo.h */,
+				00EC1F9913973BE40085B25C /* VariableDateFieldEditInfo.m */,
+				00637A831385D824001E02F1 /* DateSensitiveValueFieldEditInfo.h */,
+				00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */,
 				00EC1FAD139BDB210085B25C /* DateSensitiveValueFormInfoCreator.h */,
 				00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */,
+				003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */,
+				003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */,
 				00EC1FB6139BE3E40085B25C /* VariableValueSectionInfo.h */,
 				00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */,
 				00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */,
 				00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */,
+				004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */,
+				004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */,
 			);
 			name = "Input Views";
 			sourceTree = "<group>";
@@ -756,6 +761,7 @@
 				00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */,
 				00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */,
 				004A599E139ECA5C009FEF25 /* StaticFormInfoCreator.m in Sources */,
+				004A59A1139F2E7C009FEF25 /* VariableValueRuntimeInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

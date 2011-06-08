@@ -9,7 +9,7 @@
 #import "DetailInputViewCreator.h"
 #import "ExpenseInput.h"
 #import "IncomeInput.h"
-
+#import "NumberHelper.h"
 #import "ManagedObjectFieldInfo.h"
 #import "TextFieldEditInfo.h"
 #import "NumberFieldEditInfo.h"
@@ -20,7 +20,7 @@
 #import "GenericFieldBasedTableEditViewController.h"
 #import "GenericFieldBasedTableAddViewController.h"
 #import "EventRepeatFrequency.h"
-
+#import "VariableValueRuntimeInfo.h"
 #import "SectionInfo.h"
 #import "FormInfo.h"
 #import "FormPopulator.h"
@@ -57,19 +57,6 @@
 
 }
 
-
-/*
-- (UIViewController *)createAddViewForInput:(Input *)input
-{
-    [self populateFieldInfoForInput:input];
-    
-    UIViewController *addViewController = 
-    [[[GenericFieldBasedTableAddViewController alloc] initWithFormInfo:formPopulator.formInfo andNewObject:input] autorelease];
-    return addViewController;
-
-}
- */
-
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
     SectionInfo *sectionInfo = [formPopulator nextSection];
@@ -79,12 +66,16 @@
     
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = @"Amount";
-    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:cashFlow andKey:@"amount" andLabel:@"Amount"]];
+    NSNumberFormatter *amountFormatter = [NumberHelper theHelper].currencyFormatter;
+    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
+            createForObject:cashFlow andKey:@"amount" andLabel:@"Amount"
+            andNumberFormatter:amountFormatter]];
 
+	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"InflationRate" andFormatter:[NumberHelper theHelper].percentFormatter] autorelease];
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
          createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Inflation" 
-         andEntityName:@"InflationRate" andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
+		 andValRuntimeInfo:inflationRuntimeInfo andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
 
     // Occurences section
 

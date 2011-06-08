@@ -20,19 +20,36 @@
 
 @implementation VariableValueSectionInfo
 
-@synthesize varValueEntityName;
+@synthesize varValRuntimeInfo;
+
+- (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
+{
+	self = [super init];
+	if(self)
+	{
+		assert(theVarValRuntimeInfo != nil);
+		self.varValRuntimeInfo = theVarValRuntimeInfo;
+	}
+	return self;
+}
+
+- (id) init
+{
+	assert(0); // shouldn't call
+	return nil;
+}
 
 - (void)addObjectButtonPressed
 {
     assert(self.parentViewController != nil);
     NSLog(@"Add Variable Value");
-    assert([self.varValueEntityName length] >0);
     
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
     formPopulator.formInfo.title = @"Variable Value";
     
-    VariableValue *newVariableValue = (VariableValue*)[[DataModelController theDataModelController] insertObject:self.varValueEntityName];
+    VariableValue *newVariableValue = (VariableValue*)[[DataModelController theDataModelController]
+					insertObject:self.varValRuntimeInfo.entityName];
     // The following properties must be filled in before the new objectwill be created.
     //    newVariableValue.name
     //    newVariableValue.startingValue
@@ -43,7 +60,8 @@
     [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:newVariableValue 
              andKey:@"name" andLabel:@"Name"]];
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:newVariableValue 
-             andKey:@"startingValue" andLabel:@"Starting Value"]];
+             andKey:@"startingValue" andLabel:@"Starting Value"
+			 andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
     
     GenericFieldBasedTableAddViewController *controller = 
         [[[GenericFieldBasedTableAddViewController alloc]
@@ -59,7 +77,7 @@
 - (void)dealloc
 {
     [super dealloc];
-    [varValueEntityName release];
+    [varValRuntimeInfo release];
 }
 
 @end

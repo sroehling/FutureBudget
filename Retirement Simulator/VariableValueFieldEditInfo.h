@@ -11,14 +11,18 @@
 #import "FieldEditInfo.h"
 
 @class VariableValue;
+@class VariableValueRuntimeInfo;
 
 @interface VariableValueFieldEditInfo : NSObject <FieldEditInfo> {
     @private
     VariableValue *variableVal;
+	VariableValueRuntimeInfo *varValRuntimeInfo;
 }
 
 @property(nonatomic,retain) VariableValue *variableVal;
+@property(nonatomic,retain) VariableValueRuntimeInfo *varValRuntimeInfo;
 
-- (id)initWithVariableValue:(VariableValue*)varValue;
+- (id)initWithVariableValue:(VariableValue*)varValue
+	   andVarValRuntimeInfo:(VariableValueRuntimeInfo*)varValRuntimeInfo;
 
 @end

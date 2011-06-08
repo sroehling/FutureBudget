@@ -13,6 +13,8 @@
 
 @synthesize numberFormatter;
 @synthesize decimalFormatter;
+@synthesize currencyFormatter;
+@synthesize percentFormatter;
 
 +(NumberHelper*)theHelper
 {  
@@ -34,8 +36,15 @@
 
         self.decimalFormatter = [[[NSNumberFormatter alloc]init] autorelease];
         [self.decimalFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        self.currencyFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+        [self.currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 
-    
+        self.percentFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+        [self.percentFormatter setNumberStyle:NSNumberFormatterPercentStyle];
+
+        
+        
     }
     return self;
 }

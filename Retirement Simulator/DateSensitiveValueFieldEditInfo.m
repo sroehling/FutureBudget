@@ -17,16 +17,22 @@
 
 @implementation DateSensitiveValueFieldEditInfo
 
-@synthesize variableValueEntityName;
+@synthesize varValRuntimeInfo;
 @synthesize defafaultFixedValFieldInfo;
 
-- (id)initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo andDefaultFixedValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+
+- (id)initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
+	andDefaultFixedValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+      andValRuntimeInfo:(VariableValueRuntimeInfo *)theVarValRuntimeInfo
 {
     self = [super initWithFieldInfo:theFieldInfo];
     if(self)
     {
         assert(theDefaultFieldInfo != nil);
         self.defafaultFixedValFieldInfo = theDefaultFieldInfo;
+        
+        assert(theVarValRuntimeInfo != nil);
+        self.varValRuntimeInfo = theVarValRuntimeInfo;
     }
     return self;
 }
@@ -41,13 +47,14 @@
     assert(0); // should not be called
 }
 
-+ (DateSensitiveValueFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                                           andLabel:(NSString*)label andEntityName:(NSString*)entityName andDefaultFixedValKey:(NSString*)defaultFixedValKey
++ (DateSensitiveValueFieldEditInfo*)createForObject:
+			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
+				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
-    assert([StringValidation nonEmptyString:entityName]);
+    assert(varValRuntimeInfo != nil);
     
     ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
            initWithManagedObject:obj andFieldKey:key andFieldLabel:label] autorelease];
@@ -57,10 +64,8 @@
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
 
     DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]                                                       
-         initWithFieldInfo:fieldInfo andDefaultFixedValFieldInfo:defaultFixedValFieldInfo] autorelease];
-    fieldEditInfo.variableValueEntityName = entityName;
-
-    
+         initWithFieldInfo:fieldInfo andDefaultFixedValFieldInfo:defaultFixedValFieldInfo
+          andValRuntimeInfo:varValRuntimeInfo] autorelease];
      
     return fieldEditInfo;
 }
@@ -74,15 +79,12 @@
 
 - (UIViewController*)fieldEditController
 {
-    // TODO - Change this to use the SelectableObjectTableEditViewController
-    assert(self.variableValueEntityName != nil);
-    assert([self.variableValueEntityName length] > 0);
-    
+
     FixedValue *defaultFixedVal = (FixedValue*)[self.defafaultFixedValFieldInfo getFieldValue];
     
     DateSensitiveValueFormInfoCreator *dsvFormInfoCreator = 
     [[[DateSensitiveValueFormInfoCreator alloc] initWithVariableValueFieldInfo:self.fieldInfo 
-        andDefaultFixedVal:defaultFixedVal andVarValueEntityName:self.variableValueEntityName] autorelease];
+        andDefaultFixedVal:defaultFixedVal andVarValRuntimeInfo:self.varValRuntimeInfo] autorelease];
     
     SelectableObjectTableEditViewController *dsValueController = 
             [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:dsvFormInfoCreator 
@@ -123,6 +125,13 @@
         
     }
     return cell;
+}
+
+- (void) dealloc
+{
+    [super dealloc];
+    [varValRuntimeInfo release];
+    [defafaultFixedValFieldInfo release];
 }
 
 

@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 
 #import "AddObjectSectionInfo.h"
+#import "VariableValueRuntimeInfo.h"
 
 @interface VariableValueSectionInfo : AddObjectSectionInfo {
         @private
-            NSString *varValueEntityName;
+            VariableValueRuntimeInfo *varValRuntimeInfo;
 }
 
-@property(nonatomic,retain) NSString *varValueEntityName;
+- (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValRuntimeInfo;
+
+@property(nonatomic,retain) VariableValueRuntimeInfo *varValRuntimeInfo;
 
 @end

@@ -7,25 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ManagedObjectFieldEditInfo.h"
 
+#import "ManagedObjectFieldEditInfo.h"
+#import "VariableValueRuntimeInfo.h"
 #import "FieldEditInfo.h"
 
 @interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private 
-    NSString *variableValueEntityName;
-    ManagedObjectFieldInfo *defafaultFixedValFieldInfo;
+		ManagedObjectFieldInfo *defafaultFixedValFieldInfo;
+		VariableValueRuntimeInfo *varValRuntimeInfo;
+
 }
 
-@property(nonatomic,retain) NSString *variableValueEntityName;
+@property(nonatomic,retain) VariableValueRuntimeInfo *varValRuntimeInfo;
 
-- (id)initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo andDefaultFixedValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo;
+- (id)initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
+    andDefaultFixedValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+      andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo;
 
 @property(nonatomic,retain) ManagedObjectFieldInfo *defafaultFixedValFieldInfo;
 
-+ (DateSensitiveValueFieldEditInfo*)createForObject:(NSManagedObject*)obj 
-                                             andKey:(NSString*)key
-      andLabel:(NSString*)label andEntityName:(NSString*)entityName
-        andDefaultFixedValKey:(NSString*)defaultFixedValKey;
++ (DateSensitiveValueFieldEditInfo*)createForObject:
+			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
+				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
 
 @end
