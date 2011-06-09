@@ -16,7 +16,6 @@
     @private
         ManagedObjectFieldInfo *fieldInfo;
         FixedDate *fixedDate;
-
 }
 
 - (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo 

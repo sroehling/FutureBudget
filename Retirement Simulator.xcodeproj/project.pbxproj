@@ -431,58 +431,106 @@
 			name = "Repeat Frequency";
 			sourceTree = "<group>";
 		};
-		004F5D511371B34800E0C4A3 /* Field Editors */ = {
+		004A59AA13A07E3E009FEF25 /* Generic Table Views */ = {
 			isa = PBXGroup;
 			children = (
+				00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */,
+				00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */,
+				00A14BB3138FF53400663C7F /* GenericFieldBasedTableViewController.h */,
+				00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */,
+				00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */,
+				00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */,
 				00ADB2FB1381C1DC00064651 /* GenericFieldBasedTableEditViewController.h */,
 				00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */,
-				004F5D571371B3C100E0C4A3 /* DateFieldEditViewController.h */,
-				004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */,
-				004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */,
+			);
+			name = "Generic Table Views";
+			sourceTree = "<group>";
+		};
+		004A59AB13A07E8B009FEF25 /* Text Field */ = {
+			isa = PBXGroup;
+			children = (
+				00F420A4137DD5C000980A88 /* TextFieldEditInfo.h */,
+				00F420A5137DD5C100980A88 /* TextFieldEditInfo.m */,
+				003AD14A138C352100CB3CB5 /* TextFieldCell.h */,
+				003AD14B138C352100CB3CB5 /* TextFieldCell.m */,
+				003AD14D138C354700CB3CB5 /* TextFieldCell.xib */,
 				004F5D5C1371BE6B00E0C4A3 /* TextFieldEditViewController.h */,
 				004F5D5D1371BE6B00E0C4A3 /* TextFieldEditViewController.m */,
 				004F5D5E1371BE6C00E0C4A3 /* TextFieldEditViewController.xib */,
+			);
+			name = "Text Field";
+			sourceTree = "<group>";
+		};
+		004A59AC13A07EDB009FEF25 /* Date Field */ = {
+			isa = PBXGroup;
+			children = (
+				004F5D571371B3C100E0C4A3 /* DateFieldEditViewController.h */,
+				004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */,
+				004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */,
+				00F4209E137DC04800980A88 /* DateFieldEditInfo.h */,
+				00F4209F137DC04800980A88 /* DateFieldEditInfo.m */,
+			);
+			name = "Date Field";
+			sourceTree = "<group>";
+		};
+		004A59AE13A07F70009FEF25 /* Number Field */ = {
+			isa = PBXGroup;
+			children = (
 				004F5D611371DD0900E0C4A3 /* NumberFieldEditViewController.h */,
 				004F5D621371DD0900E0C4A3 /* NumberFieldEditViewController.m */,
 				004F5D631371DD0900E0C4A3 /* NumberFieldEditViewController.xib */,
+				00F420A1137DD45500980A88 /* NumberFieldEditInfo.h */,
+				00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */,
+				003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */,
+				003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */,
+				003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */,
+			);
+			name = "Number Field";
+			sourceTree = "<group>";
+		};
+		004A59AF13A07FB1009FEF25 /* Section Info */ = {
+			isa = PBXGroup;
+			children = (
+				00A14BAA138EC87900663C7F /* SectionInfo.h */,
+				00A14BAB138EC87A00663C7F /* SectionInfo.m */,
+				00EC1FB3139BE24D0085B25C /* AddObjectSectionInfo.h */,
+				00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */,
+			);
+			name = "Section Info";
+			sourceTree = "<group>";
+		};
+		004A59B013A0800E009FEF25 /* Table Structure and Creation */ = {
+			isa = PBXGroup;
+			children = (
+				00A14BAD138ECA8600663C7F /* FormInfo.h */,
+				00A14BAE138ECA8700663C7F /* FormInfo.m */,
+				00A14BB0138FEBE400663C7F /* FormPopulator.h */,
+				00A14BB1138FEBE600663C7F /* FormPopulator.m */,
+				00A57F6C1396DCF9004E148B /* FormInfoCreator.h */,
+				004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */,
+				004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */,
+			);
+			name = "Table Structure and Creation";
+			sourceTree = "<group>";
+		};
+		004F5D511371B34800E0C4A3 /* Field Editors */ = {
+			isa = PBXGroup;
+			children = (
+				004A59B013A0800E009FEF25 /* Table Structure and Creation */,
+				004A59AF13A07FB1009FEF25 /* Section Info */,
+				004A59AE13A07F70009FEF25 /* Number Field */,
+				004A59AC13A07EDB009FEF25 /* Date Field */,
+				004A59AB13A07E8B009FEF25 /* Text Field */,
+				004A59AA13A07E3E009FEF25 /* Generic Table Views */,
 				00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */,
 				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
 				00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */,
-				00F4209E137DC04800980A88 /* DateFieldEditInfo.h */,
-				00F4209F137DC04800980A88 /* DateFieldEditInfo.m */,
-				00F420A1137DD45500980A88 /* NumberFieldEditInfo.h */,
-				00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */,
-				00F420A4137DD5C000980A88 /* TextFieldEditInfo.h */,
-				00F420A5137DD5C100980A88 /* TextFieldEditInfo.m */,
 				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
 				00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */,
 				00ADB2F213819ED400064651 /* FieldEditViewController.h */,
 				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
 				00ADB2F51381B33800064651 /* FieldEditTableViewController.h */,
 				00ADB2F61381B33900064651 /* FieldEditTableViewController.m */,
-				003AD14A138C352100CB3CB5 /* TextFieldCell.h */,
-				003AD14B138C352100CB3CB5 /* TextFieldCell.m */,
-				003AD14D138C354700CB3CB5 /* TextFieldCell.xib */,
-				003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */,
-				003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */,
-				003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */,
-				00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */,
-				00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */,
-				00A14BAA138EC87900663C7F /* SectionInfo.h */,
-				00A14BAB138EC87A00663C7F /* SectionInfo.m */,
-				00A14BAD138ECA8600663C7F /* FormInfo.h */,
-				00A14BAE138ECA8700663C7F /* FormInfo.m */,
-				00A14BB0138FEBE400663C7F /* FormPopulator.h */,
-				00A14BB1138FEBE600663C7F /* FormPopulator.m */,
-				00A14BB3138FF53400663C7F /* GenericFieldBasedTableViewController.h */,
-				00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */,
-				00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */,
-				00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */,
-				00A57F6C1396DCF9004E148B /* FormInfoCreator.h */,
-				00EC1FB3139BE24D0085B25C /* AddObjectSectionInfo.h */,
-				00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */,
-				004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */,
-				004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */,
 			);
 			name = "Field Editors";
 			sourceTree = "<group>";
@@ -599,13 +647,13 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				004F5D511371B34800E0C4A3 /* Field Editors */,
 				004A59A713A02F67009FEF25 /* Simulator */,
 				003AD12D138AC83000CB3CB5 /* Helper */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				004F5D701373188900E0C4A3 /* Results View */,
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004F5D6E1373170C00E0C4A3 /* Application */,
-				004F5D511371B34800E0C4A3 /* Field Editors */,
 				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
 			);
 			path = "Retirement Simulator";
