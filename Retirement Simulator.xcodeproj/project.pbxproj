@@ -320,6 +320,117 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
+		004A59A213A025E5009FEF25 /* Date Sensitive Value */ = {
+			isa = PBXGroup;
+			children = (
+				00637A831385D824001E02F1 /* DateSensitiveValueFieldEditInfo.h */,
+				00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */,
+				00EC1FAD139BDB210085B25C /* DateSensitiveValueFormInfoCreator.h */,
+				00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */,
+				003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */,
+				003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */,
+				00EC1FB6139BE3E40085B25C /* VariableValueSectionInfo.h */,
+				00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */,
+				00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */,
+				00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */,
+				004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */,
+				004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */,
+			);
+			name = "Date Sensitive Value";
+			sourceTree = "<group>";
+		};
+		004A59A313A0261F009FEF25 /* Variable Date */ = {
+			isa = PBXGroup;
+			children = (
+				00EC1F9B13981E270085B25C /* MilestoneDateFieldEditInfo.h */,
+				00EC1F9C13981E270085B25C /* MilestoneDateFieldEditInfo.m */,
+				00EC1F9E13992B880085B25C /* MilestoneDateSectionInfo.h */,
+				00EC1F9F13992B8A0085B25C /* MilestoneDateSectionInfo.m */,
+				00EC1FA413997F830085B25C /* MilestoneDateFormPopulator.h */,
+				00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */,
+				00EC1F8B139736D40085B25C /* VariableDateFormInfoCreator.h */,
+				00EC1F8C139736D40085B25C /* VariableDateFormInfoCreator.m */,
+				00EC1F9813973BE40085B25C /* VariableDateFieldEditInfo.h */,
+				00EC1F9913973BE40085B25C /* VariableDateFieldEditInfo.m */,
+			);
+			name = "Variable Date";
+			sourceTree = "<group>";
+		};
+		004A59A413A0265D009FEF25 /* Variable Date */ = {
+			isa = PBXGroup;
+			children = (
+				00EC1F8F139737D20085B25C /* VariableDate.h */,
+				00EC1F90139737D20085B25C /* VariableDate.m */,
+				00EC1F921397396D0085B25C /* MilestoneDate.h */,
+				00EC1F931397396D0085B25C /* MilestoneDate.m */,
+				00EC1F95139739DB0085B25C /* FixedDate.h */,
+				00EC1F96139739DB0085B25C /* FixedDate.m */,
+			);
+			name = "Variable Date";
+			sourceTree = "<group>";
+		};
+		004A59A513A02678009FEF25 /* Date Sensitive Value */ = {
+			isa = PBXGroup;
+			children = (
+				00637A771385D4BC001E02F1 /* DateSensitiveValue.h */,
+				00637A781385D4BC001E02F1 /* DateSensitiveValue.m */,
+				00637A7A1385D4D9001E02F1 /* DateSensitiveValueChange.h */,
+				00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */,
+				00637A7D1385D4FA001E02F1 /* VariableValue.h */,
+				00637A7E1385D4FA001E02F1 /* VariableValue.m */,
+				00637A801385D509001E02F1 /* FixedValue.h */,
+				00637A811385D509001E02F1 /* FixedValue.m */,
+				00637A891386D999001E02F1 /* InflationRate.h */,
+				00637A8A1386D99A001E02F1 /* InflationRate.m */,
+			);
+			name = "Date Sensitive Value";
+			sourceTree = "<group>";
+		};
+		004A59A613A0269F009FEF25 /* Repeat Frequency */ = {
+			isa = PBXGroup;
+			children = (
+				005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */,
+				005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */,
+				00ADB2EB138191B700064651 /* RepeatFrequencyFieldEditInfo.h */,
+				00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */,
+			);
+			name = "Repeat Frequency";
+			sourceTree = "<group>";
+		};
+		004A59A713A02F67009FEF25 /* Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				005731EC137874A1008D13C1 /* Simulator Inputs */,
+				004F5D7713732CA300E0C4A3 /* Simulator Engine */,
+			);
+			name = Simulator;
+			sourceTree = "<group>";
+		};
+		004A59A813A02FA0009FEF25 /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				004F5D0F13706F7100E0C4A3 /* Input.h */,
+				004F5D1013706F7100E0C4A3 /* Input.m */,
+				004F5D22137079AD00E0C4A3 /* ExpenseInput.h */,
+				004F5D23137079AD00E0C4A3 /* ExpenseInput.m */,
+				00ADB3001382CB2B00064651 /* InputVisitor.h */,
+				00ADB31513842FC700064651 /* CashFlowInput.h */,
+				00ADB31613842FC800064651 /* CashFlowInput.m */,
+				00ADB3181384330600064651 /* IncomeInput.h */,
+				00ADB3191384330700064651 /* IncomeInput.m */,
+			);
+			name = Inputs;
+			sourceTree = "<group>";
+		};
+		004A59A913A02FB9009FEF25 /* Repeat Frequency */ = {
+			isa = PBXGroup;
+			children = (
+				005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */,
+				005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */,
+			);
+			name = "Repeat Frequency";
+			sourceTree = "<group>";
+		};
 		004F5D511371B34800E0C4A3 /* Field Editors */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,38 +503,15 @@
 				00A36C14136D9723008A5C4C /* InputViewController.h */,
 				00A36C15136D9723008A5C4C /* InputViewController.m */,
 				00A36C16136D9723008A5C4C /* InputViewController.xib */,
-				005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */,
-				005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */,
-				00ADB2EB138191B700064651 /* RepeatFrequencyFieldEditInfo.h */,
-				00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */,
+				004A59A613A0269F009FEF25 /* Repeat Frequency */,
 				00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */,
 				00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */,
 				00ADB31B13844F6F00064651 /* InputTypeSelectionViewController.h */,
 				00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */,
 				00ADB3201384520E00064651 /* InputTypeSelectionInfo.h */,
 				00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */,
-				00EC1F9B13981E270085B25C /* MilestoneDateFieldEditInfo.h */,
-				00EC1F9C13981E270085B25C /* MilestoneDateFieldEditInfo.m */,
-				00EC1F9E13992B880085B25C /* MilestoneDateSectionInfo.h */,
-				00EC1F9F13992B8A0085B25C /* MilestoneDateSectionInfo.m */,
-				00EC1FA413997F830085B25C /* MilestoneDateFormPopulator.h */,
-				00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */,
-				00EC1F8B139736D40085B25C /* VariableDateFormInfoCreator.h */,
-				00EC1F8C139736D40085B25C /* VariableDateFormInfoCreator.m */,
-				00EC1F9813973BE40085B25C /* VariableDateFieldEditInfo.h */,
-				00EC1F9913973BE40085B25C /* VariableDateFieldEditInfo.m */,
-				00637A831385D824001E02F1 /* DateSensitiveValueFieldEditInfo.h */,
-				00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */,
-				00EC1FAD139BDB210085B25C /* DateSensitiveValueFormInfoCreator.h */,
-				00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */,
-				003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */,
-				003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */,
-				00EC1FB6139BE3E40085B25C /* VariableValueSectionInfo.h */,
-				00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */,
-				00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */,
-				00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */,
-				004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */,
-				004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */,
+				004A59A313A0261F009FEF25 /* Variable Date */,
+				004A59A213A025E5009FEF25 /* Date Sensitive Value */,
 			);
 			name = "Input Views";
 			sourceTree = "<group>";
@@ -444,33 +532,10 @@
 				00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */,
 				004F5D0C136F52D200E0C4A3 /* DataModelController.h */,
 				004F5D0D136F52D200E0C4A3 /* DataModelController.m */,
-				004F5D0F13706F7100E0C4A3 /* Input.h */,
-				004F5D1013706F7100E0C4A3 /* Input.m */,
-				004F5D22137079AD00E0C4A3 /* ExpenseInput.h */,
-				004F5D23137079AD00E0C4A3 /* ExpenseInput.m */,
-				005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */,
-				005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */,
-				00ADB3001382CB2B00064651 /* InputVisitor.h */,
-				00ADB31513842FC700064651 /* CashFlowInput.h */,
-				00ADB31613842FC800064651 /* CashFlowInput.m */,
-				00ADB3181384330600064651 /* IncomeInput.h */,
-				00ADB3191384330700064651 /* IncomeInput.m */,
-				00637A771385D4BC001E02F1 /* DateSensitiveValue.h */,
-				00637A781385D4BC001E02F1 /* DateSensitiveValue.m */,
-				00637A7A1385D4D9001E02F1 /* DateSensitiveValueChange.h */,
-				00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */,
-				00637A7D1385D4FA001E02F1 /* VariableValue.h */,
-				00637A7E1385D4FA001E02F1 /* VariableValue.m */,
-				00637A801385D509001E02F1 /* FixedValue.h */,
-				00637A811385D509001E02F1 /* FixedValue.m */,
-				00637A891386D999001E02F1 /* InflationRate.h */,
-				00637A8A1386D99A001E02F1 /* InflationRate.m */,
-				00EC1F8F139737D20085B25C /* VariableDate.h */,
-				00EC1F90139737D20085B25C /* VariableDate.m */,
-				00EC1F921397396D0085B25C /* MilestoneDate.h */,
-				00EC1F931397396D0085B25C /* MilestoneDate.m */,
-				00EC1F95139739DB0085B25C /* FixedDate.h */,
-				00EC1F96139739DB0085B25C /* FixedDate.m */,
+				004A59A813A02FA0009FEF25 /* Inputs */,
+				004A59A913A02FB9009FEF25 /* Repeat Frequency */,
+				004A59A513A02678009FEF25 /* Date Sensitive Value */,
+				004A59A413A0265D009FEF25 /* Variable Date */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -534,9 +599,8 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				004A59A713A02F67009FEF25 /* Simulator */,
 				003AD12D138AC83000CB3CB5 /* Helper */,
-				005731EC137874A1008D13C1 /* Simulator Inputs */,
-				004F5D7713732CA300E0C4A3 /* Simulator Engine */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				004F5D701373188900E0C4A3 /* Results View */,
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
