@@ -13,8 +13,10 @@
 
 @synthesize valueFormatter;
 @synthesize entityName;
+@synthesize valueTitle;
 
 - (id) initWithEntityName:(NSString*)entity andFormatter:(NSNumberFormatter*)valFormatter
+	andValueTitle:(NSString *)title
 {
 	self = [super init];
 	if(self)
@@ -22,8 +24,11 @@
 		assert(valFormatter != nil);
 		assert(entity != nil);
 		assert([entity length] >0);
+		assert(title != nil);
+		assert([title length] > 0);
 		self.valueFormatter = valFormatter;
 		self.entityName = entity;
+		self.valueTitle = title;
 	}
 	return self;
 }
@@ -33,6 +38,7 @@
 	[super dealloc];
 	[valueFormatter release];
 	[entityName release];
+	[valueTitle release];
 }
 
 @end

@@ -45,8 +45,9 @@
     NSLog(@"Add Variable Value");
     
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
-    
-    formPopulator.formInfo.title = @"Variable Value";
+	
+    formPopulator.formInfo.title = [[[NSString alloc] initWithFormat:@"Variable %@",
+									 self.varValRuntimeInfo.valueTitle] autorelease];
     
     VariableValue *newVariableValue = (VariableValue*)[[DataModelController theDataModelController]
 					insertObject:self.varValRuntimeInfo.entityName];

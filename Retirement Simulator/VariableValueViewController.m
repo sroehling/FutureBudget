@@ -138,10 +138,10 @@
     // Return a title or nil as appropriate for the section.
     switch (section) {
         case SECTION_MAIN:
-            title = @"Starting Value";
+            title = [[[NSString alloc] initWithFormat:@"Starting %@",self.varValRuntimeInfo.valueTitle]autorelease];
             break;
         case SECTION_VALUE_CHANGES:
-            title = @"Value Changes";
+			title = [[[NSString alloc] initWithFormat:@"%@ Changes",self.varValRuntimeInfo.valueTitle]autorelease];
             break;
         default:
             assert(0);
@@ -192,7 +192,8 @@
         DateSensitiveValueChange *valueChange = 
             (DateSensitiveValueChange*)[self.valueChanges objectAtIndex:indexPath.row];
         assert(valueChange != nil);
-
+		// TODO - Put a more descriptive string about the value change (what it actually is)
+		// into the detail textLabel
         cell.detailTextLabel.text = @"Value Change";
     }    
     assert(cell != nil);
@@ -233,12 +234,15 @@
             
             
             FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
-            formPopulator.formInfo.title = @"Value Change";
+            formPopulator.formInfo.title = [[[NSString alloc] 
+							initWithFormat:@"%@ Change",self.varValRuntimeInfo.valueTitle]autorelease];
 
             SectionInfo *sectionInfo = [formPopulator nextSection];
             [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:valueChange andKey:@"startDate" andLabel:@"Date"]];
+			NSString *newValueLabel = [[[NSString alloc] 
+						initWithFormat:@"New %@",self.varValRuntimeInfo.valueTitle]autorelease];
             [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
-                    createForObject:valueChange andKey:@"newValue" andLabel:@"New Value"
+                    createForObject:valueChange andKey:@"newValue" andLabel:newValueLabel
 					andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
 
  

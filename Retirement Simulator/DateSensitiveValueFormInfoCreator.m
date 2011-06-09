@@ -49,11 +49,13 @@
 {
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
-    formPopulator.formInfo.title = @"Variable Value";
+    formPopulator.formInfo.title = self.varValRuntimeInfo.valueTitle;
     
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = @"Fixed Value";
+	
+    sectionInfo.title = [[[NSString alloc]
+						  initWithFormat:@"Fixed %@",self.varValRuntimeInfo.valueTitle] autorelease];
     
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
             createForObject:self.defaultFixedVal andKey:@"value" andLabel:@"Value"
@@ -61,7 +63,8 @@
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
 						initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
-    vvSectionInfo.title =  @"Variable Values";
+    vvSectionInfo.title =  [[[NSString alloc]
+							 initWithFormat:@"Variable %@s",self.varValRuntimeInfo.valueTitle] autorelease];
     vvSectionInfo.parentViewController = parentController;
     sectionInfo = vvSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];
