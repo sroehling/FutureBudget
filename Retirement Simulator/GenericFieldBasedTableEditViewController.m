@@ -12,6 +12,51 @@
 #import "FormInfo.h"
 
 
+@implementation UIView(findAndAskForResignationOfFirstResponder)
+
+-(UIView*)findFirstResponderInSubviews
+{
+	if(self.isFirstResponder)
+	{
+		return self;
+	}
+	else
+	{
+		for(UIView *subView in self.subviews)
+		{
+			UIView *subViewFR = [subView findFirstResponderInSubviews];
+			if(subViewFR != nil)
+			{
+				return subViewFR;
+			}
+		}
+	}
+	return nil;
+}
+
+-(BOOL)findAndAskForResignationOfFirstResponder
+{    
+
+	UIView *firstResponder = [self findFirstResponderInSubviews];
+	if(firstResponder != nil)
+	{
+		if([firstResponder canResignFirstResponder])
+		{
+			return YES;
+		}
+		else
+		{
+			return NO;
+		}
+	}
+	else
+	{
+		return YES;
+	}
+}
+
+@end
+
 @implementation GenericFieldBasedTableEditViewController
 
 
@@ -49,18 +94,33 @@
 #pragma mark -
 #pragma mark Editing
 
+
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     
-    [super setEditing:editing animated:animated];
-    
-	[self.navigationItem setHidesBackButton:editing animated:NO];
-	
-    if(!editing)
-    {
-        // Done editing - save context
-        [[DataModelController theDataModelController] saveContext];
-    }
-}
+	if(!editing)
+	{
+		// If there is a current first responder (typically text field),
+		// only allow the table to exit edit mode if the that responder
+		// is willing to resign it's first responder status. This is 
+		// applicable in scenarios where the user is entering something
+		// into a text field, and it must be well-formed/valid before 
+		// exiting edit mode.
+		if([self.tableView findAndAskForResignationOfFirstResponder])
+		{
+			[super setEditing:editing animated:animated];
+			
+			[self.navigationItem setHidesBackButton:editing animated:NO];
+			[[DataModelController theDataModelController] saveContext];
+		}
+	}
+	else
+	{
+		[super setEditing:editing animated:animated];
+		
+		[self.navigationItem setHidesBackButton:editing animated:NO];
+		
+	}	
+ }
 
 
 

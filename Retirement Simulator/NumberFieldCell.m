@@ -77,4 +77,30 @@
 	[super dealloc];
 }
 
+- (BOOL)textFieldShouldEndEditing:(UITextField *)theTextField
+{
+	if(theTextField == self.textField)
+	{
+		if([self.textField.text length] == 0 )
+		{
+			return NO;
+		}
+		else
+		{
+			NSNumber *theNumber = 
+				[[NumberHelper theHelper].numberFormatter numberFromString:theTextField.text];
+			if(theNumber ==  nil)
+			{
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Entry Error"
+					message:@"Enter a number"
+					delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+				[av show];
+				return NO;			
+			}
+			
+		}	
+	}
+	return YES;
+}
+
 @end

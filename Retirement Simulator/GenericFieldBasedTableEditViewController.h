@@ -15,3 +15,9 @@
 
 
 @end
+
+@interface UIView(findAndAskForResignationOfFirstResponder)
+
+-(BOOL)findAndAskForResignationOfFirstResponder;
+
+@end

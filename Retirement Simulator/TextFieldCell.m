@@ -41,6 +41,18 @@
 
 }
 
+- (BOOL)textFieldShouldEndEditing:(UITextField *)theTextField
+{
+	if(theTextField == self.textField)
+	{
+		if([self.textField.text length] == 0 )
+		{
+			return NO;
+		}
+	}
+	return YES;
+}
+
 
 -(IBAction)editingTextEnded:(id)sender
 {    

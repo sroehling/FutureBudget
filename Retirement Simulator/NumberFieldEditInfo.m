@@ -73,17 +73,6 @@
     return FALSE;
 }
 
-
-- (NSNumberFormatter *)numberFormatter
-{
-    if (numberFormatter == nil)
-    {
-        numberFormatter = [[NSNumberFormatter alloc] init];
-        [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    }
-    return numberFormatter;
-}
-
 - (void)dealloc {
     [super dealloc];
     [numberFormatter release];
