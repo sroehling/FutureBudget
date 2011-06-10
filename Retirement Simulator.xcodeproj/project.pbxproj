@@ -320,6 +320,43 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
+		0049DC6D13A287A000B27046 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */,
+				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
+				00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */,
+				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
+				00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */,
+				00ADB2F213819ED400064651 /* FieldEditViewController.h */,
+				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
+			);
+			name = "Base Classes";
+			sourceTree = "<group>";
+		};
+		0049DC6F13A2880700B27046 /* Fields */ = {
+			isa = PBXGroup;
+			children = (
+				004A59AE13A07F70009FEF25 /* Number Field */,
+				004A59AC13A07EDB009FEF25 /* Date Field */,
+				004A59AB13A07E8B009FEF25 /* Text Field */,
+			);
+			name = Fields;
+			sourceTree = "<group>";
+		};
+		0049DC7013A2884D00B27046 /* Input Creation */ = {
+			isa = PBXGroup;
+			children = (
+				00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */,
+				00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */,
+				00ADB31B13844F6F00064651 /* InputTypeSelectionViewController.h */,
+				00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */,
+				00ADB3201384520E00064651 /* InputTypeSelectionInfo.h */,
+				00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */,
+			);
+			name = "Input Creation";
+			sourceTree = "<group>";
+		};
 		004A59A213A025E5009FEF25 /* Date Sensitive Value */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +471,8 @@
 		004A59AA13A07E3E009FEF25 /* Generic Table Views */ = {
 			isa = PBXGroup;
 			children = (
+				00ADB2F51381B33800064651 /* FieldEditTableViewController.h */,
+				00ADB2F61381B33900064651 /* FieldEditTableViewController.m */,
 				00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */,
 				00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */,
 				00A14BB3138FF53400663C7F /* GenericFieldBasedTableViewController.h */,
@@ -513,26 +552,16 @@
 			name = "Table Structure and Creation";
 			sourceTree = "<group>";
 		};
-		004F5D511371B34800E0C4A3 /* Field Editors */ = {
+		004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */ = {
 			isa = PBXGroup;
 			children = (
+				0049DC6F13A2880700B27046 /* Fields */,
+				0049DC6D13A287A000B27046 /* Base Classes */,
 				004A59B013A0800E009FEF25 /* Table Structure and Creation */,
 				004A59AF13A07FB1009FEF25 /* Section Info */,
-				004A59AE13A07F70009FEF25 /* Number Field */,
-				004A59AC13A07EDB009FEF25 /* Date Field */,
-				004A59AB13A07E8B009FEF25 /* Text Field */,
 				004A59AA13A07E3E009FEF25 /* Generic Table Views */,
-				00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */,
-				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
-				00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */,
-				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
-				00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */,
-				00ADB2F213819ED400064651 /* FieldEditViewController.h */,
-				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
-				00ADB2F51381B33800064651 /* FieldEditTableViewController.h */,
-				00ADB2F61381B33900064651 /* FieldEditTableViewController.m */,
 			);
-			name = "Field Editors";
+			name = "Form Based Reusable Table Views";
 			sourceTree = "<group>";
 		};
 		004F5D6E1373170C00E0C4A3 /* Application */ = {
@@ -548,16 +577,11 @@
 		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
+				0049DC7013A2884D00B27046 /* Input Creation */,
 				00A36C14136D9723008A5C4C /* InputViewController.h */,
 				00A36C15136D9723008A5C4C /* InputViewController.m */,
 				00A36C16136D9723008A5C4C /* InputViewController.xib */,
 				004A59A613A0269F009FEF25 /* Repeat Frequency */,
-				00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */,
-				00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */,
-				00ADB31B13844F6F00064651 /* InputTypeSelectionViewController.h */,
-				00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */,
-				00ADB3201384520E00064651 /* InputTypeSelectionInfo.h */,
-				00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */,
 				004A59A313A0261F009FEF25 /* Variable Date */,
 				004A59A213A025E5009FEF25 /* Date Sensitive Value */,
 			);
@@ -647,7 +671,7 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
-				004F5D511371B34800E0C4A3 /* Field Editors */,
+				004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */,
 				004A59A713A02F67009FEF25 /* Simulator */,
 				003AD12D138AC83000CB3CB5 /* Helper */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
