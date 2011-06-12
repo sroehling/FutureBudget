@@ -123,8 +123,6 @@
     return sectionInfo.title;
 }
 
-#define CUSTOM_SECTION_HEIGHT 22.0
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
         // create the parent view that will hold header Label
@@ -145,7 +143,8 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return CUSTOM_SECTION_HEIGHT;
+	SectionInfo* sectionInfo = [self.formInfo sectionInfoAtIndex:section];
+	return [sectionInfo viewHeightForSection];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

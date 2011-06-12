@@ -56,6 +56,7 @@
 	
     sectionInfo.title = [[[NSString alloc]
 						  initWithFormat:@"Fixed %@",self.varValRuntimeInfo.valueTitle] autorelease];
+	sectionInfo.subTitle = @"This value is only for the current simulator input and does not change over time.";
     
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
             createForObject:self.defaultFixedVal andKey:@"value" andLabel:@"Value"
@@ -65,6 +66,7 @@
 						initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
     vvSectionInfo.title =  [[[NSString alloc]
 							 initWithFormat:@"Variable %@s",self.varValRuntimeInfo.valueTitle] autorelease];
+	vvSectionInfo.subTitle = @"These values can be shared by multiple simulator inputs and change over time.";
     vvSectionInfo.parentViewController = parentController;
     sectionInfo = vvSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];

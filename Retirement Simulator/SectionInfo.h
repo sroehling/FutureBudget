@@ -14,9 +14,12 @@
 @private
     NSMutableArray *fieldEditInfo;
     NSString *title;
+	NSString *subTitle;
+	CGFloat subTitleHeight;
 }
 
 @property(nonatomic,retain) NSString *title;
+@property(nonatomic,retain) NSString *subTitle;
 
 - (void) addFieldEditInfo:(id<FieldEditInfo>)fieldEditInfo;
 

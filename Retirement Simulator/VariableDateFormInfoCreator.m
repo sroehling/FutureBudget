@@ -62,11 +62,13 @@
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
     sectionInfo.title = @"Fixed Date";
+	sectionInfo.subTitle = @"This date is for the current input only. If this date is selected, changing this date only impacts results for the current input.",
     [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:self.fixedDate 
                                     andKey:@"date" andLabel:@"Date"]];
     
     MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] init ] autorelease];
     mdSectionInfo.title =  @"Milestone Date";
+	mdSectionInfo.subTitle = @"These dates can be shared by multiple inputs. Changes to a milestone date will impact the results for inputs which have also selected the same milestone date.";
     mdSectionInfo.parentViewController = parentController;
     sectionInfo = mdSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];

@@ -357,6 +357,16 @@
 			name = "Input Creation";
 			sourceTree = "<group>";
 		};
+		0049DC7113A28AC600B27046 /* Input List */ = {
+			isa = PBXGroup;
+			children = (
+				00A36C14136D9723008A5C4C /* InputViewController.h */,
+				00A36C15136D9723008A5C4C /* InputViewController.m */,
+				00A36C16136D9723008A5C4C /* InputViewController.xib */,
+			);
+			name = "Input List";
+			sourceTree = "<group>";
+		};
 		004A59A213A025E5009FEF25 /* Date Sensitive Value */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,10 +587,8 @@
 		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
+				0049DC7113A28AC600B27046 /* Input List */,
 				0049DC7013A2884D00B27046 /* Input Creation */,
-				00A36C14136D9723008A5C4C /* InputViewController.h */,
-				00A36C15136D9723008A5C4C /* InputViewController.m */,
-				00A36C16136D9723008A5C4C /* InputViewController.xib */,
 				004A59A613A0269F009FEF25 /* Repeat Frequency */,
 				004A59A313A0261F009FEF25 /* Variable Date */,
 				004A59A213A025E5009FEF25 /* Date Sensitive Value */,
