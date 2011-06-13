@@ -57,7 +57,8 @@
 {
    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
-    formPopulator.formInfo.title = @"Variable Date";
+	
+    formPopulator.formInfo.title = [NSString stringWithFormat:@"%@ Date",self.fieldInfo.fieldLabel];
     
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
