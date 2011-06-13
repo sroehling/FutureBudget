@@ -10,8 +10,6 @@
 
 
 @implementation NumberHelper
-
-@synthesize numberFormatter;
 @synthesize decimalFormatter;
 @synthesize currencyFormatter;
 @synthesize percentFormatter;
@@ -31,17 +29,22 @@
     self = [super init];
     if(self)
     {
-        self.numberFormatter = [[[NSNumberFormatter alloc]init] autorelease];
-        [self.numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 
         self.decimalFormatter = [[[NSNumberFormatter alloc]init] autorelease];
         [self.decimalFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        
+  		[self.decimalFormatter setMaximumSignificantDigits:3];
+		self.decimalFormatter.usesSignificantDigits = TRUE;
+      
         self.currencyFormatter = [[[NSNumberFormatter alloc]init] autorelease];
         [self.currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 
         self.percentFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+		// Using the multiplier of 100 allows people to enter values like 5 to mean 5%
+		// rather than having to enter .05.
+		
         [self.percentFormatter setNumberStyle:NSNumberFormatterPercentStyle];
+		[self.percentFormatter setMaximumSignificantDigits:3];
+		self.percentFormatter.usesSignificantDigits = TRUE;
 
         
         
@@ -49,6 +52,21 @@
     return self;
 }
 
+- (NSNumber*)displayValFromStoredVal:(NSNumber*)storedVal andFormatter:(NSNumberFormatter*)formatter
+{
+	assert(storedVal != nil);
+	assert(formatter != nil);
+	NSNumber *displayVal;
+	if(formatter.numberStyle == NSNumberFormatterPercentStyle)
+	{
+		displayVal = [NSNumber numberWithDouble:[storedVal doubleValue]/100.0];
+	}
+	else
+	{
+		displayVal = storedVal;
+	}
+	return displayVal;
+}
 
 - (BOOL)valueInRange:(NSInteger)value lower:(NSInteger)low upper:(NSInteger)up
 {
@@ -65,15 +83,16 @@
 - (NSString*)stringFromNumber:(NSNumber*)theNumber
 {
     assert(theNumber != nil);
-    return [self.numberFormatter stringFromNumber:theNumber];
+    return [self.decimalFormatter stringFromNumber:theNumber];
 }
 
 
 -(void)dealloc
 {
     [super dealloc];
-    [numberFormatter release];
     [decimalFormatter release];
+	[percentFormatter release];
+	[currencyFormatter release];
 }
 
 

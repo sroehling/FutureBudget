@@ -11,7 +11,6 @@
 
 @interface NumberHelper : NSObject {
     @private
-        NSNumberFormatter *numberFormatter;
     NSNumberFormatter *decimalFormatter;
     NSNumberFormatter *currencyFormatter;
     NSNumberFormatter *percentFormatter;
@@ -22,7 +21,8 @@
 - (NSString*)stringFromNumber:(NSNumber*)theNumber;
 - (BOOL)valueInRange:(NSInteger)value lower:(NSInteger)low upper:(NSInteger)up;
 
-@property(nonatomic,retain) NSNumberFormatter *numberFormatter;
+- (NSNumber*)displayValFromStoredVal:(NSNumber*)storedVal andFormatter:(NSNumberFormatter*)formatter;
+
 @property(nonatomic,retain) NSNumberFormatter *currencyFormatter;
 @property(nonatomic,retain) NSNumberFormatter *decimalFormatter;
 @property(nonatomic,retain) NSNumberFormatter *percentFormatter;

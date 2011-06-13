@@ -54,7 +54,7 @@
     assert(self.fieldEditInfo != nil);
     // Done with editing - commit the value if it's changed
     
-    NSNumber *theValue = [[NumberHelper theHelper].numberFormatter 
+    NSNumber *theValue = [[NumberHelper theHelper].decimalFormatter 
                           numberFromString:textField.text];
     if(theValue != nil)
     {
@@ -88,7 +88,7 @@
 		else
 		{
 			NSNumber *theNumber = 
-				[[NumberHelper theHelper].numberFormatter numberFromString:theTextField.text];
+				[[NumberHelper theHelper].decimalFormatter numberFromString:theTextField.text];
 			if(theNumber ==  nil)
 			{
 				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Entry Error"

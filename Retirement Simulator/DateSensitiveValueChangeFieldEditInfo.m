@@ -11,6 +11,7 @@
 #import "DateSensitiveValueChange.h"
 #import "VariableValueRuntimeInfo.h"
 #import "DateHelper.h"
+#import "NumberHelper.h"
 
 @implementation DateSensitiveValueChangeFieldEditInfo
 
@@ -47,8 +48,9 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 
 - (NSString*)detailTextLabel
 {
+	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:self.valChange.newValue andFormatter:self.varValInfo.valueFormatter];
 	return [NSString stringWithFormat:@"%@ on %@",
-			[self.varValInfo.valueFormatter stringFromNumber:self.valChange.newValue],
+			[self.varValInfo.valueFormatter stringFromNumber:displayVal],
 			[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate] ];
 }
 

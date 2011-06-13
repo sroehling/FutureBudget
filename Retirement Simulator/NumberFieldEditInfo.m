@@ -7,8 +7,8 @@
 //
 
 #import "NumberFieldEditInfo.h"
-#import "NumberFieldEditViewController.h"
 #import "NumberFieldCell.h"
+#import "NumberHelper.h"
 #import "StringValidation.h"
 
 
@@ -16,7 +16,6 @@
 
 
 @synthesize numberFormatter;
-
 @synthesize numberCell;
 
 
@@ -57,7 +56,8 @@
 
 - (NSString*)detailTextLabel
 {
-    return [self.numberFormatter stringFromNumber:[self.fieldInfo getFieldValue]];
+	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:[self.fieldInfo getFieldValue] andFormatter:self.numberFormatter];
+    return [self.numberFormatter stringFromNumber:displayVal];
     
 }
 

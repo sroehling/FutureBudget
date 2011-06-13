@@ -51,8 +51,9 @@
 
 - (NSString*)detailTextLabel
 {
-    // TBD - Should we only show starting value, or something else
-    return [self.varValRuntimeInfo.valueFormatter stringFromNumber:self.variableVal.startingValue];
+    // TBD - Should we only show starting value, or something else/more
+	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:self.variableVal.startingValue andFormatter:self.varValRuntimeInfo.valueFormatter];
+    return [self.varValRuntimeInfo.valueFormatter stringFromNumber:displayVal];
 }
 
 - (NSString*)textLabel
