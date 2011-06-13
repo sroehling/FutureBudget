@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		003AD12C138ABF7D00CB3CB5 /* VariableValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */; };
 		003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */; };
 		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
 		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
@@ -16,6 +15,11 @@
 		003AD14E138C354800CB3CB5 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AD14D138C354700CB3CB5 /* TextFieldCell.xib */; };
 		003AD150138C6CA900CB3CB5 /* NumberFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */; };
 		003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */; };
+		0049DC7413A537CD00B27046 /* VariableValueFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */; };
+		0049DC7713A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7613A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m */; };
+		0049DC7A13A54B3100B27046 /* DateSensitiveValueChangeSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7913A54B3000B27046 /* DateSensitiveValueChangeSectionInfo.m */; };
+		0049DC7D13A54B8800B27046 /* DateSensitiveValueChangeFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7C13A54B8700B27046 /* DateSensitiveValueChangeFormPopulator.m */; };
+		0049DC8113A576B300B27046 /* DateSensitiveValueChangeAddedListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */; };
 		004A599E139ECA5C009FEF25 /* StaticFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */; };
 		004A59A1139F2E7C009FEF25 /* VariableValueRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */; };
 		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
@@ -109,8 +113,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueViewController.h; sourceTree = "<group>"; };
-		003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueViewController.m; sourceTree = "<group>"; };
 		003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHelper.h; sourceTree = "<group>"; };
 		003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHelper.m; sourceTree = "<group>"; };
 		003AD131138ACBE800CB3CB5 /* StringValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValidation.h; sourceTree = "<group>"; };
@@ -125,6 +127,17 @@
 		003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberFieldCell.xib; sourceTree = "<group>"; };
 		003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldCell.h; sourceTree = "<group>"; };
 		003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldCell.m; sourceTree = "<group>"; };
+		0049DC7213A537CC00B27046 /* VariableValueFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFormInfoCreator.h; sourceTree = "<group>"; };
+		0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueFormInfoCreator.m; sourceTree = "<group>"; };
+		0049DC7513A53E4400B27046 /* DateSensitiveValueChangeFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFieldEditInfo.h; sourceTree = "<group>"; };
+		0049DC7613A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeFieldEditInfo.m; sourceTree = "<group>"; };
+		0049DC7813A54B2F00B27046 /* DateSensitiveValueChangeSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeSectionInfo.h; sourceTree = "<group>"; };
+		0049DC7913A54B3000B27046 /* DateSensitiveValueChangeSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeSectionInfo.m; sourceTree = "<group>"; };
+		0049DC7B13A54B8700B27046 /* DateSensitiveValueChangeFormPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFormPopulator.h; sourceTree = "<group>"; };
+		0049DC7C13A54B8700B27046 /* DateSensitiveValueChangeFormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeFormPopulator.m; sourceTree = "<group>"; };
+		0049DC7E13A572B900B27046 /* FinishedAddingObjectListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishedAddingObjectListener.h; sourceTree = "<group>"; };
+		0049DC7F13A576AE00B27046 /* DateSensitiveValueChangeAddedListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeAddedListener.h; sourceTree = "<group>"; };
+		0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeAddedListener.m; sourceTree = "<group>"; };
 		004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticFormInfoCreator.h; sourceTree = "<group>"; };
 		004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticFormInfoCreator.m; sourceTree = "<group>"; };
 		004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueRuntimeInfo.h; sourceTree = "<group>"; };
@@ -374,14 +387,22 @@
 				00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */,
 				00EC1FAD139BDB210085B25C /* DateSensitiveValueFormInfoCreator.h */,
 				00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */,
-				003AD12A138ABF7D00CB3CB5 /* VariableValueViewController.h */,
-				003AD12B138ABF7D00CB3CB5 /* VariableValueViewController.m */,
 				00EC1FB6139BE3E40085B25C /* VariableValueSectionInfo.h */,
 				00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */,
 				00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */,
 				00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */,
 				004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */,
 				004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */,
+				0049DC7213A537CC00B27046 /* VariableValueFormInfoCreator.h */,
+				0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */,
+				0049DC7513A53E4400B27046 /* DateSensitiveValueChangeFieldEditInfo.h */,
+				0049DC7613A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m */,
+				0049DC7813A54B2F00B27046 /* DateSensitiveValueChangeSectionInfo.h */,
+				0049DC7913A54B3000B27046 /* DateSensitiveValueChangeSectionInfo.m */,
+				0049DC7B13A54B8700B27046 /* DateSensitiveValueChangeFormPopulator.h */,
+				0049DC7C13A54B8700B27046 /* DateSensitiveValueChangeFormPopulator.m */,
+				0049DC7F13A576AE00B27046 /* DateSensitiveValueChangeAddedListener.h */,
+				0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -491,6 +512,7 @@
 				00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */,
 				00ADB2FB1381C1DC00064651 /* GenericFieldBasedTableEditViewController.h */,
 				00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */,
+				0049DC7E13A572B900B27046 /* FinishedAddingObjectListener.h */,
 			);
 			name = "Generic Table Views";
 			sourceTree = "<group>";
@@ -877,7 +899,6 @@
 				00637A821385D509001E02F1 /* FixedValue.m in Sources */,
 				00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */,
 				00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */,
-				003AD12C138ABF7D00CB3CB5 /* VariableValueViewController.m in Sources */,
 				003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */,
 				003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */,
 				003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */,
@@ -906,6 +927,11 @@
 				00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */,
 				004A599E139ECA5C009FEF25 /* StaticFormInfoCreator.m in Sources */,
 				004A59A1139F2E7C009FEF25 /* VariableValueRuntimeInfo.m in Sources */,
+				0049DC7413A537CD00B27046 /* VariableValueFormInfoCreator.m in Sources */,
+				0049DC7713A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m in Sources */,
+				0049DC7A13A54B3100B27046 /* DateSensitiveValueChangeSectionInfo.m in Sources */,
+				0049DC7D13A54B8800B27046 /* DateSensitiveValueChangeFormPopulator.m in Sources */,
+				0049DC8113A576B300B27046 /* DateSensitiveValueChangeAddedListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

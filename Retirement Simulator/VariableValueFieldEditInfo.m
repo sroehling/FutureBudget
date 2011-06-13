@@ -16,8 +16,9 @@
 #import "VariableValue.h"
 #import "SectionInfo.h"
 #import "DateHelper.h"
-#import "VariableValueViewController.h"
 #import "VariableValueRuntimeInfo.h"
+#import "GenericFieldBasedTableEditViewController.h"
+#import "VariableValueFormInfoCreator.h"
 
 
 @implementation VariableValueFieldEditInfo
@@ -61,9 +62,15 @@
 
 - (UIViewController*)fieldEditController
 {
-    UIViewController *controller = [[[VariableValueViewController alloc] 
-                   initWithVariableValue:self.variableVal andVarValueRuntimeInfo:self.varValRuntimeInfo] autorelease];
-    return controller;
+
+	VariableValueFormInfoCreator *vvFormInfoCreator = 
+		[[[VariableValueFormInfoCreator alloc] initWithVariableValue:self.variableVal
+		andVarValueRuntimeInfo:self.varValRuntimeInfo] autorelease];
+		
+	UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
+	    initWithFormInfoCreator:vvFormInfoCreator] autorelease];
+		
+	return controller;
 }
 
 - (BOOL)hasFieldEditController

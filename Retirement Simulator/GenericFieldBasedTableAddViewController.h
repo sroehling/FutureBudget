@@ -10,6 +10,7 @@
 
 #import "GenericFieldBasedTableViewController.h"
 #import "FormInfoCreator.h"
+#import "FinishedAddingObjectListener.h"
 
 
 @interface GenericFieldBasedTableAddViewController : GenericFieldBasedTableViewController {
@@ -17,10 +18,12 @@
     NSManagedObject *newObject;
     UIBarButtonItem *saveButton;
     NSInteger popDepth;
+	id<FinishedAddingObjectListener> finishedAddingListener;
 }
 
 @property(nonatomic,retain) NSManagedObject *newObject;
 @property(nonatomic,retain) UIBarButtonItem *saveButton;
+@property(nonatomic,retain) id<FinishedAddingObjectListener> finshedAddingListener;
 @property(nonatomic) NSInteger popDepth;
 
 - (void)managedObjectsSaved;

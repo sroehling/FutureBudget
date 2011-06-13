@@ -17,6 +17,7 @@
 @synthesize newObject;
 @synthesize saveButton;
 @synthesize popDepth;
+@synthesize finshedAddingListener;
 
 #pragma mark -
 #pragma mark Observing changes to objects while add operation in place
@@ -66,11 +67,16 @@
     [super dealloc];
     [newObject release];
     [saveButton release];
+	[finishedAddingListener release];
 }
 
 
 - (void)save {    
     [self stopObservingObjectChangeNotifications];
+	if(self.finshedAddingListener != nil)
+	{
+		[self.finshedAddingListener objectFinshedBeingAdded:self.newObject];
+	}
     [TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
 }
 

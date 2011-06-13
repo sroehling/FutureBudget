@@ -63,7 +63,7 @@
 			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
-						initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
+					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
     vvSectionInfo.title =  [[[NSString alloc]
 							 initWithFormat:@"Variable %@s",self.varValRuntimeInfo.valueTitle] autorelease];
 	vvSectionInfo.subTitle = @"These values can be shared by multiple simulator inputs and change over time.";

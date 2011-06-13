@@ -17,12 +17,15 @@
 #import "VariableValue.h"
 #import "DataModelController.h"
 #import "StaticFormInfoCreator.h"
+#import "FinishedAddingObjectListener.h"
+#import "DateSensitiveValueChangeAddedListener.h"
+
 
 @implementation VariableValueSectionInfo
 
 @synthesize varValRuntimeInfo;
 
-- (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
+- (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo;
 {
 	self = [super init];
 	if(self)
