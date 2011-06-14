@@ -14,9 +14,10 @@
 @synthesize valueFormatter;
 @synthesize entityName;
 @synthesize valueTitle;
+@synthesize valueVerb;
 
 - (id) initWithEntityName:(NSString*)entity andFormatter:(NSNumberFormatter*)valFormatter
-	andValueTitle:(NSString *)title
+	andValueTitle:(NSString *)title andValueVerb:(NSString*)verb
 {
 	self = [super init];
 	if(self)
@@ -29,6 +30,7 @@
 		self.valueFormatter = valFormatter;
 		self.entityName = entity;
 		self.valueTitle = title;
+		self.valueVerb = verb;
 	}
 	return self;
 }
@@ -39,6 +41,7 @@
 	[valueFormatter release];
 	[entityName release];
 	[valueTitle release];
+	[valueVerb release];
 }
 
 @end

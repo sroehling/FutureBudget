@@ -11,4 +11,10 @@
 
 @implementation FixedDate
 
+
+- (NSString *)inlineDescription:(NSDateFormatter*)withFormat
+{
+	return [withFormat stringFromDate:self.date];
+}
+
 @end

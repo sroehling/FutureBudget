@@ -14,13 +14,15 @@
 		NSString *entityName;
 		NSNumberFormatter *valueFormatter;
 		NSString *valueTitle;
+		NSString *valueVerb;
 }
 
 @property(nonatomic,retain) NSString *entityName;
 @property(nonatomic,retain) NSNumberFormatter *valueFormatter;
 @property(nonatomic,retain) NSString *valueTitle;
+@property(nonatomic,retain) NSString *valueVerb;
 
 - (id) initWithEntityName:(NSString*)entityName andFormatter:(NSNumberFormatter*)formatter
-	andValueTitle:(NSString*)title;
+	andValueTitle:(NSString*)title andValueVerb:(NSString*)verb;
 
 @end

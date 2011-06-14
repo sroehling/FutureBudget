@@ -30,6 +30,7 @@ typedef enum
 - (void)setPeriodWithPeriodEnum:(EventPeriod)thePeriod;
 - (NSString*)description;
 - (BOOL)eventRepeatsMoreThanOnce;
+- (NSString*)inlineDescription;
 
 @end
 

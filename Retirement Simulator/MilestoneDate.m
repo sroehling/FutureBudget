@@ -12,4 +12,10 @@
 @implementation MilestoneDate
 @dynamic name;
 
+- (NSString *)inlineDescription:(NSDateFormatter*)withFormat
+{
+	return [NSString stringWithFormat:@"%@ (%@)",
+			[withFormat stringFromDate:self.date], self.name];
+}
+
 @end

@@ -9,6 +9,10 @@
 #import "Retirement_SimulatorAppDelegate.h"
 #import "DataModelController.h"
 
+#import "InputListFormInfoCreator.h"
+#import "ResultsViewController.h"
+#import "GenericFieldBasedTableEditViewController.h"
+
 @implementation Retirement_SimulatorAppDelegate
 
 
@@ -19,9 +23,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
-    
     // Delete the persistent cache of information for results controllers: Otherwise,
     // the app was throwing exceptions with a message "The persistent cache of 
     // section information does not match the current configuration."
@@ -29,8 +30,25 @@
     
     [[DataModelController theDataModelController] initializeDatabaseDefaults];
     
+	InputListFormInfoCreator *inputFormInfoCreator = 
+		[[[InputListFormInfoCreator alloc] init] autorelease];
+	UIViewController *inputController = [[[GenericFieldBasedTableEditViewController alloc]
+		initWithFormInfoCreator:inputFormInfoCreator] autorelease];
+	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
+	inputNavController.title = @"Inputs";
+	
+	
+	ResultsViewController *resultsController = [[[ResultsViewController alloc] init] autorelease];
+	UINavigationController *resultsNavController = [[[UINavigationController alloc] initWithRootViewController:resultsController] autorelease];
+	resultsNavController.title = @"Results";
+	
+	
+	self.tabBarController.viewControllers =
+		[NSArray arrayWithObjects:inputNavController, resultsNavController, nil]; 
+	
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;
+	
     [self.window makeKeyAndVisible];
     
     

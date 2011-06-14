@@ -7,6 +7,8 @@
 //
 
 #import "FixedValue.h"
+#import "VariableValueRuntimeInfo.h"
+#import "NumberHelper.h"
 
 
 @implementation FixedValue
@@ -15,6 +17,14 @@
 - (NSString*) valueDescription
 {
     return @"Fixed value";
+}
+
+- (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+	NSString *displayValDesc  =[[NumberHelper theHelper] displayStrFromStoredVal:self.value andFormatter:valueRuntimeInfo.valueFormatter];
+	
+	return [NSString stringWithFormat:@"%@ %@ every year",valueRuntimeInfo.valueVerb,
+			displayValDesc];
 }
 
 @end

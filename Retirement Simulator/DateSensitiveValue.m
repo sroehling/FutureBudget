@@ -7,13 +7,20 @@
 //
 
 #import "DateSensitiveValue.h"
-
+#import "VariableValueRuntimeInfo.h"
 
 @implementation DateSensitiveValue
 
 - (NSString*) valueDescription
 {
     assert(0); // must be overridden
+	return nil;
+}
+
+- (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+	assert(0); // must be overridden
+	return nil;
 }
 
 @end

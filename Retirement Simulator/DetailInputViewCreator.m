@@ -71,7 +71,8 @@
             createForObject:cashFlow andKey:@"amount" andLabel:@"Amount"
             andNumberFormatter:amountFormatter]];
 
-	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"InflationRate" andFormatter:[NumberHelper theHelper].percentFormatter andValueTitle:@"Inflation Rate"] autorelease];
+	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"InflationRate" andFormatter:[NumberHelper theHelper].percentFormatter andValueTitle:@"Inflation Rate"
+				andValueVerb:@"inflate"] autorelease];
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
          createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Inflation" 

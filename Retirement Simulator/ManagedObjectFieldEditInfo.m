@@ -24,7 +24,6 @@
     return self;
 }
 
-
 - (NSString*) textLabel
 {
     return [fieldInfo textLabel];

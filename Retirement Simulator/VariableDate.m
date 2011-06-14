@@ -13,4 +13,10 @@
 
 @dynamic date;
 
+- (NSString *)inlineDescription:(NSDateFormatter*)withFormat
+{
+	assert(0); // must be overridden
+	return nil;
+}
+
 @end

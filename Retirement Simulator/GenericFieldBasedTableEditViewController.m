@@ -59,11 +59,18 @@
 
 @implementation GenericFieldBasedTableEditViewController
 
+@synthesize addButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	self.addButton = [[[UIBarButtonItem alloc]   
+                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd   
+                                  target:self   
+                                  action:@selector(insertNewObject)] autorelease];
+    self.navigationItem.leftBarButtonItem = nil; 
    
 }
 
@@ -94,6 +101,15 @@
 #pragma mark -
 #pragma mark Editing
 
+- (void)insertNewObject
+{
+	if(self.formInfo.objectAdder != nil)
+	{
+		[self.formInfo.objectAdder addObjectFromTableView:self];
+	}
+}
+
+
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     
@@ -111,15 +127,26 @@
 			
 			[self.navigationItem setHidesBackButton:editing animated:NO];
 			[[DataModelController theDataModelController] saveContext];
+			self.navigationItem.leftBarButtonItem = nil;
 		}
 	}
 	else
 	{
 		[super setEditing:editing animated:animated];
+		if(self.formInfo.objectAdder != nil)
+		{
+			self.navigationItem.leftBarButtonItem = self.addButton; 			
+		}
 		
 		[self.navigationItem setHidesBackButton:editing animated:NO];
 		
 	}	
+ }
+ 
+ - (void) dealloc
+ {
+	 [super dealloc];
+	 [addButton release];
  }
 
 

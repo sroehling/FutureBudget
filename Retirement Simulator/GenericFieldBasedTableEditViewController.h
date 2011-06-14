@@ -11,8 +11,11 @@
 #import "GenericFieldBasedTableViewController.h"
 
 @interface GenericFieldBasedTableEditViewController : GenericFieldBasedTableViewController {
+	@private
+		UIBarButtonItem *addButton;
 }
 
+@property(nonatomic,retain) UIBarButtonItem *addButton;
 
 @end
 

@@ -8,6 +8,8 @@
 
 #import "VariableValue.h"
 #import "DateSensitiveValueChange.h"
+#import "VariableValueRuntimeInfo.h"
+#import "NumberHelper.h"
 
 
 @implementation VariableValue
@@ -46,6 +48,21 @@
 - (NSString*) valueDescription
 {
     return @"Variable value";
+}
+
+- (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+	NSString *startingValDesc  =[[NumberHelper theHelper] displayStrFromStoredVal:self.startingValue andFormatter:valueRuntimeInfo.valueFormatter];
+	if([self.valueChanges count] == 0)
+	{
+		return [NSString stringWithFormat:@"%@ %@ every year",valueRuntimeInfo.valueVerb,
+				startingValDesc];
+	}
+	else
+	{
+		return [NSString stringWithFormat:@"initially %@ %@ every year (varies after)",valueRuntimeInfo.valueVerb,startingValDesc];
+		
+	}
 }
 
 

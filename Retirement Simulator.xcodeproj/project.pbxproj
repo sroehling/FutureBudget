@@ -15,11 +15,16 @@
 		003AD14E138C354800CB3CB5 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AD14D138C354700CB3CB5 /* TextFieldCell.xib */; };
 		003AD150138C6CA900CB3CB5 /* NumberFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */; };
 		003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */; };
+		0041263313A6824A008F0647 /* InputListInputDescriptionCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263213A6824A008F0647 /* InputListInputDescriptionCreator.m */; };
+		0041263713A6A653008F0647 /* InputListFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263613A6A653008F0647 /* InputListFormInfoCreator.m */; };
+		0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263913A6A745008F0647 /* InputFieldEditInfo.m */; };
+		0041263E13A7DED9008F0647 /* InputListObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263D13A7DED9008F0647 /* InputListObjectAdder.m */; };
 		0049DC7413A537CD00B27046 /* VariableValueFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */; };
 		0049DC7713A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7613A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m */; };
 		0049DC7A13A54B3100B27046 /* DateSensitiveValueChangeSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7913A54B3000B27046 /* DateSensitiveValueChangeSectionInfo.m */; };
 		0049DC7D13A54B8800B27046 /* DateSensitiveValueChangeFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7C13A54B8700B27046 /* DateSensitiveValueChangeFormPopulator.m */; };
 		0049DC8113A576B300B27046 /* DateSensitiveValueChangeAddedListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */; };
+		0049DC8513A6550C00B27046 /* FormFieldWithSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC8413A6550C00B27046 /* FormFieldWithSubtitleTableCell.m */; };
 		004A599E139ECA5C009FEF25 /* StaticFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */; };
 		004A59A1139F2E7C009FEF25 /* VariableValueRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */; };
 		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
@@ -62,8 +67,6 @@
 		00A36C06136C6CAE008A5C4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C04136C6CAE008A5C4C /* InfoPlist.strings */; };
 		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
-		00A36C17136D9723008A5C4C /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C15136D9723008A5C4C /* InputViewController.m */; };
-		00A36C18136D9723008A5C4C /* InputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C16136D9723008A5C4C /* InputViewController.xib */; };
 		00A57F6A1396D549004E148B /* SelectableObjectTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */; };
 		00ADB2ED138191B700064651 /* RepeatFrequencyFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */; };
 		00ADB2F1138199BC00064651 /* ManagedObjectFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */; };
@@ -123,6 +126,15 @@
 		003AD14F138C6CA600CB3CB5 /* NumberFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberFieldCell.xib; sourceTree = "<group>"; };
 		003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldCell.h; sourceTree = "<group>"; };
 		003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldCell.m; sourceTree = "<group>"; };
+		0041263113A6824A008F0647 /* InputListInputDescriptionCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListInputDescriptionCreator.h; sourceTree = "<group>"; };
+		0041263213A6824A008F0647 /* InputListInputDescriptionCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputListInputDescriptionCreator.m; sourceTree = "<group>"; };
+		0041263513A6A653008F0647 /* InputListFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListFormInfoCreator.h; sourceTree = "<group>"; };
+		0041263613A6A653008F0647 /* InputListFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputListFormInfoCreator.m; sourceTree = "<group>"; };
+		0041263813A6A744008F0647 /* InputFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputFieldEditInfo.h; sourceTree = "<group>"; };
+		0041263913A6A745008F0647 /* InputFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputFieldEditInfo.m; sourceTree = "<group>"; };
+		0041263B13A7DDCC008F0647 /* TableViewObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewObjectAdder.h; sourceTree = "<group>"; };
+		0041263C13A7DED8008F0647 /* InputListObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListObjectAdder.h; sourceTree = "<group>"; };
+		0041263D13A7DED9008F0647 /* InputListObjectAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputListObjectAdder.m; sourceTree = "<group>"; };
 		0049DC7213A537CC00B27046 /* VariableValueFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFormInfoCreator.h; sourceTree = "<group>"; };
 		0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueFormInfoCreator.m; sourceTree = "<group>"; };
 		0049DC7513A53E4400B27046 /* DateSensitiveValueChangeFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFieldEditInfo.h; sourceTree = "<group>"; };
@@ -134,6 +146,8 @@
 		0049DC7E13A572B900B27046 /* FinishedAddingObjectListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishedAddingObjectListener.h; sourceTree = "<group>"; };
 		0049DC7F13A576AE00B27046 /* DateSensitiveValueChangeAddedListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeAddedListener.h; sourceTree = "<group>"; };
 		0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeAddedListener.m; sourceTree = "<group>"; };
+		0049DC8313A6550C00B27046 /* FormFieldWithSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormFieldWithSubtitleTableCell.h; sourceTree = "<group>"; };
+		0049DC8413A6550C00B27046 /* FormFieldWithSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormFieldWithSubtitleTableCell.m; sourceTree = "<group>"; };
 		004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticFormInfoCreator.h; sourceTree = "<group>"; };
 		004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticFormInfoCreator.m; sourceTree = "<group>"; };
 		004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueRuntimeInfo.h; sourceTree = "<group>"; };
@@ -208,9 +222,6 @@
 		00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Retirement SimulatorTests-Prefix.pch"; sourceTree = "<group>"; };
 		00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Retirement_SimulatorTests.h; sourceTree = "<group>"; };
 		00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorTests.m; sourceTree = "<group>"; };
-		00A36C14136D9723008A5C4C /* InputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
-		00A36C15136D9723008A5C4C /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
-		00A36C16136D9723008A5C4C /* InputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputViewController.xib; sourceTree = "<group>"; };
 		00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableObjectTableEditViewController.h; sourceTree = "<group>"; };
 		00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableObjectTableEditViewController.m; sourceTree = "<group>"; };
 		00A57F6C1396DCF9004E148B /* FormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInfoCreator.h; sourceTree = "<group>"; };
@@ -363,11 +374,25 @@
 		0049DC7113A28AC600B27046 /* Input List */ = {
 			isa = PBXGroup;
 			children = (
-				00A36C14136D9723008A5C4C /* InputViewController.h */,
-				00A36C15136D9723008A5C4C /* InputViewController.m */,
-				00A36C16136D9723008A5C4C /* InputViewController.xib */,
+				0041263113A6824A008F0647 /* InputListInputDescriptionCreator.h */,
+				0041263213A6824A008F0647 /* InputListInputDescriptionCreator.m */,
+				0041263513A6A653008F0647 /* InputListFormInfoCreator.h */,
+				0041263613A6A653008F0647 /* InputListFormInfoCreator.m */,
+				0041263813A6A744008F0647 /* InputFieldEditInfo.h */,
+				0041263913A6A745008F0647 /* InputFieldEditInfo.m */,
+				0041263C13A7DED8008F0647 /* InputListObjectAdder.h */,
+				0041263D13A7DED9008F0647 /* InputListObjectAdder.m */,
 			);
 			name = "Input List";
+			sourceTree = "<group>";
+		};
+		0049DC8213A654B100B27046 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0049DC8313A6550C00B27046 /* FormFieldWithSubtitleTableCell.h */,
+				0049DC8413A6550C00B27046 /* FormFieldWithSubtitleTableCell.m */,
+			);
+			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		004A59A213A025E5009FEF25 /* Date Sensitive Value */ = {
@@ -381,8 +406,6 @@
 				00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */,
 				00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */,
 				00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */,
-				004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */,
-				004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */,
 				0049DC7213A537CC00B27046 /* VariableValueFormInfoCreator.h */,
 				0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */,
 				0049DC7513A53E4400B27046 /* DateSensitiveValueChangeFieldEditInfo.h */,
@@ -440,6 +463,8 @@
 				00637A811385D509001E02F1 /* FixedValue.m */,
 				00637A891386D999001E02F1 /* InflationRate.h */,
 				00637A8A1386D99A001E02F1 /* InflationRate.m */,
+				004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */,
+				004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -564,6 +589,7 @@
 				00A57F6C1396DCF9004E148B /* FormInfoCreator.h */,
 				004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */,
 				004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */,
+				0041263B13A7DDCC008F0647 /* TableViewObjectAdder.h */,
 			);
 			name = "Table Structure and Creation";
 			sourceTree = "<group>";
@@ -571,11 +597,12 @@
 		004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */ = {
 			isa = PBXGroup;
 			children = (
-				0049DC6F13A2880700B27046 /* Fields */,
-				0049DC6D13A287A000B27046 /* Base Classes */,
 				004A59B013A0800E009FEF25 /* Table Structure and Creation */,
-				004A59AF13A07FB1009FEF25 /* Section Info */,
 				004A59AA13A07E3E009FEF25 /* Generic Table Views */,
+				0049DC6D13A287A000B27046 /* Base Classes */,
+				0049DC8213A654B100B27046 /* Custom Cells */,
+				0049DC6F13A2880700B27046 /* Fields */,
+				004A59AF13A07FB1009FEF25 /* Section Info */,
 			);
 			name = "Form Based Reusable Table Views";
 			sourceTree = "<group>";
@@ -803,7 +830,6 @@
 			files = (
 				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
-				00A36C18136D9723008A5C4C /* InputViewController.xib in Resources */,
 				004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */,
 				004F5D751373191600E0C4A3 /* ResultsViewController.xib in Resources */,
 				003AD14E138C354800CB3CB5 /* TextFieldCell.xib in Resources */,
@@ -845,7 +871,6 @@
 			files = (
 				00A36BE3136C6CAE008A5C4C /* main.m in Sources */,
 				00A36BE6136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m in Sources */,
-				00A36C17136D9723008A5C4C /* InputViewController.m in Sources */,
 				004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */,
 				004F5D1113706F7100E0C4A3 /* Input.m in Sources */,
 				004F5D24137079AD00E0C4A3 /* ExpenseInput.m in Sources */,
@@ -912,6 +937,11 @@
 				0049DC7A13A54B3100B27046 /* DateSensitiveValueChangeSectionInfo.m in Sources */,
 				0049DC7D13A54B8800B27046 /* DateSensitiveValueChangeFormPopulator.m in Sources */,
 				0049DC8113A576B300B27046 /* DateSensitiveValueChangeAddedListener.m in Sources */,
+				0049DC8513A6550C00B27046 /* FormFieldWithSubtitleTableCell.m in Sources */,
+				0041263313A6824A008F0647 /* InputListInputDescriptionCreator.m in Sources */,
+				0041263713A6A653008F0647 /* InputListFormInfoCreator.m in Sources */,
+				0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */,
+				0041263E13A7DED9008F0647 /* InputListObjectAdder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

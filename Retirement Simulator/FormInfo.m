@@ -13,6 +13,7 @@
 @implementation FormInfo
 
 @synthesize title;
+@synthesize objectAdder;
 
 
 - (id) init

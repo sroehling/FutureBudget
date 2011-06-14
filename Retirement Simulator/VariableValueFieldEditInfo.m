@@ -79,6 +79,11 @@
     return TRUE;
 }
 
+- (CGFloat)cellHeightForWidth:(CGFloat)width
+{
+	return 40.0;
+}
+
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     // TODO - Push this, along with code in milestone field edit info into helper

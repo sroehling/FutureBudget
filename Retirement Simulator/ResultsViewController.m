@@ -13,7 +13,11 @@
 
 @implementation ResultsViewController
 
-
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	self.title = @"Results";
+}
 
 - (void)dealloc
 {

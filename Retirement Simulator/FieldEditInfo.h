@@ -29,5 +29,6 @@
 - (NSManagedObject*) managedObject;
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView*)tableView;
+- (CGFloat)cellHeightForWidth:(CGFloat)width;
 
 @end

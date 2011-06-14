@@ -22,6 +22,7 @@
 - (BOOL)valueInRange:(NSInteger)value lower:(NSInteger)low upper:(NSInteger)up;
 
 - (NSNumber*)displayValFromStoredVal:(NSNumber*)storedVal andFormatter:(NSNumberFormatter*)formatter;
+- (NSString*)displayStrFromStoredVal:(NSNumber*)storedVal andFormatter:(NSNumberFormatter*)formatter;
 
 @property(nonatomic,retain) NSNumberFormatter *currencyFormatter;
 @property(nonatomic,retain) NSNumberFormatter *decimalFormatter;

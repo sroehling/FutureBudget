@@ -11,14 +11,17 @@
 @class SectionInfo;
 
 #import "FieldEditInfo.h"
+#import "TableViewObjectAdder.h"
 
 @interface FormInfo : NSObject {
 @private
     NSMutableArray *sections;
     NSString *title;
+	id<TableViewObjectAdder> objectAdder; // optional
 }
 
 @property(nonatomic,retain) NSString *title;
+@property(nonatomic,retain) id<TableViewObjectAdder> objectAdder;
 
 - (void) addSection:(SectionInfo*)section;
 

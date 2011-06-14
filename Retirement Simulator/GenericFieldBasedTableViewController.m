@@ -147,6 +147,12 @@
 	return [sectionInfo viewHeightForSection];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	id<FieldEditInfo> feInfo = [self.formInfo fieldEditInfoIndexPath:indexPath];
+	return [feInfo cellHeightForWidth:300.0];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     SectionInfo* sectionInfo = [self.formInfo sectionInfoAtIndex:section];

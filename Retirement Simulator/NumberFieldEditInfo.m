@@ -78,6 +78,12 @@
     [numberFormatter release];
 }
 
+- (CGFloat)cellHeightForWidth:(CGFloat)width
+{
+	return 40.0;
+}
+
+
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     

@@ -101,6 +101,12 @@
     return descriptionStr;
 }
 
+- (NSString*)inlineDescription
+{
+	NSString *headlineDesc = [self description];
+	return [headlineDesc lowercaseString];
+}
+
 - (BOOL)eventRepeatsMoreThanOnce
 {
     EventPeriod periodEnum = (EventPeriod)[[self period] intValue];

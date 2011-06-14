@@ -68,6 +68,12 @@
 	return displayVal;
 }
 
+- (NSString*)displayStrFromStoredVal:(NSNumber*)storedVal andFormatter:(NSNumberFormatter*)formatter
+{
+	NSNumber *displayVal = [self displayValFromStoredVal:storedVal andFormatter:formatter];
+	return [formatter stringFromNumber:displayVal];
+}
+
 - (BOOL)valueInRange:(NSInteger)value lower:(NSInteger)low upper:(NSInteger)up
 {
     if((value >= low) && (value <= up))

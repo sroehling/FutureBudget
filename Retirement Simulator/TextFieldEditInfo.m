@@ -7,7 +7,6 @@
 //
 
 #import "TextFieldEditInfo.h"
-#import "TextFieldEditViewController.h"
 #import "TextFieldCell.h"
 #import "ManagedObjectFieldInfo.h"
 #import "ManagedObjectFieldEditInfo.h"
@@ -48,6 +47,11 @@
 - (BOOL)hasFieldEditController
 {
     return FALSE;
+}
+
+- (CGFloat)cellHeightForWidth:(CGFloat)width
+{
+	return 40.0;
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView

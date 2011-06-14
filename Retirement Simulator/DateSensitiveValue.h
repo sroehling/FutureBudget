@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class VariableValueRuntimeInfo;
 
 @interface DateSensitiveValue : NSManagedObject {
 @private
 }
 
 - (NSString*) valueDescription;
+
+- (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
 
 @end
