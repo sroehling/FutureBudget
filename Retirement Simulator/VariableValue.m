@@ -60,7 +60,7 @@
 	}
 	else
 	{
-		return [NSString stringWithFormat:@"initially %@ %@ every year (varies after)",valueRuntimeInfo.valueVerb,startingValDesc];
+		return [NSString stringWithFormat:@"initially %@ %@ (varies after)",valueRuntimeInfo.valueVerb,startingValDesc];
 		
 	}
 }

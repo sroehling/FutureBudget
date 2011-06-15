@@ -67,7 +67,7 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 40.0;
+	return 45.0;
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
