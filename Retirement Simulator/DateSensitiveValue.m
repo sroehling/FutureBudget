@@ -11,13 +11,19 @@
 
 @implementation DateSensitiveValue
 
-- (NSString*) valueDescription
+- (NSString*) valueDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
     assert(0); // must be overridden
 	return nil;
 }
 
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+	assert(0); // must be overridden
+	return nil;
+}
+
+- (NSString*) standaloneDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
 	assert(0); // must be overridden
 	return nil;

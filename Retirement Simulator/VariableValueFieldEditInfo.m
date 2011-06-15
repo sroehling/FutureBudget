@@ -51,19 +51,7 @@
 
 - (NSString*)detailTextLabel
 {
-    // TBD - Should we only show starting value, or something else/more
-	NSString *startingValDesc  =[[NumberHelper theHelper] 
-			displayStrFromStoredVal:self.variableVal.startingValue
-			andFormatter:self.varValRuntimeInfo.valueFormatter];
-	if([self.variableVal.valueChanges count] == 0)
-	{
-		return [NSString stringWithFormat:@"%@ every year",startingValDesc];
-	}
-	else
-	{
-		return [NSString stringWithFormat:@"Initially %@ (varies after)",startingValDesc];
-		
-	}
+	return [self.variableVal standaloneDescription:self.varValRuntimeInfo];
 }
 
 - (NSString*)textLabel

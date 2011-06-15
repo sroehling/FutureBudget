@@ -26,6 +26,12 @@
 	{
 		assert(theInput != nil);
 		self.input = theInput;
+		
+		self.inputCell = 
+		[[[FormFieldWithSubtitleTableCell alloc] initWithFrame:CGRectZero] autorelease];
+		self.inputCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;   
+		self.inputCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
 	}
 	return self;
 }
@@ -76,14 +82,7 @@
 
 - (void)configureInputCell
 {
-	if(self.inputCell == nil)
-	{
-		self.inputCell = 
-			[[[FormFieldWithSubtitleTableCell alloc] initWithFrame:CGRectZero] autorelease];
-		self.inputCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;   
-		self.inputCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-	self.inputCell.contentDescription.text = [self textLabel];	
+	self.inputCell.caption.text = [self textLabel];	
 	self.inputCell.subTitle.text = [self detailTextLabel];
 }
 

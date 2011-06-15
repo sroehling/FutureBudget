@@ -22,13 +22,20 @@
 	if(self)
 	{        
 		self.caption =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+		self.caption.backgroundColor = [UIColor clearColor];
+        self.caption.opaque = NO;
+        self.caption.textColor = [UIColor blackColor];
+		self.caption.textAlignment = UITextAlignmentLeft;
+        self.caption.highlightedTextColor = [UIColor whiteColor];
+        self.caption.font = [UIFont boldSystemFontOfSize:14];       
+		
 		[self.contentView addSubview: self.caption];        
 		
 		self.contentDescription =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];        
 		self.contentDescription.backgroundColor = [UIColor clearColor];
         self.contentDescription.opaque = NO;
         self.contentDescription.textColor = [UIColor blackColor];
-		self.contentDescription.textAlignment = UITextAlignmentLeft;
+		self.contentDescription.textAlignment = UITextAlignmentRight;
         self.contentDescription.highlightedTextColor = [UIColor whiteColor];
         self.contentDescription.font = [UIFont systemFontOfSize:14];       
 
@@ -86,9 +93,9 @@ static CGFloat kDisclosureWidth = 20.0;
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	[contentDescription sizeToFit];
+	[self.caption sizeToFit];
 	CGFloat cellHeight = kTopMargin;
-	cellHeight += CGRectGetHeight(self.contentDescription.bounds);
+	cellHeight += CGRectGetHeight(self.caption.bounds);
 	cellHeight += kLabelSpace;
 	cellHeight += [self subTitleHeightForWidth:width];
 	cellHeight += kBottomMargin;
@@ -112,20 +119,14 @@ static CGFloat kDisclosureWidth = 20.0;
 	
 	// Put the content description text label immediately to the right         
 	// w/10 pixel gap between them    
-	newFrame = contentDescription.frame;    
-	if([caption.text length] > 0)
-	{
-		newFrame.origin.x =CGRectGetMaxX(caption.frame)+kLabelSpace;    
-	}
-	else
-	{
-		newFrame.origin.x =CGRectGetMinX(self.contentView.bounds)+kLeftMargin;		
-	}
+	newFrame = contentDescription.frame; 
+	newFrame.origin.x = CGRectGetMaxX(self.contentView.bounds)-kRightMargin-
+		CGRectGetWidth(contentDescription.frame);  
 	newFrame.origin.y =CGRectGetMinY(self.contentView.bounds)+kTopMargin;    
 	[contentDescription setFrame: newFrame];
 	
 	CGFloat subTitleX = CGRectGetMinX(self.contentView.bounds) + kLeftMargin;
-	CGFloat subTitleY = CGRectGetMaxY(self.contentDescription.bounds)+kLabelSpace;
+	CGFloat subTitleY = CGRectGetMaxY(self.caption.bounds)+kLabelSpace;
 	
 	CGFloat overallSubtitleWidth = CGRectGetWidth(self.contentView.bounds);
 	

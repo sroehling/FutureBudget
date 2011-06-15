@@ -12,10 +12,13 @@
 #import "VariableValueRuntimeInfo.h"
 #import "FieldEditInfo.h"
 
+@class FormFieldWithSubtitleTableCell;
+
 @interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private 
 		ManagedObjectFieldInfo *defafaultFixedValFieldInfo;
 		VariableValueRuntimeInfo *varValRuntimeInfo;
+		FormFieldWithSubtitleTableCell *valueCell;
 
 }
 
@@ -26,6 +29,7 @@
       andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo;
 
 @property(nonatomic,retain) ManagedObjectFieldInfo *defafaultFixedValFieldInfo;
+@property(nonatomic,retain) FormFieldWithSubtitleTableCell *valueCell;
 
 + (DateSensitiveValueFieldEditInfo*)createForObject:
 			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo

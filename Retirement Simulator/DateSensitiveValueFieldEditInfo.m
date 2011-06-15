@@ -14,12 +14,35 @@
 #import "SelectableObjectTableEditViewController.h"
 #import "ColorHelper.h"
 #import "ManagedObjectFieldInfo.h"
+#import "FormFieldWithSubtitleTableCell.h"
 
 @implementation DateSensitiveValueFieldEditInfo
 
 @synthesize varValRuntimeInfo;
 @synthesize defafaultFixedValFieldInfo;
+@synthesize valueCell;
 
+- (void) configureValueCell
+{
+	self.valueCell.caption.text = [self textLabel];
+    if([self.fieldInfo fieldIsInitializedInParentObject])
+    {
+        self.valueCell.contentDescription.textColor = [ColorHelper blueTableTextColor];
+        self.valueCell.contentDescription.text = [self detailTextLabel];
+		DateSensitiveValue *theValue = (DateSensitiveValue*)[self.fieldInfo getFieldValue];
+		self.valueCell.subTitle.text = [theValue standaloneDescription:self.varValRuntimeInfo];
+    }
+    else
+    {
+        // Set the text color on the label to light gray to indicate that
+        // the value needs to be filled in (the same as a placeholder
+        // in a text field).
+        self.valueCell.contentDescription.textColor = [ColorHelper promptTextColor];
+        self.valueCell.contentDescription.text = @"Enter a Value";
+        self.valueCell.subTitle.text = @"";
+    }
+	
+}
 
 - (id)initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
 	andDefaultFixedValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
@@ -33,6 +56,12 @@
         
         assert(theVarValRuntimeInfo != nil);
         self.varValRuntimeInfo = theVarValRuntimeInfo;
+		
+		self.valueCell = [[[FormFieldWithSubtitleTableCell alloc] init] autorelease];
+		self.valueCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		self.valueCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		[self configureValueCell];
     }
     return self;
 }
@@ -74,7 +103,7 @@
 - (NSString*)detailTextLabel
 {
     DateSensitiveValue *dsValue = [self.fieldInfo getFieldValue];
-    return [dsValue valueDescription];
+    return [dsValue valueDescription:self.varValRuntimeInfo];
 }
 
 - (UIViewController*)fieldEditController
@@ -98,37 +127,17 @@
     return TRUE;
 }
 
+
+
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 40.0;
+	return [self.valueCell cellHeightForWidth:width];
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
-    // TBD - This block of code is identical as for the variable dates ...
-    // can it somehow be shared between the 2.
-    assert(tableView!=nil);
-    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:tableView];
-
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    cell.textLabel.text = [self textLabel];
-    if([self.fieldInfo fieldIsInitializedInParentObject])
-    {
-        cell.detailTextLabel.textColor = [ColorHelper blueTableTextColor];
-        cell.detailTextLabel.text = [self detailTextLabel];
-    }
-    else
-    {
-        // Set the text color on the label to light gray to indicate that
-        // the value needs to be filled in (the same as a placeholder
-        // in a text field).
-        cell.detailTextLabel.textColor = [ColorHelper promptTextColor];
-        cell.detailTextLabel.text = @"Enter a Value";
-        
-    }
-    return cell;
+	[self configureValueCell];
+    return self.valueCell;
 }
 
 - (void) dealloc
@@ -136,6 +145,7 @@
     [super dealloc];
     [varValRuntimeInfo release];
     [defafaultFixedValFieldInfo release];
+	[valueCell release];
 }
 
 

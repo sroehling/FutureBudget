@@ -14,17 +14,23 @@
 @implementation FixedValue
 @dynamic value;
 
-- (NSString*) valueDescription
+- (NSString*) valueDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
-    return @"Fixed value";
+    return [[NumberHelper theHelper] displayStrFromStoredVal:self.value andFormatter:valueRuntimeInfo.valueFormatter];
 }
 
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
 	NSString *displayValDesc  =[[NumberHelper theHelper] displayStrFromStoredVal:self.value andFormatter:valueRuntimeInfo.valueFormatter];
 	
-	return [NSString stringWithFormat:@"%@ %@ every year",valueRuntimeInfo.valueVerb,
-			displayValDesc];
+	return [NSString stringWithFormat:@"%@ every year",displayValDesc];
 }
+
+- (NSString*) standaloneDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+	return [self inlineDescription:valueRuntimeInfo];
+}
+
+
 
 @end

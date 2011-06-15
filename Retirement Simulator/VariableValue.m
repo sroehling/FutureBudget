@@ -45,14 +45,16 @@
     [self didChangeValueForKey:@"valueChanges" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
 
-- (NSString*) valueDescription
+- (NSString*) valueDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
-    return @"Variable value";
+    return [[NumberHelper theHelper] 
+			displayStrFromStoredVal:self.startingValue andFormatter:valueRuntimeInfo.valueFormatter];
 }
 
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
-	NSString *startingValDesc  =[[NumberHelper theHelper] displayStrFromStoredVal:self.startingValue andFormatter:valueRuntimeInfo.valueFormatter];
+	NSString *startingValDesc  =[[NumberHelper theHelper] 
+		displayStrFromStoredVal:self.startingValue andFormatter:valueRuntimeInfo.valueFormatter];
 	if([self.valueChanges count] == 0)
 	{
 		return [NSString stringWithFormat:@"%@ %@ every year",valueRuntimeInfo.valueVerb,
@@ -63,6 +65,22 @@
 		return [NSString stringWithFormat:@"initially %@ %@ (varies after)",valueRuntimeInfo.valueVerb,startingValDesc];
 		
 	}
+}
+
+- (NSString*) standaloneDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+	NSString *startingValDesc  =[[NumberHelper theHelper] 
+								 displayStrFromStoredVal:self.startingValue
+								 andFormatter:valueRuntimeInfo.valueFormatter];
+	if([self.valueChanges count] == 0)
+	{
+		return [NSString stringWithFormat:@"%@ every year",startingValDesc];
+	}
+	else
+	{
+		return [NSString stringWithFormat:@"Initially %@ (varies after)",startingValDesc];
+		
+	}	
 }
 
 

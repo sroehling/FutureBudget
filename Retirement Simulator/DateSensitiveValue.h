@@ -15,8 +15,8 @@
 @private
 }
 
-- (NSString*) valueDescription;
-
+- (NSString*) valueDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
+- (NSString*) standaloneDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
 
 @end
