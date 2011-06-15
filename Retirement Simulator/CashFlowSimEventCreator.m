@@ -11,6 +11,8 @@
 
 #import "ExpenseInput.h"
 #import "EventRepeater.h"
+#import "CashFlowInput.h"
+#import "VariableDate.h"
 
 @protocol SimEventCreator;
 
@@ -43,7 +45,7 @@
     }
     eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:self.cashFlow.repeatFrequency 
-                     andStartDate:self.cashFlow.transactionDate];
+                     andStartDate:self.cashFlow.startDate.date];
    
 }
 
