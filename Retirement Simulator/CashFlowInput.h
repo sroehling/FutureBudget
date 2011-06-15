@@ -22,7 +22,6 @@
 // TBD - Should amount be a variable value? (like growth rates)
 @property (nonatomic, retain) NSNumber * amount;
 @property (nonatomic,retain) DateSensitiveValue *amountGrowthRate; 
-@property (nonatomic, retain) NSDate * transactionDate;
 @property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
 @property (nonatomic,retain) VariableDate *startDate;
 @property (nonatomic,retain) VariableDate *endDate;

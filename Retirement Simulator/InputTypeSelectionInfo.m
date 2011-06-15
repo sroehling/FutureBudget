@@ -33,10 +33,7 @@
     //      newInput.amount
     //      newInput.startDate
     //      newInput.endDate
-    //      newInput.amountGrowthRate
-    
-    newInput.transactionDate = [NSDate date];
-    
+    //      newInput.amountGrowthRat
     
     FixedValue *fixedGrowthRate = 
     (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];

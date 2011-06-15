@@ -364,8 +364,6 @@
 		0049DC7013A2884D00B27046 /* Input Creation */ = {
 			isa = PBXGroup;
 			children = (
-				00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */,
-				00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */,
 				00ADB31B13844F6F00064651 /* InputTypeSelectionViewController.h */,
 				00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */,
 				00ADB3201384520E00064651 /* InputTypeSelectionInfo.h */,
@@ -625,6 +623,7 @@
 		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
+				0087923013A9497400CA9DA7 /* Input Detail */,
 				0049DC7113A28AC600B27046 /* Input List */,
 				0049DC7013A2884D00B27046 /* Input Creation */,
 				004A59A613A0269F009FEF25 /* Repeat Frequency */,
@@ -682,6 +681,15 @@
 				00ADB3131383705300064651 /* InputEventCreatorCreator.m */,
 			);
 			name = "Simulator Inputs";
+			sourceTree = "<group>";
+		};
+		0087923013A9497400CA9DA7 /* Input Detail */ = {
+			isa = PBXGroup;
+			children = (
+				00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */,
+				00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */,
+			);
+			name = "Input Detail";
 			sourceTree = "<group>";
 		};
 		00A36BC6136C6CAD008A5C4C = {

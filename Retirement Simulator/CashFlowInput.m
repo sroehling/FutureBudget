@@ -13,7 +13,6 @@
 
 @implementation CashFlowInput
 @dynamic amount;
-@dynamic transactionDate;
 @dynamic repeatFrequency;
 @dynamic amountGrowthRate;
 @dynamic startDate;
