@@ -7,7 +7,7 @@
 //
 
 #import "ValueSubtitleTableCell.h"
-
+#import "ColorHelper.h"
 
 @implementation ValueSubtitleTableCell
 
@@ -39,7 +39,7 @@ static CGFloat kLabelSpace = 2.0;
 		self.valueDescription =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];        
 		self.valueDescription.backgroundColor = [UIColor clearColor];
         self.valueDescription.opaque = NO;
-        self.valueDescription.textColor = [UIColor blackColor];
+        self.valueDescription.textColor = [ColorHelper blueTableTextColor];
 		self.valueDescription.textAlignment = UITextAlignmentRight;
         self.valueDescription.highlightedTextColor = [UIColor whiteColor];
         self.valueDescription.font = [UIFont systemFontOfSize:14];       

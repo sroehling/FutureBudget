@@ -15,10 +15,18 @@
 #import "SectionInfo.h"
 #import "DateHelper.h"
 #import "MilestoneDateFormPopulator.h"
+#import "ValueSubtitleTableCell.h"
 
 @implementation MilestoneDateFieldEditInfo
 
 @synthesize milestoneDate;
+@synthesize milestoneCell;
+
+- (void) configureCell
+{
+	self.milestoneCell.caption.text = [self textLabel];
+    self.milestoneCell.valueDescription.text = [self detailTextLabel];
+}
 
 + (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate *)theMilestoneDate
 {
@@ -33,6 +41,9 @@
     if(self)
     {
         self.milestoneDate = theMilestoneDate;
+		
+		self.milestoneCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
+		[self configureCell];
     }
     return self;
 }
@@ -41,6 +52,7 @@
 {
     [super dealloc];
     [milestoneDate release];
+	[milestoneCell release];
 }
 
 - (NSString*)detailTextLabel
@@ -67,24 +79,14 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 45.0;
+	return [self.milestoneCell cellHeight];
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     assert(tableView!=nil);
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Milestones"];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] 
-            initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Milestones"] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [self textLabel];
-    cell.detailTextLabel.text = [self detailTextLabel];
-    return cell;
+    [self configureCell];
+    return self.milestoneCell;
 }
 
 
