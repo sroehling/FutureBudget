@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSDate *date;
 
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat;
+- (NSString *)dateLabel;
 
 @end

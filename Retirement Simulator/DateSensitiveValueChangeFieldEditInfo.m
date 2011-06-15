@@ -12,11 +12,20 @@
 #import "VariableValueRuntimeInfo.h"
 #import "DateHelper.h"
 #import "NumberHelper.h"
+#import "ValueSubtitleTableCell.h"
 
 @implementation DateSensitiveValueChangeFieldEditInfo
 
 @synthesize varValInfo;
 @synthesize valChange;
+@synthesize valChangeCell;
+
+- (void) configureCell
+{
+	self.valChangeCell.caption.text = [[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate];
+	self.valChangeCell.valueDescription.text = [[NumberHelper theHelper] displayStrFromStoredVal:self.valChange.newValue andFormatter:self.varValInfo.valueFormatter];;
+
+}
 
 - (id) initWithValueChange:(DateSensitiveValueChange*)valueChange 
 andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
@@ -29,6 +38,10 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 			
 			assert(valueChange!=nil);
 			self.valChange = valueChange;
+			
+			self.valChangeCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
+			[self configureCell];
+
 		}
 		return self;
 }
@@ -44,6 +57,7 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 	[super dealloc];
 	[varValInfo release];
 	[valChange release];
+	[valChangeCell release];
 }
 
 - (NSString*)detailTextLabel
@@ -74,24 +88,14 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 40.0;
+	return [self.valChangeCell cellHeight];
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     assert(tableView!=nil);
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ValueChanges"];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] 
-				 initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ValueChanges"] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [self detailTextLabel];
- //   cell.detailTextLabel.text = [self detailTextLabel];
-    return cell;
+	[self configureCell];
+    return self.valChangeCell;
 }
 
 

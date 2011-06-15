@@ -49,6 +49,7 @@
 		00637A821385D509001E02F1 /* FixedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A811385D509001E02F1 /* FixedValue.m */; };
 		00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */; };
 		00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A8A1386D99A001E02F1 /* InflationRate.m */; };
+		0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */; };
 		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
 		00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAB138EC87A00663C7F /* SectionInfo.m */; };
 		00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAE138ECA8700663C7F /* FormInfo.m */; };
@@ -195,6 +196,8 @@
 		00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFieldEditInfo.m; sourceTree = "<group>"; };
 		00637A891386D999001E02F1 /* InflationRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InflationRate.h; sourceTree = "<group>"; };
 		00637A8A1386D99A001E02F1 /* InflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InflationRate.m; sourceTree = "<group>"; };
+		0087922C13A8F4B400CA9DA7 /* ValueSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueSubtitleTableCell.h; sourceTree = "<group>"; };
+		0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueSubtitleTableCell.m; sourceTree = "<group>"; };
 		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
 		00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableAddViewController.m; sourceTree = "<group>"; };
 		00A14BAA138EC87900663C7F /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
@@ -391,6 +394,8 @@
 			children = (
 				0049DC8313A6550C00B27046 /* FormFieldWithSubtitleTableCell.h */,
 				0049DC8413A6550C00B27046 /* FormFieldWithSubtitleTableCell.m */,
+				0087922C13A8F4B400CA9DA7 /* ValueSubtitleTableCell.h */,
+				0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -942,6 +947,7 @@
 				0041263713A6A653008F0647 /* InputListFormInfoCreator.m in Sources */,
 				0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */,
 				0041263E13A7DED9008F0647 /* InputListObjectAdder.m in Sources */,
+				0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

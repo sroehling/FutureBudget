@@ -19,4 +19,11 @@
 	return nil;
 }
 
+- (NSString *)dateLabel
+{
+	assert(0); // must be overridden
+	return nil;
+
+}
+
 @end

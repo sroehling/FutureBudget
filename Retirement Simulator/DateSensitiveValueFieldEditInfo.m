@@ -14,7 +14,7 @@
 #import "SelectableObjectTableEditViewController.h"
 #import "ColorHelper.h"
 #import "ManagedObjectFieldInfo.h"
-#import "FormFieldWithSubtitleTableCell.h"
+#import "ValueSubtitleTableCell.h"
 
 @implementation DateSensitiveValueFieldEditInfo
 
@@ -27,19 +27,19 @@
 	self.valueCell.caption.text = [self textLabel];
     if([self.fieldInfo fieldIsInitializedInParentObject])
     {
-        self.valueCell.contentDescription.textColor = [ColorHelper blueTableTextColor];
-        self.valueCell.contentDescription.text = [self detailTextLabel];
+        self.valueCell.valueDescription.textColor = [ColorHelper blueTableTextColor];
+        self.valueCell.valueDescription.text = [self detailTextLabel];
 		DateSensitiveValue *theValue = (DateSensitiveValue*)[self.fieldInfo getFieldValue];
-		self.valueCell.subTitle.text = [theValue standaloneDescription:self.varValRuntimeInfo];
+		self.valueCell.valueSubtitle.text = [theValue standaloneDescription:self.varValRuntimeInfo];
     }
     else
     {
         // Set the text color on the label to light gray to indicate that
         // the value needs to be filled in (the same as a placeholder
         // in a text field).
-        self.valueCell.contentDescription.textColor = [ColorHelper promptTextColor];
-        self.valueCell.contentDescription.text = @"Enter a Value";
-        self.valueCell.subTitle.text = @"";
+        self.valueCell.valueDescription.textColor = [ColorHelper promptTextColor];
+        self.valueCell.valueDescription.text = @"Enter a Value";
+        self.valueCell.valueSubtitle.text = @"";
     }
 	
 }
@@ -57,7 +57,7 @@
         assert(theVarValRuntimeInfo != nil);
         self.varValRuntimeInfo = theVarValRuntimeInfo;
 		
-		self.valueCell = [[[FormFieldWithSubtitleTableCell alloc] init] autorelease];
+		self.valueCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 		self.valueCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		self.valueCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
@@ -131,7 +131,7 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return [self.valueCell cellHeightForWidth:width];
+	return [self.valueCell cellHeight];
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView

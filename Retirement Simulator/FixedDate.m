@@ -17,4 +17,9 @@
 	return [withFormat stringFromDate:self.date];
 }
 
+- (NSString *)dateLabel
+{
+	return @""; // no label
+}
+
 @end

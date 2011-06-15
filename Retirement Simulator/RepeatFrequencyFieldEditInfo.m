@@ -11,8 +11,18 @@
 #import "EventRepeatFrequency.h"
 #import "TableViewHelper.h"
 #import "StringValidation.h"
+#import "FormFieldWithSubtitleTableCell.h"
 
 @implementation RepeatFrequencyFieldEditInfo
+
+@synthesize freqCell;
+
+- (void)configureFreqCell
+{
+	self.freqCell.caption.text = [self textLabel];
+    self.freqCell.contentDescription.text = [self detailTextLabel];
+
+}
 
 + (RepeatFrequencyFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                              andLabel:(NSString*)label
@@ -30,6 +40,19 @@
     return fieldEditInfo;
 }
 
+- (id) initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo
+{
+	self = [super initWithFieldInfo:theFieldInfo];
+	if(self)
+	{
+		self.freqCell = [[[FormFieldWithSubtitleTableCell alloc] init] autorelease];
+		self.freqCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		self.freqCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		[self configureFreqCell];
+	}
+	return self;
+}
+
 - (NSString*)detailTextLabel
 {
     
@@ -39,13 +62,10 @@
 
 - (UIViewController*)fieldEditController
 {
-    
-    
     RepeatFrequencyEditViewController *repeatController = 
     [[RepeatFrequencyEditViewController alloc] initWithFieldInfo:fieldInfo];
     [repeatController autorelease];
     return repeatController;
-
 }
 
 - (BOOL)hasFieldEditController
@@ -55,18 +75,19 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 40.0;
+	return [self.freqCell cellHeightForWidth:width];
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
-//    assert(tableView!=nil);
-    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:tableView];
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [self textLabel];
-    cell.detailTextLabel.text = [self detailTextLabel];
-    return cell;
+	[self configureFreqCell];
+	return self.freqCell;
+}
+
+- (void) dealloc
+{
+	[super dealloc];
+	[freqCell release];
 }
 
 @end

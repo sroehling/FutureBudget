@@ -7,6 +7,7 @@
 //
 
 #import "FormFieldWithSubtitleTableCell.h"
+#import "ColorHelper.h"
 
 
 @implementation FormFieldWithSubtitleTableCell
@@ -34,7 +35,7 @@
 		self.contentDescription =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];        
 		self.contentDescription.backgroundColor = [UIColor clearColor];
         self.contentDescription.opaque = NO;
-        self.contentDescription.textColor = [UIColor blackColor];
+        self.contentDescription.textColor = [ColorHelper blueTableTextColor];
 		self.contentDescription.textAlignment = UITextAlignmentRight;
         self.contentDescription.highlightedTextColor = [UIColor whiteColor];
         self.contentDescription.font = [UIFont systemFontOfSize:14];       
@@ -58,18 +59,12 @@
 	return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 static CGFloat kLeftMargin = 10.0;
 static CGFloat kRightMargin = 10.0;
-static CGFloat kTopMargin = 5.0;
-static CGFloat kBottomMargin = 5.0;
-static CGFloat kLabelSpace = 10.0;
+static CGFloat kTopMargin = 4.0;
+static CGFloat kBottomMargin = 4.0;
+static CGFloat kLabelSpace = 4.0;
 static CGFloat kDisclosureWidth = 20.0;
 
 - (CGFloat)subTitleWidthWithMargin:(CGFloat)overallWidth
@@ -79,16 +74,24 @@ static CGFloat kDisclosureWidth = 20.0;
 
 - (CGFloat)subTitleHeightForWidth:(CGFloat)overallWidth;
 {
-	CGSize constraintSize =CGSizeMake([UIScreen mainScreen].bounds.size.width-30.0, MAXFLOAT);
-//	CGFloat subTitleWidth = [self subTitleWidthWithMargin:overallWidth];
-	CGFloat subTitleWidth = [self subTitleWidthWithMargin:constraintSize.width];
-	
-	CGSize maxSize = CGSizeMake(subTitleWidth, 300);
-	
-	CGSize subTitleSize = [self.subTitle.text sizeWithFont:self.subTitle.font
-										 constrainedToSize:maxSize
-											 lineBreakMode:self.subTitle.lineBreakMode];
-	return subTitleSize.height;
+	if([self.subTitle.text length] == 0)
+	{
+		return 0.0;
+	}
+	else
+	{
+		CGSize constraintSize =CGSizeMake([UIScreen mainScreen].bounds.size.width-30.0, MAXFLOAT);
+		//	CGFloat subTitleWidth = [self subTitleWidthWithMargin:overallWidth];
+		CGFloat subTitleWidth = [self subTitleWidthWithMargin:constraintSize.width];
+		
+		CGSize maxSize = CGSizeMake(subTitleWidth, 300);
+		
+		CGSize subTitleSize = [self.subTitle.text sizeWithFont:self.subTitle.font
+											 constrainedToSize:maxSize
+												 lineBreakMode:self.subTitle.lineBreakMode];
+		return subTitleSize.height;
+		
+	}
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -96,8 +99,12 @@ static CGFloat kDisclosureWidth = 20.0;
 	[self.caption sizeToFit];
 	CGFloat cellHeight = kTopMargin;
 	cellHeight += CGRectGetHeight(self.caption.bounds);
-	cellHeight += kLabelSpace;
-	cellHeight += [self subTitleHeightForWidth:width];
+	CGFloat subTitleHeight = [self subTitleHeightForWidth:width];
+	if(subTitleHeight > 0.0)
+	{
+		cellHeight += kLabelSpace;
+		cellHeight += subTitleHeight;		
+	}
 	cellHeight += kBottomMargin;
 	return cellHeight;
 }

@@ -15,12 +15,35 @@
 #import "DateHelper.h"
 #import "ManagedObjectFieldInfo.h"
 #import "ColorHelper.h"
+#import "ValueSubtitleTableCell.h"
 
 @implementation VariableDateFieldEditInfo
 
-
 @synthesize defaultValFieldInfo;
+@synthesize dateCell;
 
+- (void)configureDateCell
+{
+	self.dateCell.caption.text = [self textLabel];
+	
+    if([self.fieldInfo fieldIsInitializedInParentObject])
+    {
+        self.dateCell.valueDescription.textColor = [ColorHelper blueTableTextColor];
+        self.dateCell.valueDescription.text = [self detailTextLabel];
+		VariableDate *theDate = (VariableDate*)[self.fieldInfo getFieldValue];
+		self.dateCell.valueSubtitle.text = [theDate dateLabel];
+    }
+    else
+    {
+        // Set the text color on the label to light gray to indicate that
+        // the value needs to be filled in (the same as a placeholder
+        // in a text field).
+        self.dateCell.valueDescription.textColor = [ColorHelper promptTextColor];
+        self.dateCell.valueDescription.text = @"Enter a Date";
+		self.dateCell.valueSubtitle.text = @"";
+    }
+	
+}
 
 - (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo andDefaultValFieldInfo:
         (ManagedObjectFieldInfo*)theDefaultFieldInfo
@@ -31,6 +54,11 @@
         assert(theDefaultFieldInfo!=nil);
         assert([theDefaultFieldInfo fieldIsInitializedInParentObject]);
         self.defaultValFieldInfo = theDefaultFieldInfo;
+
+		self.dateCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
+		self.dateCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		self.dateCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		[self configureDateCell];
     }
     return self;
 }
@@ -65,6 +93,8 @@
     return fieldEditInfo;
 }
 
+
+
 - (NSString*)detailTextLabel
 {
     assert([self.fieldInfo fieldIsInitializedInParentObject]);
@@ -95,34 +125,15 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 40.0;
+	return [self.dateCell cellHeight];
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     assert(tableView!=nil);
+	[self configureDateCell];
     
-    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:tableView];
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [self textLabel];
-
-    if([self.fieldInfo fieldIsInitializedInParentObject])
-    {
-        cell.detailTextLabel.textColor = [ColorHelper blueTableTextColor];
-        cell.detailTextLabel.text = [self detailTextLabel];
-    }
-    else
-    {
-        // Set the text color on the label to light gray to indicate that
-        // the value needs to be filled in (the same as a placeholder
-        // in a text field).
-        cell.detailTextLabel.textColor = [ColorHelper promptTextColor];
-        cell.detailTextLabel.text = @"Enter a Date";
-
-    }
-    
-    return cell;
+    return self.dateCell;
 }
 
 

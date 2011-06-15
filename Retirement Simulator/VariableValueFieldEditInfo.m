@@ -19,6 +19,7 @@
 #import "VariableValueRuntimeInfo.h"
 #import "GenericFieldBasedTableEditViewController.h"
 #import "VariableValueFormInfoCreator.h"
+#import "ValueSubtitleTableCell.h"
 
 
 @implementation VariableValueFieldEditInfo
@@ -26,7 +27,16 @@
 
 @synthesize variableVal;
 @synthesize varValRuntimeInfo;
+@synthesize varValueCell;
 
+
+- (void) configureCell
+{
+	self.varValueCell.caption.text = [self textLabel];
+	self.varValueCell.valueDescription.text = [self.variableVal valueDescription:self.varValRuntimeInfo];
+    self.varValueCell.valueSubtitle.text = [self.variableVal standaloneDescription:self.varValRuntimeInfo];
+
+}
 
 - (id)initWithVariableValue:(VariableValue*)varValue
 	   andVarValRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
@@ -39,6 +49,10 @@
 		self.variableVal = varValue;
 		assert(theVarValRuntimeInfo != nil);
 		self.varValRuntimeInfo = theVarValRuntimeInfo;
+		
+		self.varValueCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
+		[self configureCell];
+
     }
     return self;
 }
@@ -47,6 +61,8 @@
 {
     [super dealloc];
     [variableVal release];
+	[varValRuntimeInfo release];
+	[varValueCell release];
 }
 
 - (NSString*)detailTextLabel
@@ -79,26 +95,14 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 45.0;
+	return [self.varValueCell cellHeight];
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
-{
-    // TODO - Push this, along with code in milestone field edit info into helper
-    // function to create table cells with subtitle.
-    assert(tableView!=nil);
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VariableValues"];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] 
-                 initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"VariableValues"] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [self textLabel];
-    cell.detailTextLabel.text = [self detailTextLabel];
-    return cell;
+{;
+	[self configureCell];
+	return [self varValueCell];
+
 }
 
 

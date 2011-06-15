@@ -46,8 +46,7 @@
 - (UIViewController*)milestoneDateEditViewController:(MilestoneDate*)milestoneDate
 {
     [self populateForMilestoneDate:milestoneDate];
-    UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc] 
-                                     initWithFormInfo:self.formInfo] autorelease];
+    UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc] initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:self.formInfo]] autorelease];
 
     return controller;
     

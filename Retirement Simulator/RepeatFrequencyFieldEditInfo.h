@@ -11,9 +11,14 @@
 #import "FieldEditInfo.h"
 #import "ManagedObjectFieldEditInfo.h"
 
+@class FormFieldWithSubtitleTableCell;
+
 @interface RepeatFrequencyFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
-    
+    @private
+		FormFieldWithSubtitleTableCell *freqCell;
 }
+
+@property(nonatomic,retain) FormFieldWithSubtitleTableCell *freqCell;
 
 + (RepeatFrequencyFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                                         andLabel:(NSString*)label;
