@@ -24,7 +24,10 @@
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
-	NSString *amountDisplay = [[NumberHelper theHelper].currencyFormatter stringFromNumber:cashFlow.amount];
+	VariableValueRuntimeInfo *amountRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"CashFlowAmount" andFormatter:[NumberHelper theHelper].currencyFormatter 
+			andValueTitle:@"Amount" andValueVerb:@"" andPeriodDesc:@""] autorelease];
+	NSString *amountDisplay = [cashFlow.amount inlineDescription:amountRuntimeInfo];
+
 	NSString *startDateDisplay = [cashFlow.startDate 
 								  inlineDescription:[DateHelper theHelper].mediumDateFormatter];
 	NSString *repeatDesc = [cashFlow.repeatFrequency inlineDescription];
@@ -37,7 +40,7 @@
 	}
 	
 	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"InflationRate" andFormatter:[NumberHelper theHelper].percentFormatter andValueTitle:@"Inflation Rate"
-		andValueVerb:@"inflate amount"] autorelease];
+		andValueVerb:@"inflate amount" andPeriodDesc:@"every year"] autorelease];
 	NSString *inflationDesc = [cashFlow.amountGrowthRate inlineDescription:inflationRuntimeInfo];
 	self.generatedDesc = [NSString stringWithFormat:@"%@ starting on %@, repeating %@%@, %@",
 						  amountDisplay,startDateDisplay,repeatDesc,untilDesc,inflationDesc];

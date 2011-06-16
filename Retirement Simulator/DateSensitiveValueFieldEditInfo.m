@@ -30,7 +30,7 @@
         self.valueCell.valueDescription.textColor = [ColorHelper blueTableTextColor];
         self.valueCell.valueDescription.text = [self detailTextLabel];
 		DateSensitiveValue *theValue = (DateSensitiveValue*)[self.fieldInfo getFieldValue];
-		self.valueCell.valueSubtitle.text = [theValue standaloneDescription:self.varValRuntimeInfo];
+		self.valueCell.valueSubtitle.text = [theValue valueSubtitle:self.varValRuntimeInfo];
     }
     else
     {

@@ -17,6 +17,13 @@
 	return nil;
 }
 
+- (NSString*) valueSubtitle:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+    assert(0); // must be overridden
+	return nil;
+}
+
+
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
 	assert(0); // must be overridden

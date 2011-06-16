@@ -16,6 +16,7 @@
 }
 
 - (NSString*) valueDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
+- (NSString*) valueSubtitle:(VariableValueRuntimeInfo*)valueRuntimeInfo;
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
 - (NSString*) standaloneDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
 

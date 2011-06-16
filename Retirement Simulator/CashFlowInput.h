@@ -20,7 +20,7 @@
 @private
 }
 // TBD - Should amount be a variable value? (like growth rates)
-@property (nonatomic, retain) NSNumber * amount;
+@property (nonatomic, retain) DateSensitiveValue *amount;
 @property (nonatomic,retain) DateSensitiveValue *amountGrowthRate; 
 @property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
 @property (nonatomic,retain) VariableDate *startDate;
@@ -37,5 +37,6 @@
 // defaultFixedGrowthRate serves the same purpose as 
 // fixedStartDate.
 @property(nonatomic,retain) FixedValue *defaultFixedGrowthRate;
+@property(nonatomic,retain) FixedValue *defaultFixedAmount;
 
 @end

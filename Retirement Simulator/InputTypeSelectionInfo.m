@@ -39,7 +39,12 @@
     (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
     fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
     newInput.defaultFixedGrowthRate = fixedGrowthRate;
-    
+
+    FixedValue *fixedAmount = 
+    (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
+    fixedAmount.value = [NSNumber numberWithDouble:0.0];
+    newInput.defaultFixedAmount = fixedGrowthRate;
+
     FixedDate *fixedStartDate = (FixedDate*)[[
                 DataModelController theDataModelController] insertObject:@"FixedDate"];
     fixedStartDate.date = [NSDate date];

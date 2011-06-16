@@ -51,14 +51,19 @@
 			displayStrFromStoredVal:self.startingValue andFormatter:valueRuntimeInfo.valueFormatter];
 }
 
+- (NSString*) valueSubtitle:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+	return [self inlineDescription:valueRuntimeInfo];
+}
+
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
 	NSString *startingValDesc  =[[NumberHelper theHelper] 
 		displayStrFromStoredVal:self.startingValue andFormatter:valueRuntimeInfo.valueFormatter];
 	if([self.valueChanges count] == 0)
 	{
-		return [NSString stringWithFormat:@"%@ %@ every year",valueRuntimeInfo.valueVerb,
-				startingValDesc];
+		return [NSString stringWithFormat:@"%@ %@%@",valueRuntimeInfo.valueVerb,
+				startingValDesc,[valueRuntimeInfo inlinePeriodDesc]];
 	}
 	else
 	{
@@ -74,7 +79,8 @@
 								 andFormatter:valueRuntimeInfo.valueFormatter];
 	if([self.valueChanges count] == 0)
 	{
-		return [NSString stringWithFormat:@"%@ every year",startingValDesc];
+		return [NSString stringWithFormat:@"%@%@",
+				startingValDesc,[valueRuntimeInfo inlinePeriodDesc]];
 	}
 	else
 	{

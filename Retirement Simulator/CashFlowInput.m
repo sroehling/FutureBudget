@@ -20,6 +20,7 @@
 @dynamic endDate;
 @dynamic fixedEndDate;
 @dynamic defaultFixedGrowthRate;
+@dynamic defaultFixedAmount;
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
 {

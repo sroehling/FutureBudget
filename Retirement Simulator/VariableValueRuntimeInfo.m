@@ -15,9 +15,11 @@
 @synthesize entityName;
 @synthesize valueTitle;
 @synthesize valueVerb;
+@synthesize periodDesc;
 
 - (id) initWithEntityName:(NSString*)entity andFormatter:(NSNumberFormatter*)valFormatter
 	andValueTitle:(NSString *)title andValueVerb:(NSString*)verb
+	andPeriodDesc:(NSString*)thePeriodDesc
 {
 	self = [super init];
 	if(self)
@@ -31,6 +33,7 @@
 		self.entityName = entity;
 		self.valueTitle = title;
 		self.valueVerb = verb;
+		self.periodDesc = thePeriodDesc;
 	}
 	return self;
 }
@@ -42,6 +45,19 @@
 	[entityName release];
 	[valueTitle release];
 	[valueVerb release];
+	[periodDesc release];
+}
+
+- (NSString *)inlinePeriodDesc;
+{
+	NSString *periodDescStr = @"";
+	if([self.periodDesc length] > 0)
+	{
+		periodDescStr = [NSString stringWithFormat:@" %@",
+					  self.periodDesc];		  
+	}
+	return periodDescStr;
+
 }
 
 @end

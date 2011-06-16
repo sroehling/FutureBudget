@@ -66,13 +66,19 @@
     
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = @"Amount";
-    NSNumberFormatter *amountFormatter = [NumberHelper theHelper].currencyFormatter;
-    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
-            createForObject:cashFlow andKey:@"amount" andLabel:@"Amount"
-            andNumberFormatter:amountFormatter]];
+	
+	VariableValueRuntimeInfo *amountRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"CashFlowAmount" andFormatter:[NumberHelper theHelper].currencyFormatter 
+			andValueTitle:@"Amount" andValueVerb:@"" 
+			andPeriodDesc:@""] autorelease];
+    [sectionInfo addFieldEditInfo:
+	 [DateSensitiveValueFieldEditInfo 
+	  createForObject:cashFlow andKey:@"amount" andLabel:@"Amount" 
+	  andValRuntimeInfo:amountRuntimeInfo andDefaultFixedValKey:@"defaultFixedAmount"]];
+
 
 	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"InflationRate" andFormatter:[NumberHelper theHelper].percentFormatter andValueTitle:@"Inflation Rate"
-				andValueVerb:@"inflate"] autorelease];
+				andValueVerb:@"inflate"
+				andPeriodDesc:@"every year"] autorelease];
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
          createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Inflation" 
