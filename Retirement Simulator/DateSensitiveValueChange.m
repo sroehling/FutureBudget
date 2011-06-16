@@ -11,6 +11,7 @@
 
 @implementation DateSensitiveValueChange
 @dynamic startDate;
+@dynamic defaultFixedStartDate;
 @dynamic newValue;
 
 @end

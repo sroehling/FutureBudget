@@ -10,6 +10,7 @@
 #import "DateSensitiveValueChange.h"
 #import "DataModelController.h"
 #import "DateSensitiveValueChangeFormPopulator.h"
+#import "FixedDate.h"
 
 @implementation DateSensitiveValueChangeSectionInfo
 
@@ -51,9 +52,15 @@
     
 	DateSensitiveValueChange *valueChange = (DateSensitiveValueChange*)
 		[[DataModelController theDataModelController]insertObject:@"DateSensitiveValueChange"];
-    
+	FixedDate *fixedStartDate = (FixedDate*)[[
+		DataModelController theDataModelController] insertObject:@"FixedDate"];
+    fixedStartDate.date = [NSDate date];
+    valueChange.defaultFixedStartDate = fixedStartDate;
+
 	
     DateSensitiveValueChangeFormPopulator *formPopulator = [[[DateSensitiveValueChangeFormPopulator alloc] init] autorelease];
+	
+	
     UIViewController *controller =  [formPopulator addViewControllerForValueChange:valueChange andVariableValRuntimeInfo:self.variableValRuntimeInfo andParentVariableValue:self.variableVal];
     
     [self.parentViewController.navigationController pushViewController:controller animated:YES];

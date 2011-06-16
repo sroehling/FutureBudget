@@ -7,33 +7,33 @@
 //
 
 #import "VariableValueRuntimeInfo.h"
+#import "SharedEntityVariableValueListMgr.h"
+#import "NumberHelper.h"
 
 
 @implementation VariableValueRuntimeInfo
 
 @synthesize valueFormatter;
-@synthesize entityName;
 @synthesize valueTitle;
 @synthesize valueVerb;
 @synthesize periodDesc;
+@synthesize listMgr;
 
-- (id) initWithEntityName:(NSString*)entity andFormatter:(NSNumberFormatter*)valFormatter
-	andValueTitle:(NSString *)title andValueVerb:(NSString*)verb
-	andPeriodDesc:(NSString*)thePeriodDesc
+- (id) initWithFormatter:(NSNumberFormatter*)valFormatter
+		   andValueTitle:(NSString*)title andValueVerb:(NSString*)verb
+		   andPeriodDesc:(NSString*)thePeriodDesc andListMgr:(id<VariableValueListMgr>)theListMgr
 {
 	self = [super init];
 	if(self)
 	{
 		assert(valFormatter != nil);
-		assert(entity != nil);
-		assert([entity length] >0);
 		assert(title != nil);
 		assert([title length] > 0);
 		self.valueFormatter = valFormatter;
-		self.entityName = entity;
 		self.valueTitle = title;
 		self.valueVerb = verb;
 		self.periodDesc = thePeriodDesc;
+		self.listMgr = theListMgr;
 	}
 	return self;
 }
@@ -42,10 +42,10 @@
 {
 	[super dealloc];
 	[valueFormatter release];
-	[entityName release];
 	[valueTitle release];
 	[valueVerb release];
 	[periodDesc release];
+	[listMgr release];
 }
 
 - (NSString *)inlinePeriodDesc;
@@ -58,6 +58,29 @@
 	}
 	return periodDescStr;
 
+}
+
+
++ (VariableValueRuntimeInfo*)createForCashflowAmount
+{
+	SharedEntityVariableValueListMgr *variableAmountMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:@"CashFlowAmount"] autorelease];
+	VariableValueRuntimeInfo *amountRuntimeInfo = [[[VariableValueRuntimeInfo alloc]
+		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
+		andValueTitle:@"Amount" andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableAmountMgr] autorelease];
+	return amountRuntimeInfo;
+}
+
++ (VariableValueRuntimeInfo*)createForInflationRate
+{
+	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:@"InflationRate"] autorelease];
+	
+	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter andValueTitle:@"Inflation Rate"
+		andValueVerb:@"inflate amount" 
+		andPeriodDesc:@"every year" andListMgr:sharedInflationRatesMgr] autorelease];
+	return inflationRuntimeInfo;
 }
 
 @end

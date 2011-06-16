@@ -16,6 +16,7 @@
 #import "EventRepeatFrequency.h"
 #import "VariableValueRuntimeInfo.h"
 #import "DateSensitiveValue.h"
+#import "SharedEntityVariableValueListMgr.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -24,9 +25,8 @@
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
-	VariableValueRuntimeInfo *amountRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"CashFlowAmount" andFormatter:[NumberHelper theHelper].currencyFormatter 
-			andValueTitle:@"Amount" andValueVerb:@"" andPeriodDesc:@""] autorelease];
-	NSString *amountDisplay = [cashFlow.amount inlineDescription:amountRuntimeInfo];
+	NSString *amountDisplay = [cashFlow.amount inlineDescription:
+							   [VariableValueRuntimeInfo createForCashflowAmount]];
 
 	NSString *startDateDisplay = [cashFlow.startDate 
 								  inlineDescription:[DateHelper theHelper].mediumDateFormatter];
@@ -39,9 +39,7 @@
 		untilDesc = [NSString stringWithFormat:@" until %@",endDateDisplay];
 	}
 	
-	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] initWithEntityName:@"InflationRate" andFormatter:[NumberHelper theHelper].percentFormatter andValueTitle:@"Inflation Rate"
-		andValueVerb:@"inflate amount" andPeriodDesc:@"every year"] autorelease];
-	NSString *inflationDesc = [cashFlow.amountGrowthRate inlineDescription:inflationRuntimeInfo];
+	NSString *inflationDesc = [cashFlow.amountGrowthRate inlineDescription:[VariableValueRuntimeInfo createForInflationRate]];
 	self.generatedDesc = [NSString stringWithFormat:@"%@ starting on %@, repeating %@%@, %@",
 						  amountDisplay,startDateDisplay,repeatDesc,untilDesc,inflationDesc];
 

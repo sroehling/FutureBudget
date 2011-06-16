@@ -7,27 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "VariableValueListMgr.h"
 
 @interface VariableValueRuntimeInfo : NSObject {
 	@private
-		NSString *entityName;
 		NSNumberFormatter *valueFormatter;
 		NSString *valueTitle;
 		NSString *valueVerb;
 		NSString *periodDesc;
+		id<VariableValueListMgr> listMgr;
+		
 }
 
-@property(nonatomic,retain) NSString *entityName;
 @property(nonatomic,retain) NSNumberFormatter *valueFormatter;
 @property(nonatomic,retain) NSString *valueTitle;
 @property(nonatomic,retain) NSString *valueVerb;
 @property(nonatomic,retain) NSString *periodDesc;
+@property(nonatomic,retain) id<VariableValueListMgr> listMgr;
 
-- (id) initWithEntityName:(NSString*)entityName andFormatter:(NSNumberFormatter*)formatter
+- (id) initWithFormatter:(NSNumberFormatter*)formatter
 	andValueTitle:(NSString*)title andValueVerb:(NSString*)verb
-	andPeriodDesc:(NSString*)thePeriodDesc;
+	andPeriodDesc:(NSString*)thePeriodDesc andListMgr:(id<VariableValueListMgr>)listMgr;
 	
 - (NSString *)inlinePeriodDesc;
+
+
++ (VariableValueRuntimeInfo*)createForCashflowAmount;
++ (VariableValueRuntimeInfo*)createForInflationRate;
 
 @end

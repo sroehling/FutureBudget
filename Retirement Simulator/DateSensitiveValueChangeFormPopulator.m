@@ -22,6 +22,7 @@
 
 #import "VariableValueRuntimeInfo.h"
 #import "DateSensitiveValueChangeAddedListener.h"
+#import "VariableDateFieldEditInfo.h"
 
 @implementation DateSensitiveValueChangeFormPopulator
 
@@ -31,8 +32,11 @@
 {
 	self.formInfo.title = [NSString stringWithFormat:@"%@ Change",valRuntimeInfo.valueTitle];
 	
+
 	SectionInfo *sectionInfo = [self nextSection];
-	[sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:dsValueChange andKey:@"startDate" andLabel:@"Date"]];
+		
+	[sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:dsValueChange andKey:@"startDate" andLabel:@"Start Date" andDefaultValueKey:@"defaultFixedStartDate"]];
+
 	NSString *newValueLabel = [NSString stringWithFormat:@"New %@",valRuntimeInfo.valueTitle];
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
 								   createForObject:dsValueChange andKey:@"newValue" andLabel:newValueLabel

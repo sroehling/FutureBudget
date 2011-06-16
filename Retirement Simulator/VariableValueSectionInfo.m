@@ -52,11 +52,7 @@
     formPopulator.formInfo.title = [[[NSString alloc] initWithFormat:@"Variable %@",
 									 self.varValRuntimeInfo.valueTitle] autorelease];
     
-    VariableValue *newVariableValue = (VariableValue*)[[DataModelController theDataModelController]
-					insertObject:self.varValRuntimeInfo.entityName];
-    // The following properties must be filled in before the new objectwill be created.
-    //    newVariableValue.name
-    //    newVariableValue.startingValue
+    VariableValue *newVariableValue = [self.varValRuntimeInfo.listMgr createNewValue];
     [[DataModelController theDataModelController] saveContext];
 
     
@@ -72,6 +68,7 @@
           initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:formPopulator.formInfo]
           andNewObject:newVariableValue] autorelease];
     controller.popDepth =1;
+	controller.finshedAddingListener = varValRuntimeInfo.listMgr;
 
     
     [self.parentViewController.navigationController pushViewController:controller animated:YES];

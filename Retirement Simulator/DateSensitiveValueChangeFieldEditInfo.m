@@ -13,6 +13,7 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "ValueSubtitleTableCell.h"
+#import "VariableDate.h"
 
 @implementation DateSensitiveValueChangeFieldEditInfo
 
@@ -22,7 +23,8 @@
 
 - (void) configureCell
 {
-	self.valChangeCell.caption.text = [[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate];
+	self.valChangeCell.caption.text = 
+		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate.date];
 	self.valChangeCell.valueDescription.text = [[NumberHelper theHelper] displayStrFromStoredVal:self.valChange.newValue andFormatter:self.varValInfo.valueFormatter];;
 
 }
@@ -65,7 +67,7 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:self.valChange.newValue andFormatter:self.varValInfo.valueFormatter];
 	return [NSString stringWithFormat:@"%@ on %@",
 			[self.varValInfo.valueFormatter stringFromNumber:displayVal],
-			[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate] ];
+			[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate.date] ];
 }
 
 - (NSString*)textLabel

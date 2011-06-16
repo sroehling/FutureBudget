@@ -71,8 +71,8 @@
     sectionInfo = vvSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];
     
-    NSArray *variableValues = [[DataModelController theDataModelController]
-     fetchSortedObjectsWithEntityName:self.varValRuntimeInfo.entityName sortKey:@"name"];
+	
+    NSArray *variableValues = [self.varValRuntimeInfo.listMgr variableValues];
     for (VariableValue *varValue in variableValues)
     {
         VariableValueFieldEditInfo *vvFieldInfo = [[[VariableValueFieldEditInfo alloc]initWithVariableValue:varValue
