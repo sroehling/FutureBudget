@@ -81,7 +81,7 @@
 				andPeriodDesc:@"every year"] autorelease];
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Inflation" 
+         createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Yearly Inflation" 
 		 andValRuntimeInfo:inflationRuntimeInfo andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
 
     // Occurences section

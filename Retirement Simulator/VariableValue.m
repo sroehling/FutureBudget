@@ -53,7 +53,7 @@
 
 - (NSString*) valueSubtitle:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
-	return [self inlineDescription:valueRuntimeInfo];
+	return [self standaloneDescription:valueRuntimeInfo];
 }
 
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
