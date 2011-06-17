@@ -52,6 +52,7 @@
 		0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */; };
 		0087923313A9517000CA9DA7 /* CashFlowAmount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923213A9516E00CA9DA7 /* CashFlowAmount.m */; };
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
+		0087923A13AAC33200CA9DA7 /* CashFlowAmountVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923913AAC33000CA9DA7 /* CashFlowAmountVariableValueListMgr.m */; };
 		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
 		00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAB138EC87A00663C7F /* SectionInfo.m */; };
 		00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAE138ECA8700663C7F /* FormInfo.m */; };
@@ -205,6 +206,8 @@
 		0087923413AA466A00CA9DA7 /* VariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923513AA47D300CA9DA7 /* SharedEntityVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedEntityVariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedEntityVariableValueListMgr.m; sourceTree = "<group>"; };
+		0087923813AAC32E00CA9DA7 /* CashFlowAmountVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowAmountVariableValueListMgr.h; sourceTree = "<group>"; };
+		0087923913AAC33000CA9DA7 /* CashFlowAmountVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowAmountVariableValueListMgr.m; sourceTree = "<group>"; };
 		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
 		00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableAddViewController.m; sourceTree = "<group>"; };
 		00A14BAA138EC87900663C7F /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 				004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */,
 				004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */,
 				0087923413AA466A00CA9DA7 /* VariableValueListMgr.h */,
+				0087923813AAC32E00CA9DA7 /* CashFlowAmountVariableValueListMgr.h */,
+				0087923913AAC33000CA9DA7 /* CashFlowAmountVariableValueListMgr.m */,
 				0087923513AA47D300CA9DA7 /* SharedEntityVariableValueListMgr.h */,
 				0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */,
 				00637A831385D824001E02F1 /* DateSensitiveValueFieldEditInfo.h */,
@@ -970,6 +975,7 @@
 				0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */,
 				0087923313A9517000CA9DA7 /* CashFlowAmount.m in Sources */,
 				0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */,
+				0087923A13AAC33200CA9DA7 /* CashFlowAmountVariableValueListMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

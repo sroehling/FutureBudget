@@ -71,7 +71,7 @@
     [sectionInfo addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
 	  createForObject:cashFlow andKey:@"amount" andLabel:@"Amount" 
-	  andValRuntimeInfo:[VariableValueRuntimeInfo createForCashflowAmount]
+	  andValRuntimeInfo:[VariableValueRuntimeInfo createForCashflowAmount:cashFlow]
 	  andDefaultFixedValKey:@"defaultFixedAmount"]];
 
     [sectionInfo addFieldEditInfo:

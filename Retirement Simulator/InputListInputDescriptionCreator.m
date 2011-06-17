@@ -26,10 +26,10 @@
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
 	NSString *amountDisplay = [cashFlow.amount inlineDescription:
-							   [VariableValueRuntimeInfo createForCashflowAmount]];
+							   [VariableValueRuntimeInfo createForCashflowAmount:cashFlow]];
 
 	NSString *startDateDisplay = [cashFlow.startDate 
-								  inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+						inlineDescription:[DateHelper theHelper].mediumDateFormatter];
 	NSString *repeatDesc = [cashFlow.repeatFrequency inlineDescription];
 	NSString *untilDesc = @"";
 	if([cashFlow.repeatFrequency eventRepeatsMoreThanOnce])

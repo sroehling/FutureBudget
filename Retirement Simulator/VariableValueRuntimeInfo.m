@@ -8,6 +8,7 @@
 
 #import "VariableValueRuntimeInfo.h"
 #import "SharedEntityVariableValueListMgr.h"
+#import "CashFlowAmountVariableValueListMgr.h"
 #import "NumberHelper.h"
 
 
@@ -61,11 +62,12 @@
 }
 
 
-+ (VariableValueRuntimeInfo*)createForCashflowAmount
++ (VariableValueRuntimeInfo*)createForCashflowAmount:(CashFlowInput*)cashFlow
 {
-	SharedEntityVariableValueListMgr *variableAmountMgr = 
-	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:@"CashFlowAmount"] autorelease];
-	VariableValueRuntimeInfo *amountRuntimeInfo = [[[VariableValueRuntimeInfo alloc]
+	CashFlowAmountVariableValueListMgr *variableAmountMgr = 
+		[[[CashFlowAmountVariableValueListMgr alloc] initWithCashFlow:cashFlow] autorelease];		
+	VariableValueRuntimeInfo *amountRuntimeInfo = 
+		[[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
 		andValueTitle:@"Amount" andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableAmountMgr] autorelease];
 	return amountRuntimeInfo;

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VariableValueListMgr.h"
 
+@class CashFlowInput;
+
 @interface VariableValueRuntimeInfo : NSObject {
 	@private
 		NSNumberFormatter *valueFormatter;
@@ -32,7 +34,7 @@
 - (NSString *)inlinePeriodDesc;
 
 
-+ (VariableValueRuntimeInfo*)createForCashflowAmount;
++ (VariableValueRuntimeInfo*)createForCashflowAmount:(CashFlowInput*)cashFlow;
 + (VariableValueRuntimeInfo*)createForInflationRate;
 
 @end

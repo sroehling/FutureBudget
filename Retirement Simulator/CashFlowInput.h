@@ -15,12 +15,14 @@
 @class VariableDate;
 @class FixedDate;
 @class FixedValue;
+@class VariableValue;
 
 @interface CashFlowInput : Input {
 @private
 }
 // TBD - Should amount be a variable value? (like growth rates)
 @property (nonatomic, retain) DateSensitiveValue *amount;
+@property (nonatomic,retain) NSSet* variableAmounts;
 @property (nonatomic,retain) DateSensitiveValue *amountGrowthRate; 
 @property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
 @property (nonatomic,retain) VariableDate *startDate;
@@ -39,4 +41,8 @@
 @property(nonatomic,retain) FixedValue *defaultFixedGrowthRate;
 @property(nonatomic,retain) FixedValue *defaultFixedAmount;
 
+
+- (void)addVariableAmountsObject:(VariableValue *)value;
+
 @end
+
