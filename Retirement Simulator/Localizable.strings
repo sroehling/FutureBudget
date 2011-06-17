@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Retirement Simulator
+
+  Created by Steve Roehling on 6/17/11.
+  Copyright 2011 __MyCompanyName__. All rights reserved.
+*/
+
+"INPUT_EXPENSE_VIEW_TITLE" = "Expense";
+"INPUT_INCOME_VIEW_TITLE" = "Income";
+
+"INPUT_CASHFLOW_AMOUNT_SECTION_TITLE" = "Amount";
+"INPUT_CASHFLOW_AMOUNT_NAME_FIELD_LABEL" = "Name";
+"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL" = "Amount";
+"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL" = "Yearly Increase";
+"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE" = "Amount";
+
+"INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE" = "Occurences";
+"INPUT_CASHFLOW_START_FIELD_LABEL" = "Start";
+"INPUT_CASHFLOW_REPEAT_FIELD_LABEL" = "Repeat";
+"INPUT_CASHFLOW_END_FIELD_LABEL" = "End";
+
+"INPUT_INFLATION_RATE_VALUE_TITLE" = "Growth Rate";
+"INPUT_INFLATION_RATE_ACTION_VERB" = "increase amount";
+"INPUT_INFLATION_RATE_PERIOD" = "every year";

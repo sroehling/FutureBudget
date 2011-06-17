@@ -9,6 +9,7 @@
 #import "VariableValueRuntimeInfo.h"
 #import "SharedEntityVariableValueListMgr.h"
 #import "CashFlowAmountVariableValueListMgr.h"
+#import "LocalizationHelper.h"
 #import "NumberHelper.h"
 
 
@@ -69,7 +70,8 @@
 	VariableValueRuntimeInfo *amountRuntimeInfo = 
 		[[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
-		andValueTitle:@"Amount" andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableAmountMgr] autorelease];
+		andValueTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE") 
+		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableAmountMgr] autorelease];
 	return amountRuntimeInfo;
 }
 
@@ -79,9 +81,11 @@
 	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:@"InflationRate"] autorelease];
 	
 	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
-		initWithFormatter:[NumberHelper theHelper].percentFormatter andValueTitle:@"Inflation Rate"
-		andValueVerb:@"inflate amount" 
-		andPeriodDesc:@"every year" andListMgr:sharedInflationRatesMgr] autorelease];
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueTitle:LOCALIZED_STR(@"INPUT_INFLATION_RATE_VALUE_TITLE")
+		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 
+		andListMgr:sharedInflationRatesMgr] autorelease];
 	return inflationRuntimeInfo;
 }
 

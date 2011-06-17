@@ -25,6 +25,7 @@
 #import "FormInfo.h"
 #import "FormPopulator.h"
 #import "SharedEntityVariableValueListMgr.h"
+#import "LocalizationHelper.h"
 
 @implementation DetailInputViewCreator
 
@@ -61,34 +62,42 @@
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
     SectionInfo *sectionInfo = [formPopulator nextSection];
-    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:cashFlow andKey:@"name" andLabel:@"Name"]];
+    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:cashFlow andKey:@"name" 
+		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_NAME_FIELD_LABEL")]];
     
     // Amount section
     
     sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = @"Amount";
+	
+	
+    sectionInfo.title = 
+		LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_SECTION_TITLE");
 	
     [sectionInfo addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
-	  createForObject:cashFlow andKey:@"amount" andLabel:@"Amount" 
+	  createForObject:cashFlow andKey:@"amount" 
+	  andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL") 
 	  andValRuntimeInfo:[VariableValueRuntimeInfo createForCashflowAmount:cashFlow]
 	  andDefaultFixedValKey:@"defaultFixedAmount"]];
 
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:@"Yearly Inflation" 
+         createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL") 
 		 andValRuntimeInfo:[VariableValueRuntimeInfo createForInflationRate] 
 		 andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
 
     // Occurences section
 
     sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = @"Occurences";
+    sectionInfo.title = LOCALIZED_STR(@"INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE");
     
-    [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" andLabel:@"Start" andDefaultValueKey:@"fixedStartDate"]];
+    [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" 
+	andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
+	andDefaultValueKey:@"fixedStartDate"]];
 
 
-    RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" andLabel:@"Repeat"];
+    RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" 
+		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
     [sectionInfo addFieldEditInfo:repeatFrequencyInfo];
     
     // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
@@ -100,7 +109,9 @@
         assert(repeatFreq != nil);
         if([repeatFreq  eventRepeatsMoreThanOnce])
         {
-            [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"endDate" andLabel:@"End" andDefaultValueKey:@"fixedEndDate"]];           
+            [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"endDate" 
+			     andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
+				 andDefaultValueKey:@"fixedEndDate"]];           
         }
         
     }
@@ -109,12 +120,14 @@
 
 - (void)visitExpense:(ExpenseInput*)expense
 {    
-    formPopulator.formInfo.title = @"Expense";
+    formPopulator.formInfo.title = 
+	       LOCALIZED_STR(@"INPUT_EXPENSE_VIEW_TITLE");
 }
 
 - (void)visitIncome:(IncomeInput*)input
 {
-    formPopulator.formInfo.title = @"Income";
+    formPopulator.formInfo.title = 
+		LOCALIZED_STR(@"INPUT_INCOME_VIEW_TITLE");
 }
 
 
