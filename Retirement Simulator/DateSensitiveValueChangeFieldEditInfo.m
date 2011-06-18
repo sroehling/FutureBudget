@@ -14,6 +14,7 @@
 #import "NumberHelper.h"
 #import "ValueSubtitleTableCell.h"
 #import "VariableDate.h"
+#import "LocalizationHelper.h"
 
 @implementation DateSensitiveValueChangeFieldEditInfo
 
@@ -65,14 +66,14 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 - (NSString*)detailTextLabel
 {
 	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:self.valChange.newValue andFormatter:self.varValInfo.valueFormatter];
-	return [NSString stringWithFormat:@"%@ on %@",
+	return [NSString stringWithFormat:@"%@ - %@",
 			[self.varValInfo.valueFormatter stringFromNumber:displayVal],
 			[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate.date] ];
 }
 
 - (NSString*)textLabel
 {
-    return [NSString stringWithFormat:@"New %@",self.varValInfo.valueTitle];
+    return [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),self.varValInfo.valueTitle];
 }
 
 - (UIViewController*)fieldEditController

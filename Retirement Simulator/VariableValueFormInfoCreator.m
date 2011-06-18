@@ -18,6 +18,7 @@
 #import "AddObjectSectionInfo.h"
 #import "CollectionHelper.h"
 #import "DateSensitiveValueChangeSectionInfo.h"
+#import "LocalizationHelper.h"
 
 
 @implementation VariableValueFormInfoCreator
@@ -53,19 +54,25 @@
 {
 	FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
-    formPopulator.formInfo.title = @"Variable Date";
-    
+    formPopulator.formInfo.title = [NSString 
+		stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_VIEW_TITLE_FORMAT"),
+		self.varValRuntimeInfo.valueTitle];
+		
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
 	[sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:self.variableValue 
-															 andKey:@"name" andLabel:@"Name"]];
+															 andKey:@"name" 
+				andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL")]];
 	
 	sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = [NSString stringWithFormat:@"Starting %@",self.varValRuntimeInfo.valueTitle];
-	sectionInfo.subTitle = @"This value is used from the start of the simulation until"
-		" either the end of your plan or the date upon which a value change occurs.",
+    sectionInfo.title = [NSString 
+	  stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_SECTION_TITLE_FORMAT"),
+	       self.varValRuntimeInfo.valueTitle];
+	sectionInfo.subTitle = [NSString 
+							stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_SECTION_SUBTITLE_FORMAT"),
+							LOCALIZED_STR(self.varValRuntimeInfo.inlineValueTitleKey)];
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:self.variableValue
-			andKey:@"startingValue" andLabel:@"Starting" 
+			andKey:@"startingValue" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_FIELD_LABEL") 
 			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
 	
 	
@@ -74,8 +81,13 @@
 	DateSensitiveValueChangeSectionInfo *vcSectionInfo = 
 		[[[DateSensitiveValueChangeSectionInfo alloc] 
 		  initWithVariableValRuntimeInfo:self.varValRuntimeInfo andParentVariableValue:self.variableValue] autorelease];
-    vcSectionInfo.title =  [NSString stringWithFormat:@"%@ Changes",self.varValRuntimeInfo.valueTitle];
-	vcSectionInfo.subTitle = @"These are changes to the value, which occur after the starting value.";
+		  
+    vcSectionInfo.title =  [NSString stringWithFormat:
+		LOCALIZED_STR(@"VARIABLE_VALUE_VALUE_CHANGES_SECTION_TITLE_FORMAT"),
+		self.varValRuntimeInfo.valueTitle];
+	vcSectionInfo.subTitle =[NSString stringWithFormat:
+			LOCALIZED_STR(@"VARIABLE_VALUE_VALUE_CHANGES_SECTION_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(self.varValRuntimeInfo.inlineValueTitleKey)];
     vcSectionInfo.parentViewController = parentController;
 	[formPopulator nextCustomSection:vcSectionInfo];		
     for (DateSensitiveValueChange *valueChange in valueChanges)

@@ -19,6 +19,7 @@
 #import "StaticFormInfoCreator.h"
 #import "FinishedAddingObjectListener.h"
 #import "DateSensitiveValueChangeAddedListener.h"
+#import "LocalizationHelper.h"
 
 
 @implementation VariableValueSectionInfo
@@ -49,7 +50,7 @@
     
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
 	
-    formPopulator.formInfo.title = [[[NSString alloc] initWithFormat:@"Variable %@",
+    formPopulator.formInfo.title = [[[NSString alloc] initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
 									 self.varValRuntimeInfo.valueTitle] autorelease];
     
     VariableValue *newVariableValue = [self.varValRuntimeInfo.listMgr createNewValue];
@@ -58,9 +59,9 @@
     
     SectionInfo *sectionInfo = [formPopulator nextSection];
     [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:newVariableValue 
-             andKey:@"name" andLabel:@"Name"]];
+             andKey:@"name" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL")]];
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:newVariableValue 
-             andKey:@"startingValue" andLabel:@"Starting Value"
+             andKey:@"startingValue" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_FIELD_LABEL")
 			 andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
     
     GenericFieldBasedTableAddViewController *controller = 

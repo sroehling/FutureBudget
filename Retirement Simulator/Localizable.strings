@@ -14,6 +14,10 @@
 "INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL" = "Amount";
 "INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL" = "Yearly Increase";
 "INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE" = "Amount";
+"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE" = "amount";
+"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_TITLE" = "Single Amount";
+"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE" = "This amount does not change over time";
+"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT" = "These amounts can change over time.";
 
 "INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE" = "Occurences";
 "INPUT_CASHFLOW_START_FIELD_LABEL" = "Start";
@@ -21,5 +25,21 @@
 "INPUT_CASHFLOW_END_FIELD_LABEL" = "End";
 
 "INPUT_INFLATION_RATE_VALUE_TITLE" = "Growth Rate";
+"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE" = "growth rate";
 "INPUT_INFLATION_RATE_ACTION_VERB" = "increase amount";
 "INPUT_INFLATION_RATE_PERIOD" = "every year";
+"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE" = "This growth rate is only for the current simulator input, and does not change over time.";
+"INPUT_INFLATION_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT" = "These growth rates can be shared by multiple inputs and can change over time";
+
+"DATE_SENSITIVE_VALUE_SINGLE_VALUE_TITLE_FORMAT" = "Single %@";
+"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT" = "Variable %@";
+"VARIABLE_VALUE_NAME_LABEL" = "Name";
+"VALUE_CHANGE_VALUE_CHANGE_FORMAT" = "%@ Change";
+"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL" = "Start Date";
+"VALUE_CHANGE_NEW_VALUE_FORMAT" = "New %@";
+"VARIABLE_VALUE_VIEW_TITLE_FORMAT" = "Variable %@";
+"VARIABLE_VALUE_START_DATE_SECTION_TITLE_FORMAT" = "Starting %@";
+"VARIABLE_VALUE_START_DATE_SECTION_SUBTITLE_FORMAT" = "This %@ is used from the start of the simulation until either the end of your plan or the date upon which a value change occurs.";
+"VARIABLE_VALUE_VALUE_CHANGES_SECTION_TITLE_FORMAT" = "%@ Changes";
+"VARIABLE_VALUE_VALUE_CHANGES_SECTION_SUBTITLE_FORMAT" = "These are changes to the %@, which occur after the starting value.";
+"VARIABLE_VALUE_START_DATE_FIELD_LABEL" = "Starting";

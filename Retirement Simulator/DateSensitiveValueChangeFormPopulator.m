@@ -23,6 +23,7 @@
 #import "VariableValueRuntimeInfo.h"
 #import "DateSensitiveValueChangeAddedListener.h"
 #import "VariableDateFieldEditInfo.h"
+#import "LocalizationHelper.h"
 
 @implementation DateSensitiveValueChangeFormPopulator
 
@@ -30,14 +31,16 @@
 - (void)populateValueChange:(DateSensitiveValueChange*)dsValueChange
 	andVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo
 {
-	self.formInfo.title = [NSString stringWithFormat:@"%@ Change",valRuntimeInfo.valueTitle];
+	
+	self.formInfo.title = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_FORMAT"),valRuntimeInfo.valueTitle];
 	
 
 	SectionInfo *sectionInfo = [self nextSection];
 		
-	[sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:dsValueChange andKey:@"startDate" andLabel:@"Start Date" andDefaultValueKey:@"defaultFixedStartDate"]];
+	[sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:dsValueChange andKey:@"startDate" andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
+	andDefaultValueKey:@"defaultFixedStartDate"]];
 
-	NSString *newValueLabel = [NSString stringWithFormat:@"New %@",valRuntimeInfo.valueTitle];
+	NSString *newValueLabel = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),valRuntimeInfo.valueTitle];
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
 								   createForObject:dsValueChange andKey:@"newValue" andLabel:newValueLabel
 								   andNumberFormatter:valRuntimeInfo.valueFormatter]];

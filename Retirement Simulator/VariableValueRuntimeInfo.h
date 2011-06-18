@@ -15,10 +15,12 @@
 	@private
 		NSNumberFormatter *valueFormatter;
 		NSString *valueTitle;
+		NSString *inlineValueTitleKey;
 		NSString *valueVerb;
 		NSString *periodDesc;
 		id<VariableValueListMgr> listMgr;
-		
+		NSString *singleValSubtitleKey;
+		NSString *variableValSubtitleKey;
 }
 
 @property(nonatomic,retain) NSNumberFormatter *valueFormatter;
@@ -26,10 +28,19 @@
 @property(nonatomic,retain) NSString *valueVerb;
 @property(nonatomic,retain) NSString *periodDesc;
 @property(nonatomic,retain) id<VariableValueListMgr> listMgr;
+@property(nonatomic,retain) NSString *singleValSubtitleKey;
+@property(nonatomic,retain) NSString *variableValSubtitleKey;
+@property(nonatomic,retain) NSString *inlineValueTitleKey;
 
-- (id) initWithFormatter:(NSNumberFormatter*)formatter
-	andValueTitle:(NSString*)title andValueVerb:(NSString*)verb
-	andPeriodDesc:(NSString*)thePeriodDesc andListMgr:(id<VariableValueListMgr>)listMgr;
+
+- (id) initWithFormatter:(NSNumberFormatter*)valFormatter
+		   andValueTitle:(NSString*)title 
+		   andInlineValueTitleKey:(NSString*)theInlineValueTitleKey
+		   andValueVerb:(NSString*)verb
+		   andPeriodDesc:(NSString*)thePeriodDesc 
+			  andListMgr:(id<VariableValueListMgr>)theListMgr
+		andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
+		andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey;
 	
 - (NSString *)inlinePeriodDesc;
 

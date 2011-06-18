@@ -18,6 +18,7 @@
 #import "NumberFieldEditInfo.h"
 #import "StringValidation.h"
 #import "VariableValueFieldEditInfo.h"
+#import "LocalizationHelper.h"
 
 @implementation DateSensitiveValueFormInfoCreator
 
@@ -54,19 +55,23 @@
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
 	
+	
+	
     sectionInfo.title = [[[NSString alloc]
-						  initWithFormat:@"Fixed %@",self.varValRuntimeInfo.valueTitle] autorelease];
-	sectionInfo.subTitle = @"This value is only for the current simulator input and does not change over time.";
+			initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_SINGLE_VALUE_TITLE_FORMAT"),
+			self.varValRuntimeInfo.valueTitle] autorelease];
+	sectionInfo.subTitle = LOCALIZED_STR(self.varValRuntimeInfo.singleValSubtitleKey);
     
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
-            createForObject:self.defaultFixedVal andKey:@"value" andLabel:@"Value"
+            createForObject:self.defaultFixedVal andKey:@"value" andLabel:self.varValRuntimeInfo.valueTitle
 			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
 					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
     vvSectionInfo.title =  [[[NSString alloc]
-							 initWithFormat:@"Variable %@s",self.varValRuntimeInfo.valueTitle] autorelease];
-	vvSectionInfo.subTitle = @"These values can be shared by multiple simulator inputs and change over time.";
+							 initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
+			self.varValRuntimeInfo.valueTitle] autorelease];
+	vvSectionInfo.subTitle =LOCALIZED_STR(self.varValRuntimeInfo.variableValSubtitleKey);
     vvSectionInfo.parentViewController = parentController;
     sectionInfo = vvSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];
