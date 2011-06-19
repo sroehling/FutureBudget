@@ -19,4 +19,7 @@
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor;
 
+-(NSString*)inlineInputType;
+-(NSString*)inputTypeTitle;
+
 @end

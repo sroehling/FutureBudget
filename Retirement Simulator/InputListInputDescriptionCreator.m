@@ -39,7 +39,7 @@
 		untilDesc = [NSString stringWithFormat:@" until %@",endDateDisplay];
 	}
 	
-	NSString *inflationDesc = [cashFlow.amountGrowthRate inlineDescription:[VariableValueRuntimeInfo createForInflationRate]];
+	NSString *inflationDesc = [cashFlow.amountGrowthRate inlineDescription:[VariableValueRuntimeInfo createForInflationRate:cashFlow]];
 	self.generatedDesc = [NSString stringWithFormat:@"%@ starting on %@, repeating %@%@, %@",
 						  amountDisplay,startDateDisplay,repeatDesc,untilDesc,inflationDesc];
 

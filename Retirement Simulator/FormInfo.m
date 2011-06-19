@@ -14,6 +14,7 @@
 
 @synthesize title;
 @synthesize objectAdder;
+@synthesize headerView;
 
 
 - (id) init
@@ -38,6 +39,8 @@
     [super dealloc];
     [sections release];
     [title release];
+	[objectAdder release];
+	[headerView release];
     
 }
 

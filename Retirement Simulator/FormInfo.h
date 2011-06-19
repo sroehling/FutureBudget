@@ -18,10 +18,12 @@
     NSMutableArray *sections;
     NSString *title;
 	id<TableViewObjectAdder> objectAdder; // optional
+	UIView *headerView; // optional
 }
 
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) id<TableViewObjectAdder> objectAdder;
+@property(nonatomic,retain) UIView *headerView;
 
 - (void) addSection:(SectionInfo*)section;
 

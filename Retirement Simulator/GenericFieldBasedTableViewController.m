@@ -78,6 +78,9 @@
     }
     
     self.tableView.allowsSelectionDuringEditing = TRUE;
+	
+	
+
 }
 
 
@@ -87,6 +90,7 @@
     {
         self.formInfo = [self.formInfoCreator createFormInfo:self];
     }
+	
     
     // A title is needed, since when child views are pushed on the view
     // stack, a back button is needed to get back to this view. The back
@@ -95,6 +99,11 @@
     assert([self.formInfo.title length] > 0); 
     
     self.title = self.formInfo.title;
+
+	if(self.formInfo.headerView)
+	{
+		self.tableView.tableHeaderView = self.formInfo.headerView;
+	}
 
     
     [super viewWillAppear:animated];

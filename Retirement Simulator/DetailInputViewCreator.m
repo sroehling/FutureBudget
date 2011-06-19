@@ -83,7 +83,7 @@
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
          createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL") 
-		 andValRuntimeInfo:[VariableValueRuntimeInfo createForInflationRate] 
+		 andValRuntimeInfo:[VariableValueRuntimeInfo createForInflationRate:cashFlow] 
 		 andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
 
     // Occurences section

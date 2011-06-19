@@ -11,6 +11,7 @@
 #import "CashFlowAmountVariableValueListMgr.h"
 #import "LocalizationHelper.h"
 #import "NumberHelper.h"
+#import "CashFlowInput.h"
 
 
 @implementation VariableValueRuntimeInfo
@@ -23,15 +24,25 @@
 @synthesize singleValSubtitleKey;
 @synthesize inlineValueTitleKey;
 @synthesize variableValSubtitleKey;
+@synthesize valuePromptKey;
+@synthesize valueTypeTitle;
+@synthesize valueTypeInline;
+@synthesize valueName;
+@synthesize tableSubtitle;
 
 - (id) initWithFormatter:(NSNumberFormatter*)valFormatter
 		   andValueTitle:(NSString*)title 
-		   andInlineValueTitleKey:(NSString*)theInlineValueTitleKey
-		   andValueVerb:(NSString*)verb
+		andInlineValueTitleKey:(NSString*)theInlineValueTitleKey
+			andValueVerb:(NSString*)verb
 		   andPeriodDesc:(NSString*)thePeriodDesc 
-		   andListMgr:(id<VariableValueListMgr>)theListMgr
-		   andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey
-		   andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
+			  andListMgr:(id<VariableValueListMgr>)theListMgr
+		andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
+		andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
+	   andValuePromptKey:(NSString*)theValPromptKey
+	   andValueTypeInline:(NSString*)theValueTypeInline
+	   andValueTypeTitle:(NSString*)theValueTypeTitle
+	   andValueName:(NSString*)theValueName
+	   andTableSubtitle:(NSString*)theTableSubtitle
 {
 	self = [super init];
 	if(self)
@@ -47,6 +58,11 @@
 		self.singleValSubtitleKey = theSingleValSubtitleKey;
 		self.inlineValueTitleKey = theInlineValueTitleKey;
 		self.variableValSubtitleKey = theVarValSubtitleKey;
+		self.valuePromptKey = theValPromptKey;
+		self.valueTypeTitle = theValueTypeTitle;
+		self.valueTypeInline = theValueTypeInline;
+		self.valueName = theValueName;
+		self.tableSubtitle = theTableSubtitle;
 	}
 	return self;
 }
@@ -62,6 +78,11 @@
 	[singleValSubtitleKey release];
 	[inlineValueTitleKey release];
 	[variableValSubtitleKey release];
+	[valuePromptKey release];
+	[valueTypeTitle release];
+	[valueTypeInline release];
+	[valueName release];
+	[tableSubtitle release];
 }
 
 - (NSString *)inlinePeriodDesc;
@@ -80,7 +101,14 @@
 + (VariableValueRuntimeInfo*)createForCashflowAmount:(CashFlowInput*)cashFlow
 {
 	CashFlowAmountVariableValueListMgr *variableAmountMgr = 
-		[[[CashFlowAmountVariableValueListMgr alloc] initWithCashFlow:cashFlow] autorelease];		
+		[[[CashFlowAmountVariableValueListMgr alloc] initWithCashFlow:cashFlow] autorelease];
+		
+	NSString *tableSubtitle = [NSString 
+	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
+	 [cashFlow inlineInputType],
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
+						
 	VariableValueRuntimeInfo *amountRuntimeInfo = 
 		[[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
@@ -88,14 +116,27 @@
 		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
 		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableAmountMgr
 		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"] autorelease];
+		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
+		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
+		  andValueTypeInline:[cashFlow inlineInputType]
+		  andValueTypeTitle:[cashFlow inputTypeTitle]
+		  andValueName:cashFlow.name
+		  andTableSubtitle:tableSubtitle]
+		 autorelease];
 	return amountRuntimeInfo;
 }
 
-+ (VariableValueRuntimeInfo*)createForInflationRate
++ (VariableValueRuntimeInfo*)createForInflationRate:(CashFlowInput*)cashFlow;
 {
 	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:@"InflationRate"] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE")];
+
 	
 	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
@@ -105,7 +146,12 @@
 		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 
 		andListMgr:sharedInflationRatesMgr
 		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"INPUT_INFLATION_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"] autorelease];
+		andVariableValueSubtitleKey:@"INPUT_INFLATION_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
+		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
+		andValueTypeInline:[cashFlow inlineInputType]
+		andValueTypeTitle:[cashFlow inputTypeTitle]
+		andValueName:cashFlow.name
+		andTableSubtitle:tableSubtitle] autorelease];
 	return inflationRuntimeInfo;
 }
 

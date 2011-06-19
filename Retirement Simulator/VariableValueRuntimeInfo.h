@@ -21,6 +21,11 @@
 		id<VariableValueListMgr> listMgr;
 		NSString *singleValSubtitleKey;
 		NSString *variableValSubtitleKey;
+		NSString *valuePromptKey;
+		NSString *valueTypeTitle;
+		NSString *valueTypeInline;
+		NSString *valueName;
+		NSString *tableSubtitle;
 }
 
 @property(nonatomic,retain) NSNumberFormatter *valueFormatter;
@@ -31,21 +36,31 @@
 @property(nonatomic,retain) NSString *singleValSubtitleKey;
 @property(nonatomic,retain) NSString *variableValSubtitleKey;
 @property(nonatomic,retain) NSString *inlineValueTitleKey;
+@property(nonatomic,retain) NSString *valuePromptKey;
+@property(nonatomic,retain) NSString *valueTypeTitle;
+@property(nonatomic,retain) NSString *valueTypeInline;
+@property(nonatomic,retain) NSString *valueName;
+@property(nonatomic,retain) NSString *tableSubtitle;
 
 
 - (id) initWithFormatter:(NSNumberFormatter*)valFormatter
 		   andValueTitle:(NSString*)title 
-		   andInlineValueTitleKey:(NSString*)theInlineValueTitleKey
-		   andValueVerb:(NSString*)verb
+  andInlineValueTitleKey:(NSString*)theInlineValueTitleKey
+			andValueVerb:(NSString*)verb
 		   andPeriodDesc:(NSString*)thePeriodDesc 
 			  andListMgr:(id<VariableValueListMgr>)theListMgr
-		andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
-		andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey;
+andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
+andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
+	   andValuePromptKey:(NSString*)theValPromptKey
+	  andValueTypeInline:(NSString*)theValueTypeInline
+	   andValueTypeTitle:(NSString*)theValueTypeTitle
+			andValueName:(NSString*)theValueName
+			andTableSubtitle:(NSString*)theTableSubtitle;
 	
 - (NSString *)inlinePeriodDesc;
 
 
 + (VariableValueRuntimeInfo*)createForCashflowAmount:(CashFlowInput*)cashFlow;
-+ (VariableValueRuntimeInfo*)createForInflationRate;
++ (VariableValueRuntimeInfo*)createForInflationRate:(CashFlowInput*)cashFlow;
 
 @end

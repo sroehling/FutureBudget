@@ -8,6 +8,7 @@
 
 #import "IncomeInput.h"
 #import "InputVisitor.h"
+#import "LocalizationHelper.h"
 
 @implementation IncomeInput
 
@@ -17,5 +18,16 @@
     [super acceptInputVisitor:inputVisitor];
     [inputVisitor visitIncome:self];
 }
+
+- (NSString*)inlineInputType
+{
+	return LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_INCOME_INLINE");
+}
+
+-(NSString*)inputTypeTitle
+{
+	return LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_INCOME_TITLE");
+}
+
 
 @end

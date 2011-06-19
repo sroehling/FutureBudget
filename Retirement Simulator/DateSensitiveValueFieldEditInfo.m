@@ -15,6 +15,7 @@
 #import "ColorHelper.h"
 #import "ManagedObjectFieldInfo.h"
 #import "ValueSubtitleTableCell.h"
+#import "LocalizationHelper.h"
 
 @implementation DateSensitiveValueFieldEditInfo
 
@@ -38,7 +39,7 @@
         // the value needs to be filled in (the same as a placeholder
         // in a text field).
         self.valueCell.valueDescription.textColor = [ColorHelper promptTextColor];
-        self.valueCell.valueDescription.text = @"Enter a Value";
+        self.valueCell.valueDescription.text = LOCALIZED_STR(self.varValRuntimeInfo.valuePromptKey);
         self.valueCell.valueSubtitle.text = @"";
     }
 	

@@ -19,6 +19,7 @@
 #import "StringValidation.h"
 #import "VariableValueFieldEditInfo.h"
 #import "LocalizationHelper.h"
+#import "VariableHeightTableHeader.h"
 
 @implementation DateSensitiveValueFormInfoCreator
 
@@ -51,7 +52,31 @@
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
     formPopulator.formInfo.title = self.varValRuntimeInfo.valueTitle;
-    
+	
+	
+	VariableHeightTableHeader *tableHeader = 
+		[[[VariableHeightTableHeader alloc] initWithFrame:CGRectZero] autorelease];
+
+	if(self.varValRuntimeInfo.valueName != nil)
+	{
+		tableHeader.header.text = [NSString 
+								   stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_TABLE_TITLE_FORMAT"),
+								   self.varValRuntimeInfo.valueTypeTitle,self.varValRuntimeInfo.valueTitle,
+								   self.varValRuntimeInfo.valueName];
+		
+	}
+	else
+	{
+		tableHeader.header.text = [NSString 
+								   stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_TABLE_TITLE_FORMAT_UNDEFINED_NAME"),
+								   self.varValRuntimeInfo.valueTypeTitle,self.varValRuntimeInfo.valueTitle];
+	}
+
+	tableHeader.subHeader.text = self.varValRuntimeInfo.tableSubtitle;
+			
+	[tableHeader resizeForChildren];
+	formPopulator.formInfo.headerView = tableHeader;
+
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
 	

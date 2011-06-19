@@ -18,4 +18,16 @@
     // no-op
 }
 
+-(NSString*)inlineInputType
+{
+	assert(0); // must be overridden
+	return nil;
+}
+
+-(NSString*)inputTypeTitle
+{
+	assert(0);
+	return nil;
+}
+
 @end
