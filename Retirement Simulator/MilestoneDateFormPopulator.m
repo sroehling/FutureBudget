@@ -20,6 +20,24 @@
 
 @implementation MilestoneDateFormPopulator
 
+@synthesize varDateRuntimeInfo;
+
+-(id) initWithRuntimeInfo:(VariableDateRuntimeInfo*)theRuntimeInfo
+{
+	self = [super init];
+	if(self)
+	{
+		self.varDateRuntimeInfo = theRuntimeInfo;
+	}
+	return self;
+}
+
+- (id) init
+{
+	assert(0); // must call init above.
+	return nil;
+}
+
 - (void)populateForMilestoneDate:(MilestoneDate*)milestoneDate
 {
     self.formInfo.title = @"Milestone Date";
@@ -52,6 +70,10 @@
     
 }
 
-
+-(void)dealloc
+{
+	[super dealloc];
+	[varDateRuntimeInfo release];
+}
 
 @end

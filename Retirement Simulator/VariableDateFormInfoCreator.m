@@ -21,15 +21,19 @@
 
 @synthesize fieldInfo;
 @synthesize fixedDate;
+@synthesize varDateRuntimeInfo;
 
 - (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo
-    andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+			 andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+			  andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo;
 {
     self = [super init];
     if(self)
     {
         assert(vdFieldInfo != nil);
         self.fieldInfo = vdFieldInfo;
+		
+		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
         
         if([self.fieldInfo fieldIsInitializedInParentObject])
         {
@@ -67,7 +71,7 @@
     [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:self.fixedDate 
                                     andKey:@"date" andLabel:@"Date"]];
     
-    MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] init ] autorelease];
+    MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];
     mdSectionInfo.title =  @"Milestone Date";
 	mdSectionInfo.subTitle = @"These dates can be shared by multiple inputs. Changes to a milestone date will impact the results for inputs which have also selected the same milestone date.";
     mdSectionInfo.parentViewController = parentController;
@@ -79,7 +83,8 @@
     for (MilestoneDate *milestoneDate in milestoneDates)
     {
         // Create the row information for the given milestone date.
-        [sectionInfo addFieldEditInfo:[MilestoneDateFieldEditInfo createForMilestoneDate:milestoneDate]];
+        [sectionInfo addFieldEditInfo:[MilestoneDateFieldEditInfo createForMilestoneDate:milestoneDate
+									   andVarDateRuntimeInfo:self.varDateRuntimeInfo]];
     }
     return formPopulator.formInfo;
 }
@@ -89,6 +94,7 @@
     [super dealloc];
     [fieldInfo release];
     [fixedDate release];
+	[varDateRuntimeInfo release];
 }
 
 @end

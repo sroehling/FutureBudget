@@ -13,18 +13,24 @@
 
 @class MilestoneDate;
 @class ValueSubtitleTableCell;
+@class VariableDateRuntimeInfo;
 
 @interface MilestoneDateFieldEditInfo : NSObject <FieldEditInfo> {
     @private
         MilestoneDate *milestoneDate;
 		ValueSubtitleTableCell *milestoneCell;
+		VariableDateRuntimeInfo *varDateRuntimeInfo;
 }
 
-+ (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate*)theMilestoneDate;
++ (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate*)theMilestoneDate
+	andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)varDateRuntimeInfo;
 
-- (id)initWithMilestoneDate:(MilestoneDate*)theMilestoneDate;
+
+- (id)initWithMilestoneDate:(MilestoneDate*)theMilestoneDate
+	  andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)varDateRuntimeInfo;
 
 @property(nonatomic,retain) MilestoneDate *milestoneDate;
 @property(nonatomic,retain) ValueSubtitleTableCell *milestoneCell;
+@property(nonatomic,retain) VariableDateRuntimeInfo *varDateRuntimeInfo;
 
 @end

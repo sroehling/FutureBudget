@@ -21,6 +21,7 @@
 
 @synthesize milestoneDate;
 @synthesize milestoneCell;
+@synthesize varDateRuntimeInfo;
 
 - (void) configureCell
 {
@@ -28,19 +29,22 @@
     self.milestoneCell.valueDescription.text = [self detailTextLabel];
 }
 
-+ (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate *)theMilestoneDate
++ (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate *)theMilestoneDate andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo
 {
-    MilestoneDateFieldEditInfo *fieldEditInfo = [[[MilestoneDateFieldEditInfo alloc]initWithMilestoneDate:theMilestoneDate]autorelease];
+    MilestoneDateFieldEditInfo *fieldEditInfo = [[[MilestoneDateFieldEditInfo alloc]initWithMilestoneDate:theMilestoneDate andVarDateRuntimeInfo:theVarDateRuntimeInfo]autorelease];
     return fieldEditInfo;
 }
 
-- (id)initWithMilestoneDate:(MilestoneDate*)theMilestoneDate
+- (id)initWithMilestoneDate:(MilestoneDate*)theMilestoneDate 
+	  andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo
 {
     assert(theMilestoneDate != nil);
     self = [super init];
     if(self)
     {
         self.milestoneDate = theMilestoneDate;
+		
+		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
 		
 		self.milestoneCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 		[self configureCell];
@@ -53,6 +57,7 @@
     [super dealloc];
     [milestoneDate release];
 	[milestoneCell release];
+	[varDateRuntimeInfo release];
 }
 
 - (NSString*)detailTextLabel
@@ -68,7 +73,8 @@
 
 - (UIViewController*)fieldEditController
 {
-    MilestoneDateFormPopulator *formPopulator = [[[MilestoneDateFormPopulator alloc] init] autorelease];
+    MilestoneDateFormPopulator *formPopulator = [[[MilestoneDateFormPopulator alloc] 
+				initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];
     return [formPopulator milestoneDateEditViewController:self.milestoneDate];
 }
 

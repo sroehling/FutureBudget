@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0025774D13AFAD2D00D15232 /* VariableDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* VariableDateRuntimeInfo.m */; };
+		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
 		003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */; };
 		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
 		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
@@ -119,6 +121,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0025774B13AFAD2D00D15232 /* VariableDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableDateRuntimeInfo.h; sourceTree = "<group>"; };
+		0025774C13AFAD2D00D15232 /* VariableDateRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableDateRuntimeInfo.m; sourceTree = "<group>"; };
+		0025774E13AFDE2800D15232 /* StringLookupTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLookupTable.h; sourceTree = "<group>"; };
+		0025774F13AFDE2800D15232 /* StringLookupTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringLookupTable.m; sourceTree = "<group>"; };
 		003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHelper.h; sourceTree = "<group>"; };
 		003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHelper.m; sourceTree = "<group>"; };
 		003AD131138ACBE800CB3CB5 /* StringValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValidation.h; sourceTree = "<group>"; };
@@ -353,6 +359,8 @@
 				00EC1FAB139BD27C0085B25C /* ColorHelper.m */,
 				0087923E13ABB47100CA9DA7 /* LocalizationHelper.h */,
 				0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */,
+				0025774E13AFDE2800D15232 /* StringLookupTable.h */,
+				0025774F13AFDE2800D15232 /* StringLookupTable.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -463,6 +471,8 @@
 				00EC1F8C139736D40085B25C /* VariableDateFormInfoCreator.m */,
 				00EC1F9813973BE40085B25C /* VariableDateFieldEditInfo.h */,
 				00EC1F9913973BE40085B25C /* VariableDateFieldEditInfo.m */,
+				0025774B13AFAD2D00D15232 /* VariableDateRuntimeInfo.h */,
+				0025774C13AFAD2D00D15232 /* VariableDateRuntimeInfo.m */,
 			);
 			name = "Variable Date";
 			sourceTree = "<group>";
@@ -1008,6 +1018,8 @@
 				0087923A13AAC33200CA9DA7 /* CashFlowAmountVariableValueListMgr.m in Sources */,
 				0087924013ABB47100CA9DA7 /* LocalizationHelper.m in Sources */,
 				0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */,
+				0025774D13AFAD2D00D15232 /* VariableDateRuntimeInfo.m in Sources */,
+				0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

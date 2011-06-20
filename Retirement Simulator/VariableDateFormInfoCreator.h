@@ -12,16 +12,21 @@
 #import "ManagedObjectFieldInfo.h"
 #import "FixedDate.h"
 
+@class VariableDateRuntimeInfo;
+
 @interface VariableDateFormInfoCreator : NSObject <FormInfoCreator> {
     @private
         ManagedObjectFieldInfo *fieldInfo;
         FixedDate *fixedDate;
+		VariableDateRuntimeInfo *varDateRuntimeInfo;
 }
 
 - (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo 
-             andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo;
+             andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+			 andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo;
 
 @property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
 @property(nonatomic,retain) FixedDate *fixedDate;
+@property(nonatomic,retain) VariableDateRuntimeInfo *varDateRuntimeInfo;
 
 @end

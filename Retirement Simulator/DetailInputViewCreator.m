@@ -26,6 +26,7 @@
 #import "FormPopulator.h"
 #import "SharedEntityVariableValueListMgr.h"
 #import "LocalizationHelper.h"
+#import "VariableDateRuntimeInfo.h"
 
 @implementation DetailInputViewCreator
 
@@ -93,7 +94,7 @@
     
     [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" 
 	andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
-	andDefaultValueKey:@"fixedStartDate"]];
+	andDefaultValueKey:@"fixedStartDate" andVarDateRuntimeInfo:[VariableDateRuntimeInfo createForCashFlowStartDate:cashFlow]]];
 
 
     RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" 
@@ -111,7 +112,7 @@
         {
             [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"endDate" 
 			     andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				 andDefaultValueKey:@"fixedEndDate"]];           
+				 andDefaultValueKey:@"fixedEndDate" andVarDateRuntimeInfo:[VariableDateRuntimeInfo createForCashFlowEndDate:cashFlow]]];           
         }
         
     }

@@ -14,6 +14,24 @@
 
 @implementation MilestoneDateSectionInfo
 
+@synthesize varDateRuntimeInfo;
+
+-(id)initWithRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo
+{
+	self = [super init];
+	if(self)
+	{
+		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
+	}
+	return self;
+}
+
+- (id) init
+{
+	assert(0); // must call the init above
+	return nil;
+}
+
 - (void)addObjectButtonPressed
 {
     assert(self.parentViewController != nil);
@@ -23,10 +41,16 @@
         [[DataModelController theDataModelController]insertObject:@"MilestoneDate"];
     
 
-    MilestoneDateFormPopulator *formPopulator = [[[MilestoneDateFormPopulator alloc] init] autorelease];
+    MilestoneDateFormPopulator *formPopulator = [[[MilestoneDateFormPopulator alloc] initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];
     UIViewController *controller =  [formPopulator milestoneDateAddViewController:newMilestoneDate];
     
     [self.parentViewController.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)dealloc
+{
+	[super dealloc];
+	[varDateRuntimeInfo release];
 }
 
 

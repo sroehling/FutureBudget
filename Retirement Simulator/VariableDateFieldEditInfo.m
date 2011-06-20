@@ -21,6 +21,7 @@
 
 @synthesize defaultValFieldInfo;
 @synthesize dateCell;
+@synthesize varDateRuntimeInfo;
 
 - (void)configureDateCell
 {
@@ -46,7 +47,8 @@
 }
 
 - (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo andDefaultValFieldInfo:
-        (ManagedObjectFieldInfo*)theDefaultFieldInfo
+        (ManagedObjectFieldInfo*)theDefaultFieldInfo 
+		andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo
 {
     self = [super initWithFieldInfo:theFieldInfo];
     if(self)
@@ -54,6 +56,8 @@
         assert(theDefaultFieldInfo!=nil);
         assert([theDefaultFieldInfo fieldIsInitializedInParentObject]);
         self.defaultValFieldInfo = theDefaultFieldInfo;
+		
+		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
 
 		self.dateCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 		self.dateCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -70,7 +74,8 @@
 
 
 + (VariableDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                                     andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey
+									 andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey
+						andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
@@ -87,7 +92,7 @@
 
     
     VariableDateFieldEditInfo *fieldEditInfo = [[[VariableDateFieldEditInfo alloc] 
-        initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo] autorelease];
+        initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo] autorelease];
 
     
     return fieldEditInfo;
@@ -107,7 +112,8 @@
     
     VariableDateFormInfoCreator *formInfoCreator = 
         [[[VariableDateFormInfoCreator alloc] initWithVariableDateFieldInfo:self.fieldInfo 
-          andDefaultValFieldInfo:self.defaultValFieldInfo] autorelease];
+          andDefaultValFieldInfo:self.defaultValFieldInfo 
+		  andVarDateRuntimeInfo:self.varDateRuntimeInfo] autorelease];
     
     SelectableObjectTableEditViewController *viewController = 
     [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:formInfoCreator 
@@ -136,6 +142,13 @@
     return self.dateCell;
 }
 
+-(void)dealloc
+{
+	[super dealloc];
+	[varDateRuntimeInfo release];
+	[defaultValFieldInfo release];
+	[dateCell release];
+}
 
 
 @end
