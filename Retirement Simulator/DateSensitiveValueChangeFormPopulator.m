@@ -47,9 +47,14 @@
 
 	NSString *newValueLabel = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),
 							   LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];
+	NSString *newValuePlaceholder = 
+		[NSString stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VALUE_CHANGE_NEW_VALUE_PLACEHOLDER_FORMAT"),
+		       LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];
+		
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
-								   createForObject:dsValueChange andKey:@"newValue" andLabel:newValueLabel
-								   andNumberFormatter:valRuntimeInfo.valueFormatter]];
+			createForObject:dsValueChange andKey:@"newValue" andLabel:newValueLabel
+			andPlaceholder:newValuePlaceholder 
+			andNumberFormatter:valRuntimeInfo.valueFormatter]];
 	
 }
 

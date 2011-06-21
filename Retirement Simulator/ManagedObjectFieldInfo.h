@@ -12,18 +12,21 @@
 @interface ManagedObjectFieldInfo : NSObject {
     NSString *fieldLabel;
     NSString *fieldKey;
+	NSString *fieldPlaceholder;
     NSManagedObject *managedObject;
     
     BOOL fieldAccessEnabled;
 }
 
--(id)initWithManagedObject:(NSManagedObject*)managedObject
-               andFieldKey:(NSString*)fieldKey
-             andFieldLabel:(NSString*)fieldLabel;
+-(id)initWithManagedObject:(NSManagedObject*)theManagedObject
+               andFieldKey:(NSString*)theFieldKey
+             andFieldLabel:(NSString*)theFieldLabel
+			andFieldPlaceholder:(NSString*)thePlaceholder;
 
 
 @property(nonatomic,retain) NSString *fieldLabel;
 @property(nonatomic,retain) NSString *fieldKey;
+@property(nonatomic,retain) NSString *fieldPlaceholder;
 @property(nonatomic,retain) NSManagedObject *managedObject;
 
 - (id)getFieldValue;

@@ -20,7 +20,7 @@
 
 
 + (NumberFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                               andLabel:(NSString*)label 
+                               andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
                         andNumberFormatter:(NSNumberFormatter*)numFormatter
 {
     assert(obj != nil);
@@ -28,7 +28,8 @@
     assert([StringValidation nonEmptyString:label]);
     
     ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-              initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
+              initWithManagedObject:obj andFieldKey:key andFieldLabel:label 
+										 andFieldPlaceholder:placeholder];
     NumberFieldEditInfo *fieldEditInfo = [[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo andNumberFormatter:numFormatter];
     [fieldEditInfo autorelease];
     [fieldInfo release];
@@ -111,7 +112,7 @@
         cell.textField.text = [self detailTextLabel];
     }
 
-    cell.textField.placeholder = @"Enter a Value";
+    cell.textField.placeholder = self.fieldInfo.fieldPlaceholder;
     
     return cell;
     

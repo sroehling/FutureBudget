@@ -18,14 +18,15 @@
 @synthesize textCell;
 
 + (TextFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                        andLabel:(NSString*)label
+							 andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
     
+	
     ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-        initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
+        initWithManagedObject:obj andFieldKey:key andFieldLabel:label andFieldPlaceholder:placeholder];
     TextFieldEditInfo *fieldEditInfo = [[TextFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
     [fieldEditInfo autorelease];
     [fieldInfo release];
@@ -80,7 +81,7 @@
     {
         cell.textField.text = [self detailTextLabel];
     }
-    cell.textField.placeholder = @"Enter Text";
+    cell.textField.placeholder = self.fieldInfo.fieldPlaceholder;
 
     return cell;
 

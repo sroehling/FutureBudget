@@ -60,9 +60,14 @@
 		
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
+	
+	NSString *varValueNamePlaceholder = [NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_PLACEHOLDER_FORMAT"),
+										 LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
+
 	[sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:self.variableValue 
 															 andKey:@"name" 
-				andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL")]];
+				andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL")
+				andPlaceholder:varValueNamePlaceholder]];
 	
 	sectionInfo = [formPopulator nextSection];
     sectionInfo.title = [NSString 
@@ -71,8 +76,14 @@
 	sectionInfo.subTitle = [NSString 
 							stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_SECTION_SUBTITLE_FORMAT"),
 							LOCALIZED_STR(self.varValRuntimeInfo.inlineValueTitleKey)];
+							
+	NSString *varValStartingValPlaceholder = 
+	[NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_VALUE_PLACEHOLDER_FORMAT"),
+	 LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
+						
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:self.variableValue
 			andKey:@"startingValue" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_FIELD_LABEL") 
+			andPlaceholder:varValStartingValPlaceholder    
 			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
 	
 	

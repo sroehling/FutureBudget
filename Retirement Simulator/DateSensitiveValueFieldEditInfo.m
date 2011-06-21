@@ -86,10 +86,18 @@
     assert([StringValidation nonEmptyString:label]);
     assert(varValRuntimeInfo != nil);
     
+	NSString *dsvValuePlaceholder = 
+	[NSString stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VALUE_PLACEHOLDER"),
+	 LOCALIZED_STR(varValRuntimeInfo.valueTitleKey)];	   
+
+	
     ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
-           initWithManagedObject:obj andFieldKey:key andFieldLabel:label] autorelease];
+           initWithManagedObject:obj andFieldKey:key andFieldLabel:label
+		   andFieldPlaceholder:dsvValuePlaceholder] autorelease];
+		   
     
-    ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj andFieldKey:defaultFixedValKey andFieldLabel:@"Value"] autorelease];
+    ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj andFieldKey:defaultFixedValKey andFieldLabel:@"Value"
+				andFieldPlaceholder:dsvValuePlaceholder] autorelease];
     NSLog(@"Default value for date sensitive field: %@",[defaultFixedValFieldInfo description]);
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
 

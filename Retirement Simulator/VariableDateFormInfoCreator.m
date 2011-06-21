@@ -83,7 +83,8 @@
 	sectionInfo.subTitle = LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SUBTITLE");
     [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:self.fixedDate 
                                     andKey:@"date" 
-			andLabel:LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_TEXT_FIELD_LABEL")]];
+			andLabel:LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_TEXT_FIELD_LABEL")
+			andPlaceholder:LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_PLACEHOLDER")]];
     
     MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];
 	

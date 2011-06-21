@@ -17,14 +17,15 @@
 
 
 + (DateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                             andLabel:(NSString*)label
+                             andLabel:(NSString*)label 
+							 andPlaceholder:(NSString*)placeholder
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
     
     ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
+                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label andFieldPlaceholder:placeholder];
     DateFieldEditInfo *fieldEditInfo = [[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
     [fieldEditInfo autorelease];
     [fieldInfo release];
@@ -84,7 +85,7 @@
     }
     else
     {
-        cell.detailTextLabel.text = @"Enter a Date";
+        cell.detailTextLabel.text = self.fieldInfo.fieldPlaceholder;
     }
 
     

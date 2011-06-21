@@ -58,10 +58,21 @@
 
     
     SectionInfo *sectionInfo = [formPopulator nextSection];
+	
+	NSString *varValueNamePlaceholder = [NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_PLACEHOLDER_FORMAT"),
+			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
+	
     [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:newVariableValue 
-             andKey:@"name" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL")]];
+             andKey:@"name" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL")
+			 andPlaceholder:varValueNamePlaceholder]];
+			 
+	NSString *varValStartingValPlaceholder = 
+		[NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_VALUE_PLACEHOLDER_FORMAT"),
+		LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
+			 
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:newVariableValue 
              andKey:@"startingValue" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_FIELD_LABEL")
+			 andPlaceholder:varValStartingValPlaceholder
 			 andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
     
     GenericFieldBasedTableAddViewController *controller = 

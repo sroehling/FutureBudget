@@ -89,9 +89,14 @@
 			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
 	sectionInfo.subTitle = LOCALIZED_STR(self.varValRuntimeInfo.singleValSubtitleKey);
     
-    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
+	NSString *dsvPlaceholder = [NSString 
+					stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VALUE_PLACEHOLDER"),
+					LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
+	
+	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
             createForObject:self.defaultFixedVal andKey:@"value" 
 			andLabel:LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)
+			andPlaceholder:dsvPlaceholder
 			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]

@@ -17,6 +17,7 @@
 }
 
 + (DateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-                             andLabel:(NSString*)label;
+                             andLabel:(NSString*)label 
+					   andPlaceholder:(NSString*)placeholder;
 
 @end

@@ -83,13 +83,19 @@
     assert([StringValidation nonEmptyString:label]);
     assert([StringValidation nonEmptyString:defaultValKey]);
     
+	
+	NSString *variableDatePlaceholder = LOCALIZED_STR(@"VARIABLE_DATE_PLACEHOLDER");
+	
     ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
-                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label] autorelease];
+                                         initWithManagedObject:obj andFieldKey:key 
+										 andFieldLabel:label
+										 andFieldPlaceholder:variableDatePlaceholder] autorelease];
  
     
     ManagedObjectFieldInfo *defaultValFieldInfo = [[[ManagedObjectFieldInfo alloc] 
                                           initWithManagedObject:obj 
-                        andFieldKey:defaultValKey andFieldLabel:label] autorelease];
+                        andFieldKey:defaultValKey andFieldLabel:label
+						andFieldPlaceholder:variableDatePlaceholder] autorelease];
 
     
     VariableDateFieldEditInfo *fieldEditInfo = [[[VariableDateFieldEditInfo alloc] 

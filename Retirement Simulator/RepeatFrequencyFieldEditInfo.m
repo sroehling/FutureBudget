@@ -12,6 +12,7 @@
 #import "TableViewHelper.h"
 #import "StringValidation.h"
 #import "FormFieldWithSubtitleTableCell.h"
+#import "LocalizationHelper.h"
 
 @implementation RepeatFrequencyFieldEditInfo
 
@@ -30,9 +31,11 @@
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
+	
+	NSString *freqPlaceholder = LOCALIZED_STR(@"INPUT_CASH_FLOW_REPEAT_FREQUENCY_PLACEHOLDER");
     
     ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label];
+                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label andFieldPlaceholder:freqPlaceholder];
     RepeatFrequencyFieldEditInfo *fieldEditInfo = [[RepeatFrequencyFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
     [fieldEditInfo autorelease];
     [fieldInfo release];

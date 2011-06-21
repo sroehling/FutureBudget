@@ -46,10 +46,12 @@
     SectionInfo *sectionInfo = [self nextSection];
     [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:milestoneDate 
                                                               andKey:@"name" 
-			andLabel:LOCALIZED_STR(@"MILESTONE_DATE_NAME_TEXT_FIELD_LABEL")]];
+			andLabel:LOCALIZED_STR(@"MILESTONE_DATE_NAME_TEXT_FIELD_LABEL")
+			andPlaceholder:LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_NAME_PLACEHOLDER")]];
     [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:milestoneDate 
             andKey:@"date" 
-			andLabel:LOCALIZED_STR(@"MILESTONE_DATE_DATE_FIELD_LABEL")]];
+			andLabel:LOCALIZED_STR(@"MILESTONE_DATE_DATE_FIELD_LABEL")
+			andPlaceholder:LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_DATE_PLACEHOLDER")]];
 
 }
 

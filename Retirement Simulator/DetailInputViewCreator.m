@@ -64,7 +64,8 @@
 {
     SectionInfo *sectionInfo = [formPopulator nextSection];
     [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:cashFlow andKey:@"name" 
-		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_NAME_FIELD_LABEL")]];
+		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_NAME_FIELD_LABEL")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")]];
     
     // Amount section
     

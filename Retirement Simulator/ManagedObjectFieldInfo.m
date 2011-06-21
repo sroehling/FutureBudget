@@ -12,10 +12,12 @@
 @implementation ManagedObjectFieldInfo
 
 @synthesize fieldLabel,fieldKey,managedObject;
+@synthesize fieldPlaceholder;
 
 -(id)initWithManagedObject:(NSManagedObject*)theManagedObject
                andFieldKey:(NSString*)theFieldKey
              andFieldLabel:(NSString*)theFieldLabel
+			 andFieldPlaceholder:(NSString *)thePlaceholder
 {
     self = [super init];
     if(self)
@@ -27,7 +29,11 @@
         assert(theFieldLabel != nil); 
         assert([theFieldLabel length]>0);
         self.fieldLabel = theFieldLabel;
-
+		
+		assert(thePlaceholder != nil);
+		assert([thePlaceholder length] > 0);
+		self.fieldPlaceholder = thePlaceholder;
+		
         assert(theManagedObject != nil);
         self.managedObject = theManagedObject;
         
@@ -93,6 +99,7 @@
     [super dealloc];
     [fieldLabel release];
     [fieldKey release];
+	[fieldPlaceholder release];
     [managedObject release];
 }
 
