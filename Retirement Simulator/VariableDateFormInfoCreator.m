@@ -13,8 +13,12 @@
 #import "DateFieldEditInfo.h"
 #import "MilestoneDateFieldEditInfo.h"
 #import "MilestoneDateSectionInfo.h"
+#import "VariableDateRuntimeInfo.h"
 #import "FixedDate.h"
 #import "SectionInfo.h"
+#import "StringLookupTable.h"
+#import "VariableHeightTableHeader.h"
+#import "LocalizationHelper.h"
 
 
 @implementation VariableDateFormInfoCreator
@@ -61,19 +65,30 @@
 {
    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
+	VariableHeightTableHeader *tableHeader = 
+	[[[VariableHeightTableHeader alloc] initWithFrame:CGRectZero] autorelease];
+
+	tableHeader.header.text = self.varDateRuntimeInfo.tableHeader;
+	tableHeader.subHeader.text = self.varDateRuntimeInfo.tableSubHeader;
+	[tableHeader resizeForChildren];
+	formPopulator.formInfo.headerView = tableHeader;
+
 	
-    formPopulator.formInfo.title = [NSString stringWithFormat:@"%@ Date",self.fieldInfo.fieldLabel];
+    formPopulator.formInfo.title = self.varDateRuntimeInfo.tableTitle;
     
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = @"Fixed Date";
-	sectionInfo.subTitle = @"This date is for the current input only. If this date is selected, changing this date only impacts results for the current input.",
+	
+    sectionInfo.title = LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SUBTITLE");
     [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:self.fixedDate 
-                                    andKey:@"date" andLabel:@"Date"]];
+                                    andKey:@"date" 
+			andLabel:LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_TEXT_FIELD_LABEL")]];
     
     MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];
-    mdSectionInfo.title =  @"Milestone Date";
-	mdSectionInfo.subTitle = @"These dates can be shared by multiple inputs. Changes to a milestone date will impact the results for inputs which have also selected the same milestone date.";
+	
+    mdSectionInfo.title =  LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_DATE_SECTION_TITLE");
+	mdSectionInfo.subTitle = LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_DATE_SUBTITLE");
     mdSectionInfo.parentViewController = parentController;
     sectionInfo = mdSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];

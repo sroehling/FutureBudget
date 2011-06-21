@@ -17,6 +17,7 @@
 #import "GenericFieldBasedTableEditViewController.h"
 #import "GenericFieldBasedTableAddViewController.h"
 #import "StaticFormInfoCreator.h"
+#import "LocalizationHelper.h"
 
 @implementation MilestoneDateFormPopulator
 
@@ -40,13 +41,15 @@
 
 - (void)populateForMilestoneDate:(MilestoneDate*)milestoneDate
 {
-    self.formInfo.title = @"Milestone Date";
+    self.formInfo.title = LOCALIZED_STR(@"MILESTONE_DATE_FORM_TITLE");
     
     SectionInfo *sectionInfo = [self nextSection];
     [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:milestoneDate 
-                                                              andKey:@"name" andLabel:@"name"]];
+                                                              andKey:@"name" 
+			andLabel:LOCALIZED_STR(@"MILESTONE_DATE_NAME_TEXT_FIELD_LABEL")]];
     [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:milestoneDate 
-                                                              andKey:@"date" andLabel:@"Date"]];
+            andKey:@"date" 
+			andLabel:LOCALIZED_STR(@"MILESTONE_DATE_DATE_FIELD_LABEL")]];
 
 }
 

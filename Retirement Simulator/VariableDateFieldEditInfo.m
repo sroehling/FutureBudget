@@ -16,6 +16,7 @@
 #import "ManagedObjectFieldInfo.h"
 #import "ColorHelper.h"
 #import "ValueSubtitleTableCell.h"
+#import "LocalizationHelper.h"
 
 @implementation VariableDateFieldEditInfo
 
@@ -40,7 +41,7 @@
         // the value needs to be filled in (the same as a placeholder
         // in a text field).
         self.dateCell.valueDescription.textColor = [ColorHelper promptTextColor];
-        self.dateCell.valueDescription.text = @"Enter a Date";
+        self.dateCell.valueDescription.text = LOCALIZED_STR(@"VARIABLE_DATE_DATE_ENTRY_PROMPT");
 		self.dateCell.valueSubtitle.text = @"";
     }
 	

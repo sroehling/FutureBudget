@@ -14,7 +14,7 @@
 @interface VariableValueRuntimeInfo : NSObject {
 	@private
 		NSNumberFormatter *valueFormatter;
-		NSString *valueTitle;
+		NSString *valueTitleKey;
 		NSString *inlineValueTitleKey;
 		NSString *valueVerb;
 		NSString *periodDesc;
@@ -29,7 +29,7 @@
 }
 
 @property(nonatomic,retain) NSNumberFormatter *valueFormatter;
-@property(nonatomic,retain) NSString *valueTitle;
+@property(nonatomic,retain) NSString *valueTitleKey;
 @property(nonatomic,retain) NSString *valueVerb;
 @property(nonatomic,retain) NSString *periodDesc;
 @property(nonatomic,retain) id<VariableValueListMgr> listMgr;

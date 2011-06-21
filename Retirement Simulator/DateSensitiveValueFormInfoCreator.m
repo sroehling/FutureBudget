@@ -51,7 +51,7 @@
 {
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
-    formPopulator.formInfo.title = self.varValRuntimeInfo.valueTitle;
+    formPopulator.formInfo.title = LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey);
 	
 	
 	VariableHeightTableHeader *tableHeader = 
@@ -61,7 +61,8 @@
 	{
 		tableHeader.header.text = [NSString 
 								   stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_TABLE_TITLE_FORMAT"),
-								   self.varValRuntimeInfo.valueTypeTitle,self.varValRuntimeInfo.valueTitle,
+								   self.varValRuntimeInfo.valueTypeTitle,
+								   LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey),
 								   self.varValRuntimeInfo.valueName];
 		
 	}
@@ -69,7 +70,8 @@
 	{
 		tableHeader.header.text = [NSString 
 								   stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_TABLE_TITLE_FORMAT_UNDEFINED_NAME"),
-								   self.varValRuntimeInfo.valueTypeTitle,self.varValRuntimeInfo.valueTitle];
+								   self.varValRuntimeInfo.valueTypeTitle,
+								   LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
 	}
 
 	tableHeader.subHeader.text = self.varValRuntimeInfo.tableSubtitle;
@@ -84,18 +86,19 @@
 	
     sectionInfo.title = [[[NSString alloc]
 			initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_SINGLE_VALUE_TITLE_FORMAT"),
-			self.varValRuntimeInfo.valueTitle] autorelease];
+			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
 	sectionInfo.subTitle = LOCALIZED_STR(self.varValRuntimeInfo.singleValSubtitleKey);
     
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
-            createForObject:self.defaultFixedVal andKey:@"value" andLabel:self.varValRuntimeInfo.valueTitle
+            createForObject:self.defaultFixedVal andKey:@"value" 
+			andLabel:LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)
 			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
 					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
     vvSectionInfo.title =  [[[NSString alloc]
 							 initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
-			self.varValRuntimeInfo.valueTitle] autorelease];
+			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
 	vvSectionInfo.subTitle =LOCALIZED_STR(self.varValRuntimeInfo.variableValSubtitleKey);
     vvSectionInfo.parentViewController = parentController;
     sectionInfo = vvSectionInfo;

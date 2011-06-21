@@ -31,17 +31,22 @@
 
 - (void)populateValueChange:(DateSensitiveValueChange*)dsValueChange
 	andVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo
+	andVariableValue:(VariableValue*)varValue
 {
 	
-	self.formInfo.title = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_FORMAT"),valRuntimeInfo.valueTitle];
+	self.formInfo.title = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_FORMAT"),
+	 LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];
 	
 
 	SectionInfo *sectionInfo = [self nextSection];
+	
+	VariableDateRuntimeInfo *varDateInfo = [VariableDateRuntimeInfo createForDateSensitiveValue:valRuntimeInfo andVariableValue:varValue];
 		
 	[sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:dsValueChange andKey:@"startDate" andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
-	andDefaultValueKey:@"defaultFixedStartDate" andVarDateRuntimeInfo:[VariableDateRuntimeInfo createForDateSensitiveValue:valRuntimeInfo]]];
+	andDefaultValueKey:@"defaultFixedStartDate" andVarDateRuntimeInfo:varDateInfo]];
 
-	NSString *newValueLabel = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),valRuntimeInfo.valueTitle];
+	NSString *newValueLabel = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),
+							   LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
 								   createForObject:dsValueChange andKey:@"newValue" andLabel:newValueLabel
 								   andNumberFormatter:valRuntimeInfo.valueFormatter]];
@@ -51,7 +56,7 @@
 - (UIViewController*)addViewControllerForValueChange:(DateSensitiveValueChange*)valueChange
 	andVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo andParentVariableValue:(VariableValue*)varValue
 {
-	[self populateValueChange:valueChange andVariableValRuntimeInfo:valRuntimeInfo];
+	[self populateValueChange:valueChange andVariableValRuntimeInfo:valRuntimeInfo andVariableValue:varValue];
 	
     GenericFieldBasedTableAddViewController *controller = [[[GenericFieldBasedTableAddViewController alloc]
 															initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:self.formInfo] 
@@ -65,8 +70,10 @@
 
 - (UIViewController*)editViewControllerForValueChange:(DateSensitiveValueChange*)valueChange
 							andVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo
+							andParentVariableValue:(VariableValue*)varValue
 {
-	[self populateValueChange:valueChange andVariableValRuntimeInfo:valRuntimeInfo];
+	[self populateValueChange:valueChange andVariableValRuntimeInfo:valRuntimeInfo 
+	     andVariableValue:varValue];
 	
     UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
 			initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:self.formInfo]] autorelease];

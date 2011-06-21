@@ -22,6 +22,7 @@
 						   andParentVariableValue:(VariableValue*)varValue;
 						   
 - (UIViewController*)editViewControllerForValueChange:(DateSensitiveValueChange*)valueChange
-							andVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo;
+							andVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo
+							   andParentVariableValue:(VariableValue*)varValue;
 
 @end

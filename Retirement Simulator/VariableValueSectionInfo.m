@@ -51,7 +51,7 @@
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
 	
     formPopulator.formInfo.title = [[[NSString alloc] initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
-									 self.varValRuntimeInfo.valueTitle] autorelease];
+									 LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
     
     VariableValue *newVariableValue = [self.varValRuntimeInfo.listMgr createNewValue];
     [[DataModelController theDataModelController] saveContext];

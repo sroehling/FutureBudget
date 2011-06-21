@@ -17,7 +17,7 @@
 @implementation VariableValueRuntimeInfo
 
 @synthesize valueFormatter;
-@synthesize valueTitle;
+@synthesize valueTitleKey;
 @synthesize valueVerb;
 @synthesize periodDesc;
 @synthesize listMgr;
@@ -51,7 +51,7 @@
 		assert(title != nil);
 		assert([title length] > 0);
 		self.valueFormatter = valFormatter;
-		self.valueTitle = title;
+		self.valueTitleKey = title;
 		self.valueVerb = verb;
 		self.periodDesc = thePeriodDesc;
 		self.listMgr = theListMgr;
@@ -71,7 +71,7 @@
 {
 	[super dealloc];
 	[valueFormatter release];
-	[valueTitle release];
+	[valueTitleKey release];
 	[valueVerb release];
 	[periodDesc release];
 	[listMgr release];
@@ -112,7 +112,7 @@
 	VariableValueRuntimeInfo *amountRuntimeInfo = 
 		[[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
-		andValueTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE") 
+		andValueTitle:@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE" 
 		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
 		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableAmountMgr
 		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
@@ -140,7 +140,7 @@
 	
 	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
-		andValueTitle:LOCALIZED_STR(@"INPUT_INFLATION_RATE_VALUE_TITLE")
+		andValueTitle:@"INPUT_INFLATION_RATE_VALUE_TITLE"
 		andInlineValueTitleKey:@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
 		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 

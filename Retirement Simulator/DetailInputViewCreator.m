@@ -92,9 +92,12 @@
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = LOCALIZED_STR(@"INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE");
     
+	VariableDateRuntimeInfo *startDateInfo = 
+		[VariableDateRuntimeInfo createForCashFlow:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_START_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME"];
     [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" 
 	andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
-	andDefaultValueKey:@"fixedStartDate" andVarDateRuntimeInfo:[VariableDateRuntimeInfo createForCashFlowStartDate:cashFlow]]];
+	andDefaultValueKey:@"fixedStartDate" 
+			andVarDateRuntimeInfo:startDateInfo]];
 
 
     RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" 
@@ -110,9 +113,11 @@
         assert(repeatFreq != nil);
         if([repeatFreq  eventRepeatsMoreThanOnce])
         {
+			VariableDateRuntimeInfo *endDateInfo = 
+			[VariableDateRuntimeInfo createForCashFlow:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_END_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT_NO_NAME"];
             [sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:cashFlow andKey:@"endDate" 
 			     andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				 andDefaultValueKey:@"fixedEndDate" andVarDateRuntimeInfo:[VariableDateRuntimeInfo createForCashFlowEndDate:cashFlow]]];           
+				 andDefaultValueKey:@"fixedEndDate" andVarDateRuntimeInfo:endDateInfo]];           
         }
         
     }

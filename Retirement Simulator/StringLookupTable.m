@@ -7,6 +7,7 @@
 //
 
 #import "StringLookupTable.h"
+#import "LocalizationHelper.h"
 
 
 @implementation StringLookupTable
@@ -14,18 +15,35 @@
 @synthesize lookupTable;
 
 
+-(id)initWithStringLookupDictionary:(NSDictionary*)varStrings
+{
+	self = [super self];
+	if(self)
+	{
+		self.lookupTable = varStrings;
+	}
+	return self;
+}
+
+-(id)init 
+{
+	assert(0); // must call init above
+	return nil;
+}
+
 -(NSString*)stringVal:(NSString*)key
 {
 	assert(key != nil);
 	assert([key length] > 0);
-	return @"lookup";
+	NSString *val = [self.lookupTable objectForKey:key];
+	assert(val != nil);
+	return val;
+
 }
 
 -(NSString*)localizedStringVal:(NSString*)key
 {
-	assert(key != nil);
-	assert([key length] > 0);	
-	return @"lookup";
+	return LOCALIZED_STR([self stringVal:key]);	
 }
 
 - (void) dealloc

@@ -27,6 +27,13 @@
 "INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT" = "Enter an Amount";
 "INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT" = "Select a single %@, to be used for every %@ occurrence. Or, select a variable %@, which can change over time.";
 
+"INPUT_CASH_FLOW_END_DATE_TITLE" = "End Date";
+"INPUT_CASH_FLOW_START_DATE_TITLE" = "Start Date";
+"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" = "This first occurence of the %@ %@ occurs on this date.";
+"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT" = "After this date, no more occurences of the %@ %@ will occur";
+"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME" = "This first occurence of the %@ occurs on this date.";
+"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT_NO_NAME" = "After this date, no more occurences of the %@ will occur";
+
 "INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE" = "Occurences";
 "INPUT_CASHFLOW_START_FIELD_LABEL" = "Start";
 "INPUT_CASHFLOW_REPEAT_FIELD_LABEL" = "Repeat";
@@ -46,9 +53,8 @@
 "DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT" = "Variable %@";
 "DATE_SENSITIVE_VALUE_TABLE_TITLE_FORMAT" = "%@ %@ for %@";
 "DATE_SENSITIVE_VALUE_TABLE_TITLE_FORMAT_UNDEFINED_NAME" = "%@ %@";
-
-
-
+"DATE_SENSITIVE_VALUE_VALUE_CHANGE_TABLE_HEADER_FORMAT" = "Start Date for New %@";
+"DATE_SENSITIVE_VALUE_VALUE_CHANGE_TABLE_SUBHEADER_FORMAT" = "After this date, a new %@ goes into effect under '%@'";
 
 "VARIABLE_VALUE_NAME_LABEL" = "Name";
 "VALUE_CHANGE_VALUE_CHANGE_FORMAT" = "%@ Change";
@@ -60,3 +66,15 @@
 "VARIABLE_VALUE_VALUE_CHANGES_SECTION_TITLE_FORMAT" = "%@ Changes";
 "VARIABLE_VALUE_VALUE_CHANGES_SECTION_SUBTITLE_FORMAT" = "These are changes to the %@, which occur after the starting value.";
 "VARIABLE_VALUE_START_DATE_FIELD_LABEL" = "Starting";
+
+"VARIABLE_DATE_FIXED_DATE_TEXT_FIELD_LABEL" = "Date";
+"VARIABLE_DATE_TABLE_TITLE_FORMAT" = "%@ %@ for %@";
+"VARIABLE_DATE_TABLE_TITLE_FORMAT_NO_NAME" = "%@ %@";
+"VARIABLE_DATE_FIXED_DATE_SECTION_TITLE" = "Fixed Date";
+"VARIABLE_DATE_FIXED_DATE_SUBTITLE" = "This date is for the current input only. If this date is selected, changing this date only impacts results for the current input.";
+"VARIABLE_DATE_MILESTONE_DATE_SECTION_TITLE" = "Milestone Date";
+"VARIABLE_DATE_MILESTONE_DATE_SUBTITLE" = "These dates can be shared by multiple inputs. Changes to a milestone date will impact the results for inputs which have also selected the same milestone date.";
+"MILESTONE_DATE_FORM_TITLE" = "Milestone Date";
+"MILESTONE_DATE_NAME_TEXT_FIELD_LABEL" = "Name";
+"MILESTONE_DATE_DATE_FIELD_LABEL" = "Date";
+"VARIABLE_DATE_DATE_ENTRY_PROMPT" = "Enter a Date";

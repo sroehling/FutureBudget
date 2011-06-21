@@ -10,24 +10,98 @@
 
 #import "CashFlowInput.h"
 #import "VariableValueRuntimeInfo.h"
+#import "StringLookupTable.h"
+#import "LocalizationHelper.h"
+#import "VariableValue.h"
 
 @implementation VariableDateRuntimeInfo
 
-+ (VariableDateRuntimeInfo*)createForCashFlowStartDate:(CashFlowInput*)cashFlow
-{
-	return [[[VariableDateRuntimeInfo alloc] init] autorelease];
+@synthesize tableTitle;
+@synthesize tableHeader;
+@synthesize tableSubHeader;
 
+- (id)initWithTableTitle:(NSString*)theTitle andHeader:(NSString*)theHeader
+			andSubHeader:(NSString*)theSubHeader
+{
+	self = [super init];
+	if(self)
+	{
+		self.tableHeader = theHeader;
+		self.tableTitle = theTitle;
+		self.tableSubHeader = theSubHeader;
+	}
+	return self;
 }
 
-+ (VariableDateRuntimeInfo*)createForCashFlowEndDate:(CashFlowInput*)cashFlow
+- (id) init
 {
-	return [[[VariableDateRuntimeInfo alloc] init] autorelease];
+	assert(0);
+	return nil;
+}
+
+- (void) dealloc
+{
+	[super dealloc];
+	[tableTitle  release];
+	[tableHeader release];
+	[tableSubHeader release];
+}
+
+
++ (VariableDateRuntimeInfo*)createForCashFlow:(CashFlowInput*)cashFlow
+	andFieldTitleKey:(NSString*)fieldTitleStringFileKey 
+	andSubHeaderFormatKey:(NSString*)subHeaderFormatKey
+	andSubHeaderFormatKeyNoName:(NSString*)subHeaderFormatKeyNoName
+{
+	NSString *parentName = cashFlow.name;
+	NSString *tableHeader;
+	NSString *tableSubHeader;
+	if(parentName == nil)
+	{
+		tableHeader = [NSString stringWithFormat:
+				LOCALIZED_STR(@"VARIABLE_DATE_TABLE_TITLE_FORMAT_NO_NAME"),
+				[cashFlow inputTypeTitle],LOCALIZED_STR(fieldTitleStringFileKey)];
+		tableSubHeader = [NSString stringWithFormat:
+						 LOCALIZED_STR(subHeaderFormatKeyNoName),
+						 [cashFlow inlineInputType]];
+		
+	}
+	else
+	{
+		tableHeader = [NSString stringWithFormat:
+					  LOCALIZED_STR(@"VARIABLE_DATE_TABLE_TITLE_FORMAT"),
+					  [cashFlow inputTypeTitle],LOCALIZED_STR(fieldTitleStringFileKey),
+					  parentName];
+		tableSubHeader = [NSString stringWithFormat:
+						 LOCALIZED_STR(subHeaderFormatKey),
+						 [cashFlow inlineInputType],parentName];
+	}
+
+	NSString *tableTitle = LOCALIZED_STR(fieldTitleStringFileKey);
+
+	return [[[VariableDateRuntimeInfo alloc] initWithTableTitle:tableTitle andHeader:tableHeader andSubHeader:tableSubHeader] autorelease];
 }
 
 + (VariableDateRuntimeInfo*)createForDateSensitiveValue:(VariableValueRuntimeInfo*)valRuntimeInfo
+	andVariableValue:(VariableValue*)varValue
 {
-	return [[[VariableDateRuntimeInfo alloc] init] autorelease];
 
+	NSString *parentName = valRuntimeInfo.valueName;
+	if(parentName == nil)
+	{
+		parentName = @"";
+	}
+	
+	NSString *tableHeader = [NSString stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VALUE_CHANGE_TABLE_HEADER_FORMAT"),
+					LOCALIZED_STR(valRuntimeInfo.valueTitleKey)		];
+
+	NSString *tableSubheader = 
+		[NSString stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VALUE_CHANGE_TABLE_SUBHEADER_FORMAT"),
+		 LOCALIZED_STR(valRuntimeInfo.inlineValueTitleKey),varValue.name];
+		 
+	NSString *tableTitle = LOCALIZED_STR(valRuntimeInfo.valueTitleKey);
+
+	return [[[VariableDateRuntimeInfo alloc] initWithTableTitle:tableTitle andHeader:tableHeader andSubHeader:tableSubheader] autorelease];
 }
 
 @end

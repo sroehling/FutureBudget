@@ -16,6 +16,8 @@
 
 @property(nonatomic,retain) NSDictionary *lookupTable;
 
+-(id)initWithStringLookupDictionary:(NSDictionary*)varStrings;
+
 -(NSString*)stringVal:(NSString*)key;
 -(NSString*)localizedStringVal:(NSString*)key;
 

@@ -56,7 +56,7 @@
     
     formPopulator.formInfo.title = [NSString 
 		stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_VIEW_TITLE_FORMAT"),
-		self.varValRuntimeInfo.valueTitle];
+		LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
 		
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
@@ -67,7 +67,7 @@
 	sectionInfo = [formPopulator nextSection];
     sectionInfo.title = [NSString 
 	  stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_SECTION_TITLE_FORMAT"),
-	       self.varValRuntimeInfo.valueTitle];
+	       LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
 	sectionInfo.subTitle = [NSString 
 							stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_SECTION_SUBTITLE_FORMAT"),
 							LOCALIZED_STR(self.varValRuntimeInfo.inlineValueTitleKey)];
@@ -84,7 +84,7 @@
 		  
     vcSectionInfo.title =  [NSString stringWithFormat:
 		LOCALIZED_STR(@"VARIABLE_VALUE_VALUE_CHANGES_SECTION_TITLE_FORMAT"),
-		self.varValRuntimeInfo.valueTitle];
+		LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
 	vcSectionInfo.subTitle =[NSString stringWithFormat:
 			LOCALIZED_STR(@"VARIABLE_VALUE_VALUE_CHANGES_SECTION_SUBTITLE_FORMAT"),
 			LOCALIZED_STR(self.varValRuntimeInfo.inlineValueTitleKey)];
@@ -95,7 +95,8 @@
         // Create the row information for the given milestone date.
 		DateSensitiveValueChangeFieldEditInfo *fieldInfo = 
 			[[[DateSensitiveValueChangeFieldEditInfo alloc]
-			  initWithValueChange:valueChange andVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
+			  initWithValueChange:valueChange andVariableValueRuntimeInfo:self.varValRuntimeInfo
+			  andVariableValue:self.variableValue ] autorelease];
         [vcSectionInfo addFieldEditInfo:fieldInfo];
     }
     return formPopulator.formInfo;

@@ -21,6 +21,7 @@
 @synthesize varValInfo;
 @synthesize valChange;
 @synthesize valChangeCell;
+@synthesize variableVal;
 
 - (void) configureCell
 {
@@ -32,6 +33,7 @@
 
 - (id) initWithValueChange:(DateSensitiveValueChange*)valueChange 
 andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
+andVariableValue:(VariableValue*)theVariableVal
 {
 		self = [super init];
 		if(self)
@@ -42,8 +44,11 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 			assert(valueChange!=nil);
 			self.valChange = valueChange;
 			
+			self.variableVal = theVariableVal;
+			
 			self.valChangeCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 			[self configureCell];
+			
 
 		}
 		return self;
@@ -61,6 +66,7 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 	[varValInfo release];
 	[valChange release];
 	[valChangeCell release];
+	[variableVal release];
 }
 
 - (NSString*)detailTextLabel
@@ -73,7 +79,8 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 
 - (NSString*)textLabel
 {
-    return [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),self.varValInfo.valueTitle];
+    return [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),
+	 LOCALIZED_STR(self.varValInfo.valueTitleKey)];
 }
 
 - (UIViewController*)fieldEditController
@@ -81,7 +88,7 @@ andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
 	DateSensitiveValueChangeFormPopulator *dsvFormPop = 
 		[[[DateSensitiveValueChangeFormPopulator alloc]init ] autorelease];
 	return [dsvFormPop editViewControllerForValueChange:self.valChange
-							  andVariableValRuntimeInfo:self.varValInfo];
+		andVariableValRuntimeInfo:self.varValInfo andParentVariableValue:self.variableVal];
  }
 
 - (BOOL)hasFieldEditController
