@@ -49,13 +49,15 @@
 		unsigned int daysAtCurrentRate;
 		if((currRateIndex + 1) == [self.variableRates count])
 		{
-			// This is the last index => 
+			// This is the last index (rate change) => 
 			// all the remaining days fall under the current rate.
 			 daysAtCurrentRate = daysOffsetFromStart - currOffset;
 			 currOffset = daysOffsetFromStart;
 		}
 		else
 		{
+			// This is not the last rate change
+			
 			VariableRate *nextRate = (VariableRate*)[self.variableRates objectAtIndex:(currRateIndex+1)];
 			assert(nextRate.daysSinceStart >= currRate.daysSinceStart);
 			if(nextRate.daysSinceStart > daysOffsetFromStart)
@@ -72,6 +74,7 @@
 			}
 			currRate = nextRate;
 		}
+		currRateIndex++;
 		// Compund the multiplier using the current daily rate and the number
 		// of days to compound at the current rate.
 		valueMultiplier = valueMultiplier * pow(currRate.dailyRate + 1.0,daysAtCurrentRate);

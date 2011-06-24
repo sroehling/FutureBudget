@@ -15,12 +15,18 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <UIKit/UIKit.h>
 //#import "application_headers" as required
+#import "InMemoryCoreData.h"
+
+
 
 
 @interface VariableRateCalculatorTest : SenTestCase {
-    
+    @private
+		InMemoryCoreData *coreData;
 }
 
+
+@property(nonatomic,retain) InMemoryCoreData *coreData;
 
 - (void)testVariableRateCalc; 
 

@@ -13,6 +13,7 @@
 #import "VariableRate.h"
 #import "FixedValue.h"
 #import "VariableValue.h"
+#import "VariableDate.h"
 #import "DateSensitiveValueChange.h"
 #import "DateHelper.h"
 
@@ -54,7 +55,7 @@
 		
 	for(DateSensitiveValueChange *valChange in variableVal.valueChanges)
 	{
-		NSTimeInterval secondsSinceStart = [valChange.startDate timeIntervalSinceDate:self.startDate];
+		NSTimeInterval secondsSinceStart = [valChange.startDate.date timeIntervalSinceDate:self.startDate];
 		// TBD - is the right to not include values which come before the start date? Or
 		// Should the startingvalue come before all other values, meaning a variable
 		// value could be in effect at the start date.
