@@ -13,14 +13,19 @@
 #import "EventRepeater.h"
 #import "CashFlowInput.h"
 #import "VariableDate.h"
+#import "DateSensitiveValueVariableRateCalculatorCreator.h"
+#import "DateHelper.h"
+#import "VariableRateCalculator.h"
+#import "ValueAsOfCalculatorCreator.h"
 
 @protocol SimEventCreator;
 
 @implementation CashFlowSimEventCreator
 
 @synthesize cashFlow;
-
-
+@synthesize varRateCalc;
+@synthesize startAmountGrowthDate;
+@synthesize varAmountCalc;
 
 - (id)initWithCashFlow:(CashFlowInput*)theCashFlow
 {
@@ -29,13 +34,31 @@
     {
         assert(theCashFlow != nil);
         self.cashFlow = theCashFlow;
-        return self;
+	
+	
+		self.startAmountGrowthDate = theCashFlow.startDate.date;
+
+		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
+		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
+		self.varRateCalc = [calcCreator 
+							createForDateSensitiveValue:self.cashFlow.amountGrowthRate 
+							andStartDate:self.startAmountGrowthDate];
+							
+		ValueAsOfCalculatorCreator *varAmountCalcCreator = 
+			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];
+		self.varAmountCalc = [varAmountCalcCreator createForDateSensitiveValue:self.cashFlow.amount];
+							
     }
-    else
-    {
-        return nil;
-    }
+    return self;
 }
+
+- (id) init 
+{
+	assert(0);
+	return nil;
+}
+
+
 
 - (void)resetSimEventCreation
 {
@@ -59,6 +82,19 @@
         assert(cashFlow != nil);
         theEvent.cashFlow = cashFlow;
         theEvent.eventDate = nextDate;
+		
+		NSTimeInterval secondsSinceAmountGrowth = [nextDate timeIntervalSinceDate:self.startAmountGrowthDate];
+		// TBD - is the right to not include values which come before the start date? Or
+		// Should the startingvalue come before all other values, meaning a variable
+		// value could be in effect at the start date.
+		assert(secondsSinceAmountGrowth >= 0.0);
+		unsigned int daysSinceStart = floor(secondsSinceAmountGrowth/SECONDS_PER_DAY);
+		double amountMultiplier = [self.varRateCalc valueMultiplierForDay:daysSinceStart];
+		double unadjustedAmount = [self.varAmountCalc valueAsOfDate:nextDate];
+		double growthAdjustedCashFlowAmount = unadjustedAmount * amountMultiplier;
+		
+		theEvent.cashFlowAmount = growthAdjustedCashFlowAmount;
+		
         [theEvent autorelease];
         
         return theEvent;
@@ -78,8 +114,9 @@
     {
         [eventRepeater release];
     }
-
-    
+	[varRateCalc release];
+	[startAmountGrowthDate release];
+	[varAmountCalc release];
 }
 
 

@@ -10,6 +10,7 @@
 #import "DateSensitiveValueChange.h"
 #import "VariableValueRuntimeInfo.h"
 #import "NumberHelper.h"
+#import "DateSensitiveValueVisitor.h"
 
 
 @implementation VariableValue
@@ -87,6 +88,12 @@
 		return [NSString stringWithFormat:@"Initially %@ (varies after)",startingValDesc];
 		
 	}	
+}
+
+-(void)acceptDateSensitiveValVisitor:(id<DateSensitiveValueVisitor>)dsvVisitor
+{
+	[super acceptDateSensitiveValVisitor:dsvVisitor];
+	[dsvVisitor visitVariableValue:self]; 
 }
 
 

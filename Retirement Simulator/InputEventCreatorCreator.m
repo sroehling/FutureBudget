@@ -31,7 +31,7 @@
 - (void) visitIncome:(IncomeInput *)income
 {
     CashFlowSimEventCreator *theCreator = 
-    [[CashFlowSimEventCreator alloc]initWithCashFlow:income];
+		[[CashFlowSimEventCreator alloc]initWithCashFlow:income];
     self.currSimEventCreator = theCreator;
     [theCreator release];
 }

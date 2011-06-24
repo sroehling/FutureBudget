@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class VariableValueRuntimeInfo;
+@protocol DateSensitiveValueVisitor;
 
 @interface DateSensitiveValue : NSManagedObject {
 @private
@@ -19,5 +20,7 @@
 - (NSString*) valueSubtitle:(VariableValueRuntimeInfo*)valueRuntimeInfo;
 - (NSString*) inlineDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
 - (NSString*) standaloneDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo;
+
+-(void)acceptDateSensitiveValVisitor:(id<DateSensitiveValueVisitor>)dsvVisitor;
 
 @end

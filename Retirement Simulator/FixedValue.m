@@ -9,6 +9,7 @@
 #import "FixedValue.h"
 #import "VariableValueRuntimeInfo.h"
 #import "NumberHelper.h"
+#import "DateSensitiveValueVisitor.h"
 
 
 @implementation FixedValue
@@ -46,6 +47,12 @@
 	return [self inlineDescription:valueRuntimeInfo];
 }
 
+
+-(void)acceptDateSensitiveValVisitor:(id<DateSensitiveValueVisitor>)dsvVisitor
+{
+	[super acceptDateSensitiveValVisitor:dsvVisitor];
+	[dsvVisitor visitFixedValue:self]; 
+}
 
 
 @end

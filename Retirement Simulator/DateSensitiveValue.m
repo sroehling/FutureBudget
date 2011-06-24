@@ -8,6 +8,7 @@
 
 #import "DateSensitiveValue.h"
 #import "VariableValueRuntimeInfo.h"
+#import "DateSensitiveValueVisitor.h"
 
 @implementation DateSensitiveValue
 
@@ -35,5 +36,11 @@
 	assert(0); // must be overridden
 	return nil;
 }
+
+-(void)acceptDateSensitiveValVisitor:(id<DateSensitiveValueVisitor>)dsvVisitor
+{
+	// no-op
+}
+
 
 @end

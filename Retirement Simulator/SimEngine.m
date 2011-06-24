@@ -35,8 +35,10 @@
 
 
 -(void)dealloc {
+    [super dealloc];
+
     [eventCreators release];
-    
+   
     [eventList release];
     [dateFormatter release];
     [resultsOffsetComponents release];
@@ -44,7 +46,6 @@
     [nextResultsCheckpointDate release];
 
 
-    [super dealloc];
 }
 
 

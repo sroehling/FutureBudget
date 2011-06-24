@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		0025774D13AFAD2D00D15232 /* VariableDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* VariableDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
+		0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775213B1778600D15232 /* VariableRateCalculator.m */; };
+		0025775613B177C100D15232 /* VariableRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775513B177C000D15232 /* VariableRate.m */; };
+		0025775C13B17BB500D15232 /* VariableRateCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775B13B17BB400D15232 /* VariableRateCalculatorTest.m */; };
+		0025776013B24AEC00D15232 /* DateSensitiveValueVariableRateCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775F13B24AEB00D15232 /* DateSensitiveValueVariableRateCalculatorCreator.m */; };
+		0025776613B2940100D15232 /* FixedValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776513B2940100D15232 /* FixedValueAsOfCalculator.m */; };
+		0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */; };
+		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
 		003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */; };
 		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
 		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
@@ -125,6 +132,22 @@
 		0025774C13AFAD2D00D15232 /* VariableDateRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableDateRuntimeInfo.m; sourceTree = "<group>"; };
 		0025774E13AFDE2800D15232 /* StringLookupTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLookupTable.h; sourceTree = "<group>"; };
 		0025774F13AFDE2800D15232 /* StringLookupTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringLookupTable.m; sourceTree = "<group>"; };
+		0025775113B1778600D15232 /* VariableRateCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableRateCalculator.h; sourceTree = "<group>"; };
+		0025775213B1778600D15232 /* VariableRateCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableRateCalculator.m; sourceTree = "<group>"; };
+		0025775413B177C000D15232 /* VariableRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableRate.h; sourceTree = "<group>"; };
+		0025775513B177C000D15232 /* VariableRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableRate.m; sourceTree = "<group>"; };
+		0025775A13B17BB400D15232 /* VariableRateCalculatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableRateCalculatorTest.h; sourceTree = "<group>"; };
+		0025775B13B17BB400D15232 /* VariableRateCalculatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableRateCalculatorTest.m; sourceTree = "<group>"; };
+		0025775D13B2341E00D15232 /* DateSensitiveValueVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueVisitor.h; sourceTree = "<group>"; };
+		0025775E13B24AEB00D15232 /* DateSensitiveValueVariableRateCalculatorCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueVariableRateCalculatorCreator.h; sourceTree = "<group>"; };
+		0025775F13B24AEB00D15232 /* DateSensitiveValueVariableRateCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueVariableRateCalculatorCreator.m; sourceTree = "<group>"; };
+		0025776313B2937700D15232 /* ValueAsOfCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueAsOfCalculator.h; sourceTree = "<group>"; };
+		0025776413B2940000D15232 /* FixedValueAsOfCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedValueAsOfCalculator.h; sourceTree = "<group>"; };
+		0025776513B2940100D15232 /* FixedValueAsOfCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedValueAsOfCalculator.m; sourceTree = "<group>"; };
+		0025776713B295E400D15232 /* VariableValueAsOfCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueAsOfCalculator.h; sourceTree = "<group>"; };
+		0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueAsOfCalculator.m; sourceTree = "<group>"; };
+		0025776A13B2971A00D15232 /* ValueAsOfCalculatorCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueAsOfCalculatorCreator.h; sourceTree = "<group>"; };
+		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
 		003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHelper.h; sourceTree = "<group>"; };
 		003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHelper.m; sourceTree = "<group>"; };
 		003AD131138ACBE800CB3CB5 /* StringValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValidation.h; sourceTree = "<group>"; };
@@ -342,6 +365,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0025776113B292F600D15232 /* Variable Rate Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				0025775113B1778600D15232 /* VariableRateCalculator.h */,
+				0025775213B1778600D15232 /* VariableRateCalculator.m */,
+				0025775413B177C000D15232 /* VariableRate.h */,
+				0025775513B177C000D15232 /* VariableRate.m */,
+				0025775E13B24AEB00D15232 /* DateSensitiveValueVariableRateCalculatorCreator.h */,
+				0025775F13B24AEB00D15232 /* DateSensitiveValueVariableRateCalculatorCreator.m */,
+			);
+			name = "Variable Rate Calculator";
+			sourceTree = "<group>";
+		};
+		0025776213B2932200D15232 /* Variable Value Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				0025776313B2937700D15232 /* ValueAsOfCalculator.h */,
+				0025776413B2940000D15232 /* FixedValueAsOfCalculator.h */,
+				0025776513B2940100D15232 /* FixedValueAsOfCalculator.m */,
+				0025776713B295E400D15232 /* VariableValueAsOfCalculator.h */,
+				0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */,
+				0025776A13B2971A00D15232 /* ValueAsOfCalculatorCreator.h */,
+				0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */,
+			);
+			name = "Variable Value Calculator";
+			sourceTree = "<group>";
+		};
 		003AD12D138AC83000CB3CB5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +555,7 @@
 				00637A8A1386D99A001E02F1 /* InflationRate.m */,
 				0087923113A9516D00CA9DA7 /* CashFlowAmount.h */,
 				0087923213A9516E00CA9DA7 /* CashFlowAmount.m */,
+				0025775D13B2341E00D15232 /* DateSensitiveValueVisitor.h */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -523,8 +574,10 @@
 		004A59A713A02F67009FEF25 /* Simulator */ = {
 			isa = PBXGroup;
 			children = (
-				005731EC137874A1008D13C1 /* Simulator Inputs */,
+				0025776113B292F600D15232 /* Variable Rate Calculator */,
+				0025776213B2932200D15232 /* Variable Value Calculator */,
 				004F5D7713732CA300E0C4A3 /* Simulator Engine */,
+				005731EC137874A1008D13C1 /* Simulator Inputs */,
 			);
 			name = Simulator;
 			sourceTree = "<group>";
@@ -779,10 +832,10 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
-				004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */,
-				004A59A713A02F67009FEF25 /* Simulator */,
 				003AD12D138AC83000CB3CB5 /* Helper */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
+				004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */,
+				004A59A713A02F67009FEF25 /* Simulator */,
 				004F5D701373188900E0C4A3 /* Results View */,
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004F5D6E1373170C00E0C4A3 /* Application */,
@@ -816,6 +869,8 @@
 				004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */,
 				004F5D9513749AB300E0C4A3 /* TestSimEvent.h */,
 				004F5D9613749AB300E0C4A3 /* TestSimEvent.m */,
+				0025775A13B17BB400D15232 /* VariableRateCalculatorTest.h */,
+				0025775B13B17BB400D15232 /* VariableRateCalculatorTest.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -1020,6 +1075,12 @@
 				0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */,
 				0025774D13AFAD2D00D15232 /* VariableDateRuntimeInfo.m in Sources */,
 				0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */,
+				0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */,
+				0025775613B177C100D15232 /* VariableRate.m in Sources */,
+				0025776013B24AEC00D15232 /* DateSensitiveValueVariableRateCalculatorCreator.m in Sources */,
+				0025776613B2940100D15232 /* FixedValueAsOfCalculator.m in Sources */,
+				0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */,
+				0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,6 +1092,7 @@
 				004F5D8B1374566200E0C4A3 /* TestSimEngine.m in Sources */,
 				004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */,
 				004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */,
+				0025775C13B17BB500D15232 /* VariableRateCalculatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

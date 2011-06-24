@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define SECONDS_PER_DAY 86400
 
 @interface DateHelper : NSObject {
     @private

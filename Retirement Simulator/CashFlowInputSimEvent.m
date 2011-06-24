@@ -8,10 +8,12 @@
 
 #import "CashFlowInputSimEvent.h"
 #import "ExpenseInput.h"
+#import "NumberHelper.h"
 
 @implementation CashFlowInputSimEvent
 
 @synthesize originatingEventCreator,cashFlow,eventDate;
+@synthesize cashFlowAmount;
 
 - (id) initWithEventCreator:(id<SimEventCreator>)eventCreator {
     self = [super init];
@@ -29,10 +31,16 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+	
+	
+	NSString *currencyAmount = [[NumberHelper theHelper].currencyFormatter 
+				stringFromNumber:[NSNumber numberWithDouble:self.cashFlowAmount]];
+	
     
-    NSLog(@"Doing expense event: %@ %@",
+    NSLog(@"Doing expense event: %@ %@ %@",
           cashFlow.name,
-          [dateFormatter stringFromDate:eventDate]);
+          [dateFormatter stringFromDate:eventDate],
+		  currencyAmount);
     
     [dateFormatter release];
     

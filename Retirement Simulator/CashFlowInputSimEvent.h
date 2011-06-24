@@ -15,9 +15,11 @@
 
 
 @interface CashFlowInputSimEvent : NSObject <SimEvent> {
-    id<SimEventCreator> originatingEventCreator;
-    NSDate *eventDate;
-    CashFlowInput *cashFlow;
+	@private
+		id<SimEventCreator> originatingEventCreator;
+		NSDate *eventDate;
+		CashFlowInput *cashFlow;
+		double cashFlowAmount;
 }
 
 - (id) initWithEventCreator:(id<SimEventCreator>)eventCreator;
@@ -26,6 +28,7 @@
 // TBD - Should we turn expense into an asssigned attribute, since it is referenced/owned elsewhere
 
 @property(nonatomic,retain)CashFlowInput *cashFlow;
+@property double cashFlowAmount; 
 @property (nonatomic, assign) id<SimEventCreator> originatingEventCreator;
 
 @end

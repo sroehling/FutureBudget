@@ -9,17 +9,26 @@
 #import <Foundation/Foundation.h>
 
 #import "SimEventCreator.h"
+#import "ValueAsOfCalculator.h"
 
-@class CashFlowInput,EventRepeater;
+@class CashFlowInput;
+@class EventRepeater;
+@class VariableRateCalculator;
 
 @interface CashFlowSimEventCreator : NSObject <SimEventCreator> {
     @private
         CashFlowInput *cashFlow;
         EventRepeater *eventRepeater;
+		VariableRateCalculator *varRateCalc;
+		id<ValueAsOfCalculator> varAmountCalc;
+		NSDate *startAmountGrowthDate;
 }
 
 - (id)initWithCashFlow:(CashFlowInput*)theCashFlow;
 
 @property(nonatomic,assign) CashFlowInput *cashFlow;
+@property(nonatomic,retain) VariableRateCalculator *varRateCalc;
+@property(nonatomic,retain) id<ValueAsOfCalculator> varAmountCalc;
+@property(nonatomic,retain) NSDate *startAmountGrowthDate;
 
 @end
