@@ -155,7 +155,7 @@
     
     [self resetSimulator];
     
-    NSDate *planEndDate = [dateFormatter dateFromString:@"2012-12-31"];
+    NSDate *planEndDate = [dateFormatter dateFromString:@"2013-12-31"];
     NSLog(@"Plan end date: %@",[dateFormatter stringFromDate:planEndDate]);
     
     while ([nextResultsCheckpointDate compare:planEndDate] == NSOrderedAscending) 

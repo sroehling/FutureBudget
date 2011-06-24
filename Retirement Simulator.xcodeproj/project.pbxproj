@@ -16,6 +16,8 @@
 		0025776613B2940100D15232 /* FixedValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776513B2940100D15232 /* FixedValueAsOfCalculator.m */; };
 		0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */; };
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
+		0025776F13B42EE300D15232 /* InMemoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776E13B42EE000D15232 /* InMemoryCoreData.m */; };
+		0025777113B4310D00D15232 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0025777013B4310600D15232 /* CoreData.framework */; };
 		003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */; };
 		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
 		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
@@ -148,6 +150,9 @@
 		0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueAsOfCalculator.m; sourceTree = "<group>"; };
 		0025776A13B2971A00D15232 /* ValueAsOfCalculatorCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueAsOfCalculatorCreator.h; sourceTree = "<group>"; };
 		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
+		0025776D13B42EDF00D15232 /* InMemoryCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMemoryCoreData.h; sourceTree = "<group>"; };
+		0025776E13B42EE000D15232 /* InMemoryCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMemoryCoreData.m; sourceTree = "<group>"; };
+		0025777013B4310600D15232 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHelper.h; sourceTree = "<group>"; };
 		003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHelper.m; sourceTree = "<group>"; };
 		003AD131138ACBE800CB3CB5 /* StringValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValidation.h; sourceTree = "<group>"; };
@@ -356,6 +361,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0025777113B4310D00D15232 /* CoreData.framework in Frameworks */,
 				00A36BFC136C6CAE008A5C4C /* UIKit.framework in Frameworks */,
 				00A36BFD136C6CAE008A5C4C /* Foundation.framework in Frameworks */,
 				00A36BFE136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */,
@@ -390,6 +396,15 @@
 				0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */,
 			);
 			name = "Variable Value Calculator";
+			sourceTree = "<group>";
+		};
+		0025777313B438E000D15232 /* Test Utility Code */ = {
+			isa = PBXGroup;
+			children = (
+				0025776D13B42EDF00D15232 /* InMemoryCoreData.h */,
+				0025776E13B42EE000D15232 /* InMemoryCoreData.m */,
+			);
+			name = "Test Utility Code";
 			sourceTree = "<group>";
 		};
 		003AD12D138AC83000CB3CB5 /* Helper */ = {
@@ -802,6 +817,7 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
+				0025777013B4310600D15232 /* CoreData.framework */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
 				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
 				00A36BD4136C6CAE008A5C4C /* Frameworks */,
@@ -860,6 +876,7 @@
 		00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				0025777313B438E000D15232 /* Test Utility Code */,
 				00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */,
 				00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */,
 				00A36C02136C6CAE008A5C4C /* Supporting Files */,
@@ -1093,6 +1110,7 @@
 				004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */,
 				004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */,
 				0025775C13B17BB500D15232 /* VariableRateCalculatorTest.m in Sources */,
+				0025776F13B42EE300D15232 /* InMemoryCoreData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

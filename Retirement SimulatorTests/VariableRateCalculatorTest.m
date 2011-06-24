@@ -10,6 +10,9 @@
 
 #import "VariableRateCalculator.h"
 #import "VariableRate.h"
+#import "InMemoryCoreData.h"
+
+#import "FixedValue.h"
 
 
 @implementation VariableRateCalculatorTest
@@ -23,6 +26,11 @@
 
 	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
 	NSLog(@"Multiplier on day 0: %f",[rateCalc valueMultiplierForDay:0]);
+	
+	InMemoryCoreData *coreData = [[[InMemoryCoreData alloc] init] autorelease];
+	
+	FixedValue *fixedVal = (FixedValue*)[coreData createObj:@"FixedValue"];
+	fixedVal.value = [NSNumber numberWithDouble:1.2];
 }
 
 @end
