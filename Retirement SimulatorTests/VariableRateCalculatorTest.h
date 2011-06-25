@@ -28,6 +28,6 @@
 
 @property(nonatomic,retain) InMemoryCoreData *coreData;
 
-- (void)testVariableRateCalc; 
+- (void)testVariableRateCalcWithDSV; 
 
 @end

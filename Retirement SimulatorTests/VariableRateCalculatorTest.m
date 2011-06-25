@@ -69,17 +69,56 @@
 		  expectedStr,valueMultStr,daysSinceStart);
 }
 
-- (void)testVariableRateCalc
+- (void)testSimpleRateCalc
 {
-	STAssertTrue((1+1)==2, @"Compiler isn't feeling well today :-(" );
-	
 	NSMutableSet *varRates = [[[NSMutableSet alloc] init] autorelease];
 	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:0]autorelease]];
-
+	
 	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
-//NSLog(@"Multiplier on day 0: %f",[rateCalc valueMultiplierForDay:0]);
 	
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:0 andExpectedVal:1.0];
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:5 andExpectedVal:1.61];
+	//NSLog(@"Multiplier on day 0: %f",[rateCalc valueMultiplierForDay:0]);
+
+}
+
+
+- (void)testMultipleRateCalc
+{
+	NSMutableSet *varRates = [[[NSMutableSet alloc] init] autorelease];
+	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:0]autorelease]];
+	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.2 andDaysSinceStart:5]autorelease]];
+	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.3 andDaysSinceStart:10]autorelease]];
 	
+	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
+	
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:0 andExpectedVal:1.0];
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:4 andExpectedVal:1.46];
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:5 andExpectedVal:1.61];
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:8 andExpectedVal:2.78];
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:10 andExpectedVal:4.01];
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:11 andExpectedVal:5.21];
+	//NSLog(@"Multiplier on day 0: %f",[rateCalc valueMultiplierForDay:0]);
+	
+}
+
+- (void)testOverlappingRateCalc
+{
+	NSMutableSet *varRates = [[[NSMutableSet alloc] init] autorelease];
+	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:0]autorelease]];
+	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:5]autorelease]];
+	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:5]autorelease]];
+	
+	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
+
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:5 andExpectedVal:1.61];
+	[self checkOneRateCalc:rateCalc andDaysSinceStart:6 andExpectedVal:1.77];
+	
+}
+
+
+- (void)testVariableRateCalcWithDSV
+{	
 	FixedValue *fixedVal = (FixedValue*)[self.coreData createObj:@"FixedValue"];
 	fixedVal.value = [NSNumber numberWithDouble:1.2];
 	
