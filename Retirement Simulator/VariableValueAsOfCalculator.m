@@ -24,7 +24,8 @@
 	if(self)
 	{
 		self.varVal = theVarVal;
-		self.sortedValChanges = [CollectionHelper setToSortedArray:theVarVal.valueChanges withKey:@"resolvedStartDate"];
+		self.sortedValChanges = [CollectionHelper setToSortedArray:theVarVal.valueChanges withKey:
+								 DATE_SENSITIVE_VALUE_CHANGE_START_DATE_SORT_KEY];
 	}
 	return self;
 }

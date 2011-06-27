@@ -17,3 +17,5 @@
 @property (nonatomic, retain) NSNumber * value;
 
 @end
+
+extern NSString * const FIXED_VALUE_ENTITY_NAME;

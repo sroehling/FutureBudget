@@ -38,7 +38,7 @@
     NSLog(@"Add milestone");
     
     MilestoneDate *newMilestoneDate = (MilestoneDate*)
-        [[DataModelController theDataModelController]insertObject:@"MilestoneDate"];
+        [[DataModelController theDataModelController]insertObject:MILESTONE_DATE_ENTITY_NAME];
     
 
     MilestoneDateFormPopulator *formPopulator = [[[MilestoneDateFormPopulator alloc] initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];

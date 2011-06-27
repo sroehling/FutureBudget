@@ -13,6 +13,8 @@
 #import "DateSensitiveValueVisitor.h"
 
 
+NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
+
 @implementation VariableValue
 @dynamic name;
 @dynamic startingValue;

@@ -17,3 +17,5 @@
 @property (nonatomic, retain) NSString * name;
 
 @end
+
+extern NSString * const MILESTONE_DATE_ENTITY_NAME;

@@ -11,6 +11,7 @@
 #import "NumberHelper.h"
 #import "DateSensitiveValueVisitor.h"
 
+NSString * const FIXED_VALUE_ENTITY_NAME = @"FixedValue";
 
 @implementation FixedValue
 @dynamic value;

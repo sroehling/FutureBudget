@@ -26,3 +26,6 @@
 -(NSDate*)resolvedStartDate;
 
 @end
+
+extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_START_DATE_SORT_KEY;
+extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME;

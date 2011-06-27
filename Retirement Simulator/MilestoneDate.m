@@ -9,6 +9,8 @@
 #import "MilestoneDate.h"
 
 
+NSString * const MILESTONE_DATE_ENTITY_NAME = @"MilestoneDate";
+
 @implementation MilestoneDate
 @dynamic name;
 

@@ -95,7 +95,7 @@
     [formPopulator nextCustomSection:sectionInfo];
     
     NSArray *milestoneDates = [[DataModelController theDataModelController]
-          fetchSortedObjectsWithEntityName:@"MilestoneDate" sortKey:@"name"];
+          fetchSortedObjectsWithEntityName:MILESTONE_DATE_ENTITY_NAME sortKey:@"name"];
     for (MilestoneDate *milestoneDate in milestoneDates)
     {
         // Create the row information for the given milestone date.

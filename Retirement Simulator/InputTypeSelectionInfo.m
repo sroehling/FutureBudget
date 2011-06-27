@@ -34,24 +34,25 @@
     //      newInput.startDate
     //      newInput.endDate
     //      newInput.amountGrowthRat
+	
     
     FixedValue *fixedGrowthRate = 
-    (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
+    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
     fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
     newInput.defaultFixedGrowthRate = fixedGrowthRate;
 
     FixedValue *fixedAmount = 
-    (FixedValue*)[[DataModelController theDataModelController]insertObject:@"FixedValue"];
+    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
     fixedAmount.value = [NSNumber numberWithDouble:0.0];
     newInput.defaultFixedAmount = fixedAmount;
 
     FixedDate *fixedStartDate = (FixedDate*)[[
-                DataModelController theDataModelController] insertObject:@"FixedDate"];
+                DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
     fixedStartDate.date = [NSDate date];
     newInput.fixedStartDate = fixedStartDate;
     
     FixedDate *fixedEndDate = (FixedDate*)[[
-            DataModelController theDataModelController] insertObject:@"FixedDate"];
+            DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
     fixedEndDate.date = [NSDate date];
     newInput.fixedEndDate = fixedEndDate;
     

@@ -20,9 +20,9 @@
 										   andDate:(NSString*)dateStr andVal:(double)val
 {
 	
-	DateSensitiveValueChange *valChange = (DateSensitiveValueChange*)[coreData createObj:@"DateSensitiveValueChange"];
+	DateSensitiveValueChange *valChange = (DateSensitiveValueChange*)[coreData createObj:DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME];
 	
-	FixedDate *fixedStartDate = (FixedDate*) [coreData createObj:@"FixedDate"];
+	FixedDate *fixedStartDate = (FixedDate*) [coreData createObj:FIXED_DATE_ENTITY_NAME];
 	fixedStartDate.date = [TestDateHelper dateFromStr:dateStr];
 	
 	valChange.startDate = fixedStartDate;

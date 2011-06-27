@@ -16,3 +16,5 @@
 }
 
 @end
+
+extern NSString * const FIXED_DATE_ENTITY_NAME;

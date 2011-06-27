@@ -8,7 +8,6 @@
 
 #import "VariableDate.h"
 
-
 @implementation VariableDate
 
 @dynamic date;

@@ -8,6 +8,7 @@
 
 #import "FixedDate.h"
 
+NSString * const FIXED_DATE_ENTITY_NAME = @"FixedDate";
 
 @implementation FixedDate
 
@@ -23,3 +24,4 @@
 }
 
 @end
+

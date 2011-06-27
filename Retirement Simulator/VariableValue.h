@@ -12,6 +12,8 @@
 
 @class DateSensitiveValueChange;
 
+extern NSString * const VARIABLE_VALUE_ENTITY_NAME;
+
 @interface VariableValue : DateSensitiveValue {
 @private
 }

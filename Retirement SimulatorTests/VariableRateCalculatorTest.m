@@ -103,10 +103,10 @@
 
 - (void)testVariableRateCalcWithDSV
 {	
-	FixedValue *fixedVal = (FixedValue*)[self.coreData createObj:@"FixedValue"];
+	FixedValue *fixedVal = (FixedValue*)[self.coreData createObj:FIXED_VALUE_ENTITY_NAME];
 	fixedVal.value = [NSNumber numberWithDouble:1.2];
 	
-	VariableValue *variableVal = (VariableValue*)[self.coreData createObj:@"VariableValue"];
+	VariableValue *variableVal = (VariableValue*)[self.coreData createObj:VARIABLE_VALUE_ENTITY_NAME];
 	variableVal.startingValue = [NSNumber numberWithDouble:10.0];
 	variableVal.name = @"Test";
 	[variableVal addValueChangesObject:[TestCoreDataObjects 
