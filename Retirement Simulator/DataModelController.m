@@ -33,7 +33,7 @@
     NSManagedObjectContext *context = [self managedObjectContext];
     
 	EventRepeatFrequency *repeatFrequency  = (EventRepeatFrequency*)
-    [NSEntityDescription insertNewObjectForEntityForName:@"EventRepeatFrequency" 
+    [NSEntityDescription insertNewObjectForEntityForName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME 
                                   inManagedObjectContext:context];
     repeatFrequency.period = [NSNumber numberWithInt:thePeriod];
     [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
@@ -47,7 +47,7 @@
     NSLog(@"Initializing database with default data ...");
     
     
-    if(![self entitiesExistForEntityName:@"EventRepeatFrequency"])
+    if(![self entitiesExistForEntityName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME])
     {
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodOnce andMultiplier:1];
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:1];

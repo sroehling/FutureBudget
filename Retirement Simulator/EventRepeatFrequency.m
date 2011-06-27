@@ -8,6 +8,7 @@
 
 #import "EventRepeatFrequency.h"
 
+NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
 
 @implementation EventRepeatFrequency
 @dynamic period;

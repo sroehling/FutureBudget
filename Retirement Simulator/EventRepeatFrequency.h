@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+extern NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME;
+
 typedef enum
 {    
     kEventPeriodOnce    =0,    
@@ -33,5 +35,7 @@ typedef enum
 - (NSString*)inlineDescription;
 
 @end
+
+
 
 

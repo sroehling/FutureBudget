@@ -70,6 +70,7 @@
 		0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */; };
 		0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96713B69C66000555AC /* TestCoreDataObjects.m */; };
 		0095E96B13B69DF7000555AC /* TestDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96A13B69DF7000555AC /* TestDateHelper.m */; };
+		0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96D13B8E93A000555AC /* EventRepeaterTest.m */; };
 		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
 		00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAB138EC87A00663C7F /* SectionInfo.m */; };
 		00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAE138ECA8700663C7F /* FormInfo.m */; };
@@ -259,6 +260,8 @@
 		0095E96713B69C66000555AC /* TestCoreDataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCoreDataObjects.m; sourceTree = "<group>"; };
 		0095E96913B69DF7000555AC /* TestDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDateHelper.h; sourceTree = "<group>"; };
 		0095E96A13B69DF7000555AC /* TestDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDateHelper.m; sourceTree = "<group>"; };
+		0095E96C13B8E93A000555AC /* EventRepeaterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeaterTest.h; sourceTree = "<group>"; };
+		0095E96D13B8E93A000555AC /* EventRepeaterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeaterTest.m; sourceTree = "<group>"; };
 		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
 		00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableAddViewController.m; sourceTree = "<group>"; };
 		00A14BAA138EC87900663C7F /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
@@ -900,9 +903,11 @@
 				004F5D9513749AB300E0C4A3 /* TestSimEvent.h */,
 				004F5D9613749AB300E0C4A3 /* TestSimEvent.m */,
 				0025775A13B17BB400D15232 /* VariableRateCalculatorTest.h */,
-				0025775B13B17BB400D15232 /* VariableRateCalculatorTest.m */,
 				0095E95F13B69A3B000555AC /* VariableValueCalculatorTest.h */,
+				0025775B13B17BB400D15232 /* VariableRateCalculatorTest.m */,
 				0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */,
+				0095E96C13B8E93A000555AC /* EventRepeaterTest.h */,
+				0095E96D13B8E93A000555AC /* EventRepeaterTest.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -1129,6 +1134,7 @@
 				0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */,
 				0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */,
 				0095E96B13B69DF7000555AC /* TestDateHelper.m in Sources */,
+				0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
