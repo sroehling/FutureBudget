@@ -7,11 +7,18 @@
 //
 
 #import "DateSensitiveValueChange.h"
+#import "VariableDate.h"
 
 
 @implementation DateSensitiveValueChange
 @dynamic startDate;
 @dynamic defaultFixedStartDate;
 @dynamic newValue;
+
+-(NSDate*)resolvedStartDate
+{
+	assert(self.startDate != nil);
+	return self.startDate.date;
+}
 
 @end

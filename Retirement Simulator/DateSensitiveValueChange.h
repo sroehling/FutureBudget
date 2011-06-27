@@ -19,4 +19,10 @@
 @property(nonatomic,retain) FixedDate *defaultFixedStartDate;
 @property (nonatomic, retain) NSNumber * newValue;
 
+
+// The resolvedStartDate method is needed so that calculations involving
+// the start date can sort the DateSensitiveChange objects by the actual start
+// date, given as an NSDate object, rather than VariableDate object.
+-(NSDate*)resolvedStartDate;
+
 @end

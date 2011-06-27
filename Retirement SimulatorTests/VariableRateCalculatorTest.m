@@ -11,6 +11,7 @@
 #import "VariableRateCalculator.h"
 #import "VariableRate.h"
 #import "InMemoryCoreData.h"
+#import "TestDateHelper.h"
 
 #import "FixedValue.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
@@ -19,7 +20,7 @@
 
 #import "FixedDate.h"
 #import "DateHelper.h"
-
+#import "TestCoreDataObjects.h"
 
 @implementation VariableRateCalculatorTest
 
@@ -35,27 +36,8 @@
 	[coreData release];
 }
 
-- (NSDate*)dateFromStr:(NSString*)dateStr
-{
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc]init] autorelease];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
-	NSDate *theDate = [dateFormatter dateFromString:dateStr];
-	assert(theDate != nil);
-	return theDate;
-}
 
-- (DateSensitiveValueChange*)createTestValueChange:(NSString*)dateStr andVal:(double)val
-{
 
-	DateSensitiveValueChange *valChange = (DateSensitiveValueChange*)[self.coreData createObj:@"DateSensitiveValueChange"];
-		
-	FixedDate *fixedStartDate = (FixedDate*) [self.coreData createObj:@"FixedDate"];
-	fixedStartDate.date = [self dateFromStr:dateStr];
-	
-	valChange.startDate = fixedStartDate;
-	valChange.newValue = [NSNumber numberWithDouble:val];
-	return valChange;
-}
 
 - (void)checkOneRateCalc:(VariableRateCalculator*)rateCalc 
 	andDaysSinceStart:(unsigned int)daysSinceStart andExpectedVal:(double)expectedVal
@@ -86,9 +68,11 @@
 - (void)testMultipleRateCalc
 {
 	NSMutableSet *varRates = [[[NSMutableSet alloc] init] autorelease];
+	// Note that the objects are added out of order, which also checks that the VariableRateCalcular
+	// properly sorts the rates by the days since starting before they are used in calculations.
 	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:0]autorelease]];
-	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.2 andDaysSinceStart:5]autorelease]];
 	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.3 andDaysSinceStart:10]autorelease]];
+	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.2 andDaysSinceStart:5]autorelease]];
 	
 	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
 	
@@ -125,13 +109,15 @@
 	VariableValue *variableVal = (VariableValue*)[self.coreData createObj:@"VariableValue"];
 	variableVal.startingValue = [NSNumber numberWithDouble:10.0];
 	variableVal.name = @"Test";
-	[variableVal addValueChangesObject:[self createTestValueChange:@"2012-01-01" andVal:10.0]];
-	[variableVal addValueChangesObject:[self createTestValueChange:@"2013-01-01" andVal:10.0]];
+	[variableVal addValueChangesObject:[TestCoreDataObjects 
+				createTestValueChange:self.coreData andDate:@"2012-01-01" andVal:10.0]];
+	[variableVal addValueChangesObject:[TestCoreDataObjects
+				createTestValueChange:self.coreData andDate:@"2013-01-01" andVal:10.0]];
 
 	DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		[[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 	VariableRateCalculator *varRateCalc = 
-		[calcCreator createForDateSensitiveValue:variableVal andStartDate:[self dateFromStr:@"2011-01-01"]];
+		[calcCreator createForDateSensitiveValue:variableVal andStartDate:[TestDateHelper dateFromStr:@"2011-01-01"]];
 	[self checkOneRateCalc:varRateCalc andDaysSinceStart:0 andExpectedVal:1.0];
 	[self checkOneRateCalc:varRateCalc andDaysSinceStart:365 andExpectedVal:1.1];
 	[self checkOneRateCalc:varRateCalc andDaysSinceStart:730 andExpectedVal:1.21];
