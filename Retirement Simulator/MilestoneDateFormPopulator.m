@@ -23,7 +23,7 @@
 
 @synthesize varDateRuntimeInfo;
 
--(id) initWithRuntimeInfo:(VariableDateRuntimeInfo*)theRuntimeInfo
+-(id) initWithRuntimeInfo:(SimDateRuntimeInfo*)theRuntimeInfo
 {
 	self = [super init];
 	if(self)

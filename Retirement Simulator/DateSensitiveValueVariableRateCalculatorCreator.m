@@ -13,7 +13,7 @@
 #import "VariableRate.h"
 #import "FixedValue.h"
 #import "VariableValue.h"
-#import "VariableDate.h"
+#import "SimDate.h"
 #import "DateSensitiveValueChange.h"
 #import "DateHelper.h"
 

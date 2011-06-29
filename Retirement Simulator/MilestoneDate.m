@@ -7,6 +7,7 @@
 //
 
 #import "MilestoneDate.h"
+#import "SimDateVisitor.h"
 
 
 NSString * const MILESTONE_DATE_ENTITY_NAME = @"MilestoneDate";
@@ -23,6 +24,11 @@ NSString * const MILESTONE_DATE_ENTITY_NAME = @"MilestoneDate";
 - (NSString *)dateLabel
 {
 	return self.name;
+}
+
+-(void)acceptVisitor:(id<SimDateVisitor>)visitor
+{
+	[visitor visitMilestoneDate:self];
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "DateSensitiveValueChange.h"
-#import "VariableDate.h"
+#import "SimDate.h"
 
 
 @implementation DateSensitiveValueChange

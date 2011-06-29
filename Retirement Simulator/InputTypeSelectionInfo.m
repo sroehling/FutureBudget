@@ -13,6 +13,8 @@
 #import "EventRepeatFrequency.h"
 #import "FixedValue.h"
 #import "FixedDate.h"
+#import "NeverEndDate.h"
+#import "SharedAppValues.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -32,7 +34,6 @@
     //      newInput.name
     //      newInput.amount
     //      newInput.startDate
-    //      newInput.endDate
     //      newInput.amountGrowthRat
 	
     
@@ -53,8 +54,10 @@
     
     FixedDate *fixedEndDate = (FixedDate*)[[
             DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
+		
     fixedEndDate.date = [NSDate date];
     newInput.fixedEndDate = fixedEndDate;
+	newInput.endDate = [DataModelController theDataModelController].sharedAppVals.sharedNeverEndDate;
     
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME sortKey:@"period"];
     assert([repeatFrequencies count] >0);

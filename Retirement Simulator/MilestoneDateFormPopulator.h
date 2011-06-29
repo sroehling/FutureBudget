@@ -11,16 +11,16 @@
 #import "FormPopulator.h"
 
 @class MilestoneDate;
-@class VariableDateRuntimeInfo;
+@class SimDateRuntimeInfo;
 
 @interface MilestoneDateFormPopulator : FormPopulator {
     @private
-		VariableDateRuntimeInfo *varDateRuntimeInfo;
+		SimDateRuntimeInfo *varDateRuntimeInfo;
 }
 
-@property(nonatomic,retain) VariableDateRuntimeInfo *varDateRuntimeInfo;
+@property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
--(id) initWithRuntimeInfo:(VariableDateRuntimeInfo*)theRuntimeInfo;
+-(id) initWithRuntimeInfo:(SimDateRuntimeInfo*)theRuntimeInfo;
 
 - (UIViewController*)milestoneDateAddViewController:(MilestoneDate*)milestoneDate;
 - (UIViewController*)milestoneDateEditViewController:(MilestoneDate*)milestoneDate;

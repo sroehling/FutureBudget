@@ -10,15 +10,15 @@
 
 #import "AddObjectSectionInfo.h"
 
-@class VariableDateRuntimeInfo;
+@class SimDateRuntimeInfo;
 
 @interface MilestoneDateSectionInfo : AddObjectSectionInfo {
 	@private
-		VariableDateRuntimeInfo *varDateRuntimeInfo;
+		SimDateRuntimeInfo *varDateRuntimeInfo;
 }
 
-@property(nonatomic,retain) VariableDateRuntimeInfo *varDateRuntimeInfo;
+@property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
--(id)initWithRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo;
+-(id)initWithRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo;
 
 @end

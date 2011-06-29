@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "VariableDate.h"
+#import "SimDate.h"
 
-
-@interface MilestoneDate : VariableDate {
+@interface MilestoneDate : SimDate {
 @private
 }
 @property (nonatomic, retain) NSString * name;

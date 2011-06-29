@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class VariableDate;
+@class SimDate;
 @class FixedDate;
 
 @interface DateSensitiveValueChange : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) VariableDate * startDate;
+@property (nonatomic, retain) SimDate * startDate;
 @property(nonatomic,retain) FixedDate *defaultFixedStartDate;
 @property (nonatomic, retain) NSNumber * newValue;
 

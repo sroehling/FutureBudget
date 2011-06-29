@@ -1,33 +1,34 @@
 //
-//  FixedDate.m
+//  VariableDate.m
 //  Retirement Simulator
 //
 //  Created by Steve Roehling on 6/1/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "FixedDate.h"
+#import "SimDate.h"
 #import "SimDateVisitor.h"
 
-NSString * const FIXED_DATE_ENTITY_NAME = @"FixedDate";
+@implementation SimDate
 
-@implementation FixedDate
-
+@dynamic date;
 
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat
 {
-	return [withFormat stringFromDate:self.date];
+	assert(0); // must be overridden
+	return nil;
 }
 
 - (NSString *)dateLabel
 {
-	return @""; // no label
+	assert(0); // must be overridden
+	return nil;
+
 }
 
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor
 {
-	[visitor visitFixedDate:self];
+	assert(0); // must be overridden
 }
 
 @end
-

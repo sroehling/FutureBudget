@@ -8,6 +8,8 @@
 
 #import "DataModelController.h"
 #import "EventRepeatFrequency.h"
+#import "SharedAppValues.h"
+#import "NeverEndDate.h"
 
 
 @implementation DataModelController
@@ -19,12 +21,15 @@
 
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
+@synthesize sharedAppVals;
+
 
 - (void)dealloc
 {
     [__managedObjectContext release];
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];
+	[sharedAppVals release];
     [super dealloc];
 }
 
@@ -57,6 +62,22 @@
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:6];
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodYear andMultiplier:1];        
     }
+
+    if(![self entitiesExistForEntityName:SHARED_APP_VALUES_ENTITY_NAME])
+	{
+		NSLog(@"Initializing shared values ...");
+		SharedAppValues *sharedVals = [self insertObject:SHARED_APP_VALUES_ENTITY_NAME];
+		NeverEndDate *theNeverEndDate = [self insertObject:NEVER_END_DATE_ENTITY_NAME];
+		theNeverEndDate.date = [[[NSDate alloc] init] autorelease];
+		sharedVals.sharedNeverEndDate = theNeverEndDate;
+		self.sharedAppVals = sharedVals;
+	}
+	else
+	{
+		NSSet *theAppVals = [self fetchObjectsForEntityName:SHARED_APP_VALUES_ENTITY_NAME];
+		assert([theAppVals count] == 1);
+		self.sharedAppVals = (SharedAppValues*)[theAppVals anyObject];
+	}
         
     [self saveContext];
 

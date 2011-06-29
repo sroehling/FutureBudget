@@ -91,4 +91,9 @@
 "VARIABLE_DATE_DATE_ENTRY_PROMPT" = "Enter a Date";
 "VARIABLE_DATE_MILESTONE_NAME_PLACEHOLDER" = "Enter a Milestone Name";
 "VARIABLE_DATE_MILESTONE_DATE_PLACEHOLDER" = "Enter a Milestone Date";
+"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE" = "Continue Indefinitely";
+"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE" = "Select this date for the event to re-occur until the end of the simulation";
+"SIM_DATE_NEVER_ENDING_DATE_LABEL" = "Never Ending";
+"SIM_DATE_NEVER_ENDING_DATE_INLINE_LABEL" = "never ending";
+"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE" = "Repeat through the end of simulation";
 

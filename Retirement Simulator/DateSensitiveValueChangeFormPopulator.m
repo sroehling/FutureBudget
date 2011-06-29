@@ -22,9 +22,9 @@
 
 #import "VariableValueRuntimeInfo.h"
 #import "DateSensitiveValueChangeAddedListener.h"
-#import "VariableDateFieldEditInfo.h"
+#import "SimDateFieldEditInfo.h"
 #import "LocalizationHelper.h"
-#import "VariableDateRuntimeInfo.h"
+#import "SimDateRuntimeInfo.h"
 
 @implementation DateSensitiveValueChangeFormPopulator
 
@@ -40,10 +40,10 @@
 
 	SectionInfo *sectionInfo = [self nextSection];
 	
-	VariableDateRuntimeInfo *varDateInfo = [VariableDateRuntimeInfo createForDateSensitiveValue:valRuntimeInfo andVariableValue:varValue];
+	SimDateRuntimeInfo *varDateInfo = [SimDateRuntimeInfo createForDateSensitiveValue:valRuntimeInfo andVariableValue:varValue];
 		
-	[sectionInfo addFieldEditInfo:[VariableDateFieldEditInfo createForObject:dsValueChange andKey:@"startDate" andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
-	andDefaultValueKey:@"defaultFixedStartDate" andVarDateRuntimeInfo:varDateInfo]];
+	[sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForObject:dsValueChange andKey:@"startDate" andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
+	andDefaultValueKey:@"defaultFixedStartDate" andVarDateRuntimeInfo:varDateInfo andShowNeverEnding:FALSE]];
 
 	NSString *newValueLabel = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),
 							   LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];

@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class SharedAppValues;
 
 @interface DataModelController : NSObject {
+	@private
+		SharedAppValues *sharedAppVals;
 }
 
 +(DataModelController*)theDataModelController; // singleton
@@ -17,6 +20,7 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property(nonatomic,retain) SharedAppValues *sharedAppVals;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

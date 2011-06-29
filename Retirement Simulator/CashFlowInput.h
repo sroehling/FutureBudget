@@ -12,7 +12,7 @@
 
 @class EventRepeatFrequency;
 @class DateSensitiveValue;
-@class VariableDate;
+@class SimDate;
 @class FixedDate;
 @class FixedValue;
 @class VariableValue;
@@ -25,8 +25,8 @@
 @property (nonatomic,retain) NSSet* variableAmounts;
 @property (nonatomic,retain) DateSensitiveValue *amountGrowthRate; 
 @property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
-@property (nonatomic,retain) VariableDate *startDate;
-@property (nonatomic,retain) VariableDate *endDate;
+@property (nonatomic,retain) SimDate *startDate;
+@property (nonatomic,retain) SimDate *endDate;
 
 // fixedStartDate is used to hold onto a single fixed
 // date value the user can select. If the user then

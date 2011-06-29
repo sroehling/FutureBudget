@@ -29,14 +29,14 @@
     self.milestoneCell.valueDescription.text = [self detailTextLabel];
 }
 
-+ (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate *)theMilestoneDate andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo
++ (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate *)theMilestoneDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
 {
     MilestoneDateFieldEditInfo *fieldEditInfo = [[[MilestoneDateFieldEditInfo alloc]initWithMilestoneDate:theMilestoneDate andVarDateRuntimeInfo:theVarDateRuntimeInfo]autorelease];
     return fieldEditInfo;
 }
 
 - (id)initWithMilestoneDate:(MilestoneDate*)theMilestoneDate 
-	  andVarDateRuntimeInfo:(VariableDateRuntimeInfo*)theVarDateRuntimeInfo
+	  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
 {
     assert(theMilestoneDate != nil);
     self = [super init];

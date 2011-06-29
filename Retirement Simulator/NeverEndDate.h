@@ -1,8 +1,8 @@
 //
-//  FixedDate.h
+//  NeverEndDate.h
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 6/1/11.
+//  Created by Steve Roehling on 6/27/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,10 +10,10 @@
 #import <CoreData/CoreData.h>
 #import "SimDate.h"
 
-@interface FixedDate : SimDate {
+extern NSString * const NEVER_END_DATE_ENTITY_NAME;
+
+@interface NeverEndDate : SimDate {
 @private
 }
 
 @end
-
-extern NSString * const FIXED_DATE_ENTITY_NAME;

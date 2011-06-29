@@ -10,7 +10,7 @@
 #import "VariableValue.h"
 #import "CollectionHelper.h"
 #import "DateSensitiveValueChange.h"
-#import "VariableDate.h"
+#import "SimDate.h"
 
 
 @implementation VariableValueAsOfCalculator

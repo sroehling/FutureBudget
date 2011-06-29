@@ -13,7 +13,7 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "ValueSubtitleTableCell.h"
-#import "VariableDate.h"
+#import "SimDate.h"
 #import "LocalizationHelper.h"
 
 @implementation DateSensitiveValueChangeFieldEditInfo

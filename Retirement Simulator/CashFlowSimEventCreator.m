@@ -12,7 +12,7 @@
 #import "ExpenseInput.h"
 #import "EventRepeater.h"
 #import "CashFlowInput.h"
-#import "VariableDate.h"
+#import "SimDate.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
 #import "DateHelper.h"
 #import "VariableRateCalculator.h"

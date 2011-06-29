@@ -12,7 +12,7 @@
 #import "NumberHelper.h"
 #import "DateHelper.h"
 #import "ExpenseInput.h"
-#import "VariableDate.h"
+#import "SimDate.h"
 #import "EventRepeatFrequency.h"
 #import "VariableValueRuntimeInfo.h"
 #import "DateSensitiveValue.h"
