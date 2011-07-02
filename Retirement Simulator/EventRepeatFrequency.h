@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "InputValue.h"
+
 extern NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME;
 
 typedef enum
@@ -22,7 +24,7 @@ typedef enum
 }EventPeriod;
 
 
-@interface EventRepeatFrequency : NSManagedObject {
+@interface EventRepeatFrequency : InputValue {
 @private
 }
 @property (nonatomic, retain) NSNumber * period;

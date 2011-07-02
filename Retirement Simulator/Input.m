@@ -10,7 +10,8 @@
 
 
 @implementation Input
-@dynamic name,inputType;
+@dynamic name;
+@dynamic inputType;
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
@@ -29,5 +30,7 @@
 	assert(0);
 	return nil;
 }
+
+
 
 @end

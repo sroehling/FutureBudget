@@ -10,7 +10,9 @@
 #import <CoreData/CoreData.h>
 #import "SimDateVisitor.h"
 
-@interface SimDate : NSManagedObject {
+#import "InputValue.h"
+
+@interface SimDate : InputValue {
 @private
 }
 @property (nonatomic, retain) NSDate *date;

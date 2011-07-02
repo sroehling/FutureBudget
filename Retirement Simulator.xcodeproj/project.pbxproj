@@ -19,6 +19,13 @@
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
 		0025776F13B42EE300D15232 /* InMemoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776E13B42EE000D15232 /* InMemoryCoreData.m */; };
 		0025777113B4310D00D15232 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0025777013B4310600D15232 /* CoreData.framework */; };
+		0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1513BE19F20043F3A5 /* Scenario.m */; };
+		0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1913BE1A370043F3A5 /* UserScenario.m */; };
+		0036DE1D13BE1A690043F3A5 /* DefaultScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */; };
+		0036DE2013BE1AD90043F3A5 /* InputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1F13BE1AD90043F3A5 /* InputValue.m */; };
+		0036DE2413BE2C5C0043F3A5 /* ScenarioValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */; };
+		0036DE2713BE2D710043F3A5 /* MultiScenarioInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */; };
+		0036DE2E13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */; };
 		003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */; };
 		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
 		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
@@ -163,6 +170,20 @@
 		0025776D13B42EDF00D15232 /* InMemoryCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMemoryCoreData.h; sourceTree = "<group>"; };
 		0025776E13B42EE000D15232 /* InMemoryCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMemoryCoreData.m; sourceTree = "<group>"; };
 		0025777013B4310600D15232 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0036DE1413BE19F20043F3A5 /* Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scenario.h; sourceTree = "<group>"; };
+		0036DE1513BE19F20043F3A5 /* Scenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scenario.m; sourceTree = "<group>"; };
+		0036DE1813BE1A370043F3A5 /* UserScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenario.h; sourceTree = "<group>"; };
+		0036DE1913BE1A370043F3A5 /* UserScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScenario.m; sourceTree = "<group>"; };
+		0036DE1B13BE1A690043F3A5 /* DefaultScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultScenario.h; sourceTree = "<group>"; };
+		0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultScenario.m; sourceTree = "<group>"; };
+		0036DE1E13BE1AD90043F3A5 /* InputValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputValue.h; sourceTree = "<group>"; };
+		0036DE1F13BE1AD90043F3A5 /* InputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputValue.m; sourceTree = "<group>"; };
+		0036DE2213BE2C5C0043F3A5 /* ScenarioValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioValue.h; sourceTree = "<group>"; };
+		0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioValue.m; sourceTree = "<group>"; };
+		0036DE2513BE2D710043F3A5 /* MultiScenarioInputValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValue.h; sourceTree = "<group>"; };
+		0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValue.m; sourceTree = "<group>"; };
+		0036DE2C13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MultiScenarioInputValueFieldInfo.h; sourceTree = "<group>"; };
+		0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueFieldInfo.m; sourceTree = "<group>"; };
 		003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHelper.h; sourceTree = "<group>"; };
 		003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHelper.m; sourceTree = "<group>"; };
 		003AD131138ACBE800CB3CB5 /* StringValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValidation.h; sourceTree = "<group>"; };
@@ -436,6 +457,27 @@
 			name = "Test Helper Code";
 			sourceTree = "<group>";
 		};
+		0036DE2113BE1AF90043F3A5 /* Input Values */ = {
+			isa = PBXGroup;
+			children = (
+				0036DE1E13BE1AD90043F3A5 /* InputValue.h */,
+				0036DE1F13BE1AD90043F3A5 /* InputValue.m */,
+				004A59A913A02FB9009FEF25 /* Repeat Frequency */,
+				004A59A513A02678009FEF25 /* Date Sensitive Value */,
+				0095E96F13B9271B000555AC /* Sim Dates */,
+			);
+			name = "Input Values";
+			sourceTree = "<group>";
+		};
+		0036DE2B13BE346F0043F3A5 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				0036DE2C13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.h */,
+				0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */,
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		003AD12D138AC83000CB3CB5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,10 +507,10 @@
 				00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */,
 				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
 				00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */,
-				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
-				00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */,
 				00ADB2F213819ED400064651 /* FieldEditViewController.h */,
 				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
+				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
+				00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */,
 			);
 			name = "Base Classes";
 			sourceTree = "<group>";
@@ -749,6 +791,7 @@
 		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
+				0036DE2B13BE346F0043F3A5 /* New Group */,
 				0087923013A9497400CA9DA7 /* Input Detail */,
 				0049DC7113A28AC600B27046 /* Input List */,
 				0049DC7013A2884D00B27046 /* Input Creation */,
@@ -775,10 +818,9 @@
 				00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */,
 				004F5D0C136F52D200E0C4A3 /* DataModelController.h */,
 				004F5D0D136F52D200E0C4A3 /* DataModelController.m */,
+				0036DE2113BE1AF90043F3A5 /* Input Values */,
+				00DC16C313BE10F9006CBACA /* Scenario */,
 				004A59A813A02FA0009FEF25 /* Inputs */,
-				004A59A913A02FB9009FEF25 /* Repeat Frequency */,
-				004A59A513A02678009FEF25 /* Date Sensitive Value */,
-				0095E96F13B9271B000555AC /* Sim Dates */,
 				0095E98B13BA9A7D000555AC /* SharedAppValues.h */,
 				0095E98C13BA9A90000555AC /* SharedAppValues.m */,
 			);
@@ -942,6 +984,23 @@
 				00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00DC16C313BE10F9006CBACA /* Scenario */ = {
+			isa = PBXGroup;
+			children = (
+				0036DE1413BE19F20043F3A5 /* Scenario.h */,
+				0036DE1513BE19F20043F3A5 /* Scenario.m */,
+				0036DE1813BE1A370043F3A5 /* UserScenario.h */,
+				0036DE1913BE1A370043F3A5 /* UserScenario.m */,
+				0036DE1B13BE1A690043F3A5 /* DefaultScenario.h */,
+				0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */,
+				0036DE2213BE2C5C0043F3A5 /* ScenarioValue.h */,
+				0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */,
+				0036DE2513BE2D710043F3A5 /* MultiScenarioInputValue.h */,
+				0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */,
+			);
+			name = Scenario;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1144,6 +1203,13 @@
 				0095E98A13BA5876000555AC /* StaticFieldEditInfo.m in Sources */,
 				0095E98D13BA9A9F000555AC /* SharedAppValues.m in Sources */,
 				000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */,
+				0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */,
+				0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */,
+				0036DE1D13BE1A690043F3A5 /* DefaultScenario.m in Sources */,
+				0036DE2013BE1AD90043F3A5 /* InputValue.m in Sources */,
+				0036DE2413BE2C5C0043F3A5 /* ScenarioValue.m in Sources */,
+				0036DE2713BE2D710043F3A5 /* MultiScenarioInputValue.m in Sources */,
+				0036DE2E13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

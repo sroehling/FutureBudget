@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "InputValue.h"
 
 @class VariableValueRuntimeInfo;
 @protocol DateSensitiveValueVisitor;
 
-@interface DateSensitiveValue : NSManagedObject {
+@interface DateSensitiveValue : InputValue {
 @private
 }
 

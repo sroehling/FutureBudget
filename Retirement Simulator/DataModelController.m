@@ -10,6 +10,7 @@
 #import "EventRepeatFrequency.h"
 #import "SharedAppValues.h"
 #import "NeverEndDate.h"
+#import "DefaultScenario.h"
 
 
 @implementation DataModelController
@@ -70,7 +71,12 @@
 		NeverEndDate *theNeverEndDate = [self insertObject:NEVER_END_DATE_ENTITY_NAME];
 		theNeverEndDate.date = [[[NSDate alloc] init] autorelease];
 		sharedVals.sharedNeverEndDate = theNeverEndDate;
+		
+		DefaultScenario *defaultScenario = [self insertObject:DEFAULT_SCENARIO_ENTITY_NAME];
+		sharedVals.defaultScenario = defaultScenario;
+
 		self.sharedAppVals = sharedVals;
+
 	}
 	else
 	{

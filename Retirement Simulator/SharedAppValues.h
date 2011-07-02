@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class NeverEndDate;
+@class DefaultScenario;
 
 extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
 
@@ -17,5 +18,6 @@ extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
 @private
 }
 @property (nonatomic, retain) NeverEndDate * sharedNeverEndDate;
+@property (nonatomic, retain) DefaultScenario *defaultScenario;
 
 @end
