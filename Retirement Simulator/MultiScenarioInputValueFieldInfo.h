@@ -17,10 +17,10 @@
 }
 
 -(id)initWithScenario:(Scenario*)theScenario
-	andManagedObject:(NSManagedObject*)theManagedObject
-               andFieldKey:(NSString*)theFieldKey
-             andFieldLabel:(NSString*)theFieldLabel
-	   andFieldPlaceholder:(NSString*)thePlaceholder;
+	 andManagedObject:(NSManagedObject*)theManagedObject
+		  andFieldKey:(NSString*)theFieldKey
+		andFieldLabel:(NSString*)theFieldLabel
+  andFieldPlaceholder:(NSString*)thePlaceholder;
 
 - (id)getFieldValue;
 - (void)setFieldValue:(id)newValue;

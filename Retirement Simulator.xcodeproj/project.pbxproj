@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0009480E13C21AE9008F129B /* MultiScenarioInputValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009480D13C21AE9008F129B /* MultiScenarioInputValueTest.m */; };
 		000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
@@ -145,6 +146,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0009480C13C21AE9008F129B /* MultiScenarioInputValueTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValueTest.h; sourceTree = "<group>"; };
+		0009480D13C21AE9008F129B /* MultiScenarioInputValueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueTest.m; sourceTree = "<group>"; };
 		000FABF113BB8B30008AEEDF /* SimDateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateValueFormatter.h; sourceTree = "<group>"; };
 		000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateValueFormatter.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
@@ -182,7 +185,7 @@
 		0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioValue.m; sourceTree = "<group>"; };
 		0036DE2513BE2D710043F3A5 /* MultiScenarioInputValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValue.h; sourceTree = "<group>"; };
 		0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValue.m; sourceTree = "<group>"; };
-		0036DE2C13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MultiScenarioInputValueFieldInfo.h; sourceTree = "<group>"; };
+		0036DE2C13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValueFieldInfo.h; sourceTree = "<group>"; };
 		0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueFieldInfo.m; sourceTree = "<group>"; };
 		003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHelper.h; sourceTree = "<group>"; };
 		003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHelper.m; sourceTree = "<group>"; };
@@ -972,6 +975,8 @@
 				0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */,
 				0095E96C13B8E93A000555AC /* EventRepeaterTest.h */,
 				0095E96D13B8E93A000555AC /* EventRepeaterTest.m */,
+				0009480C13C21AE9008F129B /* MultiScenarioInputValueTest.h */,
+				0009480D13C21AE9008F129B /* MultiScenarioInputValueTest.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -1227,6 +1232,7 @@
 				0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */,
 				0095E96B13B69DF7000555AC /* TestDateHelper.m in Sources */,
 				0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */,
+				0009480E13C21AE9008F129B /* MultiScenarioInputValueTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+extern NSString * const SCENARIO_VALUE_ENTITY_NAME;
+
 @class InputValue, Scenario;
 
 @interface ScenarioValue : NSManagedObject {

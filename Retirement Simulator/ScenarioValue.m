@@ -10,6 +10,7 @@
 #import "InputValue.h"
 #import "Scenario.h"
 
+NSString * const SCENARIO_VALUE_ENTITY_NAME = @"ScenarioValue";
 
 @implementation ScenarioValue
 @dynamic inputValue;

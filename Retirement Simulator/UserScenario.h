@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Scenario.h"
 
+extern NSString * const USER_SCENARIO_ENTITY_NAME;
 
 @interface UserScenario : Scenario {
 @private

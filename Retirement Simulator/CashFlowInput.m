@@ -11,6 +11,8 @@
 #import "InputVisitor.h"
 #import "VariableValue.h"
 
+NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY = @"multiScenarioStartDate";
+
 
 @implementation CashFlowInput
 @dynamic amount;
@@ -23,6 +25,7 @@
 @dynamic fixedEndDate;
 @dynamic defaultFixedGrowthRate;
 @dynamic defaultFixedAmount;
+@dynamic multiScenarioStartDate;
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
 {

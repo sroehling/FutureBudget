@@ -27,6 +27,9 @@
 #import "SharedEntityVariableValueListMgr.h"
 #import "LocalizationHelper.h"
 #import "SimDateRuntimeInfo.h"
+#import "SharedAppValues.h"
+#import "DataModelController.h"
+#import "SharedAppValues.h"
 
 @implementation DetailInputViewCreator
 
@@ -92,13 +95,24 @@
 
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = LOCALIZED_STR(@"INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE");
+	
     
 	SimDateRuntimeInfo *startDateInfo = 
 		[SimDateRuntimeInfo createForCashFlow:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_START_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME"];
+		
     [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" 
 	andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
 	andDefaultValueKey:@"fixedStartDate" 
 			andVarDateRuntimeInfo:startDateInfo andShowNeverEnding:FALSE]];
+
+	Scenario *currentScenario = (Scenario*)[DataModelController theDataModelController].sharedAppVals.defaultScenario;
+
+    [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
+			andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
+			andDefaultValueKey:@"fixedStartDate" 
+			andVarDateRuntimeInfo:startDateInfo andShowNeverEnding:FALSE]];
+	
 
 
     RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" 

@@ -8,6 +8,7 @@
 
 #import "UserScenario.h"
 
+NSString * const USER_SCENARIO_ENTITY_NAME = @"UserScenario";
 
 @implementation UserScenario
 @dynamic name;

@@ -16,6 +16,9 @@
 @class FixedDate;
 @class FixedValue;
 @class VariableValue;
+@class MultiScenarioInputValue;
+
+extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY;
 
 @interface CashFlowInput : Input {
 @private
@@ -35,6 +38,8 @@
 // date reverting back to zero.
 @property(nonatomic,retain) FixedDate *fixedStartDate;
 @property(nonatomic,retain) FixedDate *fixedEndDate;
+
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioStartDate;
 
 // defaultFixedGrowthRate serves the same purpose as 
 // fixedStartDate.

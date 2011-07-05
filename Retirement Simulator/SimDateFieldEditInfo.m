@@ -11,6 +11,7 @@
 #import "SimDateFormInfoCreator.h"
 #import "TableViewHelper.h"
 #import "SelectableObjectTableEditViewController.h"
+#import "MultiScenarioInputValueFieldInfo.h"
 #import "StringValidation.h"
 #import "DateHelper.h"
 #import "ManagedObjectFieldInfo.h"
@@ -18,6 +19,9 @@
 #import "ValueSubtitleTableCell.h"
 #import "LocalizationHelper.h"
 #import "SimDateValueFormatter.h"
+#import "DataModelController.h"
+#import "SharedAppValues.h"
+#import "Scenario.h"
 
 @implementation SimDateFieldEditInfo
 
@@ -76,6 +80,37 @@
     assert(0); // should not call this version of init
 }
 
++ (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
+								andShowNeverEnding:(bool)doShowNeverEnding
+{
+    assert(obj != nil);
+    assert([StringValidation nonEmptyString:key]);
+    assert([StringValidation nonEmptyString:label]);
+    assert([StringValidation nonEmptyString:defaultValKey]);
+    
+	
+	NSString *variableDatePlaceholder = LOCALIZED_STR(@"VARIABLE_DATE_PLACEHOLDER");
+	
+	
+	MultiScenarioInputValueFieldInfo *fieldInfo = [[[MultiScenarioInputValueFieldInfo alloc]
+													initWithScenario:scenario andManagedObject:obj andFieldKey:key 
+													andFieldLabel:label andFieldPlaceholder:variableDatePlaceholder] autorelease];
+	
+    
+    ManagedObjectFieldInfo *defaultValFieldInfo = [[[ManagedObjectFieldInfo alloc] 
+													initWithManagedObject:obj 
+													andFieldKey:defaultValKey andFieldLabel:label
+													andFieldPlaceholder:variableDatePlaceholder] autorelease];
+	
+    
+    SimDateFieldEditInfo *fieldEditInfo = [[[SimDateFieldEditInfo alloc] 
+											initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo andShowNeverEnding:doShowNeverEnding] autorelease];
+	
+    
+    return fieldEditInfo;
+}
+
+
 
 + (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo andShowNeverEnding:(bool)doShowNeverEnding
 {
@@ -88,10 +123,9 @@
 	NSString *variableDatePlaceholder = LOCALIZED_STR(@"VARIABLE_DATE_PLACEHOLDER");
 	
     ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
-                                         initWithManagedObject:obj andFieldKey:key 
-										 andFieldLabel:label
-										 andFieldPlaceholder:variableDatePlaceholder] autorelease];
- 
+										  initWithManagedObject:obj andFieldKey:key 
+										  andFieldLabel:label
+										  andFieldPlaceholder:variableDatePlaceholder] autorelease];
     
     ManagedObjectFieldInfo *defaultValFieldInfo = [[[ManagedObjectFieldInfo alloc] 
                                           initWithManagedObject:obj 

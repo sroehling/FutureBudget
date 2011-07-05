@@ -7,6 +7,8 @@
 //
 
 #import "MultiScenarioInputValueFieldInfo.h"
+#import "MultiScenarioInputValue.h"
+#import "DataModelController.h"
 
 
 @implementation MultiScenarioInputValueFieldInfo
@@ -29,15 +31,37 @@
 	return self;
 }
 
-- (id)getFieldValue
+
+
+- (MultiScenarioInputValue*)inputValue
 {
-	return [super getFieldValue];
+	MultiScenarioInputValue *inputValue;
+	if(![super fieldIsInitializedInParentObject])
+	{
+		inputValue = (MultiScenarioInputValue*)[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+		[super setFieldValue:inputValue];
+	}
+	else
+	{
+		inputValue = (MultiScenarioInputValue*)[super getFieldValue];
+		
+	}
+	return inputValue;
 }
 
+- (id)getFieldValue
+{
+	MultiScenarioInputValue *theMultiScenInputValue = [self inputValue];
+	InputValue *inputVal = [theMultiScenInputValue findInputValueForScenarioOrDefault:self.currentScenario];
+	assert(inputVal != nil);
+	return inputVal;
+
+}
 
 - (void)setFieldValue:(id)newValue
 {
-	[super setFieldValue:newValue];
+	[self.inputValue
+		setValueForScenario:self.currentScenario andInputValue:newValue];
 }
 
 - (BOOL)fieldIsInitializedInParentObject
@@ -48,7 +72,16 @@
 	}
 	else
 	{
-		return FALSE;
+		MultiScenarioInputValue *theMultiScenInputValue = [self inputValue];
+		InputValue *inputVal = [theMultiScenInputValue findInputValueForScenarioOrDefault:self.currentScenario];
+		if(inputVal != nil)
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 }
 

@@ -13,6 +13,7 @@
 
 @class ValueSubtitleTableCell;
 @class SimDateRuntimeInfo;
+@class Scenario;
 
 @interface SimDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private
@@ -30,5 +31,10 @@
               andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey
 			  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
 			  andShowNeverEnding:(bool)doShowNeverEnding;
+			  
++ (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario andObject:(NSManagedObject*)obj 
+	andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey 
+	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
+	andShowNeverEnding:(bool)doShowNeverEnding;
 
 @end

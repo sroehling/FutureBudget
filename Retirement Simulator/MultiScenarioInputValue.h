@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
+
 @class ScenarioValue;
+@class Scenario;
+@class InputValue;
 
 @interface MultiScenarioInputValue : NSManagedObject {
 @private
 }
 @property (nonatomic, retain) NSSet* scenarioVals;
+
+-(void)setValueForScenario:(Scenario*)scenario andInputValue:(InputValue*)inputValue;
+-(InputValue*)findInputValueForScenarioOrDefault:(Scenario*)scenario;
 
 @end
