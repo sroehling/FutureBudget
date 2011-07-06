@@ -86,12 +86,6 @@
 	andVariableValue:(VariableValue*)varValue
 {
 
-	NSString *parentName = valRuntimeInfo.valueName;
-	if(parentName == nil)
-	{
-		parentName = @"";
-	}
-	
 	NSString *tableHeader = [NSString stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VALUE_CHANGE_TABLE_HEADER_FORMAT"),
 					LOCALIZED_STR(valRuntimeInfo.valueTitleKey)		];
 

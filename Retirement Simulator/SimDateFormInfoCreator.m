@@ -29,7 +29,6 @@
 @synthesize fieldInfo;
 @synthesize fixedDate;
 @synthesize varDateRuntimeInfo;
-@synthesize showNeverEnding;
 
 - (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo
 			 andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
@@ -61,7 +60,7 @@
         {
             self.fixedDate = (FixedDate*)[theDefaultFieldInfo getFieldValue];
         }
-		self.showNeverEnding = doShowNeverEnding;
+		showNeverEnding = doShowNeverEnding;
 
     }
     return self;
@@ -86,7 +85,7 @@
 	
 	SectionInfo *sectionInfo;
 	
-	if(self.showNeverEnding)
+	if(showNeverEnding)
 	{
 		sectionInfo = [formPopulator nextSection];
 	

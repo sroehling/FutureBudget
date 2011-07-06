@@ -52,7 +52,6 @@
 			// This is the last index (rate change) => 
 			// all the remaining days fall under the current rate.
 			 daysAtCurrentRate = daysOffsetFromStart - currOffset;
-			 currOffset = daysOffsetFromStart;
 			 valueMultiplier = valueMultiplier * pow(currRate.dailyRate + 1.0,daysAtCurrentRate);
 			 return valueMultiplier;
 		}
@@ -66,7 +65,6 @@
 				// The next rate is beyond the end date being requested => 
 				// all the remaining days fall under the current rate.
 				daysAtCurrentRate = daysOffsetFromStart - currOffset;
-				currOffset = daysOffsetFromStart;		
 				valueMultiplier = valueMultiplier * pow(currRate.dailyRate + 1.0,daysAtCurrentRate);
 				return valueMultiplier;
 			}

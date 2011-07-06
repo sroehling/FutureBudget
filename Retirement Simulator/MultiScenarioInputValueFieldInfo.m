@@ -85,5 +85,10 @@
 	}
 }
 
+- (void)dealloc
+{
+	[super dealloc];
+	[currentScenario release];
+}
 
 @end

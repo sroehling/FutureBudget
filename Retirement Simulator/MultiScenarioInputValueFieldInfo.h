@@ -13,7 +13,7 @@
 
 @interface MultiScenarioInputValueFieldInfo : ManagedObjectFieldInfo {
     @private
-		Scenario *scenario;
+		Scenario *currentScenario;
 }
 
 -(id)initWithScenario:(Scenario*)theScenario

@@ -876,6 +876,13 @@
 			name = "Simulator Inputs";
 			sourceTree = "<group>";
 		};
+		005AE71D13C3F2AA001D99C6 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		0087923013A9497400CA9DA7 /* Input Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -883,13 +890,6 @@
 				00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */,
 			);
 			name = "Input Detail";
-			sourceTree = "<group>";
-		};
-		0087923B13ABA6ED00CA9DA7 /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Localization;
 			sourceTree = "<group>";
 		};
 		0087924413AC505B00CA9DA7 /* Table Headers */ = {
@@ -959,7 +959,6 @@
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004F5D6E1373170C00E0C4A3 /* Application */,
 				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
-				0087923B13ABA6ED00CA9DA7 /* Localization */,
 			);
 			path = "Retirement Simulator";
 			sourceTree = "<group>";
@@ -979,6 +978,7 @@
 		00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				005AE71D13C3F2AA001D99C6 /* New Group */,
 				0025777313B438E000D15232 /* Test Helper Code */,
 				00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */,
 				00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */,

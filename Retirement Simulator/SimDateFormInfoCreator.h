@@ -19,7 +19,7 @@
         ManagedObjectFieldInfo *fieldInfo;
         FixedDate *fixedDate;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
-		bool showNeverEndingDate;
+		bool showNeverEnding;
 }
 
 - (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo 
@@ -30,6 +30,5 @@
 @property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
 @property(nonatomic,retain) FixedDate *fixedDate;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
-@property bool showNeverEnding;
 
 @end

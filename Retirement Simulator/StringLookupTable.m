@@ -17,7 +17,7 @@
 
 -(id)initWithStringLookupDictionary:(NSDictionary*)varStrings
 {
-	self = [super self];
+	self = [super init];
 	if(self)
 	{
 		self.lookupTable = varStrings;
