@@ -11,9 +11,11 @@
 
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
+NSString * const SHARED_APP_VALUES_CURRENT_SCENARIO_KEY = @"currentScenario";
 
 @implementation SharedAppValues
 @dynamic sharedNeverEndDate;
 @dynamic defaultScenario;
+@dynamic currentScenario;
 
 @end

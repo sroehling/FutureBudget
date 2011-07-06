@@ -12,6 +12,10 @@
 #import "InputListFormInfoCreator.h"
 #import "ResultsViewController.h"
 #import "GenericFieldBasedTableEditViewController.h"
+#import "ScenarioListFormInfoCreator.h"
+#import "SelectableObjectTableEditViewController.h"
+#import "SharedAppValues.h"
+#import "LocalizationHelper.h"
 
 @implementation Retirement_SimulatorAppDelegate
 
@@ -35,16 +39,26 @@
 	UIViewController *inputController = [[[GenericFieldBasedTableEditViewController alloc]
 		initWithFormInfoCreator:inputFormInfoCreator] autorelease];
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
-	inputNavController.title = @"Inputs";
+	inputNavController.title = LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
 	
+	SharedAppValues *theSharedAppValues = [DataModelController theDataModelController].sharedAppVals;
+	ManagedObjectFieldInfo *currentScenarioFieldInfo = 
+		[[[ManagedObjectFieldInfo alloc] initWithManagedObject:theSharedAppValues andFieldKey:SHARED_APP_VALUES_CURRENT_SCENARIO_KEY 
+			andFieldLabel:@"dummy" andFieldPlaceholder:@"dummy"] autorelease];
+	ScenarioListFormInfoCreator *scenarioFormInfoCreator = 
+		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
+	UIViewController *scenarioController = [[[SelectableObjectTableEditViewController alloc]
+		initWithFormInfoCreator:scenarioFormInfoCreator andAssignedField:currentScenarioFieldInfo] autorelease];
+	UINavigationController *scenarioNavController = [[[UINavigationController alloc] initWithRootViewController:scenarioController] autorelease];
+	scenarioNavController.title = LOCALIZED_STR(@"SCENARIO_NAV_CONTROLLER_BUTTON_TITLE");
 	
 	ResultsViewController *resultsController = [[[ResultsViewController alloc] init] autorelease];
 	UINavigationController *resultsNavController = [[[UINavigationController alloc] initWithRootViewController:resultsController] autorelease];
-	resultsNavController.title = @"Results";
+	resultsNavController.title = LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
 	
 	
 	self.tabBarController.viewControllers =
-		[NSArray arrayWithObjects:inputNavController, resultsNavController, nil]; 
+		[NSArray arrayWithObjects:inputNavController, scenarioNavController,resultsNavController, nil]; 
 	
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;

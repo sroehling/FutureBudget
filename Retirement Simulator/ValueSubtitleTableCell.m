@@ -72,7 +72,9 @@ static CGFloat kLabelSpace = 2.0;
 	[valueSubtitle sizeToFit];
 
 	CGFloat cellHeight = kTopMargin;
-	cellHeight += CGRectGetHeight(self.valueDescription.bounds);
+	
+	cellHeight += MAX(CGRectGetHeight(self.valueDescription.bounds),
+					  CGRectGetHeight(self.caption.bounds));
 	if([valueSubtitle.text length] > 0)
 	{
 		cellHeight += kLabelSpace;

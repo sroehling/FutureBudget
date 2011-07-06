@@ -110,9 +110,7 @@
     self.navigationItem.rightBarButtonItem = saveButtonItem;
     self.saveButton = saveButtonItem;
     self.saveButton.enabled = FALSE;
-    
-    self.popDepth = DEFAULT_POP_DEPTH;
-    
+        
     [self startObservingObjectChangeNotifications];
    
 }

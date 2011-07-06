@@ -10,6 +10,7 @@
 "INPUT_INCOME_VIEW_TITLE" = "Income";
 
 "INPUT_NAME_PLACEHOLDER" = "Enter a Name";
+"INPUT_NAV_CONTROLLER_BUTTON_TITLE" = "Inputs";
 
 "INPUT_CASHFLOW_TYPE_EXPENSE_INLINE" = "expense";
 "INPUT_CASHFLOW_TYPE_INCOME_INLINE" = "income";
@@ -96,4 +97,16 @@
 "SIM_DATE_NEVER_ENDING_DATE_LABEL" = "Never Ending";
 "SIM_DATE_NEVER_ENDING_DATE_INLINE_LABEL" = "never ending";
 "SIM_DATE_NEVER_ENDING_DATE_SUBTITLE" = "Repeat through the end of simulation";
+
+"SCENARIO_NAV_CONTROLLER_BUTTON_TITLE" = "Scenarios";
+"SCENARIO_LIST_VIEW_TITLE" = "Scenarios";
+"SCENARIO_DEFAULT_SCENARIO_NAME" = "Default";
+"SCENARIO_LIST_DEFAULT_SCENARIO_CAPTION" = "Default Scenario";
+"SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_TITLE" = "Alternate Scenarios";
+"SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_SUBTITLE" = "Alternate scenarios are for variations from the default scenario. If an alternate scenario is selected, any changes to inputs will override the values for the default scenario, and the results will include these changes.";
+"SCENARIO_DETAIL_VIEW_TITLE" = "Scenario";
+"SCENARIO_NAME_FIELD_LABEL" = "Name";
+"SCENARIO_NAME_PLACEHOLDER" = "Enter a Name";
+
+"RESULTS_NAV_CONTROLLER_BUTTON_TITLE" = "Results";
 

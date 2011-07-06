@@ -11,4 +11,10 @@
 
 @implementation Scenario
 
+- (NSString *)scenarioName
+{
+	assert(0); // must be overridden
+	return nil;
+}
+
 @end

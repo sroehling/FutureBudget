@@ -7,9 +7,15 @@
 //
 
 #import "DefaultScenario.h"
+#import "LocalizationHelper.h"
 
 NSString * const DEFAULT_SCENARIO_ENTITY_NAME = @"DefaultScenario";
 
 @implementation DefaultScenario
+
+- (NSString *)scenarioName
+{
+	return LOCALIZED_STR(@"SCENARIO_DEFAULT_SCENARIO_NAME");
+}
 
 @end

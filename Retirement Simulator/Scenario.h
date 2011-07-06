@@ -14,4 +14,6 @@
 @private
 }
 
+- (NSString *)scenarioName;
+
 @end

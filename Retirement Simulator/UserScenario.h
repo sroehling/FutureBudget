@@ -11,6 +11,7 @@
 #import "Scenario.h"
 
 extern NSString * const USER_SCENARIO_ENTITY_NAME;
+extern NSString * const USER_SCENARIO_NAME_KEY;
 
 @interface UserScenario : Scenario {
 @private

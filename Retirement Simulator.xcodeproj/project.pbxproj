@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0009480E13C21AE9008F129B /* MultiScenarioInputValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009480D13C21AE9008F129B /* MultiScenarioInputValueTest.m */; };
+		0009481213C36FF8008F129B /* ScenarioListFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481113C36FF8008F129B /* ScenarioListFormInfoCreator.m */; };
+		0009481513C37289008F129B /* ScenarioListObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481413C37288008F129B /* ScenarioListObjectAdder.m */; };
+		0009481813C375F4008F129B /* UserScenarioFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481713C375F4008F129B /* UserScenarioFieldEditInfo.m */; };
+		0009481B13C38912008F129B /* UserScenarioFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */; };
 		000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
@@ -148,6 +152,14 @@
 /* Begin PBXFileReference section */
 		0009480C13C21AE9008F129B /* MultiScenarioInputValueTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValueTest.h; sourceTree = "<group>"; };
 		0009480D13C21AE9008F129B /* MultiScenarioInputValueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueTest.m; sourceTree = "<group>"; };
+		0009481013C36FF8008F129B /* ScenarioListFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioListFormInfoCreator.h; sourceTree = "<group>"; };
+		0009481113C36FF8008F129B /* ScenarioListFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioListFormInfoCreator.m; sourceTree = "<group>"; };
+		0009481313C37288008F129B /* ScenarioListObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioListObjectAdder.h; sourceTree = "<group>"; };
+		0009481413C37288008F129B /* ScenarioListObjectAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioListObjectAdder.m; sourceTree = "<group>"; };
+		0009481613C375F3008F129B /* UserScenarioFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenarioFieldEditInfo.h; sourceTree = "<group>"; };
+		0009481713C375F4008F129B /* UserScenarioFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScenarioFieldEditInfo.m; sourceTree = "<group>"; };
+		0009481913C3890E008F129B /* UserScenarioFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenarioFormInfoCreator.h; sourceTree = "<group>"; };
+		0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScenarioFormInfoCreator.m; sourceTree = "<group>"; };
 		000FABF113BB8B30008AEEDF /* SimDateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateValueFormatter.h; sourceTree = "<group>"; };
 		000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateValueFormatter.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
@@ -475,8 +487,16 @@
 		0036DE2B13BE346F0043F3A5 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				0009481013C36FF8008F129B /* ScenarioListFormInfoCreator.h */,
+				0009481113C36FF8008F129B /* ScenarioListFormInfoCreator.m */,
+				0009481913C3890E008F129B /* UserScenarioFormInfoCreator.h */,
+				0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */,
 				0036DE2C13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.h */,
 				0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */,
+				0009481313C37288008F129B /* ScenarioListObjectAdder.h */,
+				0009481413C37288008F129B /* ScenarioListObjectAdder.m */,
+				0009481613C375F3008F129B /* UserScenarioFieldEditInfo.h */,
+				0009481713C375F4008F129B /* UserScenarioFieldEditInfo.m */,
 			);
 			name = "New Group";
 			sourceTree = "<group>";
@@ -1215,6 +1235,10 @@
 				0036DE2413BE2C5C0043F3A5 /* ScenarioValue.m in Sources */,
 				0036DE2713BE2D710043F3A5 /* MultiScenarioInputValue.m in Sources */,
 				0036DE2E13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m in Sources */,
+				0009481213C36FF8008F129B /* ScenarioListFormInfoCreator.m in Sources */,
+				0009481513C37289008F129B /* ScenarioListObjectAdder.m in Sources */,
+				0009481813C375F4008F129B /* UserScenarioFieldEditInfo.m in Sources */,
+				0009481B13C38912008F129B /* UserScenarioFormInfoCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,6 +40,12 @@
     return self;
 }
 
+- (id) init
+{
+	assert(0); // must call init above
+	return nil;
+}
+
 
 - (void) dealloc
 {
