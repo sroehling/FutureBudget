@@ -17,6 +17,7 @@
 #import "DateHelper.h"
 #import "VariableRateCalculator.h"
 #import "ValueAsOfCalculatorCreator.h"
+#import "MultiScenarioInputValue.h"
 
 @protocol SimEventCreator;
 
@@ -34,19 +35,27 @@
     {
         assert(theCashFlow != nil);
         self.cashFlow = theCashFlow;
+			
+		SimDate *startDate = (SimDate*)[theCashFlow.multiScenarioStartDate 
+			getValueForCurrentOrDefaultScenario];
 	
-	
-		self.startAmountGrowthDate = theCashFlow.startDate.date;
+		self.startAmountGrowthDate = startDate.date;
 
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
+
+		DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)[self.cashFlow.multiScenarioAmountGrowthRate
+			getValueForCurrentOrDefaultScenario];
+		
 		self.varRateCalc = [calcCreator 
-							createForDateSensitiveValue:self.cashFlow.amountGrowthRate 
+							createForDateSensitiveValue:amountGrowthRate 
 							andStartDate:self.startAmountGrowthDate];
 							
+		DateSensitiveValue *amount = (DateSensitiveValue*)[self.cashFlow.multiScenarioAmount 
+				getValueForCurrentOrDefaultScenario];					
 		ValueAsOfCalculatorCreator *varAmountCalcCreator = 
 			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];
-		self.varAmountCalc = [varAmountCalcCreator createForDateSensitiveValue:self.cashFlow.amount];
+		self.varAmountCalc = [varAmountCalcCreator createForDateSensitiveValue:amount];
 							
     }
     return self;
@@ -66,9 +75,14 @@
     {
         [eventRepeater release];
     }
+	SimDate *startDate = (SimDate*)[self.cashFlow.multiScenarioStartDate 
+			getValueForCurrentOrDefaultScenario];
+
+	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
+		[self.cashFlow.multiScenarioEventRepeatFrequency getValueForCurrentOrDefaultScenario];
     eventRepeater = [[EventRepeater alloc] 
-                     initWithEventRepeatFrequency:self.cashFlow.repeatFrequency 
-                     andStartDate:self.cashFlow.startDate.date];
+                     initWithEventRepeatFrequency:repeatFreq 
+                     andStartDate:startDate.date];
    
 }
 

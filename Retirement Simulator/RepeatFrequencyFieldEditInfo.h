@@ -12,6 +12,7 @@
 #import "ManagedObjectFieldEditInfo.h"
 
 @class FormFieldWithSubtitleTableCell;
+@class Scenario;
 
 @interface RepeatFrequencyFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private
@@ -22,5 +23,8 @@
 
 + (RepeatFrequencyFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                                         andLabel:(NSString*)label;
-
++ (RepeatFrequencyFieldEditInfo*)createForScenario:(Scenario*)theScenario 
+	andObject:(NSManagedObject*)obj andKey:(NSString*)key
+                             andLabel:(NSString*)label;
+							 
 @end

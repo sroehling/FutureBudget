@@ -34,7 +34,7 @@
     [super dealloc];
 }
 
-- (void)initOneRepeatFrequencyWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
+- (EventRepeatFrequency *)initOneRepeatFrequencyWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
@@ -45,6 +45,7 @@
     [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
     repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
     NSLog(@"New default repeat frequency: %@",repeatFrequency.description);
+	return repeatFrequency;
 
 }
 
@@ -53,20 +54,20 @@
     NSLog(@"Initializing database with default data ...");
     
     
-    if(![self entitiesExistForEntityName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME])
-    {
-        [self initOneRepeatFrequencyWithPeriod:kEventPeriodOnce andMultiplier:1];
+    if(![self entitiesExistForEntityName:SHARED_APP_VALUES_ENTITY_NAME])
+	{
+		NSLog(@"Initializing shared values ...");
+
+        EventRepeatFrequency *repeatOnce = 
+			[self initOneRepeatFrequencyWithPeriod:kEventPeriodOnce andMultiplier:1];
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:1];
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:2];
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:1];
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:3];
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:6];
         [self initOneRepeatFrequencyWithPeriod:kEventPeriodYear andMultiplier:1];        
-    }
 
-    if(![self entitiesExistForEntityName:SHARED_APP_VALUES_ENTITY_NAME])
-	{
-		NSLog(@"Initializing shared values ...");
+
 		SharedAppValues *sharedVals = [self insertObject:SHARED_APP_VALUES_ENTITY_NAME];
 		NeverEndDate *theNeverEndDate = [self insertObject:NEVER_END_DATE_ENTITY_NAME];
 		theNeverEndDate.date = [[[NSDate alloc] init] autorelease];
@@ -75,6 +76,8 @@
 		DefaultScenario *defaultScenario = [self insertObject:DEFAULT_SCENARIO_ENTITY_NAME];
 		sharedVals.defaultScenario = defaultScenario;
 		sharedVals.currentScenario = defaultScenario;
+		
+		sharedVals.repeatOnceFreq = repeatOnce;
 
 		self.sharedAppVals = sharedVals;
 

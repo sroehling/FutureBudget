@@ -17,6 +17,7 @@
 #import "VariableValueRuntimeInfo.h"
 #import "DateSensitiveValue.h"
 #import "SharedEntityVariableValueListMgr.h"
+#import "MultiScenarioInputValue.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -25,21 +26,32 @@
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
-	NSString *amountDisplay = [cashFlow.amount inlineDescription:
+
+	DateSensitiveValue *amount = (DateSensitiveValue*)
+			[cashFlow.multiScenarioAmount getValueForCurrentOrDefaultScenario];
+	NSString *amountDisplay = [amount inlineDescription:
 							   [VariableValueRuntimeInfo createForCashflowAmount:cashFlow]];
 
-	NSString *startDateDisplay = [cashFlow.startDate 
+	SimDate *startDate = (SimDate*)[cashFlow.multiScenarioStartDate getValueForCurrentOrDefaultScenario]; 
+	NSString *startDateDisplay = [startDate 
 						inlineDescription:[DateHelper theHelper].mediumDateFormatter];
-	NSString *repeatDesc = [cashFlow.repeatFrequency inlineDescription];
+	EventRepeatFrequency *repeatFreq = 
+		(EventRepeatFrequency*)[cashFlow.multiScenarioEventRepeatFrequency getValueForCurrentOrDefaultScenario];
+	NSString *repeatDesc = [repeatFreq inlineDescription];
 	NSString *untilDesc = @"";
-	if([cashFlow.repeatFrequency eventRepeatsMoreThanOnce])
+	if([repeatFreq eventRepeatsMoreThanOnce])
 	{
-	    NSString *endDateDisplay = [cashFlow.endDate 
+		SimDate *endDate = (SimDate*)[cashFlow.multiScenarioEndDate getValueForCurrentOrDefaultScenario];
+	    NSString *endDateDisplay = [endDate 
 									inlineDescription:[DateHelper theHelper].mediumDateFormatter];;
 		untilDesc = [NSString stringWithFormat:@" until %@",endDateDisplay];
 	}
 	
-	NSString *inflationDesc = [cashFlow.amountGrowthRate inlineDescription:[VariableValueRuntimeInfo createForInflationRate:cashFlow]];
+	DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)
+			[cashFlow.multiScenarioAmountGrowthRate getValueForCurrentOrDefaultScenario];
+	
+	NSString *inflationDesc = [amountGrowthRate 
+		inlineDescription:[VariableValueRuntimeInfo createForInflationRate:cashFlow]];
 	self.generatedDesc = [NSString stringWithFormat:@"%@ starting on %@, repeating %@%@, %@",
 						  amountDisplay,startDateDisplay,repeatDesc,untilDesc,inflationDesc];
 

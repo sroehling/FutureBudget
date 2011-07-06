@@ -12,6 +12,9 @@
 #import "ScenarioValue.h"
 #import "Scenario.h"
 #import "DefaultScenario.h"
+#import "DataModelController.h"
+#import "SharedAppValues.h"
+#import "Scenario.h"
 
 NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputValue";
 
@@ -102,6 +105,15 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	}
 }
 
+-(InputValue*)getValueForCurrentOrDefaultScenario
+{
+	Scenario *currentScenario = [DataModelController theDataModelController].sharedAppVals.currentScenario;
+	assert(currentScenario != nil);
+	InputValue *inputVal = [self findInputValueForScenarioOrDefault:currentScenario];
+	assert(inputVal != nil);
+	return inputVal;
+}
+
 -(void)setValueForScenario:(Scenario*)scenario andInputValue:(InputValue*)inputValue
 {
     assert(scenario != nil);
@@ -123,6 +135,14 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 		scenarioVal.inputValue = inputValue;		
 	}
 	[[DataModelController theDataModelController] saveContext];
+}
+
+-(void)setDefaultValue:(InputValue*)inputValue
+{
+	DefaultScenario *defaultScen = [DataModelController theDataModelController].sharedAppVals.defaultScenario;
+	assert(defaultScen != nil);
+	assert(inputValue != nil);
+	[self setValueForScenario:defaultScen andInputValue:inputValue];
 }
 
 

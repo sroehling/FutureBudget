@@ -16,6 +16,7 @@
 #import "ManagedObjectFieldInfo.h"
 #import "ValueSubtitleTableCell.h"
 #import "LocalizationHelper.h"
+#import "MultiScenarioInputValueFieldInfo.h"
 
 @implementation DateSensitiveValueFieldEditInfo
 
@@ -75,6 +76,37 @@
 - (id) init
 {
     assert(0); // should not be called
+}
+
++ (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario andObject:
+			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
+				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
+{
+    assert(obj != nil);
+    assert([StringValidation nonEmptyString:key]);
+    assert([StringValidation nonEmptyString:label]);
+    assert(varValRuntimeInfo != nil);
+    
+	NSString *dsvValuePlaceholder = 
+	[NSString stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VALUE_PLACEHOLDER"),
+	 LOCALIZED_STR(varValRuntimeInfo.valueTitleKey)];	   
+
+	
+	MultiScenarioInputValueFieldInfo *fieldInfo = [[[MultiScenarioInputValueFieldInfo alloc]
+			initWithScenario:theScenario andManagedObject:obj andFieldKey:key 
+			andFieldLabel:label andFieldPlaceholder:dsvValuePlaceholder] autorelease];
+	   
+    
+    ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj andFieldKey:defaultFixedValKey andFieldLabel:@"Value"
+				andFieldPlaceholder:dsvValuePlaceholder] autorelease];
+    NSLog(@"Default value for date sensitive field: %@",[defaultFixedValFieldInfo description]);
+    assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
+
+    DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]                                                       
+         initWithFieldInfo:fieldInfo andDefaultFixedValFieldInfo:defaultFixedValFieldInfo
+          andValRuntimeInfo:varValRuntimeInfo] autorelease];
+     
+    return fieldEditInfo;
 }
 
 + (DateSensitiveValueFieldEditInfo*)createForObject:

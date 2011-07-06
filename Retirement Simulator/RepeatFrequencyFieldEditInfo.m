@@ -13,6 +13,7 @@
 #import "StringValidation.h"
 #import "FormFieldWithSubtitleTableCell.h"
 #import "LocalizationHelper.h"
+#import "MultiScenarioInputValueFieldInfo.h"
 
 @implementation RepeatFrequencyFieldEditInfo
 
@@ -23,6 +24,27 @@
 	self.freqCell.caption.text = [self textLabel];
     self.freqCell.contentDescription.text = [self detailTextLabel];
 
+}
+
++ (RepeatFrequencyFieldEditInfo*)createForScenario:(Scenario*)theScenario 
+	andObject:(NSManagedObject*)obj andKey:(NSString*)key
+                             andLabel:(NSString*)label
+{
+    assert(obj != nil);
+    assert([StringValidation nonEmptyString:key]);
+    assert([StringValidation nonEmptyString:label]);
+	
+	NSString *freqPlaceholder = LOCALIZED_STR(@"INPUT_CASH_FLOW_REPEAT_FREQUENCY_PLACEHOLDER");
+    
+ 	MultiScenarioInputValueFieldInfo *fieldInfo = [[[MultiScenarioInputValueFieldInfo alloc]
+			initWithScenario:theScenario andManagedObject:obj andFieldKey:key 
+			andFieldLabel:label andFieldPlaceholder:freqPlaceholder] autorelease];
+
+
+    RepeatFrequencyFieldEditInfo *fieldEditInfo = [[RepeatFrequencyFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
+    [fieldEditInfo autorelease];
+    
+    return fieldEditInfo;
 }
 
 + (RepeatFrequencyFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key

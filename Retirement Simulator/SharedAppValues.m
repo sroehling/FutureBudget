@@ -17,5 +17,6 @@ NSString * const SHARED_APP_VALUES_CURRENT_SCENARIO_KEY = @"currentScenario";
 @dynamic sharedNeverEndDate;
 @dynamic defaultScenario;
 @dynamic currentScenario;
+@dynamic repeatOnceFreq;
 
 @end

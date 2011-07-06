@@ -19,17 +19,17 @@
 @class MultiScenarioInputValue;
 
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY;
+extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_END_DATE_KEY;
+extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_KEY;
+extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY;
+extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY;
+
 
 @interface CashFlowInput : Input {
 @private
 }
-// TBD - Should amount be a variable value? (like growth rates)
-@property (nonatomic, retain) DateSensitiveValue *amount;
+
 @property (nonatomic,retain) NSSet* variableAmounts;
-@property (nonatomic,retain) DateSensitiveValue *amountGrowthRate; 
-@property (nonatomic, retain) EventRepeatFrequency * repeatFrequency;
-@property (nonatomic,retain) SimDate *startDate;
-@property (nonatomic,retain) SimDate *endDate;
 
 // fixedStartDate is used to hold onto a single fixed
 // date value the user can select. If the user then
@@ -40,6 +40,10 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY;
 @property(nonatomic,retain) FixedDate *fixedEndDate;
 
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioStartDate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioEndDate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioAmount;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioAmountGrowthRate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioEventRepeatFrequency;
 
 // defaultFixedGrowthRate serves the same purpose as 
 // fixedStartDate.

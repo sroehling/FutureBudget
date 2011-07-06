@@ -15,6 +15,7 @@
 #import "FixedDate.h"
 #import "NeverEndDate.h"
 #import "SharedAppValues.h"
+#import "MultiScenarioInputValue.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -33,8 +34,7 @@
     // must provide a value (one can't be defaulted).
     //      newInput.name
     //      newInput.amount
-    //      newInput.startDate
-    //      newInput.amountGrowthRat
+    //      newInput.amountGrowthRate
 	
     
     FixedValue *fixedGrowthRate = 
@@ -57,14 +57,20 @@
 		
     fixedEndDate.date = [NSDate date];
     newInput.fixedEndDate = fixedEndDate;
-	newInput.endDate = [DataModelController theDataModelController].sharedAppVals.sharedNeverEndDate;
+	MultiScenarioInputValue *msEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msEndDate setDefaultValue:[DataModelController theDataModelController].sharedAppVals.sharedNeverEndDate];
+	newInput.multiScenarioEndDate = msEndDate;
     
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME sortKey:@"period"];
     assert([repeatFrequencies count] >0);
-    
-    newInput.repeatFrequency = (EventRepeatFrequency *)[repeatFrequencies objectAtIndex:0];
-    assert(newInput.repeatFrequency != nil);
-    NSLog(@"New Input with Repeat Frequency: %@",newInput.repeatFrequency.description);
+	
+	EventRepeatFrequency *repeatOnce = [DataModelController theDataModelController].sharedAppVals.repeatOnceFreq;
+	assert(repeatOnce != nil);
+	MultiScenarioInputValue *msRepeatFreq = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msRepeatFreq setDefaultValue:repeatOnce];
+	newInput.multiScenarioEventRepeatFrequency = msRepeatFreq;
     
 }
 

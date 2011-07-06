@@ -484,7 +484,7 @@
 			name = "Input Values";
 			sourceTree = "<group>";
 		};
-		0036DE2B13BE346F0043F3A5 /* New Group */ = {
+		0036DE2B13BE346F0043F3A5 /* Scenario List */ = {
 			isa = PBXGroup;
 			children = (
 				0009481013C36FF8008F129B /* ScenarioListFormInfoCreator.h */,
@@ -498,7 +498,7 @@
 				0009481613C375F3008F129B /* UserScenarioFieldEditInfo.h */,
 				0009481713C375F4008F129B /* UserScenarioFieldEditInfo.m */,
 			);
-			name = "New Group";
+			name = "Scenario List";
 			sourceTree = "<group>";
 		};
 		003AD12D138AC83000CB3CB5 /* Helper */ = {
@@ -814,7 +814,6 @@
 		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
-				0036DE2B13BE346F0043F3A5 /* New Group */,
 				0087923013A9497400CA9DA7 /* Input Detail */,
 				0049DC7113A28AC600B27046 /* Input List */,
 				0049DC7013A2884D00B27046 /* Input Creation */,
@@ -874,13 +873,6 @@
 				00ADB3131383705300064651 /* InputEventCreatorCreator.m */,
 			);
 			name = "Simulator Inputs";
-			sourceTree = "<group>";
-		};
-		005AE71D13C3F2AA001D99C6 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 		0087923013A9497400CA9DA7 /* Input Detail */ = {
@@ -956,6 +948,7 @@
 				004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */,
 				004A59A713A02F67009FEF25 /* Simulator */,
 				004F5D701373188900E0C4A3 /* Results View */,
+				0036DE2B13BE346F0043F3A5 /* Scenario List */,
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004F5D6E1373170C00E0C4A3 /* Application */,
 				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
@@ -978,7 +971,6 @@
 		00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
 			isa = PBXGroup;
 			children = (
-				005AE71D13C3F2AA001D99C6 /* New Group */,
 				0025777313B438E000D15232 /* Test Helper Code */,
 				00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */,
 				00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */,

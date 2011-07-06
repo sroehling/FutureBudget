@@ -13,6 +13,7 @@
 #import "FieldEditInfo.h"
 
 @class ValueSubtitleTableCell;
+@class Scenario;
 
 @interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private 
@@ -32,6 +33,9 @@
 @property(nonatomic,retain) ValueSubtitleTableCell *valueCell;
 
 + (DateSensitiveValueFieldEditInfo*)createForObject:
+			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
+				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
++ (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario andObject:
 			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
 				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
 

@@ -69,7 +69,11 @@
     [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:cashFlow andKey:@"name" 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_NAME_FIELD_LABEL")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")]];
-    
+
+ 	Scenario *currentScenario = (Scenario*)[DataModelController theDataModelController].sharedAppVals.defaultScenario;
+
+	
+	      
     // Amount section
     
     sectionInfo = [formPopulator nextSection];
@@ -80,14 +84,17 @@
 	
     [sectionInfo addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
-	  createForObject:cashFlow andKey:@"amount" 
+	  createForScenario:currentScenario andObject:cashFlow 
+		andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_KEY 
 	  andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL") 
 	  andValRuntimeInfo:[VariableValueRuntimeInfo createForCashflowAmount:cashFlow]
 	  andDefaultFixedValKey:@"defaultFixedAmount"]];
 
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForObject:cashFlow andKey:@"amountGrowthRate" andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL") 
+         createForScenario:currentScenario andObject:cashFlow 
+			andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL") 
 		 andValRuntimeInfo:[VariableValueRuntimeInfo createForInflationRate:cashFlow] 
 		 andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
 
@@ -95,18 +102,11 @@
 
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = LOCALIZED_STR(@"INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE");
+
 	
     
 	SimDateRuntimeInfo *startDateInfo = 
 		[SimDateRuntimeInfo createForCashFlow:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_START_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME"];
-		
-    [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForObject:cashFlow andKey:@"startDate" 
-	andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
-	andDefaultValueKey:@"fixedStartDate" 
-			andVarDateRuntimeInfo:startDateInfo andShowNeverEnding:FALSE]];
-
-	Scenario *currentScenario = (Scenario*)[DataModelController theDataModelController].sharedAppVals.defaultScenario;
-
     [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
 			andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY 
 			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
@@ -115,7 +115,9 @@
 	
 
 
-    RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo createForObject:cashFlow andKey:@"repeatFrequency" 
+    RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo 
+		createForScenario:currentScenario andObject:cashFlow 
+		andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
     [sectionInfo addFieldEditInfo:repeatFrequencyInfo];
     
@@ -130,9 +132,13 @@
         {
 			SimDateRuntimeInfo *endDateInfo = 
 			[SimDateRuntimeInfo createForCashFlow:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_END_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT_NO_NAME"];
-            [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForObject:cashFlow andKey:@"endDate" 
-			     andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				 andDefaultValueKey:@"fixedEndDate" andVarDateRuntimeInfo:endDateInfo andShowNeverEnding:TRUE]];           
+
+			[sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
+				andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_END_DATE_KEY 
+				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
+				andDefaultValueKey:@"fixedEndDate" 
+				andVarDateRuntimeInfo:endDateInfo andShowNeverEnding:FALSE]];
+			
         }
         
     }
