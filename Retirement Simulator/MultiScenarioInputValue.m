@@ -98,9 +98,9 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 		// If a value is not found for scenario, "revert to default" and 
 		// check if there is a default value
 		if(![self sameCoreDataObjects:scenario 
-			comparedTo:[DataModelController theDataModelController].sharedAppVals.defaultScenario])
+			comparedTo:[SharedAppValues singleton].defaultScenario])
 		{
-			DefaultScenario *defaultScen = [DataModelController theDataModelController].sharedAppVals.defaultScenario;
+			DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
 			ScenarioValue *defaultScenarioVal = [self findScenarioValueForScenario:defaultScen];
 			if(defaultScenarioVal != nil)
 			{
@@ -120,7 +120,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 
 -(InputValue*)getValueForCurrentOrDefaultScenario
 {
-	Scenario *currentScenario = [DataModelController theDataModelController].sharedAppVals.currentScenario;
+	Scenario *currentScenario = [SharedAppValues singleton].currentScenario;
 	assert(currentScenario != nil);
 	InputValue *inputVal = [self findInputValueForScenarioOrDefault:currentScenario];
 	assert(inputVal != nil);
@@ -152,7 +152,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 
 -(void)setDefaultValue:(InputValue*)inputValue
 {
-	DefaultScenario *defaultScen = [DataModelController theDataModelController].sharedAppVals.defaultScenario;
+	DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
 	assert(defaultScen != nil);
 	assert(inputValue != nil);
 	[self setValueForScenario:defaultScen andInputValue:inputValue];

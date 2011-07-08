@@ -42,7 +42,7 @@
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
 	inputNavController.title = LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
 	
-	SharedAppValues *theSharedAppValues = [DataModelController theDataModelController].sharedAppVals;
+	SharedAppValues *theSharedAppValues = [SharedAppValues singleton];
 	ManagedObjectFieldInfo *currentScenarioFieldInfo = 
 		[[[ManagedObjectFieldInfo alloc] initWithManagedObject:theSharedAppValues andFieldKey:SHARED_APP_VALUES_CURRENT_SCENARIO_KEY 
 			andFieldLabel:@"dummy" andFieldPlaceholder:@"dummy"] autorelease];

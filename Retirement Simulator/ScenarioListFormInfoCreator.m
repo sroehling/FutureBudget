@@ -31,7 +31,7 @@
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	
 	DefaultScenario *defaultScen = 
-	      [DataModelController theDataModelController].sharedAppVals.defaultScenario;
+	      [SharedAppValues singleton].defaultScenario;
 	StaticFieldEditInfo *defaultScenarioFieldEditInfo = 
 		[[[StaticFieldEditInfo alloc] initWithManagedObj:defaultScen 
 		   andCaption:LOCALIZED_STR(@"SCENARIO_LIST_DEFAULT_SCENARIO_CAPTION") andContent:@""] autorelease];

@@ -70,7 +70,7 @@
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_NAME_FIELD_LABEL")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")]];
 
- 	Scenario *currentScenario = (Scenario*)[DataModelController theDataModelController].sharedAppVals.defaultScenario;
+ 	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 
 	
 	      

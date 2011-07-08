@@ -19,4 +19,21 @@ NSString * const SHARED_APP_VALUES_CURRENT_SCENARIO_KEY = @"currentScenario";
 @dynamic currentScenario;
 @dynamic repeatOnceFreq;
 
+static SharedAppValues *theSharedAppVals;  
+
+
++(SharedAppValues*)singleton
+{  
+	assert(theSharedAppVals != nil);
+	return theSharedAppVals;
+}
+
++(void)initSingleton:(SharedAppValues*)theAppVals
+{
+	assert(theSharedAppVals == nil);
+	assert(theAppVals != nil);
+	[theAppVals retain];
+	theSharedAppVals = theAppVals;
+}
+
 @end

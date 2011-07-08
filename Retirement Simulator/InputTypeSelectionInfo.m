@@ -73,13 +73,13 @@
 	
 	MultiScenarioInputValue *msEndDate = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msEndDate setDefaultValue:[DataModelController theDataModelController].sharedAppVals.sharedNeverEndDate];
+	[msEndDate setDefaultValue:[SharedAppValues singleton].sharedNeverEndDate];
 	newInput.multiScenarioEndDate = msEndDate;
     
     NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME sortKey:@"period"];
     assert([repeatFrequencies count] >0);
 	
-	EventRepeatFrequency *repeatOnce = [DataModelController theDataModelController].sharedAppVals.repeatOnceFreq;
+	EventRepeatFrequency *repeatOnce = [SharedAppValues singleton].repeatOnceFreq;
 	assert(repeatOnce != nil);
 	MultiScenarioInputValue *msRepeatFreq = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];

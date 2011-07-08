@@ -76,7 +76,7 @@
 		sectionInfo.title = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE");
 		sectionInfo.subTitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE");
 	
-		NeverEndDate *neverEndDate = [DataModelController theDataModelController].sharedAppVals.sharedNeverEndDate;
+		NeverEndDate *neverEndDate = [SharedAppValues singleton].sharedNeverEndDate;
 		StaticFieldEditInfo *neverEndingFieldEditInfo = 
 			[[[StaticFieldEditInfo alloc] initWithManagedObj:neverEndDate 
 			andCaption:@"" andContent:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")] autorelease];

@@ -22,15 +22,12 @@
 
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
-@synthesize sharedAppVals;
-
 
 - (void)dealloc
 {
     [__managedObjectContext release];
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];
-	[sharedAppVals release];
     [super dealloc];
 }
 
@@ -78,15 +75,15 @@
 		sharedVals.currentScenario = defaultScenario;
 		
 		sharedVals.repeatOnceFreq = repeatOnce;
-
-		self.sharedAppVals = sharedVals;
+		
+		[SharedAppValues initSingleton:sharedVals];
 
 	}
 	else
 	{
 		NSSet *theAppVals = [self fetchObjectsForEntityName:SHARED_APP_VALUES_ENTITY_NAME];
 		assert([theAppVals count] == 1);
-		self.sharedAppVals = (SharedAppValues*)[theAppVals anyObject];
+		[SharedAppValues initSingleton:(SharedAppValues*)[theAppVals anyObject]];
 	}
         
     [self saveContext];

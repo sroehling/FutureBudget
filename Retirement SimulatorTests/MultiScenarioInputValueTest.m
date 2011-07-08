@@ -54,7 +54,7 @@
     
     MultiScenarioInputValue *msInputVal = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	DefaultScenario *defaultScen = [DataModelController theDataModelController].sharedAppVals.defaultScenario;
+	DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
 	
 	// Set to an initial value
 	[msInputVal setValueForScenario:defaultScen andInputValue:[self genFixedVal:1.0]];
@@ -70,7 +70,7 @@
 {
     MultiScenarioInputValue *msInputVal = 
 	[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	DefaultScenario *defaultScen = [DataModelController theDataModelController].sharedAppVals.defaultScenario;
+	DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
 
 	UserScenario *userScen = [[DataModelController theDataModelController] insertObject:USER_SCENARIO_ENTITY_NAME];
 	userScen.name = @"My scenario";

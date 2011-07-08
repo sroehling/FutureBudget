@@ -25,4 +25,8 @@ extern NSString * const SHARED_APP_VALUES_CURRENT_SCENARIO_KEY;
 @property (nonatomic,retain) Scenario *currentScenario;
 @property(nonatomic,retain) EventRepeatFrequency *repeatOnceFreq;
 
+
++(void)initSingleton:(SharedAppValues*)theAppVals;
++(SharedAppValues*)singleton;
+
 @end
