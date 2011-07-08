@@ -12,6 +12,7 @@
 #import "ManagedObjectFieldEditInfo.h"
 
 @class NumberFieldCell;
+@class FieldInfo;
 
 @interface NumberFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
 @private
@@ -28,7 +29,7 @@
                                andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
 					 andNumberFormatter:(NSNumberFormatter*)numFormatter;
 					 
-- (id) initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
+- (id) initWithFieldInfo:(FieldInfo *)theFieldInfo 
       andNumberFormatter:(NSNumberFormatter*)numFormatter;
 
 @end

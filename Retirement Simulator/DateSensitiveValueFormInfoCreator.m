@@ -23,13 +23,13 @@
 
 @implementation DateSensitiveValueFormInfoCreator
 
-@synthesize defaultFixedVal;
+@synthesize defaultValFieldInfo;
 @synthesize fieldInfo;
 @synthesize varValRuntimeInfo;
 
-- (id)initWithVariableValueFieldInfo:(ManagedObjectFieldInfo*)vvFieldInfo
-                  andDefaultFixedVal:(FixedValue*)theDefaultFixedVal
-				andVarValRuntimeInfo:(VariableValueRuntimeInfo *) theVarValRuntimeInfo
+- (id)initWithVariableValueFieldInfo:(FieldInfo*)vvFieldInfo
+                  andDefaultValFieldInfo:(FieldInfo*)theDefaultValFieldInfo
+               andVarValRuntimeInfo:(VariableValueRuntimeInfo *) theVarValRuntimeInfo
 {
     self = [super init];
     if(self)
@@ -37,8 +37,8 @@
         assert(vvFieldInfo != nil);
         self.fieldInfo = vvFieldInfo;
         
-        assert(theDefaultFixedVal != nil);
-        self.defaultFixedVal = theDefaultFixedVal;
+        assert(theDefaultValFieldInfo != nil);
+        self.defaultValFieldInfo = theDefaultValFieldInfo;
         
 		assert(theVarValRuntimeInfo != nil);
 		self.varValRuntimeInfo = theVarValRuntimeInfo;
@@ -89,15 +89,10 @@
 			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
 	sectionInfo.subTitle = LOCALIZED_STR(self.varValRuntimeInfo.singleValSubtitleKey);
     
-	NSString *dsvPlaceholder = [NSString 
-					stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VALUE_PLACEHOLDER"),
-					LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
-	
-	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
-            createForObject:self.defaultFixedVal andKey:@"value" 
-			andLabel:LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)
-			andPlaceholder:dsvPlaceholder
-			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
+	NumberFieldEditInfo *valueFieldEditInfo = 
+		[[[NumberFieldEditInfo alloc]initWithFieldInfo:self.defaultValFieldInfo
+		 andNumberFormatter:self.varValRuntimeInfo.valueFormatter] autorelease];
+	[sectionInfo addFieldEditInfo:valueFieldEditInfo];
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
 					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
@@ -124,7 +119,7 @@
 - (void) dealloc
 {
     [super dealloc];
-    [defaultFixedVal release];
+    [defaultValFieldInfo release];
     [fieldInfo release];
 	[varValRuntimeInfo release];
 }

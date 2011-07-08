@@ -10,6 +10,8 @@
 #import "NumberFieldCell.h"
 #import "NumberHelper.h"
 #import "StringValidation.h"
+#import "ManagedObjectFieldInfo.h"
+#import "FieldInfo.h"
 
 
 @implementation NumberFieldEditInfo
@@ -37,7 +39,7 @@
     return fieldEditInfo;
 }
 
-- (id) initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
+- (id) initWithFieldInfo:(FieldInfo *)theFieldInfo 
       andNumberFormatter:(NSNumberFormatter*)numFormatter
 {
     self = [super initWithFieldInfo:theFieldInfo];

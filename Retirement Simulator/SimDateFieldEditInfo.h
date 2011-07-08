@@ -14,16 +14,18 @@
 @class ValueSubtitleTableCell;
 @class SimDateRuntimeInfo;
 @class Scenario;
+@class FieldInfo;
+@class MultiScenarioInputValue;
 
 @interface SimDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private
-        ManagedObjectFieldInfo *defaultValFieldInfo;
+        FieldInfo *defaultValFieldInfo;
 		ValueSubtitleTableCell *dateCell;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
 		bool showNeverEnding;
 }
 
-@property(nonatomic,retain) ManagedObjectFieldInfo *defaultValFieldInfo;
+@property(nonatomic,retain) FieldInfo *defaultValFieldInfo;
 @property(nonatomic,retain) ValueSubtitleTableCell *dateCell;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
@@ -32,8 +34,9 @@
 			  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
 			  andShowNeverEnding:(bool)doShowNeverEnding;
 			  
-+ (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario andObject:(NSManagedObject*)obj 
-	andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey 
++ (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario 
+	andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label
+	andDefaultValue:(MultiScenarioInputValue*)defaultVal 
 	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
 	andShowNeverEnding:(bool)doShowNeverEnding;
 

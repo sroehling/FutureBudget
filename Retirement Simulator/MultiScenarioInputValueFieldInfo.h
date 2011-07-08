@@ -23,7 +23,7 @@
   andFieldPlaceholder:(NSString*)thePlaceholder;
 
 - (id)getFieldValue;
-- (void)setFieldValue:(id)newValue;
+- (void)setFieldValue:(NSObject*)newValue;
 - (BOOL)fieldIsInitializedInParentObject;
 
 @property(nonatomic,retain) Scenario *currentScenario;

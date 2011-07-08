@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ManagedObjectFieldInfo.h"
+#import "FieldInfo.h"
 
 @interface ManagedObjectFieldEditInfo : NSObject {
 
-    ManagedObjectFieldInfo *fieldInfo;
+    FieldInfo *fieldInfo;
 }
 
-@property (nonatomic, retain) ManagedObjectFieldInfo *fieldInfo;
+@property (nonatomic, retain) FieldInfo *fieldInfo;
 
-- (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo;
+- (id) initWithFieldInfo:(FieldInfo*)theFieldInfo;
 - (NSString*) textLabel;
 
 - (BOOL)fieldIsInitializedInParentObject;

@@ -9,6 +9,7 @@
 #import "MultiScenarioInputValueFieldInfo.h"
 #import "MultiScenarioInputValue.h"
 #import "DataModelController.h"
+#import "InputValue.h"
 
 
 @implementation MultiScenarioInputValueFieldInfo
@@ -58,10 +59,11 @@
 
 }
 
-- (void)setFieldValue:(id)newValue
+- (void)setFieldValue:(NSObject*)newValue
 {
+	assert([newValue isKindOfClass:[InputValue class]]);
 	[self.inputValue
-		setValueForScenario:self.currentScenario andInputValue:newValue];
+		setValueForScenario:self.currentScenario andInputValue:(InputValue*)newValue];
 }
 
 - (BOOL)fieldIsInitializedInParentObject

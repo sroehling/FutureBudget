@@ -22,6 +22,8 @@
 #import "DataModelController.h"
 #import "SharedAppValues.h"
 #import "Scenario.h"
+#import "MultiScenarioFixedDateFieldInfo.h"
+#import "MultiScenarioInputValue.h"
 
 @implementation SimDateFieldEditInfo
 
@@ -53,7 +55,7 @@
 }
 
 - (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo andDefaultValFieldInfo:
-        (ManagedObjectFieldInfo*)theDefaultFieldInfo 
+        (FieldInfo*)theDefaultFieldInfo 
 		andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
 		andShowNeverEnding:(bool)doShowNeverEnding
 {
@@ -80,13 +82,16 @@
     assert(0); // should not call this version of init
 }
 
-+ (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
-								andShowNeverEnding:(bool)doShowNeverEnding
++ (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario 
+	andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label
+	andDefaultValue:(MultiScenarioInputValue*)defaultVal 
+	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
+	andShowNeverEnding:(bool)doShowNeverEnding
 {
     assert(obj != nil);
+	assert(defaultVal != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
-    assert([StringValidation nonEmptyString:defaultValKey]);
     
 	
 	NSString *variableDatePlaceholder = LOCALIZED_STR(@"VARIABLE_DATE_PLACEHOLDER");
@@ -97,11 +102,8 @@
 													andFieldLabel:label andFieldPlaceholder:variableDatePlaceholder] autorelease];
 	
     
-    ManagedObjectFieldInfo *defaultValFieldInfo = [[[ManagedObjectFieldInfo alloc] 
-													initWithManagedObject:obj 
-													andFieldKey:defaultValKey andFieldLabel:label
-													andFieldPlaceholder:variableDatePlaceholder] autorelease];
-	
+	MultiScenarioFixedDateFieldInfo *defaultValFieldInfo = 
+		[[[MultiScenarioFixedDateFieldInfo alloc] initWithFieldLabel:label andFieldPlaceholder:variableDatePlaceholder andScenario:scenario andInputVal:defaultVal] autorelease];	
     
     SimDateFieldEditInfo *fieldEditInfo = [[[SimDateFieldEditInfo alloc] 
 											initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo andShowNeverEnding:doShowNeverEnding] autorelease];

@@ -24,5 +24,6 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 -(void)setDefaultValue:(InputValue*)inputValue;
 -(InputValue*)findInputValueForScenarioOrDefault:(Scenario*)scenario;
 -(InputValue*)getValueForCurrentOrDefaultScenario;
+- (InputValue*)findInputValueForScenario:(Scenario*)scenario;
 
 @end

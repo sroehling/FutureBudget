@@ -22,16 +22,17 @@
 #import "StaticFieldEditInfo.h"
 #import "SharedAppValues.h"
 #import "NeverEndDate.h"
+#import "FieldInfo.h"
 
 
 @implementation SimDateFormInfoCreator
 
 @synthesize fieldInfo;
-@synthesize fixedDate;
+@synthesize fixedDateFieldInfo;
 @synthesize varDateRuntimeInfo;
 
-- (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo
-			 andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+- (id)initWithVariableDateFieldInfo:(FieldInfo*)vdFieldInfo
+			 andDefaultValFieldInfo:(FieldInfo*)theDefaultFieldInfo
 			  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
 			  andDoShowNeverEnding:(bool)doShowNeverEnding;
 {
@@ -42,24 +43,7 @@
         self.fieldInfo = vdFieldInfo;
 		
 		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
-        
-        if([self.fieldInfo fieldIsInitializedInParentObject])
-        {
-            SimDate *vdFromField = [self.fieldInfo getFieldValue];
-            if([vdFromField isKindOfClass:[FixedDate class]])
-            {
-                self.fixedDate = (FixedDate*)vdFromField;
-            }           
-            else
-            {
-                self.fixedDate = (FixedDate*)[theDefaultFieldInfo getFieldValue];
-            }
-        }
-                
-        else
-        {
-            self.fixedDate = (FixedDate*)[theDefaultFieldInfo getFieldValue];
-        }
+		self.fixedDateFieldInfo = theDefaultFieldInfo;
 		showNeverEnding = doShowNeverEnding;
 
     }
@@ -104,11 +88,10 @@
 	
     sectionInfo.title = LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SECTION_TITLE");
 	sectionInfo.subTitle = LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SUBTITLE");
-    [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:self.fixedDate 
-                                    andKey:@"date" 
-			andLabel:LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_TEXT_FIELD_LABEL")
-			andPlaceholder:LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_PLACEHOLDER")]];
-    
+	
+	DateFieldEditInfo *fixedDateFieldEditInfo = 
+		[[[DateFieldEditInfo alloc] initWithFieldInfo:self.fixedDateFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:fixedDateFieldEditInfo];
     MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];
 	
     mdSectionInfo.title =  LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_DATE_SECTION_TITLE");
@@ -132,7 +115,7 @@
 {
     [super dealloc];
     [fieldInfo release];
-    [fixedDate release];
+    [fixedDateFieldInfo release];
 	[varDateRuntimeInfo release];
 }
 

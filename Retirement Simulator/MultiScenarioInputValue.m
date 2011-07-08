@@ -73,6 +73,19 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	
 }
 
+- (InputValue*)findInputValueForScenario:(Scenario*)scenario
+{
+	ScenarioValue *scenVal = [self findScenarioValueForScenario:scenario];
+	if(scenVal != nil)
+	{
+		return scenVal.inputValue;
+	}
+	else
+	{
+		return nil;
+	}
+}
+
 -(InputValue*)findInputValueForScenarioOrDefault:(Scenario*)scenario
 {
 	ScenarioValue *scenarioVal = [self findScenarioValueForScenario:scenario];

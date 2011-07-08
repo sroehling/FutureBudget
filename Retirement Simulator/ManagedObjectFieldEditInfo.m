@@ -13,7 +13,7 @@
 
 @synthesize fieldInfo;
 
-- (id) initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo
+- (id) initWithFieldInfo:(FieldInfo *)theFieldInfo
 {
     self = [super init];
     if(self)

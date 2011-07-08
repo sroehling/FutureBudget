@@ -17,11 +17,13 @@
 #import "ValueSubtitleTableCell.h"
 #import "LocalizationHelper.h"
 #import "MultiScenarioInputValueFieldInfo.h"
+#import "MultiScenarioInputValue.h"
+#import "MultiScenarioFixedValueFieldInfo.h"
 
 @implementation DateSensitiveValueFieldEditInfo
 
 @synthesize varValRuntimeInfo;
-@synthesize defafaultFixedValFieldInfo;
+@synthesize defaultFixedValFieldInfo;
 @synthesize valueCell;
 
 - (void) configureValueCell
@@ -54,7 +56,7 @@
     if(self)
     {
         assert(theDefaultFieldInfo != nil);
-        self.defafaultFixedValFieldInfo = theDefaultFieldInfo;
+        self.defaultFixedValFieldInfo = theDefaultFieldInfo;
         
         assert(theVarValRuntimeInfo != nil);
         self.varValRuntimeInfo = theVarValRuntimeInfo;
@@ -80,7 +82,7 @@
 
 + (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario andObject:
 			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
-				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
+				andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal;
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
@@ -96,9 +98,9 @@
 			initWithScenario:theScenario andManagedObject:obj andFieldKey:key 
 			andFieldLabel:label andFieldPlaceholder:dsvValuePlaceholder] autorelease];
 	   
-    
-    ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj andFieldKey:defaultFixedValKey andFieldLabel:@"Value"
-				andFieldPlaceholder:dsvValuePlaceholder] autorelease];
+    MultiScenarioFixedValueFieldInfo *defaultFixedValFieldInfo =
+		[[[MultiScenarioFixedValueFieldInfo alloc]initWithFieldLabel:label 
+		andFieldPlaceholder:dsvValuePlaceholder andScenario:theScenario andInputVal:defaultFixedVal]autorelease];
     NSLog(@"Default value for date sensitive field: %@",[defaultFixedValFieldInfo description]);
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
 
@@ -128,7 +130,7 @@
 		   andFieldPlaceholder:dsvValuePlaceholder] autorelease];
 		   
     
-    ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj andFieldKey:defaultFixedValKey andFieldLabel:@"Value"
+    ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj andFieldKey:defaultFixedValKey andFieldLabel:label
 				andFieldPlaceholder:dsvValuePlaceholder] autorelease];
     NSLog(@"Default value for date sensitive field: %@",[defaultFixedValFieldInfo description]);
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
@@ -148,13 +150,11 @@
 }
 
 - (UIViewController*)fieldEditController
-{
-
-    FixedValue *defaultFixedVal = (FixedValue*)[self.defafaultFixedValFieldInfo getFieldValue];
-    
+{    
     DateSensitiveValueFormInfoCreator *dsvFormInfoCreator = 
     [[[DateSensitiveValueFormInfoCreator alloc] initWithVariableValueFieldInfo:self.fieldInfo 
-        andDefaultFixedVal:defaultFixedVal andVarValRuntimeInfo:self.varValRuntimeInfo] autorelease];
+        andDefaultValFieldInfo:self.defaultFixedValFieldInfo 
+		andVarValRuntimeInfo:self.varValRuntimeInfo] autorelease];
     
     SelectableObjectTableEditViewController *dsValueController = 
             [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:dsvFormInfoCreator 
@@ -185,7 +185,7 @@
 {
     [super dealloc];
     [varValRuntimeInfo release];
-    [defafaultFixedValFieldInfo release];
+    [defaultFixedValFieldInfo release];
 	[valueCell release];
 }
 

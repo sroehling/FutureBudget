@@ -88,7 +88,7 @@
 		andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_KEY 
 	  andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL") 
 	  andValRuntimeInfo:[VariableValueRuntimeInfo createForCashflowAmount:cashFlow]
-	  andDefaultFixedValKey:@"defaultFixedAmount"]];
+	  andDefaultFixedVal:cashFlow.multiScenarioFixedAmount]];
 
     [sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
@@ -96,7 +96,7 @@
 			andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY 
 			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL") 
 		 andValRuntimeInfo:[VariableValueRuntimeInfo createForInflationRate:cashFlow] 
-		 andDefaultFixedValKey:@"defaultFixedGrowthRate"]];
+		 andDefaultFixedVal:cashFlow.multiScenarioFixedGrowthRate]];
 
     // Occurences section
 
@@ -110,7 +110,7 @@
     [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
 			andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY 
 			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
-			andDefaultValueKey:@"fixedStartDate" 
+			andDefaultValue:cashFlow.multiScenarioFixedStartDate 
 			andVarDateRuntimeInfo:startDateInfo andShowNeverEnding:FALSE]];
 	
 
@@ -136,7 +136,7 @@
 			[sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
 				andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_END_DATE_KEY 
 				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				andDefaultValueKey:@"fixedEndDate" 
+				andDefaultValue:cashFlow.multiScenarioFixedEndDate 
 				andVarDateRuntimeInfo:endDateInfo andShowNeverEnding:FALSE]];
 			
         }

@@ -11,10 +11,13 @@
 #import "TableViewHelper.h"
 #import "StringValidation.h"
 #import "DateHelper.h"
+#import "ManagedObjectFieldInfo.h"
 
 
 @implementation DateFieldEditInfo
 
+
+// TODO - Need a corresponding create for Scenario and object method
 
 + (DateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                              andLabel:(NSString*)label 
@@ -24,11 +27,10 @@
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
     
-    ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
-                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label andFieldPlaceholder:placeholder];
-    DateFieldEditInfo *fieldEditInfo = [[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo];
-    [fieldEditInfo autorelease];
-    [fieldInfo release];
+    ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                                         initWithManagedObject:obj andFieldKey:key andFieldLabel:label andFieldPlaceholder:placeholder] autorelease];
+    DateFieldEditInfo *fieldEditInfo = [[[DateFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+	
     
     return fieldEditInfo;
 }

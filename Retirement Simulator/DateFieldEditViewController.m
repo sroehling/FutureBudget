@@ -9,6 +9,7 @@
 #import "DateFieldEditViewController.h"
 #import "DataModelController.h"
 #import "DateHelper.h"
+#import "FieldInfo.h"
 
 @implementation DateFieldEditViewController
 

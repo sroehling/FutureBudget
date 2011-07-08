@@ -67,6 +67,9 @@
 		005731F213787E37008D13C1 /* CashFlowInputSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F113787E37008D13C1 /* CashFlowInputSimEvent.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
+		005AE72013C55ED2001D99C6 /* FieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE71F13C55ED2001D99C6 /* FieldInfo.m */; };
+		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
+		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
 		00637A7F1385D4FA001E02F1 /* VariableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7E1385D4FA001E02F1 /* VariableValue.m */; };
@@ -270,6 +273,12 @@
 		005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeatFrequency.m; sourceTree = "<group>"; };
 		005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyEditViewController.h; sourceTree = "<group>"; };
 		005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyEditViewController.m; sourceTree = "<group>"; };
+		005AE71E13C55ED1001D99C6 /* FieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldInfo.h; sourceTree = "<group>"; };
+		005AE71F13C55ED2001D99C6 /* FieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldInfo.m; sourceTree = "<group>"; };
+		005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedDateFieldInfo.h; sourceTree = "<group>"; };
+		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
+		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
+		005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedValueFieldInfo.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
 		00637A781385D4BC001E02F1 /* DateSensitiveValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValue.m; sourceTree = "<group>"; };
 		00637A7A1385D4D9001E02F1 /* DateSensitiveValueChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChange.h; sourceTree = "<group>"; };
@@ -527,9 +536,11 @@
 		0049DC6D13A287A000B27046 /* Base Classes */ = {
 			isa = PBXGroup;
 			children = (
+				005AE71E13C55ED1001D99C6 /* FieldInfo.h */,
+				005AE71F13C55ED2001D99C6 /* FieldInfo.m */,
 				00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */,
-				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
 				00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */,
+				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
 				00ADB2F213819ED400064651 /* FieldEditViewController.h */,
 				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
 				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
@@ -615,6 +626,8 @@
 				0049DC7C13A54B8700B27046 /* DateSensitiveValueChangeFormPopulator.m */,
 				0049DC7F13A576AE00B27046 /* DateSensitiveValueChangeAddedListener.h */,
 				0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */,
+				005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */,
+				005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -636,6 +649,8 @@
 				0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */,
 				000FABF113BB8B30008AEEDF /* SimDateValueFormatter.h */,
 				000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */,
+				005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */,
+				005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */,
 			);
 			name = "Sim Date";
 			sourceTree = "<group>";
@@ -1231,6 +1246,9 @@
 				0009481513C37289008F129B /* ScenarioListObjectAdder.m in Sources */,
 				0009481813C375F4008F129B /* UserScenarioFieldEditInfo.m in Sources */,
 				0009481B13C38912008F129B /* UserScenarioFormInfoCreator.m in Sources */,
+				005AE72013C55ED2001D99C6 /* FieldInfo.m in Sources */,
+				005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */,
+				005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

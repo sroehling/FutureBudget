@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 
 #import "GenericFieldBasedTableEditViewController.h"
-#import "ManagedObjectFieldInfo.h"
 #import "FormInfoCreator.h"
+
+@class FieldInfo;
 
 @interface SelectableObjectTableEditViewController : GenericFieldBasedTableEditViewController {
     @private
         // Upon selection, the selected value is assigned to assignedField; i.e.
         // the LHS of the assignment
-        ManagedObjectFieldInfo *assignedField;
+        FieldInfo *assignedField;
     
         // The currently selected value, serves as the RHS of the assignement
         NSManagedObject *currentValue;
@@ -25,11 +26,11 @@
 }
 
 
-@property(nonatomic,retain) ManagedObjectFieldInfo *assignedField;
+@property(nonatomic,retain) FieldInfo *assignedField;
 @property(nonatomic,retain) NSManagedObject *currentValue;
 @property(nonatomic,retain) NSIndexPath *currentValueIndex;
 
 -(id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
-            andAssignedField:(ManagedObjectFieldInfo*)theAssignedField;
+            andAssignedField:(FieldInfo*)theAssignedField;
 
 @end

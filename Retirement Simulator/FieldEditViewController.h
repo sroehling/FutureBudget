@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ManagedObjectFieldInfo.h"
+@class FieldInfo;
 
 @interface FieldEditViewController : UIViewController {
-    ManagedObjectFieldInfo *fieldInfo;
+    FieldInfo *fieldInfo;
 }
 
-@property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
+@property(nonatomic,retain) FieldInfo *fieldInfo;
 
-- (id) initWithNibName:(NSString *)nibName andFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo;
+- (id) initWithNibName:(NSString *)nibName andFieldInfo:(FieldInfo*)theFieldInfo;
 - (void) commidFieldEdit;
 - (void) initFieldUI;
 

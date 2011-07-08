@@ -16,6 +16,7 @@
 #import "SelectableObjectTableEditViewController.h"
 #import "SharedAppValues.h"
 #import "LocalizationHelper.h"
+#import "ManagedObjectFieldInfo.h"
 
 @implementation Retirement_SimulatorAppDelegate
 

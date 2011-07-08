@@ -9,26 +9,25 @@
 #import <Foundation/Foundation.h>
 
 #import "FormInfoCreator.h"
-#import "ManagedObjectFieldInfo.h"
-#import "FixedDate.h"
 
+@class FieldInfo;
 @class SimDateRuntimeInfo;
 
 @interface SimDateFormInfoCreator : NSObject <FormInfoCreator> {
     @private
-        ManagedObjectFieldInfo *fieldInfo;
-        FixedDate *fixedDate;
+        FieldInfo *fieldInfo;
+        FieldInfo *fixedDateFieldInfo;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
 		bool showNeverEnding;
 }
 
-- (id)initWithVariableDateFieldInfo:(ManagedObjectFieldInfo*)vdFieldInfo 
-             andDefaultValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+- (id)initWithVariableDateFieldInfo:(FieldInfo*)vdFieldInfo 
+             andDefaultValFieldInfo:(FieldInfo*)theDefaultFieldInfo
 			 andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
 			 andDoShowNeverEnding:(bool)doShowNeverEnding;
 
-@property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
-@property(nonatomic,retain) FixedDate *fixedDate;
+@property(nonatomic,retain) FieldInfo *fieldInfo;
+@property(nonatomic,retain) FieldInfo* fixedDateFieldInfo;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
 @end

@@ -9,23 +9,23 @@
 #import <Foundation/Foundation.h>
 
 @class FixedValue;
-@class ManagedObjectFieldInfo;
+@class FieldInfo;
 #import "VariableValueRuntimeInfo.h"
 #import "FormInfoCreator.h"
 
 @interface DateSensitiveValueFormInfoCreator : NSObject <FormInfoCreator> {
     @private
-        ManagedObjectFieldInfo *fieldInfo;
-        FixedValue *defaultFixedVal;
+        FieldInfo *fieldInfo;
+        FieldInfo *defaultValFieldInfo;
 		VariableValueRuntimeInfo *varValRuntimeInfo;
 }
 
-- (id)initWithVariableValueFieldInfo:(ManagedObjectFieldInfo*)vvFieldInfo
-                  andDefaultFixedVal:(FixedValue*)theDefaultFixedVal
+- (id)initWithVariableValueFieldInfo:(FieldInfo*)vvFieldInfo
+                  andDefaultValFieldInfo:(FieldInfo*)theDefaultValFieldInfo
                andVarValRuntimeInfo:(VariableValueRuntimeInfo *) varValRuntimeInfo;
 
-@property(nonatomic,retain) FixedValue *defaultFixedVal;
-@property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
+@property(nonatomic,retain) FieldInfo *defaultValFieldInfo;
+@property(nonatomic,retain) FieldInfo *fieldInfo;
 @property(nonatomic,retain) VariableValueRuntimeInfo *varValRuntimeInfo;
 
 @end

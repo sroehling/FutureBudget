@@ -11,31 +11,23 @@
 
 @implementation ManagedObjectFieldInfo
 
-@synthesize fieldLabel,fieldKey,managedObject;
-@synthesize fieldPlaceholder;
+@synthesize fieldKey,managedObjectWithField;
+
 
 -(id)initWithManagedObject:(NSManagedObject*)theManagedObject
                andFieldKey:(NSString*)theFieldKey
              andFieldLabel:(NSString*)theFieldLabel
 			 andFieldPlaceholder:(NSString *)thePlaceholder
 {
-    self = [super init];
+    self = [super initWithFieldLabel:theFieldLabel andFieldPlaceholder:thePlaceholder];
     if(self)
     {
         assert(theFieldKey != nil);
         assert([theFieldKey length]>0);
         self.fieldKey = theFieldKey;
         
-        assert(theFieldLabel != nil); 
-        assert([theFieldLabel length]>0);
-        self.fieldLabel = theFieldLabel;
-		
-		assert(thePlaceholder != nil);
-		assert([thePlaceholder length] > 0);
-		self.fieldPlaceholder = thePlaceholder;
-		
         assert(theManagedObject != nil);
-        self.managedObject = theManagedObject;
+        self.managedObjectWithField = theManagedObject;
         
         fieldAccessEnabled = TRUE;
         
@@ -74,12 +66,8 @@
     }
 }
 
-- (void)disableFieldAccess
-{
-    fieldAccessEnabled = FALSE;
-}
 
-- (void)setFieldValue:(id)newValue
+- (void)setFieldValue:(NSObject*)newValue
 {
     if(fieldAccessEnabled)
     {
@@ -88,19 +76,16 @@
     }
 }
 
-
-- (NSString*)textLabel
+-(NSManagedObject*)managedObject
 {
-    return self.fieldLabel;
+	return self.managedObjectWithField;
 }
 
 
 - (void)dealloc {
     [super dealloc];
-    [fieldLabel release];
     [fieldKey release];
-	[fieldPlaceholder release];
-    [managedObject release];
+    [managedObjectWithField release];
 }
 
 

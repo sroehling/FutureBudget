@@ -37,26 +37,40 @@
     //      newInput.amountGrowthRate
 	
     
+	MultiScenarioInputValue *msFixedGrowthRate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
     FixedValue *fixedGrowthRate = 
     (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
     fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
-    newInput.defaultFixedGrowthRate = fixedGrowthRate;
+	[msFixedGrowthRate setDefaultValue:fixedGrowthRate];
+    newInput.multiScenarioFixedGrowthRate = msFixedGrowthRate;
 
+	MultiScenarioInputValue *msFixedAmount = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
     FixedValue *fixedAmount = 
     (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
     fixedAmount.value = [NSNumber numberWithDouble:0.0];
-    newInput.defaultFixedAmount = fixedAmount;
+	[msFixedAmount setDefaultValue:fixedAmount];
+    newInput.multiScenarioFixedAmount = msFixedAmount;
 
+	MultiScenarioInputValue *msFixedStartDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
     FixedDate *fixedStartDate = (FixedDate*)[[
                 DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
     fixedStartDate.date = [NSDate date];
-    newInput.fixedStartDate = fixedStartDate;
+	[msFixedStartDate setDefaultValue:fixedStartDate];
+    newInput.multiScenarioFixedStartDate = msFixedStartDate;
     
+	
+	MultiScenarioInputValue *msFixedEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
     FixedDate *fixedEndDate = (FixedDate*)[[
             DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
-		
     fixedEndDate.date = [NSDate date];
-    newInput.fixedEndDate = fixedEndDate;
+	[msFixedEndDate setDefaultValue:fixedEndDate];
+    newInput.multiScenarioFixedEndDate = msFixedEndDate;
+	
+	
 	MultiScenarioInputValue *msEndDate = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
 	[msEndDate setDefaultValue:[DataModelController theDataModelController].sharedAppVals.sharedNeverEndDate];

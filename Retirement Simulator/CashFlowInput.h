@@ -23,7 +23,8 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_END_DATE_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY;
-
+extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_START_DATE_KEY;
+extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY;
 
 @interface CashFlowInput : Input {
 @private
@@ -31,13 +32,15 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KE
 
 @property (nonatomic,retain) NSSet* variableAmounts;
 
-// fixedStartDate is used to hold onto a single fixed
+// These properties hold onto a single fixed
 // date value the user can select. If the user then
 // selects a milestone date, he/she can come back and select
-// the same fixed start date, rather than the fixed
+// the same fixed date, rather than the fixed
 // date reverting back to zero.
-@property(nonatomic,retain) FixedDate *fixedStartDate;
-@property(nonatomic,retain) FixedDate *fixedEndDate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedStartDate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedEndDate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedGrowthRate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedAmount;
 
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioStartDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioEndDate;

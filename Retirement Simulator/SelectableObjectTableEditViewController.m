@@ -20,7 +20,7 @@
 @synthesize currentValueIndex;
 
 - (id) initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
-          andAssignedField:(ManagedObjectFieldInfo*)theAssignedField
+          andAssignedField:(FieldInfo*)theAssignedField
 {
     self = [super initWithFormInfoCreator:theFormInfoCreator];
     if(self)

@@ -8,13 +8,14 @@
 
 #import "FieldEditViewController.h"
 #import "DataModelController.h"
+#import "FieldInfo.h"
 
 
 @implementation FieldEditViewController
 
 @synthesize fieldInfo;
 
-- (id) initWithNibName:(NSString *)nibName andFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo
+- (id) initWithNibName:(NSString *)nibName andFieldInfo:(FieldInfo*)theFieldInfo
 {
     assert(nibName != nil);
     self = [super initWithNibName:nibName bundle:nil];
