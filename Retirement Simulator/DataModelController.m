@@ -42,6 +42,7 @@
     [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
     repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
     NSLog(@"New default repeat frequency: %@",repeatFrequency.description);
+	[repeatFrequency retain];
 	return repeatFrequency;
 
 }

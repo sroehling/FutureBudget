@@ -137,7 +137,7 @@
 				andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_END_DATE_KEY 
 				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
 				andDefaultValue:cashFlow.multiScenarioFixedEndDate 
-				andVarDateRuntimeInfo:endDateInfo andShowNeverEnding:FALSE]];
+				andVarDateRuntimeInfo:endDateInfo andShowNeverEnding:TRUE]];
 			
         }
         
