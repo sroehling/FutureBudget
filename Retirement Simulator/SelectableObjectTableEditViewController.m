@@ -18,6 +18,7 @@
 @synthesize assignedField;
 @synthesize currentValue;
 @synthesize currentValueIndex;
+@synthesize closeAfterSelection;
 
 - (id) initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
           andAssignedField:(FieldInfo*)theAssignedField
@@ -27,6 +28,7 @@
     {
         assert(theAssignedField != nil);
         self.assignedField = theAssignedField;
+		self.closeAfterSelection = FALSE; // default
     }
     return self;
 }
@@ -108,6 +110,11 @@
     [self updateCurrentValue:[self.formInfo objectAtPath:newPath]];
 
     [self commidFieldEdit];
+	
+	if(self.closeAfterSelection)
+	{
+		[self.navigationController popViewControllerAnimated:TRUE];
+	}
     
 }
 

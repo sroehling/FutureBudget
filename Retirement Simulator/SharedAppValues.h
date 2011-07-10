@@ -15,14 +15,14 @@
 @class EventRepeatFrequency;
 
 extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
-extern NSString * const SHARED_APP_VALUES_CURRENT_SCENARIO_KEY;
+extern NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY;
 
 @interface SharedAppValues : NSManagedObject {
 @private
 }
 @property (nonatomic, retain) NeverEndDate * sharedNeverEndDate;
 @property (nonatomic, retain) DefaultScenario *defaultScenario;
-@property (nonatomic,retain) Scenario *currentScenario;
+@property (nonatomic,retain) Scenario *currentInputScenario;
 @property(nonatomic,retain) EventRepeatFrequency *repeatOnceFreq;
 
 

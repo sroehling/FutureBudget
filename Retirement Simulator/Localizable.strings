@@ -6,6 +6,9 @@
   Copyright 2011 __MyCompanyName__. All rights reserved.
 */
 
+
+"INPUT_LIST_TABLE_HEADER_FORMAT" = "Scenario: %@";
+
 "INPUT_EXPENSE_VIEW_TITLE" = "Expense";
 "INPUT_INCOME_VIEW_TITLE" = "Income";
 

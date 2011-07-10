@@ -73,7 +73,7 @@
 		
 		DefaultScenario *defaultScenario = [self insertObject:DEFAULT_SCENARIO_ENTITY_NAME];
 		sharedVals.defaultScenario = defaultScenario;
-		sharedVals.currentScenario = defaultScenario;
+		sharedVals.currentInputScenario = defaultScenario;
 		
 		sharedVals.repeatOnceFreq = repeatOnce;
 		

@@ -42,14 +42,10 @@
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
 	inputNavController.title = LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
 	
-	SharedAppValues *theSharedAppValues = [SharedAppValues singleton];
-	ManagedObjectFieldInfo *currentScenarioFieldInfo = 
-		[[[ManagedObjectFieldInfo alloc] initWithManagedObject:theSharedAppValues andFieldKey:SHARED_APP_VALUES_CURRENT_SCENARIO_KEY 
-			andFieldLabel:@"dummy" andFieldPlaceholder:@"dummy"] autorelease];
 	ScenarioListFormInfoCreator *scenarioFormInfoCreator = 
 		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
-	UIViewController *scenarioController = [[[SelectableObjectTableEditViewController alloc]
-		initWithFormInfoCreator:scenarioFormInfoCreator andAssignedField:currentScenarioFieldInfo] autorelease];
+	UIViewController *scenarioController = [[[GenericFieldBasedTableEditViewController alloc]
+		initWithFormInfoCreator:scenarioFormInfoCreator] autorelease];
 	UINavigationController *scenarioNavController = [[[UINavigationController alloc] initWithRootViewController:scenarioController] autorelease];
 	scenarioNavController.title = LOCALIZED_STR(@"SCENARIO_NAV_CONTROLLER_BUTTON_TITLE");
 	

@@ -23,12 +23,16 @@
         NSManagedObject *currentValue;
     
         NSIndexPath *currentValueIndex;
+		
+		// Close (pop view controllers) after selection
+		bool closeAfterSelection;
 }
 
 
 @property(nonatomic,retain) FieldInfo *assignedField;
 @property(nonatomic,retain) NSManagedObject *currentValue;
 @property(nonatomic,retain) NSIndexPath *currentValueIndex;
+@property bool closeAfterSelection;
 
 -(id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
             andAssignedField:(FieldInfo*)theAssignedField;
