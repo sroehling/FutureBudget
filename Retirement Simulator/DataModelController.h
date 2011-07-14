@@ -21,7 +21,6 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-- (void) initializeDatabaseDefaults;
 - (NSSet *)fetchObjectsForEntityName:(NSString *)entityName;
 - (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName 
                                       sortKey:(NSString*)theSortKey;

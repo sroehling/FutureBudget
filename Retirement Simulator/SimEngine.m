@@ -9,6 +9,7 @@
 #import "SimEngine.h"
 #import "SimEventCreator.h"
 #import "SimEvent.h"
+#import "SharedAppValues.h"
 
 
 @implementation SimEngine
@@ -107,12 +108,12 @@
     }  
     
     // Initialize the date for the results checkpoint
-    NSDate *today = [[NSDate alloc]init];
+    NSDate *simStartDate = [SharedAppValues singleton].simStartDate;
+	assert(simStartDate != nil);
     nextResultsCheckpointDate = [gregorian dateByAddingComponents:resultsOffsetComponents 
-                                                                   toDate:today options:0];
+             toDate:simStartDate options:0];
     [nextResultsCheckpointDate retain];
     NSLog(@"First checkpoint date for results: %@",[dateFormatter stringFromDate:nextResultsCheckpointDate]);
-    [today release];
 
 }
 

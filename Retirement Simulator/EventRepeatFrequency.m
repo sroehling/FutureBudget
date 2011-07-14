@@ -8,6 +8,8 @@
 
 #import "EventRepeatFrequency.h"
 
+#import "DataModelController.h"
+
 NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
 
 @implementation EventRepeatFrequency
@@ -120,6 +122,22 @@ NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
         return TRUE;
     }
 }
+
++ (EventRepeatFrequency *)createWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
+{
+     
+	EventRepeatFrequency *repeatFrequency  = (EventRepeatFrequency*)[[DataModelController theDataModelController] insertObject:EVENT_REPEAT_FREQUENCY_ENTITY_NAME];
+ 								  
+								  
+    repeatFrequency.period = [NSNumber numberWithInt:thePeriod];
+    [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
+    repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
+    NSLog(@"New default repeat frequency: %@",repeatFrequency.description);
+	[repeatFrequency retain];
+	return repeatFrequency;
+
+}
+
 
 
 @end

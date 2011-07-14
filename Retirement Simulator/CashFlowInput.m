@@ -31,8 +31,6 @@ NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY=
 @dynamic variableAmounts;
 @dynamic multiScenarioFixedStartDate;
 @dynamic multiScenarioFixedEndDate;
-@dynamic defaultFixedGrowthRate;
-@dynamic defaultFixedAmount;
 @dynamic multiScenarioStartDate;
 @dynamic multiScenarioEndDate;
 @dynamic multiScenarioAmount;

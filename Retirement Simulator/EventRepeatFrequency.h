@@ -36,6 +36,8 @@ typedef enum
 - (BOOL)eventRepeatsMoreThanOnce;
 - (NSString*)inlineDescription;
 
++ (EventRepeatFrequency *)createWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier;
+
 @end
 
 

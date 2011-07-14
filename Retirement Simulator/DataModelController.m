@@ -31,67 +31,6 @@
     [super dealloc];
 }
 
-- (EventRepeatFrequency *)initOneRepeatFrequencyWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    
-	EventRepeatFrequency *repeatFrequency  = (EventRepeatFrequency*)
-    [NSEntityDescription insertNewObjectForEntityForName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME 
-                                  inManagedObjectContext:context];
-    repeatFrequency.period = [NSNumber numberWithInt:thePeriod];
-    [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
-    repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
-    NSLog(@"New default repeat frequency: %@",repeatFrequency.description);
-	[repeatFrequency retain];
-	return repeatFrequency;
-
-}
-
-- (void)initializeDatabaseDefaults
-{
-    NSLog(@"Initializing database with default data ...");
-    
-    
-    if(![self entitiesExistForEntityName:SHARED_APP_VALUES_ENTITY_NAME])
-	{
-		NSLog(@"Initializing shared values ...");
-
-        EventRepeatFrequency *repeatOnce = 
-			[self initOneRepeatFrequencyWithPeriod:kEventPeriodOnce andMultiplier:1];
-        [self initOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:1];
-        [self initOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:2];
-        [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:1];
-        [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:3];
-        [self initOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:6];
-        [self initOneRepeatFrequencyWithPeriod:kEventPeriodYear andMultiplier:1];        
-
-
-		SharedAppValues *sharedVals = [self insertObject:SHARED_APP_VALUES_ENTITY_NAME];
-		NeverEndDate *theNeverEndDate = [self insertObject:NEVER_END_DATE_ENTITY_NAME];
-		theNeverEndDate.date = [[[NSDate alloc] init] autorelease];
-		sharedVals.sharedNeverEndDate = theNeverEndDate;
-		
-		DefaultScenario *defaultScenario = [self insertObject:DEFAULT_SCENARIO_ENTITY_NAME];
-		sharedVals.defaultScenario = defaultScenario;
-		sharedVals.currentInputScenario = defaultScenario;
-		
-		sharedVals.repeatOnceFreq = repeatOnce;
-		
-		[SharedAppValues initSingleton:sharedVals];
-
-	}
-	else
-	{
-		NSSet *theAppVals = [self fetchObjectsForEntityName:SHARED_APP_VALUES_ENTITY_NAME];
-		assert([theAppVals count] == 1);
-		[SharedAppValues initSingleton:(SharedAppValues*)[theAppVals anyObject]];
-	}
-        
-    [self saveContext];
-
-    
-}
-
 
 +(DataModelController*)theDataModelController
 {  

@@ -48,11 +48,6 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioAmountGrowthRate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioEventRepeatFrequency;
 
-// defaultFixedGrowthRate serves the same purpose as 
-// fixedStartDate.
-@property(nonatomic,retain) FixedValue *defaultFixedGrowthRate;
-@property(nonatomic,retain) FixedValue *defaultFixedAmount;
-
 
 - (void)addVariableAmountsObject:(VariableValue *)value;
 

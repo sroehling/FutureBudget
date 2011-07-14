@@ -24,9 +24,10 @@ extern NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY;
 @property (nonatomic, retain) DefaultScenario *defaultScenario;
 @property (nonatomic,retain) Scenario *currentInputScenario;
 @property(nonatomic,retain) EventRepeatFrequency *repeatOnceFreq;
-
+@property(nonatomic,retain) NSDate *simStartDate;
 
 +(void)initSingleton:(SharedAppValues*)theAppVals;
 +(SharedAppValues*)singleton;
++(void)initFromDatabase;
 
 @end

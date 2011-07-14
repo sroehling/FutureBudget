@@ -33,7 +33,7 @@
     // section information does not match the current configuration."
     [NSFetchedResultsController deleteCacheWithName:nil];
     
-    [[DataModelController theDataModelController] initializeDatabaseDefaults];
+	[SharedAppValues initFromDatabase];
     
 	InputListFormInfoCreator *inputFormInfoCreator = 
 		[[[InputListFormInfoCreator alloc] init] autorelease];
