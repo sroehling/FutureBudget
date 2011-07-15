@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "CashFlowInput.h"
 
+extern NSString * const INCOME_INPUT_ENTITY_NAME;
 
 @interface IncomeInput : CashFlowInput {
 @private

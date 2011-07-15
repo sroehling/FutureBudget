@@ -8,6 +8,7 @@
 
 #import "InflationRate.h"
 
+NSString * const INFLATION_RATE_ENTITY_NAME = @"InflationRate";
 
 @implementation InflationRate
 

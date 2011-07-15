@@ -96,6 +96,7 @@
     NumberFieldCell *cell = (NumberFieldCell *)[tableView dequeueReusableCellWithIdentifier:NumberCellIdentifier];
     if (cell == nil) {
 		[[NSBundle mainBundle] loadNibNamed:@"NumberFieldCell" owner:self options:nil];
+		assert(self.numberCell!=nil);
         cell = self.numberCell;
 		self.numberCell = nil;
     }

@@ -10,6 +10,8 @@
 #import "InputVisitor.h"
 #import "LocalizationHelper.h"
 
+NSString * const EXPENSE_INPUT_ENTITY_NAME = @"ExpenseInput";
+
 @implementation ExpenseInput
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

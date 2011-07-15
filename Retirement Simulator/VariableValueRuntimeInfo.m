@@ -12,6 +12,9 @@
 #import "LocalizationHelper.h"
 #import "NumberHelper.h"
 #import "CashFlowInput.h"
+#import "SavingsAccount.h"
+#import "InflationRate.h"
+#import "InterestRate.h"
 
 
 @implementation VariableValueRuntimeInfo
@@ -126,10 +129,10 @@
 	return amountRuntimeInfo;
 }
 
-+ (VariableValueRuntimeInfo*)createForInflationRate:(CashFlowInput*)cashFlow;
++ (VariableValueRuntimeInfo*)createForInflationRate:(CashFlowInput*)cashFlow
 {
 	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
-	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:@"InflationRate"] autorelease];
+	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
 	
 	
 	NSString *tableSubtitle = [NSString 
@@ -146,7 +149,7 @@
 		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 
 		andListMgr:sharedInflationRatesMgr
 		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"INPUT_INFLATION_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
+		andVariableValueSubtitleKey:@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
 		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
 		andValueTypeInline:[cashFlow inlineInputType]
 		andValueTypeTitle:[cashFlow inputTypeTitle]
@@ -154,5 +157,37 @@
 		andTableSubtitle:tableSubtitle] autorelease];
 	return inflationRuntimeInfo;
 }
+
+
++ (VariableValueRuntimeInfo*)createForSavingsAccountInterestRate:(SavingsAccount*)savingsAcct
+{
+	SharedEntityVariableValueListMgr *sharedInterestRatesMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithEntity:INTEREST_RATE_ENTITY_NAME] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_INLINE_VALUE_TITLE")];
+
+	
+	VariableValueRuntimeInfo *interestRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueTitle:@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_VALUE_TITLE"
+		andInlineValueTitleKey:@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_PERIOD") 
+		andListMgr:sharedInterestRatesMgr
+		andSingleValueSubtitleKey:@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andValuePromptKey:@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_VALUE_PROMPT"
+		andValueTypeInline:[savingsAcct inlineInputType]
+		andValueTypeTitle:[savingsAcct inputTypeTitle]
+		andValueName:savingsAcct.name
+		andTableSubtitle:tableSubtitle] autorelease];
+	return interestRuntimeInfo;
+}
+
 
 @end

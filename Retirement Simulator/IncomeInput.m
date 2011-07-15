@@ -10,6 +10,8 @@
 #import "InputVisitor.h"
 #import "LocalizationHelper.h"
 
+ NSString * const INCOME_INPUT_ENTITY_NAME = @"IncomeInput";
+
 @implementation IncomeInput
 
 

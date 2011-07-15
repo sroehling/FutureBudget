@@ -15,6 +15,7 @@
 #import "FixedDate.h"
 #import "NeverEndDate.h"
 #import "SharedAppValues.h"
+#import "SavingsAccount.h"
 #import "MultiScenarioInputValue.h"
 
 
@@ -96,10 +97,9 @@
 
 -(Input*)createInput
 {
-    ExpenseInput *newInput  = (ExpenseInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"ExpenseInput" 
-         inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
-
-    newInput.inputType = @"Expense";    
+    ExpenseInput *newInput  = (ExpenseInput*)[[DataModelController theDataModelController]
+		insertObject:EXPENSE_INPUT_ENTITY_NAME];;
+  
     [self populateCashFlowInputProperties:newInput];
     
     [[DataModelController theDataModelController] saveContext];
@@ -113,15 +113,48 @@
 
 -(Input*)createInput
 {
-    IncomeInput *newInput  = (IncomeInput*)[NSEntityDescription insertNewObjectForEntityForName:            @"IncomeInput" 
-        inManagedObjectContext:[[DataModelController theDataModelController] managedObjectContext]];
-
-    newInput.inputType = @"Income";
+    IncomeInput *newInput  = (IncomeInput*)[[DataModelController theDataModelController]
+		insertObject:INCOME_INPUT_ENTITY_NAME];
+	
     [self populateCashFlowInputProperties:newInput];
     
     [[DataModelController theDataModelController] saveContext];
     
     return newInput;
+  
+}
+
+@end
+
+
+
+@implementation SavingsAccountTypeSelectionInfo
+
+-(Input*)createInput
+{
+
+	SavingsAccount *savingsAcct = (SavingsAccount*)[[DataModelController theDataModelController] insertObject:SAVINGS_ACCOUNT_ENTITY_NAME];
+	savingsAcct.startingBalance = [NSNumber numberWithDouble:0.0];
+	savingsAcct.taxableContributions = [NSNumber numberWithBool:FALSE];
+	savingsAcct.taxableWithdrawals = [NSNumber numberWithBool:TRUE];
+	
+	MultiScenarioInputValue *msFixedInterestRate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+    FixedValue *fixedInterestRate = 
+    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
+    fixedInterestRate.value = [NSNumber numberWithDouble:0.0];
+	[msFixedInterestRate setDefaultValue:fixedInterestRate];
+    savingsAcct.multiScenarioFixedInterestRate = msFixedInterestRate;
+
+	MultiScenarioInputValue *msInterestRate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msInterestRate setDefaultValue:fixedInterestRate];
+	savingsAcct.multiScenarioInterestRate = msInterestRate;
+
+	
+    [[DataModelController theDataModelController] saveContext];
+    
+    return savingsAcct;
   
 }
 

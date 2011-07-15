@@ -26,10 +26,8 @@
 
 @end
 
-@interface ExpenseInputTypeSelectionInfo : InputTypeSelectionInfo 
-{}
-@end
+@interface ExpenseInputTypeSelectionInfo : InputTypeSelectionInfo {}@end
 
-@interface IncomeInputTypeSelectionInfo : InputTypeSelectionInfo 
-{}
-@end
+@interface IncomeInputTypeSelectionInfo : InputTypeSelectionInfo {} @end
+
+@interface SavingsAccountTypeSelectionInfo : InputTypeSelectionInfo {} @end

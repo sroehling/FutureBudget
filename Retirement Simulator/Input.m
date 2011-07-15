@@ -8,10 +8,10 @@
 
 #import "Input.h"
 
+NSString * const INPUT_NAME_KEY = @"name";
 
 @implementation Input
 @dynamic name;
-@dynamic inputType;
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

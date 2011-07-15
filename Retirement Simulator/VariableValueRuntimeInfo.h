@@ -10,6 +10,7 @@
 #import "VariableValueListMgr.h"
 
 @class CashFlowInput;
+@class SavingsAccount;
 
 @interface VariableValueRuntimeInfo : NSObject {
 	@private
@@ -62,5 +63,7 @@ andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
 
 + (VariableValueRuntimeInfo*)createForCashflowAmount:(CashFlowInput*)cashFlow;
 + (VariableValueRuntimeInfo*)createForInflationRate:(CashFlowInput*)cashFlow;
++ (VariableValueRuntimeInfo*)createForSavingsAccountInterestRate:(SavingsAccount*)savingsAcct;
+
 
 @end

@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "CashFlowInput.h"
 
+extern NSString * const EXPENSE_INPUT_ENTITY_NAME;
+
 @class EventRepeatFrequency;
 
 @interface ExpenseInput : CashFlowInput {

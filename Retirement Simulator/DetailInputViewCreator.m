@@ -28,8 +28,11 @@
 #import "LocalizationHelper.h"
 #import "SimDateRuntimeInfo.h"
 #import "SharedAppValues.h"
+#import "Account.h"
 #import "DataModelController.h"
 #import "SharedAppValues.h"
+#import "SavingsAccount.h"
+#import "BoolFieldEditInfo.h"
 
 @implementation DetailInputViewCreator
 
@@ -63,13 +66,23 @@
 
 }
 
-- (void) visitCashFlow:(CashFlowInput *)cashFlow
+- (void)populateInputNameField:(Input*)theInput
 {
-    SectionInfo *sectionInfo = [formPopulator nextSection];
-    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:cashFlow andKey:@"name" 
-		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_NAME_FIELD_LABEL")
+   SectionInfo *sectionInfo = [formPopulator nextSection];
+	
+    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:theInput andKey:INPUT_NAME_KEY 
+		andLabel:LOCALIZED_STR(@"INPUT_NAME_FIELD_LABEL")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")]];
 
+}
+
+- (void) visitCashFlow:(CashFlowInput *)cashFlow
+{
+
+	[self populateInputNameField:cashFlow];
+
+    SectionInfo *sectionInfo = [formPopulator nextSection];
+	
  	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 
 	
@@ -155,6 +168,54 @@
 {
     formPopulator.formInfo.title = 
 		LOCALIZED_STR(@"INPUT_INCOME_VIEW_TITLE");
+}
+
+- (void) visitSavingsAccount:(SavingsAccount *)savingsAcct
+{
+    formPopulator.formInfo.title = 
+		LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TITLE");
+	[self populateInputNameField:savingsAcct];
+
+	SectionInfo *sectionInfo = [formPopulator nextSection];
+	
+	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:savingsAcct 
+             andKey:ACCOUNT_STARTING_BALANCE_KEY 
+			 andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_STARTING_BALANCE_LABEL")
+			 andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")
+			 andNumberFormatter:[NumberHelper theHelper].currencyFormatter]];
+
+		
+	 Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
+
+	sectionInfo = [formPopulator nextSection];
+	
+    [sectionInfo addFieldEditInfo:
+	 [DateSensitiveValueFieldEditInfo 
+	  createForScenario:currentScenario andObject:savingsAcct 
+		andKey:SAVINGS_ACCOUNT_INTEREST_RATE_KEY 
+	  andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_FIELD_LABEL") 
+	  andValRuntimeInfo:[VariableValueRuntimeInfo createForSavingsAccountInterestRate:savingsAcct]
+	  andDefaultFixedVal:savingsAcct.multiScenarioFixedInterestRate]];
+
+	
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = 
+		LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXES_SECTION_TITLE");
+	
+	[sectionInfo addFieldEditInfo:
+        [BoolFieldEditInfo createForObject:savingsAcct 
+			andKey:SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTIONS_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTION_LABEL")]];
+
+
+	[sectionInfo addFieldEditInfo:
+        [BoolFieldEditInfo createForObject:savingsAcct 
+			andKey:SAVINGS_ACCOUNT_TAXABLE_WITHDRAWALS_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_WITHDRAWAL_LABEL")]];
+			
+			
+
+
 }
 
 

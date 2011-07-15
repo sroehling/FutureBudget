@@ -41,6 +41,13 @@
     typeInfo.description = @"Expense";
     
     [self.inputTypes addObject:typeInfo];
+	
+	
+	typeInfo = [[[SavingsAccountTypeSelectionInfo alloc] init ] autorelease];
+    typeInfo.description = @"Savings Account";
+    
+    [self.inputTypes addObject:typeInfo];
+
     
     typeSelected = FALSE;
 

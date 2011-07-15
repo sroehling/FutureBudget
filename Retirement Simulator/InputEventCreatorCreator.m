@@ -44,6 +44,11 @@
     [theCreator release];
 }
 
+- (void)visitSavingsAccount:(SavingsAccount *)savingsAcct
+{
+	assert(0); // not implemented yet
+}
+
 -(void)populateSimEngine:(SimEngine*)simEngine
 {
     DataModelController *theController = [DataModelController theDataModelController];

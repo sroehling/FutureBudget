@@ -18,6 +18,9 @@
 #import "DateSensitiveValue.h"
 #import "SharedEntityVariableValueListMgr.h"
 #import "MultiScenarioInputValue.h"
+#import "LocalizationHelper.h"
+#import "NumberHelper.h"
+#import "SavingsAccount.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -63,6 +66,22 @@
 
 - (void)visitIncome:(IncomeInput*)input
 {
+}
+
+- (void)visitSavingsAccount:(SavingsAccount*)savingsAcct
+{
+	DateSensitiveValue *interestRate = (DateSensitiveValue*)
+		[savingsAcct.multiScenarioInterestRate getValueForCurrentOrDefaultScenario];
+
+	NSString *interestRateDisplay = [interestRate inlineDescription:
+		[VariableValueRuntimeInfo createForSavingsAccountInterestRate:savingsAcct]];
+
+
+
+	NSString *startingBalanceStr = [[NumberHelper theHelper] displayStrFromStoredVal:savingsAcct.startingBalance andFormatter:[NumberHelper theHelper].currencyFormatter];
+	self.generatedDesc= [NSString 
+		stringWithFormat:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INPUT_LIST_DETAIL_FORMAT"),startingBalanceStr,interestRateDisplay];
+		
 }
 
 

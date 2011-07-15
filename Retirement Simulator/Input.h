@@ -11,11 +11,12 @@
 
 @protocol InputVisitor;
 
+extern NSString * const INPUT_NAME_KEY;
+
 @interface Input : NSManagedObject {
 @private
 }
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString *inputType;
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor;
 
