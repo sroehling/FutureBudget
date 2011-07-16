@@ -9,6 +9,7 @@
 #import "Account.h"
 
 NSString * const ACCOUNT_STARTING_BALANCE_KEY = @"startingBalance";
+NSString * const ACCOUNT_ENTITY_NAME = @"Account";
 
 @implementation Account
 @dynamic startingBalance;

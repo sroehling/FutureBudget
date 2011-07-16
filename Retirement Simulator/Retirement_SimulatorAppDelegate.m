@@ -17,6 +17,7 @@
 #import "SharedAppValues.h"
 #import "LocalizationHelper.h"
 #import "ManagedObjectFieldInfo.h"
+#import "StartingValsFormInfoCreator.h"
 
 @implementation Retirement_SimulatorAppDelegate
 
@@ -49,13 +50,23 @@
 	UINavigationController *scenarioNavController = [[[UINavigationController alloc] initWithRootViewController:scenarioController] autorelease];
 	scenarioNavController.title = LOCALIZED_STR(@"SCENARIO_NAV_CONTROLLER_BUTTON_TITLE");
 	
+	StartingValsFormInfoCreator *startingValsFormInfoCreator = 
+		[[[StartingValsFormInfoCreator alloc] init] autorelease];
+	UIViewController *startingValsController = [[[GenericFieldBasedTableEditViewController alloc]
+		initWithFormInfoCreator:startingValsFormInfoCreator] autorelease];
+	UINavigationController *startingValsNavController = 
+		[[[UINavigationController alloc] initWithRootViewController:startingValsController] autorelease];
+	startingValsNavController.title = LOCALIZED_STR(@"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE");
+
+	
 	ResultsViewController *resultsController = [[[ResultsViewController alloc] init] autorelease];
 	UINavigationController *resultsNavController = [[[UINavigationController alloc] initWithRootViewController:resultsController] autorelease];
 	resultsNavController.title = LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
 	
 	
 	self.tabBarController.viewControllers =
-		[NSArray arrayWithObjects:inputNavController, scenarioNavController,resultsNavController, nil]; 
+		[NSArray arrayWithObjects:inputNavController, 
+			scenarioNavController,startingValsNavController,resultsNavController, nil]; 
 	
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;

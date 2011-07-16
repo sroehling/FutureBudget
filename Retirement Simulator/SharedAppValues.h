@@ -16,6 +16,7 @@
 
 extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
 extern NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY;
+extern NSString * const SHARED_APP_VALUES_SIM_START_DATE_KEY;
 
 @interface SharedAppValues : NSManagedObject {
 @private

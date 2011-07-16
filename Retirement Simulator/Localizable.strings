@@ -137,3 +137,12 @@
 
 "RESULTS_NAV_CONTROLLER_BUTTON_TITLE" = "Results";
 
+"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE" = "Startup";
+"STARTUP_VALUES_VIEW_TITLE" = "Startup";
+"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE" = "Starting Balances";
+"STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE" = "Enter balances as of the start date";
+"STARTUP_VALS_START_DATE_LABEL" = "Start Date";
+"STARTUP_VALS_START_DATE_PLACEHOLDER" = "Enter a date";
+"STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Start Date";
+"STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "This is the date the simulation will start, with the starting balances entered below. Update this start date in conjunction with changes to the starting balances.";
+

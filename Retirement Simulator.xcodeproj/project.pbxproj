@@ -19,6 +19,7 @@
 		0010A58313CFEE6C0096A20F /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58213CFEE6B0096A20F /* Account.m */; };
 		0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58513CFEE940096A20F /* SavingsAccount.m */; };
 		0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58813D0B1DC0096A20F /* InterestRate.m */; };
+		0010A58D13D15C8B0096A20F /* StartingValsFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
 		0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775213B1778600D15232 /* VariableRateCalculator.m */; };
@@ -184,6 +185,8 @@
 		0010A58513CFEE940096A20F /* SavingsAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsAccount.m; sourceTree = "<group>"; };
 		0010A58713D0B1DB0096A20F /* InterestRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestRate.h; sourceTree = "<group>"; };
 		0010A58813D0B1DC0096A20F /* InterestRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestRate.m; sourceTree = "<group>"; };
+		0010A58B13D15C8B0096A20F /* StartingValsFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartingValsFormInfoCreator.h; sourceTree = "<group>"; };
+		0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartingValsFormInfoCreator.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
 		0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateRuntimeInfo.m; sourceTree = "<group>"; };
 		0025774E13AFDE2800D15232 /* StringLookupTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLookupTable.h; sourceTree = "<group>"; };
@@ -475,6 +478,15 @@
 				0010A57F13CFC58F0096A20F /* BoolFieldCell.m */,
 			);
 			name = "Bool Field";
+			sourceTree = "<group>";
+		};
+		0010A58A13D15C5D0096A20F /* Starting Values */ = {
+			isa = PBXGroup;
+			children = (
+				0010A58B13D15C8B0096A20F /* StartingValsFormInfoCreator.h */,
+				0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */,
+			);
+			name = "Starting Values";
 			sourceTree = "<group>";
 		};
 		0025776113B292F600D15232 /* Variable Rate Calculator */ = {
@@ -1012,6 +1024,7 @@
 				004A59A713A02F67009FEF25 /* Simulator */,
 				004F5D701373188900E0C4A3 /* Results View */,
 				0036DE2B13BE346F0043F3A5 /* Scenario List */,
+				0010A58A13D15C5D0096A20F /* Starting Values */,
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004F5D6E1373170C00E0C4A3 /* Application */,
 				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
@@ -1305,6 +1318,7 @@
 				0010A58313CFEE6C0096A20F /* Account.m in Sources */,
 				0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */,
 				0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */,
+				0010A58D13D15C8B0096A20F /* StartingValsFormInfoCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

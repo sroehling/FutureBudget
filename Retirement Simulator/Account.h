@@ -11,7 +11,7 @@
 #import "Input.h"
 
 extern NSString * const ACCOUNT_STARTING_BALANCE_KEY;
-
+extern NSString * const ACCOUNT_ENTITY_NAME;
 
 @interface Account : Input {
 @private

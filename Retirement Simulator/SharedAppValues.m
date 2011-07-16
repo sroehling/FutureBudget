@@ -15,6 +15,8 @@
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
+NSString * const SHARED_APP_VALUES_SIM_START_DATE_KEY = @"simStartDate";
+
 
 @implementation SharedAppValues
 
