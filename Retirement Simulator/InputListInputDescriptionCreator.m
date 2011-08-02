@@ -68,6 +68,12 @@
 {
 }
 
+- (void)visitAccount:(Account *)account
+{
+   // no-op: implementation in sub-classes
+}
+
+
 - (void)visitSavingsAccount:(SavingsAccount*)savingsAcct
 {
 	DateSensitiveValue *interestRate = (DateSensitiveValue*)

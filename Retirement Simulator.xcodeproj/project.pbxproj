@@ -79,6 +79,7 @@
 		005AE72013C55ED2001D99C6 /* FieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE71F13C55ED2001D99C6 /* FieldInfo.m */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
+		0063505513E76782002E38FA /* AccountContribAmountVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
 		00637A7F1385D4FA001E02F1 /* VariableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7E1385D4FA001E02F1 /* VariableValue.m */; };
@@ -306,6 +307,8 @@
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
 		005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedValueFieldInfo.m; sourceTree = "<group>"; };
+		0063505313E76782002E38FA /* AccountContribAmountVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountContribAmountVariableValueListMgr.h; sourceTree = "<group>"; };
+		0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountContribAmountVariableValueListMgr.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
 		00637A781385D4BC001E02F1 /* DateSensitiveValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValue.m; sourceTree = "<group>"; };
 		00637A7A1385D4D9001E02F1 /* DateSensitiveValueChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChange.h; sourceTree = "<group>"; };
@@ -679,6 +682,8 @@
 				0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */,
 				005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */,
 				005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */,
+				0063505313E76782002E38FA /* AccountContribAmountVariableValueListMgr.h */,
+				0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -1319,6 +1324,7 @@
 				0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */,
 				0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */,
 				0010A58D13D15C8B0096A20F /* StartingValsFormInfoCreator.m in Sources */,
+				0063505513E76782002E38FA /* AccountContribAmountVariableValueListMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

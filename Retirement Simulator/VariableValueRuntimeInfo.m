@@ -15,7 +15,7 @@
 #import "SavingsAccount.h"
 #import "InflationRate.h"
 #import "InterestRate.h"
-
+#import "AccountContribAmountVariableValueListMgr.h"
 
 @implementation VariableValueRuntimeInfo
 
@@ -100,6 +100,35 @@
 
 }
 
++ (VariableValueRuntimeInfo*)createForAccountContribAmount:(Account*)account
+{
+	AccountContribAmountVariableValueListMgr *variableAmountMgr = 
+		[[[AccountContribAmountVariableValueListMgr alloc] initWithAccount:account] autorelease];
+		
+	NSString *tableSubtitle = [NSString 
+	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
+	 [account inlineInputType],
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
+						
+	VariableValueRuntimeInfo *amountRuntimeInfo = 
+		[[[VariableValueRuntimeInfo alloc]
+		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
+		andValueTitle:@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE" 
+		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
+		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableAmountMgr
+		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
+		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
+		  andValueTypeInline:[account inlineInputType]
+		  andValueTypeTitle:[account inputTypeTitle]
+		  andValueName:account.name
+		  andTableSubtitle:tableSubtitle]
+		 autorelease];
+	return amountRuntimeInfo;
+
+}
+
 
 + (VariableValueRuntimeInfo*)createForCashflowAmount:(CashFlowInput*)cashFlow
 {
@@ -154,6 +183,36 @@
 		andValueTypeInline:[cashFlow inlineInputType]
 		andValueTypeTitle:[cashFlow inputTypeTitle]
 		andValueName:cashFlow.name
+		andTableSubtitle:tableSubtitle] autorelease];
+	return inflationRuntimeInfo;
+}
+
+
++ (VariableValueRuntimeInfo*)createForAccountAmountGrowthRate:(Account*)account
+{
+	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE")];
+
+	
+	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueTitle:@"INPUT_INFLATION_RATE_VALUE_TITLE"
+		andInlineValueTitleKey:@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 
+		andListMgr:sharedInflationRatesMgr
+		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"INPUT_TYPE_SAVINGS_ACCOUNT_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
+		andValueTypeInline:[account inlineInputType]
+		andValueTypeTitle:[account inputTypeTitle]
+		andValueName:account.name
 		andTableSubtitle:tableSubtitle] autorelease];
 	return inflationRuntimeInfo;
 }

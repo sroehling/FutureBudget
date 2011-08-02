@@ -12,12 +12,14 @@
 @class ExpenseInput;
 @class IncomeInput;
 @class SavingsAccount;
+@class Account;
 
 @protocol InputVisitor <NSObject>
 
 - (void)visitCashFlow:(CashFlowInput*)cashFlow;
 - (void)visitExpense:(ExpenseInput*)expense;
 - (void)visitIncome:(IncomeInput*)income;
+- (void)visitAccount:(Account*)account;
 - (void)visitSavingsAccount:(SavingsAccount*)savingsAcct;
 
 @end

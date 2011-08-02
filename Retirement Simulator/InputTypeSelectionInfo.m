@@ -16,6 +16,7 @@
 #import "NeverEndDate.h"
 #import "SharedAppValues.h"
 #import "SavingsAccount.h"
+#import "Account.h"
 #import "MultiScenarioInputValue.h"
 
 
@@ -76,16 +77,86 @@
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
 	[msEndDate setDefaultValue:[SharedAppValues singleton].sharedNeverEndDate];
 	newInput.multiScenarioEndDate = msEndDate;
-    
-    NSArray *repeatFrequencies = [[DataModelController theDataModelController] fetchSortedObjectsWithEntityName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME sortKey:@"period"];
-    assert([repeatFrequencies count] >0);
-	
+    	
 	EventRepeatFrequency *repeatOnce = [SharedAppValues singleton].repeatOnceFreq;
 	assert(repeatOnce != nil);
 	MultiScenarioInputValue *msRepeatFreq = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
 	[msRepeatFreq setDefaultValue:repeatOnce];
 	newInput.multiScenarioEventRepeatFrequency = msRepeatFreq;
+    
+}
+
+-(void)populateAccountInputProperties:(Account*)newInput
+{
+    // The following fields are not initialized upon creation, since the user
+    // must provide a value (one can't be defaulted).
+    //      newInput.name
+    //      newInput.amount
+    //      newInput.amountGrowthRate
+	
+    
+	MultiScenarioInputValue *msFixedGrowthRate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+    FixedValue *fixedGrowthRate = 
+    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
+    fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
+	[msFixedGrowthRate setDefaultValue:fixedGrowthRate];
+    newInput.multiScenarioFixedContribGrowthRate = msFixedGrowthRate;
+	
+	MultiScenarioInputValue *msGrowthRate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msGrowthRate setDefaultValue:fixedGrowthRate];
+	newInput.multiScenarioContribGrowthRate = msGrowthRate;
+
+	MultiScenarioInputValue *msFixedAmount = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+    FixedValue *fixedAmount = 
+    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
+    fixedAmount.value = [NSNumber numberWithDouble:0.0];
+	[msFixedAmount setDefaultValue:fixedAmount];
+    newInput.multiScenarioFixedContribAmount = msFixedAmount;
+	
+	MultiScenarioInputValue *msContribAmount = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msContribAmount setDefaultValue:fixedAmount];
+	newInput.multiScenarioContribAmount = msContribAmount;
+	
+
+	MultiScenarioInputValue *msFixedStartDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+    FixedDate *fixedStartDate = (FixedDate*)[[
+                DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
+    fixedStartDate.date = [NSDate date];
+	[msFixedStartDate setDefaultValue:fixedStartDate];
+    newInput.multiScenarioFixedContribStartDate = msFixedStartDate;
+	
+	MultiScenarioInputValue *msStartDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msStartDate setDefaultValue:fixedStartDate];
+	newInput.multiScenarioContribStartDate = msStartDate;
+    
+	
+	MultiScenarioInputValue *msFixedEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+    FixedDate *fixedEndDate = (FixedDate*)[[
+            DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
+    fixedEndDate.date = [NSDate date];
+	[msFixedEndDate setDefaultValue:fixedEndDate];
+    newInput.multiScenarioFixedContribEndDate = msFixedEndDate;
+	
+	MultiScenarioInputValue *msEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msEndDate setDefaultValue:fixedEndDate];
+	newInput.multiScenarioContribEndDate = msEndDate;
+	
+ 
+	EventRepeatFrequency *repeatOnce = [SharedAppValues singleton].repeatOnceFreq;
+	assert(repeatOnce != nil);
+	MultiScenarioInputValue *msRepeatFreq = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msRepeatFreq setDefaultValue:repeatOnce];
+	newInput.multiScenarioContribRepeatFrequency = msRepeatFreq;
     
 }
 
@@ -133,7 +204,13 @@
 -(Input*)createInput
 {
 
+
 	SavingsAccount *savingsAcct = (SavingsAccount*)[[DataModelController theDataModelController] insertObject:SAVINGS_ACCOUNT_ENTITY_NAME];
+	
+	
+	[self populateAccountInputProperties:savingsAcct];
+
+	
 	savingsAcct.startingBalance = [NSNumber numberWithDouble:0.0];
 	savingsAcct.taxableContributions = [NSNumber numberWithBool:FALSE];
 	savingsAcct.taxableWithdrawals = [NSNumber numberWithBool:TRUE];

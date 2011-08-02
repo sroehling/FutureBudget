@@ -44,6 +44,11 @@
     [theCreator release];
 }
 
+- (void)visitAccount:(Account *)account
+{
+   // no-op: implementation in sub-classes
+}
+
 - (void)visitSavingsAccount:(SavingsAccount *)savingsAcct
 {
 	assert(0); // not implemented yet

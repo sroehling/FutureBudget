@@ -8,7 +8,8 @@
 
 #import "SimDateRuntimeInfo.h"
 
-#import "CashFlowInput.h"
+//#import "CashFlowInput.h"
+#import "Input.h"
 #import "VariableValueRuntimeInfo.h"
 #import "StringLookupTable.h"
 #import "LocalizationHelper.h"
@@ -48,33 +49,33 @@
 }
 
 
-+ (SimDateRuntimeInfo*)createForCashFlow:(CashFlowInput*)cashFlow
++ (SimDateRuntimeInfo*)createForInput:(Input*)theInput
 	andFieldTitleKey:(NSString*)fieldTitleStringFileKey 
 	andSubHeaderFormatKey:(NSString*)subHeaderFormatKey
 	andSubHeaderFormatKeyNoName:(NSString*)subHeaderFormatKeyNoName
 {
-	NSString *parentName = cashFlow.name;
+	NSString *parentName = theInput.name;
 	NSString *tableHeader;
 	NSString *tableSubHeader;
 	if(parentName == nil)
 	{
 		tableHeader = [NSString stringWithFormat:
 				LOCALIZED_STR(@"VARIABLE_DATE_TABLE_TITLE_FORMAT_NO_NAME"),
-				[cashFlow inputTypeTitle],LOCALIZED_STR(fieldTitleStringFileKey)];
+				[theInput inputTypeTitle],LOCALIZED_STR(fieldTitleStringFileKey)];
 		tableSubHeader = [NSString stringWithFormat:
 						 LOCALIZED_STR(subHeaderFormatKeyNoName),
-						 [cashFlow inlineInputType]];
+						 [theInput inlineInputType]];
 		
 	}
 	else
 	{
 		tableHeader = [NSString stringWithFormat:
 					  LOCALIZED_STR(@"VARIABLE_DATE_TABLE_TITLE_FORMAT"),
-					  [cashFlow inputTypeTitle],LOCALIZED_STR(fieldTitleStringFileKey),
+					  [theInput inputTypeTitle],LOCALIZED_STR(fieldTitleStringFileKey),
 					  parentName];
 		tableSubHeader = [NSString stringWithFormat:
 						 LOCALIZED_STR(subHeaderFormatKey),
-						 [cashFlow inlineInputType],parentName];
+						 [theInput inlineInputType],parentName];
 	}
 
 	NSString *tableTitle = LOCALIZED_STR(fieldTitleStringFileKey);

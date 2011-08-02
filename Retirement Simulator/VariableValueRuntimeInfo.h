@@ -11,6 +11,7 @@
 
 @class CashFlowInput;
 @class SavingsAccount;
+@class Account;
 
 @interface VariableValueRuntimeInfo : NSObject {
 	@private
@@ -61,6 +62,8 @@ andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
 - (NSString *)inlinePeriodDesc;
 
 
++ (VariableValueRuntimeInfo*)createForAccountContribAmount:(Account*)account;
++ (VariableValueRuntimeInfo*)createForAccountAmountGrowthRate:(Account*)account;
 + (VariableValueRuntimeInfo*)createForCashflowAmount:(CashFlowInput*)cashFlow;
 + (VariableValueRuntimeInfo*)createForInflationRate:(CashFlowInput*)cashFlow;
 + (VariableValueRuntimeInfo*)createForSavingsAccountInterestRate:(SavingsAccount*)savingsAcct;

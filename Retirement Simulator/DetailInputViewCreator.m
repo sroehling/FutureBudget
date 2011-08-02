@@ -119,7 +119,7 @@
 	
     
 	SimDateRuntimeInfo *startDateInfo = 
-		[SimDateRuntimeInfo createForCashFlow:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_START_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME"];
+		[SimDateRuntimeInfo createForInput:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_START_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME"];
     [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
 			andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY 
 			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
@@ -144,7 +144,7 @@
         if([repeatFreq  eventRepeatsMoreThanOnce])
         {
 			SimDateRuntimeInfo *endDateInfo = 
-			[SimDateRuntimeInfo createForCashFlow:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_END_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT_NO_NAME"];
+			[SimDateRuntimeInfo createForInput:cashFlow andFieldTitleKey:@"INPUT_CASH_FLOW_END_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT_NO_NAME"];
 
 			[sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
 				andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_END_DATE_KEY 
@@ -170,24 +170,87 @@
 		LOCALIZED_STR(@"INPUT_INCOME_VIEW_TITLE");
 }
 
-- (void) visitSavingsAccount:(SavingsAccount *)savingsAcct
+- (void) visitAccount:(Account*)account
 {
     formPopulator.formInfo.title = 
-		LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TITLE");
-	[self populateInputNameField:savingsAcct];
+		LOCALIZED_STR(@"INPUT_ACCOUNT_TITLE");
+	[self populateInputNameField:account];
 
-	SectionInfo *sectionInfo = [formPopulator nextSection];
 	
-	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:savingsAcct 
+	SectionInfo *sectionInfo = [formPopulator nextSection];
+
+	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:account 
              andKey:ACCOUNT_STARTING_BALANCE_KEY 
 			 andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_STARTING_BALANCE_LABEL")
 			 andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")
 			 andNumberFormatter:[NumberHelper theHelper].currencyFormatter]];
 
+	sectionInfo = [formPopulator nextSection];
+    sectionInfo.title = 
+		LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
+		
+	
+
+	
+ 	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
+	
+    [sectionInfo addFieldEditInfo:
+	 [DateSensitiveValueFieldEditInfo 
+	  createForScenario:currentScenario andObject:account 
+		andKey:ACCOUNT_MULTI_SCEN_CONTRIB_AMOUNT_KEY 
+	  andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL") 
+	  andValRuntimeInfo:[VariableValueRuntimeInfo createForAccountContribAmount:account]
+	  andDefaultFixedVal:account.multiScenarioFixedContribAmount]];
+	  
+    [sectionInfo addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+         createForScenario:currentScenario andObject:account 
+			andKey:ACCOUNT_MULTI_SCEN_CONTRIB_GROWTH_RATE_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL") 
+		 andValRuntimeInfo:[VariableValueRuntimeInfo createForAccountAmountGrowthRate:account] 
+		 andDefaultFixedVal:account.multiScenarioFixedContribGrowthRate]];
+
+	SimDateRuntimeInfo *startDateInfo = 
+		[SimDateRuntimeInfo createForInput:account andFieldTitleKey:@"INPUT_CASH_FLOW_START_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME"];
+    [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
+			andObject:account andKey:ACCOUNT_MULTI_SCEN_CONTRIB_START_DATE_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
+			andDefaultValue:account.multiScenarioFixedContribStartDate 
+			andVarDateRuntimeInfo:startDateInfo andShowNeverEnding:FALSE]];
+			
+   RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo 
+		createForScenario:currentScenario andObject:account 
+		andKey:ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY
+		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
+    [sectionInfo addFieldEditInfo:repeatFrequencyInfo];
+    {
+        EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)[repeatFrequencyInfo.fieldInfo getFieldValue];
+        assert(repeatFreq != nil);
+        if([repeatFreq  eventRepeatsMoreThanOnce])
+        {
+			SimDateRuntimeInfo *endDateInfo = 
+			[SimDateRuntimeInfo createForInput:account andFieldTitleKey:@"INPUT_CASH_FLOW_END_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT_NO_NAME"];
+
+			[sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
+				andObject:account andKey:ACCOUNT_MULTI_SCEN_CONTRIB_END_DATE_KEY 
+				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
+				andDefaultValue:account.multiScenarioFixedContribEndDate 
+				andVarDateRuntimeInfo:endDateInfo andShowNeverEnding:TRUE]];
+			
+        }
+        
+    }
+
+	
+
+}
+
+- (void) visitSavingsAccount:(SavingsAccount *)savingsAcct
+{
 		
 	 Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
 
-	sectionInfo = [formPopulator nextSection];
+	SectionInfo *sectionInfo = [formPopulator nextSection];
 	
     [sectionInfo addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 

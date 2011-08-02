@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class CashFlowInput;
+@class Input;
 @class VariableValueRuntimeInfo;
 @class VariableValue;
 
@@ -26,10 +26,12 @@
 - (id)initWithTableTitle:(NSString*)theTitle andHeader:(NSString*)theHeader
      andSubHeader:(NSString*)theSubHeader;
 	 
-+ (SimDateRuntimeInfo*)createForCashFlow:(CashFlowInput*)cashFlow
-							 andFieldTitleKey:(NSString*)fieldTitleStringFileKey 
-						andSubHeaderFormatKey:(NSString*)subHeaderFormatKey
-				  andSubHeaderFormatKeyNoName:(NSString*)subHeaderFormatKeyNoName;
++ (SimDateRuntimeInfo*)createForInput:(Input*)theInput
+	andFieldTitleKey:(NSString*)fieldTitleStringFileKey 
+	andSubHeaderFormatKey:(NSString*)subHeaderFormatKey
+	andSubHeaderFormatKeyNoName:(NSString*)subHeaderFormatKeyNoName;				  
+				  
+				  
 + (SimDateRuntimeInfo*)createForDateSensitiveValue:(VariableValueRuntimeInfo*)valRuntimeInfo
 									   andVariableValue:(VariableValue*)varValue;
 
