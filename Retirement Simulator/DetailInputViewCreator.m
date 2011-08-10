@@ -124,7 +124,9 @@
 			andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY 
 			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
 			andDefaultValue:cashFlow.multiScenarioFixedStartDate 
-			andVarDateRuntimeInfo:startDateInfo andShowNeverEnding:FALSE]];
+			andVarDateRuntimeInfo:startDateInfo andShowEndDates:FALSE
+			
+			andDefaultRelEndDate:nil]];
 	
 
 
@@ -150,7 +152,8 @@
 				andObject:cashFlow andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_END_DATE_KEY 
 				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
 				andDefaultValue:cashFlow.multiScenarioFixedEndDate 
-				andVarDateRuntimeInfo:endDateInfo andShowNeverEnding:TRUE]];
+				andVarDateRuntimeInfo:endDateInfo andShowEndDates:TRUE
+				andDefaultRelEndDate:cashFlow.multiScenarioFixedRelEndDate]];
 			
         }
         
@@ -216,7 +219,8 @@
 			andObject:account andKey:ACCOUNT_MULTI_SCEN_CONTRIB_START_DATE_KEY 
 			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
 			andDefaultValue:account.multiScenarioFixedContribStartDate 
-			andVarDateRuntimeInfo:startDateInfo andShowNeverEnding:FALSE]];
+			andVarDateRuntimeInfo:startDateInfo andShowEndDates:FALSE
+			andDefaultRelEndDate:nil]];
 			
    RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo 
 		createForScenario:currentScenario andObject:account 
@@ -231,11 +235,13 @@
 			SimDateRuntimeInfo *endDateInfo = 
 			[SimDateRuntimeInfo createForInput:account andFieldTitleKey:@"INPUT_CASH_FLOW_END_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT_NO_NAME"];
 
+			// TODO - Add fixed relative end date
 			[sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
 				andObject:account andKey:ACCOUNT_MULTI_SCEN_CONTRIB_END_DATE_KEY 
 				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
 				andDefaultValue:account.multiScenarioFixedContribEndDate 
-				andVarDateRuntimeInfo:endDateInfo andShowNeverEnding:TRUE]];
+				andVarDateRuntimeInfo:endDateInfo andShowEndDates:TRUE
+				andDefaultRelEndDate:account.multiScenarioFixedContribRelEndDate]];
 			
         }
         

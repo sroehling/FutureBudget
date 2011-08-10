@@ -12,6 +12,7 @@
 #import "FixedDate.h"
 #import "NeverEndDate.h"
 #import "LocalizationHelper.h"
+#import "RelativeEndDate.h"
 
 
 @implementation SimDateValueFormatter
@@ -34,6 +35,13 @@
 - (void)visitNeverEndDate:(NeverEndDate*)neverEndDate
 {
 	self.formattedVal = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL");
+}
+
+- (void)visitRelativeEndDate:(RelativeEndDate *)relEndDate
+{
+	self.formattedVal =
+		[NSString stringWithFormat:LOCALIZED_STR(@"RELATIVE_END_DATE_SIM_DATE_FIELD_TITLE_FORMAT"),
+			[relEndDate relativeDateDescription]];
 }
 
 - (void)visitFixedDate:(FixedDate*)fixedDate;

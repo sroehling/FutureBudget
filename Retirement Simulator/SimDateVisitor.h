@@ -11,12 +11,13 @@
 @class MilestoneDate;
 @class NeverEndDate;
 @class FixedDate;
-// @class RelativeEndDate
+@class RelativeEndDate;
 
 @protocol SimDateVisitor <NSObject>
 
 - (void)visitMilestoneDate:(MilestoneDate*)milestoneDate;
 - (void)visitNeverEndDate:(NeverEndDate*)neverEndDate;
 - (void)visitFixedDate:(FixedDate*)fixedDate;
+- (void)visitRelativeEndDate:(RelativeEndDate*)relEndDate;
 
 @end

@@ -20,24 +20,26 @@
 @interface SimDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private
         FieldInfo *defaultValFieldInfo;
+		FieldInfo *defaultRelEndDateFieldInfo;
 		ValueSubtitleTableCell *dateCell;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
-		bool showNeverEnding;
+		bool showEndDates;
 }
 
 @property(nonatomic,retain) FieldInfo *defaultValFieldInfo;
+@property(nonatomic,retain) FieldInfo *defaultRelEndDateFieldInfo;
 @property(nonatomic,retain) ValueSubtitleTableCell *dateCell;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
-+ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
-              andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey
-			  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
-			  andShowNeverEnding:(bool)doShowNeverEnding;
++ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
+	andShowEndDates:(bool)doShowEndDates
+	andDefaultRelEndDateKey:(NSString*)theDefaultRelEndDateKey;
 			  
 + (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario 
 	andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label
 	andDefaultValue:(MultiScenarioInputValue*)defaultVal 
 	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
-	andShowNeverEnding:(bool)doShowNeverEnding;
+	andShowEndDates:(bool)doShowEndDates
+	andDefaultRelEndDate:(MultiScenarioInputValue*)defaultRelEndDate;
 
 @end

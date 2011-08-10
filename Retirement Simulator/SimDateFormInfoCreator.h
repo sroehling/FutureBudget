@@ -17,17 +17,20 @@
     @private
         FieldInfo *fieldInfo;
         FieldInfo *fixedDateFieldInfo;
+		FieldInfo *defaultRelEndDateFieldInfo;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
-		bool showNeverEnding;
+		bool showEndDates;
 }
 
 - (id)initWithVariableDateFieldInfo:(FieldInfo*)vdFieldInfo 
              andDefaultValFieldInfo:(FieldInfo*)theDefaultFieldInfo
 			 andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
-			 andDoShowNeverEnding:(bool)doShowNeverEnding;
+			 andDoShowEndDates:(bool)doShowEndDates
+			 andDefaultRelEndDateFieldInfo:(FieldInfo*)theDefaultRelEndDateFieldInfo;
 
 @property(nonatomic,retain) FieldInfo *fieldInfo;
 @property(nonatomic,retain) FieldInfo* fixedDateFieldInfo;
+@property(nonatomic,retain) FieldInfo *defaultRelEndDateFieldInfo;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
 @end

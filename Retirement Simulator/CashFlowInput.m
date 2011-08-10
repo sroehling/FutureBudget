@@ -38,6 +38,7 @@ NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY=
 @dynamic multiScenarioEventRepeatFrequency;
 @dynamic multiScenarioFixedGrowthRate;
 @dynamic multiScenarioFixedAmount;
+@dynamic multiScenarioFixedRelEndDate;
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

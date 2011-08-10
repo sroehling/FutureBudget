@@ -92,8 +92,10 @@
     {
         NSIndexPath *selectionIndexPath = [self.formInfo pathForObject:self.currentValue];      
         UITableViewCell *checkedCell = [self.tableView cellForRowAtIndexPath:selectionIndexPath];
-        assert(checkedCell!=nil);
-        checkedCell.accessoryType = UITableViewCellAccessoryNone;
+        if(checkedCell != nil)
+		{
+			checkedCell.accessoryType = UITableViewCellAccessoryNone;
+		}
     }
 
 }

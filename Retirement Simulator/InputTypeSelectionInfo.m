@@ -18,6 +18,7 @@
 #import "SavingsAccount.h"
 #import "Account.h"
 #import "MultiScenarioInputValue.h"
+#import "RelativeEndDate.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -71,6 +72,17 @@
     fixedEndDate.date = [NSDate date];
 	[msFixedEndDate setDefaultValue:fixedEndDate];
     newInput.multiScenarioFixedEndDate = msFixedEndDate;
+	
+	MultiScenarioInputValue *msFixedRelEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
+	fixedRelEndDate.years = [NSNumber numberWithInt:0];
+	fixedRelEndDate.months = [NSNumber numberWithInt:0];
+	fixedRelEndDate.weeks = [NSNumber numberWithInt:0];
+	[msFixedRelEndDate setDefaultValue:fixedRelEndDate];
+    newInput.multiScenarioFixedRelEndDate = msFixedRelEndDate;
+
+	
 	
 	
 	MultiScenarioInputValue *msEndDate = 
@@ -144,6 +156,17 @@
     fixedEndDate.date = [NSDate date];
 	[msFixedEndDate setDefaultValue:fixedEndDate];
     newInput.multiScenarioFixedContribEndDate = msFixedEndDate;
+	
+	MultiScenarioInputValue *msFixedRelEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
+	fixedRelEndDate.years = [NSNumber numberWithInt:0];
+	fixedRelEndDate.months = [NSNumber numberWithInt:0];
+	fixedRelEndDate.weeks = [NSNumber numberWithInt:0];
+	[msFixedRelEndDate setDefaultValue:fixedRelEndDate];
+    newInput.multiScenarioFixedContribRelEndDate = msFixedRelEndDate;
+
+	
 	
 	MultiScenarioInputValue *msEndDate = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];

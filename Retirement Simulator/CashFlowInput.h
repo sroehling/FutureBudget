@@ -39,6 +39,7 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY;
 // date reverting back to zero.
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedStartDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedEndDate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedRelEndDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedGrowthRate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedAmount;
 

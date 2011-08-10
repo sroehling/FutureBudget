@@ -23,18 +23,22 @@
 #import "SharedAppValues.h"
 #import "NeverEndDate.h"
 #import "FieldInfo.h"
+#import "RelativeEndDateFieldEditInfo.h"
+#import "RelativeEndDate.h"
 
 
 @implementation SimDateFormInfoCreator
 
 @synthesize fieldInfo;
+@synthesize defaultRelEndDateFieldInfo;
 @synthesize fixedDateFieldInfo;
 @synthesize varDateRuntimeInfo;
 
-- (id)initWithVariableDateFieldInfo:(FieldInfo*)vdFieldInfo
-			 andDefaultValFieldInfo:(FieldInfo*)theDefaultFieldInfo
-			  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
-			  andDoShowNeverEnding:(bool)doShowNeverEnding;
+- (id)initWithVariableDateFieldInfo:(FieldInfo*)vdFieldInfo 
+             andDefaultValFieldInfo:(FieldInfo*)theDefaultFieldInfo
+			 andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
+			 andDoShowEndDates:(bool)doShowEndDates
+			 andDefaultRelEndDateFieldInfo:(FieldInfo*)theDefaultRelEndDateFieldInfo;
 {
     self = [super init];
     if(self)
@@ -44,7 +48,12 @@
 		
 		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
 		self.fixedDateFieldInfo = theDefaultFieldInfo;
-		showNeverEnding = doShowNeverEnding;
+		showEndDates = doShowEndDates;
+		if(showEndDates)
+		{
+			assert(theDefaultRelEndDateFieldInfo != nil);
+		}
+		self.defaultRelEndDateFieldInfo = theDefaultRelEndDateFieldInfo;
 
     }
     return self;
@@ -69,7 +78,7 @@
 	
 	SectionInfo *sectionInfo;
 	
-	if(showNeverEnding)
+	if(showEndDates)
 	{
 		sectionInfo = [formPopulator nextSection];
 	
@@ -81,8 +90,18 @@
 			[[[StaticFieldEditInfo alloc] initWithManagedObj:neverEndDate 
 			andCaption:@"" andContent:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")] autorelease];
 		[sectionInfo addFieldEditInfo:neverEndingFieldEditInfo];
-	}
+		
+		
+		sectionInfo = [formPopulator nextSection];
 	
+		sectionInfo.title = LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE");
+		sectionInfo.subTitle = LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE");
+		RelativeEndDateFieldEditInfo *relEndDateFieldEditInfo =
+			[[[RelativeEndDateFieldEditInfo alloc] 
+			initWithRelativeEndDateFieldInfo:self.defaultRelEndDateFieldInfo] autorelease];
+		[sectionInfo addFieldEditInfo:relEndDateFieldEditInfo];
+			
+	}	
 	
     sectionInfo = [formPopulator nextSection];
 	
@@ -117,6 +136,7 @@
     [fieldInfo release];
     [fixedDateFieldInfo release];
 	[varDateRuntimeInfo release];
+	[defaultRelEndDateFieldInfo release];
 }
 
 @end

@@ -80,6 +80,7 @@
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		0063505513E76782002E38FA /* AccountContribAmountVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */; };
+		0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505713EA1900002E38FA /* RelativeEndDate.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
 		00637A7F1385D4FA001E02F1 /* VariableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7E1385D4FA001E02F1 /* VariableValue.m */; };
@@ -131,6 +132,10 @@
 		00ADB31A1384330800064651 /* IncomeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3191384330700064651 /* IncomeInput.m */; };
 		00ADB31E13844F7100064651 /* InputTypeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */; };
 		00ADB3221384521000064651 /* InputTypeSelectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */; };
+		00E6CC6B13F04F52005EEC64 /* RelativeDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC6A13F04F52005EEC64 /* RelativeDatePickerViewController.m */; };
+		00E6CC6F13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC6E13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.m */; };
+		00E6CC7A13F1C6E3005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC7913F1C6E2005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.m */; };
+		00E6CC8013F2DFE0005EEC64 /* RelativeEndDateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC7F13F2DFDE005EEC64 /* RelativeEndDateInfo.m */; };
 		00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */; };
 		00EC1F91139737D20085B25C /* SimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F90139737D20085B25C /* SimDate.m */; };
 		00EC1F941397396D0085B25C /* MilestoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F931397396D0085B25C /* MilestoneDate.m */; };
@@ -309,6 +314,8 @@
 		005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedValueFieldInfo.m; sourceTree = "<group>"; };
 		0063505313E76782002E38FA /* AccountContribAmountVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountContribAmountVariableValueListMgr.h; sourceTree = "<group>"; };
 		0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountContribAmountVariableValueListMgr.m; sourceTree = "<group>"; };
+		0063505613EA1900002E38FA /* RelativeEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDate.h; sourceTree = "<group>"; };
+		0063505713EA1900002E38FA /* RelativeEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDate.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
 		00637A781385D4BC001E02F1 /* DateSensitiveValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValue.m; sourceTree = "<group>"; };
 		00637A7A1385D4D9001E02F1 /* DateSensitiveValueChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChange.h; sourceTree = "<group>"; };
@@ -404,6 +411,14 @@
 		00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTypeSelectionViewController.m; sourceTree = "<group>"; };
 		00ADB3201384520E00064651 /* InputTypeSelectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTypeSelectionInfo.h; sourceTree = "<group>"; };
 		00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTypeSelectionInfo.m; sourceTree = "<group>"; };
+		00E6CC6913F04F52005EEC64 /* RelativeDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeDatePickerViewController.h; sourceTree = "<group>"; };
+		00E6CC6A13F04F52005EEC64 /* RelativeDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeDatePickerViewController.m; sourceTree = "<group>"; };
+		00E6CC6D13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDateFieldEditInfo.h; sourceTree = "<group>"; };
+		00E6CC6E13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDateFieldEditInfo.m; sourceTree = "<group>"; };
+		00E6CC7813F1C6DF005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
+		00E6CC7913F1C6E2005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioRelativeEndDateFieldInfo.m; sourceTree = "<group>"; };
+		00E6CC7E13F2DFDD005EEC64 /* RelativeEndDateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDateInfo.h; sourceTree = "<group>"; };
+		00E6CC7F13F2DFDE005EEC64 /* RelativeEndDateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDateInfo.m; sourceTree = "<group>"; };
 		00EC1F8B139736D40085B25C /* SimDateFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateFormInfoCreator.m; sourceTree = "<group>"; };
 		00EC1F8F139737D20085B25C /* SimDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDate.h; sourceTree = "<group>"; };
@@ -707,6 +722,12 @@
 				000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */,
 				005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */,
 				005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */,
+				00E6CC6913F04F52005EEC64 /* RelativeDatePickerViewController.h */,
+				00E6CC6A13F04F52005EEC64 /* RelativeDatePickerViewController.m */,
+				00E6CC6D13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.h */,
+				00E6CC6E13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.m */,
+				00E6CC7813F1C6DF005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.h */,
+				00E6CC7913F1C6E2005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.m */,
 			);
 			name = "Sim Date";
 			sourceTree = "<group>";
@@ -985,6 +1006,10 @@
 				0095E98313BA3532000555AC /* SimDateVisitor.h */,
 				0095E97313B92794000555AC /* NeverEndDate.h */,
 				0095E97413B92794000555AC /* NeverEndDate.m */,
+				00E6CC7E13F2DFDD005EEC64 /* RelativeEndDateInfo.h */,
+				00E6CC7F13F2DFDE005EEC64 /* RelativeEndDateInfo.m */,
+				0063505613EA1900002E38FA /* RelativeEndDate.h */,
+				0063505713EA1900002E38FA /* RelativeEndDate.m */,
 			);
 			name = "Sim Dates";
 			sourceTree = "<group>";
@@ -1325,6 +1350,11 @@
 				0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */,
 				0010A58D13D15C8B0096A20F /* StartingValsFormInfoCreator.m in Sources */,
 				0063505513E76782002E38FA /* AccountContribAmountVariableValueListMgr.m in Sources */,
+				0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */,
+				00E6CC6B13F04F52005EEC64 /* RelativeDatePickerViewController.m in Sources */,
+				00E6CC6F13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.m in Sources */,
+				00E6CC7A13F1C6E3005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */,
+				00E6CC8013F2DFE0005EEC64 /* RelativeEndDateInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

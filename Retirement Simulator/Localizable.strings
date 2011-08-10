@@ -130,6 +130,11 @@
 "SIM_DATE_NEVER_ENDING_DATE_INLINE_LABEL" = "never ending";
 "SIM_DATE_NEVER_ENDING_DATE_SUBTITLE" = "Repeat through the end of simulation";
 
+
+"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE" = "Stop After Start Date";
+"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE" = "Stop after a number of years, months and/or weeks after the start date";
+
+
 "SCENARIO_NAV_CONTROLLER_BUTTON_TITLE" = "Scenarios";
 "SCENARIO_LIST_VIEW_TITLE" = "Scenarios";
 "SCENARIO_DEFAULT_SCENARIO_NAME" = "Default";
@@ -150,4 +155,14 @@
 "STARTUP_VALS_START_DATE_PLACEHOLDER" = "Enter a date";
 "STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Start Date";
 "STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "This is the date the simulation will start, with the starting balances entered below. Update this start date in conjunction with changes to the starting balances.";
+
+
+"RELATIVE_END_DATE_LABEL" = "After Start Date";
+"RELATIVE_END_DATE_DESCRIPTION_SINGLE_WEEK_LABEL" = "Week";
+"RELATIVE_END_DATE_DESCRIPTION_SINGLE_MONTH_LABEL" = "Month";
+"RELATIVE_END_DATE_DESCRIPTION_SINGLE_YEAR_LABEL" = "Year";
+"RELATIVE_END_DATE_DESCRIPTION_MULTIPLE_WEEK_LABEL" = "Weeks";
+"RELATIVE_END_DATE_DESCRIPTION_MULTIPLE_MONTH_LABEL" = "Months";
+"RELATIVE_END_DATE_DESCRIPTION_MULTIPLE_YEAR_LABEL" = "Years";
+"RELATIVE_END_DATE_SIM_DATE_FIELD_TITLE_FORMAT" = "After %@";
 

@@ -24,12 +24,15 @@
 #import "Scenario.h"
 #import "MultiScenarioFixedDateFieldInfo.h"
 #import "MultiScenarioInputValue.h"
+#import "MultiScenarioRelativeEndDateFieldInfo.h"
 
 @implementation SimDateFieldEditInfo
 
 @synthesize defaultValFieldInfo;
 @synthesize dateCell;
 @synthesize varDateRuntimeInfo;
+@synthesize defaultRelEndDateFieldInfo;
+
 
 - (void)configureDateCell
 {
@@ -57,7 +60,8 @@
 - (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo andDefaultValFieldInfo:
         (FieldInfo*)theDefaultFieldInfo 
 		andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
-		andShowNeverEnding:(bool)doShowNeverEnding
+		andShowEndDates:(bool)doShowEndDates
+		andDefaultRelEndDateFieldInfo:(FieldInfo*)theDefaultRelEndDateFieldInfo
 {
     self = [super initWithFieldInfo:theFieldInfo];
     if(self)
@@ -67,7 +71,13 @@
         self.defaultValFieldInfo = theDefaultFieldInfo;
 		
 		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
-		showNeverEnding = doShowNeverEnding;
+		showEndDates = doShowEndDates;
+		
+		if(showEndDates)
+		{
+			assert(theDefaultRelEndDateFieldInfo != nil);
+		}
+		self.defaultRelEndDateFieldInfo = theDefaultRelEndDateFieldInfo;
 
 		self.dateCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 		self.dateCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -82,11 +92,13 @@
     assert(0); // should not call this version of init
 }
 
+// TODO - Add support for fixed relative end date
 + (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario 
 	andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label
 	andDefaultValue:(MultiScenarioInputValue*)defaultVal 
 	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
-	andShowNeverEnding:(bool)doShowNeverEnding
+	andShowEndDates:(bool)doShowEndDates
+	andDefaultRelEndDate:(MultiScenarioInputValue*)defaultRelEndDate
 {
     assert(obj != nil);
 	assert(defaultVal != nil);
@@ -104,9 +116,19 @@
     
 	MultiScenarioFixedDateFieldInfo *defaultValFieldInfo = 
 		[[[MultiScenarioFixedDateFieldInfo alloc] initWithFieldLabel:label andFieldPlaceholder:variableDatePlaceholder andScenario:scenario andInputVal:defaultVal] autorelease];	
+		
+	MultiScenarioRelativeEndDateFieldInfo *defaultRelEndDateFieldInfo = nil;	
+	if(doShowEndDates)
+	{
+		assert(defaultRelEndDate != nil);
+		defaultRelEndDateFieldInfo = 
+			[[[MultiScenarioRelativeEndDateFieldInfo alloc] initWithFieldLabel:label andFieldPlaceholder:variableDatePlaceholder andScenario:scenario andInputVal:defaultRelEndDate] autorelease];	
+		
+	}
     
     SimDateFieldEditInfo *fieldEditInfo = [[[SimDateFieldEditInfo alloc] 
-											initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo andShowNeverEnding:doShowNeverEnding] autorelease];
+											initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo andShowEndDates:doShowEndDates
+											andDefaultRelEndDateFieldInfo:defaultRelEndDateFieldInfo] autorelease];
 	
     
     return fieldEditInfo;
@@ -114,13 +136,15 @@
 
 
 
-+ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo andShowNeverEnding:(bool)doShowNeverEnding
++ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
+	andShowEndDates:(bool)doShowEndDates
+	andDefaultRelEndDateKey:(NSString*)theDefaultRelEndDateKey
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
     assert([StringValidation nonEmptyString:defaultValKey]);
-    
+   
 	
 	NSString *variableDatePlaceholder = LOCALIZED_STR(@"VARIABLE_DATE_PLACEHOLDER");
 	
@@ -134,9 +158,28 @@
                         andFieldKey:defaultValKey andFieldLabel:label
 						andFieldPlaceholder:variableDatePlaceholder] autorelease];
 
+
+	ManagedObjectFieldInfo *defaultRelEndDateFieldInfo = nil;
+	if(doShowEndDates)
+	{
+		assert([StringValidation nonEmptyString:theDefaultRelEndDateKey]);
+		assert(0); // Not implemented yet - 
+			// this method is only called by DateSensitiveValueChangeFormPopulator, which
+			// passes FALSE for doShowEndDates. If support is needed for single scenario values,
+			// then a special SingleScenarioRelativeEndDateFieldInfo object is needed, which
+			// takes a RelativeEndDateFieldInfo object like the multi scenario Field Info object
+			// that is already implemented. 
+		defaultRelEndDateFieldInfo = [[[ManagedObjectFieldInfo alloc] 
+                                          initWithManagedObject:obj 
+                        andFieldKey:theDefaultRelEndDateKey andFieldLabel:label
+						andFieldPlaceholder:variableDatePlaceholder] autorelease];
+	}
+
     
     SimDateFieldEditInfo *fieldEditInfo = [[[SimDateFieldEditInfo alloc] 
-        initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo andShowNeverEnding:doShowNeverEnding] autorelease];
+        initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo 
+		andShowEndDates:doShowEndDates
+		andDefaultRelEndDateFieldInfo:defaultRelEndDateFieldInfo] autorelease];
 
     
     return fieldEditInfo;
@@ -150,6 +193,8 @@
 	
 	SimDateValueFormatter *valFormatter = [[[SimDateValueFormatter alloc] init] autorelease];
     SimDate *simDate = [self.fieldInfo getFieldValue];
+	// TODO - need to pass start date to val formatter, so that RelativeEndDatescan display an actual
+	// end date, as opposed to just a label like "1 occurrence".
     return [valFormatter formatSimDate:simDate];
 }
 
@@ -160,7 +205,7 @@
         [[[SimDateFormInfoCreator alloc] initWithVariableDateFieldInfo:self.fieldInfo 
           andDefaultValFieldInfo:self.defaultValFieldInfo 
 		  andVarDateRuntimeInfo:self.varDateRuntimeInfo
-		  andDoShowNeverEnding:showNeverEnding] autorelease];
+		  andDoShowEndDates:showEndDates andDefaultRelEndDateFieldInfo:self.defaultRelEndDateFieldInfo] autorelease];
     
     SelectableObjectTableEditViewController *viewController = 
     [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:formInfoCreator 
@@ -195,6 +240,7 @@
 	[varDateRuntimeInfo release];
 	[defaultValFieldInfo release];
 	[dateCell release];
+	[defaultRelEndDateFieldInfo release];
 }
 
 
