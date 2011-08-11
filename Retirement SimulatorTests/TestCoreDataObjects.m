@@ -11,7 +11,7 @@
 #import "DateSensitiveValue.h"
 #import "FixedDate.h"
 #import "InMemoryCoreData.h"
-#import "TestDateHelper.h"
+#import "DateHelper.h"
 
 
 @implementation TestCoreDataObjects
@@ -23,7 +23,7 @@
 	DateSensitiveValueChange *valChange = (DateSensitiveValueChange*)[coreData createObj:DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME];
 	
 	FixedDate *fixedStartDate = (FixedDate*) [coreData createObj:FIXED_DATE_ENTITY_NAME];
-	fixedStartDate.date = [TestDateHelper dateFromStr:dateStr];
+	fixedStartDate.date = [DateHelper dateFromStr:dateStr];
 	
 	valChange.startDate = fixedStartDate;
 	valChange.newValue = [NSNumber numberWithDouble:val];

@@ -149,5 +149,20 @@ NSString * const RELATIVE_END_DATE_ENTITY_NAME = @"RelativeEndDate";
 }
 
 
+- (NSDate*)endDateWithStartDate:(NSDate*)startDate
+{
+	NSCalendar *gregorian = [[[NSCalendar alloc] 
+		initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+    NSDateComponents *repeatOffsetComponents = [[[NSDateComponents alloc] init] autorelease];
+	[repeatOffsetComponents setYear:[self.years intValue]];
+	[repeatOffsetComponents setMonth:[self.months intValue]];
+	[repeatOffsetComponents setWeek:[self.weeks intValue]];
+	NSDate *endDate = [gregorian dateByAddingComponents:repeatOffsetComponents 
+                 toDate:startDate options:0];
+	return endDate;
+
+}
+
+
 
 @end

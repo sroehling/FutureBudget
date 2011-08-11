@@ -31,4 +31,9 @@
 	assert(0); // must be overridden
 }
 
+- (NSDate*)endDateWithStartDate:(NSDate*)startDate
+{
+	return self.date;
+}
+
 @end

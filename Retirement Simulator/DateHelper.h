@@ -17,6 +17,10 @@
 
 +(DateHelper*)theHelper; // singleton
 
++ (NSDate*)dateFromStr:(NSString*)dateStr;
++ (NSString*)stringFromDate:(NSDate*)theDate;
+
+
 @property(nonatomic,retain)  NSDateFormatter *mediumDateFormatter;
 
 + (NSDate*)today;

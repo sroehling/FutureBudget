@@ -8,10 +8,12 @@
 
 #import "NeverEndDate.h"
 #import "LocalizationHelper.h"
+#import "DateHelper.h"
 
 #import "SimDateVisitor.h"
 
 NSString * const NEVER_END_DATE_ENTITY_NAME = @"NeverEndDate";
+NSString * const NEVER_END_PSEUDO_END_DATE = @"2500-12-31";
 
 @implementation NeverEndDate
 
@@ -30,6 +32,11 @@ NSString * const NEVER_END_DATE_ENTITY_NAME = @"NeverEndDate";
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor
 {
 	[visitor visitNeverEndDate:self];
+}
+
+- (NSDate*)endDateWithStartDate:(NSDate*)startDate
+{
+	return [DateHelper dateFromStr:NEVER_END_PSEUDO_END_DATE];
 }
 
 @end

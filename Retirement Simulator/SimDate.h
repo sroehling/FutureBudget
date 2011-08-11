@@ -21,5 +21,6 @@
 - (NSString *)dateLabel;
 
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor;
+- (NSDate*)endDateWithStartDate:(NSDate*)startDate;
 
 @end

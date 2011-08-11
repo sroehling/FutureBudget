@@ -12,11 +12,16 @@
 
 @implementation EventRepeater
 
-- (id) initWithEventRepeatFrequency:(EventRepeatFrequency*)repeatFrequency
- andStartDate:(NSDate*)theStartDate;
+@synthesize startDate;
+@synthesize endDate;
+@synthesize currentDate;
+
+- (id) initWithEventRepeatFrequency:(EventRepeatFrequency*)repeatFrequency 
+         andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
 {
     assert(repeatFrequency!=nil);
     assert(theStartDate!=nil);
+	assert(theEndDate != nil);
 
     self = [super init];
     if (self) {
@@ -62,8 +67,8 @@
                 assert(false); // shouldn't get here - invalid/unsupported enum found
                 break;
         }
-        startDate = theStartDate;
-        [startDate retain];
+        self.startDate = theStartDate;
+        self.endDate = theEndDate;
         [self reset];
         return self;
     }
@@ -77,8 +82,7 @@
 - (void)reset
 {
     repeatCount = 0;
-    currentDate = [startDate copy];
-    [currentDate retain];
+    self.currentDate = [startDate copy];
 }
 
 - (NSDate*)nextDate
@@ -104,15 +108,25 @@
            return currentDate;
         }
         else{
-            // TODO - This currently defaults to repeating forever. We also
-            // need support repeating for a finite time period
-            NSDate *lastDate = currentDate;
-            currentDate = [gregorian dateByAddingComponents:repeatOffsetComponents 
-                 toDate:lastDate options:0];
-            [lastDate release];
-            [currentDate retain];
-            repeatCount++;
-            return currentDate;
+ 			self.currentDate = [gregorian dateByAddingComponents:repeatOffsetComponents 
+                 toDate:self.currentDate options:0];
+				 
+			NSComparisonResult eventComparedToResultsCheckpoint = 
+				[self.currentDate compare:self.endDate];
+    
+			// Comparison is to determine if the current date is "not later"
+			// than the end date.
+			if (eventComparedToResultsCheckpoint != NSOrderedDescending) 
+			{
+				repeatCount++;
+				return currentDate;
+			}
+			else
+			{
+				// The next date is beyond the end date for this event repeater,
+				// so return nil to end the event repeating.
+				return nil;
+			}
         }        
     }
 }
@@ -123,7 +137,8 @@
     [repeatOffsetComponents release];
     [gregorian release];
     [startDate release];
-    [currentDate release];
+	[currentDate release];
+	[endDate release];
     [super dealloc];
 }
 

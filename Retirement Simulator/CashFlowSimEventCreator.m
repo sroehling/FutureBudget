@@ -77,12 +77,18 @@
     }
 	SimDate *startDate = (SimDate*)[self.cashFlow.multiScenarioStartDate 
 			getValueForCurrentOrDefaultScenario];
+	NSDate *resolvedStartDate = startDate.date;
+			
+	SimDate *endDate = (SimDate*)[self.cashFlow.multiScenarioEndDate 
+			getValueForCurrentOrDefaultScenario];
+	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
 		[self.cashFlow.multiScenarioEventRepeatFrequency getValueForCurrentOrDefaultScenario];
+	// TODO - Need to pass in an end date to the event repeat frequency
     eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
-                     andStartDate:startDate.date];
+                     andStartDate:resolvedStartDate andEndDate:resolvedEndDate];
    
 }
 

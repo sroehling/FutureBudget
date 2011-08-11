@@ -80,8 +80,6 @@
 {
 
 	[self populateInputNameField:cashFlow];
-
-    SectionInfo *sectionInfo = [formPopulator nextSection];
 	
  	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 
@@ -89,7 +87,7 @@
 	      
     // Amount section
     
-    sectionInfo = [formPopulator nextSection];
+    SectionInfo *sectionInfo  = [formPopulator nextSection];
 	
 	
     sectionInfo.title = 

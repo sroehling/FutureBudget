@@ -11,7 +11,6 @@
 #import "VariableRateCalculator.h"
 #import "VariableRate.h"
 #import "InMemoryCoreData.h"
-#import "TestDateHelper.h"
 
 #import "FixedValue.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
@@ -117,7 +116,7 @@
 	DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		[[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 	VariableRateCalculator *varRateCalc = 
-		[calcCreator createForDateSensitiveValue:variableVal andStartDate:[TestDateHelper dateFromStr:@"2011-01-01"]];
+		[calcCreator createForDateSensitiveValue:variableVal andStartDate:[DateHelper dateFromStr:@"2011-01-01"]];
 	[self checkOneRateCalc:varRateCalc andDaysSinceStart:0 andExpectedVal:1.0];
 	[self checkOneRateCalc:varRateCalc andDaysSinceStart:365 andExpectedVal:1.1];
 	[self checkOneRateCalc:varRateCalc andDaysSinceStart:730 andExpectedVal:1.21];

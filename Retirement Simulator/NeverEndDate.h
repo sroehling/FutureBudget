@@ -11,6 +11,7 @@
 #import "SimDate.h"
 
 extern NSString * const NEVER_END_DATE_ENTITY_NAME;
+extern NSString * const NEVER_END_PSEUDO_END_DATE;
 
 @interface NeverEndDate : SimDate {
 @private

@@ -12,7 +12,7 @@
 #import "ValueAsOfCalculator.h"
 #import "FixedValue.h"
 #import "VariableValue.h"
-#import "TestDateHelper.h"
+#import "DateHelper.h"
 #import "TestCoreDataObjects.h"
 
 @implementation VariableValueCalculatorTest
@@ -32,7 +32,7 @@
 - (void)checkOneValueAsOfWithCalc:(id<ValueAsOfCalculator>)valueCalc
 		andAsOfDate:(NSString*)asOfDateStr andExpectedVal:(double)expectedVal
 {
-	NSDate *asOfDate = [TestDateHelper dateFromStr:asOfDateStr];
+	NSDate *asOfDate = [DateHelper dateFromStr:asOfDateStr];
 	
 	double asOfValue = [valueCalc valueAsOfDate:asOfDate];
 	STAssertEqualsWithAccuracy(asOfValue, expectedVal, 0.01,

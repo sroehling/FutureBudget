@@ -96,7 +96,6 @@
 		0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */; };
 		0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */; };
 		0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96713B69C66000555AC /* TestCoreDataObjects.m */; };
-		0095E96B13B69DF7000555AC /* TestDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96A13B69DF7000555AC /* TestDateHelper.m */; };
 		0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96D13B8E93A000555AC /* EventRepeaterTest.m */; };
 		0095E97513B92794000555AC /* NeverEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E97413B92794000555AC /* NeverEndDate.m */; };
 		0095E98A13BA5876000555AC /* StaticFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E98913BA5876000555AC /* StaticFieldEditInfo.m */; };
@@ -346,8 +345,6 @@
 		0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueCalculatorTest.m; sourceTree = "<group>"; };
 		0095E96613B69C66000555AC /* TestCoreDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCoreDataObjects.h; sourceTree = "<group>"; };
 		0095E96713B69C66000555AC /* TestCoreDataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCoreDataObjects.m; sourceTree = "<group>"; };
-		0095E96913B69DF7000555AC /* TestDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDateHelper.h; sourceTree = "<group>"; };
-		0095E96A13B69DF7000555AC /* TestDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDateHelper.m; sourceTree = "<group>"; };
 		0095E96C13B8E93A000555AC /* EventRepeaterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeaterTest.h; sourceTree = "<group>"; };
 		0095E96D13B8E93A000555AC /* EventRepeaterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeaterTest.m; sourceTree = "<group>"; };
 		0095E97313B92794000555AC /* NeverEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeverEndDate.h; sourceTree = "<group>"; };
@@ -541,8 +538,6 @@
 				0025776E13B42EE000D15232 /* InMemoryCoreData.m */,
 				0095E96613B69C66000555AC /* TestCoreDataObjects.h */,
 				0095E96713B69C66000555AC /* TestCoreDataObjects.m */,
-				0095E96913B69DF7000555AC /* TestDateHelper.h */,
-				0095E96A13B69DF7000555AC /* TestDateHelper.m */,
 			);
 			name = "Test Helper Code";
 			sourceTree = "<group>";
@@ -1370,7 +1365,6 @@
 				0025776F13B42EE300D15232 /* InMemoryCoreData.m in Sources */,
 				0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */,
 				0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */,
-				0095E96B13B69DF7000555AC /* TestDateHelper.m in Sources */,
 				0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */,
 				0009480E13C21AE9008F129B /* MultiScenarioInputValueTest.m in Sources */,
 			);

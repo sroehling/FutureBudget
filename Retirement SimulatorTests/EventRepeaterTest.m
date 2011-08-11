@@ -10,9 +10,8 @@
 
 #import "EventRepeater.h"
 #import "InMemoryCoreData.h"
-#import "TestDateHelper.h"
 #import "EventRepeatFrequency.h"
-#import "TestDateHelper.h"
+#import "DateHelper.h"
 
 
 @implementation EventRepeaterTest
@@ -41,9 +40,9 @@
 
 - (void)checkNextDate:(EventRepeater*)eventRepeater expectedDateStr:(NSString*)expectedDateStr
 {
-	NSDate *expectedDate = [TestDateHelper dateFromStr:expectedDateStr];
+	NSDate *expectedDate = [DateHelper dateFromStr:expectedDateStr];
 	NSDate *eventDate = [eventRepeater nextDate];
-	NSString *eventDateStr = [TestDateHelper stringFromDate:eventDate];
+	NSString *eventDateStr = [DateHelper stringFromDate:eventDate];
 	STAssertNotNil(eventDate, @"checkNextDate: Expecting a date %@, got nil", expectedDateStr);
 	
 	STAssertEqualObjects(expectedDate,eventDate,@"checkNextDate: Expecting date %@, got %@",
@@ -55,53 +54,62 @@
 {
 	NSDate *eventDate = [eventRepeater nextDate];
 	STAssertNil(eventDate,@"checkNextDate: Expecting nil, got %@",
-				[TestDateHelper stringFromDate:eventDate]);
+				[DateHelper stringFromDate:eventDate]);
 	NSLog(@"checkNextNilDate: Expecting nil date (end of repeating)");
 }
 
 -(void)testOneTimeEventRepeater
 {
 	EventRepeatFrequency *repeatOnce= [self createOneRepeatFrequencyWithPeriod:kEventPeriodOnce andMultiplier:1];
-	NSDate *startDate = [TestDateHelper dateFromStr:@"2011-05-31"];
+	NSDate *startDate = [DateHelper dateFromStr:@"2011-05-31"];
+	NSDate *endDate = [DateHelper dateFromStr:@"2100-01-01"];
+
 	EventRepeater *eventRepeater = [[EventRepeater alloc] 
 									initWithEventRepeatFrequency:repeatOnce
-									andStartDate:startDate];
+									andStartDate:startDate andEndDate:endDate];
 	[self checkNextDate:eventRepeater expectedDateStr:@"2011-05-31"];
 	[self checkNextNilDate:eventRepeater];
 }
 	
-
+-(void)testYearlyEventRepeaterWithEndDate
+{
+	EventRepeatFrequency *repeatYearly = [self createOneRepeatFrequencyWithPeriod:kEventPeriodYear andMultiplier:1];
+	NSDate *startDate = [DateHelper dateFromStr:@"2011-01-01"];
+	NSDate *endDate = [DateHelper dateFromStr:@"2013-01-01"];
+	EventRepeater *eventRepeater = [[EventRepeater alloc] 
+                     initWithEventRepeatFrequency:repeatYearly
+                     andStartDate:startDate andEndDate:endDate];
+	[self checkNextDate:eventRepeater expectedDateStr:@"2011-01-01"];				 
+	[self checkNextDate:eventRepeater expectedDateStr:@"2012-01-01"];				 
+	[self checkNextDate:eventRepeater expectedDateStr:@"2013-01-01"];				 
+	[self checkNextNilDate:eventRepeater];
+			 
+}
 
 -(void)testYearlyEventRepeater
 {
 	EventRepeatFrequency *repeatYearly = [self createOneRepeatFrequencyWithPeriod:kEventPeriodYear andMultiplier:1];
-	NSDate *startDate = [TestDateHelper dateFromStr:@"2011-01-01"];
+	NSDate *startDate = [DateHelper dateFromStr:@"2011-01-01"];
+	NSDate *endDate = [DateHelper dateFromStr:@"2100-01-01"];
 	EventRepeater *eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatYearly
-                     andStartDate:startDate];
+                     andStartDate:startDate andEndDate:endDate];
 	[self checkNextDate:eventRepeater expectedDateStr:@"2011-01-01"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2012-01-01"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2013-01-01"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2014-01-01"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2015-01-01"];				 
-					 
-		
-				/*
-	[self createOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:1];
-	[self createOneRepeatFrequencyWithPeriod:kEventPeriodWeek andMultiplier:2];
-	[self createOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:6];
-	*/       
-
 }
 
 -(void)testEveryOtherYearRepeater
 {
 	EventRepeatFrequency *repeatEveryOtherYear = [self 
 					createOneRepeatFrequencyWithPeriod:kEventPeriodYear andMultiplier:2];
-	NSDate *startDate = [TestDateHelper dateFromStr:@"2011-01-01"];
+	NSDate *startDate = [DateHelper dateFromStr:@"2011-01-01"];
+	NSDate *endDate = [DateHelper dateFromStr:@"2100-01-01"];
 	EventRepeater *eventRepeater = [[EventRepeater alloc] 
 									initWithEventRepeatFrequency:repeatEveryOtherYear
-									andStartDate:startDate];
+									andStartDate:startDate andEndDate:endDate];
 	[self checkNextDate:eventRepeater expectedDateStr:@"2011-01-01"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2013-01-01"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2015-01-01"];				 
@@ -113,10 +121,11 @@
 -(void)testLeapYearEventRepeater
 {
 	EventRepeatFrequency *repeatYearly = [self createOneRepeatFrequencyWithPeriod:kEventPeriodYear andMultiplier:1];
-	NSDate *startDate = [TestDateHelper dateFromStr:@"2012-02-29"];
+	NSDate *startDate = [DateHelper dateFromStr:@"2012-02-29"];
+	NSDate *endDate = [DateHelper dateFromStr:@"2100-01-01"];
 	EventRepeater *eventRepeater = [[EventRepeater alloc] 
 									initWithEventRepeatFrequency:repeatYearly
-									andStartDate:startDate];
+									andStartDate:startDate andEndDate:endDate];
 	[self checkNextDate:eventRepeater expectedDateStr:@"2012-02-29"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2013-02-28"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2014-02-28"];				 
@@ -129,10 +138,12 @@
 -(void)testMonthlyEventRepeater
 {
 	EventRepeatFrequency *repeatMonthly = [self createOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:1];
-	NSDate *startDate = [TestDateHelper dateFromStr:@"2012-01-15"];
+	NSDate *startDate = [DateHelper dateFromStr:@"2012-01-15"];
+	NSDate *endDate = [DateHelper dateFromStr:@"2100-01-01"];
+
 	EventRepeater *eventRepeater = [[EventRepeater alloc] 
 									initWithEventRepeatFrequency:repeatMonthly
-									andStartDate:startDate];
+									andStartDate:startDate andEndDate:endDate];
 	[self checkNextDate:eventRepeater expectedDateStr:@"2012-01-15"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2012-02-15"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2012-03-15"];				 
@@ -153,10 +164,11 @@
 -(void)testQuarterlyEventRepeater
 {
 	EventRepeatFrequency *repeatQuarterly = [self createOneRepeatFrequencyWithPeriod:kEventPeriodMonth andMultiplier:3];
-	NSDate *startDate = [TestDateHelper dateFromStr:@"2012-01-15"];
+	NSDate *startDate = [DateHelper dateFromStr:@"2012-01-15"];
+	NSDate *endDate = [DateHelper dateFromStr:@"2100-01-01"];
 	EventRepeater *eventRepeater = [[EventRepeater alloc] 
 									initWithEventRepeatFrequency:repeatQuarterly
-									andStartDate:startDate];
+									andStartDate:startDate andEndDate:endDate];
 	[self checkNextDate:eventRepeater expectedDateStr:@"2012-01-15"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2012-04-15"];				 
 	[self checkNextDate:eventRepeater expectedDateStr:@"2012-07-15"];				 

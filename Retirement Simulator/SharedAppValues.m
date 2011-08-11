@@ -9,6 +9,7 @@
 #import "SharedAppValues.h"
 #import "NeverEndDate.h"
 #import "DataModelController.h"
+#import "DateHelper.h"
 #import "EventRepeatFrequency.h"
 #import "DefaultScenario.h"
 
@@ -64,7 +65,7 @@ static SharedAppValues *theSharedAppVals;
 
 		SharedAppValues *sharedVals = [[DataModelController theDataModelController] insertObject:SHARED_APP_VALUES_ENTITY_NAME];
 		NeverEndDate *theNeverEndDate = [[DataModelController theDataModelController] insertObject:NEVER_END_DATE_ENTITY_NAME];
-		theNeverEndDate.date = [[[NSDate alloc] init] autorelease];
+		theNeverEndDate.date = [DateHelper dateFromStr:NEVER_END_PSEUDO_END_DATE];
 		sharedVals.sharedNeverEndDate = theNeverEndDate;
 		
 		DefaultScenario *defaultScenario = (DefaultScenario*)[[DataModelController theDataModelController] insertObject:DEFAULT_SCENARIO_ENTITY_NAME];

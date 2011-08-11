@@ -48,4 +48,21 @@
     [mediumDateFormatter release];
 }
 
++ (NSDate*)dateFromStr:(NSString*)dateStr
+{
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc]init] autorelease];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+	NSDate *theDate = [dateFormatter dateFromString:dateStr];
+	assert(theDate != nil);
+	return theDate;
+}
+
++ (NSString*)stringFromDate:(NSDate*)theDate
+{
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc]init] autorelease];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+	NSString *dateStr = [dateFormatter stringFromDate:theDate];
+	return dateStr;	
+}
+
 @end
