@@ -10,11 +10,13 @@
 #import "SimEventCreator.h"
 #import "SimEvent.h"
 #import "SharedAppValues.h"
+#import "SimDate.h"
 
 
 @implementation SimEngine
 
 @synthesize eventCreators;
+@synthesize simEndDate;
 
 -(id)init {    
     if((self =[super init]))
@@ -39,6 +41,7 @@
     [super dealloc];
 
     [eventCreators release];
+	[simEndDate release];
    
     [eventList release];
     [dateFormatter release];
@@ -113,6 +116,9 @@
     nextResultsCheckpointDate = [gregorian dateByAddingComponents:resultsOffsetComponents 
              toDate:simStartDate options:0];
     [nextResultsCheckpointDate retain];
+	
+	self.simEndDate = [[SharedAppValues singleton].simEndDate endDateWithStartDate:simStartDate];
+	
     NSLog(@"First checkpoint date for results: %@",[dateFormatter stringFromDate:nextResultsCheckpointDate]);
 
 }
@@ -156,10 +162,9 @@
     
     [self resetSimulator];
     
-    NSDate *planEndDate = [dateFormatter dateFromString:@"2013-12-31"];
-    NSLog(@"Plan end date: %@",[dateFormatter stringFromDate:planEndDate]);
+    NSLog(@"Plan end date: %@",[dateFormatter stringFromDate:self.simEndDate]);
     
-    while ([nextResultsCheckpointDate compare:planEndDate] == NSOrderedAscending) 
+    while ([nextResultsCheckpointDate compare:self.simEndDate] == NSOrderedAscending) 
     {
         id<SimEvent> nextEventToProcess = [self nextEventFromEventList];
                 

@@ -59,6 +59,12 @@
 	return nil;
 }
 
+- (NSManagedObject*)fieldObject
+{
+	assert(0); // must be overriden
+	return nil;
+}
+
 - (BOOL)fieldIsInitializedInParentObject
 {
 	assert(0); // must be overriden

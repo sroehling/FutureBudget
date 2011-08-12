@@ -153,9 +153,12 @@
 "STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE" = "Enter balances as of the start date";
 "STARTUP_VALS_START_DATE_LABEL" = "Start Date";
 "STARTUP_VALS_START_DATE_PLACEHOLDER" = "Enter a date";
-"STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Start Date";
-"STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "This is the date the simulation will start, with the starting balances entered below. Update this start date in conjunction with changes to the starting balances.";
+"STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Time Frame";
+"STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "These are dates the simulation will start and stop. Update this start date in conjunction with changes to the starting balances.";
 
+"SIM_END_DATE_TABLE_TITLE" = "End Date";
+"SIM_END_DATE_TABLE_HEADER" = "Simulation End Date";
+"SIM_END_DATE_TABLE_SUBTITLE" = "This is the date the simulation will end. Enter a date for as long as you need to plan for.";
 
 "RELATIVE_END_DATE_LABEL" = "After Start Date";
 "RELATIVE_END_DATE_DESCRIPTION_SINGLE_WEEK_LABEL" = "Week";

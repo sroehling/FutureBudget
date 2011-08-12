@@ -65,7 +65,7 @@
 
 - (NSString*)detailTextLabel
 {
-	RelativeEndDate *relEndDate = (RelativeEndDate *)[self.relEndDateFieldInfo managedObject];
+	RelativeEndDate *relEndDate = (RelativeEndDate *)[self.relEndDateFieldInfo fieldObject];
     return [relEndDate inlineDescription:[[DateHelper theHelper] mediumDateFormatter]];;
 }
 
@@ -106,7 +106,7 @@
 
 - (NSManagedObject*) managedObject
 {
-    return [self.relEndDateFieldInfo managedObject];
+    return [self.relEndDateFieldInfo fieldObject];
 }
 
 

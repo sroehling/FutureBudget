@@ -20,9 +20,10 @@
 @synthesize tableTitle;
 @synthesize tableHeader;
 @synthesize tableSubHeader;
+@synthesize supportsNeverEndDate;
 
 - (id)initWithTableTitle:(NSString*)theTitle andHeader:(NSString*)theHeader
-			andSubHeader:(NSString*)theSubHeader
+			andSubHeader:(NSString*)theSubHeader andSupportsNeverEndDate:(bool)doesSupportNeverEndDate
 {
 	self = [super init];
 	if(self)
@@ -80,7 +81,7 @@
 
 	NSString *tableTitle = LOCALIZED_STR(fieldTitleStringFileKey);
 
-	return [[[SimDateRuntimeInfo alloc] initWithTableTitle:tableTitle andHeader:tableHeader andSubHeader:tableSubHeader] autorelease];
+	return [[[SimDateRuntimeInfo alloc] initWithTableTitle:tableTitle andHeader:tableHeader andSubHeader:tableSubHeader andSupportsNeverEndDate:TRUE] autorelease];
 }
 
 + (SimDateRuntimeInfo*)createForDateSensitiveValue:(VariableValueRuntimeInfo*)valRuntimeInfo
@@ -96,7 +97,7 @@
 		 
 	NSString *tableTitle = LOCALIZED_STR(valRuntimeInfo.valueTitleKey);
 
-	return [[[SimDateRuntimeInfo alloc] initWithTableTitle:tableTitle andHeader:tableHeader andSubHeader:tableSubheader] autorelease];
+	return [[[SimDateRuntimeInfo alloc] initWithTableTitle:tableTitle andHeader:tableHeader andSubHeader:tableSubheader andSupportsNeverEndDate:TRUE] autorelease];
 }
 
 @end

@@ -32,6 +32,7 @@
 - (void)setFieldValue:(NSObject*)newValue;
 - (BOOL)fieldIsInitializedInParentObject;
 - (NSManagedObject*)managedObject;
+- (NSManagedObject*)fieldObject;
 
 
 @end

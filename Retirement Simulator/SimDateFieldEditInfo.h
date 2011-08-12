@@ -31,7 +31,7 @@
 @property(nonatomic,retain) ValueSubtitleTableCell *dateCell;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
-+ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
++ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultFixedDate:(FixedDate*)defaultFixedDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
 	andShowEndDates:(bool)doShowEndDates
 	andDefaultRelEndDateKey:(NSString*)theDefaultRelEndDateKey;
 			  

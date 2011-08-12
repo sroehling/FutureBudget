@@ -9,6 +9,8 @@
 #import "SimDate.h"
 #import "SimDateVisitor.h"
 
+NSString * const SIM_DATE_DATE_KEY = @"date";
+
 @implementation SimDate
 
 @dynamic date;

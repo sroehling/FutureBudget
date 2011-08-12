@@ -16,8 +16,10 @@
 #import "NumberFieldEditInfo.h"
 #import "NumberHelper.h"
 #import "SectionInfo.h"
+#import "LocalizationHelper.h"
 #import "DateFieldEditInfo.h"
-
+#import "SimDateRuntimeInfo.h"
+#import "SimDateFieldEditInfo.h"
 
 @implementation StartingValsFormInfoCreator
 
@@ -37,6 +39,23 @@
 			andLabel:LOCALIZED_STR(@"STARTUP_VALS_START_DATE_LABEL")
 			andPlaceholder:LOCALIZED_STR(@"STARTUP_VALS_START_DATE_PLACEHOLDER")];	
 	[sectionInfo addFieldEditInfo:simStartDateInfo];
+	
+	
+	// TODO - Add support to edit end date.
+	SimDateRuntimeInfo *endDateInfo = 
+			[[[SimDateRuntimeInfo alloc] 
+				initWithTableTitle:LOCALIZED_STR(@"SIM_END_DATE_TABLE_TITLE")
+				andHeader:LOCALIZED_STR(@"SIM_END_DATE_TABLE_HEADER")
+				andSubHeader:LOCALIZED_STR(@"SIM_END_DATE_TABLE_SUBTITLE") 
+				andSupportsNeverEndDate:FALSE] autorelease];
+			
+			
+	SimDateFieldEditInfo *endDateFieldEditInfo = [SimDateFieldEditInfo createForObject:[SharedAppValues singleton] andKey:SHARED_APP_VALUES_SIM_END_DATE_KEY andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
+		andDefaultFixedDate:[SharedAppValues singleton].defaultFixedSimEndDate andVarDateRuntimeInfo:endDateInfo
+		andShowEndDates:TRUE andDefaultRelEndDateKey:SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY];
+
+	[sectionInfo addFieldEditInfo:endDateFieldEditInfo];
+
 	
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE");

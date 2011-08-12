@@ -80,17 +80,19 @@
 	
 	if(showEndDates)
 	{
-		sectionInfo = [formPopulator nextSection];
 	
-		sectionInfo.title = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE");
-		sectionInfo.subTitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE");
+		if(self.varDateRuntimeInfo.supportsNeverEndDate)
+		{
+			sectionInfo = [formPopulator nextSection];
 	
-		NeverEndDate *neverEndDate = [SharedAppValues singleton].sharedNeverEndDate;
-		StaticFieldEditInfo *neverEndingFieldEditInfo = 
-			[[[StaticFieldEditInfo alloc] initWithManagedObj:neverEndDate 
-			andCaption:@"" andContent:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")] autorelease];
-		[sectionInfo addFieldEditInfo:neverEndingFieldEditInfo];
-		
+			sectionInfo.title = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE");
+			sectionInfo.subTitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE");
+			NeverEndDate *neverEndDate = [SharedAppValues singleton].sharedNeverEndDate;
+			StaticFieldEditInfo *neverEndingFieldEditInfo = 
+				[[[StaticFieldEditInfo alloc] initWithManagedObj:neverEndDate 
+				andCaption:@"" andContent:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")] autorelease];
+			[sectionInfo addFieldEditInfo:neverEndingFieldEditInfo];
+		}
 		
 		sectionInfo = [formPopulator nextSection];
 	

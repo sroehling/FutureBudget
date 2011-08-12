@@ -24,6 +24,7 @@
     NSDateComponents *resultsOffsetComponents;
     
     NSDate *nextResultsCheckpointDate;
+	NSDate *simEndDate;
     
     NSMutableArray *eventCreators;
     
@@ -32,5 +33,6 @@
 - (void)runSim;
 
 @property (nonatomic, retain) NSMutableArray *eventCreators;
+@property(nonatomic,retain) NSDate *simEndDate;
 
 @end

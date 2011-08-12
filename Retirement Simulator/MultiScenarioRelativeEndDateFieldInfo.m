@@ -63,9 +63,17 @@
 }
 
 
+- (NSManagedObject*)fieldObject
+{
+	RelativeEndDate *theRelEndDate = (RelativeEndDate*)
+		[self.inputVal findInputValueForScenarioOrDefault:self.currentScen];
+	assert(theRelEndDate != nil); // value must be set for current scenario or default
+	return theRelEndDate;
+
+}
+
 - (void)setFieldValue:(NSObject*)newValue
 {
-	
 	assert([newValue isKindOfClass:[RelativeEndDateInfo class]]);
 	RelativeEndDateInfo *newRelEndDateInfo = (RelativeEndDateInfo*)newValue;
 	RelativeEndDate *existingRelEndDate = (RelativeEndDate*)

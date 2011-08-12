@@ -12,6 +12,8 @@
 
 #import "InputValue.h"
 
+extern NSString * const SIM_DATE_DATE_KEY;
+
 @interface SimDate : InputValue {
 @private
 }

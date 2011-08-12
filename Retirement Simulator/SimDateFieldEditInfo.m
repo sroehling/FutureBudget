@@ -23,7 +23,9 @@
 #import "SharedAppValues.h"
 #import "Scenario.h"
 #import "MultiScenarioFixedDateFieldInfo.h"
+#import "FixedDate.h"
 #import "MultiScenarioInputValue.h"
+#import "SingleScenarioRelativeEndDateFieldInfo.h"
 #import "MultiScenarioRelativeEndDateFieldInfo.h"
 
 @implementation SimDateFieldEditInfo
@@ -136,17 +138,18 @@
 
 
 
-+ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultValueKey:(NSString*)defaultValKey andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
++ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultFixedDate:(FixedDate*)defaultFixedDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
 	andShowEndDates:(bool)doShowEndDates
 	andDefaultRelEndDateKey:(NSString*)theDefaultRelEndDateKey
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
-    assert([StringValidation nonEmptyString:defaultValKey]);
+	assert(defaultFixedDate != nil);
    
 	
 	NSString *variableDatePlaceholder = LOCALIZED_STR(@"VARIABLE_DATE_PLACEHOLDER");
+	
 	
     ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
 										  initWithManagedObject:obj andFieldKey:key 
@@ -154,8 +157,8 @@
 										  andFieldPlaceholder:variableDatePlaceholder] autorelease];
     
     ManagedObjectFieldInfo *defaultValFieldInfo = [[[ManagedObjectFieldInfo alloc] 
-                                          initWithManagedObject:obj 
-                        andFieldKey:defaultValKey andFieldLabel:label
+                                          initWithManagedObject:defaultFixedDate 
+                        andFieldKey:SIM_DATE_DATE_KEY andFieldLabel:label
 						andFieldPlaceholder:variableDatePlaceholder] autorelease];
 
 
@@ -163,13 +166,7 @@
 	if(doShowEndDates)
 	{
 		assert([StringValidation nonEmptyString:theDefaultRelEndDateKey]);
-		assert(0); // Not implemented yet - 
-			// this method is only called by DateSensitiveValueChangeFormPopulator, which
-			// passes FALSE for doShowEndDates. If support is needed for single scenario values,
-			// then a special SingleScenarioRelativeEndDateFieldInfo object is needed, which
-			// takes a RelativeEndDateFieldInfo object like the multi scenario Field Info object
-			// that is already implemented. 
-		defaultRelEndDateFieldInfo = [[[ManagedObjectFieldInfo alloc] 
+		defaultRelEndDateFieldInfo = [[[SingleScenarioRelativeEndDateFieldInfo alloc] 
                                           initWithManagedObject:obj 
                         andFieldKey:theDefaultRelEndDateKey andFieldLabel:label
 						andFieldPlaceholder:variableDatePlaceholder] autorelease];

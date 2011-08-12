@@ -9,15 +9,21 @@
 #import "SharedAppValues.h"
 #import "NeverEndDate.h"
 #import "DataModelController.h"
+#import "FixedDate.h"
 #import "DateHelper.h"
 #import "EventRepeatFrequency.h"
 #import "DefaultScenario.h"
+#import "RelativeEndDate.h"
 
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
 NSString * const SHARED_APP_VALUES_SIM_START_DATE_KEY = @"simStartDate";
+NSString * const SHARED_APP_VALUES_SIM_END_DATE_KEY = @"simEndDate";
+NSString * const SHARED_APP_VALUES_DEFAULT_FIXED_SIM_END_DATE_KEY = @"defaultFixedSimEndDate";
+NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"defaultFixedRelativeEndDate";
 
+#define DEFAULT_SIM_END_DATE_OFFSET_YEARS 50
 
 @implementation SharedAppValues
 
@@ -26,6 +32,9 @@ NSString * const SHARED_APP_VALUES_SIM_START_DATE_KEY = @"simStartDate";
 @dynamic currentInputScenario;
 @dynamic repeatOnceFreq;
 @dynamic simStartDate;
+@dynamic simEndDate;
+@dynamic defaultFixedSimEndDate;
+@dynamic defaultFixedRelativeEndDate;
 
 static SharedAppValues *theSharedAppVals;  
 
@@ -75,6 +84,20 @@ static SharedAppValues *theSharedAppVals;
 		sharedVals.repeatOnceFreq = repeatOnce;
 		
 		sharedVals.simStartDate = [[[NSDate alloc] init] autorelease];
+		
+		RelativeEndDate *theSimEndDate = [[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
+		theSimEndDate.years = [NSNumber numberWithInt:DEFAULT_SIM_END_DATE_OFFSET_YEARS];
+		theSimEndDate.months = [NSNumber numberWithInt:0];
+		theSimEndDate.weeks = [NSNumber numberWithInt:0];
+		sharedVals.simEndDate = theSimEndDate;
+		sharedVals.defaultFixedRelativeEndDate = theSimEndDate;
+
+		
+		FixedDate *fixedEndDate = (FixedDate*)[[
+			DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
+		fixedEndDate.date = [NSDate date];
+		sharedVals.defaultFixedSimEndDate = fixedEndDate;
+
 		
 		[SharedAppValues initSingleton:sharedVals];
 

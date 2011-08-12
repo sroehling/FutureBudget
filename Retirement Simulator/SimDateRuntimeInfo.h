@@ -17,14 +17,16 @@
 		NSString *tableTitle;
 		NSString *tableHeader;
 		NSString *tableSubHeader;
+		bool supportsNeverEndDate;
 }
 
 @property(nonatomic,retain) NSString *tableTitle;
 @property(nonatomic,retain) NSString *tableHeader;
 @property(nonatomic,retain) NSString *tableSubHeader;
+@property bool supportsNeverEndDate;
 
 - (id)initWithTableTitle:(NSString*)theTitle andHeader:(NSString*)theHeader
-     andSubHeader:(NSString*)theSubHeader;
+			andSubHeader:(NSString*)theSubHeader andSupportsNeverEndDate:(bool)doesSupportNeverEndDate;
 	 
 + (SimDateRuntimeInfo*)createForInput:(Input*)theInput
 	andFieldTitleKey:(NSString*)fieldTitleStringFileKey 

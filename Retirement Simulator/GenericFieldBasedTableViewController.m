@@ -122,7 +122,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"Table view num sections: %d",[self.formInfo numSections]);
     return [self.formInfo numSections];
 }
 
