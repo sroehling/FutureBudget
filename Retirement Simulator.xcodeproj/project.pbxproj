@@ -68,6 +68,8 @@
 		004CB02813FAD1D4000E87A9 /* ExpenseSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB02713FAD1D2000E87A9 /* ExpenseSimEvent.m */; };
 		004CB02B13FAD365000E87A9 /* IncomeSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB02A13FAD364000E87A9 /* IncomeSimEvent.m */; };
 		004CB02E13FB1AE1000E87A9 /* TestDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB02D13FB1AE0000E87A9 /* TestDateHelper.m */; };
+		004CB03213FC2A22000E87A9 /* Cash.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03113FC2A21000E87A9 /* Cash.m */; };
+		004CB03513FC4912000E87A9 /* CashWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03413FC490E000E87A9 /* CashWorkingBalance.m */; };
 		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
 		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
@@ -299,6 +301,10 @@
 		004CB02A13FAD364000E87A9 /* IncomeSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeSimEvent.m; sourceTree = "<group>"; };
 		004CB02C13FB1AE0000E87A9 /* TestDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDateHelper.h; sourceTree = "<group>"; };
 		004CB02D13FB1AE0000E87A9 /* TestDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDateHelper.m; sourceTree = "<group>"; };
+		004CB03013FC2A21000E87A9 /* Cash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cash.h; sourceTree = "<group>"; };
+		004CB03113FC2A21000E87A9 /* Cash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cash.m; sourceTree = "<group>"; };
+		004CB03313FC490C000E87A9 /* CashWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashWorkingBalance.h; sourceTree = "<group>"; };
+		004CB03413FC490E000E87A9 /* CashWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashWorkingBalance.m; sourceTree = "<group>"; };
 		004F5D06136F170500E0C4A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		004F5D0C136F52D200E0C4A3 /* DataModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelController.h; sourceTree = "<group>"; };
 		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
@@ -796,6 +802,7 @@
 			children = (
 				0025776113B292F600D15232 /* Variable Rate Calculator */,
 				0025776213B2932200D15232 /* Variable Value Calculator */,
+				004CB03613FC491E000E87A9 /* Digest */,
 				004F5D7713732CA300E0C4A3 /* Simulator Engine */,
 				005731EC137874A1008D13C1 /* Simulator Inputs */,
 			);
@@ -807,17 +814,14 @@
 			children = (
 				004F5D0F13706F7100E0C4A3 /* Input.h */,
 				004F5D1013706F7100E0C4A3 /* Input.m */,
-				004F5D22137079AD00E0C4A3 /* ExpenseInput.h */,
-				004F5D23137079AD00E0C4A3 /* ExpenseInput.m */,
 				00ADB3001382CB2B00064651 /* InputVisitor.h */,
-				00ADB31513842FC700064651 /* CashFlowInput.h */,
-				00ADB31613842FC800064651 /* CashFlowInput.m */,
-				00ADB3181384330600064651 /* IncomeInput.h */,
-				00ADB3191384330700064651 /* IncomeInput.m */,
+				004CB02F13FC26AB000E87A9 /* Cash Flow */,
 				0010A58113CFEE6B0096A20F /* Account.h */,
 				0010A58213CFEE6B0096A20F /* Account.m */,
 				0010A58413CFEE940096A20F /* SavingsAccount.h */,
 				0010A58513CFEE940096A20F /* SavingsAccount.m */,
+				004CB03013FC2A21000E87A9 /* Cash.h */,
+				004CB03113FC2A21000E87A9 /* Cash.m */,
 			);
 			name = Inputs;
 			sourceTree = "<group>";
@@ -911,6 +915,36 @@
 			name = "Table Structure and Creation";
 			sourceTree = "<group>";
 		};
+		004CB02F13FC26AB000E87A9 /* Cash Flow */ = {
+			isa = PBXGroup;
+			children = (
+				004F5D22137079AD00E0C4A3 /* ExpenseInput.h */,
+				004F5D23137079AD00E0C4A3 /* ExpenseInput.m */,
+				00ADB31513842FC700064651 /* CashFlowInput.h */,
+				00ADB31613842FC800064651 /* CashFlowInput.m */,
+				00ADB3181384330600064651 /* IncomeInput.h */,
+				00ADB3191384330700064651 /* IncomeInput.m */,
+			);
+			name = "Cash Flow";
+			sourceTree = "<group>";
+		};
+		004CB03613FC491E000E87A9 /* Digest */ = {
+			isa = PBXGroup;
+			children = (
+				004CB03313FC490C000E87A9 /* CashWorkingBalance.h */,
+				004CB03413FC490E000E87A9 /* CashWorkingBalance.m */,
+				004CB01713F9B797000E87A9 /* DigestUpdateEventCreator.h */,
+				004CB01813F9B797000E87A9 /* DigestUpdateEventCreator.m */,
+				004CB01B13F9C985000E87A9 /* DigestUpdateEvent.h */,
+				004CB01C13F9C986000E87A9 /* DigestUpdateEvent.m */,
+				00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */,
+				00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */,
+				00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */,
+				00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */,
+			);
+			name = Digest;
+			sourceTree = "<group>";
+		};
 		004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -983,14 +1017,6 @@
 				004CB01E13F9D522000E87A9 /* SimEvent.m */,
 				004F5D7E13733BC100E0C4A3 /* SimEngine.h */,
 				004F5D7F13733BC100E0C4A3 /* SimEngine.m */,
-				00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */,
-				00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */,
-				00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */,
-				00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */,
-				004CB01713F9B797000E87A9 /* DigestUpdateEventCreator.h */,
-				004CB01813F9B797000E87A9 /* DigestUpdateEventCreator.m */,
-				004CB01B13F9C985000E87A9 /* DigestUpdateEvent.h */,
-				004CB01C13F9C986000E87A9 /* DigestUpdateEvent.m */,
 			);
 			name = "Simulator Engine";
 			sourceTree = "<group>";
@@ -1407,6 +1433,8 @@
 				004CB02513FAD0BB000E87A9 /* ExpenseSimEventCreator.m in Sources */,
 				004CB02813FAD1D4000E87A9 /* ExpenseSimEvent.m in Sources */,
 				004CB02B13FAD365000E87A9 /* IncomeSimEvent.m in Sources */,
+				004CB03213FC2A22000E87A9 /* Cash.m in Sources */,
+				004CB03513FC4912000E87A9 /* CashWorkingBalance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

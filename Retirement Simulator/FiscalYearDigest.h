@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class CashWorkingBalance;
 
 @interface FiscalYearDigest : NSObject {
     @private
 		NSArray *cashFlowSummations;
 		NSDate *startDate;
+		CashWorkingBalance *cashWorkingBalance;
 }
 
 -(id)initWithStartDate:(NSDate*)theStartDate;
@@ -22,5 +24,7 @@
 - (void)advanceToNextYear;
 
 @property(nonatomic,retain) NSDate *startDate;
+
+@property(nonatomic,retain) CashWorkingBalance *cashWorkingBalance;
 
 @end

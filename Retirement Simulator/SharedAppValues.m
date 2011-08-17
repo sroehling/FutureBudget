@@ -14,6 +14,7 @@
 #import "EventRepeatFrequency.h"
 #import "DefaultScenario.h"
 #import "RelativeEndDate.h"
+#import "Cash.h"
 
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
@@ -35,6 +36,7 @@ NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"default
 @dynamic simEndDate;
 @dynamic defaultFixedSimEndDate;
 @dynamic defaultFixedRelativeEndDate;
+@dynamic cash;
 
 static SharedAppValues *theSharedAppVals;  
 
@@ -97,6 +99,12 @@ static SharedAppValues *theSharedAppVals;
 			DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
 		fixedEndDate.date = [NSDate date];
 		sharedVals.defaultFixedSimEndDate = fixedEndDate;
+		
+		
+		Cash *theCash = (Cash*)[[
+			DataModelController theDataModelController] insertObject:CASH_ENTITY_NAME];
+		theCash.startingBalance = [NSNumber numberWithDouble:0.0];
+		sharedVals.cash = theCash;
 
 		
 		[SharedAppValues initSingleton:sharedVals];

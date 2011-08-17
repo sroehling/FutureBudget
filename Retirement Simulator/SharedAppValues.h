@@ -15,6 +15,7 @@
 @class EventRepeatFrequency;
 @class SimDate;
 @class FixedDate;
+@class Cash;
 @class RelativeEndDate;
 
 extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
@@ -36,6 +37,8 @@ extern NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY;
 @property(nonatomic,retain) SimDate *simEndDate;
 @property(nonatomic,retain) FixedDate *defaultFixedSimEndDate;
 @property(nonatomic,retain) RelativeEndDate *defaultFixedRelativeEndDate;
+@property(nonatomic,retain) Cash *cash;
+
 
 +(void)initSingleton:(SharedAppValues*)theAppVals;
 +(SharedAppValues*)singleton;

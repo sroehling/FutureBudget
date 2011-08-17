@@ -20,6 +20,7 @@
 #import "DateFieldEditInfo.h"
 #import "SimDateRuntimeInfo.h"
 #import "SimDateFieldEditInfo.h"
+#import "Cash.h"
 
 @implementation StartingValsFormInfoCreator
 
@@ -70,6 +71,17 @@
 			[NumberFieldEditInfo createForObject:account andKey:ACCOUNT_STARTING_BALANCE_KEY andLabel:account.name andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER") andNumberFormatter:[NumberHelper theHelper].currencyFormatter];
 		[sectionInfo addFieldEditInfo:acctBalanceFieldEditInfo];
 	}
+	
+	Cash *theCash = [SharedAppValues singleton].cash;
+	NumberFieldEditInfo *cashBalanceFieldEditInfo = 
+			[NumberFieldEditInfo createForObject:theCash andKey:CASH_STARTING_BALANCE_KEY 
+			andLabel:LOCALIZED_STR(@"CASH_LABEL") 
+			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER") 
+			andNumberFormatter:[NumberHelper theHelper].currencyFormatter];
+	[sectionInfo addFieldEditInfo:cashBalanceFieldEditInfo];
+
+	
+	
 	return formPopulator.formInfo;
 	
 }
