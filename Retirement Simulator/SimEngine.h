@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class FiscalYearDigest;
+
 
 @interface SimEngine : NSObject {
 
@@ -20,12 +22,11 @@
     // (or whatever is conventional for objective C)
     
     NSDateFormatter *dateFormatter;
-    NSCalendar *gregorian;
     NSDateComponents *resultsOffsetComponents;
     
     NSDate *nextResultsCheckpointDate;
 	NSDate *simEndDate;
-    
+    FiscalYearDigest *digest;
     NSMutableArray *eventCreators;
     
 }
@@ -34,5 +35,6 @@
 
 @property (nonatomic, retain) NSMutableArray *eventCreators;
 @property(nonatomic,retain) NSDate *simEndDate;
+@property(nonatomic,retain) FiscalYearDigest *digest;
 
 @end

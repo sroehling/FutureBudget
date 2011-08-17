@@ -31,4 +31,6 @@
 @property(nonatomic,retain) id<ValueAsOfCalculator> varAmountCalc;
 @property(nonatomic,retain) NSDate *startAmountGrowthDate;
 
+- (SimEvent*) createCashFlowSimEvent:(double)cashFlowAmount andEventDate:(NSDate*)theDate;
+
 @end

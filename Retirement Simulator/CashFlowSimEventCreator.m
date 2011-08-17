@@ -7,7 +7,6 @@
 //
 
 #import "CashFlowSimEventCreator.h"
-#import "CashFlowInputSimEvent.h"
 
 #import "ExpenseInput.h"
 #import "EventRepeater.h"
@@ -92,16 +91,18 @@
    
 }
 
-- (id<SimEvent>)nextSimEvent
+- (SimEvent*) createCashFlowSimEvent:(double)cashFlowAmount andEventDate:(NSDate*)theDate
+{
+	assert(0); // must be overridden
+}
+
+
+- (SimEvent*)nextSimEvent
 {
     assert(eventRepeater!=nil);
     NSDate *nextDate = [eventRepeater nextDate];
     if(nextDate !=nil)
     {
-        CashFlowInputSimEvent *theEvent = [[CashFlowInputSimEvent alloc]initWithEventCreator:self ];
-        assert(cashFlow != nil);
-        theEvent.cashFlow = cashFlow;
-        theEvent.eventDate = nextDate;
 		
 		NSTimeInterval secondsSinceAmountGrowth = [nextDate timeIntervalSinceDate:self.startAmountGrowthDate];
 		// TBD - is the right to not include values which come before the start date? Or
@@ -113,11 +114,7 @@
 		double unadjustedAmount = [self.varAmountCalc valueAsOfDate:nextDate];
 		double growthAdjustedCashFlowAmount = unadjustedAmount * amountMultiplier;
 		
-		theEvent.cashFlowAmount = growthAdjustedCashFlowAmount;
-		
-        [theEvent autorelease];
-        
-        return theEvent;
+		return [self createCashFlowSimEvent:growthAdjustedCashFlowAmount andEventDate:nextDate];
        
     }
     else

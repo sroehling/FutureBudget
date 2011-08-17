@@ -9,19 +9,26 @@
 #import <Foundation/Foundation.h>
 
 #define SECONDS_PER_DAY 86400
+#define MAX_DAYS_IN_YEAR 366
 
 @interface DateHelper : NSObject {
     @private
         NSDateFormatter *mediumDateFormatter;
+        NSDateFormatter *longDateFormatter;
+		NSCalendar *gregorian;
 }
 
 +(DateHelper*)theHelper; // singleton
 
 + (NSDate*)dateFromStr:(NSString*)dateStr;
 + (NSString*)stringFromDate:(NSDate*)theDate;
-
++ (NSDate*)beginningOfYear:(NSDate*)dateWithinYear;
++ (NSDate*)beginningOfNextYear:(NSDate*)dateWithinPreviousYear;
++ (NSDate*)endOfYear:(NSDate*)dateWithinYear;
 
 @property(nonatomic,retain)  NSDateFormatter *mediumDateFormatter;
+@property(nonatomic,retain) NSDateFormatter *longDateFormatter;
+@property(nonatomic,retain) NSCalendar *gregorian;
 
 + (NSDate*)today;
 

@@ -8,6 +8,7 @@
 
 #import "EventRepeater.h"
 #import "EventRepeatFrequency.h"
+#import "DateHelper.h"
 
 
 @implementation EventRepeater
@@ -16,66 +17,79 @@
 @synthesize endDate;
 @synthesize currentDate;
 
+- (id) initWithRepeatOffset:(NSDateComponents*)theRepeatOffset andRepeatOnce:(bool)doRepeatOnce
+	 andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate
+{
+	self = [super init];
+	if(self)
+	{
+       dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        repeatOffsetComponents = theRepeatOffset;
+		[repeatOffsetComponents retain];
+		
+		self.startDate = theStartDate;
+        self.endDate = theEndDate;
+		repeatOnce = doRepeatOnce;
+
+        [self reset];
+
+	}
+	return self;
+ 
+}
+
 - (id) initWithEventRepeatFrequency:(EventRepeatFrequency*)repeatFrequency 
          andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
 {
     assert(repeatFrequency!=nil);
     assert(theStartDate!=nil);
 	assert(theEndDate != nil);
+	
+	bool doRepeatOnce = false;
 
-    self = [super init];
-    if (self) {
-        dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+	NSDateComponents *offsetComponents = [[[NSDateComponents alloc] init] autorelease];
         
-        gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        repeatOffsetComponents = [[NSDateComponents alloc] init];
-        
-        EventPeriod periodEnum = 
-            (EventPeriod)[[repeatFrequency period] intValue];
-        int periodMultiply = [[repeatFrequency periodMultiplier] intValue];
-        assert(periodMultiply >=0);
-        repeatOnce = false;
+	EventPeriod periodEnum = 
+		(EventPeriod)[[repeatFrequency period] intValue];
+	int periodMultiply = [[repeatFrequency periodMultiplier] intValue];
+	assert(periodMultiply >=0);
+	doRepeatOnce = false;
                 
-        switch (periodEnum) {
-            case kEventPeriodOnce:
-                assert(periodMultiply == 1);
-                repeatOnce = true;
-                break;
-            case kEventPeriodDay:
-                assert(periodMultiply > 0);
-                [repeatOffsetComponents setDay:periodMultiply];
-                break;
-            case kEventPeriodWeek:
-                assert(periodMultiply > 0);
-                [repeatOffsetComponents setWeek:periodMultiply];
-                break;
-            case kEventPeriodMonth:
-                assert(periodMultiply > 0);
-                [repeatOffsetComponents setMonth:periodMultiply];
-                break;
-            case kEventPeriodQuarter:
-                assert(periodMultiply > 0);
-                [repeatOffsetComponents setQuarter:periodMultiply];
-                break;
-            case kEventPeriodYear:
-                assert(periodMultiply > 0);
-                [repeatOffsetComponents setYear:periodMultiply];
-                break;
+	switch (periodEnum) {
+		case kEventPeriodOnce:
+			assert(periodMultiply == 1);
+			doRepeatOnce = true;
+			break;
+		case kEventPeriodDay:
+			assert(periodMultiply > 0);
+			[offsetComponents setDay:periodMultiply];
+			break;
+		case kEventPeriodWeek:
+			assert(periodMultiply > 0);
+			[offsetComponents setWeek:periodMultiply];
+			break;
+		case kEventPeriodMonth:
+			assert(periodMultiply > 0);
+			[offsetComponents setMonth:periodMultiply];
+			break;
+		case kEventPeriodQuarter:
+			assert(periodMultiply > 0);
+			[offsetComponents setQuarter:periodMultiply];
+			break;
+		case kEventPeriodYear:
+			assert(periodMultiply > 0);
+			[offsetComponents setYear:periodMultiply];
+			break;
                 
-            default:
-                assert(false); // shouldn't get here - invalid/unsupported enum found
-                break;
-        }
-        self.startDate = theStartDate;
-        self.endDate = theEndDate;
-        [self reset];
-        return self;
-    }
-    else
-    {
-        return nil;
-    }
+		default:
+			assert(false); // shouldn't get here - invalid/unsupported enum found
+			break;
+	}
+	return [self initWithRepeatOffset:offsetComponents andRepeatOnce:doRepeatOnce 
+		andStartDate:theStartDate andEndDate:theEndDate];
+
     
 }
 
@@ -108,7 +122,7 @@
            return currentDate;
         }
         else{
- 			self.currentDate = [gregorian dateByAddingComponents:repeatOffsetComponents 
+ 			self.currentDate = [[DateHelper theHelper].gregorian dateByAddingComponents:repeatOffsetComponents 
                  toDate:self.currentDate options:0];
 				 
 			NSComparisonResult eventComparedToResultsCheckpoint = 
@@ -135,7 +149,6 @@
 -(void)dealloc {
     [dateFormatter release];
     [repeatOffsetComponents release];
-    [gregorian release];
     [startDate release];
 	[currentDate release];
 	[endDate release];

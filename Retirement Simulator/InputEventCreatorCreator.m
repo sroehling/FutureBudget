@@ -8,6 +8,8 @@
 
 #import "InputEventCreatorCreator.h"
 #import "CashFlowSimEventCreator.h"
+#import "IncomeSimEventCreator.h"
+#import "ExpenseSimEventCreator.h"
 #import "DataModelController.h"
 #import "SimEngine.h"
 #import "ExpenseInput.h"
@@ -30,16 +32,17 @@
 
 - (void) visitIncome:(IncomeInput *)income
 {
-    CashFlowSimEventCreator *theCreator = 
-		[[CashFlowSimEventCreator alloc]initWithCashFlow:income];
+	// TODO - Need to support a separate "IncomeEventCreator"
+    IncomeSimEventCreator *theCreator = 
+		[[IncomeSimEventCreator alloc]initWithIncome:income];
     self.currSimEventCreator = theCreator;
     [theCreator release];
 }
 
 - (void)visitExpense:(ExpenseInput*)expense
 {
-    CashFlowSimEventCreator *theCreator = 
-        [[CashFlowSimEventCreator alloc]initWithCashFlow:expense];
+    ExpenseSimEventCreator *theCreator = 
+        [[ExpenseSimEventCreator alloc]initWithExpense:expense];
     self.currSimEventCreator = theCreator;
     [theCreator release];
 }

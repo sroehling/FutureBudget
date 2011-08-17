@@ -13,7 +13,6 @@
 @interface EventRepeater : NSObject {
     @private
         NSDateFormatter *dateFormatter;
-        NSCalendar *gregorian;
         NSDateComponents *repeatOffsetComponents;
         bool repeatOnce;
         int repeatCount;
@@ -26,6 +25,8 @@
 
 - (id) initWithEventRepeatFrequency:(EventRepeatFrequency*)repeatFrequency 
          andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
+- (id) initWithRepeatOffset:(NSDateComponents*)theRepeatOffset andRepeatOnce:(bool)doRepeatOnce
+	 andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
 - (void)reset;
 - (NSDate*)nextDate;
 

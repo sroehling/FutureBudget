@@ -11,26 +11,31 @@
 #import "SimEvent.h"
 #import "SharedAppValues.h"
 #import "SimDate.h"
-
+#import "FiscalYearDigest.h"
+#import "DateHelper.h"
+#import "DigestUpdateEventCreator.h"
 
 @implementation SimEngine
 
 @synthesize eventCreators;
 @synthesize simEndDate;
+@synthesize digest;
 
 -(id)init {    
     if((self =[super init]))
     {        
         self.eventCreators =[[[NSMutableArray alloc] init] autorelease];
+		
+		[self.eventCreators addObject:[[[DigestUpdateEventCreator alloc] init] autorelease]];
         
         eventList = [[NSMutableArray alloc] init];
         
         dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         
-        gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         resultsOffsetComponents = [[NSDateComponents alloc] init];
         [resultsOffsetComponents setMonth:1];
+		
 
     }    
     return self;
@@ -46,19 +51,18 @@
     [eventList release];
     [dateFormatter release];
     [resultsOffsetComponents release];
-    [gregorian release];
     [nextResultsCheckpointDate release];
-
+	[digest release];
 
 }
 
 
 #pragma mark - Private methods for simulator engine
 
-- (void) processEvent: (id<SimEvent>)theEvent
+- (void) processEvent: (SimEvent*)theEvent
 {
-    [theEvent doSimEvent];
-    id<SimEvent> followOnEvent = [[theEvent originatingEventCreator] nextSimEvent];
+    [theEvent doSimEvent:self.digest];
+    SimEvent *followOnEvent = [[theEvent originatingEventCreator] nextSimEvent];
     [eventList removeObject:theEvent];
     if(followOnEvent != nil)
     {
@@ -68,13 +72,13 @@
 }
 
 
-- (id<SimEvent>) nextEventFromEventList
+- (SimEvent*) nextEventFromEventList
 {
-    id<SimEvent> nextEventToProcess = nil;
+    SimEvent* nextEventToProcess = nil;
     if ([eventList count] > 0) 
     {
         // Get the event whose next event date is the earliest
-        for(id<SimEvent> candidateEvent in eventList)
+        for(SimEvent* candidateEvent in eventList)
         {
             if(nextEventToProcess == nil)
             {
@@ -103,7 +107,7 @@
     {
         [eventCreator resetSimEventCreation];
         
-        id<SimEvent> firstEvent = [eventCreator nextSimEvent];
+        SimEvent *firstEvent = [eventCreator nextSimEvent];
         if(firstEvent != nil)
         {
             [eventList addObject:firstEvent];
@@ -112,12 +116,19 @@
     
     // Initialize the date for the results checkpoint
     NSDate *simStartDate = [SharedAppValues singleton].simStartDate;
+	NSLog(@"Simulation Start: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:simStartDate]);
+
 	assert(simStartDate != nil);
-    nextResultsCheckpointDate = [gregorian dateByAddingComponents:resultsOffsetComponents 
+    nextResultsCheckpointDate = [[DateHelper theHelper].gregorian
+			dateByAddingComponents:resultsOffsetComponents 
              toDate:simStartDate options:0];
     [nextResultsCheckpointDate retain];
 	
 	self.simEndDate = [[SharedAppValues singleton].simEndDate endDateWithStartDate:simStartDate];
+	
+	NSDate *digestStartDate = [DateHelper beginningOfYear:simStartDate];
+	self.digest = [[[FiscalYearDigest alloc] initWithStartDate:digestStartDate] autorelease];
+
 	
     NSLog(@"First checkpoint date for results: %@",[dateFormatter stringFromDate:nextResultsCheckpointDate]);
 
@@ -129,14 +140,14 @@
     NSLog(@"Generating checkpoint results: %@",[dateFormatter stringFromDate:nextResultsCheckpointDate]);
     
     NSDate *lastCheckpoint = nextResultsCheckpointDate;
-    nextResultsCheckpointDate = [gregorian dateByAddingComponents:resultsOffsetComponents 
+    nextResultsCheckpointDate = [[DateHelper theHelper].gregorian dateByAddingComponents:resultsOffsetComponents 
                                                            toDate:lastCheckpoint options:0];
     [lastCheckpoint release];
     [nextResultsCheckpointDate retain];
 
 }
 
-- (bool) eventEarlierOrSameTimeAsNextResults: (id<SimEvent>)theEvent
+- (bool) eventEarlierOrSameTimeAsNextResults: (SimEvent*)theEvent
 {
     NSComparisonResult eventComparedToResultsCheckpoint = 
     [[theEvent eventDate] compare:nextResultsCheckpointDate];
@@ -166,7 +177,7 @@
     
     while ([nextResultsCheckpointDate compare:self.simEndDate] == NSOrderedAscending) 
     {
-        id<SimEvent> nextEventToProcess = [self nextEventFromEventList];
+        SimEvent* nextEventToProcess = [self nextEventFromEventList];
                 
         if(nextEventToProcess != nil)
         {

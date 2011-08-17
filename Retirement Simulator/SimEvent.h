@@ -10,10 +10,16 @@
 
 @protocol SimEventCreator;
 
-@protocol SimEvent <NSObject>
+@class FiscalYearDigest;
+
+@interface SimEvent : NSObject {
+	@private
+		id<SimEventCreator> originatingEventCreator;
+		NSDate *eventDate;
+}
 
 // Do the actual event
-- (void)doSimEvent;
+- (void)doSimEvent:(FiscalYearDigest*)digest;
 
 // When the event will take place
 @property (nonatomic, retain) NSDate *eventDate;
@@ -27,5 +33,7 @@
 // is made to the originating event creator (via "assign" setter 
 // semantics for the property).
 @property (nonatomic, assign) id<SimEventCreator> originatingEventCreator;
+
+- (id) initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate*)theEventDate;
 
 @end

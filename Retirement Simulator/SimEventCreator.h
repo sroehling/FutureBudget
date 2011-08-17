@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol SimEvent; // forward declare the protocol
+@class SimEvent; // forward declare the protocol
 
 
 @protocol SimEventCreator <NSObject>
@@ -20,6 +20,6 @@
 - (void)resetSimEventCreation;
 
 // Return the next event, or nil if no more are needed
-- (id<SimEvent>) nextSimEvent;
+- (SimEvent*) nextSimEvent;
 
 @end

@@ -28,12 +28,12 @@
     numEventsCreated = 0;
 }
 
-- (id<SimEvent>)nextSimEvent
+- (SimEvent*)nextSimEvent
 {
     if(numEventsCreated == 0)
     {
         numEventsCreated = numEventsCreated + 1;
-        TestSimEvent *theEvent = [[TestSimEvent alloc]initWithEventCreator:self ];
+        TestSimEvent *theEvent = [[TestSimEvent alloc]initWithEventCreator:self  andEventDate:[[NSDate alloc]init]];
         [theEvent autorelease];
         
         return theEvent;

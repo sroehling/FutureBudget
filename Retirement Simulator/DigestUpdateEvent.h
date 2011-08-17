@@ -1,8 +1,8 @@
 //
-//  TestSimEvent.h
+//  DigestUpdateEvent.h
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 5/6/11.
+//  Created by Steve Roehling on 8/15/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 #import "SimEvent.h"
 
-@interface TestSimEvent : SimEvent {
+
+@interface DigestUpdateEvent : SimEvent {
+    
 }
-
-
 
 @end
