@@ -11,6 +11,7 @@
 #import "IncomeSimEventCreator.h"
 #import "ExpenseSimEventCreator.h"
 #import "DataModelController.h"
+#import "SavingsContributionSimEventCreator.h"
 #import "SimEngine.h"
 #import "ExpenseInput.h"
 #import "IncomeInput.h"
@@ -54,7 +55,9 @@
 
 - (void)visitSavingsAccount:(SavingsAccount *)savingsAcct
 {
-	assert(0); // not implemented yet
+	SavingsContributionSimEventCreator *theCreator = 
+        [[[SavingsContributionSimEventCreator alloc]initWithSavingsAcct:savingsAcct] autorelease];
+    self.currSimEventCreator = theCreator;
 }
 
 -(void)populateSimEngine:(SimEngine*)simEngine
@@ -67,6 +70,7 @@
         [input acceptInputVisitor:self];
         
         id<SimEventCreator> createdEventCreator = self.currSimEventCreator;
+
         assert(createdEventCreator != nil);
         [simEngine.eventCreators addObject:createdEventCreator];     
         [self reset];

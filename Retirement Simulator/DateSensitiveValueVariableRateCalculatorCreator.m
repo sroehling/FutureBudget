@@ -27,6 +27,7 @@
 {
 	self.varRates = [[[NSMutableSet alloc] init] autorelease];
 	self.startDate = theStartDate;
+	assert(dsVal != nil);
 	
 	[dsVal acceptDateSensitiveValVisitor:self];
 	

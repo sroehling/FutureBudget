@@ -1,41 +1,41 @@
 //
-//  ExpenseInputSimEventCreator.m
+//  SavingsContributionSimEventCreator.m
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 5/9/11.
+//  Created by Steve Roehling on 8/17/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "CashFlowSimEventCreator.h"
-
-#import "ExpenseInput.h"
-#import "EventRepeater.h"
-#import "CashFlowInput.h"
+#import "SavingsContributionSimEventCreator.h"
 #import "SimDate.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
 #import "DateHelper.h"
 #import "VariableRateCalculator.h"
+#import "EventRepeatFrequency.h"
 #import "ValueAsOfCalculatorCreator.h"
+#import "EventRepeater.h"
+#import "SavingsAccount.h"
+#import "SavingsContributionSimEvent.h"
 #import "MultiScenarioInputValue.h"
 
-@protocol SimEventCreator;
 
-@implementation CashFlowSimEventCreator
+@implementation SavingsContributionSimEventCreator
 
-@synthesize cashFlow;
+@synthesize savingsAcct;
 @synthesize varRateCalc;
 @synthesize startAmountGrowthDate;
 @synthesize varAmountCalc;
+@synthesize eventRepeater;
 
-- (id)initWithCashFlow:(CashFlowInput*)theCashFlow
+- (id)initWithSavingsAcct:(SavingsAccount*)theSavingsAcct
 {
-    self = [super init];
-    if(self)
-    {
-        assert(theCashFlow != nil);
-        self.cashFlow = theCashFlow;
-			
-		SimDate *startDate = (SimDate*)[theCashFlow.multiScenarioStartDate 
+	self = [super init];
+	if(self)
+	{
+		assert(theSavingsAcct!=nil);
+		self.savingsAcct = theSavingsAcct;
+
+		SimDate *startDate = (SimDate*)[theSavingsAcct.multiScenarioContribStartDate
 			getValueForCurrentOrDefaultScenario];
 	
 #warning Probably need to use simulator start date as the start rate for growth rates, rather than the first date of the event.
@@ -44,64 +44,52 @@
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 
-		DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)[self.cashFlow.multiScenarioAmountGrowthRate
+		DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)[
+			self.savingsAcct.multiScenarioContribGrowthRate
 			getValueForCurrentOrDefaultScenario];
 		
 		self.varRateCalc = [calcCreator 
 							createForDateSensitiveValue:amountGrowthRate 
 							andStartDate:self.startAmountGrowthDate];
 							
-		DateSensitiveValue *amount = (DateSensitiveValue*)[self.cashFlow.multiScenarioAmount 
+		DateSensitiveValue *amount = (DateSensitiveValue*)[self.savingsAcct.multiScenarioContribAmount 
 				getValueForCurrentOrDefaultScenario];					
 		ValueAsOfCalculatorCreator *varAmountCalcCreator = 
 			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];
 		self.varAmountCalc = [varAmountCalcCreator createForDateSensitiveValue:amount];
-							
-    }
-    return self;
-}
 
-- (id) init 
-{
-	assert(0); // need to call init with cashFlow
-	return nil;
+	}
+	return self;
 }
-
 
 
 - (void)resetSimEventCreation
 {
-    if(eventRepeater!=nil)
-    {
-        [eventRepeater release];
-    }
-	SimDate *startDate = (SimDate*)[self.cashFlow.multiScenarioStartDate 
+	SimDate *startDate = (SimDate*)[self.savingsAcct.multiScenarioContribStartDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedStartDate = startDate.date;
 			
-	SimDate *endDate = (SimDate*)[self.cashFlow.multiScenarioEndDate 
+	SimDate *endDate = (SimDate*)[self.savingsAcct.multiScenarioContribEndDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
+	
+	NSLog(@"Savings contribution: start = %@, end = %@",
+		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedStartDate],
+		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedEndDate]);
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
-		[self.cashFlow.multiScenarioEventRepeatFrequency getValueForCurrentOrDefaultScenario];
+		[self.savingsAcct.multiScenarioContribRepeatFrequency getValueForCurrentOrDefaultScenario];
 	// TODO - Need to pass in an end date to the event repeat frequency
-    eventRepeater = [[EventRepeater alloc] 
+    self.eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
                      andStartDate:resolvedStartDate andEndDate:resolvedEndDate];
    
 }
 
-- (SimEvent*) createCashFlowSimEvent:(double)cashFlowAmount andEventDate:(NSDate*)theDate
-{
-	assert(0); // must be overridden
-}
-
-
 - (SimEvent*)nextSimEvent
 {
     assert(eventRepeater!=nil);
-    NSDate *nextDate = [eventRepeater nextDate];
+    NSDate *nextDate = [self.eventRepeater nextDate];
     if(nextDate !=nil)
     {
 		
@@ -113,10 +101,15 @@
 		unsigned int daysSinceStart = floor(secondsSinceAmountGrowth/SECONDS_PER_DAY);
 		double amountMultiplier = [self.varRateCalc valueMultiplierForDay:daysSinceStart];
 		double unadjustedAmount = [self.varAmountCalc valueAsOfDate:nextDate];
-		double growthAdjustedCashFlowAmount = unadjustedAmount * amountMultiplier;
+		double growthAdjustedContributionAmount = unadjustedAmount * amountMultiplier;
 		
-		return [self createCashFlowSimEvent:growthAdjustedCashFlowAmount andEventDate:nextDate];
-       
+		SavingsContributionSimEvent *contribEvent = [[[SavingsContributionSimEvent alloc]initWithEventCreator:self 
+			andEventDate:nextDate ] autorelease];
+		contribEvent.savingsAcct = self.savingsAcct;
+		contribEvent.contributionAmount = growthAdjustedContributionAmount;
+
+		return contribEvent;
+		       
     }
     else
     {
@@ -128,14 +121,11 @@
 - (void)dealloc {
     // release owned objects here
     [super dealloc]; // pretty important.
-    if(eventRepeater!=nil)
-    {
-        [eventRepeater release];
-    }
+	[savingsAcct release];
+	[eventRepeater release];
 	[varRateCalc release];
 	[startAmountGrowthDate release];
 	[varAmountCalc release];
 }
-
 
 @end

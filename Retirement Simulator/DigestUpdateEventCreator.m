@@ -55,9 +55,8 @@
     NSDate *nextDate = [self.updateEventRepeater nextDate];
     if(nextDate !=nil)
     {
-        DigestUpdateEvent *theEvent = [[DigestUpdateEvent alloc]initWithEventCreator:self 
-			andEventDate:nextDate ];
-		return theEvent;
+        return [[[DigestUpdateEvent alloc]initWithEventCreator:self 
+			andEventDate:nextDate ] autorelease];
     }
     else
     {
