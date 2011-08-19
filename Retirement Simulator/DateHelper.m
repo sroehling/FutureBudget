@@ -63,6 +63,18 @@
 	return false;
 }
 
++ (bool)dateIsLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate
+{
+	assert(theDate != nil);
+	assert(comparisonDate != nil);
+	NSComparisonResult comparison = [theDate compare:comparisonDate];
+	if(comparison == NSOrderedDescending)
+	{
+		return true;
+	}
+	return false;
+}
+
 + (NSDate*)nextDay:(NSDate*)currentDay
 {
 	assert(currentDay != nil);

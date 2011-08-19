@@ -145,6 +145,18 @@
     }
 }
 
+- (NSDate*)nextDateOnOrAfterDate:(NSDate*)minimumDate
+{
+	assert(minimumDate != nil);
+	NSDate *nextDateOnOrAfter = [self nextDate];
+	while((nextDateOnOrAfter != nil) && 
+		[DateHelper dateIsLater:minimumDate otherDate:nextDateOnOrAfter])
+	{
+		nextDateOnOrAfter = [self nextDate];
+	}
+	return nextDateOnOrAfter;
+}
+
 
 -(void)dealloc {
     [dateFormatter release];

@@ -7,6 +7,8 @@
 //
 
 #import "SimEvent.h"
+#import "DateHelper.h"
+#import "SharedAppValues.h"
 
 
 @implementation SimEvent
@@ -19,7 +21,14 @@
     if (self != nil) {
 		assert(eventCreator != nil);
 		assert(theEventDate != nil);
-        self.eventDate = theEventDate; // today
+		
+		// All events must occur on or after the simulatino start date. This is because
+		// accounts, cash, etc. have "starting balance" (as of the simulation start date), 
+		// such that events only need to be processed after the start date.
+		assert([DateHelper dateIsEqualOrLater:theEventDate 
+			otherDate:[[SharedAppValues singleton] beginningOfSimStartDate]]);
+		
+        self.eventDate = theEventDate;
         self.originatingEventCreator = eventCreator;
     }
     return self;

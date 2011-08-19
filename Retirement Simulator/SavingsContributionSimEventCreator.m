@@ -13,6 +13,7 @@
 #import "VariableRateCalculator.h"
 #import "EventRepeatFrequency.h"
 #import "ValueAsOfCalculatorCreator.h"
+#import "SharedAppValues.h"
 #import "EventRepeater.h"
 #import "SavingsAccount.h"
 #import "SavingsContributionSimEvent.h"
@@ -96,7 +97,7 @@
 - (SimEvent*)nextSimEvent
 {
     assert(eventRepeater!=nil);
-    NSDate *nextDate = [self.eventRepeater nextDate];
+    NSDate *nextDate = [eventRepeater nextDateOnOrAfterDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
     if(nextDate !=nil)
     {
 		

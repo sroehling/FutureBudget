@@ -123,5 +123,11 @@ static SharedAppValues *theSharedAppVals;
 }
 
 
+-(NSDate*)beginningOfSimStartDate
+{
+	return [DateHelper beginningOfDay:self.simStartDate];
+}
+
+
 
 @end

@@ -40,6 +40,8 @@ extern NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY;
 @property(nonatomic,retain) Cash *cash;
 
 
+-(NSDate*)beginningOfSimStartDate;
+
 +(void)initSingleton:(SharedAppValues*)theAppVals;
 +(SharedAppValues*)singleton;
 +(void)initFromDatabase;

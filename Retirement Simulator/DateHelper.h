@@ -29,6 +29,7 @@
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear;
 
 + (bool)dateIsEqualOrLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate;
++ (bool)dateIsLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate;
 
 @property(nonatomic,retain)  NSDateFormatter *mediumDateFormatter;
 @property(nonatomic,retain) NSDateFormatter *longDateFormatter;

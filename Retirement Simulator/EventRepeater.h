@@ -29,6 +29,7 @@
 	 andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
 - (void)reset;
 - (NSDate*)nextDate;
+- (NSDate*)nextDateOnOrAfterDate:(NSDate*)minimumDate;
 
 
 @property(nonatomic,retain) NSDate *startDate;

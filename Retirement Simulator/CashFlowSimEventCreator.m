@@ -10,6 +10,7 @@
 
 #import "ExpenseInput.h"
 #import "EventRepeater.h"
+#import "SharedAppValues.h"
 #import "CashFlowInput.h"
 #import "SimDate.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
@@ -26,6 +27,7 @@
 @synthesize varRateCalc;
 @synthesize startAmountGrowthDate;
 @synthesize varAmountCalc;
+@synthesize eventRepeater;
 
 - (id)initWithCashFlow:(CashFlowInput*)theCashFlow
 {
@@ -38,7 +40,6 @@
 		SimDate *startDate = (SimDate*)[theCashFlow.multiScenarioStartDate 
 			getValueForCurrentOrDefaultScenario];
 	
-#warning Probably need to use simulator start date as the start rate for growth rates, rather than the first date of the event.
 		self.startAmountGrowthDate = startDate.date;
 
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
@@ -71,10 +72,6 @@
 
 - (void)resetSimEventCreation
 {
-    if(eventRepeater!=nil)
-    {
-        [eventRepeater release];
-    }
 	SimDate *startDate = (SimDate*)[self.cashFlow.multiScenarioStartDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedStartDate = startDate.date;
@@ -85,8 +82,7 @@
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
 		[self.cashFlow.multiScenarioEventRepeatFrequency getValueForCurrentOrDefaultScenario];
-	// TODO - Need to pass in an end date to the event repeat frequency
-    eventRepeater = [[EventRepeater alloc] 
+    self.eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
                      andStartDate:resolvedStartDate andEndDate:resolvedEndDate];
    
@@ -101,7 +97,7 @@
 - (SimEvent*)nextSimEvent
 {
     assert(eventRepeater!=nil);
-    NSDate *nextDate = [eventRepeater nextDate];
+    NSDate *nextDate = [eventRepeater nextDateOnOrAfterDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
     if(nextDate !=nil)
     {
 		
@@ -128,10 +124,7 @@
 - (void)dealloc {
     // release owned objects here
     [super dealloc]; // pretty important.
-    if(eventRepeater!=nil)
-    {
-        [eventRepeater release];
-    }
+	[eventRepeater release];
 	[varRateCalc release];
 	[startAmountGrowthDate release];
 	[varAmountCalc release];
