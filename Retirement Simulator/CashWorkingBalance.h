@@ -8,23 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "WorkingBalance.h"
 
-@interface CashWorkingBalance : NSObject {
-    @private
-		NSDate *balanceStartDate;
-		double startingBalance;
-		double currentBalance;
+@interface CashWorkingBalance : WorkingBalance {
 }
-
-- (void) incrementBalance:(double)amount;
-- (void) decrementBalance:(double)amount;
-
-- (id) initWithStartDate:(NSDate*)theStartDate andStartingBalance:(double)theStartBalance;
-- (void)resetCurrentBalance;
-- (void)carryBalanceForward:(NSDate*)newStartDate;
-
-@property(nonatomic,retain) NSDate *balanceStartDate;
-@property(readonly) double startingBalance;
-@property(readonly) double currentBalance;
 
 @end

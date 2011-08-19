@@ -14,29 +14,31 @@
 #import "FiscalYearDigest.h"
 #import "DateHelper.h"
 #import "DigestUpdateEventCreator.h"
+#import "DataModelController.h"
+#import "WorkingBalanceMgr.h"
+#import "ExpenseInput.h"
+#import "IncomeInput.h"
+#import "ExpenseSimEventCreator.h"
+#import "SavingsWorkingBalance.h"
+#import "IncomeSimEventCreator.h"
+#import "SavingsAccount.h"
+#import "SavingsContributionSimEventCreator.h"
 
 @implementation SimEngine
 
 @synthesize eventCreators;
 @synthesize simEndDate;
 @synthesize digest;
+@synthesize workingBalanceMgr;
+
 
 -(id)init {    
     if((self =[super init]))
     {        
-        self.eventCreators =[[[NSMutableArray alloc] init] autorelease];
-		
-		[self.eventCreators addObject:[[[DigestUpdateEventCreator alloc] init] autorelease]];
-        
         eventList = [[NSMutableArray alloc] init];
-        
-        dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        
+		
         resultsOffsetComponents = [[NSDateComponents alloc] init];
         [resultsOffsetComponents setMonth:1];
-		
-
     }    
     return self;
 }
@@ -46,10 +48,10 @@
     [super dealloc];
 
     [eventCreators release];
+	[workingBalanceMgr release];
 	[simEndDate release];
    
     [eventList release];
-    [dateFormatter release];
     [resultsOffsetComponents release];
     [nextResultsCheckpointDate release];
 	[digest release];
@@ -93,10 +95,61 @@
     return nextEventToProcess;
 }
 
+- (void) populateEventCreators
+{
+	self.eventCreators =[[[NSMutableArray alloc] init] autorelease];
+	[self.eventCreators addObject:[[[DigestUpdateEventCreator alloc] init] autorelease]];
+
+	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	for(IncomeInput *income in inputs)
+	{
+		assert(income!=nil);
+		[self.eventCreators addObject:
+			[[[IncomeSimEventCreator alloc]initWithIncome:income] autorelease]];
+	}
+
+	
+	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
+    for(ExpenseInput *expense in inputs)
+    {    
+		assert(expense != nil);
+		[self.eventCreators addObject:
+			[[[ExpenseSimEventCreator alloc]initWithExpense:expense] autorelease]];
+    }
+
+		
+	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
+		for(SavingsAccount *savingsAcct in inputs)
+	{
+		SavingsWorkingBalance *savingsBal = 
+			[[[SavingsWorkingBalance alloc] initWithSavingsAcct:savingsAcct] autorelease];
+		SavingsContributionSimEventCreator *savingsEventCreator = 
+			[[[SavingsContributionSimEventCreator alloc]
+				initWithSavingsWorkingBalance:savingsBal] autorelease];
+		[self.eventCreators addObject:savingsEventCreator];
+		[self.workingBalanceMgr addWorkingBalance:savingsBal];
+	}
+
+	
+
+}
+
+
 - (void) resetSimulator
 {
     // Reset the event list
     [eventList removeAllObjects];
+	
+    NSDate *simStartDate = [DateHelper beginningOfDay:[SharedAppValues singleton].simStartDate];
+	NSLog(@"Simulation Start: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:simStartDate]);
+	NSDate *digestStartDate = [DateHelper beginningOfYear:simStartDate];
+	self.simEndDate = [[SharedAppValues singleton].simEndDate endDateWithStartDate:simStartDate];
+
+	
+	self.workingBalanceMgr = [[[WorkingBalanceMgr alloc] initWithStartDate:digestStartDate] autorelease];
+		
+	[self populateEventCreators];
+
     
     // At the beginning of the simulation, iterate through the
     // event creators and have them create their first event.
@@ -115,8 +168,6 @@
     }  
     
     // Initialize the date for the results checkpoint
-    NSDate *simStartDate = [SharedAppValues singleton].simStartDate;
-	NSLog(@"Simulation Start: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:simStartDate]);
 
 	assert(simStartDate != nil);
     nextResultsCheckpointDate = [[DateHelper theHelper].gregorian
@@ -124,20 +175,18 @@
              toDate:simStartDate options:0];
     [nextResultsCheckpointDate retain];
 	
-	self.simEndDate = [[SharedAppValues singleton].simEndDate endDateWithStartDate:simStartDate];
 	
-	NSDate *digestStartDate = [DateHelper beginningOfYear:simStartDate];
-	self.digest = [[[FiscalYearDigest alloc] initWithStartDate:digestStartDate] autorelease];
+	self.digest = [[[FiscalYearDigest alloc] initWithStartDate:digestStartDate andWorkingBalances:self.workingBalanceMgr] autorelease];
 
 	
-    NSLog(@"First checkpoint date for results: %@",[dateFormatter stringFromDate:nextResultsCheckpointDate]);
+    NSLog(@"First checkpoint date for results: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:nextResultsCheckpointDate]);
 
 }
 
 - (void) generateAndAdvanceResults
 {
     // Advance to the nextResultsCheckpointDate
-    NSLog(@"Generating checkpoint results: %@",[dateFormatter stringFromDate:nextResultsCheckpointDate]);
+    NSLog(@"Generating checkpoint results: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:nextResultsCheckpointDate]);
     
     NSDate *lastCheckpoint = nextResultsCheckpointDate;
     nextResultsCheckpointDate = [[DateHelper theHelper].gregorian dateByAddingComponents:resultsOffsetComponents 
@@ -173,7 +222,7 @@
     
     [self resetSimulator];
     
-    NSLog(@"Plan end date: %@",[dateFormatter stringFromDate:self.simEndDate]);
+    NSLog(@"Plan end date: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.simEndDate]);
     
     while ([nextResultsCheckpointDate compare:self.simEndDate] == NSOrderedAscending) 
     {

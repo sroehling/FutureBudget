@@ -72,6 +72,9 @@
 		004CB03513FC4912000E87A9 /* CashWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03413FC490E000E87A9 /* CashWorkingBalance.m */; };
 		004CB03913FC831E000E87A9 /* SavingsContributionSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03813FC831B000E87A9 /* SavingsContributionSimEvent.m */; };
 		004CB03C13FC835A000E87A9 /* SavingsContributionSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03B13FC8357000E87A9 /* SavingsContributionSimEventCreator.m */; };
+		004CB03F13FD73F5000E87A9 /* WorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03E13FD73F4000E87A9 /* WorkingBalance.m */; };
+		004CB04213FD772D000E87A9 /* SavingsWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04113FD772C000E87A9 /* SavingsWorkingBalance.m */; };
+		004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */; };
 		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
 		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
@@ -137,7 +140,6 @@
 		00ADB2FE1381C1E000064651 /* GenericFieldBasedTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */; };
 		00ADB3031382D1BF00064651 /* DetailInputViewCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */; };
 		00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */; };
-		00ADB3141383705300064651 /* InputEventCreatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3131383705300064651 /* InputEventCreatorCreator.m */; };
 		00ADB31713842FCA00064651 /* CashFlowInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB31613842FC800064651 /* CashFlowInput.m */; };
 		00ADB31A1384330800064651 /* IncomeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3191384330700064651 /* IncomeInput.m */; };
 		00ADB31E13844F7100064651 /* InputTypeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */; };
@@ -311,6 +313,12 @@
 		004CB03813FC831B000E87A9 /* SavingsContributionSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsContributionSimEvent.m; sourceTree = "<group>"; };
 		004CB03A13FC8355000E87A9 /* SavingsContributionSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsContributionSimEventCreator.h; sourceTree = "<group>"; };
 		004CB03B13FC8357000E87A9 /* SavingsContributionSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsContributionSimEventCreator.m; sourceTree = "<group>"; };
+		004CB03D13FD73F3000E87A9 /* WorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalance.h; sourceTree = "<group>"; };
+		004CB03E13FD73F4000E87A9 /* WorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalance.m; sourceTree = "<group>"; };
+		004CB04013FD772A000E87A9 /* SavingsWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsWorkingBalance.h; sourceTree = "<group>"; };
+		004CB04113FD772C000E87A9 /* SavingsWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsWorkingBalance.m; sourceTree = "<group>"; };
+		004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; path = WorkingBalanceMgr.h; sourceTree = "<group>"; };
+		004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceMgr.m; sourceTree = "<group>"; };
 		004F5D06136F170500E0C4A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		004F5D0C136F52D200E0C4A3 /* DataModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelController.h; sourceTree = "<group>"; };
 		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
@@ -433,8 +441,6 @@
 		00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInputViewCreator.h; sourceTree = "<group>"; };
 		00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInputViewCreator.m; sourceTree = "<group>"; };
 		00ADB3101383220E00064651 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		00ADB3121383705200064651 /* InputEventCreatorCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputEventCreatorCreator.h; sourceTree = "<group>"; };
-		00ADB3131383705300064651 /* InputEventCreatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputEventCreatorCreator.m; sourceTree = "<group>"; };
 		00ADB31513842FC700064651 /* CashFlowInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowInput.h; sourceTree = "<group>"; };
 		00ADB31613842FC800064651 /* CashFlowInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowInput.m; sourceTree = "<group>"; };
 		00ADB3181384330600064651 /* IncomeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeInput.h; sourceTree = "<group>"; };
@@ -809,8 +815,8 @@
 				0025776113B292F600D15232 /* Variable Rate Calculator */,
 				0025776213B2932200D15232 /* Variable Value Calculator */,
 				004CB03613FC491E000E87A9 /* Digest */,
-				004F5D7713732CA300E0C4A3 /* Simulator Engine */,
 				005731EC137874A1008D13C1 /* Simulator Inputs */,
+				004F5D7713732CA300E0C4A3 /* Simulator Engine */,
 			);
 			name = Simulator;
 			sourceTree = "<group>";
@@ -937,8 +943,14 @@
 		004CB03613FC491E000E87A9 /* Digest */ = {
 			isa = PBXGroup;
 			children = (
+				004CB03D13FD73F3000E87A9 /* WorkingBalance.h */,
+				004CB03E13FD73F4000E87A9 /* WorkingBalance.m */,
+				004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */,
+				004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */,
 				004CB03313FC490C000E87A9 /* CashWorkingBalance.h */,
 				004CB03413FC490E000E87A9 /* CashWorkingBalance.m */,
+				004CB04013FD772A000E87A9 /* SavingsWorkingBalance.h */,
+				004CB04113FD772C000E87A9 /* SavingsWorkingBalance.m */,
 				004CB01713F9B797000E87A9 /* DigestUpdateEventCreator.h */,
 				004CB01813F9B797000E87A9 /* DigestUpdateEventCreator.m */,
 				004CB01B13F9C985000E87A9 /* DigestUpdateEvent.h */,
@@ -1032,8 +1044,6 @@
 			children = (
 				005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */,
 				005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */,
-				00ADB3121383705200064651 /* InputEventCreatorCreator.h */,
-				00ADB3131383705300064651 /* InputEventCreatorCreator.m */,
 				004CB02013FACE17000E87A9 /* IncomeSimEventCreator.h */,
 				004CB02113FACE18000E87A9 /* IncomeSimEventCreator.m */,
 				004CB02313FAD0BA000E87A9 /* ExpenseSimEventCreator.h */,
@@ -1338,7 +1348,6 @@
 				00ADB2FE1381C1E000064651 /* GenericFieldBasedTableEditViewController.m in Sources */,
 				00ADB3031382D1BF00064651 /* DetailInputViewCreator.m in Sources */,
 				00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */,
-				00ADB3141383705300064651 /* InputEventCreatorCreator.m in Sources */,
 				00ADB31713842FCA00064651 /* CashFlowInput.m in Sources */,
 				00ADB31A1384330800064651 /* IncomeInput.m in Sources */,
 				00ADB31E13844F7100064651 /* InputTypeSelectionViewController.m in Sources */,
@@ -1447,6 +1456,9 @@
 				004CB03513FC4912000E87A9 /* CashWorkingBalance.m in Sources */,
 				004CB03913FC831E000E87A9 /* SavingsContributionSimEvent.m in Sources */,
 				004CB03C13FC835A000E87A9 /* SavingsContributionSimEventCreator.m in Sources */,
+				004CB03F13FD73F5000E87A9 /* WorkingBalance.m in Sources */,
+				004CB04213FD772D000E87A9 /* SavingsWorkingBalance.m in Sources */,
+				004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

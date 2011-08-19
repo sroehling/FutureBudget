@@ -10,22 +10,22 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "SavingsAccount.h"
+#import "SavingsWorkingBalance.h"
 #import "FiscalYearDigest.h"
 
 
 @implementation SavingsContributionSimEvent
 
-@synthesize savingsAcct;
+@synthesize savingsBalance;
 @synthesize contributionAmount;
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
 	NSString *currencyAmount = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:self.contributionAmount]];
-	
     
     NSLog(@"Doing savings contribution event: %@ %@ %@",
-          self.savingsAcct.name,
+          self.savingsBalance.savingsAcct.name,
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		  
@@ -37,7 +37,7 @@
 - (void) dealloc
 {
 	[super dealloc];
-	[savingsAcct release];
+	[savingsBalance release];
 }
 
 @end

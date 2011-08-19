@@ -8,7 +8,6 @@
 
 #import "ResultsViewController.h"
 #import "DataModelController.h"
-#import "InputEventCreatorCreator.h"
 #import "SimEngine.h"
 
 @implementation ResultsViewController
@@ -32,11 +31,7 @@
     NSLog(@"Starting simulation run...");
     
     SimEngine *simEngine = [[SimEngine alloc] init ];
-    
-    InputEventCreatorCreator *eventCreatorCreator = 
-        [[[InputEventCreatorCreator alloc] init]autorelease];
-    [eventCreatorCreator populateSimEngine:simEngine];
-       
+           
     [simEngine runSim];
     
     NSLog(@"... Done running simulation");

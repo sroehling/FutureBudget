@@ -9,22 +9,23 @@
 #import <Foundation/Foundation.h>
 
 @class CashWorkingBalance;
+@class WorkingBalanceMgr;
 
 @interface FiscalYearDigest : NSObject {
     @private
 		NSArray *cashFlowSummations;
 		NSDate *startDate;
-		CashWorkingBalance *cashWorkingBalance;
+		WorkingBalanceMgr *workingBalanceMgr;
 }
 
--(id)initWithStartDate:(NSDate*)theStartDate;
+-(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr;
 
 - (void)addExpense:(double)amount onDate:(NSDate*)expenseDate;
 - (void)addIncome:(double)amount onDate:(NSDate*)incomeDate;
 - (void)advanceToNextYear;
 
 @property(nonatomic,retain) NSDate *startDate;
+@property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
 
-@property(nonatomic,retain) CashWorkingBalance *cashWorkingBalance;
 
 @end

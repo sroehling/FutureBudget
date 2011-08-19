@@ -50,6 +50,30 @@
     return [[[NSDate alloc] init]autorelease];
 }
 
++ (bool)dateIsEqualOrLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate
+{
+	assert(theDate != nil);
+	assert(comparisonDate != nil);
+	NSComparisonResult comparison = [theDate compare:comparisonDate];
+	if((comparison == NSOrderedDescending) ||
+		(comparison == NSOrderedSame))
+	{
+		return true;
+	}
+	return false;
+}
+
++ (NSDate*)nextDay:(NSDate*)currentDay
+{
+	assert(currentDay != nil);
+	NSDateComponents *nextDayOffset = [[[NSDateComponents alloc] init] autorelease];
+	[nextDayOffset setDay:1];
+	NSDate *nextDay = [[DateHelper theHelper].gregorian dateByAddingComponents:nextDayOffset 
+                 toDate:currentDay options:0];
+	assert(nextDay != nil);
+	return nextDay;
+}
+
 + (NSDate*)beginningOfNextYear:(NSDate*)dateWithinPreviousYear
 {
 	assert(dateWithinPreviousYear!=nil);
@@ -90,6 +114,26 @@
 	assert(theDate!=nil);
 	return theDate;
 }
+
+
++ (NSDate*)beginningOfDay:(NSDate*)theDate
+{	
+	assert(theDate!=nil);
+	NSUInteger componentFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	NSDateComponents *components = [[DateHelper theHelper].gregorian 
+		components:componentFlags fromDate:theDate];
+	
+	[components setHour:0];
+	[components setMinute:0];
+	[components setSecond:0];
+	
+	
+	
+	NSDate *roundedDate = [[DateHelper theHelper].gregorian dateFromComponents:components];
+	assert(roundedDate!=nil);
+	return roundedDate;
+}
+
 
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear
 {

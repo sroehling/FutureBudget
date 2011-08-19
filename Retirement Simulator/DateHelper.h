@@ -23,8 +23,12 @@
 + (NSDate*)dateFromStr:(NSString*)dateStr;
 + (NSString*)stringFromDate:(NSDate*)theDate;
 + (NSDate*)beginningOfYear:(NSDate*)dateWithinYear;
++ (NSDate*)beginningOfDay:(NSDate*)theDate;
 + (NSDate*)beginningOfNextYear:(NSDate*)dateWithinPreviousYear;
++ (NSDate*)nextDay:(NSDate*)currentDay;
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear;
+
++ (bool)dateIsEqualOrLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate;
 
 @property(nonatomic,retain)  NSDateFormatter *mediumDateFormatter;
 @property(nonatomic,retain) NSDateFormatter *longDateFormatter;

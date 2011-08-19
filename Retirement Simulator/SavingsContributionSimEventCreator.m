@@ -16,26 +16,29 @@
 #import "EventRepeater.h"
 #import "SavingsAccount.h"
 #import "SavingsContributionSimEvent.h"
+#import "SavingsWorkingBalance.h"
 #import "MultiScenarioInputValue.h"
 
 
 @implementation SavingsContributionSimEventCreator
 
-@synthesize savingsAcct;
+@synthesize savingsWorkingBalance;
 @synthesize varRateCalc;
 @synthesize startAmountGrowthDate;
 @synthesize varAmountCalc;
 @synthesize eventRepeater;
 
-- (id)initWithSavingsAcct:(SavingsAccount*)theSavingsAcct
+- (id)initWithSavingsWorkingBalance:(SavingsWorkingBalance*)theWorkingBalance
 {
 	self = [super init];
 	if(self)
 	{
-		assert(theSavingsAcct!=nil);
-		self.savingsAcct = theSavingsAcct;
+		self.savingsWorkingBalance = theWorkingBalance;
+	
+		SavingsAccount *savingsAcct = self.savingsWorkingBalance.savingsAcct;
+		assert(savingsAcct != nil);
 
-		SimDate *startDate = (SimDate*)[theSavingsAcct.multiScenarioContribStartDate
+		SimDate *startDate = (SimDate*)[savingsAcct.multiScenarioContribStartDate
 			getValueForCurrentOrDefaultScenario];
 	
 #warning Probably need to use simulator start date as the start rate for growth rates, rather than the first date of the event.
@@ -45,14 +48,14 @@
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 
 		DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)[
-			self.savingsAcct.multiScenarioContribGrowthRate
+			savingsAcct.multiScenarioContribGrowthRate
 			getValueForCurrentOrDefaultScenario];
 		
 		self.varRateCalc = [calcCreator 
 							createForDateSensitiveValue:amountGrowthRate 
 							andStartDate:self.startAmountGrowthDate];
 							
-		DateSensitiveValue *amount = (DateSensitiveValue*)[self.savingsAcct.multiScenarioContribAmount 
+		DateSensitiveValue *amount = (DateSensitiveValue*)[savingsAcct.multiScenarioContribAmount 
 				getValueForCurrentOrDefaultScenario];					
 		ValueAsOfCalculatorCreator *varAmountCalcCreator = 
 			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];
@@ -65,11 +68,15 @@
 
 - (void)resetSimEventCreation
 {
-	SimDate *startDate = (SimDate*)[self.savingsAcct.multiScenarioContribStartDate 
+
+	SavingsAccount *savingsAcct = self.savingsWorkingBalance.savingsAcct;
+	assert(savingsAcct != nil);
+
+	SimDate *startDate = (SimDate*)[savingsAcct.multiScenarioContribStartDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedStartDate = startDate.date;
 			
-	SimDate *endDate = (SimDate*)[self.savingsAcct.multiScenarioContribEndDate 
+	SimDate *endDate = (SimDate*)[savingsAcct.multiScenarioContribEndDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
 	
@@ -78,7 +85,7 @@
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedEndDate]);
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
-		[self.savingsAcct.multiScenarioContribRepeatFrequency getValueForCurrentOrDefaultScenario];
+		[savingsAcct.multiScenarioContribRepeatFrequency getValueForCurrentOrDefaultScenario];
 	// TODO - Need to pass in an end date to the event repeat frequency
     self.eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
@@ -105,7 +112,7 @@
 		
 		SavingsContributionSimEvent *contribEvent = [[[SavingsContributionSimEvent alloc]initWithEventCreator:self 
 			andEventDate:nextDate ] autorelease];
-		contribEvent.savingsAcct = self.savingsAcct;
+		contribEvent.savingsBalance = self.savingsWorkingBalance;
 		contribEvent.contributionAmount = growthAdjustedContributionAmount;
 
 		return contribEvent;
@@ -121,7 +128,7 @@
 - (void)dealloc {
     // release owned objects here
     [super dealloc]; // pretty important.
-	[savingsAcct release];
+	[savingsWorkingBalance release];
 	[eventRepeater release];
 	[varRateCalc release];
 	[startAmountGrowthDate release];
