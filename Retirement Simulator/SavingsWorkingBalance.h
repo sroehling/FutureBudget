@@ -11,13 +11,16 @@
 #import "WorkingBalance.h"
 
 @class SavingsAccount;
+@class VariableRateCalculator;
 
 @interface SavingsWorkingBalance : WorkingBalance {
     @private
 		SavingsAccount *savingsAcct;
+		VariableRateCalculator *interestRateCalc;
 }
 
 @property(nonatomic,retain) SavingsAccount *savingsAcct;
+@property(nonatomic,retain )VariableRateCalculator *interestRateCalc;
 
 - (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct;
 

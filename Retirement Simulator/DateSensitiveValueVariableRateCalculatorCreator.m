@@ -16,6 +16,8 @@
 #import "SimDate.h"
 #import "DateSensitiveValueChange.h"
 #import "DateHelper.h"
+#import "IntermediateVariableRate.h"
+#import "CollectionHelper.h"
 
 @implementation DateSensitiveValueVariableRateCalculatorCreator
 
@@ -34,7 +36,7 @@
 	assert([self.varRates count] > 0);
 	
 	VariableRateCalculator *rateCalc = 
-		[[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
+		[[[VariableRateCalculator alloc] initWithRates:varRates andStartDate:theStartDate] autorelease];
 
 	return rateCalc;
 }
@@ -51,24 +53,63 @@
 - (void)visitVariableValue:(VariableValue*)variableVal
 {
 	double annualRate = [variableVal.startingValue doubleValue]/100.0;
-	[self.varRates addObject:[[[VariableRate alloc] 
-		initWithAnnualRate:annualRate andDaysSinceStart:0]autorelease]];
-		
+	
+	NSMutableSet *intermediateRates = [[[NSMutableSet alloc] init] autorelease];
+	
+	[intermediateRates addObject:[[[IntermediateVariableRate alloc] initWithAnnualRate:annualRate andSecondsVsStart:NSIntegerMin] autorelease]];
+	
 	for(DateSensitiveValueChange *valChange in variableVal.valueChanges)
 	{
-		NSTimeInterval secondsSinceStart = [valChange.startDate.date timeIntervalSinceDate:self.startDate];
-		// TBD - is the right to not include values which come before the start date? Or
-		// Should the startingvalue come before all other values, meaning a variable
-		// value could be in effect at the start date.
-		if(secondsSinceStart >= 0.0)
-		{
-			unsigned int daysSinceStart = floor(secondsSinceStart/SECONDS_PER_DAY);
-			annualRate = [valChange.newValue doubleValue]/100.0;
-			[self.varRates addObject:[[[VariableRate alloc] 
-					initWithAnnualRate:annualRate andDaysSinceStart:daysSinceStart]autorelease]];
-			
-		}
+		NSTimeInterval secondsVsStart = [valChange.startDate.date timeIntervalSinceDate:self.startDate];
+		annualRate = [valChange.newValue doubleValue]/100.0;
+		[intermediateRates addObject:[[[IntermediateVariableRate alloc]
+			initWithAnnualRate:annualRate andSecondsVsStart:secondsVsStart] autorelease]];		
 	}
+	
+	NSArray *sortedIntermediateRates = [CollectionHelper 
+		setToSortedArray:intermediateRates 
+		withKey:INTERMEDIATE_VARIABLE_RATE_SECONDS_VS_START_KEY];
+		
+	NSEnumerator *intermedRateEnum = [sortedIntermediateRates objectEnumerator];
+	IntermediateVariableRate *intRate = (IntermediateVariableRate *)[intermedRateEnum nextObject];
+	assert(intRate!=nil);
+	IntermediateVariableRate *firstRate = intRate;
+	while((intRate != nil) && (intRate.secondsVsStart <= 0))
+	{
+		firstRate = intRate;
+		intRate = (IntermediateVariableRate *)[intermedRateEnum nextObject];
+	}
+	[self.varRates addObject:[[[VariableRate alloc] 
+			initWithAnnualRate:firstRate.annualRate andDaysSinceStart:0]autorelease]];
+			
+	while(intRate != nil)
+	{
+		assert(intRate.secondsVsStart > 0);
+		double currentAnnualRate = intRate.annualRate;
+		unsigned int currDaysSinceStart = floor(intRate.secondsVsStart/SECONDS_PER_DAY);
+		
+		intRate = (IntermediateVariableRate *)[intermedRateEnum nextObject];
+		
+		if(intRate == nil)
+		{
+			[self.varRates addObject:[[[VariableRate alloc] 
+					initWithAnnualRate:currentAnnualRate 
+					andDaysSinceStart:currDaysSinceStart]autorelease]];
+		}
+		else
+		{
+			unsigned int nextDaysSinceStart = floor(intRate.secondsVsStart/SECONDS_PER_DAY);
+			if(nextDaysSinceStart > currDaysSinceStart)
+			{
+				[self.varRates addObject:[[[VariableRate alloc] 
+					initWithAnnualRate:currentAnnualRate 
+					andDaysSinceStart:currDaysSinceStart]autorelease]];
+
+			}
+		}
+	}		
+
+	
 
 }
 

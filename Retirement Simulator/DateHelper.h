@@ -24,6 +24,7 @@
 + (NSString*)stringFromDate:(NSDate*)theDate;
 + (NSDate*)beginningOfYear:(NSDate*)dateWithinYear;
 + (NSDate*)beginningOfDay:(NSDate*)theDate;
++ (NSDate*)endOfDay:(NSDate*)theDate;
 + (NSDate*)beginningOfNextYear:(NSDate*)dateWithinPreviousYear;
 + (NSDate*)nextDay:(NSDate*)currentDay;
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear;

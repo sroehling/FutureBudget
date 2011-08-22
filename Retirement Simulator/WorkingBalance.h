@@ -24,6 +24,7 @@
 - (id) initWithStartingBalance:(double)theStartBalance;
 - (void)resetCurrentBalance;
 - (void)carryBalanceForward:(NSDate*)newStartDate;
+- (void)advanceCurrentBalanceToDate:(NSDate*)newDate;
 
 @property(nonatomic,retain) NSDate *balanceStartDate;
 @property(nonatomic,retain) NSDate *currentBalanceDate;

@@ -12,11 +12,15 @@
 @interface VariableRateCalculator : NSObject {
     @private
 		NSArray *variableRates;
+		NSDate *startDate;
 }
 
 @property(nonatomic,retain) NSArray *variableRates; 
+@property(nonatomic,retain) NSDate *startDate;
 
-- (id)initWithRates:(NSMutableSet*)rates;
+- (id)initWithRates:(NSMutableSet*)rates andStartDate:(NSDate*)theStart;
 - (double) valueMultiplierForDay:(unsigned int)daysOffsetFromStart;
+- (double)valueMultiplierForDate:(NSDate*)theDate;
+- (double)valueMultiplierBetweenStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
 
 @end

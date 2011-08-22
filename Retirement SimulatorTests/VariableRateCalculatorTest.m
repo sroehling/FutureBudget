@@ -35,6 +35,34 @@
 	[coreData release];
 }
 
+- (void)checkOneRateCalcBetweenDates:(VariableRateCalculator*)rateCalc 
+	andStartDate:(NSDate*)startDate andEndDate:(NSDate*)endDate
+	andExpectedVal:(double)expectedVal
+{
+	NSString *expectedStr = [NSString stringWithFormat:@"%0.2f",expectedVal];
+	double valueMult = [rateCalc valueMultiplierBetweenStartDate:startDate andEndDate:endDate];
+	NSString *valueMultStr = [NSString stringWithFormat:@"%0.2f",valueMult];
+	STAssertEqualObjects(expectedStr, valueMultStr, 
+				   @"Values expected to be equal: expecting %@, got %@", expectedStr,valueMultStr);
+	NSLog(@"checkOneRateCalcBetweenDates: Expecting %@, got %@ for start date = %@ and end date = %@",
+		  expectedStr,valueMultStr,
+			[[DateHelper theHelper].mediumDateFormatter stringFromDate:startDate],
+			[[DateHelper theHelper].mediumDateFormatter stringFromDate:endDate]);
+}
+
+
+- (void)checkOneRateCalcWithDate:(VariableRateCalculator*)rateCalc 
+	andDate:(NSDate*)theDate andExpectedVal:(double)expectedVal
+{
+	NSString *expectedStr = [NSString stringWithFormat:@"%0.2f",expectedVal];
+	double valueMult = [rateCalc valueMultiplierForDate:theDate];
+	NSString *valueMultStr = [NSString stringWithFormat:@"%0.2f",valueMult];
+	STAssertEqualObjects(expectedStr, valueMultStr, 
+				   @"Values expected to be equal: expecting %@, got %@", expectedStr,valueMultStr);
+	NSLog(@"checkOneRateCalcWithDate: Expecting %@, got %@ for date = %@",
+		  expectedStr,valueMultStr,
+			[[DateHelper theHelper].mediumDateFormatter stringFromDate:theDate]);
+}
 
 
 
@@ -55,7 +83,8 @@
 	NSMutableSet *varRates = [[[NSMutableSet alloc] init] autorelease];
 	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:0]autorelease]];
 	
-	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
+	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] 
+		initWithRates:varRates andStartDate:[[[NSDate alloc] init] autorelease]] autorelease];
 	
 	[self checkOneRateCalc:rateCalc andDaysSinceStart:0 andExpectedVal:1.0];
 	[self checkOneRateCalc:rateCalc andDaysSinceStart:5 andExpectedVal:1.61];
@@ -73,7 +102,8 @@
 	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.3 andDaysSinceStart:10]autorelease]];
 	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.2 andDaysSinceStart:5]autorelease]];
 	
-	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
+	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] 
+		initWithRates:varRates andStartDate:[[[NSDate alloc] init] autorelease]] autorelease];
 	
 	[self checkOneRateCalc:rateCalc andDaysSinceStart:0 andExpectedVal:1.0];
 	[self checkOneRateCalc:rateCalc andDaysSinceStart:4 andExpectedVal:1.46];
@@ -82,6 +112,7 @@
 	[self checkOneRateCalc:rateCalc andDaysSinceStart:10 andExpectedVal:4.01];
 	[self checkOneRateCalc:rateCalc andDaysSinceStart:11 andExpectedVal:5.21];
 	//NSLog(@"Multiplier on day 0: %f",[rateCalc valueMultiplierForDay:0]);
+	
 	
 }
 
@@ -92,7 +123,8 @@
 	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:5]autorelease]];
 	[varRates addObject:[[[VariableRate alloc] initWithDailyRate:0.1 andDaysSinceStart:5]autorelease]];
 	
-	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] initWithRates:varRates] autorelease];
+	VariableRateCalculator *rateCalc = [[[VariableRateCalculator alloc] 
+		initWithRates:varRates andStartDate:[[[NSDate alloc] init] autorelease]] autorelease];
 
 	[self checkOneRateCalc:rateCalc andDaysSinceStart:5 andExpectedVal:1.61];
 	[self checkOneRateCalc:rateCalc andDaysSinceStart:6 andExpectedVal:1.77];
@@ -122,8 +154,78 @@
 	[self checkOneRateCalc:varRateCalc andDaysSinceStart:730 andExpectedVal:1.21];
 	[self checkOneRateCalc:varRateCalc andDaysSinceStart:1095 andExpectedVal:1.33];
 	
+	[self checkOneRateCalcWithDate:varRateCalc andDate:
+		[DateHelper dateFromStr:@"2012-01-01"] andExpectedVal:1.1];
+	[self checkOneRateCalcWithDate:varRateCalc andDate:
+		[DateHelper dateFromStr:@"2013-01-01"] andExpectedVal:1.21];
+
+	[self checkOneRateCalcBetweenDates:varRateCalc
+		andStartDate:[DateHelper dateFromStr:@"2013-01-01"] 
+		andEndDate:[DateHelper dateFromStr:@"2013-01-01"] andExpectedVal:1.0];
+
+	[self checkOneRateCalcBetweenDates:varRateCalc
+		andStartDate:[DateHelper dateFromStr:@"2014-11-01"] 
+		andEndDate:[DateHelper dateFromStr:@"2014-11-01"] andExpectedVal:1.0];
+
+
+	[self checkOneRateCalcBetweenDates:varRateCalc
+		andStartDate:[DateHelper dateFromStr:@"2012-01-01"] 
+		andEndDate:[DateHelper dateFromStr:@"2013-01-01"] andExpectedVal:1.1];
 	
 
 }
+
+
+
+- (void)testVariableRateCalcWithDSVOverlappingVals
+{	
+	FixedValue *fixedVal = (FixedValue*)[self.coreData createObj:FIXED_VALUE_ENTITY_NAME];
+	fixedVal.value = [NSNumber numberWithDouble:1.2];
+	
+	VariableValue *variableVal = (VariableValue*)[self.coreData createObj:VARIABLE_VALUE_ENTITY_NAME];
+	variableVal.startingValue = [NSNumber numberWithDouble:10.0];
+	variableVal.name = @"Test";
+	[variableVal addValueChangesObject:[TestCoreDataObjects 
+				createTestValueChange:self.coreData 
+				andDateObj:[DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-01-01"]]
+				andVal:5.0]];
+	[variableVal addValueChangesObject:[TestCoreDataObjects 
+				createTestValueChange:self.coreData 
+				andDateObj:[DateHelper endOfDay:[DateHelper dateFromStr:@"2012-01-01"]]
+				andVal:10.0]];
+	[variableVal addValueChangesObject:[TestCoreDataObjects
+				createTestValueChange:self.coreData 
+				andDateObj:[DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-01-01"]] 
+				andVal:2.0]];
+	[variableVal addValueChangesObject:[TestCoreDataObjects
+				createTestValueChange:self.coreData 
+				andDateObj:[DateHelper endOfDay:[DateHelper dateFromStr:@"2013-01-01"]] 
+				andVal:10.0]];
+
+	DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
+		[[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
+	VariableRateCalculator *varRateCalc = 
+		[calcCreator createForDateSensitiveValue:variableVal andStartDate:[DateHelper dateFromStr:@"2011-01-01"]];
+		
+	[self checkOneRateCalcWithDate:varRateCalc andDate:
+		[DateHelper dateFromStr:@"2012-01-01"] andExpectedVal:1.1];
+	[self checkOneRateCalcWithDate:varRateCalc andDate:
+		[DateHelper dateFromStr:@"2013-01-01"] andExpectedVal:1.21];
+
+	[self checkOneRateCalcBetweenDates:varRateCalc
+		andStartDate:[DateHelper dateFromStr:@"2013-01-01"] 
+		andEndDate:[DateHelper dateFromStr:@"2013-01-01"] andExpectedVal:1.0];
+
+	[self checkOneRateCalcBetweenDates:varRateCalc
+		andStartDate:[DateHelper dateFromStr:@"2014-11-01"] 
+		andEndDate:[DateHelper dateFromStr:@"2014-11-01"] andExpectedVal:1.0];
+
+
+	[self checkOneRateCalcBetweenDates:varRateCalc
+		andStartDate:[DateHelper dateFromStr:@"2012-01-01"] 
+		andEndDate:[DateHelper dateFromStr:@"2013-01-01"] andExpectedVal:1.1];
+	
+}
+
 
 @end

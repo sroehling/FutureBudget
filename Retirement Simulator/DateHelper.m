@@ -146,6 +146,26 @@
 	return roundedDate;
 }
 
++ (NSDate*)endOfDay:(NSDate*)theDate
+{	
+	assert(theDate!=nil);
+	NSUInteger componentFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	NSDateComponents *components = [[DateHelper theHelper].gregorian 
+		components:componentFlags fromDate:theDate];
+	
+	[components setHour:23];
+	[components setMinute:11];
+	[components setSecond:59];
+	
+	
+	
+	NSDate *roundedDate = [[DateHelper theHelper].gregorian dateFromComponents:components];
+	assert(roundedDate!=nil);
+	return roundedDate;
+}
+
+
+
 
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear
 {

@@ -25,7 +25,6 @@
 
 @synthesize savingsWorkingBalance;
 @synthesize varRateCalc;
-@synthesize startAmountGrowthDate;
 @synthesize varAmountCalc;
 @synthesize eventRepeater;
 
@@ -39,11 +38,6 @@
 		SavingsAccount *savingsAcct = self.savingsWorkingBalance.savingsAcct;
 		assert(savingsAcct != nil);
 
-		SimDate *startDate = (SimDate*)[savingsAcct.multiScenarioContribStartDate
-			getValueForCurrentOrDefaultScenario];
-	
-#warning Probably need to use simulator start date as the start rate for growth rates, rather than the first date of the event.
-		self.startAmountGrowthDate = startDate.date;
 
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
@@ -54,7 +48,7 @@
 		
 		self.varRateCalc = [calcCreator 
 							createForDateSensitiveValue:amountGrowthRate 
-							andStartDate:self.startAmountGrowthDate];
+							andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
 							
 		DateSensitiveValue *amount = (DateSensitiveValue*)[savingsAcct.multiScenarioContribAmount 
 				getValueForCurrentOrDefaultScenario];					
@@ -101,13 +95,7 @@
     if(nextDate !=nil)
     {
 		
-		NSTimeInterval secondsSinceAmountGrowth = [nextDate timeIntervalSinceDate:self.startAmountGrowthDate];
-		// TBD - is the right to not include values which come before the start date? Or
-		// Should the startingvalue come before all other values, meaning a variable
-		// value could be in effect at the start date.
-		assert(secondsSinceAmountGrowth >= 0.0);
-		unsigned int daysSinceStart = floor(secondsSinceAmountGrowth/SECONDS_PER_DAY);
-		double amountMultiplier = [self.varRateCalc valueMultiplierForDay:daysSinceStart];
+		double amountMultiplier = [self.varRateCalc valueMultiplierForDate:nextDate];
 		double unadjustedAmount = [self.varAmountCalc valueAsOfDate:nextDate];
 		double growthAdjustedContributionAmount = unadjustedAmount * amountMultiplier;
 		
@@ -132,7 +120,6 @@
 	[savingsWorkingBalance release];
 	[eventRepeater release];
 	[varRateCalc release];
-	[startAmountGrowthDate release];
 	[varAmountCalc release];
 }
 

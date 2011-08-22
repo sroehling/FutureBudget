@@ -8,14 +8,16 @@
 
 #import "VariableRateCalculator.h"
 #import "CollectionHelper.h"
+#import "DateHelper.h"
 #import "VariableRate.h"
 
 
 @implementation VariableRateCalculator
 
 @synthesize variableRates;
+@synthesize startDate;
 
-- (id)initWithRates:(NSMutableSet*)rates
+- (id)initWithRates:(NSMutableSet*)rates andStartDate:(NSDate *)theStart
 {
 	self = [super init];
 	if(self)
@@ -25,6 +27,9 @@
 		assert([self.variableRates count] > 0); // must be at least one rate
 		VariableRate *firstRate = (VariableRate*)[self.variableRates objectAtIndex:0];
 		assert(firstRate.daysSinceStart == 0); // first rate must start on first day.
+		
+		assert(theStart != nil);
+		self.startDate = theStart;
 	}
 	return self;
 }
@@ -89,10 +94,45 @@
 	return valueMultiplier;
 }
 
+- (double)valueMultiplierForDate:(NSDate*)theDate
+{
+		assert(theDate != nil);
+		assert([DateHelper dateIsEqualOrLater:theDate otherDate:self.startDate]);
+
+		NSTimeInterval secondsSinceStart = [theDate timeIntervalSinceDate:self.startDate];
+		// TBD - is the right to not include values which come before the start date? Or
+		// Should the startingvalue come before all other values, meaning a variable
+		// value could be in effect at the start date.
+		assert(secondsSinceStart >= 0.0);
+		unsigned int daysSinceStart = floor(secondsSinceStart/SECONDS_PER_DAY);
+		double amountMultiplier = [self valueMultiplierForDay:daysSinceStart];
+		assert(amountMultiplier >= 1.0);
+		return amountMultiplier;
+}
+
+- (double)valueMultiplierBetweenStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate
+{
+	assert(theStartDate!=nil);
+	assert(theEndDate!=nil);
+	assert([DateHelper dateIsEqualOrLater:theStartDate otherDate:self.startDate]);
+	assert([DateHelper dateIsEqualOrLater:theEndDate otherDate:self.startDate]);
+	assert([DateHelper dateIsEqualOrLater:theEndDate otherDate:theStartDate]);
+	
+	double startDateMultiplier = [self valueMultiplierForDate:theStartDate];
+	double endDateMultiplier = [self valueMultiplierForDate:theEndDate];
+	assert(startDateMultiplier > 0.0);
+	assert(endDateMultiplier > 0.0);
+	
+	double multiplierBetweenDates = endDateMultiplier/startDateMultiplier;
+	return multiplierBetweenDates;
+} 
+
+
 - (void) dealloc
 {
 	[super dealloc];
 	[variableRates release];
+	[startDate release];
 }
 
 @end

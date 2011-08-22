@@ -17,17 +17,24 @@
 @implementation TestCoreDataObjects
 
 + (DateSensitiveValueChange*)createTestValueChange:(InMemoryCoreData*)coreData 
-										   andDate:(NSString*)dateStr andVal:(double)val
+										   andDateObj:(NSDate*)dateObj andVal:(double)val
 {
-	
 	DateSensitiveValueChange *valChange = (DateSensitiveValueChange*)[coreData createObj:DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME];
 	
 	FixedDate *fixedStartDate = (FixedDate*) [coreData createObj:FIXED_DATE_ENTITY_NAME];
-	fixedStartDate.date = [DateHelper dateFromStr:dateStr];
+	fixedStartDate.date = dateObj;
 	
 	valChange.startDate = fixedStartDate;
 	valChange.newValue = [NSNumber numberWithDouble:val];
 	return valChange;
+}
+
++ (DateSensitiveValueChange*)createTestValueChange:(InMemoryCoreData*)coreData 
+										   andDate:(NSString*)dateStr andVal:(double)val
+{
+	NSDate *theDate = [DateHelper dateFromStr:dateStr];
+	return [TestCoreDataObjects createTestValueChange:coreData 
+		andDateObj:theDate andVal:val];
 }
 
 @end

@@ -22,7 +22,6 @@
         EventRepeater *eventRepeater;
 		VariableRateCalculator *varRateCalc;
 		id<ValueAsOfCalculator> varAmountCalc;
-		NSDate *startAmountGrowthDate;
 }
 
 - (id)initWithSavingsWorkingBalance:(SavingsWorkingBalance*)theWorkingBalance;
@@ -31,6 +30,5 @@
 @property(nonatomic,retain) EventRepeater *eventRepeater;
 @property(nonatomic,retain) VariableRateCalculator *varRateCalc;
 @property(nonatomic,retain) id<ValueAsOfCalculator> varAmountCalc;
-@property(nonatomic,retain) NSDate *startAmountGrowthDate;
 
 @end

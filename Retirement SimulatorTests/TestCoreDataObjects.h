@@ -16,6 +16,9 @@
 }
 
 + (DateSensitiveValueChange*)createTestValueChange:(InMemoryCoreData*)coreData 
+		andDateObj:(NSDate*)dateObj andVal:(double)val;
+										   
++ (DateSensitiveValueChange*)createTestValueChange:(InMemoryCoreData*)coreData 
    andDate:(NSString*)dateStr andVal:(double)val;
 
 @end

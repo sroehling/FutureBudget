@@ -21,7 +21,6 @@
         EventRepeater *eventRepeater;
 		VariableRateCalculator *varRateCalc;
 		id<ValueAsOfCalculator> varAmountCalc;
-		NSDate *startAmountGrowthDate;
 }
 
 - (id)initWithCashFlow:(CashFlowInput*)theCashFlow;
@@ -29,7 +28,6 @@
 @property(nonatomic,assign) CashFlowInput *cashFlow;
 @property(nonatomic,retain) VariableRateCalculator *varRateCalc;
 @property(nonatomic,retain) id<ValueAsOfCalculator> varAmountCalc;
-@property(nonatomic,retain) NSDate *startAmountGrowthDate;
 @property(nonatomic,retain) EventRepeater *eventRepeater;
 
 - (SimEvent*) createCashFlowSimEvent:(double)cashFlowAmount andEventDate:(NSDate*)theDate;
