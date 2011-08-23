@@ -21,10 +21,15 @@
 - (void) decrementBalance:(double)amount asOfDate:(NSDate*)newDate;
 - (double) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate;
 
-- (id) initWithStartingBalance:(double)theStartBalance;
+- (id) initWithStartingBalance:(double)theStartBalance 
+	andStartDate:(NSDate*)theStartDate;
+	
 - (void)resetCurrentBalance;
 - (void)carryBalanceForward:(NSDate*)newStartDate;
 - (void)advanceCurrentBalanceToDate:(NSDate*)newDate;
+
+- (NSString*)balanceName;
+- (void)logBalance;
 
 @property(nonatomic,retain) NSDate *balanceStartDate;
 @property(nonatomic,retain) NSDate *currentBalanceDate;

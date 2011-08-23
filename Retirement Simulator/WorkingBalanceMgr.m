@@ -85,6 +85,14 @@
 
 }
 
+- (void)logCurrentBalances
+{
+	for(WorkingBalance *workingBal in self.workingBalances)
+	{
+		[workingBal logBalance];
+	}
+}
+
 - (void) dealloc
 {
 	[super dealloc];

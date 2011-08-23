@@ -32,6 +32,8 @@
 - (void) decrementBalance:(double)expenseAmount asOfDate:(NSDate*)newDate;
 - (double) decrementAvailableCashBalance:(double)expenseAmount asOfDate:(NSDate*)newDate;
 
+- (void)logCurrentBalances;
+
 
 
 @end

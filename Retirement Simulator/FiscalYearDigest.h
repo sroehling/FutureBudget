@@ -10,6 +10,7 @@
 
 @class CashWorkingBalance;
 @class WorkingBalanceMgr;
+@class SavingsContribDigestEntry;
 
 @interface FiscalYearDigest : NSObject {
     @private
@@ -22,6 +23,7 @@
 
 - (void)addExpense:(double)amount onDate:(NSDate*)expenseDate;
 - (void)addIncome:(double)amount onDate:(NSDate*)incomeDate;
+- (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate;
 - (void)advanceToNextYear;
 
 @property(nonatomic,retain) NSDate *startDate;

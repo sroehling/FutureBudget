@@ -9,6 +9,7 @@
 #import "WorkingBalance.h"
 #import "SharedAppValues.h"
 #import "DateHelper.h"
+#import "NumberHelper.h"
 
 
 @implementation WorkingBalance
@@ -18,13 +19,16 @@
 @synthesize startingBalance;
 @synthesize currentBalanceDate;
 
-- (id) initWithStartingBalance:(double)theStartBalance
+- (id) initWithStartingBalance:(double)theStartBalance 
+	andStartDate:(NSDate*)theStartDate
 {
 	self = [super init];
 	if(self)
 	{
-		self.balanceStartDate = [DateHelper beginningOfDay:[SharedAppValues singleton].simStartDate];
+		self.balanceStartDate = theStartDate;
+		//[DateHelper beginningOfDay:[SharedAppValues singleton].simStartDate];
 		startingBalance = theStartBalance;
+		
 		[self resetCurrentBalance];
 	}
 	return self;
@@ -60,6 +64,9 @@
 
 	assert(amount >= 0.0);
 	currentBalance += amount;
+
+	[self logBalance];
+
 }
 
 - (void) decrementBalance:(double)amount asOfDate:(NSDate*)newDate
@@ -68,6 +75,8 @@
 	
 	assert(amount >= 0.0);	
 	currentBalance -= amount;
+	
+	[self logBalance];
 }
 
 - (double) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate
@@ -78,7 +87,7 @@
 
 	if(currentBalance > 0.0)
 	{
-		if(amount >= currentBalance)
+		if(amount <= currentBalance)
 		{
 			currentBalance -= amount;
 			return amount;
@@ -106,6 +115,20 @@
 	self.currentBalanceDate = newStartDate;
 }
 
+
+- (NSString*)balanceName
+{
+	assert(0); // must be overridden
+	return nil;
+}
+
+- (void)logBalance
+{
+		NSString *currentBalCurrency = [[NumberHelper theHelper].currencyFormatter 
+				stringFromNumber:[NSNumber numberWithDouble:self.currentBalance]];
+		NSLog(@"Working balance: %@ %@",self.balanceName,currentBalCurrency);
+
+}
 
 
 @end

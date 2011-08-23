@@ -20,6 +20,7 @@
 		0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58513CFEE940096A20F /* SavingsAccount.m */; };
 		0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58813D0B1DC0096A20F /* InterestRate.m */; };
 		0010A58D13D15C8B0096A20F /* StartingValsFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */; };
+		00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA11402EBC9001D472F /* WorkingBalanceTest.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
 		0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775213B1778600D15232 /* VariableRateCalculator.m */; };
@@ -76,6 +77,7 @@
 		004CB04213FD772D000E87A9 /* SavingsWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04113FD772C000E87A9 /* SavingsWorkingBalance.m */; };
 		004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */; };
 		004CB04B13FEF452000E87A9 /* IntermediateVariableRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04A13FEF433000E87A9 /* IntermediateVariableRate.m */; };
+		004CB04E1402BD04000E87A9 /* SavingsContribDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */; };
 		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
 		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
@@ -209,6 +211,8 @@
 		0010A58813D0B1DC0096A20F /* InterestRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestRate.m; sourceTree = "<group>"; };
 		0010A58B13D15C8B0096A20F /* StartingValsFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartingValsFormInfoCreator.h; sourceTree = "<group>"; };
 		0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartingValsFormInfoCreator.m; sourceTree = "<group>"; };
+		00160CA01402EBC9001D472F /* WorkingBalanceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceTest.h; sourceTree = "<group>"; };
+		00160CA11402EBC9001D472F /* WorkingBalanceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceTest.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
 		0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateRuntimeInfo.m; sourceTree = "<group>"; };
 		0025774E13AFDE2800D15232 /* StringLookupTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLookupTable.h; sourceTree = "<group>"; };
@@ -322,6 +326,8 @@
 		004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceMgr.m; sourceTree = "<group>"; };
 		004CB04913FEF430000E87A9 /* IntermediateVariableRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntermediateVariableRate.h; sourceTree = "<group>"; };
 		004CB04A13FEF433000E87A9 /* IntermediateVariableRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntermediateVariableRate.m; sourceTree = "<group>"; };
+		004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsContribDigestEntry.h; sourceTree = "<group>"; };
+		004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsContribDigestEntry.m; sourceTree = "<group>"; };
 		004F5D06136F170500E0C4A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		004F5D0C136F52D200E0C4A3 /* DataModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelController.h; sourceTree = "<group>"; };
 		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
@@ -964,6 +970,8 @@
 				00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */,
 				00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */,
 				00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */,
+				004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */,
+				004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */,
 			);
 			name = Digest;
 			sourceTree = "<group>";
@@ -1189,6 +1197,8 @@
 				0009480D13C21AE9008F129B /* MultiScenarioInputValueTest.m */,
 				004CB02C13FB1AE0000E87A9 /* TestDateHelper.h */,
 				004CB02D13FB1AE0000E87A9 /* TestDateHelper.m */,
+				00160CA01402EBC9001D472F /* WorkingBalanceTest.h */,
+				00160CA11402EBC9001D472F /* WorkingBalanceTest.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -1465,6 +1475,7 @@
 				004CB04213FD772D000E87A9 /* SavingsWorkingBalance.m in Sources */,
 				004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */,
 				004CB04B13FEF452000E87A9 /* IntermediateVariableRate.m in Sources */,
+				004CB04E1402BD04000E87A9 /* SavingsContribDigestEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1483,6 +1494,7 @@
 				0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */,
 				0009480E13C21AE9008F129B /* MultiScenarioInputValueTest.m in Sources */,
 				004CB02E13FB1AE1000E87A9 /* TestDateHelper.m in Sources */,
+				00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

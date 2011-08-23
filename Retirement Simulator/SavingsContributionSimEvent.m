@@ -12,6 +12,7 @@
 #import "SavingsAccount.h"
 #import "SavingsWorkingBalance.h"
 #import "FiscalYearDigest.h"
+#import "SavingsContribDigestEntry.h"
 
 
 @implementation SavingsContributionSimEvent
@@ -25,11 +26,14 @@
 				stringFromNumber:[NSNumber numberWithDouble:self.contributionAmount]];
     
     NSLog(@"Doing savings contribution event: %@ %@ %@",
-          self.savingsBalance.savingsAcct.name,
+          self.savingsBalance.workingBalanceName,
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		  
-	[digest addExpense:self.contributionAmount onDate:self.eventDate];
+	SavingsContribDigestEntry *savingsContrib = 
+		[[[SavingsContribDigestEntry alloc] 
+		initWithWorkingBalance:self.savingsBalance andContribAmount:self.contributionAmount] autorelease];
+	[digest addSavingsContrib:savingsContrib onDate:self.eventDate];
 }
 
 

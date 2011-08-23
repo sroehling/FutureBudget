@@ -11,16 +11,22 @@
 #import "WorkingBalance.h"
 
 @class SavingsAccount;
+@class DateSensitiveValue;
 @class VariableRateCalculator;
 
 @interface SavingsWorkingBalance : WorkingBalance {
     @private
-		SavingsAccount *savingsAcct;
 		VariableRateCalculator *interestRateCalc;
+		NSString *workingBalanceName;
 }
 
-@property(nonatomic,retain) SavingsAccount *savingsAcct;
 @property(nonatomic,retain )VariableRateCalculator *interestRateCalc;
+@property(nonatomic,retain ) NSString *workingBalanceName;
+
+- (id) initWithStartingBalance:(double)theStartBalance
+	andInterestRate:(DateSensitiveValue*)theInterestRate
+	andWorkingBalanceName:(NSString*)wbName
+	andStartDate:(NSDate*)theStartDate;
 
 - (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct;
 

@@ -125,7 +125,8 @@
 			[[[SavingsWorkingBalance alloc] initWithSavingsAcct:savingsAcct] autorelease];
 		SavingsContributionSimEventCreator *savingsEventCreator = 
 			[[[SavingsContributionSimEventCreator alloc]
-				initWithSavingsWorkingBalance:savingsBal] autorelease];
+				initWithSavingsWorkingBalance:savingsBal 
+				andSavingsAcct:savingsAcct] autorelease];
 		[self.eventCreators addObject:savingsEventCreator];
 		[self.workingBalanceMgr addWorkingBalance:savingsBal];
 	}
@@ -149,7 +150,9 @@
 	self.workingBalanceMgr = [[[WorkingBalanceMgr alloc] initWithStartDate:digestStartDate] autorelease];
 		
 	[self populateEventCreators];
-
+	
+	NSLog(@"Initial working balances ...");
+	[self.workingBalanceMgr logCurrentBalances];
     
     // At the beginning of the simulation, iterate through the
     // event creators and have them create their first event.

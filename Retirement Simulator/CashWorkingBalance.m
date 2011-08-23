@@ -9,6 +9,9 @@
 #import "CashWorkingBalance.h"
 #import "Cash.h"
 #import "SharedAppValues.h"
+#import "DateHelper.h"
+#import "SharedAppValues.h"
+#import "LocalizationHelper.h"
 
 
 @implementation CashWorkingBalance
@@ -19,17 +22,25 @@
 	assert(theCash != nil);
 	double startingCashBalance = [theCash.startingBalance doubleValue];
 	
-	self = [super initWithStartingBalance:startingCashBalance];
+	NSDate *startDate = [DateHelper beginningOfDay:[SharedAppValues singleton].simStartDate];
+	
+	self = [super initWithStartingBalance:startingCashBalance andStartDate:startDate];
 	if(self)
 	{
 	}
 	return self;
 }
 
+
 - (void)carryBalanceForward:(NSDate*)newStartDate
 {
 	[super carryBalanceForward:newStartDate];
 	startingBalance = self.currentBalance;
+}
+
+- (NSString*)balanceName
+{
+	return LOCALIZED_STR(@"CASH_LABEL");
 }
 
 

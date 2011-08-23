@@ -26,16 +26,18 @@
 @synthesize savingsWorkingBalance;
 @synthesize varRateCalc;
 @synthesize varAmountCalc;
+@synthesize savingsAcct;
 @synthesize eventRepeater;
 
 - (id)initWithSavingsWorkingBalance:(SavingsWorkingBalance*)theWorkingBalance
+	andSavingsAcct:(SavingsAccount*)theSavingsAcct;
 {
 	self = [super init];
 	if(self)
 	{
 		self.savingsWorkingBalance = theWorkingBalance;
 	
-		SavingsAccount *savingsAcct = self.savingsWorkingBalance.savingsAcct;
+		self.savingsAcct = theSavingsAcct;
 		assert(savingsAcct != nil);
 
 
@@ -64,14 +66,11 @@
 - (void)resetSimEventCreation
 {
 
-	SavingsAccount *savingsAcct = self.savingsWorkingBalance.savingsAcct;
-	assert(savingsAcct != nil);
-
-	SimDate *startDate = (SimDate*)[savingsAcct.multiScenarioContribStartDate 
+	SimDate *startDate = (SimDate*)[self.savingsAcct.multiScenarioContribStartDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedStartDate = startDate.date;
 			
-	SimDate *endDate = (SimDate*)[savingsAcct.multiScenarioContribEndDate 
+	SimDate *endDate = (SimDate*)[self.savingsAcct.multiScenarioContribEndDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
 	

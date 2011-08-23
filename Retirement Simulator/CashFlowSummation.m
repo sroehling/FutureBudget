@@ -13,12 +13,14 @@
 
 @synthesize sumExpenses;
 @synthesize sumIncome;
+@synthesize savingsContribs;
 
 -(id)init
 {
 	self = [super init];
 	if(self)
 	{
+		self.savingsContribs = [[[NSMutableArray alloc] init] autorelease];
 		[self resetSummations];
 	}
 	return self;
@@ -36,10 +38,23 @@
 	sumExpenses += expenseAmount;
 }
 
+- (void) addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib
+{
+	assert(savingsContrib != nil);
+	[self.savingsContribs addObject:savingsContrib];
+}
+
 - (void)resetSummations
 {
 	sumIncome = 0.0;
 	sumExpenses = 0.0;
+	[self.savingsContribs removeAllObjects];
+}
+
+- (void) dealloc
+{
+	[super dealloc];
+	[savingsContribs release];
 }
 
 @end

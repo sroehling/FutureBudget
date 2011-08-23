@@ -16,32 +16,40 @@
 
 @implementation SavingsWorkingBalance
 
-@synthesize savingsAcct;
 @synthesize interestRateCalc;
+@synthesize workingBalanceName;
 
-- (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct
+
+- (id) initWithStartingBalance:(double)theStartBalance
+	andInterestRate:(DateSensitiveValue*)theInterestRate
+	andWorkingBalanceName:(NSString*)wbName
+	andStartDate:(NSDate*)theStartDate
 {
-	double theStartBalance = [theSavingsAcct.startingBalance doubleValue];
-	self = [super initWithStartingBalance:theStartBalance];
-	if(self)
+	self = [super initWithStartingBalance:theStartBalance 
+		andStartDate:theStartDate];
 	{
-		assert(theSavingsAcct != nil);
-		self.savingsAcct = theSavingsAcct;
-		
-		
-		DateSensitiveValue *savingsInterestRate = (DateSensitiveValue*)[
-			savingsAcct.multiScenarioInterestRate
-			getValueForCurrentOrDefaultScenario];
-			
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 		
 		self.interestRateCalc = [calcCreator 
-							createForDateSensitiveValue:savingsInterestRate 
-							andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
-
+							createForDateSensitiveValue:theInterestRate 
+							andStartDate:theStartDate];
+							
+		self.workingBalanceName = wbName;
 	}
 	return self;
+
+}
+
+- (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct
+{
+
+	DateSensitiveValue *savingsInterestRate = (DateSensitiveValue*)[
+			theSavingsAcct.multiScenarioInterestRate
+			getValueForCurrentOrDefaultScenario];
+
+
+	return [self initWithStartingBalance:[theSavingsAcct.startingBalance doubleValue] andInterestRate:savingsInterestRate andWorkingBalanceName:theSavingsAcct.name andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
 }
 
 
@@ -76,11 +84,17 @@
 	currentBalance = currentBalance * balanceMultiplier;
 }
 
+- (NSString*)balanceName
+{
+	return self.workingBalanceName;
+}
+
+
 - (void) dealloc
 {
 	[super dealloc];
-	[savingsAcct release];
 	[interestRateCalc release];
+	[workingBalanceName release];
 }
 
 

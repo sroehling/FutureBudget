@@ -11,8 +11,10 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "CashWorkingBalance.h"
+#import "SavingsContribDigestEntry.h"
 #import "WorkingBalanceMgr.h"
 #import "SharedAppValues.h"
+#import "SavingsWorkingBalance.h"
 #import "Cash.h"
 
 @implementation FiscalYearDigest
@@ -71,6 +73,11 @@
 {
 	double totalIncome = 0.0;
 	double totalExpense = 0.0;
+	
+	NSLog(@"Advancing digest to next year from last year start = %@",
+		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
+	[self.workingBalanceMgr logCurrentBalances];
+	
 	NSDate *currentDate = self.startDate;
 	for(int i=0; i < MAX_DAYS_IN_YEAR; i++)
 	{
@@ -87,6 +94,16 @@
 			totalExpense += theSummation.sumExpenses;
 			[self.workingBalanceMgr decrementBalance:theSummation.sumExpenses asOfDate:currentDate];
 		}
+		if([theSummation.savingsContribs count] > 0)
+		{
+			for(SavingsContribDigestEntry *savingsContrib in theSummation.savingsContribs)
+			{
+				double actualContrib = [self.workingBalanceMgr
+					decrementAvailableCashBalance:savingsContrib.contribAmount asOfDate:currentDate];
+				totalExpense += actualContrib;
+				[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
+			}
+		}
 		currentDate = [DateHelper nextDay:currentDate];
 	}
 
@@ -96,11 +113,15 @@
 	NSString *totalExpenseCurrency = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:totalExpense]];
 	NSLog(@"Total Expense: %@",totalExpenseCurrency);
+	[self.workingBalanceMgr logCurrentBalances];
 	
 	
 
 	self.startDate = [DateHelper beginningOfNextYear:self.startDate];
 	[self.workingBalanceMgr carryBalancesForward:self.startDate];
+	NSLog(@"Done Advancing digest to next year start = %@",
+		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
+
 
 	[self resetSummations];
 }
@@ -116,6 +137,12 @@
 	CashFlowSummation *theSummation = [self summationForDate:incomeDate];
 	[theSummation addIncome:amount];
 
+}
+
+- (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate
+{
+	CashFlowSummation *theSummation = [self summationForDate:contribDate];
+	[theSummation addSavingsContrib:savingsContrib];
 }
 
 - (id) init
