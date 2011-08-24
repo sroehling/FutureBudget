@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BalanceAdjustment;
+
 
 @interface WorkingBalance : NSObject {
     @protected
@@ -19,7 +21,7 @@
 
 - (void) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
 - (void) decrementBalance:(double)amount asOfDate:(NSDate*)newDate;
-- (double) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate;
+- (BalanceAdjustment*) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andStartDate:(NSDate*)theStartDate;
@@ -29,6 +31,7 @@
 - (void)advanceCurrentBalanceToDate:(NSDate*)newDate;
 
 - (NSString*)balanceName;
+- (bool)doTaxWithdrawals;
 - (void)logBalance;
 
 @property(nonatomic,retain) NSDate *balanceStartDate;

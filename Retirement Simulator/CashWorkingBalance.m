@@ -38,6 +38,12 @@
 	startingBalance = self.currentBalance;
 }
 
+- (bool)doTaxWithdrawals
+{
+	return FALSE;
+}
+
+
 - (NSString*)balanceName
 {
 	return LOCALIZED_STR(@"CASH_LABEL");

@@ -18,12 +18,14 @@
 
 @synthesize interestRateCalc;
 @synthesize workingBalanceName;
+@synthesize taxableWithdrawals;
 
 
 - (id) initWithStartingBalance:(double)theStartBalance
 	andInterestRate:(DateSensitiveValue*)theInterestRate
 	andWorkingBalanceName:(NSString*)wbName
 	andStartDate:(NSDate*)theStartDate
+	andTaxWithdrawals:(bool)doTaxWithdrawals
 {
 	self = [super initWithStartingBalance:theStartBalance 
 		andStartDate:theStartDate];
@@ -34,6 +36,8 @@
 		self.interestRateCalc = [calcCreator 
 							createForDateSensitiveValue:theInterestRate 
 							andStartDate:theStartDate];
+							
+		self.taxableWithdrawals = doTaxWithdrawals;
 							
 		self.workingBalanceName = wbName;
 	}
@@ -48,8 +52,11 @@
 			theSavingsAcct.multiScenarioInterestRate
 			getValueForCurrentOrDefaultScenario];
 
+	bool doTaxWithdrawals = [theSavingsAcct.taxableWithdrawals boolValue];
 
-	return [self initWithStartingBalance:[theSavingsAcct.startingBalance doubleValue] andInterestRate:savingsInterestRate andWorkingBalanceName:theSavingsAcct.name andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
+	return [self initWithStartingBalance:[theSavingsAcct.startingBalance doubleValue] andInterestRate:savingsInterestRate andWorkingBalanceName:theSavingsAcct.name 
+		andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]
+		andTaxWithdrawals:doTaxWithdrawals];
 }
 
 
@@ -83,6 +90,12 @@
 	[super advanceCurrentBalanceToDate:newDate];
 	currentBalance = currentBalance * balanceMultiplier;
 }
+
+- (bool)doTaxWithdrawals
+{
+	return self.taxableWithdrawals;
+}
+
 
 - (NSString*)balanceName
 {

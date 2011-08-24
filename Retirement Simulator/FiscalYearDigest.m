@@ -12,6 +12,7 @@
 #import "NumberHelper.h"
 #import "CashWorkingBalance.h"
 #import "SavingsContribDigestEntry.h"
+#import "BalanceAdjustment.h"
 #import "WorkingBalanceMgr.h"
 #import "SharedAppValues.h"
 #import "SavingsWorkingBalance.h"
@@ -92,10 +93,10 @@
 		if(theSummation.sumExpenses)
 		{
 			totalExpense += theSummation.sumExpenses;
-			double amountDecremented = 
+			BalanceAdjustment *amountDecremented = 
 				[self.workingBalanceMgr decrementBalanceFromFundingList:theSummation.sumExpenses 
 				asOfDate:currentDate];
-			assert(amountDecremented <= theSummation.sumExpenses);
+			assert([amountDecremented totalAmount] <= theSummation.sumExpenses);
 		}
 		if([theSummation.savingsContribs count] > 0)
 		{
