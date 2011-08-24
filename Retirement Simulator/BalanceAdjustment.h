@@ -16,7 +16,9 @@
 }
 
 - (id) initWithTaxFreeAmount:(double)theTaxFreeAmount andTaxableAmount:(double)theTaxableAmount;
+- (id) initWithZeroAmount;
 - (void) addAdjustment:(BalanceAdjustment*)otherAdjustment;
+- (void) resetToZero;
 
 @property double taxFreeAmount;
 @property double taxableAmount;

@@ -28,11 +28,22 @@
 	return self;
 }
 
+- (id) initWithZeroAmount
+{
+	return [self initWithTaxFreeAmount:0.0 andTaxableAmount:0.0];
+}
+
 - (void) addAdjustment:(BalanceAdjustment*)otherAdjustment
 {
 	assert(otherAdjustment != nil);
 	self.taxableAmount += otherAdjustment.taxableAmount;
 	self.taxFreeAmount += otherAdjustment.taxFreeAmount;
+}
+
+- (void) resetToZero
+{
+	taxFreeAmount = 0.0;
+	taxableAmount = 0.0;
 }
 
 -(id) init

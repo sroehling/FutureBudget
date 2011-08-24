@@ -12,6 +12,7 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "FiscalYearDigest.h"
+#import "BalanceAdjustment.h"
 
 @implementation ExpenseSimEvent
 
@@ -28,8 +29,12 @@
           expense.name,
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
+		
+#warning TODO - Need to support deductable expenses here and reflect that in the expenseAdj
+	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithTaxFreeAmount:0.0 
+		andTaxableAmount:self.expenseAmount] autorelease];
 		  
-	[digest addExpense:self.expenseAmount onDate:self.eventDate];
+	[digest addExpense:expenseAdj onDate:self.eventDate];
 }
 
 

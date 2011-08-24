@@ -843,9 +843,9 @@
 		004A59A713A02F67009FEF25 /* Simulator */ = {
 			isa = PBXGroup;
 			children = (
-				00160CA714055EEC001D472F /* Working Balance */,
 				0025776113B292F600D15232 /* Variable Rate Calculator */,
 				0025776213B2932200D15232 /* Variable Value Calculator */,
+				00160CA714055EEC001D472F /* Working Balance */,
 				004CB03613FC491E000E87A9 /* Digest */,
 				005731EC137874A1008D13C1 /* Simulator Inputs */,
 				004F5D7713732CA300E0C4A3 /* Simulator Engine */,

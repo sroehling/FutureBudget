@@ -73,7 +73,7 @@
 - (void)advanceToNextYear
 {
 	double totalIncome = 0.0;
-	double totalExpense = 0.0;
+	BalanceAdjustment *totalExpense = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 	
 	NSLog(@"Advancing digest to next year from last year start = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
@@ -90,13 +90,13 @@
 			totalIncome += theSummation.sumIncome;
 			[self.workingBalanceMgr incrementCashBalance:theSummation.sumIncome asOfDate:currentDate];
 		}
-		if(theSummation.sumExpenses)
+		if([theSummation.sumExpenses totalAmount] > 0.0)
 		{
-			totalExpense += theSummation.sumExpenses;
+			[totalExpense addAdjustment:theSummation.sumExpenses];
 			BalanceAdjustment *amountDecremented = 
-				[self.workingBalanceMgr decrementBalanceFromFundingList:theSummation.sumExpenses 
+				[self.workingBalanceMgr decrementBalanceFromFundingList:[theSummation.sumExpenses totalAmount] 
 				asOfDate:currentDate];
-			assert([amountDecremented totalAmount] <= theSummation.sumExpenses);
+			assert([amountDecremented totalAmount] <= [theSummation.sumExpenses totalAmount]);
 		}
 		if([theSummation.savingsContribs count] > 0)
 		{
@@ -104,7 +104,10 @@
 			{
 				double actualContrib = [self.workingBalanceMgr
 					decrementAvailableCashBalance:savingsContrib.contribAmount asOfDate:currentDate];
-				totalExpense += actualContrib;
+#warning TODO - Need to distinguish between tax free contributions and taxable contributions
+				BalanceAdjustment *contribAdjustment = 
+					[[[BalanceAdjustment alloc] initWithTaxFreeAmount:0.0 andTaxableAmount:actualContrib] autorelease];
+				[totalExpense addAdjustment:contribAdjustment];
 				[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
 			}
 		}
@@ -115,7 +118,7 @@
 				stringFromNumber:[NSNumber numberWithDouble:totalIncome]];
 	NSLog(@"Total Income: %@",totalIncomeCurrency);
 	NSString *totalExpenseCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:totalExpense]];
+				stringFromNumber:[NSNumber numberWithDouble:[totalExpense totalAmount]]];
 	NSLog(@"Total Expense: %@",totalExpenseCurrency);
 	[self.workingBalanceMgr logCurrentBalances];
 	
@@ -130,7 +133,7 @@
 	[self resetSummations];
 }
 
-- (void)addExpense:(double)amount onDate:(NSDate*)expenseDate
+- (void)addExpense:(BalanceAdjustment*)amount onDate:(NSDate*)expenseDate
 {
 	CashFlowSummation *theSummation = [self summationForDate:expenseDate];
 	[theSummation addExpense:amount];

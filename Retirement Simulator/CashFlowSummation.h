@@ -9,20 +9,21 @@
 #import <Foundation/Foundation.h>
 
 @class SavingsContribDigestEntry;
+@class BalanceAdjustment;
 
 @interface CashFlowSummation : NSObject {
     @private
-		double sumExpenses;
+		BalanceAdjustment *sumExpenses;
 		double sumIncome;
 		NSMutableArray *savingsContribs;
 }
 
 - (void)addIncome:(double)incomeAmount;
-- (void)addExpense:(double)expenseAmount;
+- (void)addExpense:(BalanceAdjustment*)expenseAmount;
 - (void) addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib;
 - (void)resetSummations;
 
-@property(readonly) double sumExpenses;
+@property(nonatomic,retain) BalanceAdjustment *sumExpenses;
 @property(readonly) double sumIncome;
 @property(nonatomic,retain) NSMutableArray *savingsContribs;
 

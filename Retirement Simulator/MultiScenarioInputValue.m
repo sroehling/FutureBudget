@@ -120,7 +120,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 
 -(InputValue*)getValueForCurrentOrDefaultScenario
 {
-#warning This returns the value for the current *input* scenario ... need to handle differently when calculating results
+#warning TODO - This returns the value for the current *input* scenario ... need to handle differently when calculating results
 	Scenario *currentScenario = [SharedAppValues singleton].currentInputScenario;
 	assert(currentScenario != nil);
 	InputValue *inputVal = [self findInputValueForScenarioOrDefault:currentScenario];

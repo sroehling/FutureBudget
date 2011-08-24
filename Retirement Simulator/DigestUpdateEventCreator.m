@@ -24,7 +24,7 @@
 	if(self)
 	{
 		// TODO - Should the first update date be the end of 12-31
-#warning Need to make sure digestStartDate is the very last second of the year, so that no events on 12/31 will come after it.
+#warning TODO - Need to make sure digestStartDate is the very last second of the year, so that no events on 12/31 will come after it.
 		self.digestStartDate = [DateHelper endOfYear:[SharedAppValues singleton].simStartDate];;
 		NSDateComponents *repeatYearly = [[[NSDateComponents alloc] init] autorelease];
 		[repeatYearly setYear:1];

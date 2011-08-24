@@ -79,6 +79,7 @@
 	double balanceMultiplier = [self.interestRateCalc valueMultiplierBetweenStartDate:self.currentBalanceDate andEndDate:newStartDate];
 	
 	[super carryBalanceForward:newStartDate];
+#warning TODO - Need to support calculating the interest and returning it, so it can be included in tax calculations.
 	startingBalance = self.currentBalance *balanceMultiplier;
 	currentBalance = startingBalance;
 }

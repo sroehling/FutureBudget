@@ -7,6 +7,7 @@
 //
 
 #import "CashFlowSummation.h"
+#import "BalanceAdjustment.h"
 
 
 @implementation CashFlowSummation
@@ -21,6 +22,7 @@
 	if(self)
 	{
 		self.savingsContribs = [[[NSMutableArray alloc] init] autorelease];
+		self.sumExpenses = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		[self resetSummations];
 	}
 	return self;
@@ -32,10 +34,11 @@
 	sumIncome += incomeAmount;
 }
 
-- (void)addExpense:(double)expenseAmount
+- (void)addExpense:(BalanceAdjustment*)expenseAmount
 {
-	assert(expenseAmount >= 0.0);
-	sumExpenses += expenseAmount;
+	assert(expenseAmount != nil);
+	assert([expenseAmount totalAmount] >= 0.0);
+	[sumExpenses addAdjustment:expenseAmount];
 }
 
 - (void) addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib
@@ -47,7 +50,7 @@
 - (void)resetSummations
 {
 	sumIncome = 0.0;
-	sumExpenses = 0.0;
+	[sumExpenses resetToZero];
 	[self.savingsContribs removeAllObjects];
 }
 
@@ -55,6 +58,7 @@
 {
 	[super dealloc];
 	[savingsContribs release];
+	[sumExpenses release];
 }
 
 @end
