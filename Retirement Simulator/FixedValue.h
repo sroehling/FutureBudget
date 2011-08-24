@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "DateSensitiveValue.h"
 
+extern NSString * const FIXED_VALUE_ENTITY_NAME;
+extern NSString * const FIXED_VALUE_VALUE_KEY;
 
 @interface FixedValue : DateSensitiveValue {
 @private
@@ -18,4 +20,4 @@
 
 @end
 
-extern NSString * const FIXED_VALUE_ENTITY_NAME;
+

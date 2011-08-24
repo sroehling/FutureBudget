@@ -51,6 +51,8 @@
 	VariableRate *currRate = (VariableRate*)[self.variableRates objectAtIndex:currRateIndex];
 	while(currOffset < daysOffsetFromStart)
 	{
+#warning Need to double-check the interest rate calculations to ensure they are standardized w.r.t. what you'd typically see at a bank, etc.
+
 		unsigned int daysAtCurrentRate;
 		if((currRateIndex + 1) >= [self.variableRates count])
 		{

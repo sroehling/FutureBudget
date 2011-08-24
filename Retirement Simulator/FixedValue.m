@@ -12,6 +12,7 @@
 #import "DateSensitiveValueVisitor.h"
 
 NSString * const FIXED_VALUE_ENTITY_NAME = @"FixedValue";
+NSString * const FIXED_VALUE_VALUE_KEY = @"value";
 
 @implementation FixedValue
 @dynamic value;

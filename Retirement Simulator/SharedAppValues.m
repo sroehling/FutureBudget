@@ -15,7 +15,7 @@
 #import "DefaultScenario.h"
 #import "RelativeEndDate.h"
 #import "Cash.h"
-
+#import "FixedValue.h"
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
@@ -25,6 +25,7 @@ NSString * const SHARED_APP_VALUES_DEFAULT_FIXED_SIM_END_DATE_KEY = @"defaultFix
 NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"defaultFixedRelativeEndDate";
 
 #define DEFAULT_SIM_END_DATE_OFFSET_YEARS 50
+#define DEFAULT_DEFICIT_INTEREST_RATE 0.0
 
 @implementation SharedAppValues
 
@@ -37,6 +38,7 @@ NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"default
 @dynamic defaultFixedSimEndDate;
 @dynamic defaultFixedRelativeEndDate;
 @dynamic cash;
+@dynamic deficitInterestRate;
 
 static SharedAppValues *theSharedAppVals;  
 
@@ -105,6 +107,11 @@ static SharedAppValues *theSharedAppVals;
 			DataModelController theDataModelController] insertObject:CASH_ENTITY_NAME];
 		theCash.startingBalance = [NSNumber numberWithDouble:0.0];
 		sharedVals.cash = theCash;
+		
+		FixedValue *theDeficitInterestRate = (FixedValue*)[[
+			DataModelController theDataModelController] insertObject:FIXED_VALUE_ENTITY_NAME];
+		theDeficitInterestRate.value = [NSNumber numberWithDouble:DEFAULT_DEFICIT_INTEREST_RATE];
+		sharedVals.deficitInterestRate = theDeficitInterestRate;
 
 		
 		[SharedAppValues initSingleton:sharedVals];

@@ -87,12 +87,15 @@
 		if(theSummation.sumIncome >0.0)
 		{
 			totalIncome += theSummation.sumIncome;
-			[self.workingBalanceMgr incrementBalance:theSummation.sumIncome asOfDate:currentDate];
+			[self.workingBalanceMgr incrementCashBalance:theSummation.sumIncome asOfDate:currentDate];
 		}
 		if(theSummation.sumExpenses)
 		{
 			totalExpense += theSummation.sumExpenses;
-			[self.workingBalanceMgr decrementBalance:theSummation.sumExpenses asOfDate:currentDate];
+			double amountDecremented = 
+				[self.workingBalanceMgr decrementBalanceFromFundingList:theSummation.sumExpenses 
+				asOfDate:currentDate];
+			assert(amountDecremented <= theSummation.sumExpenses);
 		}
 		if([theSummation.savingsContribs count] > 0)
 		{

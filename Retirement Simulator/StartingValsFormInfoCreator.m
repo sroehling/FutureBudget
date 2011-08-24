@@ -11,6 +11,7 @@
 #import "SharedAppValues.h"
 #import "Input.h"
 #import "Account.h"
+#import "FixedValue.h"
 #import "DataModelController.h"
 #import "LocalizationHelper.h"
 #import "NumberFieldEditInfo.h"
@@ -80,7 +81,19 @@
 			andNumberFormatter:[NumberHelper theHelper].currencyFormatter];
 	[sectionInfo addFieldEditInfo:cashBalanceFieldEditInfo];
 
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_DEFICITS_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE");
+
 	
+	NumberFieldEditInfo *deficitInterestFieldEditInfo = 
+			[NumberFieldEditInfo createForObject:[SharedAppValues singleton].deficitInterestRate 
+				andKey:FIXED_VALUE_VALUE_KEY 
+			andLabel:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_LABEL") 
+			andPlaceholder:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_PLACEHOLDER") 
+			andNumberFormatter:[NumberHelper theHelper].percentFormatter];
+	[sectionInfo addFieldEditInfo:deficitInterestFieldEditInfo];
+
 	
 	return formPopulator.formInfo;
 	

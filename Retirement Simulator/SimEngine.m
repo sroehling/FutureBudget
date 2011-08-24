@@ -128,7 +128,7 @@
 				initWithSavingsWorkingBalance:savingsBal 
 				andSavingsAcct:savingsAcct] autorelease];
 		[self.eventCreators addObject:savingsEventCreator];
-		[self.workingBalanceMgr addWorkingBalance:savingsBal];
+		[self.workingBalanceMgr addFundingSource:savingsBal];
 	}
 
 	

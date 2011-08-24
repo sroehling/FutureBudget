@@ -76,6 +76,7 @@
 "INPUT_CASHFLOW_END_FIELD_LABEL" = "End";
 
 "CASH_LABEL" = "Cash";
+"DEFICIT_LABEL" = "Deficit";
 
 "INPUT_INFLATION_RATE_VALUE_TITLE" = "Growth Rate";
 "INPUT_INFLATION_RATE_INLINE_VALUE_TITLE" = "growth rate";
@@ -161,6 +162,12 @@
 "SIM_END_DATE_TABLE_TITLE" = "End Date";
 "SIM_END_DATE_TABLE_HEADER" = "Simulation End Date";
 "SIM_END_DATE_TABLE_SUBTITLE" = "This is the date the simulation will end. Enter a date for as long as you need to plan for.";
+
+
+"STARTUP_VALUES_DEFICITS_SECTION_TITLE" = "Deficits";
+"STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE" = "If expenses are greater than income and account balances are zero, a deficit will be calculated with an interest on the balance";
+"STARTUP_VALUE_DEFICIT_LABEL" = "Interest on Deficit";
+"STARTUP_VALUE_DEFICIT_PLACEHOLDER" = "Enter a Rate";
 
 "RELATIVE_END_DATE_LABEL" = "After Start Date";
 "RELATIVE_END_DATE_DESCRIPTION_SINGLE_WEEK_LABEL" = "Week";

@@ -14,6 +14,7 @@
 #import "SavingsAccount.h"
 #import "FixedValue.h"
 #import "SavingsWorkingBalance.h"
+#import "WorkingBalanceMgr.h"
 
 
 @implementation WorkingBalanceTest
@@ -153,6 +154,56 @@
 		initWithStartingBalance:1000.0 
 		andStartDate:[DateHelper dateFromStr:@"2012-01-01"]] autorelease];
 	[self doZeroInterestTests:bal];
+}
+
+
+- (void)testWorkingBalanceMgr
+{
+
+	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-01-01"]];
+	
+	CashWorkingBalance *cashBal = [[[CashWorkingBalance alloc] 
+		initWithStartingBalance:1000.0 
+		andStartDate:startDate] autorelease];
+	SavingsWorkingBalance *deficitBal = [self createInterestBearingWorkingAccountWithRate:0 
+		andStartDate:startDate andStartingBal:0];
+
+	WorkingBalanceMgr *workingBalMgr = [[[WorkingBalanceMgr alloc] initWithCashBalance:cashBal andDeficitBalance:deficitBal] autorelease];
+	
+	[self checkCurrentBalance:cashBal withExpectedBalance:1000];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+	
+	[workingBalMgr incrementCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:2000];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+	
+	double decrementAmount = [workingBalMgr decrementAvailableCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:1000];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+	STAssertEqualsWithAccuracy(decrementAmount, 1000.0, 0.001,
+		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for decrement amount",
+							   1000.0,decrementAmount);
+
+	[workingBalMgr decrementAvailableCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+
+	decrementAmount = [workingBalMgr decrementBalanceFromFundingList:1000 
+		asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:1000];
+	STAssertEqualsWithAccuracy(decrementAmount, 0.0, 0.001,
+		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for decrement amount",
+							   0.0,decrementAmount);
+	
+	[workingBalMgr incrementCashBalance:500 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:500];
+	
+	[workingBalMgr incrementCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:500];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+
 }
 
 @end

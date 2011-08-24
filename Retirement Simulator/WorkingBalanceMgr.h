@@ -10,26 +10,32 @@
 
 @class CashWorkingBalance;
 @class WorkingBalance;
+@class SavingsWorkingBalance;
 
 
 @interface WorkingBalanceMgr : NSObject {
 	@private
-		NSMutableArray *workingBalances;
+		NSMutableArray *fundingSources;
+#warning Need to reconsider supporting interest with cash working balance.
 		CashWorkingBalance *cashWorkingBalance;
+		SavingsWorkingBalance *deficitBalance;
 		
 }
 
-@property(nonatomic,retain) NSMutableArray *workingBalances;
+@property(nonatomic,retain) NSMutableArray *fundingSources;
 @property(nonatomic,retain) CashWorkingBalance *cashWorkingBalance;
+@property(nonatomic,retain) SavingsWorkingBalance *deficitBalance;
 
 - (id)initWithStartDate:(NSDate*)startDate;
+- (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
+	andDeficitBalance:(SavingsWorkingBalance*)deficitBal;
 
-- (void) addWorkingBalance:(WorkingBalance*)theBalance;
+- (void) addFundingSource:(WorkingBalance*)theBalance;
 - (void)carryBalancesForward:(NSDate*)newDate;
 - (void) resetCurrentBalances;
 
-- (void) incrementBalance:(double)incomeAmount asOfDate:(NSDate*)newDate;
-- (void) decrementBalance:(double)expenseAmount asOfDate:(NSDate*)newDate;
+- (void) incrementCashBalance:(double)incomeAmount asOfDate:(NSDate*)newDate;
+- (double) decrementBalanceFromFundingList:(double)expenseAmount asOfDate:(NSDate*)newDate;
 - (double) decrementAvailableCashBalance:(double)expenseAmount asOfDate:(NSDate*)newDate;
 
 - (void)logCurrentBalances;
