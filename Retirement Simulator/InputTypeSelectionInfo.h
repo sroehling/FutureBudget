@@ -13,7 +13,7 @@
 
 @interface InputTypeSelectionInfo : NSObject {
     @private
-#warning Need to replace description with another name
+#warning TODO - Need to replace description with another name
     NSString *description;
 
 }

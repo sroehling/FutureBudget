@@ -14,6 +14,7 @@
 
 @synthesize totalIncome;
 @synthesize totalExpense;
+@synthesize totalIncomeTaxes;
 
 -(id) init
 {
@@ -32,6 +33,12 @@
 	totalIncome += incomeAmount;
 }
 
+- (void)incrementTotalIncomeTaxes:(double)taxAmount
+{
+	assert(taxAmount >= 0.0);
+	totalIncomeTaxes += taxAmount;
+}
+
 - (void)incrementTotalExpense:(BalanceAdjustment*)theExpense
 {
 	assert(theExpense != nil);
@@ -43,6 +50,12 @@
 	NSString *totalIncomeCurrency = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:self.totalIncome]];
 	NSLog(@"Total Income: %@",totalIncomeCurrency);
+	
+	NSString *totalIncomeTaxCurrency = [[NumberHelper theHelper].currencyFormatter 
+				stringFromNumber:[NSNumber numberWithDouble:self.totalIncomeTaxes]];
+	NSLog(@"Total Income Taxes: %@",totalIncomeTaxCurrency);
+
+	
 	NSString *totalExpenseCurrency = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:[self.totalExpense totalAmount]]];
 	NSLog(@"Total Expense: %@",totalExpenseCurrency);

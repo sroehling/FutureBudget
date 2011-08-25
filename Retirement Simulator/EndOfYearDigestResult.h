@@ -13,13 +13,16 @@
 @interface EndOfYearDigestResult : NSObject {
     @private
 		double totalIncome;
+		double totalIncomeTaxes;
 		BalanceAdjustment *totalExpense;
 }
 
 @property(readonly) double totalIncome;
+@property(readonly) double totalIncomeTaxes;
 @property(nonatomic,retain) BalanceAdjustment *totalExpense;
 
 - (void)incrementTotalIncome:(double)incomeAmount;
+- (void)incrementTotalIncomeTaxes:(double)taxAmount;
 - (void)incrementTotalExpense:(BalanceAdjustment*)theExpense;
 
 - (void)logResults;

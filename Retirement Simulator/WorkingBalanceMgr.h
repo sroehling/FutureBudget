@@ -17,7 +17,7 @@
 @interface WorkingBalanceMgr : NSObject {
 	@private
 		NSMutableArray *fundingSources;
-#warning Need to reconsider supporting interest with cash working balance.
+#warning TODO - Need to reconsider supporting interest with cash working balance.
 		CashWorkingBalance *cashWorkingBalance;
 		SavingsWorkingBalance *deficitBalance;
 		

@@ -75,6 +75,7 @@
 {
 	
 	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] init] autorelease];
+	double effectiveIncomeTaxRate = 0.25;
 	
 	NSDate *currentDate = self.startDate;
 	for(int i=0; i < MAX_DAYS_IN_YEAR; i++)
@@ -87,10 +88,13 @@
 		{
 			[endOfYearResults incrementTotalIncome:currDayCashFlowSummation.sumIncome];
 			
-#warning TODO - Subtract taxes to be paid before incrementing the cash balance			
-			
+			assert(effectiveIncomeTaxRate >= 0.0);
+			assert(effectiveIncomeTaxRate <= 1.0);
+			double taxesToPayOnIncome = currDayCashFlowSummation.sumIncome * effectiveIncomeTaxRate;
+			double afterTaxIncome = currDayCashFlowSummation.sumIncome - taxesToPayOnIncome;
+						
 			[self.workingBalanceMgr 
-				incrementCashBalance:currDayCashFlowSummation.sumIncome asOfDate:currentDate];
+				incrementCashBalance:afterTaxIncome asOfDate:currentDate];
 		}
 		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
 		{
