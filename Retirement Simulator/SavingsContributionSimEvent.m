@@ -13,6 +13,7 @@
 #import "SavingsWorkingBalance.h"
 #import "FiscalYearDigest.h"
 #import "SavingsContribDigestEntry.h"
+#import "CashFlowSummations.h"
 
 
 @implementation SavingsContributionSimEvent
@@ -36,9 +37,8 @@
 		initWithWorkingBalance:self.savingsBalance 
 		andContribAmount:self.contributionAmount
 		andIsTaxable:self.contributionIsTaxable] autorelease];
-	[digest addSavingsContrib:savingsContrib onDate:self.eventDate];
+	[digest.cashFlowSummations addSavingsContrib:savingsContrib onDate:self.eventDate];
 }
-
 
 
 - (void) dealloc

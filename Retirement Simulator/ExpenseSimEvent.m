@@ -13,6 +13,7 @@
 #import "NumberHelper.h"
 #import "FiscalYearDigest.h"
 #import "BalanceAdjustment.h"
+#import "CashFlowSummations.h"
 
 @implementation ExpenseSimEvent
 
@@ -33,7 +34,7 @@
 	bool doTaxExpense = [self.expense.taxDeductible boolValue]?FALSE:TRUE;
 	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithAmount:self.expenseAmount andIsAmountTaxable:doTaxExpense] autorelease];
 		  
-	[digest addExpense:expenseAdj onDate:self.eventDate];
+	[digest.cashFlowSummations addExpense:expenseAdj onDate:self.eventDate];
 }
 
 

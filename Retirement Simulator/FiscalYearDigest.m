@@ -18,11 +18,13 @@
 #import "SavingsWorkingBalance.h"
 #import "EndOfYearDigestResult.h"
 #import "Cash.h"
+#import "CashFlowSummations.h"
 
 @implementation FiscalYearDigest
 
 @synthesize startDate;
 @synthesize workingBalanceMgr;
+@synthesize cashFlowSummations;
 
 
 -(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr
@@ -30,15 +32,11 @@
 	self = [super init];
 	if(self)
 	{
-		CashFlowSummation *summationInit[MAX_DAYS_IN_YEAR];
-		for(int i = 0; i < MAX_DAYS_IN_YEAR; i++)
-		{
-			summationInit[i] = [[[CashFlowSummation alloc] init] autorelease];
-		}
-		cashFlowSummations = [[NSArray alloc] initWithObjects:summationInit count:MAX_DAYS_IN_YEAR];
+		
 		assert(theStartDate != nil);
 		self.startDate = theStartDate;
-		[startDate retain];
+
+		self.cashFlowSummations = [[[CashFlowSummations alloc] initWithStartDate:theStartDate] autorelease];
 		
 		assert(wbMgr != nil);
 		self.workingBalanceMgr = wbMgr;
@@ -46,30 +44,6 @@
 	return self;
 }
 
-- (void)resetSummations
-{
-	for(int i=0; i < MAX_DAYS_IN_YEAR; i++)
-	{
-		CashFlowSummation *theSummation = (CashFlowSummation*)[cashFlowSummations objectAtIndex:i];
-		assert(theSummation != nil);
-		[theSummation resetSummations];
-
-	}
-}
-
-- (CashFlowSummation*)summationForDate:(NSDate*)eventDate
-{
-	assert(eventDate!=nil);
-	assert(startDate!=nil);
-	assert(eventDate == [eventDate laterDate:startDate]);
-	NSTimeInterval timeAfterStart = [eventDate timeIntervalSinceDate:startDate];
-	assert(timeAfterStart>=0.0);
-	NSInteger daysSinceStart = floor(timeAfterStart / SECONDS_PER_DAY);
-	assert(daysSinceStart < MAX_DAYS_IN_YEAR);
-	CashFlowSummation *theSummation = (CashFlowSummation*)[cashFlowSummations objectAtIndex:daysSinceStart];
-	assert(theSummation != nil);
-	return theSummation;
-}
 
 - (void)processDigestEntries
 {
@@ -78,12 +52,12 @@
 	double effectiveIncomeTaxRate = 0.25;
 	
 	NSDate *currentDate = self.startDate;
-	for(int i=0; i < MAX_DAYS_IN_YEAR; i++)
+	for(int currDayIndex=0; currDayIndex < MAX_DAYS_IN_YEAR; currDayIndex++)
 	{
 		
 		CashFlowSummation *currDayCashFlowSummation = 
-			(CashFlowSummation*)[cashFlowSummations objectAtIndex:i];
-		assert(currDayCashFlowSummation != nil);
+			[self.cashFlowSummations summationForDayIndex:currDayIndex];
+		
 		if(currDayCashFlowSummation.sumIncome >0.0)
 		{
 			[endOfYearResults incrementTotalIncome:currDayCashFlowSummation.sumIncome];
@@ -145,31 +119,13 @@
 	
 
 	self.startDate = [DateHelper beginningOfNextYear:self.startDate];
+	
 	[self.workingBalanceMgr carryBalancesForward:self.startDate];
 	NSLog(@"Done Advancing digest to next year start = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
 
 
-	[self resetSummations];
-}
-
-- (void)addExpense:(BalanceAdjustment*)amount onDate:(NSDate*)expenseDate
-{
-	CashFlowSummation *theSummation = [self summationForDate:expenseDate];
-	[theSummation addExpense:amount];
-}
-
-- (void)addIncome:(double)amount onDate:(NSDate*)incomeDate
-{
-	CashFlowSummation *theSummation = [self summationForDate:incomeDate];
-	[theSummation addIncome:amount];
-
-}
-
-- (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate
-{
-	CashFlowSummation *theSummation = [self summationForDate:contribDate];
-	[theSummation addSavingsContrib:savingsContrib];
+	[self.cashFlowSummations resetSummationsAndAdvanceStartDate:self.startDate];
 }
 
 - (id) init

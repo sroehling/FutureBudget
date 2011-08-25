@@ -11,6 +11,7 @@
 #import "NumberHelper.h"
 #import "DateHelper.h"
 #import "FiscalYearDigest.h"
+#import "CashFlowSummations.h"
 
 
 @implementation IncomeSimEvent
@@ -29,7 +30,7 @@
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		  
-	[digest addIncome:self.incomeAmount onDate:self.eventDate];
+	[digest.cashFlowSummations addIncome:self.incomeAmount onDate:self.eventDate];
 }
 
 
