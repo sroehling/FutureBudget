@@ -11,8 +11,11 @@
 #import "LocalizationHelper.h"
 
 NSString * const EXPENSE_INPUT_ENTITY_NAME = @"ExpenseInput";
+NSString * const EXPENSE_INPUT_TAX_DEDUCTIBLE_KEY = @"taxDeductible";
 
 @implementation ExpenseInput
+
+@dynamic taxDeductible;
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
 {

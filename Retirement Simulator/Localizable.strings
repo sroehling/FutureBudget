@@ -75,6 +75,10 @@
 "INPUT_CASHFLOW_REPEAT_FIELD_LABEL" = "Repeat";
 "INPUT_CASHFLOW_END_FIELD_LABEL" = "End";
 
+"INPUT_EXPENSE_TAXES_SECTION_TITLE" = "Taxes";
+"INPUT_EXPENSE_TAXES_SECTION_SUBTITLE" = "Specify whether this expense is tax deductible";
+"INPUT_EXPENSE_TAXES_TAX_DEDUCTIBLE_LABEL" = "Deductible?";
+
 "CASH_LABEL" = "Cash";
 "DEFICIT_LABEL" = "Deficit";
 

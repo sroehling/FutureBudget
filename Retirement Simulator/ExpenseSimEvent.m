@@ -30,9 +30,8 @@
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		
-#warning TODO - Need to support deductable expenses here and reflect that in the expenseAdj
-	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithTaxFreeAmount:0.0 
-		andTaxableAmount:self.expenseAmount] autorelease];
+	bool doTaxExpense = [self.expense.taxDeductible boolValue]?FALSE:TRUE;
+	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithAmount:self.expenseAmount andIsAmountTaxable:doTaxExpense] autorelease];
 		  
 	[digest addExpense:expenseAdj onDate:self.eventDate];
 }

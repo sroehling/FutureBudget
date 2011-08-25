@@ -195,6 +195,7 @@
 		insertObject:EXPENSE_INPUT_ENTITY_NAME];;
   
     [self populateCashFlowInputProperties:newInput];
+	newInput.taxDeductible = [NSNumber numberWithBool:FALSE];
     
     [[DataModelController theDataModelController] saveContext];
     

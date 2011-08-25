@@ -163,6 +163,16 @@
 {    
     formPopulator.formInfo.title = 
 	       LOCALIZED_STR(@"INPUT_EXPENSE_VIEW_TITLE");
+		   
+	SectionInfo *sectionInfo = [formPopulator nextSection];
+    sectionInfo.title = LOCALIZED_STR(@"INPUT_EXPENSE_TAXES_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_EXPENSE_TAXES_SECTION_SUBTITLE");
+	[sectionInfo addFieldEditInfo:
+        [BoolFieldEditInfo createForObject:expense 
+			andKey:EXPENSE_INPUT_TAX_DEDUCTIBLE_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_EXPENSE_TAXES_TAX_DEDUCTIBLE_LABEL")]];
+	
+	   
 }
 
 - (void)visitIncome:(IncomeInput*)input
