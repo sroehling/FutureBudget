@@ -16,6 +16,7 @@
 #import "WorkingBalanceMgr.h"
 #import "SharedAppValues.h"
 #import "SavingsWorkingBalance.h"
+#import "EndOfYearDigestResult.h"
 #import "Cash.h"
 
 @implementation FiscalYearDigest
@@ -70,57 +71,73 @@
 	return theSummation;
 }
 
-- (void)advanceToNextYear
+- (void)processDigestEntries
 {
-	double totalIncome = 0.0;
-	BalanceAdjustment *totalExpense = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 	
-	NSLog(@"Advancing digest to next year from last year start = %@",
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
-	[self.workingBalanceMgr logCurrentBalances];
+	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] init] autorelease];
 	
 	NSDate *currentDate = self.startDate;
 	for(int i=0; i < MAX_DAYS_IN_YEAR; i++)
 	{
 		
-		CashFlowSummation *theSummation = (CashFlowSummation*)[cashFlowSummations objectAtIndex:i];
-		assert(theSummation != nil);
-		if(theSummation.sumIncome >0.0)
+		CashFlowSummation *currDayCashFlowSummation = 
+			(CashFlowSummation*)[cashFlowSummations objectAtIndex:i];
+		assert(currDayCashFlowSummation != nil);
+		if(currDayCashFlowSummation.sumIncome >0.0)
 		{
-			totalIncome += theSummation.sumIncome;
-			[self.workingBalanceMgr incrementCashBalance:theSummation.sumIncome asOfDate:currentDate];
+			[endOfYearResults incrementTotalIncome:currDayCashFlowSummation.sumIncome];
+			
+#warning TODO - Subtract taxes to be paid before incrementing the cash balance			
+			
+			[self.workingBalanceMgr 
+				incrementCashBalance:currDayCashFlowSummation.sumIncome asOfDate:currentDate];
 		}
-		if([theSummation.sumExpenses totalAmount] > 0.0)
+		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
 		{
-			[totalExpense addAdjustment:theSummation.sumExpenses];
+			[endOfYearResults incrementTotalExpense:currDayCashFlowSummation.sumExpenses];
 			BalanceAdjustment *amountDecremented = 
-				[self.workingBalanceMgr decrementBalanceFromFundingList:[theSummation.sumExpenses totalAmount] 
+				[self.workingBalanceMgr 
+				decrementBalanceFromFundingList:[currDayCashFlowSummation.sumExpenses totalAmount] 
 				asOfDate:currentDate];
-			assert([amountDecremented totalAmount] <= [theSummation.sumExpenses totalAmount]);
+			assert([amountDecremented totalAmount] <= [currDayCashFlowSummation.sumExpenses totalAmount]);
 		}
-		if([theSummation.savingsContribs count] > 0)
+		if([currDayCashFlowSummation.savingsContribs count] > 0)
 		{
-			for(SavingsContribDigestEntry *savingsContrib in theSummation.savingsContribs)
+			for(SavingsContribDigestEntry *savingsContrib in currDayCashFlowSummation.savingsContribs)
 			{
-				double actualContrib = [self.workingBalanceMgr
-					decrementAvailableCashBalance:savingsContrib.contribAmount asOfDate:currentDate];
-				BalanceAdjustment *contribAdjustment = 
-					[[[BalanceAdjustment alloc] initWithAmount:actualContrib andIsAmountTaxable:savingsContrib.contribIsTaxable] autorelease];
-				[totalExpense addAdjustment:contribAdjustment];
-				[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
+				if(savingsContrib.contribAmount>0.0)
+				{
+					double actualContrib = [self.workingBalanceMgr
+						decrementAvailableCashBalance:savingsContrib.contribAmount 
+						asOfDate:currentDate];
+					if(actualContrib>0.0)
+					{
+						BalanceAdjustment *contribAdjustment = 
+							[[[BalanceAdjustment alloc] initWithAmount:actualContrib 
+							andIsAmountTaxable:savingsContrib.contribIsTaxable] autorelease];
+						[endOfYearResults incrementTotalExpense:contribAdjustment];
+						[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
+					}
+				}
 			}
 		}
 		currentDate = [DateHelper nextDay:currentDate];
-	}
+	} // for each day in the year
 
-	NSString *totalIncomeCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:totalIncome]];
-	NSLog(@"Total Income: %@",totalIncomeCurrency);
-	NSString *totalExpenseCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:[totalExpense totalAmount]]];
-	NSLog(@"Total Expense: %@",totalExpenseCurrency);
+	[endOfYearResults logResults];
 	[self.workingBalanceMgr logCurrentBalances];
+}
+
+- (void)advanceToNextYear
+{
 	
+	NSLog(@"Advancing digest to next year from last year start = %@",
+		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
+	[self.workingBalanceMgr logCurrentBalances];
+
+	[self processDigestEntries];
+
+	// Advance the digest to the next year
 	
 
 	self.startDate = [DateHelper beginningOfNextYear:self.startDate];
