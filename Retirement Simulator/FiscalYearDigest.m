@@ -104,9 +104,8 @@
 			{
 				double actualContrib = [self.workingBalanceMgr
 					decrementAvailableCashBalance:savingsContrib.contribAmount asOfDate:currentDate];
-#warning TODO - Need to distinguish between tax free contributions and taxable contributions
 				BalanceAdjustment *contribAdjustment = 
-					[[[BalanceAdjustment alloc] initWithTaxFreeAmount:0.0 andTaxableAmount:actualContrib] autorelease];
+					[[[BalanceAdjustment alloc] initWithAmount:actualContrib andIsAmountTaxable:savingsContrib.contribIsTaxable] autorelease];
 				[totalExpense addAdjustment:contribAdjustment];
 				[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
 			}

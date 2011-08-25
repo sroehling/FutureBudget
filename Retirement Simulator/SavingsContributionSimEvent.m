@@ -19,6 +19,7 @@
 
 @synthesize savingsBalance;
 @synthesize contributionAmount;
+@synthesize contributionIsTaxable;
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
@@ -32,7 +33,9 @@
 		  
 	SavingsContribDigestEntry *savingsContrib = 
 		[[[SavingsContribDigestEntry alloc] 
-		initWithWorkingBalance:self.savingsBalance andContribAmount:self.contributionAmount] autorelease];
+		initWithWorkingBalance:self.savingsBalance 
+		andContribAmount:self.contributionAmount
+		andIsTaxable:self.contributionIsTaxable] autorelease];
 	[digest addSavingsContrib:savingsContrib onDate:self.eventDate];
 }
 

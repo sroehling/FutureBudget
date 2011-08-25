@@ -28,6 +28,18 @@
 	return self;
 }
 
+- (id) initWithAmount:(double)theAmount andIsAmountTaxable:(bool)isTaxable
+{
+	if(isTaxable)
+	{
+		return [self initWithTaxFreeAmount:0.0 andTaxableAmount:theAmount];
+	}
+	else
+	{
+		return [self initWithTaxFreeAmount:theAmount andTaxableAmount:0.0];
+	}
+}
+
 - (id) initWithZeroAmount
 {
 	return [self initWithTaxFreeAmount:0.0 andTaxableAmount:0.0];

@@ -17,6 +17,8 @@
 
 - (id) initWithTaxFreeAmount:(double)theTaxFreeAmount andTaxableAmount:(double)theTaxableAmount;
 - (id) initWithZeroAmount;
+- (id) initWithAmount:(double)theAmount andIsAmountTaxable:(bool)isTaxable;
+
 - (void) addAdjustment:(BalanceAdjustment*)otherAdjustment;
 - (void) resetToZero;
 

@@ -13,9 +13,11 @@
 
 @synthesize workingBalance;
 @synthesize contribAmount;
+@synthesize contribIsTaxable;
 
 
-- (id) initWithWorkingBalance:(SavingsWorkingBalance*)theBalance andContribAmount:(double)theAmount
+- (id) initWithWorkingBalance:(SavingsWorkingBalance*)theBalance 
+	andContribAmount:(double)theAmount andIsTaxable:(bool)isTaxable
 {
 	self = [super init];
 	if(self)
@@ -25,6 +27,8 @@
 		
 		assert(theAmount >= 0.0);
 		contribAmount = theAmount;
+		
+		self.contribIsTaxable = isTaxable;
 	}
 	return self;
 }

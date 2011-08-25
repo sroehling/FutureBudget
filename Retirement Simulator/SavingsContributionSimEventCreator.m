@@ -102,6 +102,7 @@
 			andEventDate:nextDate ] autorelease];
 		contribEvent.savingsBalance = self.savingsWorkingBalance;
 		contribEvent.contributionAmount = growthAdjustedContributionAmount;
+		contribEvent.contributionIsTaxable = [self.savingsAcct.taxableContributions boolValue];
 
 		return contribEvent;
 		       

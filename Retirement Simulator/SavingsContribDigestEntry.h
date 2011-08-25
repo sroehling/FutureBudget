@@ -15,11 +15,14 @@
     @private
 		SavingsWorkingBalance *workingBalance;
 		double contribAmount;
+		bool contribIsTaxable;
 }
 
-- (id) initWithWorkingBalance:(SavingsWorkingBalance*)theBalance andContribAmount:(double)theAmount;
+- (id) initWithWorkingBalance:(SavingsWorkingBalance*)theBalance 
+	andContribAmount:(double)theAmount andIsTaxable:(bool)isTaxable;
 
 @property(nonatomic,retain) SavingsWorkingBalance *workingBalance;
 @property(readonly) double contribAmount;
+@property bool contribIsTaxable;
 
 @end

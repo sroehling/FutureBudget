@@ -16,9 +16,11 @@
     @private
 		SavingsWorkingBalance *savingsBalance;
 		double contributionAmount;
+		bool contributionIsTaxable;
 }
 
 @property(nonatomic,retain) SavingsWorkingBalance *savingsBalance;
 @property double contributionAmount;
+@property bool contributionIsTaxable;
 
 @end
