@@ -12,6 +12,7 @@
 #import "WorkingBalance.h"
 #import "DateHelper.h"
 #import "BalanceAdjustment.h"
+#import "WorkingBalanceAdjustment.h"
 #import "SavingsAccount.h"
 #import "FixedValue.h"
 #import "SavingsWorkingBalance.h"
@@ -70,10 +71,10 @@
 	@"checkAvailableBalanceDecrement: Expecting %0.2f, got %0.2f for working balance = %@ (before decrement)",
 							   expectedBalBefore,bal.currentBalance,bal.balanceName);
 
-	BalanceAdjustment *avail = [bal decrementAvailableBalance:decrAmt asOfDate:decrDate];
-		STAssertEqualsWithAccuracy(expectedAvail, [avail totalAmount], 0.001,
+	WorkingBalanceAdjustment *avail = [bal decrementAvailableBalance:decrAmt asOfDate:decrDate];
+		STAssertEqualsWithAccuracy(expectedAvail, [avail.balanceAdjustment totalAmount], 0.001,
 	@"checkAvailableBalanceDecrement: Expecting %0.2f, got %0.2f for available balance = %@",
-							   expectedAvail,[avail totalAmount],bal.balanceName);
+							   expectedAvail,[avail.balanceAdjustment totalAmount],bal.balanceName);
 	
 	[bal logBalance];
 	
@@ -93,7 +94,7 @@
 	[bal carryBalanceForward:[DateHelper dateFromStr:@"2013-01-01"]];
 	[self checkCurrentBalance:bal withExpectedBalance:2000.0];
 
-	[bal decrementBalance:500.0 asOfDate:[DateHelper dateFromStr:@"2013-05-01"]];
+	[bal decrementAvailableBalance:500.0 asOfDate:[DateHelper dateFromStr:@"2013-05-01"]];
 	[self checkCurrentBalance:bal withExpectedBalance:1500.0];
 	
 	[self checkAvailableBalanceDecrement:bal 
@@ -135,7 +136,7 @@
 	[bal incrementBalance:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	[self checkCurrentBalance:bal withExpectedBalance:3000];
 
-	[bal decrementBalance:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[bal decrementAvailableBalance:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	[self checkCurrentBalance:bal withExpectedBalance:2000];
 	
 }
@@ -190,13 +191,13 @@
 	[self checkCurrentBalance:cashBal withExpectedBalance:0];
 	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
 
-	BalanceAdjustment *decrementAmount = [workingBalMgr decrementBalanceFromFundingList:1000 
+	WorkingBalanceAdjustment *decrementAmount = [workingBalMgr decrementBalanceFromFundingList:1000 
 		asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
 	[self checkCurrentBalance:cashBal withExpectedBalance:0];
 	[self checkCurrentBalance:deficitBal withExpectedBalance:1000];
-	STAssertEqualsWithAccuracy([decrementAmount totalAmount], 0.0, 0.001,
+	STAssertEqualsWithAccuracy([decrementAmount.balanceAdjustment totalAmount], 0.0, 0.001,
 		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for decrement amount",
-							   0.0,[decrementAmount totalAmount]);
+							   0.0,[decrementAmount.balanceAdjustment totalAmount]);
 	
 	[workingBalMgr incrementCashBalance:500 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
 	[self checkCurrentBalance:cashBal withExpectedBalance:0];

@@ -15,6 +15,7 @@
 @synthesize totalIncome;
 @synthesize totalExpense;
 @synthesize totalIncomeTaxes;
+@synthesize totalInterest;
 
 -(id) init
 {
@@ -22,6 +23,7 @@
 	if(self)
 	{
 		self.totalExpense = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
+		self.totalInterest = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		totalIncome = 0.0;
 	}
 	return self;
@@ -45,6 +47,12 @@
 	[totalExpense addAdjustment:theExpense];
 }
 
+- (void)incrementTotalInterest:(BalanceAdjustment*)theInterest
+{
+	assert(theInterest != nil);
+	[totalInterest addAdjustment:theInterest];
+}
+
 - (void)logResults
 {
 	NSString *totalIncomeCurrency = [[NumberHelper theHelper].currencyFormatter 
@@ -55,7 +63,10 @@
 				stringFromNumber:[NSNumber numberWithDouble:self.totalIncomeTaxes]];
 	NSLog(@"Total Income Taxes: %@",totalIncomeTaxCurrency);
 
-	
+	NSString *totalInterestCurrency = [[NumberHelper theHelper].currencyFormatter 
+				stringFromNumber:[NSNumber numberWithDouble:[self.totalInterest totalAmount]]];
+	NSLog(@"Total Interest: %@",totalInterestCurrency);
+
 	NSString *totalExpenseCurrency = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:[self.totalExpense totalAmount]]];
 	NSLog(@"Total Expense: %@",totalExpenseCurrency);
@@ -66,6 +77,7 @@
 {
 	[super dealloc];
 	[totalExpense release];
+	[totalInterest release];
 }
 
 @end

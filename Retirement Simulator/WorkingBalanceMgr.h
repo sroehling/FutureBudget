@@ -12,6 +12,7 @@
 @class WorkingBalance;
 @class SavingsWorkingBalance;
 @class BalanceAdjustment;
+@class WorkingBalanceAdjustment;
 
 
 @interface WorkingBalanceMgr : NSObject {
@@ -33,10 +34,11 @@
 
 - (void) addFundingSource:(WorkingBalance*)theBalance;
 - (void)carryBalancesForward:(NSDate*)newDate;
+- (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate;
 - (void) resetCurrentBalances;
 
 - (void) incrementCashBalance:(double)incomeAmount asOfDate:(NSDate*)newDate;
-- (BalanceAdjustment*) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate;
+- (WorkingBalanceAdjustment*) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate;
 - (double) decrementAvailableCashBalance:(double)expenseAmount asOfDate:(NSDate*)newDate;
 
 - (void)logCurrentBalances;

@@ -172,6 +172,7 @@
 		00EC1FB5139BE2560085B25C /* AddObjectSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */; };
 		00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */; };
 		00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */; };
+		00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
 		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
 		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
@@ -513,6 +514,8 @@
 		00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueSectionInfo.m; sourceTree = "<group>"; };
 		00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFieldEditInfo.h; sourceTree = "<group>"; };
 		00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueFieldEditInfo.m; sourceTree = "<group>"; };
+		00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceAdjustment.h; sourceTree = "<group>"; };
+		00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceAdjustment.m; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 		00F4209D137DB78700980A88 /* FieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditInfo.h; sourceTree = "<group>"; };
@@ -578,6 +581,8 @@
 			children = (
 				00160CA514055DFD001D472F /* BalanceAdjustment.m */,
 				00160CA414055DFC001D472F /* BalanceAdjustment.h */,
+				00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */,
+				00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */,
 				004CB03D13FD73F3000E87A9 /* WorkingBalance.h */,
 				004CB03E13FD73F4000E87A9 /* WorkingBalance.m */,
 				004CB03313FC490C000E87A9 /* CashWorkingBalance.h */,
@@ -1518,6 +1523,7 @@
 				00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */,
 				00160CAD1406C9AD001D472F /* CashFlowSummations.m in Sources */,
 				00160CB51406DD2F001D472F /* FlatIncomeTaxRateCalculator.m in Sources */,
+				00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

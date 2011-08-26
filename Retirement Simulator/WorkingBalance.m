@@ -11,6 +11,7 @@
 #import "DateHelper.h"
 #import "BalanceAdjustment.h"
 #import "NumberHelper.h"
+#import "WorkingBalanceAdjustment.h"
 
 
 @implementation WorkingBalance
@@ -62,7 +63,7 @@
 - (BalanceAdjustment*)carryBalanceForward:(NSDate*)newStartDate
 {
 	assert(newStartDate != nil);
-	assert(newStartDate == [self.currentBalanceDate laterDate:newStartDate]);
+	assert([DateHelper dateIsEqualOrLater:newStartDate otherDate:self.currentBalanceDate]);
 	
 	BalanceAdjustment *interest = [self advanceCurrentBalanceToDate:newStartDate];
 	
@@ -73,26 +74,18 @@
 }
 
 
-- (void) incrementBalance:(double)amount asOfDate:(NSDate*)newDate
+- (BalanceAdjustment*) incrementBalance:(double)amount asOfDate:(NSDate*)newDate
 {
-	[self advanceCurrentBalanceToDate:newDate];
+	BalanceAdjustment *interest = [self advanceCurrentBalanceToDate:newDate];
 
 	assert(amount >= 0.0);
 	currentBalance += amount;
 
 	[self logBalance];
+	return interest;
 
 }
 
-- (void) decrementBalance:(double)amount asOfDate:(NSDate*)newDate
-{
-	[self advanceCurrentBalanceToDate:newDate];
-	
-	assert(amount >= 0.0);	
-	currentBalance -= amount;
-	
-	[self logBalance];
-}
 
 - (BalanceAdjustment*)createBalanceAdjustmentForWithdrawAmount:(double)theAmount
 {
@@ -108,30 +101,34 @@
 	}
 }
 
-- (BalanceAdjustment*) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate
+- (WorkingBalanceAdjustment*) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate
 {
-	[self advanceCurrentBalanceToDate:newDate];
+	BalanceAdjustment *interestAmount = [self advanceCurrentBalanceToDate:newDate];
 	
 	assert(amount >= 0.0);	
 
+	BalanceAdjustment *decrementAmount;
 	if(currentBalance > 0.0)
 	{
 		if(amount <= currentBalance)
 		{
 			currentBalance -= amount;
-			return [self createBalanceAdjustmentForWithdrawAmount:amount];
+			decrementAmount =  [self createBalanceAdjustmentForWithdrawAmount:amount];
 		}
 		else
 		{
 			double availableAmount = currentBalance;
 			currentBalance = 0.0;
-			return [self createBalanceAdjustmentForWithdrawAmount:availableAmount];
+			decrementAmount = [self createBalanceAdjustmentForWithdrawAmount:availableAmount];
 		}
 	}
 	else
 	{	
-		return [self createBalanceAdjustmentForWithdrawAmount:0.0];
+		decrementAmount = [self createBalanceAdjustmentForWithdrawAmount:0.0];
 	}
+	
+	return [[[WorkingBalanceAdjustment alloc] initWithBalanceAdjustment:decrementAmount 
+		andInterestAdjustment:interestAmount] autorelease];
 
 }
 

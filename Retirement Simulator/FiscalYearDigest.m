@@ -19,6 +19,7 @@
 #import "EndOfYearDigestResult.h"
 #import "Cash.h"
 #import "CashFlowSummations.h"
+#import "WorkingBalanceAdjustment.h"
 #import "FlatIncomeTaxRateCalculator.h"
 
 @implementation FiscalYearDigest
@@ -70,7 +71,16 @@
 			assert(incomeTaxRate <= 1.0);
 			double taxesToPayOnIncome = currDayCashFlowSummation.sumIncome * incomeTaxRate;
 			double afterTaxIncome = currDayCashFlowSummation.sumIncome - taxesToPayOnIncome;
-						
+			
+			// Unlike the handling for expenses and savings 
+			// contributions (see below), there is no need to track
+			// the interest for incrementing the cash balance. 
+			// However, if we ever support an "interest bearing"
+			// cash working balance (e.g. for people who have
+			// interest bearing checking), the code below will need
+			// to be changed to also sum up the interest generated
+			// advancing (and thus generating interest), then 
+			// incrementing the cash working balance.
 			[self.workingBalanceMgr 
 				incrementCashBalance:afterTaxIncome asOfDate:currentDate];
 			[endOfYearResults incrementTotalIncomeTaxes:taxesToPayOnIncome];
@@ -78,11 +88,20 @@
 		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
 		{
 			[endOfYearResults incrementTotalExpense:currDayCashFlowSummation.sumExpenses];
-			BalanceAdjustment *amountDecremented = 
+			
+			WorkingBalanceAdjustment *withdrawAmount = 
 				[self.workingBalanceMgr 
 				decrementBalanceFromFundingList:[currDayCashFlowSummation.sumExpenses totalAmount] 
 				asOfDate:currentDate];
-			assert([amountDecremented totalAmount] <= [currDayCashFlowSummation.sumExpenses totalAmount]);
+			assert([withdrawAmount.balanceAdjustment totalAmount] <= 
+				[currDayCashFlowSummation.sumExpenses totalAmount]);
+				
+			// By withdrawing/decrementing the expenses from the funding list, the 
+			// different funding sources will advance their balances to currentDate,
+			// accruing interest for the amount of time advanced. This interest is 
+			// summed up in withdrawAmount.interestAdjustment and 
+			// added to the end of year tax calculations.
+			[endOfYearResults incrementTotalInterest:withdrawAmount.interestAdjustement];
 		}
 		if([currDayCashFlowSummation.savingsContribs count] > 0)
 		{
@@ -99,13 +118,27 @@
 							[[[BalanceAdjustment alloc] initWithAmount:actualContrib 
 							andIsAmountTaxable:savingsContrib.contribIsTaxable] autorelease];
 						[endOfYearResults incrementTotalExpense:contribAdjustment];
-						[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
+						BalanceAdjustment *interestAccruedLeadingUpToSavingsContribution = 
+							[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
+							
+						// Similar to what happens for expenses (see comment above), by processing
+						// the savings contribution, we advance the balance on the savings account and 
+						// accrue some interest. This interest is added to the end of year results for 
+						// tax calculations.
+						[endOfYearResults incrementTotalInterest:interestAccruedLeadingUpToSavingsContribution];
 					}
 				}
 			}
 		}
 		currentDate = [DateHelper nextDay:currentDate];
 	} // for each day in the year
+
+	// Advance all the working balances to the end of this year. Although none of the current balances
+	// are changed, some interest might be accrued leading up to the end of the year. This interest
+	// needs to be included in the total interest for the year, so that taxes can be calculated.
+	BalanceAdjustment *remainingInterestUntilEndOfFiscalYear = 
+		[self.workingBalanceMgr advanceBalancesToDate:[DateHelper beginningOfNextYear:self.startDate]];
+	[endOfYearResults incrementTotalInterest:remainingInterestUntilEndOfFiscalYear];
 
 	[endOfYearResults logResults];
 	[self.workingBalanceMgr logCurrentBalances];
