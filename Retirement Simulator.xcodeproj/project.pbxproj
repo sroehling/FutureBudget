@@ -24,6 +24,7 @@
 		00160CA614055DFF001D472F /* BalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA514055DFD001D472F /* BalanceAdjustment.m */; };
 		00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA91406B365001D472F /* EndOfYearDigestResult.m */; };
 		00160CAD1406C9AD001D472F /* CashFlowSummations.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CAC1406C9A6001D472F /* CashFlowSummations.m */; };
+		00160CB51406DD2F001D472F /* FlatIncomeTaxRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CB41406DD2E001D472F /* FlatIncomeTaxRateCalculator.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
 		0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775213B1778600D15232 /* VariableRateCalculator.m */; };
@@ -222,6 +223,9 @@
 		00160CA91406B365001D472F /* EndOfYearDigestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearDigestResult.m; sourceTree = "<group>"; };
 		00160CAB1406C9A5001D472F /* CashFlowSummations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowSummations.h; sourceTree = "<group>"; };
 		00160CAC1406C9A6001D472F /* CashFlowSummations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowSummations.m; sourceTree = "<group>"; };
+		00160CAE1406DC3A001D472F /* IncomeTaxRateCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeTaxRateCalculator.h; sourceTree = "<group>"; };
+		00160CB31406DD2E001D472F /* FlatIncomeTaxRateCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatIncomeTaxRateCalculator.h; sourceTree = "<group>"; };
+		00160CB41406DD2E001D472F /* FlatIncomeTaxRateCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatIncomeTaxRateCalculator.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
 		0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateRuntimeInfo.m; sourceTree = "<group>"; };
 		0025774E13AFDE2800D15232 /* StringLookupTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLookupTable.h; sourceTree = "<group>"; };
@@ -586,6 +590,16 @@
 			name = "Working Balance";
 			sourceTree = "<group>";
 		};
+		00160CAF1406DC4B001D472F /* Tax Rate Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				00160CAE1406DC3A001D472F /* IncomeTaxRateCalculator.h */,
+				00160CB31406DD2E001D472F /* FlatIncomeTaxRateCalculator.h */,
+				00160CB41406DD2E001D472F /* FlatIncomeTaxRateCalculator.m */,
+			);
+			name = "Tax Rate Calculator";
+			sourceTree = "<group>";
+		};
 		0025776113B292F600D15232 /* Variable Rate Calculator */ = {
 			isa = PBXGroup;
 			children = (
@@ -851,6 +865,7 @@
 			children = (
 				0025776113B292F600D15232 /* Variable Rate Calculator */,
 				0025776213B2932200D15232 /* Variable Value Calculator */,
+				00160CAF1406DC4B001D472F /* Tax Rate Calculator */,
 				00160CA714055EEC001D472F /* Working Balance */,
 				004CB03613FC491E000E87A9 /* Digest */,
 				005731EC137874A1008D13C1 /* Simulator Inputs */,
@@ -981,20 +996,20 @@
 		004CB03613FC491E000E87A9 /* Digest */ = {
 			isa = PBXGroup;
 			children = (
+				00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */,
+				00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */,
+				00160CAB1406C9A5001D472F /* CashFlowSummations.h */,
+				00160CAC1406C9A6001D472F /* CashFlowSummations.m */,
+				00160CA81406B363001D472F /* EndOfYearDigestResult.h */,
+				00160CA91406B365001D472F /* EndOfYearDigestResult.m */,
 				004CB01713F9B797000E87A9 /* DigestUpdateEventCreator.h */,
 				004CB01813F9B797000E87A9 /* DigestUpdateEventCreator.m */,
 				004CB01B13F9C985000E87A9 /* DigestUpdateEvent.h */,
 				004CB01C13F9C986000E87A9 /* DigestUpdateEvent.m */,
-				00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */,
-				00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */,
-				00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */,
-				00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */,
 				004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */,
 				004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */,
-				00160CA81406B363001D472F /* EndOfYearDigestResult.h */,
-				00160CA91406B365001D472F /* EndOfYearDigestResult.m */,
-				00160CAB1406C9A5001D472F /* CashFlowSummations.h */,
-				00160CAC1406C9A6001D472F /* CashFlowSummations.m */,
+				00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */,
+				00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */,
 			);
 			name = Digest;
 			sourceTree = "<group>";
@@ -1502,6 +1517,7 @@
 				00160CA614055DFF001D472F /* BalanceAdjustment.m in Sources */,
 				00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */,
 				00160CAD1406C9AD001D472F /* CashFlowSummations.m in Sources */,
+				00160CB51406DD2F001D472F /* FlatIncomeTaxRateCalculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

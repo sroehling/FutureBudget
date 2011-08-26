@@ -19,12 +19,14 @@
 #import "EndOfYearDigestResult.h"
 #import "Cash.h"
 #import "CashFlowSummations.h"
+#import "FlatIncomeTaxRateCalculator.h"
 
 @implementation FiscalYearDigest
 
 @synthesize startDate;
 @synthesize workingBalanceMgr;
 @synthesize cashFlowSummations;
+@synthesize incomeTaxRateCalc;
 
 
 -(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr
@@ -32,8 +34,12 @@
 	self = [super init];
 	if(self)
 	{
-		
 		assert(theStartDate != nil);
+		
+		// Initially dummy up with a flat tax calculator
+		self.incomeTaxRateCalc = 
+			[[[FlatIncomeTaxRateCalculator alloc] initWithRate:0.25] autorelease];
+		
 		self.startDate = theStartDate;
 
 		self.cashFlowSummations = [[[CashFlowSummations alloc] initWithStartDate:theStartDate] autorelease];
@@ -45,16 +51,14 @@
 }
 
 
-- (void)processDigestEntries
+- (EndOfYearDigestResult*)processDigestWithTaxRate:(double)incomeTaxRate
 {
 	
 	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] init] autorelease];
-	double effectiveIncomeTaxRate = 0.25;
 	
 	NSDate *currentDate = self.startDate;
 	for(int currDayIndex=0; currDayIndex < MAX_DAYS_IN_YEAR; currDayIndex++)
 	{
-		
 		CashFlowSummation *currDayCashFlowSummation = 
 			[self.cashFlowSummations summationForDayIndex:currDayIndex];
 		
@@ -62,13 +66,14 @@
 		{
 			[endOfYearResults incrementTotalIncome:currDayCashFlowSummation.sumIncome];
 			
-			assert(effectiveIncomeTaxRate >= 0.0);
-			assert(effectiveIncomeTaxRate <= 1.0);
-			double taxesToPayOnIncome = currDayCashFlowSummation.sumIncome * effectiveIncomeTaxRate;
+			assert(incomeTaxRate >= 0.0);
+			assert(incomeTaxRate <= 1.0);
+			double taxesToPayOnIncome = currDayCashFlowSummation.sumIncome * incomeTaxRate;
 			double afterTaxIncome = currDayCashFlowSummation.sumIncome - taxesToPayOnIncome;
 						
 			[self.workingBalanceMgr 
 				incrementCashBalance:afterTaxIncome asOfDate:currentDate];
+			[endOfYearResults incrementTotalIncomeTaxes:taxesToPayOnIncome];
 		}
 		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
 		{
@@ -104,27 +109,33 @@
 
 	[endOfYearResults logResults];
 	[self.workingBalanceMgr logCurrentBalances];
+
+	return endOfYearResults;
 }
 
 - (void)advanceToNextYear
 {
-	
 	NSLog(@"Advancing digest to next year from last year start = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
 	[self.workingBalanceMgr logCurrentBalances];
 
-	[self processDigestEntries];
+	CashFlowSummation *yearlySummation = self.cashFlowSummations.yearlySummation;
+	assert(yearlySummation != nil);
+	double totalYearlyIncome = yearlySummation.sumIncome;
+	double totalYearlyDeductableExpense = yearlySummation.sumExpenses.taxFreeAmount;
+	double totalYearlyDeductableContributions = yearlySummation.sumContributions.taxFreeAmount;
+	double totalDeductions = totalYearlyDeductableExpense + totalYearlyDeductableContributions;
+	
+	
+	double incomeTaxRate = [self.incomeTaxRateCalc 
+		taxRateForGrossIncome:totalYearlyIncome andDeductions:totalDeductions];
+	[self processDigestWithTaxRate:incomeTaxRate];
 
 	// Advance the digest to the next year
-	
-
 	self.startDate = [DateHelper beginningOfNextYear:self.startDate];
-	
 	[self.workingBalanceMgr carryBalancesForward:self.startDate];
 	NSLog(@"Done Advancing digest to next year start = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
-
-
 	[self.cashFlowSummations resetSummationsAndAdvanceStartDate:self.startDate];
 }
 
@@ -138,6 +149,7 @@
 	[super dealloc];
 	[cashFlowSummations release];
 	[startDate release];
+	[incomeTaxRateCalc release];
 
 }
 

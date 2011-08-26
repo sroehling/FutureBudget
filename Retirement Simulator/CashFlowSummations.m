@@ -13,6 +13,7 @@
 @implementation CashFlowSummations
 
 @synthesize startDate;
+@synthesize yearlySummation;
 
 
 -(id)initWithStartDate:(NSDate*)theStartDate
@@ -26,6 +27,8 @@
 			summationInit[i] = [[[CashFlowSummation alloc] init] autorelease];
 		}
 		cashFlowSummations = [[NSArray alloc] initWithObjects:summationInit count:MAX_DAYS_IN_YEAR];
+		
+		self.yearlySummation = [[[CashFlowSummation alloc] init] autorelease];
 		
 		assert(theStartDate != nil);
 		self.startDate = theStartDate;
@@ -47,8 +50,8 @@
 		CashFlowSummation *theSummation = (CashFlowSummation*)[cashFlowSummations objectAtIndex:i];
 		assert(theSummation != nil);
 		[theSummation resetSummations];
-
 	}
+	[yearlySummation resetSummations];
 }
 
 - (void)resetSummationsAndAdvanceStartDate:(NSDate*)newStartDate
@@ -86,12 +89,14 @@
 {
 	CashFlowSummation *theSummation = [self summationForDate:expenseDate];
 	[theSummation addExpense:amount];
+	[yearlySummation addExpense:amount];
 }
 
 - (void)addIncome:(double)amount onDate:(NSDate*)incomeDate
 {
 	CashFlowSummation *theSummation = [self summationForDate:incomeDate];
 	[theSummation addIncome:amount];
+	[yearlySummation addIncome:amount];
 
 }
 
@@ -99,6 +104,7 @@
 {
 	CashFlowSummation *theSummation = [self summationForDate:contribDate];
 	[theSummation addSavingsContrib:savingsContrib];
+	[yearlySummation addSavingsContrib:savingsContrib];
 }
 
 
@@ -107,7 +113,7 @@
 	[super dealloc];
 	[cashFlowSummations release];
 	[startDate release];
-
+	[yearlySummation release];
 }
 
 

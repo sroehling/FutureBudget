@@ -16,6 +16,7 @@
     @private
 		NSArray *cashFlowSummations;
 		NSDate *startDate;
+		CashFlowSummation *yearlySummation;
     
 }
 
@@ -25,11 +26,13 @@
 - (void)addIncome:(double)amount onDate:(NSDate*)incomeDate;
 - (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate;
 
+
 - (void)resetSummations;
 - (CashFlowSummation*)summationForDayIndex:(NSInteger)dayIndex;
 - (CashFlowSummation*)summationForDate:(NSDate*)eventDate;
 - (void)resetSummationsAndAdvanceStartDate:(NSDate*)newStartDate;
 
 @property(nonatomic,retain) NSDate *startDate;
+@property(nonatomic,retain) CashFlowSummation *yearlySummation;
 
 @end

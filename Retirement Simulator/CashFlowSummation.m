@@ -8,6 +8,7 @@
 
 #import "CashFlowSummation.h"
 #import "BalanceAdjustment.h"
+#import "SavingsContribDigestEntry.h"
 
 
 @implementation CashFlowSummation
@@ -15,6 +16,7 @@
 @synthesize sumExpenses;
 @synthesize sumIncome;
 @synthesize savingsContribs;
+@synthesize sumContributions;
 
 -(id)init
 {
@@ -24,6 +26,8 @@
 		self.savingsContribs = [[[NSMutableArray alloc] init] autorelease];
 		self.sumExpenses = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		[self resetSummations];
+		
+		self.sumContributions = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 	}
 	return self;
 }
@@ -45,19 +49,24 @@
 {
 	assert(savingsContrib != nil);
 	[self.savingsContribs addObject:savingsContrib];
+	[self.sumContributions addAdjustment:savingsContrib.contribAdjustment];
 }
 
 - (void)resetSummations
 {
 	sumIncome = 0.0;
+	
 	[sumExpenses resetToZero];
+	
 	[self.savingsContribs removeAllObjects];
+	[self.sumContributions resetToZero];
 }
 
 - (void) dealloc
 {
 	[super dealloc];
 	[savingsContribs release];
+	[sumContributions release];
 	[sumExpenses release];
 }
 

@@ -17,6 +17,7 @@
 #warning TODO - Need to change name of sumIncome to sumGrossIncome if this name better represents the value
 		double sumIncome;
 		NSMutableArray *savingsContribs;
+		BalanceAdjustment *sumContributions;
 }
 
 - (void)addIncome:(double)incomeAmount;
@@ -27,5 +28,7 @@
 @property(nonatomic,retain) BalanceAdjustment *sumExpenses;
 @property(readonly) double sumIncome;
 @property(nonatomic,retain) NSMutableArray *savingsContribs;
+@property(nonatomic,retain) BalanceAdjustment *sumContributions;
+
 
 @end

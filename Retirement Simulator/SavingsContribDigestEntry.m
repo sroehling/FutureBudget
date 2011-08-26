@@ -7,13 +7,14 @@
 //
 
 #import "SavingsContribDigestEntry.h"
-
+#import "BalanceAdjustment.h"
 
 @implementation SavingsContribDigestEntry
 
 @synthesize workingBalance;
 @synthesize contribAmount;
 @synthesize contribIsTaxable;
+@synthesize contribAdjustment;
 
 
 - (id) initWithWorkingBalance:(SavingsWorkingBalance*)theBalance 
@@ -27,8 +28,12 @@
 		
 		assert(theAmount >= 0.0);
 		contribAmount = theAmount;
-		
+
 		self.contribIsTaxable = isTaxable;
+		
+		self.contribAdjustment = [[[BalanceAdjustment alloc] 
+			initWithAmount:theAmount andIsAmountTaxable:isTaxable] autorelease];
+		
 	}
 	return self;
 }
@@ -42,6 +47,7 @@
 {
 	[super dealloc];
 	[workingBalance release];
+	[contribAdjustment release];
 }
 
 @end
