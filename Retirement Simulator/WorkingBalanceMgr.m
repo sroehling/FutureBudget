@@ -52,7 +52,8 @@
 			initWithStartingBalance:0.0 
 			andInterestRate:[SharedAppValues singleton].deficitInterestRate 
 				andWorkingBalanceName:LOCALIZED_STR(@"DEFICIT_LABEL") 
-				andStartDate:startDate andTaxWithdrawals:FALSE] autorelease];
+				andStartDate:startDate andTaxWithdrawals:FALSE 
+				andTaxInterest:TRUE] autorelease];
 	return [self initWithCashBalance:cashBal andDeficitBalance:deficitBal];
 }
 

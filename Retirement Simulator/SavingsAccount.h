@@ -15,6 +15,7 @@
 extern NSString * const SAVINGS_ACCOUNT_ENTITY_NAME;
 extern NSString * const SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTIONS_KEY;
 extern NSString * const SAVINGS_ACCOUNT_TAXABLE_WITHDRAWALS_KEY;
+extern NSString * const SAVINGS_ACCOUNT_TAXABLE_INTEREST_KEY;
 extern NSString * const SAVINGS_ACCOUNT_INTEREST_RATE_KEY;
 
 @interface SavingsAccount : Account {
@@ -22,6 +23,7 @@ extern NSString * const SAVINGS_ACCOUNT_INTEREST_RATE_KEY;
 }
 @property (nonatomic, retain) NSNumber * taxableContributions;
 @property (nonatomic, retain) NSNumber * taxableWithdrawals;
+@property (nonatomic, retain) NSNumber * taxableInterest;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioInterestRate;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioFixedInterestRate;
 

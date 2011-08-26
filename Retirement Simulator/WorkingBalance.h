@@ -27,11 +27,12 @@
 	andStartDate:(NSDate*)theStartDate;
 	
 - (void)resetCurrentBalance;
-- (void)carryBalanceForward:(NSDate*)newStartDate;
-- (void)advanceCurrentBalanceToDate:(NSDate*)newDate;
+- (BalanceAdjustment*)advanceCurrentBalanceToDate:(NSDate*)newDate;
+- (BalanceAdjustment*)carryBalanceForward:(NSDate*)newStartDate;
 
 - (NSString*)balanceName;
 - (bool)doTaxWithdrawals;
+- (bool)doTaxInterest;
 - (void)logBalance;
 
 @property(nonatomic,retain) NSDate *balanceStartDate;

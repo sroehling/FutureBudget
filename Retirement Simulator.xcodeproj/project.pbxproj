@@ -580,12 +580,12 @@
 				00160CA414055DFC001D472F /* BalanceAdjustment.h */,
 				004CB03D13FD73F3000E87A9 /* WorkingBalance.h */,
 				004CB03E13FD73F4000E87A9 /* WorkingBalance.m */,
-				004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */,
-				004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */,
 				004CB03313FC490C000E87A9 /* CashWorkingBalance.h */,
 				004CB03413FC490E000E87A9 /* CashWorkingBalance.m */,
 				004CB04013FD772A000E87A9 /* SavingsWorkingBalance.h */,
 				004CB04113FD772C000E87A9 /* SavingsWorkingBalance.m */,
+				004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */,
+				004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */,
 			);
 			name = "Working Balance";
 			sourceTree = "<group>";

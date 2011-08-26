@@ -238,6 +238,7 @@
 	savingsAcct.startingBalance = [NSNumber numberWithDouble:0.0];
 	savingsAcct.taxableContributions = [NSNumber numberWithBool:FALSE];
 	savingsAcct.taxableWithdrawals = [NSNumber numberWithBool:TRUE];
+	savingsAcct.taxableInterest = [NSNumber numberWithBool:FALSE];
 	
 	MultiScenarioInputValue *msFixedInterestRate = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];

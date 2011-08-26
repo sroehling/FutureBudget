@@ -52,12 +52,26 @@
 	[balanceStartDate release];
 }
 
-- (void)advanceCurrentBalanceToDate:(NSDate*)newDate
+- (BalanceAdjustment*)advanceCurrentBalanceToDate:(NSDate*)newDate
 {
-	assert(newDate != nil);
-	assert([DateHelper dateIsEqualOrLater:newDate otherDate:self.currentBalanceDate]);
-	self.currentBalanceDate = newDate;
+	assert(0); // must be overridden
+	return nil;
 }
+
+
+- (BalanceAdjustment*)carryBalanceForward:(NSDate*)newStartDate
+{
+	assert(newStartDate != nil);
+	assert(newStartDate == [self.currentBalanceDate laterDate:newStartDate]);
+	
+	BalanceAdjustment *interest = [self advanceCurrentBalanceToDate:newStartDate];
+	
+	startingBalance = self.currentBalance;
+	self.balanceStartDate = newStartDate;
+	
+	return interest;
+}
+
 
 - (void) incrementBalance:(double)amount asOfDate:(NSDate*)newDate
 {
@@ -122,13 +136,6 @@
 }
 
 
-- (void)carryBalanceForward:(NSDate*)newStartDate
-{
-	assert(newStartDate != nil);
-	assert(newStartDate == [self.currentBalanceDate laterDate:newStartDate]);
-	self.balanceStartDate = newStartDate;
-	self.currentBalanceDate = newStartDate;
-}
 
 - (bool)doTaxWithdrawals
 {
@@ -136,6 +143,12 @@
 	return FALSE;
 }
 
+
+- (bool)doTaxInterest
+{
+	assert(0); // must be overridden
+	return FALSE;
+}
 
 - (NSString*)balanceName
 {

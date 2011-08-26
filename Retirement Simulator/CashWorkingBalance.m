@@ -11,6 +11,7 @@
 #import "SharedAppValues.h"
 #import "DateHelper.h"
 #import "SharedAppValues.h"
+#import "BalanceAdjustment.h"
 #import "LocalizationHelper.h"
 
 
@@ -32,13 +33,21 @@
 }
 
 
-- (void)carryBalanceForward:(NSDate*)newStartDate
+- (BalanceAdjustment*)advanceCurrentBalanceToDate:(NSDate*)newDate
 {
-	[super carryBalanceForward:newStartDate];
-	startingBalance = self.currentBalance;
+	assert(newDate != nil);
+	assert([DateHelper dateIsEqualOrLater:newDate otherDate:self.currentBalanceDate]);
+	self.currentBalanceDate = newDate;
+	// NOTE - current balance is left unchanged
+	return [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 }
 
 - (bool)doTaxWithdrawals
+{
+	return FALSE;
+}
+
+- (bool)doTaxInterest
 {
 	return FALSE;
 }

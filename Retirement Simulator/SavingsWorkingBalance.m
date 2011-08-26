@@ -12,13 +12,16 @@
 #import "DateSensitiveValue.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
 #import "MultiScenarioInputValue.h"
+#import "BalanceAdjustment.h"
 #import "VariableRateCalculator.h"
+#import "DateHelper.h"
 
 @implementation SavingsWorkingBalance
 
 @synthesize interestRateCalc;
 @synthesize workingBalanceName;
 @synthesize taxableWithdrawals;
+@synthesize taxableInterest;
 
 
 - (id) initWithStartingBalance:(double)theStartBalance
@@ -26,6 +29,7 @@
 	andWorkingBalanceName:(NSString*)wbName
 	andStartDate:(NSDate*)theStartDate
 	andTaxWithdrawals:(bool)doTaxWithdrawals
+	andTaxInterest:(bool)doTaxInterest
 {
 	self = [super initWithStartingBalance:theStartBalance 
 		andStartDate:theStartDate];
@@ -37,7 +41,9 @@
 							createForDateSensitiveValue:theInterestRate 
 							andStartDate:theStartDate];
 							
-		self.taxableWithdrawals = doTaxWithdrawals;
+		taxableWithdrawals = doTaxWithdrawals;
+		taxableInterest = doTaxInterest;
+		
 							
 		self.workingBalanceName = wbName;
 	}
@@ -53,10 +59,11 @@
 			getValueForCurrentOrDefaultScenario];
 
 	bool doTaxWithdrawals = [theSavingsAcct.taxableWithdrawals boolValue];
+	bool doTaxInterest = [theSavingsAcct.taxableInterest boolValue];
 
 	return [self initWithStartingBalance:[theSavingsAcct.startingBalance doubleValue] andInterestRate:savingsInterestRate andWorkingBalanceName:theSavingsAcct.name 
 		andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]
-		andTaxWithdrawals:doTaxWithdrawals];
+		andTaxWithdrawals:doTaxWithdrawals andTaxInterest:doTaxInterest];
 }
 
 
@@ -71,30 +78,36 @@
 	
 }
 
-- (void)carryBalanceForward:(NSDate*)newStartDate
-{
-	// Calculate the multiplier ("carryForwardMultiplier") between 
-	// currentBalanceDate and newStartDate
-	assert(newStartDate != nil);
-	double balanceMultiplier = [self.interestRateCalc valueMultiplierBetweenStartDate:self.currentBalanceDate andEndDate:newStartDate];
-	
-	[super carryBalanceForward:newStartDate];
-#warning TODO - Need to support calculating the interest and returning it, so it can be included in tax calculations.
-	startingBalance = self.currentBalance *balanceMultiplier;
-	currentBalance = startingBalance;
-}
 
-- (void)advanceCurrentBalanceToDate:(NSDate*)newDate
-{	
+- (BalanceAdjustment*)advanceCurrentBalanceToDate:(NSDate*)newDate
+{
 	assert(newDate != nil);
-	double balanceMultiplier = [self.interestRateCalc valueMultiplierBetweenStartDate:self.currentBalanceDate andEndDate:newDate];
-	[super advanceCurrentBalanceToDate:newDate];
-	currentBalance = currentBalance * balanceMultiplier;
+	assert([DateHelper dateIsEqualOrLater:newDate otherDate:self.currentBalanceDate]);
+
+	double balanceMultiplier = [self.interestRateCalc 
+		valueMultiplierBetweenStartDate:self.currentBalanceDate andEndDate:newDate];
+	
+	double newBalance = currentBalance * balanceMultiplier;
+	double interestAmount = newBalance - currentBalance;
+	
+	BalanceAdjustment *interest = [[[BalanceAdjustment alloc] 
+		initWithAmount:interestAmount 
+		andIsAmountTaxable:self.taxableInterest] autorelease];
+	
+	currentBalance = newBalance;
+	self.currentBalanceDate = newDate;
+	
+	return interest;
 }
 
 - (bool)doTaxWithdrawals
 {
 	return self.taxableWithdrawals;
+}
+
+- (bool)doTaxInterest
+{
+	return self.taxableInterest;
 }
 
 

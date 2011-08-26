@@ -289,7 +289,12 @@
         [BoolFieldEditInfo createForObject:savingsAcct 
 			andKey:SAVINGS_ACCOUNT_TAXABLE_WITHDRAWALS_KEY 
 			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_WITHDRAWAL_LABEL")]];
-			
+	
+	[sectionInfo addFieldEditInfo:
+        [BoolFieldEditInfo createForObject:savingsAcct 
+			andKey:SAVINGS_ACCOUNT_TAXABLE_INTEREST_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_INTEREST_LABEL")]];
+				
 			
 
 

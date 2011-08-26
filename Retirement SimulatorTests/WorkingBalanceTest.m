@@ -42,7 +42,8 @@
 	
 	SavingsWorkingBalance *workingBal = 
 		[[[SavingsWorkingBalance alloc] initWithStartingBalance:startBalance andInterestRate:fixedInterestRate andWorkingBalanceName:@"TestAcct" 
-		andStartDate:startDate andTaxWithdrawals:FALSE] autorelease];
+		andStartDate:startDate andTaxWithdrawals:FALSE
+		andTaxInterest:FALSE] autorelease];
 	
 	return workingBal;
 
