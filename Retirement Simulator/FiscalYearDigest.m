@@ -55,6 +55,7 @@
 - (EndOfYearDigestResult*)processDigestWithTaxRate:(double)incomeTaxRate
 {
 	
+	[self.workingBalanceMgr resetCurrentBalances];
 	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] init] autorelease];
 	
 	NSDate *currentDate = self.startDate;
@@ -86,15 +87,14 @@
 			[endOfYearResults incrementTotalIncomeTaxes:taxesToPayOnIncome];
 		}
 		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
-		{
-			[endOfYearResults incrementTotalExpense:currDayCashFlowSummation.sumExpenses];
-			
+		{			
 			WorkingBalanceAdjustment *withdrawAmount = 
 				[self.workingBalanceMgr 
 				decrementBalanceFromFundingList:[currDayCashFlowSummation.sumExpenses totalAmount] 
 				asOfDate:currentDate];
 			assert([withdrawAmount.balanceAdjustment totalAmount] <= 
 				[currDayCashFlowSummation.sumExpenses totalAmount]);
+			[endOfYearResults incrementTotalWithdrawals:withdrawAmount.balanceAdjustment];
 				
 			// By withdrawing/decrementing the expenses from the funding list, the 
 			// different funding sources will advance their balances to currentDate,
@@ -102,6 +102,7 @@
 			// summed up in withdrawAmount.interestAdjustment and 
 			// added to the end of year tax calculations.
 			[endOfYearResults incrementTotalInterest:withdrawAmount.interestAdjustement];
+			[endOfYearResults incrementTotalExpense:withdrawAmount.balanceAdjustment];
 		}
 		if([currDayCashFlowSummation.savingsContribs count] > 0)
 		{
@@ -146,23 +147,65 @@
 	return endOfYearResults;
 }
 
+
+- (EndOfYearDigestResult*)doMultiPassDigestCalcs
+{
+
+	//-------------------------------------------------------------------------------------
+	NSLog(@"doMultiPassDigestCalcs: Starting first pass of digest calculations");
+	// In the first pass, we use just the total income as an estimation of the taxes
+	// to be paid. Not having processed the digest entries for withdrawals and
+	// savings interest, we can't include that yet in the total. As a result, the
+	// amount of tax withheld from income will initially be a little low.
+	CashFlowSummation *yearlySummation = self.cashFlowSummations.yearlySummation;
+	assert(yearlySummation != nil);
+	double totalYearlyTaxableIncome = yearlySummation.sumIncome;
+	// Note that for the first pass, total deductions
+	// is an estimation of the *expected* tax deductable
+	// expenses and contributions. However, in reality,
+	// this could be reduced, since not all the 
+	// contributions may get funding (e.g., if the
+	// cash balance runs low).
+	double totalDeductions = [yearlySummation totalDeductions];
+	
+	double incomeTaxRate = [self.incomeTaxRateCalc 
+		taxRateForGrossIncome:totalYearlyTaxableIncome andDeductions:totalDeductions];
+	EndOfYearDigestResult *firstPassResults = [self processDigestWithTaxRate:incomeTaxRate];
+
+	//-------------------------------------------------------------------------------------
+	NSLog(@"doMultiPassDigestCalcs: Starting 2nd pass of digest calculations");
+	// For the second pass, also include in the taxable income calculations the 
+	// taxable savings interest and any taxable account withdrawals incurred through expenses 
+	totalYearlyTaxableIncome = yearlySummation.sumIncome + 
+		[firstPassResults totalTaxableWithdrawalsAndSavingsInterest];
+	// For the second pass, we can also include the *actual* expense and contribution
+	// amounts accrued over the year. This may be somewhat less than the estimated
+	// deduction from the 1st pass, since some contributions may not be fully funded
+	// if there's not enough cash available.
+	totalDeductions = [firstPassResults totalDeductableExpenseAndContributions];
+	incomeTaxRate = [self.incomeTaxRateCalc 
+		taxRateForGrossIncome:totalYearlyTaxableIncome andDeductions:totalDeductions];
+		
+	double yearlyEstimatedTaxes = 	[firstPassResults totalTaxableWithdrawalsAndSavingsInterest] * incomeTaxRate;
+	// TODO - Need to have some kind of event handling to process the estimated taxes as an event.
+		
+	EndOfYearDigestResult *secondPassResults = [self processDigestWithTaxRate:incomeTaxRate];
+	
+		
+	
+	NSLog(@"doMultiPassDigestCalcs: Done with digest calculations");
+	
+	return secondPassResults;
+	
+}
+
 - (void)advanceToNextYear
 {
 	NSLog(@"Advancing digest to next year from last year start = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
 	[self.workingBalanceMgr logCurrentBalances];
 
-	CashFlowSummation *yearlySummation = self.cashFlowSummations.yearlySummation;
-	assert(yearlySummation != nil);
-	double totalYearlyIncome = yearlySummation.sumIncome;
-	double totalYearlyDeductableExpense = yearlySummation.sumExpenses.taxFreeAmount;
-	double totalYearlyDeductableContributions = yearlySummation.sumContributions.taxFreeAmount;
-	double totalDeductions = totalYearlyDeductableExpense + totalYearlyDeductableContributions;
-	
-	
-	double incomeTaxRate = [self.incomeTaxRateCalc 
-		taxRateForGrossIncome:totalYearlyIncome andDeductions:totalDeductions];
-	[self processDigestWithTaxRate:incomeTaxRate];
+	EndOfYearDigestResult *endOfYearResults = [self doMultiPassDigestCalcs];
 
 	// Advance the digest to the next year
 	self.startDate = [DateHelper beginningOfNextYear:self.startDate];

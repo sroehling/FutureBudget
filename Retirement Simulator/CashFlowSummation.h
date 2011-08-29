@@ -25,6 +25,8 @@
 - (void) addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib;
 - (void)resetSummations;
 
+- (double)totalDeductions;
+
 @property(nonatomic,retain) BalanceAdjustment *sumExpenses;
 @property(readonly) double sumIncome;
 @property(nonatomic,retain) NSMutableArray *savingsContribs;

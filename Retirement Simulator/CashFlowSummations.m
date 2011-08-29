@@ -107,7 +107,6 @@
 	[yearlySummation addSavingsContrib:savingsContrib];
 }
 
-
 - (void) dealloc
 {
 	[super dealloc];

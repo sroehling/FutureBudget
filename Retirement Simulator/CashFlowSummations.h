@@ -32,6 +32,7 @@
 - (CashFlowSummation*)summationForDate:(NSDate*)eventDate;
 - (void)resetSummationsAndAdvanceStartDate:(NSDate*)newStartDate;
 
+
 @property(nonatomic,retain) NSDate *startDate;
 @property(nonatomic,retain) CashFlowSummation *yearlySummation;
 

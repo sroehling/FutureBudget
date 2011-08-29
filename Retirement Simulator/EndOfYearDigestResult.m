@@ -16,6 +16,7 @@
 @synthesize totalExpense;
 @synthesize totalIncomeTaxes;
 @synthesize totalInterest;
+@synthesize totalWithdrawals;
 
 -(id) init
 {
@@ -24,6 +25,7 @@
 	{
 		self.totalExpense = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		self.totalInterest = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
+		self.totalWithdrawals = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		totalIncome = 0.0;
 	}
 	return self;
@@ -47,10 +49,29 @@
 	[totalExpense addAdjustment:theExpense];
 }
 
+- (void)incrementTotalWithdrawals:(BalanceAdjustment*)theWithdrawal
+{
+	assert(theWithdrawal != nil);
+	[totalWithdrawals addAdjustment:theWithdrawal];
+}
+
 - (void)incrementTotalInterest:(BalanceAdjustment*)theInterest
 {
 	assert(theInterest != nil);
 	[totalInterest addAdjustment:theInterest];
+}
+
+
+- (double)totalTaxableWithdrawalsAndSavingsInterest
+{
+	return totalInterest.taxableAmount + totalWithdrawals.taxableAmount;
+}
+
+-(double)totalDeductableExpenseAndContributions
+{
+	// Expenses and contributions are combined in the year end result, 
+	// so all that needs to be returned is the total expense's taxFreeAmount.
+	return totalExpense.taxFreeAmount;
 }
 
 - (void)logResults
@@ -78,6 +99,7 @@
 	[super dealloc];
 	[totalExpense release];
 	[totalInterest release];
+	[totalWithdrawals release];
 }
 
 @end

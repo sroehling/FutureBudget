@@ -62,6 +62,15 @@
 	[self.sumContributions resetToZero];
 }
 
+-(double)totalDeductions
+{
+	double totalDeductableExpense = self.sumExpenses.taxFreeAmount;
+	double totalDeductableContributions = self.sumContributions.taxFreeAmount;
+	double totalDeductions = totalDeductableExpense + totalDeductableContributions;
+	return totalDeductions;
+}
+
+
 - (void) dealloc
 {
 	[super dealloc];
