@@ -24,9 +24,12 @@
 @synthesize fundingSources;
 @synthesize cashWorkingBalance;
 @synthesize deficitBalance;
+@synthesize accruedEstimatedTaxes;
+@synthesize nextEstimatedTaxPayment;
 
 - (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
 	andDeficitBalance:(SavingsWorkingBalance*)deficitBal
+	andStartDate:(NSDate*)startDate
 {
 	self = [super init];
 	if(self)
@@ -36,6 +39,11 @@
 		
 		assert(cashBal != nil);
 		self.cashWorkingBalance = cashBal;
+		
+		self.accruedEstimatedTaxes = [[[CashWorkingBalance alloc] initWithStartingBalance:0.0 
+			andStartDate:startDate] autorelease];
+		self.nextEstimatedTaxPayment = [[[CashWorkingBalance alloc] initWithStartingBalance:0.0 
+			andStartDate:startDate] autorelease];
 		
 		assert(deficitBal!=nil);
 		self.deficitBalance = deficitBal;
@@ -55,7 +63,8 @@
 				andWorkingBalanceName:LOCALIZED_STR(@"DEFICIT_LABEL") 
 				andStartDate:startDate andTaxWithdrawals:FALSE 
 				andTaxInterest:TRUE] autorelease];
-	return [self initWithCashBalance:cashBal andDeficitBalance:deficitBal];
+				
+		return [self initWithCashBalance:cashBal andDeficitBalance:deficitBal andStartDate:startDate];
 }
 
 - (id) init
@@ -86,6 +95,8 @@
 			[workingBal advanceCurrentBalanceToDate:newDate];
 		[totalInterest addAdjustment:currentWorkingBalInterest];
 	}
+	[self.accruedEstimatedTaxes advanceCurrentBalanceToDate:newDate];
+
 	return totalInterest;
 }
 
@@ -99,6 +110,8 @@
 		[workingBal carryBalanceForward:newDate];
 	}
 	[self.deficitBalance carryBalanceForward:newDate];
+	[self.accruedEstimatedTaxes carryBalanceForward:newDate];
+	[self.nextEstimatedTaxPayment carryBalanceForward:newDate];
 	
 	NSString *currentCashCurrency = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:self.cashWorkingBalance.currentBalance]];
@@ -169,6 +182,28 @@
 	}
 }
 
+- (void)incrementAccruedEstimatedTaxes:(double)taxAmount asOfDate:(NSDate*)theDate
+{
+	[self.accruedEstimatedTaxes incrementBalance:taxAmount asOfDate:theDate];
+}
+
+- (void)setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:(NSDate*)theDate;
+{
+	[self.accruedEstimatedTaxes advanceCurrentBalanceToDate:theDate];
+	double accruedBalance = self.accruedEstimatedTaxes.currentBalance;
+	[self.accruedEstimatedTaxes decrementAvailableBalance:accruedBalance asOfDate:theDate];
+	[self.nextEstimatedTaxPayment incrementBalance:accruedBalance asOfDate:theDate];
+}
+
+- (double)decrementNextEstimatedTaxPaymentAsOfDate:(NSDate*)theDate
+{
+	[self.nextEstimatedTaxPayment advanceCurrentBalanceToDate:theDate];
+	double paymentAmount = self.nextEstimatedTaxPayment.currentBalance;
+	assert(paymentAmount >= 0.0);
+	[self.nextEstimatedTaxPayment decrementAvailableBalance:paymentAmount asOfDate:theDate];
+	return paymentAmount;
+}
+
 - (void) resetCurrentBalances
 {
 	for(WorkingBalance *workingBal in self.fundingSources)
@@ -177,6 +212,8 @@
 		[workingBal resetCurrentBalance];
 	}
 	[self.deficitBalance resetCurrentBalance];
+	[self.accruedEstimatedTaxes resetCurrentBalance];
+	[self.nextEstimatedTaxPayment resetCurrentBalance];
 
 }
 
@@ -187,6 +224,8 @@
 		[workingBal logBalance];
 	}
 	[self.deficitBalance logBalance];
+	[self.accruedEstimatedTaxes logBalance];
+	[self.nextEstimatedTaxPayment logBalance];
 }
 
 - (void) dealloc
@@ -195,6 +234,8 @@
 	[fundingSources release];
 	[cashWorkingBalance release];
 	[deficitBalance release];
+	[accruedEstimatedTaxes release];
+	[nextEstimatedTaxPayment release];
 }
 
 @end

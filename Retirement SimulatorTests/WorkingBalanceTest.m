@@ -171,7 +171,7 @@
 	SavingsWorkingBalance *deficitBal = [self createInterestBearingWorkingAccountWithRate:0 
 		andStartDate:startDate andStartingBal:0];
 
-	WorkingBalanceMgr *workingBalMgr = [[[WorkingBalanceMgr alloc] initWithCashBalance:cashBal andDeficitBalance:deficitBal] autorelease];
+	WorkingBalanceMgr *workingBalMgr = [[[WorkingBalanceMgr alloc] initWithCashBalance:cashBal andDeficitBalance:deficitBal andStartDate:startDate] autorelease];
 	
 	[self checkCurrentBalance:cashBal withExpectedBalance:1000];
 	[self checkCurrentBalance:deficitBal withExpectedBalance:0];

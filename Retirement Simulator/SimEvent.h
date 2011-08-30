@@ -10,12 +10,19 @@
 
 @protocol SimEventCreator;
 
+#define SIM_EVENT_TIE_BREAK_PRIORITY_HIGHEST 100
+#define SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM 50 // default
+#define SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM_LOW 25
+#define SIM_EVENT_TIE_BREAK_PRIORITY_LOW 12
+#define SIM_EVENT_TIE_BREAK_PRIORITY_LOWEST 0
+
 @class FiscalYearDigest;
 
 @interface SimEvent : NSObject {
 	@private
 		id<SimEventCreator> originatingEventCreator;
 		NSDate *eventDate;
+		NSInteger tieBreakPriority;
 }
 
 // Do the actual event
@@ -33,6 +40,7 @@
 // is made to the originating event creator (via "assign" setter 
 // semantics for the property).
 @property (nonatomic, assign) id<SimEventCreator> originatingEventCreator;
+@property NSInteger tieBreakPriority;
 
 - (id) initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate*)theEventDate;
 

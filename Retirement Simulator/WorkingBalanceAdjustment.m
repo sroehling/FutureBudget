@@ -48,6 +48,11 @@
 	[self.interestAdjustement addAdjustment:otherAdj.balanceAdjustment];
 }
 
+- (double)totalTaxableInterestAndBalance
+{
+	return self.balanceAdjustment.taxableAmount + self.interestAdjustement.taxableAmount;
+}
+
 
 -(void)dealloc
 {

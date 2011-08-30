@@ -100,6 +100,19 @@
 
 }
 
+- (void)markEndDateForEstimatedTaxAccrual:(NSDate*)taxEndDate
+{
+	CashFlowSummation *theSummation = [self summationForDate:taxEndDate];
+	[theSummation markAsEndDateForEstimatedTaxAccrual];
+}
+
+- (void)markDateForEstimatedTaxPayment:(NSDate*)taxPaymentDate
+{
+	CashFlowSummation *theSummation = [self summationForDate:taxPaymentDate];
+	[theSummation markAsEstimatedTaxPaymentDay];
+
+}
+
 - (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate
 {
 	CashFlowSummation *theSummation = [self summationForDate:contribDate];

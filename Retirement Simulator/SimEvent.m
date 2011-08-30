@@ -15,6 +15,7 @@
 
 @synthesize originatingEventCreator;
 @synthesize eventDate;
+@synthesize tieBreakPriority;
 
 - (id) initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate*)theEventDate {
     self = [super init];
@@ -30,6 +31,8 @@
 		
         self.eventDate = theEventDate;
         self.originatingEventCreator = eventCreator;
+		
+		tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM;
     }
     return self;
 }

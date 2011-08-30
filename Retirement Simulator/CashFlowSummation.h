@@ -18,11 +18,15 @@
 		double sumIncome;
 		NSMutableArray *savingsContribs;
 		BalanceAdjustment *sumContributions;
+		bool isEndDateForEstimatedTaxes;
+		bool isEstimatedTaxPaymentDay;
 }
 
 - (void)addIncome:(double)incomeAmount;
 - (void)addExpense:(BalanceAdjustment*)expenseAmount;
 - (void) addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib;
+- (void)markAsEndDateForEstimatedTaxAccrual;
+- (void)markAsEstimatedTaxPaymentDay;
 - (void)resetSummations;
 
 - (double)totalDeductions;
@@ -31,6 +35,7 @@
 @property(readonly) double sumIncome;
 @property(nonatomic,retain) NSMutableArray *savingsContribs;
 @property(nonatomic,retain) BalanceAdjustment *sumContributions;
-
+@property(readonly) bool isEndDateForEstimatedTaxes;
+@property(readonly) bool isEstimatedTaxPaymentDay;
 
 @end

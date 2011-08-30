@@ -21,6 +21,7 @@
 -(id)initWithZeroAmounts;
 
 - (void)addAdjustment:(WorkingBalanceAdjustment*)otherAdj;
+- (double)totalTaxableInterestAndBalance;
 
 @property(nonatomic,retain) BalanceAdjustment *interestAdjustement;
 @property(nonatomic,retain) BalanceAdjustment *balanceAdjustment; 

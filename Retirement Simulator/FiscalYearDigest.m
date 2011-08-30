@@ -51,6 +51,63 @@
 	return self;
 }
 
+- (double)calcTaxesFromTotalTaxableAmount:(double)taxableAmount andTaxRate:(double)taxRate
+{
+	assert(taxRate >= 0.0);
+	assert(taxRate <= 1.0);
+	assert(taxableAmount >= 0);
+	return taxableAmount * taxRate;
+}
+
+- (void)accrueEstimatedTaxesForTaxableAmount:(double)taxableAmount 
+	andTaxRate:(double)taxRate andDate:(NSDate*)accrualDate
+{
+	double taxesToBePaid = 
+		[self calcTaxesFromTotalTaxableAmount:taxableAmount
+		andTaxRate:taxRate];
+	
+	[self.workingBalanceMgr incrementAccruedEstimatedTaxes:taxesToBePaid asOfDate:accrualDate];
+
+}
+
+- (void)advanceWorkingBalancesAndAccrueInterest:(EndOfYearDigestResult*)theResults 
+	advanceToDate:(NSDate*)advanceDate
+	andTaxRate:(double)taxRate
+{
+	BalanceAdjustment *interestAccruedForAdvance = 
+		[self.workingBalanceMgr advanceBalancesToDate:advanceDate];
+	
+	[self accrueEstimatedTaxesForTaxableAmount:interestAccruedForAdvance.taxableAmount 
+		andTaxRate:taxRate andDate:advanceDate];
+		
+	[theResults incrementTotalInterest:interestAccruedForAdvance];
+
+}
+
+- (void)processWithdrawal:(EndOfYearDigestResult*)eoyResults andAmount:(double)withdrawAmount 
+	andDate:(NSDate*)withdrawDate andTaxRate:(double)taxRate
+{
+	WorkingBalanceAdjustment *withdrawAdj = 
+		[self.workingBalanceMgr decrementBalanceFromFundingList:withdrawAmount 
+		asOfDate:withdrawDate];
+	assert([withdrawAdj.balanceAdjustment totalAmount] <= withdrawAmount);
+	
+	[eoyResults incrementTotalWithdrawals:withdrawAdj.balanceAdjustment];
+				
+	// By withdrawing/decrementing the expenses from the funding list, the 
+	// different funding sources will advance their balances to currentDate,
+	// accruing interest for the amount of time advanced. This interest is 
+	// summed up in withdrawAmount.interestAdjustment and 
+	// added to the end of year tax calculations.
+	[eoyResults incrementTotalInterest:withdrawAdj.interestAdjustement];
+	[eoyResults incrementTotalExpense:withdrawAdj.balanceAdjustment];
+	
+	[self accrueEstimatedTaxesForTaxableAmount:[withdrawAdj totalTaxableInterestAndBalance] 
+		andTaxRate:taxRate andDate:withdrawDate];
+	
+
+}
+
 
 - (EndOfYearDigestResult*)processDigestWithTaxRate:(double)incomeTaxRate
 {
@@ -88,21 +145,9 @@
 		}
 		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
 		{			
-			WorkingBalanceAdjustment *withdrawAmount = 
-				[self.workingBalanceMgr 
-				decrementBalanceFromFundingList:[currDayCashFlowSummation.sumExpenses totalAmount] 
-				asOfDate:currentDate];
-			assert([withdrawAmount.balanceAdjustment totalAmount] <= 
-				[currDayCashFlowSummation.sumExpenses totalAmount]);
-			[endOfYearResults incrementTotalWithdrawals:withdrawAmount.balanceAdjustment];
-				
-			// By withdrawing/decrementing the expenses from the funding list, the 
-			// different funding sources will advance their balances to currentDate,
-			// accruing interest for the amount of time advanced. This interest is 
-			// summed up in withdrawAmount.interestAdjustment and 
-			// added to the end of year tax calculations.
-			[endOfYearResults incrementTotalInterest:withdrawAmount.interestAdjustement];
-			[endOfYearResults incrementTotalExpense:withdrawAmount.balanceAdjustment];
+			[self processWithdrawal:endOfYearResults 
+				andAmount:[currDayCashFlowSummation.sumExpenses totalAmount] 
+				andDate:currentDate andTaxRate:incomeTaxRate];
 		}
 		if([currDayCashFlowSummation.savingsContribs count] > 0)
 		{
@@ -127,19 +172,39 @@
 						// accrue some interest. This interest is added to the end of year results for 
 						// tax calculations.
 						[endOfYearResults incrementTotalInterest:interestAccruedLeadingUpToSavingsContribution];
+							
+						[self accrueEstimatedTaxesForTaxableAmount:
+							interestAccruedLeadingUpToSavingsContribution.taxableAmount  
+							andTaxRate:incomeTaxRate andDate:currentDate];
 					}
 				}
 			}
+		} // If there are savings contributions on this day
+		if([currDayCashFlowSummation isEndDateForEstimatedTaxes])
+		{
+			// Advance all balances and accrue interest to the current date. This is needed so that
+			// all the estimated taxes can be included. 
+			[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
+				advanceToDate:currentDate andTaxRate:incomeTaxRate];
+
+			[self.workingBalanceMgr setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:currentDate];
+		}
+		if([currDayCashFlowSummation isEstimatedTaxPaymentDay])
+		{
+			double taxPaymentAmount = [self.workingBalanceMgr 
+					decrementNextEstimatedTaxPaymentAsOfDate:currentDate];
+			[self processWithdrawal:endOfYearResults 
+				andAmount:taxPaymentAmount andDate:currentDate andTaxRate:incomeTaxRate];
 		}
 		currentDate = [DateHelper nextDay:currentDate];
 	} // for each day in the year
 
+
 	// Advance all the working balances to the end of this year. Although none of the current balances
 	// are changed, some interest might be accrued leading up to the end of the year. This interest
 	// needs to be included in the total interest for the year, so that taxes can be calculated.
-	BalanceAdjustment *remainingInterestUntilEndOfFiscalYear = 
-		[self.workingBalanceMgr advanceBalancesToDate:[DateHelper beginningOfNextYear:self.startDate]];
-	[endOfYearResults incrementTotalInterest:remainingInterestUntilEndOfFiscalYear];
+	[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
+		advanceToDate:[DateHelper beginningOfNextYear:self.startDate] andTaxRate:incomeTaxRate];
 
 	[endOfYearResults logResults];
 	[self.workingBalanceMgr logCurrentBalances];

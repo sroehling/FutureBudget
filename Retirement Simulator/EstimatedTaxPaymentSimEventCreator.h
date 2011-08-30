@@ -1,8 +1,8 @@
 //
-//  DigestUpdateEventCreator.h
+//  EstimatedTaxPaymentSimEventCreator.h
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 8/15/11.
+//  Created by Steve Roehling on 8/29/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,8 +10,8 @@
 
 #import "YearlySimEventCreator.h"
 
-
-@interface DigestUpdateEventCreator : YearlySimEventCreator {
+@interface EstimatedTaxPaymentSimEventCreator : YearlySimEventCreator {
+    
 }
 
 @end

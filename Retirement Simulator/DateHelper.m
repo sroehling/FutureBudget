@@ -165,6 +165,25 @@
 }
 
 
++ (NSDate*)sameYearDifferentDay:(NSDate*)dateWithinYear andMonth:(NSInteger)monthNum andDay:(NSInteger)dayNum
+{
+	assert(dateWithinYear!=nil);
+	NSUInteger componentFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	NSDateComponents *components = [[DateHelper theHelper].gregorian 
+		components:componentFlags fromDate:dateWithinYear];
+//	NSInteger year = [components year];
+	[components setMonth:monthNum];
+	[components setDay:dayNum];
+	[components setHour:23];
+	[components setMinute:59];
+	[components setSecond:59];
+	
+	NSDate *theDate = [[DateHelper theHelper].gregorian dateFromComponents:components];
+	assert(theDate !=nil);
+	return theDate;
+	
+}
+
 
 
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear

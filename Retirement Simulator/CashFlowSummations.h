@@ -25,7 +25,8 @@
 - (void)addExpense:(BalanceAdjustment*)amount onDate:(NSDate*)expenseDate;
 - (void)addIncome:(double)amount onDate:(NSDate*)incomeDate;
 - (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate;
-
+- (void)markEndDateForEstimatedTaxAccrual:(NSDate*)taxEndDate;
+- (void)markDateForEstimatedTaxPayment:(NSDate*)taxPaymentDate;
 
 - (void)resetSummations;
 - (CashFlowSummation*)summationForDayIndex:(NSInteger)dayIndex;

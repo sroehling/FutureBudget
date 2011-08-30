@@ -17,6 +17,8 @@
 @synthesize sumIncome;
 @synthesize savingsContribs;
 @synthesize sumContributions;
+@synthesize isEndDateForEstimatedTaxes;
+@synthesize isEstimatedTaxPaymentDay;
 
 -(id)init
 {
@@ -28,6 +30,9 @@
 		[self resetSummations];
 		
 		self.sumContributions = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
+		
+		isEndDateForEstimatedTaxes = FALSE;
+		isEstimatedTaxPaymentDay = FALSE;
 	}
 	return self;
 }
@@ -52,6 +57,16 @@
 	[self.sumContributions addAdjustment:savingsContrib.contribAdjustment];
 }
 
+- (void)markAsEndDateForEstimatedTaxAccrual
+{
+	isEndDateForEstimatedTaxes = TRUE;
+}
+
+- (void)markAsEstimatedTaxPaymentDay
+{
+	isEstimatedTaxPaymentDay = TRUE;
+}
+
 - (void)resetSummations
 {
 	sumIncome = 0.0;
@@ -60,6 +75,9 @@
 	
 	[self.savingsContribs removeAllObjects];
 	[self.sumContributions resetToZero];
+	
+	isEndDateForEstimatedTaxes = FALSE;
+	isEstimatedTaxPaymentDay = FALSE;
 }
 
 -(double)totalDeductions

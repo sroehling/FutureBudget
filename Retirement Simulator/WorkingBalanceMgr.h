@@ -21,6 +21,8 @@
 #warning TODO - Need to reconsider supporting interest with cash working balance.
 		CashWorkingBalance *cashWorkingBalance;
 		SavingsWorkingBalance *deficitBalance;
+		CashWorkingBalance *accruedEstimatedTaxes;
+		CashWorkingBalance *nextEstimatedTaxPayment;
 		
 }
 
@@ -28,9 +30,18 @@
 @property(nonatomic,retain) CashWorkingBalance *cashWorkingBalance;
 @property(nonatomic,retain) SavingsWorkingBalance *deficitBalance;
 
+@property(nonatomic,retain) CashWorkingBalance *accruedEstimatedTaxes;
+@property(nonatomic,retain) CashWorkingBalance *nextEstimatedTaxPayment;
+
 - (id)initWithStartDate:(NSDate*)startDate;
 - (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
-	andDeficitBalance:(SavingsWorkingBalance*)deficitBal;
+	andDeficitBalance:(SavingsWorkingBalance*)deficitBal
+	andStartDate:(NSDate*)startDate;
+
+- (void)incrementAccruedEstimatedTaxes:(double)taxAmount asOfDate:(NSDate*)theDate;
+- (void)setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:(NSDate*)theDate;
+- (double)decrementNextEstimatedTaxPaymentAsOfDate:(NSDate*)theDate;
+
 
 - (void) addFundingSource:(WorkingBalance*)theBalance;
 - (void)carryBalancesForward:(NSDate*)newDate;

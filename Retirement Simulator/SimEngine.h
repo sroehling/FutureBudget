@@ -10,21 +10,20 @@
 
 @class FiscalYearDigest;
 @class WorkingBalanceMgr;
+@class SimEventList;
 
 
 @interface SimEngine : NSObject {
 
     
-    NSMutableArray *eventList;
     
     @private
     
     // TBD - Should these private member variable names have a "_" suffice 
     // (or whatever is conventional for objective C)
     
-    NSDateComponents *resultsOffsetComponents;
-    
-    NSDate *nextResultsCheckpointDate;
+    SimEventList *eventList;
+	
 	NSDate *simEndDate;
     FiscalYearDigest *digest;
     NSMutableArray *eventCreators;
@@ -39,6 +38,7 @@
 @property(nonatomic,retain) NSDate *simEndDate;
 @property(nonatomic,retain) FiscalYearDigest *digest;
 @property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
+@property(nonatomic,retain) SimEventList *eventList;
 
 
 @end

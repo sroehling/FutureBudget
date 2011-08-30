@@ -23,6 +23,7 @@
 + (NSDate*)dateFromStr:(NSString*)dateStr;
 + (NSString*)stringFromDate:(NSDate*)theDate;
 + (NSDate*)beginningOfYear:(NSDate*)dateWithinYear;
++ (NSDate*)sameYearDifferentDay:(NSDate*)dateWithinYear andMonth:(NSInteger)monthNum andDay:(NSInteger)dayNum;
 + (NSDate*)beginningOfDay:(NSDate*)theDate;
 + (NSDate*)endOfDay:(NSDate*)theDate;
 + (NSDate*)beginningOfNextYear:(NSDate*)dateWithinPreviousYear;
