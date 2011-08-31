@@ -11,6 +11,7 @@
 #include "SimEvent.h"
 
 @implementation TestSimEvent
+@synthesize eventLabel;
 
 
 
@@ -25,6 +26,12 @@
     
     [dateFormatter release];
     
+}
+
+-(void)dealloc
+{
+	[super dealloc];
+	[self.eventLabel release];
 }
 
 

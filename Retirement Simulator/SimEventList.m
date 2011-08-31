@@ -53,6 +53,7 @@
                 nextEventToProcess = candidateEvent;
 				nextEventIndex = eventIndex;
             }
+#warning TODO - For comparison purposes, need to keep the granularity of the comparison at the day level, then use tie breaking priority.
             else if([[candidateEvent eventDate] compare:[nextEventToProcess eventDate]] == NSOrderedAscending )
             {
 				// The date/time of candidateEvent is sooner than the nextEventToProcess

@@ -11,8 +11,11 @@
 #import "SimEvent.h"
 
 @interface TestSimEvent : SimEvent {
+	@private
+		NSString *eventLabel;
 }
 
+@property(nonatomic,retain) NSString *eventLabel;
 
 
 @end

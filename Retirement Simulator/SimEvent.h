@@ -44,4 +44,7 @@
 
 - (id) initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate*)theEventDate;
 
+- (id) initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate *)theEventDate
+	andSimStartDate:(NSDate*)startDate;
+
 @end
