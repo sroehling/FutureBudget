@@ -46,6 +46,7 @@
 - (void) addFundingSource:(WorkingBalance*)theBalance;
 - (void)carryBalancesForward:(NSDate*)newDate;
 - (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate;
+- (double)totalCurrentBalance;
 - (void) resetCurrentBalances;
 
 - (void) incrementCashBalance:(double)incomeAmount asOfDate:(NSDate*)newDate;

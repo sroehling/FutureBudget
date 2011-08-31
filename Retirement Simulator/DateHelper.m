@@ -184,6 +184,17 @@
 	
 }
 
++ (NSInteger)yearOfDate:(NSDate*)dateWithinYear
+{
+	assert(dateWithinYear!=nil);
+	NSUInteger componentFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	NSDateComponents *components = [[DateHelper theHelper].gregorian 
+		components:componentFlags fromDate:dateWithinYear];
+	NSInteger year = [components year];
+	assert(year > 0);
+	return year;
+}
+
 
 
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear

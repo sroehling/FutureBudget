@@ -29,6 +29,7 @@
 + (NSDate*)beginningOfNextYear:(NSDate*)dateWithinPreviousYear;
 + (NSDate*)nextDay:(NSDate*)currentDay;
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear;
++ (NSInteger)yearOfDate:(NSDate*)dateWithinYear;
 
 + (bool)dateIsEqualOrLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate;
 + (bool)dateIsLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate;

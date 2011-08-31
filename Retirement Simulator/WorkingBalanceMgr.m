@@ -150,6 +150,17 @@
 
 }
 
+- (double)totalCurrentBalance
+{
+	double totalBal = 0.0;
+	for(WorkingBalance *workingBal in self.fundingSources)
+	{
+		assert([workingBal currentBalance]>=0.0);
+		totalBal += [workingBal currentBalance];
+	}
+	return totalBal;
+}
+
 - (void) incrementCashBalance:(double)incomeAmount  asOfDate:(NSDate*)newDate
 {
 	// Reduce the deficit first

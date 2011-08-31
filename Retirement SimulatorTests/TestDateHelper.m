@@ -58,5 +58,23 @@
 
 }
 
+- (void)checkOneYearNum:(NSInteger)expectedYear andDate:(NSString*)dateStr
+{
+	NSDate *dateWithinYear = [DateHelper dateFromStr:dateStr];
+	NSInteger yearNum = [DateHelper yearOfDate:dateWithinYear];
+	STAssertEquals(yearNum,expectedYear,@"Expecting year num = %d, got %d",expectedYear,yearNum);
+	NSLog(@"Expecting year num = %d, got %d",expectedYear,yearNum);
+}
+
+- (void)testYearNum
+{
+	[self checkOneYearNum:2008 andDate:@"2008-01-01"];
+	[self checkOneYearNum:2008 andDate:@"2008-04-15"];
+	[self checkOneYearNum:2008 andDate:@"2008-10-01"];
+	[self checkOneYearNum:2008 andDate:@"2008-12-31"];
+	
+	[self checkOneYearNum:2010 andDate:@"2010-01-01"];
+	[self checkOneYearNum:2010 andDate:@"2010-05-12"];
+}
 
 @end

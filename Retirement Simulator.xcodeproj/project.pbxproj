@@ -158,6 +158,7 @@
 		00BC35C5140C5C0900D79F78 /* EstimatedTaxPaymentSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35C4140C5C0800D79F78 /* EstimatedTaxPaymentSimEvent.m */; };
 		00BC35C8140D42DD00D79F78 /* SimEventList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35C7140D42DD00D79F78 /* SimEventList.m */; };
 		00BC35CB140DA3B600D79F78 /* EventListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35CA140DA3B600D79F78 /* EventListTest.m */; };
+		00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */; };
 		00E6CC6B13F04F52005EEC64 /* RelativeDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC6A13F04F52005EEC64 /* RelativeDatePickerViewController.m */; };
 		00E6CC6F13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC6E13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.m */; };
 		00E6CC7A13F1C6E3005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC7913F1C6E2005EEC64 /* MultiScenarioRelativeEndDateFieldInfo.m */; };
@@ -493,6 +494,8 @@
 		00BC35C7140D42DD00D79F78 /* SimEventList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimEventList.m; sourceTree = "<group>"; };
 		00BC35C9140DA3B400D79F78 /* EventListTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListTest.h; sourceTree = "<group>"; };
 		00BC35CA140DA3B600D79F78 /* EventListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListTest.m; sourceTree = "<group>"; };
+		00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestTest.h; sourceTree = "<group>"; };
+		00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestTest.m; sourceTree = "<group>"; };
 		00E6CC6913F04F52005EEC64 /* RelativeDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeDatePickerViewController.h; sourceTree = "<group>"; };
 		00E6CC6A13F04F52005EEC64 /* RelativeDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeDatePickerViewController.m; sourceTree = "<group>"; };
 		00E6CC6D13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDateFieldEditInfo.h; sourceTree = "<group>"; };
@@ -1262,6 +1265,8 @@
 				00160CA11402EBC9001D472F /* WorkingBalanceTest.m */,
 				00BC35C9140DA3B400D79F78 /* EventListTest.h */,
 				00BC35CA140DA3B600D79F78 /* EventListTest.m */,
+				00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */,
+				00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -1601,6 +1606,7 @@
 				004CB02E13FB1AE1000E87A9 /* TestDateHelper.m in Sources */,
 				00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */,
 				00BC35CB140DA3B600D79F78 /* EventListTest.m in Sources */,
+				00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

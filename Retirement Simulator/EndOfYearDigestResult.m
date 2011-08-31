@@ -9,6 +9,7 @@
 #import "EndOfYearDigestResult.h"
 #import "BalanceAdjustment.h"
 #import "NumberHelper.h"
+#import "DateHelper.h"
 
 @implementation EndOfYearDigestResult
 
@@ -17,8 +18,10 @@
 @synthesize totalIncomeTaxes;
 @synthesize totalInterest;
 @synthesize totalWithdrawals;
+@synthesize endDate;
+@synthesize totalEndOfYearBalance;
 
--(id) init
+-(id)initWithEndDate:(NSDate *)endOfYearDate
 {
 	self = [super init];
 	if(self)
@@ -27,8 +30,17 @@
 		self.totalInterest = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		self.totalWithdrawals = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		totalIncome = 0.0;
+		assert(endOfYearDate != nil);
+		self.endDate = endOfYearDate;
+		self.totalEndOfYearBalance = 0.0;
 	}
 	return self;
+
+}
+
+-(id) init
+{
+	assert(0); // must call with end date
 }
 
 - (void)incrementTotalIncome:(double)incomeAmount
@@ -72,6 +84,11 @@
 	// Expenses and contributions are combined in the year end result, 
 	// so all that needs to be returned is the total expense's taxFreeAmount.
 	return totalExpense.taxFreeAmount;
+}
+
+- (NSInteger)yearNumber
+{
+	return [DateHelper yearOfDate:self.endDate];
 }
 
 - (void)logResults

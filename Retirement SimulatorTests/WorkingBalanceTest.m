@@ -173,6 +173,12 @@
 
 	WorkingBalanceMgr *workingBalMgr = [[[WorkingBalanceMgr alloc] initWithCashBalance:cashBal andDeficitBalance:deficitBal andStartDate:startDate] autorelease];
 	
+	double totalBal = [workingBalMgr totalCurrentBalance];
+	STAssertEqualsWithAccuracy(totalBal, 1000.0, 0.001,
+		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for total working balance",
+							   1000.0,totalBal);
+
+	
 	[self checkCurrentBalance:cashBal withExpectedBalance:1000];
 	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
 	
@@ -206,6 +212,8 @@
 	[workingBalMgr incrementCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
 	[self checkCurrentBalance:cashBal withExpectedBalance:500];
 	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+
+
 
 }
 

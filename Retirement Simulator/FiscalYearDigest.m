@@ -28,7 +28,7 @@
 @synthesize workingBalanceMgr;
 @synthesize cashFlowSummations;
 @synthesize incomeTaxRateCalc;
-
+@synthesize savedEndOfYearResults;
 
 -(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr
 {
@@ -47,6 +47,8 @@
 		
 		assert(wbMgr != nil);
 		self.workingBalanceMgr = wbMgr;
+		
+		self.savedEndOfYearResults = [[[NSMutableArray alloc] init] autorelease];
 	}
 	return self;
 }
@@ -113,7 +115,10 @@
 {
 	
 	[self.workingBalanceMgr resetCurrentBalances];
-	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] init] autorelease];
+	NSDate *endOfYearDate = [DateHelper endOfYear:self.startDate];
+
+	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] 
+		initWithEndDate:endOfYearDate] autorelease];
 	
 	NSDate *currentDate = self.startDate;
 	for(int currDayIndex=0; currDayIndex < MAX_DAYS_IN_YEAR; currDayIndex++)
@@ -206,6 +211,7 @@
 	[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
 		advanceToDate:[DateHelper beginningOfNextYear:self.startDate] andTaxRate:incomeTaxRate];
 
+	endOfYearResults.totalEndOfYearBalance = [self.workingBalanceMgr totalCurrentBalance];
 	[endOfYearResults logResults];
 	[self.workingBalanceMgr logCurrentBalances];
 
@@ -215,6 +221,7 @@
 
 - (EndOfYearDigestResult*)doMultiPassDigestCalcs
 {
+
 
 	//-------------------------------------------------------------------------------------
 	NSLog(@"doMultiPassDigestCalcs: Starting first pass of digest calculations");
@@ -271,6 +278,8 @@
 	[self.workingBalanceMgr logCurrentBalances];
 
 	EndOfYearDigestResult *endOfYearResults = [self doMultiPassDigestCalcs];
+	assert(endOfYearResults != nil);
+	[self.savedEndOfYearResults addObject:endOfYearResults];
 
 	// Advance the digest to the next year
 	self.startDate = [DateHelper beginningOfNextYear:self.startDate];
@@ -291,6 +300,7 @@
 	[cashFlowSummations release];
 	[startDate release];
 	[incomeTaxRateCalc release];
+	[savedEndOfYearResults release];
 
 }
 

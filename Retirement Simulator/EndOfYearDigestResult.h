@@ -17,6 +17,8 @@
 		BalanceAdjustment *totalExpense;
 		BalanceAdjustment *totalInterest;
 		BalanceAdjustment *totalWithdrawals;
+		NSDate *endDate;
+		double totalEndOfYearBalance;
 }
 
 @property(readonly) double totalIncome;
@@ -24,6 +26,10 @@
 @property(nonatomic,retain) BalanceAdjustment *totalExpense;
 @property(nonatomic,retain) BalanceAdjustment *totalInterest;
 @property(nonatomic,retain) BalanceAdjustment *totalWithdrawals;
+@property(nonatomic,retain) NSDate *endDate;
+@property double totalEndOfYearBalance;
+
+-(id)initWithEndDate:(NSDate*)endOfYearDate;
 
 - (void)incrementTotalIncome:(double)incomeAmount;
 - (void)incrementTotalIncomeTaxes:(double)taxAmount;
@@ -34,6 +40,8 @@
 
 -(double)totalTaxableWithdrawalsAndSavingsInterest;
 -(double)totalDeductableExpenseAndContributions;
+
+- (NSInteger)yearNumber;
 
 - (void)logResults;
 

@@ -22,6 +22,8 @@
 		NSDate *startDate;
 		WorkingBalanceMgr *workingBalanceMgr;
 		id<IncomeTaxRateCalculator> incomeTaxRateCalc;
+		
+		NSMutableArray *savedEndOfYearResults;
 }
 
 -(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr;
@@ -32,5 +34,6 @@
 @property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
 @property(nonatomic,retain) CashFlowSummations *cashFlowSummations;
 @property(nonatomic,retain) id<IncomeTaxRateCalculator> incomeTaxRateCalc;
+@property(nonatomic,retain) NSMutableArray *savedEndOfYearResults;
 
 @end
