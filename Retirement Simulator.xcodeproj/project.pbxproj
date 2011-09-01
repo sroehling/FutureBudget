@@ -35,7 +35,6 @@
 		0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */; };
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
 		0025776F13B42EE300D15232 /* InMemoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776E13B42EE000D15232 /* InMemoryCoreData.m */; };
-		0025777113B4310D00D15232 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0025777013B4310600D15232 /* CoreData.framework */; };
 		0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1513BE19F20043F3A5 /* Scenario.m */; };
 		0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1913BE1A370043F3A5 /* UserScenario.m */; };
 		0036DE1D13BE1A690043F3A5 /* DefaultScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */; };
@@ -82,14 +81,12 @@
 		004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */; };
 		004CB04B13FEF452000E87A9 /* IntermediateVariableRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04A13FEF433000E87A9 /* IntermediateVariableRate.m */; };
 		004CB04E1402BD04000E87A9 /* SavingsContribDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */; };
-		004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5D06136F170500E0C4A3 /* CoreData.framework */; };
 		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
 		004F5D24137079AD00E0C4A3 /* ExpenseInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D23137079AD00E0C4A3 /* ExpenseInput.m */; };
 		004F5D5A1371B3C100E0C4A3 /* DateFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */; };
 		004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */; };
 		004F5D741373191600E0C4A3 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D721373191600E0C4A3 /* ResultsViewController.m */; };
-		004F5D751373191600E0C4A3 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D731373191600E0C4A3 /* ResultsViewController.xib */; };
 		004F5D8013733BC100E0C4A3 /* SimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D7F13733BC100E0C4A3 /* SimEngine.m */; };
 		004F5D8B1374566200E0C4A3 /* TestSimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8A1374566200E0C4A3 /* TestSimEngine.m */; };
 		004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */; };
@@ -181,6 +178,10 @@
 		00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */; };
 		00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */; };
 		00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */; };
+		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
+		00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D0140F06AD00FA73AA /* CoreData.framework */; };
+		00F217D3140F073300FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D2140F073300FA73AA /* CoreData.framework */; };
+		00F217D7140F172F00FA73AA /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D6140F172F00FA73AA /* libCorePlot-CocoaTouch.a */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
 		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
 		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
@@ -257,7 +258,6 @@
 		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
 		0025776D13B42EDF00D15232 /* InMemoryCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMemoryCoreData.h; sourceTree = "<group>"; };
 		0025776E13B42EE000D15232 /* InMemoryCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMemoryCoreData.m; sourceTree = "<group>"; };
-		0025777013B4310600D15232 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0036DE1413BE19F20043F3A5 /* Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scenario.h; sourceTree = "<group>"; };
 		0036DE1513BE19F20043F3A5 /* Scenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scenario.m; sourceTree = "<group>"; };
 		0036DE1813BE1A370043F3A5 /* UserScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenario.h; sourceTree = "<group>"; };
@@ -350,7 +350,6 @@
 		004CB04A13FEF433000E87A9 /* IntermediateVariableRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntermediateVariableRate.m; sourceTree = "<group>"; };
 		004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsContribDigestEntry.h; sourceTree = "<group>"; };
 		004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsContribDigestEntry.m; sourceTree = "<group>"; };
-		004F5D06136F170500E0C4A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		004F5D0C136F52D200E0C4A3 /* DataModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelController.h; sourceTree = "<group>"; };
 		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
 		004F5D0F13706F7100E0C4A3 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
@@ -362,7 +361,6 @@
 		004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateFieldEditViewController.xib; sourceTree = "<group>"; };
 		004F5D711373191600E0C4A3 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		004F5D721373191600E0C4A3 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
-		004F5D731373191600E0C4A3 /* ResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
 		004F5D791373376900E0C4A3 /* SimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEventCreator.h; sourceTree = "<group>"; };
 		004F5D7A137337F700E0C4A3 /* SimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEvent.h; sourceTree = "<group>"; };
 		004F5D7E13733BC100E0C4A3 /* SimEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEngine.h; sourceTree = "<group>"; };
@@ -540,6 +538,10 @@
 		00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueFieldEditInfo.m; sourceTree = "<group>"; };
 		00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceAdjustment.h; sourceTree = "<group>"; };
 		00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceAdjustment.m; sourceTree = "<group>"; };
+		00F217B8140F058600FA73AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		00F217D0140F06AD00FA73AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		00F217D2140F073300FA73AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		00F217D6140F172F00FA73AA /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../CorePlot_0.4/Binaries/iOS/libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 		00F4209D137DB78700980A88 /* FieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditInfo.h; sourceTree = "<group>"; };
@@ -558,10 +560,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00F217D7140F172F00FA73AA /* libCorePlot-CocoaTouch.a in Frameworks */,
+				00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */,
+				00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */,
 				00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */,
 				00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */,
 				00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */,
-				004F5D07136F170500E0C4A3 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,7 +573,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0025777113B4310D00D15232 /* CoreData.framework in Frameworks */,
+				00F217D3140F073300FA73AA /* CoreData.framework in Frameworks */,
 				00A36BFC136C6CAE008A5C4C /* UIKit.framework in Frameworks */,
 				00A36BFD136C6CAE008A5C4C /* Foundation.framework in Frameworks */,
 				00A36BFE136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */,
@@ -1087,7 +1091,6 @@
 			children = (
 				004F5D711373191600E0C4A3 /* ResultsViewController.h */,
 				004F5D721373191600E0C4A3 /* ResultsViewController.m */,
-				004F5D731373191600E0C4A3 /* ResultsViewController.xib */,
 			);
 			name = "Results View";
 			sourceTree = "<group>";
@@ -1181,7 +1184,6 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
-				0025777013B4310600D15232 /* CoreData.framework */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
 				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
 				00A36BD4136C6CAE008A5C4C /* Frameworks */,
@@ -1201,7 +1203,9 @@
 		00A36BD4136C6CAE008A5C4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				004F5D06136F170500E0C4A3 /* CoreData.framework */,
+				00F217D6140F172F00FA73AA /* libCorePlot-CocoaTouch.a */,
+				00F217D0140F06AD00FA73AA /* CoreData.framework */,
+				00F217B8140F058600FA73AA /* QuartzCore.framework */,
 				00A36BD5136C6CAE008A5C4C /* UIKit.framework */,
 				00A36BD7136C6CAE008A5C4C /* Foundation.framework */,
 				00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */,
@@ -1241,6 +1245,7 @@
 		00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				00F217D2140F073300FA73AA /* CoreData.framework */,
 				0025777313B438E000D15232 /* Test Helper Code */,
 				00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */,
 				00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */,
@@ -1399,7 +1404,6 @@
 				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
 				004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */,
-				004F5D751373191600E0C4A3 /* ResultsViewController.xib in Resources */,
 				003AD14E138C354800CB3CB5 /* TextFieldCell.xib in Resources */,
 				003AD150138C6CA900CB3CB5 /* NumberFieldCell.xib in Resources */,
 				0087923D13ABAFC500CA9DA7 /* Localizable.strings in Resources */,
@@ -1661,7 +1665,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/../CorePlot_0.4/Binaries/iOS/CorePlotHeaders\"/**";
 			};
 			name = Debug;
 		};
@@ -1676,7 +1685,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/../CorePlot_0.4/Binaries/iOS/CorePlotHeaders\"/**";
 			};
 			name = Release;
 		};
@@ -1689,6 +1703,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement Simulator/Retirement Simulator-Prefix.pch";
 				INFOPLIST_FILE = "Retirement Simulator/Retirement Simulator-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1702,6 +1720,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement Simulator/Retirement Simulator-Prefix.pch";
 				INFOPLIST_FILE = "Retirement Simulator/Retirement Simulator-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1720,6 +1742,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement SimulatorTests/Retirement SimulatorTests-Prefix.pch";
 				INFOPLIST_FILE = "Retirement SimulatorTests/Retirement SimulatorTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -1742,6 +1768,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement SimulatorTests/Retirement SimulatorTests-Prefix.pch";
 				INFOPLIST_FILE = "Retirement SimulatorTests/Retirement SimulatorTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
