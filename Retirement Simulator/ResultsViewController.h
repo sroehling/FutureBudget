@@ -12,7 +12,12 @@
 @interface ResultsViewController : UIViewController <CPTPlotDataSource> {
 	@private
 		CPTXYGraph *graph;
+		
 		NSMutableArray *dataForPlot;
+		NSInteger resultMinYear;
+		NSInteger resultMaxYear;
+		double resultMinVal;
+		double resultMaxVal;
 }
 
 @property(nonatomic,retain) NSMutableArray *dataForPlot;

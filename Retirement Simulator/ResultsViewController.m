@@ -9,6 +9,10 @@
 #import "ResultsViewController.h"
 #import "DataModelController.h"
 #import "SimEngine.h"
+#import "FiscalYearDigest.h"
+#import "EndOfYearDigestResult.h"
+#import "NumberHelper.h"
+#import "LocalizationHelper.h"
 
 #import "CorePlot-CocoaTouch.h"
 #import "CPTGraphHostingView.h"
@@ -22,9 +26,7 @@
 //	[super loadView];
 
 	CPTGraphHostingView *graphView = [[CPTGraphHostingView alloc] 
-		initWithFrame:[UIScreen mainScreen].applicationFrame];
-		
-//	UIView *graphView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+		initWithFrame:[UIScreen mainScreen].applicationFrame];		
 	self.view = graphView;
 	[graphView release];
 
@@ -42,6 +44,7 @@
 - (void)dealloc
 {
     [super dealloc];
+	[dataForPlot release];
 }
 
 #pragma mark - Simulator interface
@@ -54,13 +57,35 @@
     SimEngine *simEngine = [[SimEngine alloc] init ];
            
     [simEngine runSim];
+	
+	NSMutableArray *contentArray = [[[NSMutableArray alloc] init] autorelease];
+	NSInteger minYear = NSIntegerMax;
+	NSInteger maxYear = 0;
+	double minVal = 100000000000.0;
+	double maxVal = -100000000000.0;
+	for(EndOfYearDigestResult *eoyResult in simEngine.digest.savedEndOfYearResults)
+	{
+		NSInteger resultYear = [eoyResult yearNumber];
+		minYear = MIN(minYear, resultYear);
+		maxYear = MAX(maxYear, resultYear);
+		
+		double yearEndNestEggSize = [eoyResult totalEndOfYearBalance];
+		minVal = MIN(minVal,yearEndNestEggSize);
+		maxVal = MAX(maxVal,yearEndNestEggSize);
+		NSNumber *x = [NSNumber numberWithInteger:resultYear];
+		NSNumber *y = [NSNumber numberWithDouble:yearEndNestEggSize];
+		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+	}
+	self.dataForPlot = contentArray;
+	resultMaxYear = maxYear;
+	resultMinYear = minYear;
+	resultMinVal = minVal;
+	resultMaxVal = maxVal;
     
     NSLog(@"... Done running simulation");
     
     [simEngine release];
 
-    
-    
 }
 
 #pragma mark - View lifecycle
@@ -80,8 +105,7 @@
 	NSLog(@"ResultsViewController: viewWillAppear");
     [self runSimulatorForResults];
 	
-	
-	    // Create graph from theme
+	// Create graph from theme
     graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
 	CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
     [graph applyTheme:theme];
@@ -89,75 +113,76 @@
     hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
     hostingView.hostedGraph = graph;
 	
-    graph.paddingLeft = 10.0;
-	graph.paddingTop = 10.0;
-	graph.paddingRight = 10.0;
-	graph.paddingBottom = 10.0;
+	// Pad the plot as a whole
+    graph.paddingLeft = 5.0;
+	graph.paddingTop = 5.0;
+	graph.paddingRight = 5.0;
+	graph.paddingBottom = 5.0;
     
+	
+	// Pad around the plot area freme to give room for the x and y axis and labels.
+	graph.plotAreaFrame.paddingTop = 10.0;
+	graph.plotAreaFrame.paddingBottom = 60.0;
+	graph.plotAreaFrame.paddingLeft = 80.0;
+	graph.plotAreaFrame.paddingRight = 20.0;
+	graph.plotAreaFrame.cornerRadius = 5.0;
+
     // Setup plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
-    plotSpace.allowsUserInteraction = YES;
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(2.0)];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(3.0)];
+    plotSpace.allowsUserInteraction = NO;
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinYear) 
+		length:CPTDecimalFromFloat(resultMaxYear-resultMinYear)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinVal) 
+		length:CPTDecimalFromFloat(resultMaxVal-resultMinVal)];
 
     // Axes
 	CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
     CPTXYAxis *x = axisSet.xAxis;
-    x.majorIntervalLength = CPTDecimalFromString(@"0.5");
-    x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2");
-    x.minorTicksPerInterval = 2;
- 	NSArray *exclusionRanges = [NSArray arrayWithObjects:
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.99) length:CPTDecimalFromFloat(0.02)], 
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.99) length:CPTDecimalFromFloat(0.02)],
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(2.99) length:CPTDecimalFromFloat(0.02)],
-		nil];
-	x.labelExclusionRanges = exclusionRanges;
+	x.title = LOCALIZED_STR(@"RESULTS_NET_WORTH_PLOT_X_AXIS_TITLE");
+    x.majorIntervalLength = CPTDecimalFromString(@"5");
+    x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(resultMinVal);
+    x.minorTicksPerInterval = 5;
+	NSNumberFormatter *yearFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+	[yearFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+	[yearFormatter setMinimumFractionDigits:0];
+	[yearFormatter setGroupingSeparator:@""]; // don't show "," separatar for thousands
+	x.labelFormatter = yearFormatter;
+	x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+	x.labelExclusionRanges = [NSArray arrayWithObjects:
+		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(0) 
+			length:CPTDecimalFromInt(resultMinYear+1)], 
+		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(resultMaxYear+1) 
+			length:CPTDecimalFromInt(1000)], 
+		nil];;
+
    
     CPTXYAxis *y = axisSet.yAxis;
-    y.majorIntervalLength = CPTDecimalFromString(@"0.5");
+	y.title = LOCALIZED_STR(@"RESULTS_NET_WORTH_PLOT_Y_AXIS_TITLE");
+	y.titleOffset = 50;
+    y.majorIntervalLength = CPTDecimalFromString(@"10000");
     y.minorTicksPerInterval = 5;
-    y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2");
-	exclusionRanges = [NSArray arrayWithObjects:
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.99) length:CPTDecimalFromFloat(0.02)], 
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.99) length:CPTDecimalFromFloat(0.02)],
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(3.99) length:CPTDecimalFromFloat(0.02)],
+	NSNumberFormatter *netWorthFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+	[netWorthFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+	netWorthFormatter.positiveSuffix = @"K";
+	netWorthFormatter.negativeSuffix = @"K)";
+	netWorthFormatter.multiplier = [NSNumber numberWithFloat:.001];
+	[netWorthFormatter setMinimumFractionDigits:0];
+	y.labelFormatter = netWorthFormatter;
+    y.orthogonalCoordinateDecimal = CPTDecimalFromInt(resultMinYear);
+	y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+	double excludeRange = 1000000000.0;
+	y.labelExclusionRanges = [NSArray arrayWithObjects:
+		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMinVal-excludeRange) 
+			length:CPTDecimalFromFloat(excludeRange + 1 )], 
+		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMaxVal+100000) 
+			length:CPTDecimalFromFloat(excludeRange)], 
 		nil];
-	y.labelExclusionRanges = exclusionRanges;
-  
-	// Create a blue plot area
-	CPTScatterPlot *boundLinePlot = [[[CPTScatterPlot alloc] init] autorelease];
-    CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
-    lineStyle.miterLimit = 1.0f;
-	lineStyle.lineWidth = 3.0f;
-	lineStyle.lineColor = [CPTColor blueColor];
-    boundLinePlot.dataLineStyle = lineStyle;
-    boundLinePlot.identifier = @"Blue Plot";
-    boundLinePlot.dataSource = self;
-	[graph addPlot:boundLinePlot];
-	
-	// Do a blue gradient
-	CPTColor *areaColor1 = [CPTColor colorWithComponentRed:0.3 green:0.3 blue:1.0 alpha:0.8];
-    CPTGradient *areaGradient1 = [CPTGradient gradientWithBeginningColor:areaColor1 endingColor:[CPTColor clearColor]];
-    areaGradient1.angle = -90.0f;
-    CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient1];
-    boundLinePlot.areaFill = areaGradientFill;
-    boundLinePlot.areaBaseValue = [[NSDecimalNumber zero] decimalValue];    
- 
-	// Add plot symbols
-	CPTMutableLineStyle *symbolLineStyle = [CPTMutableLineStyle lineStyle];
-	symbolLineStyle.lineColor = [CPTColor blackColor];
-	CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
-	plotSymbol.fill = [CPTFill fillWithColor:[CPTColor blueColor]];
-	plotSymbol.lineStyle = symbolLineStyle;
-    plotSymbol.size = CGSizeMake(10.0, 10.0);
-    boundLinePlot.plotSymbol = plotSymbol;
 
     // Create a green plot area
 	CPTScatterPlot *dataSourceLinePlot = [[[CPTScatterPlot alloc] init] autorelease];
-    lineStyle = [CPTMutableLineStyle lineStyle];
-    lineStyle.lineWidth = 3.f;
+    CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
+    lineStyle.lineWidth = 1.f;
     lineStyle.lineColor = [CPTColor greenColor];
-	lineStyle.dashPattern = [NSArray arrayWithObjects:[NSNumber numberWithFloat:5.0f], [NSNumber numberWithFloat:5.0f], nil];
     dataSourceLinePlot.dataLineStyle = lineStyle;
     dataSourceLinePlot.identifier = @"Green Plot";
     dataSourceLinePlot.dataSource = self;
@@ -166,7 +191,7 @@
     CPTColor *areaColor = [CPTColor colorWithComponentRed:0.3 green:1.0 blue:0.3 alpha:0.8];
     CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
     areaGradient.angle = -90.0f;
-    areaGradientFill = [CPTFill fillWithGradient:areaGradient];
+    CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient];
     dataSourceLinePlot.areaFill = areaGradientFill;
     dataSourceLinePlot.areaBaseValue = CPTDecimalFromString(@"1.75");
 
@@ -179,17 +204,8 @@
 	fadeInAnimation.removedOnCompletion = NO;
 	fadeInAnimation.fillMode = kCAFillModeForwards;
 	fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
-	[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];
+	[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];	
 	
-    // Add some initial data
-	NSMutableArray *contentArray = [NSMutableArray arrayWithCapacity:100];
-	NSUInteger i;
-	for ( i = 0; i < 60; i++ ) {
-		id x = [NSNumber numberWithFloat:1+i*0.05];
-		id y = [NSNumber numberWithFloat:1.2*rand()/(float)RAND_MAX + 1.2];
-		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
-	}
-	self.dataForPlot = contentArray;
 }
 
 
@@ -209,12 +225,6 @@
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index 
 {
     NSNumber *num = [[dataForPlot objectAtIndex:index] valueForKey:(fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y")];
-	// Green plot gets shifted above the blue
-	if ([(NSString *)plot.identifier isEqualToString:@"Green Plot"])
-	{
-		if ( fieldEnum == CPTScatterPlotFieldY ) 
-			num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
-	}
     return num;
 }
 

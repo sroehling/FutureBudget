@@ -31,6 +31,7 @@
 		self.tableHeader = theHeader;
 		self.tableTitle = theTitle;
 		self.tableSubHeader = theSubHeader;
+		self.supportsNeverEndDate = doesSupportNeverEndDate;
 	}
 	return self;
 }
