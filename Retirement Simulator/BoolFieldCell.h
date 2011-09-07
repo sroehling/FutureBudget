@@ -10,6 +10,8 @@
 
 @class FieldInfo;
 
+extern NSString * const BOOL_FIELD_CELL_ENTITY_NAME;
+
 @interface BoolFieldCell : UITableViewCell  {
 	UILabel *label;
 	UISwitch *boolSwitch;
@@ -17,8 +19,9 @@
 
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *label;
-@property (nonatomic, retain) IBOutlet UISwitch *boolSwitch;
+@property(nonatomic,retain) UILabel *label;
+@property(nonatomic,retain) UISwitch *boolSwitch;
 @property (nonatomic,retain) FieldInfo *boolFieldInfo;
+
 
 @end

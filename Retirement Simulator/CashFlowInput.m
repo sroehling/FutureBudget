@@ -24,6 +24,8 @@ NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_START_DATE_KEY =
 	@"multiScenarioFixedStartDate";
 NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY=
 	@"multiScenarioFixedEndDate";
+NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_CASH_FLOW_ENABLED_KEY=
+	@"multiScenarioCashFlowEnabled";
 
 
 @implementation CashFlowInput
@@ -39,6 +41,7 @@ NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY=
 @dynamic multiScenarioFixedGrowthRate;
 @dynamic multiScenarioFixedAmount;
 @dynamic multiScenarioFixedRelEndDate;
+@dynamic multiScenarioCashFlowEnabled;
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

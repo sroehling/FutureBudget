@@ -34,6 +34,7 @@ NSString * const ACCOUNT_VARIABLE_CONTRIB_AMOUNTS_KEY = @"variableContribAmounts
 @dynamic multiScenarioFixedContribEndDate;
 @dynamic multiScenarioFixedContribGrowthRate;
 @dynamic multiScenarioFixedContribRelEndDate;
+@dynamic multiScenarioContribEnabled;
 
 @dynamic variableContribAmounts;
 

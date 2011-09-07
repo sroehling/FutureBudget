@@ -22,11 +22,13 @@
 #import "SavingsWorkingBalance.h"
 #import "IncomeSimEventCreator.h"
 #import "SavingsAccount.h"
+#import "BoolInputValue.h"
 #import "SavingsContributionSimEventCreator.h"
 
 #import "EstimatedTaxAccrualSimEventCreator.h"
 #import "EstimatedTaxPaymentSimEventCreator.h"
 #import "SimEventList.h"
+#import "MultiScenarioInputValue.h"
 
 @implementation SimEngine
 
@@ -55,6 +57,18 @@
 }
 
 
+- (bool)inputIsEnabled:(MultiScenarioInputValue*)enabledField
+{
+	assert(enabledField != nil);
+#warning TODO - Need to support a current scenario for simulation, rather than just the default scenario
+	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
+	assert(currentScenario != nil);
+	BoolInputValue *enabledVal = (BoolInputValue*)
+		[enabledField findInputValueForScenarioOrDefault:currentScenario];
+	assert(enabledVal != nil);
+	bool isEnabled = [enabledVal.isTrue boolValue];
+	return isEnabled;
+}
 
 
 - (void) populateEventCreators
@@ -66,8 +80,11 @@
 	for(IncomeInput *income in inputs)
 	{
 		assert(income!=nil);
-		[self.eventCreators addObject:
-			[[[IncomeSimEventCreator alloc]initWithIncome:income] autorelease]];
+		if([self inputIsEnabled:income.multiScenarioCashFlowEnabled])
+		{
+			[self.eventCreators addObject:
+				[[[IncomeSimEventCreator alloc]initWithIncome:income] autorelease]];
+		}
 	}
 
 	
@@ -75,8 +92,11 @@
     for(ExpenseInput *expense in inputs)
     {    
 		assert(expense != nil);
-		[self.eventCreators addObject:
-			[[[ExpenseSimEventCreator alloc]initWithExpense:expense] autorelease]];
+		if([self inputIsEnabled:expense.multiScenarioCashFlowEnabled])
+		{
+			[self.eventCreators addObject:
+				[[[ExpenseSimEventCreator alloc]initWithExpense:expense] autorelease]];
+		}
     }
 
 		
@@ -85,12 +105,15 @@
 	{
 		SavingsWorkingBalance *savingsBal = 
 			[[[SavingsWorkingBalance alloc] initWithSavingsAcct:savingsAcct] autorelease];
-		SavingsContributionSimEventCreator *savingsEventCreator = 
-			[[[SavingsContributionSimEventCreator alloc]
-				initWithSavingsWorkingBalance:savingsBal 
-				andSavingsAcct:savingsAcct] autorelease];
-		[self.eventCreators addObject:savingsEventCreator];
-		[self.workingBalanceMgr addFundingSource:savingsBal];
+		if([self inputIsEnabled:savingsAcct.multiScenarioContribEnabled])
+		{
+			SavingsContributionSimEventCreator *savingsEventCreator = 
+				[[[SavingsContributionSimEventCreator alloc]
+					initWithSavingsWorkingBalance:savingsBal 
+					andSavingsAcct:savingsAcct] autorelease];
+			[self.eventCreators addObject:savingsEventCreator];
+			[self.workingBalanceMgr addFundingSource:savingsBal];
+		}
 	}
 	
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 

@@ -14,7 +14,6 @@
 		0009481B13C38912008F129B /* UserScenarioFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */; };
 		000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */; };
 		0010A57B13CFC2260096A20F /* BoolFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A57A13CFC2260096A20F /* BoolFieldEditInfo.m */; };
-		0010A57D13CFC55E0096A20F /* BoolFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0010A57C13CFC55E0096A20F /* BoolFieldCell.xib */; };
 		0010A58013CFC58F0096A20F /* BoolFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A57F13CFC58F0096A20F /* BoolFieldCell.m */; };
 		0010A58313CFEE6C0096A20F /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58213CFEE6B0096A20F /* Account.m */; };
 		0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58513CFEE940096A20F /* SavingsAccount.m */; };
@@ -91,6 +90,8 @@
 		004F5D8B1374566200E0C4A3 /* TestSimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8A1374566200E0C4A3 /* TestSimEngine.m */; };
 		004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */; };
 		004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D9613749AB300E0C4A3 /* TestSimEvent.m */; };
+		0055A881141681C500EFB95C /* BoolInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A880141681C400EFB95C /* BoolInputValue.m */; };
+		0055A88A1416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */; };
 		005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
@@ -214,7 +215,6 @@
 		000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateValueFormatter.m; sourceTree = "<group>"; };
 		0010A57913CFC2260096A20F /* BoolFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoolFieldEditInfo.h; sourceTree = "<group>"; };
 		0010A57A13CFC2260096A20F /* BoolFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolFieldEditInfo.m; sourceTree = "<group>"; };
-		0010A57C13CFC55E0096A20F /* BoolFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoolFieldCell.xib; sourceTree = "<group>"; };
 		0010A57E13CFC58F0096A20F /* BoolFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoolFieldCell.h; sourceTree = "<group>"; };
 		0010A57F13CFC58F0096A20F /* BoolFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolFieldCell.m; sourceTree = "<group>"; };
 		0010A58113CFEE6B0096A20F /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
@@ -371,6 +371,10 @@
 		004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEventCreator.m; sourceTree = "<group>"; };
 		004F5D9513749AB300E0C4A3 /* TestSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSimEvent.h; sourceTree = "<group>"; };
 		004F5D9613749AB300E0C4A3 /* TestSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEvent.m; sourceTree = "<group>"; };
+		0055A87F141681C400EFB95C /* BoolInputValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoolInputValue.h; sourceTree = "<group>"; };
+		0055A880141681C400EFB95C /* BoolInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolInputValue.m; sourceTree = "<group>"; };
+		0055A8881416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MultiScenarioBoolInputValueFieldInfo.h; sourceTree = "<group>"; };
+		0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioBoolInputValueFieldInfo.m; sourceTree = "<group>"; };
 		005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowSimEventCreator.h; sourceTree = "<group>"; };
 		005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowSimEventCreator.m; sourceTree = "<group>"; };
 		005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeatFrequency.h; sourceTree = "<group>"; };
@@ -586,11 +590,10 @@
 		0010A57713CFC2070096A20F /* Bool Field */ = {
 			isa = PBXGroup;
 			children = (
-				0010A57913CFC2260096A20F /* BoolFieldEditInfo.h */,
-				0010A57A13CFC2260096A20F /* BoolFieldEditInfo.m */,
-				0010A57C13CFC55E0096A20F /* BoolFieldCell.xib */,
 				0010A57E13CFC58F0096A20F /* BoolFieldCell.h */,
 				0010A57F13CFC58F0096A20F /* BoolFieldCell.m */,
+				0010A57913CFC2260096A20F /* BoolFieldEditInfo.h */,
+				0010A57A13CFC2260096A20F /* BoolFieldEditInfo.m */,
 			);
 			name = "Bool Field";
 			sourceTree = "<group>";
@@ -681,6 +684,8 @@
 				004A59A913A02FB9009FEF25 /* Repeat Frequency */,
 				004A59A513A02678009FEF25 /* Date Sensitive Value */,
 				0095E96F13B9271B000555AC /* Sim Dates */,
+				0055A87F141681C400EFB95C /* BoolInputValue.h */,
+				0055A880141681C400EFB95C /* BoolInputValue.m */,
 			);
 			name = "Input Values";
 			sourceTree = "<group>";
@@ -1081,6 +1086,7 @@
 				0049DC7013A2884D00B27046 /* Input Creation */,
 				004A59A613A0269F009FEF25 /* Repeat Frequency */,
 				004A59A313A0261F009FEF25 /* Sim Date */,
+				0055A88314168B4900EFB95C /* Bool Input Value */,
 				004A59A213A025E5009FEF25 /* Date Sensitive Value */,
 			);
 			name = "Input Views";
@@ -1117,6 +1123,15 @@
 				004F5D7F13733BC100E0C4A3 /* SimEngine.m */,
 			);
 			name = "Simulator Engine";
+			sourceTree = "<group>";
+		};
+		0055A88314168B4900EFB95C /* Bool Input Value */ = {
+			isa = PBXGroup;
+			children = (
+				0055A8881416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.h */,
+				0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */,
+			);
+			name = "Bool Input Value";
 			sourceTree = "<group>";
 		};
 		005731EC137874A1008D13C1 /* Simulator Inputs */ = {
@@ -1407,7 +1422,6 @@
 				003AD14E138C354800CB3CB5 /* TextFieldCell.xib in Resources */,
 				003AD150138C6CA900CB3CB5 /* NumberFieldCell.xib in Resources */,
 				0087923D13ABAFC500CA9DA7 /* Localizable.strings in Resources */,
-				0010A57D13CFC55E0096A20F /* BoolFieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,6 +1604,8 @@
 				00BC35C2140C5BEE00D79F78 /* EstimatedTaxPaymentSimEventCreator.m in Sources */,
 				00BC35C5140C5C0900D79F78 /* EstimatedTaxPaymentSimEvent.m in Sources */,
 				00BC35C8140D42DD00D79F78 /* SimEventList.m in Sources */,
+				0055A881141681C500EFB95C /* BoolInputValue.m in Sources */,
+				0055A88A1416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

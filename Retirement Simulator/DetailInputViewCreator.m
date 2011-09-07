@@ -33,6 +33,8 @@
 #import "SharedAppValues.h"
 #import "SavingsAccount.h"
 #import "BoolFieldEditInfo.h"
+#import "MultiScenarioInputValueFieldInfo.h"
+#import "MultiScenarioBoolInputValueFieldInfo.h"
 
 @implementation DetailInputViewCreator
 
@@ -88,6 +90,16 @@
     // Amount section
     
     SectionInfo *sectionInfo  = [formPopulator nextSection];
+	
+	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
+		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
+			initWithFieldLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL") 
+			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
+		andInputVal:cashFlow.multiScenarioCashFlowEnabled] autorelease];
+	BoolFieldEditInfo *enabledFieldEditInfo = 
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+
 	
 	
     sectionInfo.title = 
@@ -187,6 +199,7 @@
 		LOCALIZED_STR(@"INPUT_ACCOUNT_TITLE");
 	[self populateInputNameField:account];
 
+ 	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 	
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 
@@ -200,10 +213,15 @@
     sectionInfo.title = 
 		LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
 		
+	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
+		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
+			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL") 
+			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
+		andInputVal:account.multiScenarioContribEnabled] autorelease];
+	BoolFieldEditInfo *enabledFieldEditInfo = 
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
 	
-
-	
- 	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 	
     [sectionInfo addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 

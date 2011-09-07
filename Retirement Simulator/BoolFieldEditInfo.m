@@ -68,21 +68,14 @@
 {
     
     assert(tableView!=nil);
-    static NSString *boolCellIdentifier = @"BoolFieldCell";
-	
     
-    BoolFieldCell *cell = (BoolFieldCell *)[tableView dequeueReusableCellWithIdentifier:boolCellIdentifier];
+	BoolFieldCell *cell = (BoolFieldCell *)[tableView dequeueReusableCellWithIdentifier:BOOL_FIELD_CELL_ENTITY_NAME];
     if (cell == nil) {
-		[[NSBundle mainBundle] loadNibNamed:@"BoolFieldCell" owner:self options:nil];
-		assert(self.boolCell!=nil);
-        cell = self.boolCell;
-		self.boolCell = nil;
+		cell = [[[BoolFieldCell alloc] init] autorelease];
     }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.editingAccessoryType = UITableViewCellAccessoryNone;
-    
     cell.boolFieldInfo = self.fieldInfo;
     cell.label.text = [self textLabel];
+	
 	NSNumber *boolVal = [self.fieldInfo getFieldValue];
 	assert(boolVal != nil);
 	[cell.boolSwitch setOn:[boolVal boolValue]];

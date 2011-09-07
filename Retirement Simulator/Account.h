@@ -41,6 +41,7 @@ extern NSString * const ACCOUNT_VARIABLE_CONTRIB_AMOUNTS_KEY;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedContribEndDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedContribRelEndDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedContribGrowthRate;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribEnabled;
 
 @property (nonatomic,retain) NSSet* variableContribAmounts;
 

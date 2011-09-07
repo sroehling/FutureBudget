@@ -19,6 +19,7 @@
 #import "Account.h"
 #import "MultiScenarioInputValue.h"
 #import "RelativeEndDate.h"
+#import "BoolInputValue.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -39,6 +40,14 @@
     //      newInput.amount
     //      newInput.amountGrowthRate
 	
+	MultiScenarioInputValue *msCashFlowEnabled = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	BoolInputValue *defaultEnabled = 
+		[[DataModelController theDataModelController] 
+		insertObject:BOOL_INPUT_VALUE_ENTITY_NAME];
+	defaultEnabled.isTrue = [NSNumber numberWithBool:TRUE];
+	[msCashFlowEnabled setDefaultValue:defaultEnabled];
+	newInput.multiScenarioCashFlowEnabled = msCashFlowEnabled;
     
 	MultiScenarioInputValue *msFixedGrowthRate = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
@@ -107,6 +116,16 @@
     //      newInput.amount
     //      newInput.amountGrowthRate
 	
+	
+	MultiScenarioInputValue *msContributEnabled = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	BoolInputValue *defaultEnabled = 
+		[[DataModelController theDataModelController] 
+		insertObject:BOOL_INPUT_VALUE_ENTITY_NAME];
+	defaultEnabled.isTrue = [NSNumber numberWithBool:TRUE];
+	[msContributEnabled setDefaultValue:defaultEnabled];
+	newInput.multiScenarioContribEnabled = msContributEnabled;
+
     
 	MultiScenarioInputValue *msFixedGrowthRate = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];

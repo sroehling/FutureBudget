@@ -13,8 +13,6 @@
 @class BoolFieldCell;
 
 @interface BoolFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
-@private
-    BoolFieldCell *boolCell; 
 }
 
 @property (nonatomic, assign) IBOutlet BoolFieldCell *boolCell;

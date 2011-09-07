@@ -25,6 +25,7 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_START_DATE_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY;
+extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_CASH_FLOW_ENABLED_KEY;
 
 @interface CashFlowInput : Input {
 @private
@@ -48,6 +49,7 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioAmount;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioAmountGrowthRate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioEventRepeatFrequency;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioCashFlowEnabled;
 
 
 - (void)addVariableAmountsObject:(VariableValue *)value;
