@@ -45,7 +45,6 @@
 		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
 		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
 		003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD138138AF55C00CB3CB5 /* NumberHelper.m */; };
-		003AD14C138C352200CB3CB5 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD14B138C352100CB3CB5 /* TextFieldCell.m */; };
 		003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */; };
 		003CFD0E13C901B70006D083 /* TableHeaderWithDisclosure.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD0D13C901B70006D083 /* TableHeaderWithDisclosure.m */; };
 		003CFD1313C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */; };
@@ -91,6 +90,8 @@
 		0055A881141681C500EFB95C /* BoolInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A880141681C400EFB95C /* BoolInputValue.m */; };
 		0055A88A1416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */; };
 		0055A8951417DB4C00EFB95C /* TableCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8941417DB4A00EFB95C /* TableCellHelper.m */; };
+		0055A89A141851E300EFB95C /* NameFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A899141851E300EFB95C /* NameFieldCell.m */; };
+		0055A89D1418551C00EFB95C /* NameFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */; };
 		005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
@@ -185,7 +186,6 @@
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
 		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
 		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
-		00F420A6137DD5C100980A88 /* TextFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A5137DD5C100980A88 /* TextFieldEditInfo.m */; };
 		00F420A9137DDBD000980A88 /* ManagedObjectFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */; };
 /* End PBXBuildFile section */
 
@@ -279,8 +279,6 @@
 		003AD135138AD88400CB3CB5 /* TableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewHelper.m; sourceTree = "<group>"; };
 		003AD137138AF55C00CB3CB5 /* NumberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberHelper.h; sourceTree = "<group>"; };
 		003AD138138AF55C00CB3CB5 /* NumberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberHelper.m; sourceTree = "<group>"; };
-		003AD14A138C352100CB3CB5 /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
-		003AD14B138C352100CB3CB5 /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
 		003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldCell.h; sourceTree = "<group>"; };
 		003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldCell.m; sourceTree = "<group>"; };
 		003CFD0C13C901B70006D083 /* TableHeaderWithDisclosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderWithDisclosure.h; sourceTree = "<group>"; };
@@ -374,6 +372,10 @@
 		0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioBoolInputValueFieldInfo.m; sourceTree = "<group>"; };
 		0055A8931417DB4A00EFB95C /* TableCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellHelper.h; sourceTree = "<group>"; };
 		0055A8941417DB4A00EFB95C /* TableCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellHelper.m; sourceTree = "<group>"; };
+		0055A898141851E300EFB95C /* NameFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameFieldCell.h; sourceTree = "<group>"; };
+		0055A899141851E300EFB95C /* NameFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameFieldCell.m; sourceTree = "<group>"; };
+		0055A89B1418551B00EFB95C /* NameFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameFieldEditInfo.h; sourceTree = "<group>"; };
+		0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameFieldEditInfo.m; sourceTree = "<group>"; };
 		005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowSimEventCreator.h; sourceTree = "<group>"; };
 		005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowSimEventCreator.m; sourceTree = "<group>"; };
 		005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeatFrequency.h; sourceTree = "<group>"; };
@@ -552,8 +554,6 @@
 		00F4209F137DC04800980A88 /* DateFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFieldEditInfo.m; sourceTree = "<group>"; };
 		00F420A1137DD45500980A88 /* NumberFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldEditInfo.h; sourceTree = "<group>"; };
 		00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldEditInfo.m; sourceTree = "<group>"; };
-		00F420A4137DD5C000980A88 /* TextFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditInfo.h; sourceTree = "<group>"; };
-		00F420A5137DD5C100980A88 /* TextFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditInfo.m; sourceTree = "<group>"; };
 		00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectFieldInfo.h; sourceTree = "<group>"; };
 		00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectFieldInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -748,10 +748,10 @@
 		0049DC6F13A2880700B27046 /* Fields */ = {
 			isa = PBXGroup;
 			children = (
+				0055A8971418519500EFB95C /* Name Field */,
 				0010A57713CFC2070096A20F /* Bool Field */,
 				004A59AE13A07F70009FEF25 /* Number Field */,
 				004A59AC13A07EDB009FEF25 /* Date Field */,
-				004A59AB13A07E8B009FEF25 /* Text Field */,
 			);
 			name = Fields;
 			sourceTree = "<group>";
@@ -957,17 +957,6 @@
 			name = "Generic Table Views";
 			sourceTree = "<group>";
 		};
-		004A59AB13A07E8B009FEF25 /* Text Field */ = {
-			isa = PBXGroup;
-			children = (
-				00F420A4137DD5C000980A88 /* TextFieldEditInfo.h */,
-				00F420A5137DD5C100980A88 /* TextFieldEditInfo.m */,
-				003AD14A138C352100CB3CB5 /* TextFieldCell.h */,
-				003AD14B138C352100CB3CB5 /* TextFieldCell.m */,
-			);
-			name = "Text Field";
-			sourceTree = "<group>";
-		};
 		004A59AC13A07EDB009FEF25 /* Date Field */ = {
 			isa = PBXGroup;
 			children = (
@@ -1139,6 +1128,17 @@
 				0055A8941417DB4A00EFB95C /* TableCellHelper.m */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		0055A8971418519500EFB95C /* Name Field */ = {
+			isa = PBXGroup;
+			children = (
+				0055A898141851E300EFB95C /* NameFieldCell.h */,
+				0055A899141851E300EFB95C /* NameFieldCell.m */,
+				0055A89B1418551B00EFB95C /* NameFieldEditInfo.h */,
+				0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */,
+			);
+			name = "Name Field";
 			sourceTree = "<group>";
 		};
 		005731EC137874A1008D13C1 /* Simulator Inputs */ = {
@@ -1476,7 +1476,6 @@
 				00F42097137B510A00980A88 /* EventRepeater.m in Sources */,
 				00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */,
 				00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */,
-				00F420A6137DD5C100980A88 /* TextFieldEditInfo.m in Sources */,
 				00F420A9137DDBD000980A88 /* ManagedObjectFieldInfo.m in Sources */,
 				00ADB2ED138191B700064651 /* RepeatFrequencyFieldEditInfo.m in Sources */,
 				00ADB2F1138199BC00064651 /* ManagedObjectFieldEditInfo.m in Sources */,
@@ -1499,7 +1498,6 @@
 				003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */,
 				003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */,
 				003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */,
-				003AD14C138C352200CB3CB5 /* TextFieldCell.m in Sources */,
 				003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */,
 				00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */,
 				00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */,
@@ -1612,6 +1610,8 @@
 				0055A881141681C500EFB95C /* BoolInputValue.m in Sources */,
 				0055A88A1416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m in Sources */,
 				0055A8951417DB4C00EFB95C /* TableCellHelper.m in Sources */,
+				0055A89A141851E300EFB95C /* NameFieldCell.m in Sources */,
+				0055A89D1418551C00EFB95C /* NameFieldEditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

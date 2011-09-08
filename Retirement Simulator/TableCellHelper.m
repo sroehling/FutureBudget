@@ -69,6 +69,14 @@
 	return textField;
 }
 
++(UITextField*)createTitleTextField
+{
+	UITextField *textField = [TableCellHelper createTextField];
+	textField.font = [UIFont boldSystemFontOfSize:TABLE_CELL_LABEL_FONT_SIZE];
+	textField.textAlignment = UITextAlignmentCenter;
+	return textField;
+}
+
 +(UISwitch*)createSwitch
 {
 	UISwitch *theSwitch =[[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];        
@@ -96,19 +104,35 @@
 	[theChild setFrame:newFrame];
 }
 
++(void)sizeChildWidthToFillParent:(UIView*)theChild withinParentFrame:(CGRect)parentFrame
+{
+	CGRect newFrame = theChild.frame;
+	newFrame.size.width = CGRectGetWidth(parentFrame) - TABLE_CELL_RIGHT_MARGIN - TABLE_CELL_LEFT_MARGIN;
+	[theChild setFrame:newFrame];
+}
 
 +(void)enableTextFieldEditing:(UITextField*)textField andEditing:(BOOL)isEditing
 {	
     textField.enabled = isEditing;
     if(isEditing)
     {
-         textField.borderStyle = UITextBorderStyleBezel;
-    }
+  //       textField.borderStyle = UITextBorderStyleBezel;
+         textField.borderStyle = UITextBorderStyleLine;
+   }
     else
     {
         textField.borderStyle = UITextBorderStyleNone;
     }
 	
+	// When using the different border style in edit mode, the height of the text field needs to change
+	// to accommodate the bezel and input cursor. The code below adjusts the height
+	// of the UITextField without adjusting any other size parameters.
+	CGRect currentSize = textField.frame;
+	[textField sizeToFit];
+	CGRect newSize = textField.frame;
+	currentSize.size.height = newSize.size.height;
+	[textField setFrame:currentSize];
+
 }
 
 

@@ -28,9 +28,12 @@
 +(UILabel*)createWrappedSubtitleLabel;
 
 +(UITextField*)createTextField;
++(UITextField*)createTitleTextField;
 +(UISwitch*)createSwitch;
 
 +(void)enableTextFieldEditing:(UITextField*)textField andEditing:(BOOL)isEditing;
+
++(void)sizeChildWidthToFillParent:(UIView*)theChild withinParentFrame:(CGRect)parentFrame;
 
 +(void)topLeftAlignChild:(UIView*)theChild withinParentFrame:(CGRect)parentFrame;
 +(void)topRightAlignChild:(UIView*)theChild withinParentFrame:(CGRect)parentFrame;

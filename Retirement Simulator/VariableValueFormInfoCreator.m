@@ -9,7 +9,6 @@
 #import "VariableValueFormInfoCreator.h"
 #import "FormPopulator.h"
 #import "SectionInfo.h"
-#import "TextFieldEditInfo.h"
 #import "NumberFieldEditInfo.h"
 #import "DateSensitiveValueChange.h"
 #import "VariableValueRuntimeInfo.h"
@@ -19,6 +18,8 @@
 #import "CollectionHelper.h"
 #import "DateSensitiveValueChangeSectionInfo.h"
 #import "LocalizationHelper.h"
+#import "ManagedObjectFieldInfo.h"
+#import "NameFieldEditInfo.h"
 
 
 @implementation VariableValueFormInfoCreator
@@ -64,10 +65,10 @@
 	NSString *varValueNamePlaceholder = [NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_PLACEHOLDER_FORMAT"),
 										 LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
 
-	[sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:self.variableValue 
-															 andKey:@"name" 
-				andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL")
-				andPlaceholder:varValueNamePlaceholder]];
+	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:self.variableValue andFieldKey:@"name" andFieldLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL") andFieldPlaceholder:varValueNamePlaceholder] autorelease];
+	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] 
+				initWithFieldInfo:fieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:fieldEditInfo];
 	
 	sectionInfo = [formPopulator nextSection];
     sectionInfo.title = [NSString 

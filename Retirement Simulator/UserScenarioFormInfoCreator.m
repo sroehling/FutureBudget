@@ -10,7 +10,8 @@
 #import "FormPopulator.h"
 #import "LocalizationHelper.h"
 #import "UserScenario.h"
-#import "TextFieldEditInfo.h"
+#import "NameFieldEditInfo.h"
+#import "ManagedObjectFieldInfo.h"
 #import "SectionInfo.h"
 
 @implementation UserScenarioFormInfoCreator
@@ -40,9 +41,11 @@
     formPopulator.formInfo.title = LOCALIZED_STR(@"SCENARIO_DETAIL_VIEW_TITLE");
 	
 	SectionInfo *sectionInfo = [formPopulator nextSection];
-    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:self.userScen andKey:USER_SCENARIO_NAME_KEY 
-			andLabel:LOCALIZED_STR(@"SCENARIO_NAME_FIELD_LABEL")
-			andPlaceholder:LOCALIZED_STR(@"SCENARIO_NAME_PLACEHOLDER")]];
+	
+	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:self.userScen andFieldKey:USER_SCENARIO_NAME_KEY andFieldLabel:LOCALIZED_STR(@"SCENARIO_NAME_FIELD_LABEL") andFieldPlaceholder:LOCALIZED_STR(@"SCENARIO_NAME_PLACEHOLDER")] autorelease];
+	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+	
+    [sectionInfo addFieldEditInfo:fieldEditInfo];
 	
 	return formPopulator.formInfo;
 	

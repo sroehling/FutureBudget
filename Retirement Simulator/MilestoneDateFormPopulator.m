@@ -11,13 +11,14 @@
 #import "FormPopulator.h"
 #import "FormInfo.h"
 #import "SectionInfo.h"
-#import "TextFieldEditInfo.h"
 #import "DateFieldEditInfo.h"
 #import "MilestoneDate.h"
 #import "GenericFieldBasedTableEditViewController.h"
 #import "GenericFieldBasedTableAddViewController.h"
 #import "StaticFormInfoCreator.h"
 #import "LocalizationHelper.h"
+#import "ManagedObjectFieldInfo.h"
+#import "NameFieldEditInfo.h"
 
 @implementation MilestoneDateFormPopulator
 
@@ -44,10 +45,13 @@
     self.formInfo.title = LOCALIZED_STR(@"MILESTONE_DATE_FORM_TITLE");
     
     SectionInfo *sectionInfo = [self nextSection];
-    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:milestoneDate 
-                                                              andKey:@"name" 
-			andLabel:LOCALIZED_STR(@"MILESTONE_DATE_NAME_TEXT_FIELD_LABEL")
-			andPlaceholder:LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_NAME_PLACEHOLDER")]];
+	
+	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:milestoneDate andFieldKey:@"name" andFieldLabel:LOCALIZED_STR(@"MILESTONE_DATE_NAME_TEXT_FIELD_LABEL") andFieldPlaceholder:LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_NAME_PLACEHOLDER")] autorelease];
+	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+    [sectionInfo addFieldEditInfo:fieldEditInfo];
+	
+	
+	sectionInfo = [self nextSection];
     [sectionInfo addFieldEditInfo:[DateFieldEditInfo createForObject:milestoneDate 
             andKey:@"date" 
 			andLabel:LOCALIZED_STR(@"MILESTONE_DATE_DATE_FIELD_LABEL")

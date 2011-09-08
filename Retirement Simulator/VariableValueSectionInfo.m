@@ -8,7 +8,6 @@
 
 #import "VariableValueSectionInfo.h"
 #import "NumberFieldEditInfo.h"
-#import "TextFieldEditInfo.h"
 #import "DataModelController.h"
 #import "GenericFieldBasedTableAddViewController.h"
 #import "FormPopulator.h"
@@ -20,6 +19,8 @@
 #import "FinishedAddingObjectListener.h"
 #import "DateSensitiveValueChangeAddedListener.h"
 #import "LocalizationHelper.h"
+#import "NameFieldEditInfo.h"
+#import "ManagedObjectFieldInfo.h"
 
 
 @implementation VariableValueSectionInfo
@@ -62,9 +63,10 @@
 	NSString *varValueNamePlaceholder = [NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_PLACEHOLDER_FORMAT"),
 			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
 	
-    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:newVariableValue 
-             andKey:@"name" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL")
-			 andPlaceholder:varValueNamePlaceholder]];
+	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:newVariableValue andFieldKey:@"name"  andFieldLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL") 
+		andFieldPlaceholder:varValueNamePlaceholder] autorelease];
+	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+    [sectionInfo addFieldEditInfo:fieldEditInfo];
 			 
 	NSString *varValStartingValPlaceholder = 
 		[NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_VALUE_PLACEHOLDER_FORMAT"),

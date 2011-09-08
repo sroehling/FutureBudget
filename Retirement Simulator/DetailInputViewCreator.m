@@ -11,7 +11,6 @@
 #import "IncomeInput.h"
 #import "NumberHelper.h"
 #import "ManagedObjectFieldInfo.h"
-#import "TextFieldEditInfo.h"
 #import "NumberFieldEditInfo.h"
 #import "DateFieldEditInfo.h"
 #import "SimDateFieldEditInfo.h"
@@ -35,6 +34,7 @@
 #import "BoolFieldEditInfo.h"
 #import "MultiScenarioInputValueFieldInfo.h"
 #import "MultiScenarioBoolInputValueFieldInfo.h"
+#import "NameFieldEditInfo.h"
 
 @implementation DetailInputViewCreator
 
@@ -72,9 +72,11 @@
 {
    SectionInfo *sectionInfo = [formPopulator nextSection];
 	
-    [sectionInfo addFieldEditInfo:[TextFieldEditInfo createForObject:theInput andKey:INPUT_NAME_KEY 
-		andLabel:LOCALIZED_STR(@"INPUT_NAME_FIELD_LABEL")
-		andPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")]];
+	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:theInput andFieldKey:INPUT_NAME_KEY andFieldLabel:LOCALIZED_STR(@"INPUT_NAME_FIELD_LABEL")
+	 andFieldPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")] autorelease];
+	 NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+	
+    [sectionInfo addFieldEditInfo:fieldEditInfo];
 
 }
 

@@ -1,35 +1,29 @@
 //
-//  TextFieldCell.m
+//  NameFieldCell.m
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 5/24/11.
+//  Created by Steve Roehling on 9/7/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "TextFieldCell.h"
-#import "TextFieldEditInfo.h"
-#import "NumberHelper.h"
+#import "NameFieldCell.h"
 #import "TableCellHelper.h"
 
+NSString * const NAME_FIELD_CELL_IDENTIFIER = @"NameFieldCell";
 
-NSString * const TEXT_FIELD_CELL_ENTITY_NAME = @"TextFieldCell";
+@implementation NameFieldCell
 
-@implementation TextFieldCell
-
-
-@synthesize label, textField;
-@synthesize fieldEditInfo;
+@synthesize textField;
+@synthesize fieldInfo;
 
 
 - (id) initWithFrame:(CGRect)frame
 {
 	self =[super initWithFrame: frame];
 	if(self)
-	{        
-		self.label =[TableCellHelper createLabel];       
-		[self.contentView addSubview: self.label];        
+	{              
 		
-		self.textField = [TableCellHelper createTextField]; 
+		self.textField = [TableCellHelper createTitleTextField]; 
 		textField.delegate = self;    
 
 		[self.contentView addSubview: self.textField];    
@@ -47,15 +41,16 @@ NSString * const TEXT_FIELD_CELL_ENTITY_NAME = @"TextFieldCell";
 	[super layoutSubviews];    
 	
 	// Let the labels size themselves to accommodate their text    
-	[self.label sizeToFit];
-	[self.textField sizeToFit];    
+	[self.textField sizeToFit];
+	[TableCellHelper sizeChildWidthToFillParent:self.textField withinParentFrame:self.contentView.bounds];
+	CGRect newRect = self.textField.bounds;
+	newRect.size.height += 2;
+	[self.textField setFrame:newRect];    
 	
 	// Position the labels at the top of the table cell 
-	[TableCellHelper topLeftAlignChild:self.label withinParentFrame:self.contentView.bounds];
-	[TableCellHelper topRightAlignChild:self.textField withinParentFrame:self.contentView.bounds];
+	[TableCellHelper topLeftAlignChild:self.textField withinParentFrame:self.contentView.bounds];
 		
 }
-
 
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated 
@@ -76,9 +71,9 @@ NSString * const TEXT_FIELD_CELL_ENTITY_NAME = @"TextFieldCell";
 
 - (void)textFieldDidEndEditing:(UITextField *)theTextField
 {
-    assert(self.fieldEditInfo != nil);
+    assert(self.fieldInfo != nil);
     
-    [self.fieldEditInfo.fieldInfo setFieldValue:self.textField.text];
+    [self.fieldInfo setFieldValue:self.textField.text];
     // Done with editing - commit the value if it's changed
 
     [theTextField resignFirstResponder];
@@ -97,13 +92,13 @@ NSString * const TEXT_FIELD_CELL_ENTITY_NAME = @"TextFieldCell";
 	return YES;
 }
 
-
-
-- (void)dealloc {
-	[label release];
-	[textField release];
-    [fieldEditInfo release];
+-(void)dealloc
+{
 	[super dealloc];
+	[textField release];
+	[fieldInfo release];
 }
 
+
 @end
+
