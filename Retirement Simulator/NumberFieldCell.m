@@ -9,53 +9,69 @@
 #import "NumberFieldCell.h"
 #import "NumberFieldEditInfo.h"
 #import "NumberHelper.h"
+#import "TableCellHelper.h"
+
+NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 
 @implementation NumberFieldCell
 
 @synthesize label, textField;
 @synthesize fieldEditInfo;
 
-// Note a connection is made in the XIB file
-// to invoke this for the "Did End on Exit" event
--(IBAction)textFieldDismissKeyboard:(id)sender
+
+- (id) initWithFrame:(CGRect)frame
 {
-    [sender resignFirstResponder];
+	self =[super initWithFrame: frame];
+	if(self)
+	{        
+		self.label =[TableCellHelper createLabel];       
+		[self.contentView addSubview: self.label];        
+		
+		self.textField = [TableCellHelper createTextField]; 
+		textField.delegate = self;    
+
+		[self.contentView addSubview: self.textField];    
+				
+		self.editingAccessoryType = UITableViewCellAccessoryNone;
+		self.accessoryType = UITableViewCellAccessoryNone;		
+		
+	}    
+	return self;
 }
+
+
+-(void) layoutSubviews {    
+	
+	[super layoutSubviews];    
+	
+	// Let the labels size themselves to accommodate their text    
+	[self.label sizeToFit];
+	[self.textField sizeToFit];    
+	
+	// Position the labels at the top of the table cell 
+	[TableCellHelper topLeftAlignChild:self.label withinParentFrame:self.contentView.bounds];
+	[TableCellHelper topRightAlignChild:self.textField withinParentFrame:self.contentView.bounds];
+		
+}
+
 
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated 
 {
 	[super setEditing:editing animated:animated];
-	
-    self.textField.enabled = editing;
-    if(editing)
-    {
-        self.textField.borderStyle = UITextBorderStyleBezel;
-    }
-    else
-    {
-        self.textField.borderStyle = UITextBorderStyleNone;
-    }
-    
+	[TableCellHelper enableTextFieldEditing:self.textField andEditing:editing];	    
 }
 
--(IBAction)editingTextStarted:(id)sender
+
+// TextFieldDelegate methods
+
+- (void)textFieldDidEndEditing:(UITextField *)theTextField
 {
-    // For editing purposes, update the cell to have a plain decimal number
-    NSNumber *value = (NSNumber*)[self.fieldEditInfo.fieldInfo getFieldValue];
-    self.textField.text = 
-        [[NumberHelper theHelper].decimalFormatter stringFromNumber:value];
-}
-
-
-
--(IBAction)editingTextEnded:(id)sender
-{    
     assert(self.fieldEditInfo != nil);
     // Done with editing - commit the value if it's changed
     
     NSNumber *theValue = [[NumberHelper theHelper].decimalFormatter 
-                          numberFromString:textField.text];
+                          numberFromString:theTextField.text];
     if(theValue != nil)
     {
         [self.fieldEditInfo.fieldInfo setFieldValue:theValue];       
@@ -67,15 +83,25 @@
     
     // Done with editing - commit the value if it's changed
     
-    [sender resignFirstResponder];
+    [theTextField resignFirstResponder];
+
 }
 
-- (void)dealloc {
-	[label release];
-	[textField release];
-    [fieldEditInfo release];
-	[super dealloc];
+- (void)textFieldDidBeginEditing:(UITextField *)theTextField
+{
+    // For editing purposes, update the cell to have a plain decimal number
+    NSNumber *value = (NSNumber*)[self.fieldEditInfo.fieldInfo getFieldValue];
+    self.textField.text = 
+        [[NumberHelper theHelper].decimalFormatter stringFromNumber:value];
+
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.textField resignFirstResponder];
+    return YES;
+}
+
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)theTextField
 {
@@ -102,5 +128,14 @@
 	}
 	return YES;
 }
+
+
+- (void)dealloc {
+	[label release];
+	[textField release];
+    [fieldEditInfo release];
+	[super dealloc];
+}
+
 
 @end

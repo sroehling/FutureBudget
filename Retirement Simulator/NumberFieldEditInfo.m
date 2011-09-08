@@ -18,7 +18,6 @@
 
 
 @synthesize numberFormatter;
-@synthesize numberCell;
 
 
 + (NumberFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
@@ -83,7 +82,7 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 40.0;
+	return 30.0;
 }
 
 
@@ -91,18 +90,12 @@
 {
     
     assert(tableView!=nil);
-    static NSString *NumberCellIdentifier = @"NumberFieldCell";
     
-    NumberFieldCell *cell = (NumberFieldCell *)[tableView dequeueReusableCellWithIdentifier:NumberCellIdentifier];
+    NumberFieldCell *cell = (NumberFieldCell *)[tableView 
+		dequeueReusableCellWithIdentifier:NUMBER_FIELD_CELL_ENTITY_NAME];
     if (cell == nil) {
-		[[NSBundle mainBundle] loadNibNamed:@"NumberFieldCell" owner:self options:nil];
-		assert(self.numberCell!=nil);
-        cell = self.numberCell;
-		self.numberCell = nil;
-    }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.editingAccessoryType = UITableViewCellAccessoryNone;
-    
+		cell = [[[NumberFieldCell alloc] init] autorelease];
+    }    
     cell.fieldEditInfo = self;
     cell.label.text = [self textLabel];
     

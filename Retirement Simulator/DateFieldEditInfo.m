@@ -12,6 +12,7 @@
 #import "StringValidation.h"
 #import "DateHelper.h"
 #import "ManagedObjectFieldInfo.h"
+#import "ValueSubtitleTableCell.h"
 
 
 @implementation DateFieldEditInfo
@@ -64,17 +65,17 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 40.0;
+	return 30.0;
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     assert(tableView!=nil);
     
-    UITableViewCell *cell = [TableViewHelper reuseOrAllocCell:tableView];
-    
-    cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [self textLabel];
+	ValueSubtitleTableCell *cell = [[[ValueSubtitleTableCell alloc] init] autorelease];
+	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
+	cell.caption.text = [self textLabel];
     
     
     // Only try to initialize the text in the field if the field's
@@ -83,11 +84,11 @@
     // will be shown.
     if([self.fieldInfo fieldIsInitializedInParentObject])
     {
-        cell.detailTextLabel.text = [self detailTextLabel];
+        cell.valueDescription.text = [self detailTextLabel];
     }
     else
     {
-        cell.detailTextLabel.text = self.fieldInfo.fieldPlaceholder;
+        cell.valueDescription.text = self.fieldInfo.fieldPlaceholder;
     }
 
     

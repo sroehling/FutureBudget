@@ -8,14 +8,9 @@
 
 #import "ValueSubtitleTableCell.h"
 #import "ColorHelper.h"
+#import "TableCellHelper.h"
 
 @implementation ValueSubtitleTableCell
-
-static CGFloat kLeftMargin = 10.0;
-static CGFloat kRightMargin = 10.0;
-static CGFloat kTopMargin = 5.0;
-static CGFloat kBottomMargin = 5.0;
-static CGFloat kLabelSpace = 2.0;
 
 @synthesize valueDescription;
 @synthesize valueSubtitle;
@@ -26,41 +21,17 @@ static CGFloat kLabelSpace = 2.0;
 	self =[super initWithFrame: frame];
 	if(self)
 	{        
-		self.caption =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-		self.caption.backgroundColor = [UIColor clearColor];
-        self.caption.opaque = NO;
-        self.caption.textColor = [UIColor blackColor];
-		self.caption.textAlignment = UITextAlignmentLeft;
-        self.caption.highlightedTextColor = [UIColor whiteColor];
-        self.caption.font = [UIFont boldSystemFontOfSize:14];       
-		
+		self.caption = [TableCellHelper createLabel];       
 		[self.contentView addSubview: self.caption];        
 		
-		self.valueDescription =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];        
-		self.valueDescription.backgroundColor = [UIColor clearColor];
-        self.valueDescription.opaque = NO;
-        self.valueDescription.textColor = [ColorHelper blueTableTextColor];
-		self.valueDescription.textAlignment = UITextAlignmentRight;
-        self.valueDescription.highlightedTextColor = [UIColor whiteColor];
-        self.valueDescription.font = [UIFont systemFontOfSize:14];       
-		
+		self.valueDescription =[TableCellHelper createNonEditableBlueValueLabel];
 		[self.contentView addSubview: self.valueDescription];    
 		
-		self.valueSubtitle =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease]; 
-		self.valueSubtitle.backgroundColor = [UIColor clearColor];
-        self.valueSubtitle.opaque = NO;
- 		self.valueSubtitle.textAlignment = UITextAlignmentLeft;
-		self.valueSubtitle.textColor = [UIColor grayColor];
-        self.valueSubtitle.highlightedTextColor = [UIColor whiteColor];
-        self.valueSubtitle.font = [UIFont systemFontOfSize:10]; 
-		
+		self.valueSubtitle = [TableCellHelper createSubtitleLabel];
 		[self.contentView addSubview: self.valueSubtitle];    
 		
 		self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-		
-		
 	}    
 	return self;
 }
@@ -71,16 +42,16 @@ static CGFloat kLabelSpace = 2.0;
 	[valueDescription sizeToFit];  
 	[valueSubtitle sizeToFit];
 
-	CGFloat cellHeight = kTopMargin;
+	CGFloat cellHeight = TABLE_CELL_TOP_MARGIN;
 	
 	cellHeight += MAX(CGRectGetHeight(self.valueDescription.bounds),
 					  CGRectGetHeight(self.caption.bounds));
 	if([valueSubtitle.text length] > 0)
 	{
-		cellHeight += kLabelSpace;
+		cellHeight += TABLE_CELL_CHILD_SPACE;
 		cellHeight += CGRectGetHeight(self.valueSubtitle.bounds);
 	}		
-	cellHeight += kBottomMargin;
+	cellHeight += TABLE_CELL_BOTTOM_MARGIN;
 	
 	return cellHeight;
 }
@@ -94,23 +65,14 @@ static CGFloat kLabelSpace = 2.0;
 	[valueDescription sizeToFit];  
 	[valueSubtitle sizeToFit];
 	
-	// Position the labels at the top of the table cell    
-	CGRect newFrame = caption.frame;    
-	newFrame.origin.x =CGRectGetMinX(self.contentView.bounds)+kLeftMargin;
-	newFrame.origin.y =CGRectGetMinY(self.contentView.bounds)+kTopMargin;
-	[caption setFrame: newFrame];    
+	// Position the labels at the top of the table cell   
+	[TableCellHelper topLeftAlignChild:caption withinParentFrame:self.contentView.bounds];
+	[TableCellHelper topRightAlignChild:valueDescription withinParentFrame:self.contentView.bounds];
 	
-  
-	newFrame = valueDescription.frame; 
-	newFrame.origin.x = CGRectGetMaxX(self.contentView.bounds)-kRightMargin-
-		CGRectGetWidth(valueDescription.frame);  
-	newFrame.origin.y =CGRectGetMinY(self.contentView.bounds)+kTopMargin;    
-	[valueDescription setFrame: newFrame];
-	
-	newFrame = valueSubtitle.frame;
-	newFrame.origin.x = CGRectGetMaxX(self.contentView.bounds)-kRightMargin-
+	CGRect newFrame = valueSubtitle.frame;
+	newFrame.origin.x = CGRectGetMaxX(self.contentView.bounds)-TABLE_CELL_RIGHT_MARGIN-
 		CGRectGetWidth(valueSubtitle.frame);  
-	newFrame.origin.y =CGRectGetMaxY(self.valueDescription.frame)+kLabelSpace; 
+	newFrame.origin.y =CGRectGetMaxY(self.valueDescription.frame)+TABLE_CELL_CHILD_SPACE; 
 	[valueSubtitle setFrame:newFrame];   
 	
 }

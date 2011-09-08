@@ -10,15 +10,16 @@
 
 @class TextFieldEditInfo;
 
+extern NSString * const TEXT_FIELD_CELL_ENTITY_NAME;
 
-@interface TextFieldCell : UITableViewCell {
+@interface TextFieldCell : UITableViewCell <UITextFieldDelegate> {
 	UILabel *label;
 	UITextField *textField;
     TextFieldEditInfo *fieldEditInfo;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *label;
-@property (nonatomic, retain) IBOutlet UITextField *textField;
+@property (nonatomic, retain) UILabel *label;
+@property (nonatomic, retain) UITextField *textField;
 @property (nonatomic,retain) TextFieldEditInfo *fieldEditInfo;
 
 

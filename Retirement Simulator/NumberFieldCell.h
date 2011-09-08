@@ -10,14 +10,16 @@
 
 @class NumberFieldEditInfo;
 
-@interface NumberFieldCell : UITableViewCell {
+extern NSString * const NUMBER_FIELD_CELL_ENTITY_NAME;
+
+@interface NumberFieldCell : UITableViewCell <UITextFieldDelegate> {
 	UILabel *label;
 	UITextField *textField;
     NumberFieldEditInfo *fieldEditInfo;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *label;
-@property (nonatomic, retain) IBOutlet UITextField *textField;
+@property (nonatomic, retain) UILabel *label;
+@property (nonatomic, retain) UITextField *textField;
 @property (nonatomic,retain) NumberFieldEditInfo *fieldEditInfo;
 
 

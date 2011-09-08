@@ -15,8 +15,6 @@
 
 @implementation TextFieldEditInfo
 
-@synthesize textCell;
-
 + (TextFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
 							 andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
 {
@@ -52,24 +50,17 @@
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
-	return 40.0;
+	return 30.0;
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     assert(tableView!=nil);
     
-    static NSString *TextCellIdentifier = @"TextFieldCell";
-    
-    TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:TextCellIdentifier];
+    TextFieldCell *cell = (TextFieldCell *)[tableView dequeueReusableCellWithIdentifier:TEXT_FIELD_CELL_ENTITY_NAME];
     if (cell == nil) {
-		[[NSBundle mainBundle] loadNibNamed:@"TextFieldCell" owner:self options:nil];
-        cell = self.textCell;
-		self.textCell = nil;
+        cell = [[[TextFieldCell alloc] init] autorelease];
     }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.editingAccessoryType = UITableViewCellAccessoryNone;
-
     cell.fieldEditInfo = self;
     cell.label.text = [self textLabel];
 

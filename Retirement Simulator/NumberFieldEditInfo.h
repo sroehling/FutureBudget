@@ -15,13 +15,10 @@
 @class FieldInfo;
 
 @interface NumberFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
-@private
-    NumberFieldCell *numberCell;    
+@private  
     NSNumberFormatter *numberFormatter;
 
 }
-
-@property (nonatomic, assign) IBOutlet NumberFieldCell *numberCell;
 
 @property (nonatomic, retain) NSNumberFormatter *numberFormatter;
 

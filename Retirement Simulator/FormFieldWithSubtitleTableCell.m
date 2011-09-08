@@ -8,7 +8,7 @@
 
 #import "FormFieldWithSubtitleTableCell.h"
 #import "ColorHelper.h"
-
+#import "TableCellHelper.h"
 
 @implementation FormFieldWithSubtitleTableCell
 
@@ -22,54 +22,22 @@
 	self =[super initWithFrame: frame];
 	if(self)
 	{        
-		self.caption =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-		self.caption.backgroundColor = [UIColor clearColor];
-        self.caption.opaque = NO;
-        self.caption.textColor = [UIColor blackColor];
-		self.caption.textAlignment = UITextAlignmentLeft;
-        self.caption.highlightedTextColor = [UIColor whiteColor];
-        self.caption.font = [UIFont boldSystemFontOfSize:14];       
-		
+		self.caption =[TableCellHelper createLabel];      
 		[self.contentView addSubview: self.caption];        
 		
-		self.contentDescription =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];        
-		self.contentDescription.backgroundColor = [UIColor clearColor];
-        self.contentDescription.opaque = NO;
-        self.contentDescription.textColor = [ColorHelper blueTableTextColor];
-		self.contentDescription.textAlignment = UITextAlignmentRight;
-        self.contentDescription.highlightedTextColor = [UIColor whiteColor];
-        self.contentDescription.font = [UIFont systemFontOfSize:14];       
-
-		[self.contentView addSubview: self.contentDescription];    
-
-		self.subTitle =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease]; 
-		self.subTitle.backgroundColor = [UIColor clearColor];
-        self.subTitle.opaque = NO;
- 		self.subTitle.textAlignment = UITextAlignmentLeft;
-		self.subTitle.textColor = [UIColor grayColor];
-        self.subTitle.highlightedTextColor = [UIColor whiteColor];
-        self.subTitle.font = [UIFont systemFontOfSize:10]; 
-		self.subTitle.lineBreakMode = UILineBreakModeWordWrap;
-		self.subTitle.numberOfLines = 0;
-      
-		[self.contentView addSubview: self.subTitle];    
-
-
+		self.contentDescription =[TableCellHelper createNonEditableBlueValueLabel];        
+		[self.contentView addSubview: self.contentDescription];
+		
+		self.subTitle = [TableCellHelper createWrappedSubtitleLabel];
+		[self.contentView addSubview: self.subTitle];
 	}    
 	return self;
 }
 
 
-static CGFloat kLeftMargin = 10.0;
-static CGFloat kRightMargin = 10.0;
-static CGFloat kTopMargin = 4.0;
-static CGFloat kBottomMargin = 4.0;
-static CGFloat kLabelSpace = 4.0;
-static CGFloat kDisclosureWidth = 20.0;
-
 - (CGFloat)subTitleWidthWithMargin:(CGFloat)overallWidth
 {
-	return overallWidth - kLeftMargin - kRightMargin - kDisclosureWidth;
+	return overallWidth - TABLE_CELL_LEFT_MARGIN - TABLE_CELL_RIGHT_MARGIN - TABLE_CELL_DISCLOSURE_WIDTH;
 }
 
 - (CGFloat)subTitleHeightForWidth:(CGFloat)overallWidth;
@@ -97,15 +65,15 @@ static CGFloat kDisclosureWidth = 20.0;
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
 	[self.caption sizeToFit];
-	CGFloat cellHeight = kTopMargin;
+	CGFloat cellHeight = TABLE_CELL_TOP_MARGIN;
 	cellHeight += CGRectGetHeight(self.caption.bounds);
 	CGFloat subTitleHeight = [self subTitleHeightForWidth:width];
 	if(subTitleHeight > 0.0)
 	{
-		cellHeight += kLabelSpace;
+		cellHeight += TABLE_CELL_CHILD_SPACE;
 		cellHeight += subTitleHeight;		
 	}
-	cellHeight += kBottomMargin;
+	cellHeight += TABLE_CELL_BOTTOM_MARGIN;
 	return cellHeight;
 }
 
@@ -118,22 +86,12 @@ static CGFloat kDisclosureWidth = 20.0;
 	[contentDescription sizeToFit];  
 	
 	
-	// Position the labels at the top of the table cell    
-	CGRect newFrame = caption.frame;    
-	newFrame.origin.x =CGRectGetMinX(self.contentView.bounds)+kLeftMargin;
-	newFrame.origin.y =CGRectGetMinY(self.contentView.bounds)+kTopMargin;
-	[caption setFrame: newFrame];    
-	
-	// Put the content description text label immediately to the right         
-	// w/10 pixel gap between them    
-	newFrame = contentDescription.frame; 
-	newFrame.origin.x = CGRectGetMaxX(self.contentView.bounds)-kRightMargin-
-		CGRectGetWidth(contentDescription.frame);  
-	newFrame.origin.y =CGRectGetMinY(self.contentView.bounds)+kTopMargin;    
-	[contentDescription setFrame: newFrame];
-	
-	CGFloat subTitleX = CGRectGetMinX(self.contentView.bounds) + kLeftMargin;
-	CGFloat subTitleY = CGRectGetMaxY(self.caption.bounds)+kLabelSpace;
+	// Position the labels at the top of the table cell
+	[TableCellHelper topLeftAlignChild:caption withinParentFrame:self.contentView.bounds];
+	[TableCellHelper topRightAlignChild:contentDescription withinParentFrame:self.contentView.bounds];
+		
+	CGFloat subTitleX = CGRectGetMinX(self.contentView.bounds) + TABLE_CELL_LEFT_MARGIN;
+	CGFloat subTitleY = TABLE_CELL_TOP_MARGIN + CGRectGetHeight(self.caption.bounds)+TABLE_CELL_CHILD_SPACE;
 	
 	CGFloat overallSubtitleWidth = CGRectGetWidth(self.contentView.bounds);
 	
