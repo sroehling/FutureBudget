@@ -92,6 +92,7 @@
 		0055A8951417DB4C00EFB95C /* TableCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8941417DB4A00EFB95C /* TableCellHelper.m */; };
 		0055A89A141851E300EFB95C /* NameFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A899141851E300EFB95C /* NameFieldCell.m */; };
 		0055A89D1418551C00EFB95C /* NameFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */; };
+		0055A8A01419500400EFB95C /* SectionHeaderWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A89F1419500300EFB95C /* SectionHeaderWithSubtitle.m */; };
 		005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
@@ -376,6 +377,9 @@
 		0055A899141851E300EFB95C /* NameFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameFieldCell.m; sourceTree = "<group>"; };
 		0055A89B1418551B00EFB95C /* NameFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameFieldEditInfo.h; sourceTree = "<group>"; };
 		0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameFieldEditInfo.m; sourceTree = "<group>"; };
+		0055A89E1419500200EFB95C /* SectionHeaderWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionHeaderWithSubtitle.h; sourceTree = "<group>"; };
+		0055A89F1419500300EFB95C /* SectionHeaderWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionHeaderWithSubtitle.m; sourceTree = "<group>"; };
+		0055A8A1141A72CD00EFB95C /* SectionHeaderAddButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionHeaderAddButtonDelegate.h; sourceTree = "<group>"; };
 		005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowSimEventCreator.h; sourceTree = "<group>"; };
 		005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowSimEventCreator.m; sourceTree = "<group>"; };
 		005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeatFrequency.h; sourceTree = "<group>"; };
@@ -985,6 +989,9 @@
 			children = (
 				00A14BAA138EC87900663C7F /* SectionInfo.h */,
 				00A14BAB138EC87A00663C7F /* SectionInfo.m */,
+				0055A8A1141A72CD00EFB95C /* SectionHeaderAddButtonDelegate.h */,
+				0055A89E1419500200EFB95C /* SectionHeaderWithSubtitle.h */,
+				0055A89F1419500300EFB95C /* SectionHeaderWithSubtitle.m */,
 				00EC1FB3139BE24D0085B25C /* AddObjectSectionInfo.h */,
 				00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */,
 			);
@@ -994,11 +1001,11 @@
 		004A59B013A0800E009FEF25 /* Table Structure and Creation */ = {
 			isa = PBXGroup;
 			children = (
+				00A57F6C1396DCF9004E148B /* FormInfoCreator.h */,
 				00A14BAD138ECA8600663C7F /* FormInfo.h */,
 				00A14BAE138ECA8700663C7F /* FormInfo.m */,
 				00A14BB0138FEBE400663C7F /* FormPopulator.h */,
 				00A14BB1138FEBE600663C7F /* FormPopulator.m */,
-				00A57F6C1396DCF9004E148B /* FormInfoCreator.h */,
 				004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */,
 				004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */,
 				0041263B13A7DDCC008F0647 /* TableViewObjectAdder.h */,
@@ -1612,6 +1619,7 @@
 				0055A8951417DB4C00EFB95C /* TableCellHelper.m in Sources */,
 				0055A89A141851E300EFB95C /* NameFieldCell.m in Sources */,
 				0055A89D1418551C00EFB95C /* NameFieldEditInfo.m in Sources */,
+				0055A8A01419500400EFB95C /* SectionHeaderWithSubtitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

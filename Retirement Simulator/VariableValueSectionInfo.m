@@ -44,7 +44,7 @@
 	return nil;
 }
 
-- (void)addObjectButtonPressed
+- (void)addButtonPressedInSectionHeader
 {
     assert(self.parentViewController != nil);
     NSLog(@"Add Variable Value");

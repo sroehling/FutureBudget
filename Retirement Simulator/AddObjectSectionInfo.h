@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SectionHeaderAddButtonDelegate.h"
+
 #import "SectionInfo.h"
 
-@interface AddObjectSectionInfo : SectionInfo {
+@interface AddObjectSectionInfo : SectionInfo <SectionHeaderAddButtonDelegate> {
 @private
     UIViewController *parentViewController;
 }

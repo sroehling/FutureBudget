@@ -9,17 +9,20 @@
 #import <Foundation/Foundation.h>
 
 #import "FieldEditInfo.h"
+@class SectionHeaderWithSubtitle;
 
 @interface SectionInfo : NSObject {
 @private
     NSMutableArray *fieldEditInfo;
     NSString *title;
 	NSString *subTitle;
+	SectionHeaderWithSubtitle *sectionHeader;
 	CGFloat subTitleHeight;
 }
 
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSString *subTitle;
+@property(nonatomic,retain) SectionHeaderWithSubtitle *sectionHeader;
 
 - (void) addFieldEditInfo:(id<FieldEditInfo>)fieldEditInfo;
 
@@ -29,7 +32,6 @@
 - (void)disableFieldChanges;
 - (NSInteger)findObjectRow:(NSManagedObject*)object;
 
-- (CGFloat)sectionViewRightOffset:(BOOL)editing;
 - (UIView*)viewForSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing;
 - (CGFloat)viewHeightForSection;
     
