@@ -15,8 +15,9 @@
 #define CUSTOM_SECTION_VIEW_SUBTITLE_HEIGHT 20.0
 #define CUSTOM_SECTION_FIXED_HEIGHT (CUSTOM_SECTION_VIEW_TITLE_HEIGHT + 2.0)
 
-#define CUSTOM_SECTION_INFO_BUTTON_WIDTH 50.0
-#define ADD_OBJECT_BUTTON_WIDTH 50.0
+#define CUSTOM_SECTION_INFO_BUTTON_WIDTH 20.0
+#define CUSTOM_SECTION_INFO_BUTTON_HEIGHT 20.0
+#define CUSTOM_SECTION_INFO_BUTTON_RIGHT_OFFSET 10.0
 
 
 @implementation SectionHeaderWithSubtitle
@@ -26,6 +27,33 @@
 @synthesize infoButton;
 @synthesize addButton;
 @synthesize addButtonDelegate;
+
+- (UIImage*)stretchableButtonImage:(NSString*)imageFileName
+{
+	UIImage *image = [UIImage imageNamed:imageFileName];
+	UIImage *strechableImage = 
+			[image stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+	return strechableImage;
+}
+
+- (UIButton*)createImageButton:(NSString*)imgFilePrefix
+{
+	UIButton *theButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	theButton.backgroundColor = [UIColor clearColor];
+	
+	NSString *normalFileName = [NSString stringWithFormat:
+		@"%@.png",imgFilePrefix];
+	[theButton setBackgroundImage:[self stretchableButtonImage:normalFileName] 
+		forState:UIControlStateNormal];
+		
+	NSString *highlightFileName = [NSString stringWithFormat:
+		@"%@-1.png",imgFilePrefix];
+	[theButton setBackgroundImage:[self stretchableButtonImage:highlightFileName] forState:UIControlStateHighlighted];
+	
+	return theButton;
+	
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -42,18 +70,19 @@
 		self.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
 		self.backgroundColor = [UIColor clearColor];
 		[self addSubview:self.headerLabel];
+		
+		
 
-		self.infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+		self.infoButton = [self createImageButton:@"buttonhelp"];
 		[infoButton addTarget:self action:@selector(showInfoPopup) 
                      forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:infoButton];
 		
 		
-		self.addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [self.addButton setTitle:@"Add" forState:UIControlStateNormal];
-		[self addSubview:addButton];
+		self.addButton = [self createImageButton:@"buttonadd"];
 		[self.addButton addTarget:self action:@selector(addButtonPressed) 
                      forControlEvents:UIControlEventTouchUpInside];
+		[self addSubview:addButton];
 		self.addButton.hidden = TRUE;
 
 		self.addButtonDelegate = nil;
@@ -75,7 +104,7 @@
 	{
 		if(self.addButtonDelegate != nil)
 		{
-			return ADD_OBJECT_BUTTON_WIDTH;
+			return CUSTOM_SECTION_INFO_BUTTON_WIDTH;
 		}
 		else
 		{
@@ -140,11 +169,12 @@
 	headerSize.size.width = tableWidth - 20.0;
 	headerSize.size.height = CUSTOM_SECTION_FIXED_HEIGHT;
 	
+	CGRect buttonFrame = CGRectMake(
+		tableWidth-CUSTOM_SECTION_INFO_BUTTON_WIDTH-CUSTOM_SECTION_INFO_BUTTON_RIGHT_OFFSET, 1.0, 
+		CUSTOM_SECTION_INFO_BUTTON_WIDTH, CUSTOM_SECTION_INFO_BUTTON_HEIGHT);
 	
-	self.addButton.frame = CGRectMake(tableWidth-ADD_OBJECT_BUTTON_WIDTH, 0.0, 
-                     ADD_OBJECT_BUTTON_WIDTH, CUSTOM_SECTION_FIXED_HEIGHT);
-	self.infoButton.frame = CGRectMake(tableWidth-CUSTOM_SECTION_INFO_BUTTON_WIDTH, 0.0, 
-					CUSTOM_SECTION_INFO_BUTTON_WIDTH, CUSTOM_SECTION_VIEW_TITLE_HEIGHT);
+	self.addButton.frame = buttonFrame;
+	self.infoButton.frame = buttonFrame;
 	[self updatedAddButtonVisibility:editing];
 	[self updateInfoButtonVisibility:editing];
 	

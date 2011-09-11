@@ -114,6 +114,10 @@
 		0087923D13ABAFC500CA9DA7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0087923C13ABAFC500CA9DA7 /* Localizable.strings */; };
 		0087924013ABB47100CA9DA7 /* LocalizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */; };
 		0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */; };
+		008AA414141AC5B100FF2A52 /* buttonhelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA410141AC5B100FF2A52 /* buttonhelp.png */; };
+		008AA415141AC5B100FF2A52 /* buttonhelp-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA411141AC5B100FF2A52 /* buttonhelp-2.png */; };
+		008AA416141AC5B100FF2A52 /* buttonadd.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA412141AC5B100FF2A52 /* buttonadd.png */; };
+		008AA417141AC5B100FF2A52 /* buttonadd-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA413141AC5B100FF2A52 /* buttonadd-2.png */; };
 		0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */; };
 		0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96713B69C66000555AC /* TestCoreDataObjects.m */; };
 		0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96D13B8E93A000555AC /* EventRepeaterTest.m */; };
@@ -179,6 +183,10 @@
 		00EC1FB5139BE2560085B25C /* AddObjectSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */; };
 		00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */; };
 		00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */; };
+		00EC455B141B159D00D65D17 /* graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC455A141B159D00D65D17 /* graph.png */; };
+		00EC455D141B165A00D65D17 /* scales.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC455C141B165A00D65D17 /* scales.png */; };
+		00EC455F141B169E00D65D17 /* piggy.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC455E141B169E00D65D17 /* piggy.png */; };
+		00EC4561141B183D00D65D17 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC4560141B183D00D65D17 /* clock.png */; };
 		00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */; };
 		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
 		00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D0140F06AD00FA73AA /* CoreData.framework */; };
@@ -422,6 +430,10 @@
 		0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationHelper.m; sourceTree = "<group>"; };
 		0087924513AC507E00CA9DA7 /* VariableHeightTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableHeightTableHeader.h; sourceTree = "<group>"; };
 		0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableHeightTableHeader.m; sourceTree = "<group>"; };
+		008AA410141AC5B100FF2A52 /* buttonhelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonhelp.png; sourceTree = "<group>"; };
+		008AA411141AC5B100FF2A52 /* buttonhelp-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonhelp-2.png"; sourceTree = "<group>"; };
+		008AA412141AC5B100FF2A52 /* buttonadd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonadd.png; sourceTree = "<group>"; };
+		008AA413141AC5B100FF2A52 /* buttonadd-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonadd-2.png"; sourceTree = "<group>"; };
 		0095E95F13B69A3B000555AC /* VariableValueCalculatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueCalculatorTest.h; sourceTree = "<group>"; };
 		0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueCalculatorTest.m; sourceTree = "<group>"; };
 		0095E96613B69C66000555AC /* TestCoreDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCoreDataObjects.h; sourceTree = "<group>"; };
@@ -545,6 +557,10 @@
 		00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueSectionInfo.m; sourceTree = "<group>"; };
 		00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFieldEditInfo.h; sourceTree = "<group>"; };
 		00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueFieldEditInfo.m; sourceTree = "<group>"; };
+		00EC455A141B159D00D65D17 /* graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph.png; sourceTree = "<group>"; };
+		00EC455C141B165A00D65D17 /* scales.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scales.png; sourceTree = "<group>"; };
+		00EC455E141B169E00D65D17 /* piggy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = piggy.png; sourceTree = "<group>"; };
+		00EC4560141B183D00D65D17 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceAdjustment.h; sourceTree = "<group>"; };
 		00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceAdjustment.m; sourceTree = "<group>"; };
 		00F217B8140F058600FA73AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1190,6 +1206,21 @@
 			name = "Table Headers";
 			sourceTree = "<group>";
 		};
+		008AA408141ABB0600FF2A52 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				00EC4560141B183D00D65D17 /* clock.png */,
+				00EC455E141B169E00D65D17 /* piggy.png */,
+				00EC455C141B165A00D65D17 /* scales.png */,
+				00EC455A141B159D00D65D17 /* graph.png */,
+				008AA410141AC5B100FF2A52 /* buttonhelp.png */,
+				008AA411141AC5B100FF2A52 /* buttonhelp-2.png */,
+				008AA412141AC5B100FF2A52 /* buttonadd.png */,
+				008AA413141AC5B100FF2A52 /* buttonadd-2.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		0095E96F13B9271B000555AC /* Sim Dates */ = {
 			isa = PBXGroup;
 			children = (
@@ -1245,6 +1276,7 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				008AA408141ABB0600FF2A52 /* Icons */,
 				003AD12D138AC83000CB3CB5 /* Helper */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */,
@@ -1434,6 +1466,14 @@
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
 				004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */,
 				0087923D13ABAFC500CA9DA7 /* Localizable.strings in Resources */,
+				008AA414141AC5B100FF2A52 /* buttonhelp.png in Resources */,
+				008AA415141AC5B100FF2A52 /* buttonhelp-2.png in Resources */,
+				008AA416141AC5B100FF2A52 /* buttonadd.png in Resources */,
+				008AA417141AC5B100FF2A52 /* buttonadd-2.png in Resources */,
+				00EC455B141B159D00D65D17 /* graph.png in Resources */,
+				00EC455D141B165A00D65D17 /* scales.png in Resources */,
+				00EC455F141B169E00D65D17 /* piggy.png in Resources */,
+				00EC4561141B183D00D65D17 /* clock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
