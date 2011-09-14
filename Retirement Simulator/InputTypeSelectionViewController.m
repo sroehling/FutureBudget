@@ -8,6 +8,7 @@
 
 #import "InputTypeSelectionViewController.h"
 #import "InputTypeSelectionInfo.h"
+#import "LocalizationHelper.h"
 #import "Input.h"
 #import "DetailInputViewCreator.h"
 #import "TableViewHelper.h"
@@ -28,26 +29,26 @@
 
     
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Input Type";
+    self.title = LOCALIZED_STR(@"INPUT_TYPE_VIEW_TITLE");
 
     self.inputTypes = [[[NSMutableArray alloc] init ] autorelease];
     
     InputTypeSelectionInfo *typeInfo = [[[IncomeInputTypeSelectionInfo alloc] init ] autorelease];
-    typeInfo.description = @"Income";
-    
+    typeInfo.description = LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_INCOME_TITLE");
     [self.inputTypes addObject:typeInfo];
     
     typeInfo = [[[ExpenseInputTypeSelectionInfo alloc] init ] autorelease];
-    typeInfo.description = @"Expense";
-    
+    typeInfo.description = LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_EXPENSE_TITLE");
     [self.inputTypes addObject:typeInfo];
-	
 	
 	typeInfo = [[[SavingsAccountTypeSelectionInfo alloc] init ] autorelease];
-    typeInfo.description = @"Savings Account";
-    
+    typeInfo.description = 	LOCALIZED_STR(@"INPUT_ACCOUNT_TITLE");
     [self.inputTypes addObject:typeInfo];
 
+
+	typeInfo = [[[LoanInputTypeSelctionInfo alloc] init] autorelease];
+	typeInfo.description = LOCALIZED_STR(@"INPUT_LOAN_TITLE");
+	[self.inputTypes addObject:typeInfo];
     
     typeSelected = FALSE;
 

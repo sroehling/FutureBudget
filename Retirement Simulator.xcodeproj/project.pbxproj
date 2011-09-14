@@ -187,6 +187,11 @@
 		00EC455D141B165A00D65D17 /* scales.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC455C141B165A00D65D17 /* scales.png */; };
 		00EC455F141B169E00D65D17 /* piggy.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC455E141B169E00D65D17 /* piggy.png */; };
 		00EC4561141B183D00D65D17 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC4560141B183D00D65D17 /* clock.png */; };
+		00EC4566141EC05A00D65D17 /* LoanInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC4565141EC05900D65D17 /* LoanInput.m */; };
+		00EC456C141F205A00D65D17 /* LoanExtraPmtAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC456B141F205500D65D17 /* LoanExtraPmtAmt.m */; };
+		00EC4578141FBA6C00D65D17 /* LoanDownPmtAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC4577141FBA6B00D65D17 /* LoanDownPmtAmt.m */; };
+		00EC457B141FE23B00D65D17 /* LoanCostAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC457A141FE23900D65D17 /* LoanCostAmt.m */; };
+		00EC45811420448400D65D17 /* LoanInputVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45801420448200D65D17 /* LoanInputVariableValueListMgr.m */; };
 		00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */; };
 		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
 		00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D0140F06AD00FA73AA /* CoreData.framework */; };
@@ -561,6 +566,16 @@
 		00EC455C141B165A00D65D17 /* scales.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scales.png; sourceTree = "<group>"; };
 		00EC455E141B169E00D65D17 /* piggy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = piggy.png; sourceTree = "<group>"; };
 		00EC4560141B183D00D65D17 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		00EC4564141EC05900D65D17 /* LoanInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanInput.h; sourceTree = "<group>"; };
+		00EC4565141EC05900D65D17 /* LoanInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanInput.m; sourceTree = "<group>"; };
+		00EC456A141F205400D65D17 /* LoanExtraPmtAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanExtraPmtAmt.h; sourceTree = "<group>"; };
+		00EC456B141F205500D65D17 /* LoanExtraPmtAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanExtraPmtAmt.m; sourceTree = "<group>"; };
+		00EC4576141FBA6A00D65D17 /* LoanDownPmtAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanDownPmtAmt.h; sourceTree = "<group>"; };
+		00EC4577141FBA6B00D65D17 /* LoanDownPmtAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanDownPmtAmt.m; sourceTree = "<group>"; };
+		00EC4579141FE23700D65D17 /* LoanCostAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanCostAmt.h; sourceTree = "<group>"; };
+		00EC457A141FE23900D65D17 /* LoanCostAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanCostAmt.m; sourceTree = "<group>"; };
+		00EC457F1420448100D65D17 /* LoanInputVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanInputVariableValueListMgr.h; sourceTree = "<group>"; };
+		00EC45801420448200D65D17 /* LoanInputVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanInputVariableValueListMgr.m; sourceTree = "<group>"; };
 		00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceAdjustment.h; sourceTree = "<group>"; };
 		00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceAdjustment.m; sourceTree = "<group>"; };
 		00F217B8140F058600FA73AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -849,6 +864,8 @@
 				005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */,
 				0063505313E76782002E38FA /* AccountContribAmountVariableValueListMgr.h */,
 				0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */,
+				00EC457F1420448100D65D17 /* LoanInputVariableValueListMgr.h */,
+				00EC45801420448200D65D17 /* LoanInputVariableValueListMgr.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -946,6 +963,14 @@
 				0010A58513CFEE940096A20F /* SavingsAccount.m */,
 				004CB03013FC2A21000E87A9 /* Cash.h */,
 				004CB03113FC2A21000E87A9 /* Cash.m */,
+				00EC4564141EC05900D65D17 /* LoanInput.h */,
+				00EC4565141EC05900D65D17 /* LoanInput.m */,
+				00EC456A141F205400D65D17 /* LoanExtraPmtAmt.h */,
+				00EC456B141F205500D65D17 /* LoanExtraPmtAmt.m */,
+				00EC4576141FBA6A00D65D17 /* LoanDownPmtAmt.h */,
+				00EC4577141FBA6B00D65D17 /* LoanDownPmtAmt.m */,
+				00EC4579141FE23700D65D17 /* LoanCostAmt.h */,
+				00EC457A141FE23900D65D17 /* LoanCostAmt.m */,
 			);
 			name = Inputs;
 			sourceTree = "<group>";
@@ -1660,6 +1685,11 @@
 				0055A89A141851E300EFB95C /* NameFieldCell.m in Sources */,
 				0055A89D1418551C00EFB95C /* NameFieldEditInfo.m in Sources */,
 				0055A8A01419500400EFB95C /* SectionHeaderWithSubtitle.m in Sources */,
+				00EC4566141EC05A00D65D17 /* LoanInput.m in Sources */,
+				00EC456C141F205A00D65D17 /* LoanExtraPmtAmt.m in Sources */,
+				00EC4578141FBA6C00D65D17 /* LoanDownPmtAmt.m in Sources */,
+				00EC457B141FE23B00D65D17 /* LoanCostAmt.m in Sources */,
+				00EC45811420448400D65D17 /* LoanInputVariableValueListMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

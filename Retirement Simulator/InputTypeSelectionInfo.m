@@ -20,6 +20,7 @@
 #import "MultiScenarioInputValue.h"
 #import "RelativeEndDate.h"
 #import "BoolInputValue.h"
+#import "LoanInput.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -32,6 +33,76 @@
     return nil;
 }
 
+- (MultiScenarioInputValue*)multiScenFixedValWithDefault:(double)defaultVal
+{
+	MultiScenarioInputValue *msFixedVal = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+    FixedValue *fixedVal = 
+		(FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
+    fixedVal.value = [NSNumber numberWithDouble:0.0];
+	[msFixedVal setDefaultValue:fixedVal];
+	return msFixedVal;
+}
+
+- (MultiScenarioInputValue*)multiScenInputValueWithDefaultFixedVal:(MultiScenarioInputValue*)fixedVal
+{
+	InputValue *defaultFixedVal = [fixedVal getDefaultValue]; 
+
+	MultiScenarioInputValue *msInputVal = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msInputVal setDefaultValue:defaultFixedVal];
+	return msInputVal;
+}
+
+- (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday
+{
+	MultiScenarioInputValue *msFixedEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+    FixedDate *fixedEndDate = (FixedDate*)[[
+            DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
+    fixedEndDate.date = [NSDate date];
+	[msFixedEndDate setDefaultValue:fixedEndDate];
+	return msFixedEndDate;
+
+}
+
+- (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal
+{
+	MultiScenarioInputValue *msBoolVal = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	BoolInputValue *boolVal = 
+		[[DataModelController theDataModelController] 
+		insertObject:BOOL_INPUT_VALUE_ENTITY_NAME];
+	boolVal.isTrue = [NSNumber numberWithBool:theDefaultVal];
+	[msBoolVal setDefaultValue:boolVal];
+	return msBoolVal;
+
+}
+
+- (MultiScenarioInputValue*)multiScenarioRepeatFrequencyOnce
+{
+	EventRepeatFrequency *repeatOnce = [SharedAppValues singleton].repeatOnceFreq;
+	assert(repeatOnce != nil);
+	MultiScenarioInputValue *msRepeatFreq = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msRepeatFreq setDefaultValue:repeatOnce];
+	return msRepeatFreq;
+
+}
+
+- (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault
+{
+	MultiScenarioInputValue *msFixedRelEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
+	fixedRelEndDate.years = [NSNumber numberWithInt:0];
+	fixedRelEndDate.months = [NSNumber numberWithInt:0];
+	fixedRelEndDate.weeks = [NSNumber numberWithInt:0];
+	[msFixedRelEndDate setDefaultValue:fixedRelEndDate];
+	return msFixedRelEndDate;
+}
+
+
 -(void)populateCashFlowInputProperties:(CashFlowInput*)newInput
 {
     // The following fields are not initialized upon creation, since the user
@@ -40,71 +111,24 @@
     //      newInput.amount
     //      newInput.amountGrowthRate
 	
-	MultiScenarioInputValue *msCashFlowEnabled = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	BoolInputValue *defaultEnabled = 
-		[[DataModelController theDataModelController] 
-		insertObject:BOOL_INPUT_VALUE_ENTITY_NAME];
-	defaultEnabled.isTrue = [NSNumber numberWithBool:TRUE];
-	[msCashFlowEnabled setDefaultValue:defaultEnabled];
-	newInput.multiScenarioCashFlowEnabled = msCashFlowEnabled;
+	newInput.multiScenarioCashFlowEnabled = [self multiScenBoolValWithDefault:TRUE];
     
-	MultiScenarioInputValue *msFixedGrowthRate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedValue *fixedGrowthRate = 
-    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
-    fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
-	[msFixedGrowthRate setDefaultValue:fixedGrowthRate];
-    newInput.multiScenarioFixedGrowthRate = msFixedGrowthRate;
+    newInput.multiScenarioFixedGrowthRate = [self multiScenFixedValWithDefault:0.0];
 
-	MultiScenarioInputValue *msFixedAmount = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedValue *fixedAmount = 
-    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
-    fixedAmount.value = [NSNumber numberWithDouble:0.0];
-	[msFixedAmount setDefaultValue:fixedAmount];
-    newInput.multiScenarioFixedAmount = msFixedAmount;
+	newInput.multiScenarioFixedAmount = [self multiScenFixedValWithDefault:0.0];
 
-	MultiScenarioInputValue *msFixedStartDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedDate *fixedStartDate = (FixedDate*)[[
-                DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
-    fixedStartDate.date = [NSDate date];
-	[msFixedStartDate setDefaultValue:fixedStartDate];
-    newInput.multiScenarioFixedStartDate = msFixedStartDate;
+    newInput.multiScenarioFixedStartDate = [self multiScenFixedDateWithDefaultToday];
     
+    newInput.multiScenarioFixedEndDate = [self multiScenFixedDateWithDefaultToday];
 	
-	MultiScenarioInputValue *msFixedEndDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedDate *fixedEndDate = (FixedDate*)[[
-            DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
-    fixedEndDate.date = [NSDate date];
-	[msFixedEndDate setDefaultValue:fixedEndDate];
-    newInput.multiScenarioFixedEndDate = msFixedEndDate;
-	
-	MultiScenarioInputValue *msFixedRelEndDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
-	fixedRelEndDate.years = [NSNumber numberWithInt:0];
-	fixedRelEndDate.months = [NSNumber numberWithInt:0];
-	fixedRelEndDate.weeks = [NSNumber numberWithInt:0];
-	[msFixedRelEndDate setDefaultValue:fixedRelEndDate];
-    newInput.multiScenarioFixedRelEndDate = msFixedRelEndDate;
+    newInput.multiScenarioFixedRelEndDate = [self multiScenRelEndDateWithImmediateDefault];
 
-	
-	
-	
 	MultiScenarioInputValue *msEndDate = 
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
 	[msEndDate setDefaultValue:[SharedAppValues singleton].sharedNeverEndDate];
 	newInput.multiScenarioEndDate = msEndDate;
     	
-	EventRepeatFrequency *repeatOnce = [SharedAppValues singleton].repeatOnceFreq;
-	assert(repeatOnce != nil);
-	MultiScenarioInputValue *msRepeatFreq = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msRepeatFreq setDefaultValue:repeatOnce];
-	newInput.multiScenarioEventRepeatFrequency = msRepeatFreq;
+	newInput.multiScenarioEventRepeatFrequency = [self multiScenarioRepeatFrequencyOnce];
     
 }
 
@@ -117,88 +141,26 @@
     //      newInput.amountGrowthRate
 	
 	
-	MultiScenarioInputValue *msContributEnabled = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	BoolInputValue *defaultEnabled = 
-		[[DataModelController theDataModelController] 
-		insertObject:BOOL_INPUT_VALUE_ENTITY_NAME];
-	defaultEnabled.isTrue = [NSNumber numberWithBool:TRUE];
-	[msContributEnabled setDefaultValue:defaultEnabled];
-	newInput.multiScenarioContribEnabled = msContributEnabled;
+	newInput.multiScenarioContribEnabled = [self multiScenBoolValWithDefault:TRUE];
 
-    
-	MultiScenarioInputValue *msFixedGrowthRate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedValue *fixedGrowthRate = 
-    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
-    fixedGrowthRate.value = [NSNumber numberWithDouble:0.0];
-	[msFixedGrowthRate setDefaultValue:fixedGrowthRate];
-    newInput.multiScenarioFixedContribGrowthRate = msFixedGrowthRate;
-	
-	MultiScenarioInputValue *msGrowthRate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msGrowthRate setDefaultValue:fixedGrowthRate];
-	newInput.multiScenarioContribGrowthRate = msGrowthRate;
+    newInput.multiScenarioFixedContribGrowthRate = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioContribGrowthRate = [self multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioFixedContribGrowthRate];
 
-	MultiScenarioInputValue *msFixedAmount = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedValue *fixedAmount = 
-    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
-    fixedAmount.value = [NSNumber numberWithDouble:0.0];
-	[msFixedAmount setDefaultValue:fixedAmount];
-    newInput.multiScenarioFixedContribAmount = msFixedAmount;
+    newInput.multiScenarioFixedContribAmount = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioContribAmount = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioFixedContribAmount];
 	
-	MultiScenarioInputValue *msContribAmount = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msContribAmount setDefaultValue:fixedAmount];
-	newInput.multiScenarioContribAmount = msContribAmount;
+    newInput.multiScenarioFixedContribStartDate = [self multiScenFixedDateWithDefaultToday];
+	newInput.multiScenarioContribStartDate = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioFixedContribStartDate];
 	
-
-	MultiScenarioInputValue *msFixedStartDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedDate *fixedStartDate = (FixedDate*)[[
-                DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
-    fixedStartDate.date = [NSDate date];
-	[msFixedStartDate setDefaultValue:fixedStartDate];
-    newInput.multiScenarioFixedContribStartDate = msFixedStartDate;
+    newInput.multiScenarioFixedContribEndDate = [self multiScenFixedDateWithDefaultToday];
+	newInput.multiScenarioContribEndDate = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioFixedContribEndDate];
 	
-	MultiScenarioInputValue *msStartDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msStartDate setDefaultValue:fixedStartDate];
-	newInput.multiScenarioContribStartDate = msStartDate;
-    
+   newInput.multiScenarioFixedContribRelEndDate = [self multiScenRelEndDateWithImmediateDefault];
 	
-	MultiScenarioInputValue *msFixedEndDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedDate *fixedEndDate = (FixedDate*)[[
-            DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
-    fixedEndDate.date = [NSDate date];
-	[msFixedEndDate setDefaultValue:fixedEndDate];
-    newInput.multiScenarioFixedContribEndDate = msFixedEndDate;
-	
-	MultiScenarioInputValue *msFixedRelEndDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
-	fixedRelEndDate.years = [NSNumber numberWithInt:0];
-	fixedRelEndDate.months = [NSNumber numberWithInt:0];
-	fixedRelEndDate.weeks = [NSNumber numberWithInt:0];
-	[msFixedRelEndDate setDefaultValue:fixedRelEndDate];
-    newInput.multiScenarioFixedContribRelEndDate = msFixedRelEndDate;
-
-	
-	
-	MultiScenarioInputValue *msEndDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msEndDate setDefaultValue:fixedEndDate];
-	newInput.multiScenarioContribEndDate = msEndDate;
-	
- 
-	EventRepeatFrequency *repeatOnce = [SharedAppValues singleton].repeatOnceFreq;
-	assert(repeatOnce != nil);
-	MultiScenarioInputValue *msRepeatFreq = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msRepeatFreq setDefaultValue:repeatOnce];
-	newInput.multiScenarioContribRepeatFrequency = msRepeatFreq;
+	newInput.multiScenarioContribRepeatFrequency = [self multiScenarioRepeatFrequencyOnce];
     
 }
 
@@ -244,39 +206,90 @@
 
 @implementation SavingsAccountTypeSelectionInfo
 
+
 -(Input*)createInput
 {
-
-
-	SavingsAccount *savingsAcct = (SavingsAccount*)[[DataModelController theDataModelController] insertObject:SAVINGS_ACCOUNT_ENTITY_NAME];
-	
+	SavingsAccount *savingsAcct = (SavingsAccount*)[[DataModelController theDataModelController] insertObject:SAVINGS_ACCOUNT_ENTITY_NAME];	
 	
 	[self populateAccountInputProperties:savingsAcct];
 
-	
 	savingsAcct.startingBalance = [NSNumber numberWithDouble:0.0];
 	savingsAcct.taxableContributions = [NSNumber numberWithBool:FALSE];
 	savingsAcct.taxableWithdrawals = [NSNumber numberWithBool:TRUE];
 	savingsAcct.taxableInterest = [NSNumber numberWithBool:FALSE];
 	
-	MultiScenarioInputValue *msFixedInterestRate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedValue *fixedInterestRate = 
-    (FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
-    fixedInterestRate.value = [NSNumber numberWithDouble:0.0];
-	[msFixedInterestRate setDefaultValue:fixedInterestRate];
-    savingsAcct.multiScenarioFixedInterestRate = msFixedInterestRate;
-
-	MultiScenarioInputValue *msInterestRate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msInterestRate setDefaultValue:fixedInterestRate];
-	savingsAcct.multiScenarioInterestRate = msInterestRate;
+    savingsAcct.multiScenarioFixedInterestRate = [self multiScenFixedValWithDefault:0.0];
+	savingsAcct.multiScenarioInterestRate = [self multiScenInputValueWithDefaultFixedVal:
+		savingsAcct.multiScenarioFixedInterestRate];
 
 	
     [[DataModelController theDataModelController] saveContext];
     
     return savingsAcct;
   
+}
+
+
+
+@end
+
+@implementation LoanInputTypeSelctionInfo
+
+- (Input*)createInput
+{
+	LoanInput *newInput  = (LoanInput*)[[DataModelController theDataModelController]
+			insertObject:LOAN_INPUT_ENTITY_NAME];
+			
+	newInput.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	// Loan Cost
+	
+	newInput.multiScenarioLoanCostAmtFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioLoanCostAmt = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioLoanCostAmtFixed];
+		
+	newInput.multiScenarioLoanCostGrowthRateFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioLoanCostGrowthRate = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioLoanCostGrowthRateFixed];
+		
+	newInput.multiScenarioOrigDateFixed = [self multiScenFixedDateWithDefaultToday];
+	newInput.multiScenarioOrigDate = [self 
+		multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioOrigDateFixed ];
+
+	// Interest
+
+	newInput.multiScenarioInterestRateFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioInterestRate = [self 
+		multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioInterestRateFixed];
+
+	newInput.taxableInterest = [NSNumber numberWithBool:TRUE];		
+		
+	// Down Payment	
+		
+	newInput.multiScenarioDownPmtEnabled = [self multiScenBoolValWithDefault:FALSE];
+	
+	newInput.multiScenarioDownPmtAmtFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioDownPmtAmt = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioDownPmtAmtFixed];
+
+
+	// Extra Payments 
+	
+	newInput.multiScenarioExtraPmtEnabled = [self multiScenBoolValWithDefault:FALSE];
+	
+	newInput.multiScenarioExtraPmtAmtFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioExtraPmtAmt = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioExtraPmtAmtFixed];
+		
+	newInput.multiScenarioExtraPmtGrowthRateFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioExtraPmtGrowthRate = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioExtraPmtGrowthRateFixed];
+	
+	newInput.multiScenarioExtraPmtFrequency = [self multiScenarioRepeatFrequencyOnce];
+	
+	[[DataModelController theDataModelController] saveContext];
+		
+	return newInput;
 }
 
 @end

@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "VariableValueListMgr.h"
 
+@class Input;
 @class CashFlowInput;
 @class SavingsAccount;
+@class LoanInput;
 @class Account;
 
 @interface VariableValueRuntimeInfo : NSObject {
@@ -62,11 +64,9 @@ andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
 - (NSString *)inlinePeriodDesc;
 
 
-+ (VariableValueRuntimeInfo*)createForAccountContribAmount:(Account*)account;
-+ (VariableValueRuntimeInfo*)createForAccountAmountGrowthRate:(Account*)account;
-+ (VariableValueRuntimeInfo*)createForCashflowAmount:(CashFlowInput*)cashFlow;
-+ (VariableValueRuntimeInfo*)createForInflationRate:(CashFlowInput*)cashFlow;
-+ (VariableValueRuntimeInfo*)createForSavingsAccountInterestRate:(SavingsAccount*)savingsAcct;
-
++ (VariableValueRuntimeInfo*)createForSharedInflationRate:(Input*)theInput;
++ (VariableValueRuntimeInfo*)createForSharedInterestRate:(Input*)theInput;
++ (VariableValueRuntimeInfo*)createForVariableAmount:(Input*)theInput 
+	andVariableValListMgr:(id<VariableValueListMgr>)listMgr;
 
 @end

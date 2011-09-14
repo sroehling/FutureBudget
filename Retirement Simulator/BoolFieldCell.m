@@ -12,10 +12,6 @@
 
 NSString * const BOOL_FIELD_CELL_ENTITY_NAME = @"BoolFieldCell";
 
-static CGFloat kLeftMargin = 10.0;
-static CGFloat kRightMargin = 10.0;
-static CGFloat kTopMargin = 5.0;
-
 @implementation BoolFieldCell
 
 @synthesize label;

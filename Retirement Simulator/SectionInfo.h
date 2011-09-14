@@ -17,7 +17,6 @@
     NSString *title;
 	NSString *subTitle;
 	SectionHeaderWithSubtitle *sectionHeader;
-	CGFloat subTitleHeight;
 }
 
 @property(nonatomic,retain) NSString *title;

@@ -12,6 +12,7 @@
 #import "DataModelController.h"
 #import "InputFieldEditInfo.h"
 #import "SectionInfo.h"
+#import "LoanInput.h"
 #import "InputListObjectAdder.h"
 #import "TableHeaderWithDisclosure.h"
 #import "SharedAppValues.h"
@@ -60,7 +61,6 @@
 		}
 	}
 
-
 	inputs = [[DataModelController theDataModelController]
 			fetchSortedObjectsWithEntityName:EXPENSE_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
@@ -75,9 +75,7 @@
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
-
-
-
+	
 	inputs = [[DataModelController theDataModelController]
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
@@ -89,6 +87,22 @@
 			assert(account != nil);
 			InputFieldEditInfo *inputFieldEditInfo =
 				[[[InputFieldEditInfo alloc] initWithInput:account] autorelease];
+			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
+		}
+	}
+	
+
+	inputs = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:LOAN_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	if([inputs count] > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_LOANS");
+		for(LoanInput *loan in inputs)
+		{    
+			assert(loan != nil);
+			InputFieldEditInfo *inputFieldEditInfo =
+				[[[InputFieldEditInfo alloc] initWithInput:loan] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}

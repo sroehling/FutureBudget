@@ -86,6 +86,14 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	}
 }
 
+-(InputValue*)getDefaultValue
+{
+	DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
+	ScenarioValue *defaultScenarioVal = [self findScenarioValueForScenario:defaultScen];
+	assert(defaultScenarioVal != nil);
+	return defaultScenarioVal.inputValue;
+}
+
 -(InputValue*)findInputValueForScenarioOrDefault:(Scenario*)scenario
 {
 	ScenarioValue *scenarioVal = [self findScenarioValueForScenario:scenario];
