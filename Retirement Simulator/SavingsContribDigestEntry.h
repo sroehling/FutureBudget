@@ -8,21 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@class SavingsWorkingBalance;
+@class InterestBearingWorkingBalance;
 @class BalanceAdjustment;
 
 @interface SavingsContribDigestEntry : NSObject {
     @private
-		SavingsWorkingBalance *workingBalance;
+		InterestBearingWorkingBalance *workingBalance;
 		double contribAmount;
 		bool contribIsTaxable;
 		BalanceAdjustment *contribAdjustment;
 }
 
-- (id) initWithWorkingBalance:(SavingsWorkingBalance*)theBalance 
+- (id) initWithWorkingBalance:(InterestBearingWorkingBalance*)theBalance 
 	andContribAmount:(double)theAmount andIsTaxable:(bool)isTaxable;
 
-@property(nonatomic,retain) SavingsWorkingBalance *workingBalance;
+@property(nonatomic,retain) InterestBearingWorkingBalance *workingBalance;
 @property(readonly) double contribAmount;
 @property bool contribIsTaxable;
 @property(nonatomic,retain) BalanceAdjustment *contribAdjustment;

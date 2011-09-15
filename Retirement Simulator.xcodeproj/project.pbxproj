@@ -73,7 +73,7 @@
 		004CB03913FC831E000E87A9 /* SavingsContributionSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03813FC831B000E87A9 /* SavingsContributionSimEvent.m */; };
 		004CB03C13FC835A000E87A9 /* SavingsContributionSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03B13FC8357000E87A9 /* SavingsContributionSimEventCreator.m */; };
 		004CB03F13FD73F5000E87A9 /* WorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03E13FD73F4000E87A9 /* WorkingBalance.m */; };
-		004CB04213FD772D000E87A9 /* SavingsWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04113FD772C000E87A9 /* SavingsWorkingBalance.m */; };
+		004CB04213FD772D000E87A9 /* InterestBearingWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04113FD772C000E87A9 /* InterestBearingWorkingBalance.m */; };
 		004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */; };
 		004CB04B13FEF452000E87A9 /* IntermediateVariableRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04A13FEF433000E87A9 /* IntermediateVariableRate.m */; };
 		004CB04E1402BD04000E87A9 /* SavingsContribDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */; };
@@ -353,8 +353,8 @@
 		004CB03B13FC8357000E87A9 /* SavingsContributionSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsContributionSimEventCreator.m; sourceTree = "<group>"; };
 		004CB03D13FD73F3000E87A9 /* WorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalance.h; sourceTree = "<group>"; };
 		004CB03E13FD73F4000E87A9 /* WorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalance.m; sourceTree = "<group>"; };
-		004CB04013FD772A000E87A9 /* SavingsWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsWorkingBalance.h; sourceTree = "<group>"; };
-		004CB04113FD772C000E87A9 /* SavingsWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsWorkingBalance.m; sourceTree = "<group>"; };
+		004CB04013FD772A000E87A9 /* InterestBearingWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; path = InterestBearingWorkingBalance.h; sourceTree = "<group>"; };
+		004CB04113FD772C000E87A9 /* InterestBearingWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestBearingWorkingBalance.m; sourceTree = "<group>"; };
 		004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceMgr.h; sourceTree = "<group>"; };
 		004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceMgr.m; sourceTree = "<group>"; };
 		004CB04913FEF430000E87A9 /* IntermediateVariableRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntermediateVariableRate.h; sourceTree = "<group>"; };
@@ -658,8 +658,8 @@
 				004CB03E13FD73F4000E87A9 /* WorkingBalance.m */,
 				004CB03313FC490C000E87A9 /* CashWorkingBalance.h */,
 				004CB03413FC490E000E87A9 /* CashWorkingBalance.m */,
-				004CB04013FD772A000E87A9 /* SavingsWorkingBalance.h */,
-				004CB04113FD772C000E87A9 /* SavingsWorkingBalance.m */,
+				004CB04013FD772A000E87A9 /* InterestBearingWorkingBalance.h */,
+				004CB04113FD772C000E87A9 /* InterestBearingWorkingBalance.m */,
 				004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */,
 				004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */,
 			);
@@ -1698,7 +1698,7 @@
 				004CB03913FC831E000E87A9 /* SavingsContributionSimEvent.m in Sources */,
 				004CB03C13FC835A000E87A9 /* SavingsContributionSimEventCreator.m in Sources */,
 				004CB03F13FD73F5000E87A9 /* WorkingBalance.m in Sources */,
-				004CB04213FD772D000E87A9 /* SavingsWorkingBalance.m in Sources */,
+				004CB04213FD772D000E87A9 /* InterestBearingWorkingBalance.m in Sources */,
 				004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */,
 				004CB04B13FEF452000E87A9 /* IntermediateVariableRate.m in Sources */,
 				004CB04E1402BD04000E87A9 /* SavingsContribDigestEntry.m in Sources */,

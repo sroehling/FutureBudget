@@ -15,7 +15,7 @@
 #import "WorkingBalanceAdjustment.h"
 #import "SavingsAccount.h"
 #import "FixedValue.h"
-#import "SavingsWorkingBalance.h"
+#import "InterestBearingWorkingBalance.h"
 #import "WorkingBalanceMgr.h"
 
 
@@ -34,15 +34,15 @@
 	[coreData release];
 }
 
-- (SavingsWorkingBalance*)createInterestBearingWorkingAccountWithRate:(double)interestRate
+- (InterestBearingWorkingBalance*)createInterestBearingWorkingAccountWithRate:(double)interestRate
 	andStartDate:(NSDate*)startDate andStartingBal:(double)startBalance
 {
 	FixedValue *fixedInterestRate =  
 		(FixedValue*)[self.coreData createObj:FIXED_VALUE_ENTITY_NAME];
 	fixedInterestRate.value =  [NSNumber numberWithDouble:interestRate];
 	
-	SavingsWorkingBalance *workingBal = 
-		[[[SavingsWorkingBalance alloc] initWithStartingBalance:startBalance andInterestRate:fixedInterestRate andWorkingBalanceName:@"TestAcct" 
+	InterestBearingWorkingBalance *workingBal = 
+		[[[InterestBearingWorkingBalance alloc] initWithStartingBalance:startBalance andInterestRate:fixedInterestRate andWorkingBalanceName:@"TestAcct" 
 		andStartDate:startDate andTaxWithdrawals:FALSE
 		andTaxInterest:FALSE] autorelease];
 	
@@ -128,7 +128,7 @@
 - (void)test100InterestSavingsBalance
 {
 	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-01"]];
-	SavingsWorkingBalance *bal = [self createInterestBearingWorkingAccountWithRate:100 andStartDate:startDate andStartingBal:1000];
+	InterestBearingWorkingBalance *bal = [self createInterestBearingWorkingAccountWithRate:100 andStartDate:startDate andStartingBal:1000];
 	
 	[bal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
 	[self checkCurrentBalance:bal withExpectedBalance:2000];
@@ -144,7 +144,7 @@
 - (void)testZeroInterestSavingsBalance
 {
 	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-01-01"]];
-	SavingsWorkingBalance *bal = [self createInterestBearingWorkingAccountWithRate:0 andStartDate:startDate andStartingBal:1000];
+	InterestBearingWorkingBalance *bal = [self createInterestBearingWorkingAccountWithRate:0 andStartDate:startDate andStartingBal:1000];
 	
 	[self doZeroInterestTests:bal];
 }
@@ -168,7 +168,7 @@
 	CashWorkingBalance *cashBal = [[[CashWorkingBalance alloc] 
 		initWithStartingBalance:1000.0 
 		andStartDate:startDate] autorelease];
-	SavingsWorkingBalance *deficitBal = [self createInterestBearingWorkingAccountWithRate:0 
+	InterestBearingWorkingBalance *deficitBal = [self createInterestBearingWorkingAccountWithRate:0 
 		andStartDate:startDate andStartingBal:0];
 
 	WorkingBalanceMgr *workingBalMgr = [[[WorkingBalanceMgr alloc] initWithCashBalance:cashBal andDeficitBalance:deficitBal andStartDate:startDate] autorelease];

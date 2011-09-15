@@ -15,7 +15,7 @@
 #import "LocalizationHelper.h"
 #import "FixedValue.h"
 #import "Cash.h"
-#import "SavingsWorkingBalance.h"
+#import "InterestBearingWorkingBalance.h"
 #import "BalanceAdjustment.h"
 #import "WorkingBalanceAdjustment.h"
 
@@ -28,7 +28,7 @@
 @synthesize nextEstimatedTaxPayment;
 
 - (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
-	andDeficitBalance:(SavingsWorkingBalance*)deficitBal
+	andDeficitBalance:(InterestBearingWorkingBalance*)deficitBal
 	andStartDate:(NSDate*)startDate
 {
 	self = [super init];
@@ -57,7 +57,7 @@
 {
 		CashWorkingBalance *cashBal = [[[CashWorkingBalance alloc] init] autorelease];
 		
-		SavingsWorkingBalance *deficitBal = [[[SavingsWorkingBalance alloc] 
+		InterestBearingWorkingBalance *deficitBal = [[[InterestBearingWorkingBalance alloc] 
 			initWithStartingBalance:0.0 
 			andInterestRate:[SharedAppValues singleton].deficitInterestRate 
 				andWorkingBalanceName:LOCALIZED_STR(@"DEFICIT_LABEL") 

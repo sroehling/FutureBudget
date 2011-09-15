@@ -10,16 +10,16 @@
 
 #import "SimEvent.h"
 
-@class SavingsWorkingBalance;
+@class InterestBearingWorkingBalance;
 
 @interface SavingsContributionSimEvent : SimEvent {
     @private
-		SavingsWorkingBalance *savingsBalance;
+		InterestBearingWorkingBalance *savingsBalance;
 		double contributionAmount;
 		bool contributionIsTaxable;
 }
 
-@property(nonatomic,retain) SavingsWorkingBalance *savingsBalance;
+@property(nonatomic,retain) InterestBearingWorkingBalance *savingsBalance;
 @property double contributionAmount;
 @property bool contributionIsTaxable;
 

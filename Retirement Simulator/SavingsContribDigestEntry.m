@@ -17,7 +17,7 @@
 @synthesize contribAdjustment;
 
 
-- (id) initWithWorkingBalance:(SavingsWorkingBalance*)theBalance 
+- (id) initWithWorkingBalance:(InterestBearingWorkingBalance*)theBalance 
 	andContribAmount:(double)theAmount andIsTaxable:(bool)isTaxable
 {
 	self = [super init];

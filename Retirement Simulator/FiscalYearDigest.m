@@ -15,7 +15,7 @@
 #import "BalanceAdjustment.h"
 #import "WorkingBalanceMgr.h"
 #import "SharedAppValues.h"
-#import "SavingsWorkingBalance.h"
+#import "InterestBearingWorkingBalance.h"
 #import "EndOfYearDigestResult.h"
 #import "Cash.h"
 #import "CashFlowSummations.h"

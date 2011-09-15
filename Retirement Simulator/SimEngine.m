@@ -20,7 +20,7 @@
 #import "IncomeInput.h"
 #import "ExpenseSimEventCreator.h"
 #import "LoanInput.h"
-#import "SavingsWorkingBalance.h"
+#import "InterestBearingWorkingBalance.h"
 #import "IncomeSimEventCreator.h"
 #import "SavingsAccount.h"
 #import "BoolInputValue.h"
@@ -105,8 +105,8 @@
 	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
 		for(SavingsAccount *savingsAcct in inputs)
 	{
-		SavingsWorkingBalance *savingsBal = 
-			[[[SavingsWorkingBalance alloc] initWithSavingsAcct:savingsAcct] autorelease];
+		InterestBearingWorkingBalance *savingsBal = 
+			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:savingsAcct] autorelease];
 		if([self inputIsEnabled:savingsAcct.multiScenarioContribEnabled])
 		{
 			SavingsContributionSimEventCreator *savingsEventCreator = 

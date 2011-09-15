@@ -17,7 +17,7 @@
 #import "EventRepeater.h"
 #import "SavingsAccount.h"
 #import "SavingsContributionSimEvent.h"
-#import "SavingsWorkingBalance.h"
+#import "InterestBearingWorkingBalance.h"
 #import "MultiScenarioInputValue.h"
 
 
@@ -29,7 +29,7 @@
 @synthesize savingsAcct;
 @synthesize eventRepeater;
 
-- (id)initWithSavingsWorkingBalance:(SavingsWorkingBalance*)theWorkingBalance
+- (id)initWithSavingsWorkingBalance:(InterestBearingWorkingBalance*)theWorkingBalance
 	andSavingsAcct:(SavingsAccount*)theSavingsAcct;
 {
 	self = [super init];

@@ -10,7 +10,7 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "SavingsAccount.h"
-#import "SavingsWorkingBalance.h"
+#import "InterestBearingWorkingBalance.h"
 #import "FiscalYearDigest.h"
 #import "SavingsContribDigestEntry.h"
 #import "CashFlowSummations.h"

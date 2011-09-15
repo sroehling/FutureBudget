@@ -10,7 +10,7 @@
 
 @class CashWorkingBalance;
 @class WorkingBalance;
-@class SavingsWorkingBalance;
+@class InterestBearingWorkingBalance;
 @class BalanceAdjustment;
 @class WorkingBalanceAdjustment;
 
@@ -20,7 +20,7 @@
 		NSMutableArray *fundingSources;
 #warning TODO - Need to reconsider supporting interest with cash working balance.
 		CashWorkingBalance *cashWorkingBalance;
-		SavingsWorkingBalance *deficitBalance;
+		InterestBearingWorkingBalance *deficitBalance;
 		CashWorkingBalance *accruedEstimatedTaxes;
 		CashWorkingBalance *nextEstimatedTaxPayment;
 		
@@ -28,14 +28,14 @@
 
 @property(nonatomic,retain) NSMutableArray *fundingSources;
 @property(nonatomic,retain) CashWorkingBalance *cashWorkingBalance;
-@property(nonatomic,retain) SavingsWorkingBalance *deficitBalance;
+@property(nonatomic,retain) InterestBearingWorkingBalance *deficitBalance;
 
 @property(nonatomic,retain) CashWorkingBalance *accruedEstimatedTaxes;
 @property(nonatomic,retain) CashWorkingBalance *nextEstimatedTaxPayment;
 
 - (id)initWithStartDate:(NSDate*)startDate;
 - (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
-	andDeficitBalance:(SavingsWorkingBalance*)deficitBal
+	andDeficitBalance:(InterestBearingWorkingBalance*)deficitBal
 	andStartDate:(NSDate*)startDate;
 
 - (void)incrementAccruedEstimatedTaxes:(double)taxAmount asOfDate:(NSDate*)theDate;
