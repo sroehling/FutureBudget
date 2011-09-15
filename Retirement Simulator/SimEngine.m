@@ -19,6 +19,7 @@
 #import "ExpenseInput.h"
 #import "IncomeInput.h"
 #import "ExpenseSimEventCreator.h"
+#import "LoanInput.h"
 #import "SavingsWorkingBalance.h"
 #import "IncomeSimEventCreator.h"
 #import "SavingsAccount.h"
@@ -27,6 +28,7 @@
 
 #import "EstimatedTaxAccrualSimEventCreator.h"
 #import "EstimatedTaxPaymentSimEventCreator.h"
+#import "LoanPaymentSimEventCreator.h"
 #import "SimEventList.h"
 #import "MultiScenarioInputValue.h"
 
@@ -115,6 +117,24 @@
 			[self.workingBalanceMgr addFundingSource:savingsBal];
 		}
 	}
+	
+	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
+	for(LoanInput *loan in inputs)
+	{
+	/*
+		SavingsWorkingBalance *loanBal = 
+			[[[SavingsWorkingBalance alloc] initWithLoan:loan] autorelease];
+		if([self inputIsEnabled:loan.multiScenarioLoanEnabled])
+		{
+			LoanPaymentSimEventCreator *loanPmtEventCreator = 
+				[[[LoanPaymentSimEventCreator alloc] initWithLoanWorkingBalance:nil andLoan:loan] autorelease];
+			[self.eventCreators addObject:loanPmtEventCreator];
+			[self.workingBalanceMgr addLoanBalance:loanBal];
+		}
+		*/
+	}
+	
+	
 	
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
 		initWithStartingMonth:3 andStartingDay:31] autorelease]];
