@@ -11,6 +11,7 @@
 @class BalanceAdjustment;
 @class SavingsContribDigestEntry;
 @class CashFlowSummation;
+@class LoanPmtDigestEntry;
 
 @interface CashFlowSummations : NSObject {
     @private
@@ -25,6 +26,8 @@
 - (void)addExpense:(BalanceAdjustment*)amount onDate:(NSDate*)expenseDate;
 - (void)addIncome:(double)amount onDate:(NSDate*)incomeDate;
 - (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate;
+- (void)addLoanPmt:(LoanPmtDigestEntry*)loanPmt onDate:(NSDate*)pmtDate;
+
 - (void)markEndDateForEstimatedTaxAccrual:(NSDate*)taxEndDate;
 - (void)markDateForEstimatedTaxPayment:(NSDate*)taxPaymentDate;
 

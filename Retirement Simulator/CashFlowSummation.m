@@ -9,13 +9,14 @@
 #import "CashFlowSummation.h"
 #import "BalanceAdjustment.h"
 #import "SavingsContribDigestEntry.h"
-
+#import "LoanPmtDigestEntry.h"
 
 @implementation CashFlowSummation
 
 @synthesize sumExpenses;
 @synthesize sumIncome;
 @synthesize savingsContribs;
+@synthesize loanPmts;
 @synthesize sumContributions;
 @synthesize isEndDateForEstimatedTaxes;
 @synthesize isEstimatedTaxPaymentDay;
@@ -26,6 +27,9 @@
 	if(self)
 	{
 		self.savingsContribs = [[[NSMutableArray alloc] init] autorelease];
+		
+		self.loanPmts = [[[NSMutableArray alloc] init] autorelease];
+		
 		self.sumExpenses = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		[self resetSummations];
 		
@@ -57,6 +61,13 @@
 	[self.sumContributions addAdjustment:savingsContrib.contribAdjustment];
 }
 
+- (void)addLoanPmt:(LoanPmtDigestEntry*)theLoanPmt
+{
+	assert(theLoanPmt != nil);
+	[self.loanPmts addObject:theLoanPmt];
+	
+}
+
 - (void)markAsEndDateForEstimatedTaxAccrual
 {
 	isEndDateForEstimatedTaxes = TRUE;
@@ -74,6 +85,9 @@
 	[sumExpenses resetToZero];
 	
 	[self.savingsContribs removeAllObjects];
+	
+	[self.loanPmts removeAllObjects];
+	
 	[self.sumContributions resetToZero];
 	
 	isEndDateForEstimatedTaxes = FALSE;
@@ -93,6 +107,7 @@
 {
 	[super dealloc];
 	[savingsContribs release];
+	[loanPmts release];
 	[sumContributions release];
 	[sumExpenses release];
 }

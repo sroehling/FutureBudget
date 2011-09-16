@@ -120,6 +120,14 @@
 	[yearlySummation addSavingsContrib:savingsContrib];
 }
 
+
+- (void)addLoanPmt:(LoanPmtDigestEntry*)loanPmt onDate:(NSDate*)pmtDate;
+{
+	CashFlowSummation *theSummation = [self summationForDate:pmtDate];
+	[theSummation addLoanPmt:loanPmt];
+	[yearlySummation addLoanPmt:loanPmt];
+}
+
 - (void) dealloc
 {
 	[super dealloc];

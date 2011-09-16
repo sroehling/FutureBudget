@@ -194,6 +194,8 @@
 		00EC45811420448400D65D17 /* LoanInputVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45801420448200D65D17 /* LoanInputVariableValueListMgr.m */; };
 		00EC458714214C1E00D65D17 /* LoanPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */; };
 		00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */; };
+		00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */; };
+		00EC45901423C5B100D65D17 /* LoanPmtDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */; };
 		00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */; };
 		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
 		00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D0140F06AD00FA73AA /* CoreData.framework */; };
@@ -353,7 +355,7 @@
 		004CB03B13FC8357000E87A9 /* SavingsContributionSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsContributionSimEventCreator.m; sourceTree = "<group>"; };
 		004CB03D13FD73F3000E87A9 /* WorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalance.h; sourceTree = "<group>"; };
 		004CB03E13FD73F4000E87A9 /* WorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalance.m; sourceTree = "<group>"; };
-		004CB04013FD772A000E87A9 /* InterestBearingWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; path = InterestBearingWorkingBalance.h; sourceTree = "<group>"; };
+		004CB04013FD772A000E87A9 /* InterestBearingWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestBearingWorkingBalance.h; sourceTree = "<group>"; };
 		004CB04113FD772C000E87A9 /* InterestBearingWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestBearingWorkingBalance.m; sourceTree = "<group>"; };
 		004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceMgr.h; sourceTree = "<group>"; };
 		004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceMgr.m; sourceTree = "<group>"; };
@@ -582,6 +584,10 @@
 		00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanPaymentSimEventCreator.m; sourceTree = "<group>"; };
 		00EC458814225B9000D65D17 /* LoanPaymentSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanPaymentSimEvent.h; sourceTree = "<group>"; };
 		00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanPaymentSimEvent.m; sourceTree = "<group>"; };
+		00EC458B1423AF2300D65D17 /* WorkingBalanceCltn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceCltn.h; sourceTree = "<group>"; };
+		00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceCltn.m; sourceTree = "<group>"; };
+		00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanPmtDigestEntry.h; sourceTree = "<group>"; };
+		00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanPmtDigestEntry.m; sourceTree = "<group>"; };
 		00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceAdjustment.h; sourceTree = "<group>"; };
 		00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceAdjustment.m; sourceTree = "<group>"; };
 		00F217B8140F058600FA73AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -654,6 +660,8 @@
 				00160CA414055DFC001D472F /* BalanceAdjustment.h */,
 				00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */,
 				00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */,
+				00EC458B1423AF2300D65D17 /* WorkingBalanceCltn.h */,
+				00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */,
 				004CB03D13FD73F3000E87A9 /* WorkingBalance.h */,
 				004CB03E13FD73F4000E87A9 /* WorkingBalance.m */,
 				004CB03313FC490C000E87A9 /* CashWorkingBalance.h */,
@@ -1076,6 +1084,10 @@
 		004CB03613FC491E000E87A9 /* Digest */ = {
 			isa = PBXGroup;
 			children = (
+				00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */,
+				00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */,
+				004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */,
+				004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */,
 				00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */,
 				00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */,
 				00160CAB1406C9A5001D472F /* CashFlowSummations.h */,
@@ -1086,8 +1098,6 @@
 				004CB01813F9B797000E87A9 /* DigestUpdateEventCreator.m */,
 				004CB01B13F9C985000E87A9 /* DigestUpdateEvent.h */,
 				004CB01C13F9C986000E87A9 /* DigestUpdateEvent.m */,
-				004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */,
-				004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */,
 				00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */,
 				00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */,
 			);
@@ -1446,10 +1456,10 @@
 		00EC458414214B9C00D65D17 /* Loan */ = {
 			isa = PBXGroup;
 			children = (
-				00EC458514214C1E00D65D17 /* LoanPaymentSimEventCreator.h */,
-				00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */,
 				00EC458814225B9000D65D17 /* LoanPaymentSimEvent.h */,
 				00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */,
+				00EC458514214C1E00D65D17 /* LoanPaymentSimEventCreator.h */,
+				00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */,
 			);
 			name = Loan;
 			sourceTree = "<group>";
@@ -1726,6 +1736,8 @@
 				00EC45811420448400D65D17 /* LoanInputVariableValueListMgr.m in Sources */,
 				00EC458714214C1E00D65D17 /* LoanPaymentSimEventCreator.m in Sources */,
 				00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */,
+				00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */,
+				00EC45901423C5B100D65D17 /* LoanPmtDigestEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,10 +18,12 @@
 #import "InterestBearingWorkingBalance.h"
 #import "BalanceAdjustment.h"
 #import "WorkingBalanceAdjustment.h"
+#import "WorkingBalanceCltn.h"
 
 @implementation WorkingBalanceMgr
 
 @synthesize fundingSources;
+@synthesize loanBalances;
 @synthesize cashWorkingBalance;
 @synthesize deficitBalance;
 @synthesize accruedEstimatedTaxes;
@@ -34,8 +36,10 @@
 	self = [super init];
 	if(self)
 	{
-		self.fundingSources = [[[NSMutableArray alloc] init] autorelease];
-		[self addFundingSource:cashBal];
+		self.fundingSources = [[[WorkingBalanceCltn alloc] init] autorelease];
+		[self.fundingSources addBalance:cashBal];
+		
+		self.loanBalances = [[[WorkingBalanceCltn alloc] init] autorelease];
 		
 		assert(cashBal != nil);
 		self.cashWorkingBalance = cashBal;
@@ -72,11 +76,7 @@
 	assert(0); // need to call with start date
 }
 
-- (void)addFundingSource:(WorkingBalance *)theBalance
-{
-	assert(theBalance!= nil);
-	[self.fundingSources addObject:theBalance];
-}
+
 
 - (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate
 {
@@ -85,30 +85,26 @@
 	// the other funding sources.
 	[self.deficitBalance advanceCurrentBalanceToDate:newDate];
 	[self.cashWorkingBalance advanceCurrentBalanceToDate:newDate];
-
-
-	BalanceAdjustment *totalInterest = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
-	for(WorkingBalance *workingBal in self.fundingSources)
-	{
-		assert(workingBal!=nil);
-		BalanceAdjustment *currentWorkingBalInterest = 
-			[workingBal advanceCurrentBalanceToDate:newDate];
-		[totalInterest addAdjustment:currentWorkingBalInterest];
-	}
+	
+	BalanceAdjustment *fundingSrcInterest = [self.fundingSources advanceBalancesToDate:newDate];
+	
+#warning TODO - Need to do something with the loan interest.
+	BalanceAdjustment *loanInterest = [self.loanBalances advanceBalancesToDate:newDate];
+		
 	[self.accruedEstimatedTaxes advanceCurrentBalanceToDate:newDate];
 
-	return totalInterest;
+	return fundingSrcInterest;
 }
 
 
 - (void)carryBalancesForward:(NSDate*)newDate
 {
 	assert(newDate != nil);
-	for(WorkingBalance *workingBal in self.fundingSources)
-	{
-		assert(workingBal!=nil);
-		[workingBal carryBalanceForward:newDate];
-	}
+	
+	[self.fundingSources carryBalancesForward:newDate];
+	[self.loanBalances carryBalancesForward:newDate];
+
+	
 	[self.deficitBalance carryBalanceForward:newDate];
 	[self.accruedEstimatedTaxes carryBalanceForward:newDate];
 	[self.nextEstimatedTaxPayment carryBalanceForward:newDate];
@@ -126,8 +122,8 @@
 	double remainingBalanceToDecrement = expenseAmount;
 	WorkingBalanceAdjustment *totalDecremented = 
 		[[[WorkingBalanceAdjustment alloc] initWithZeroAmounts] autorelease];
-;
-	for(WorkingBalance *workingBal in self.fundingSources)
+		
+	for(WorkingBalance *workingBal in self.fundingSources.workingBalList)
 	{
 		WorkingBalanceAdjustment * amountDecremented = 
 			[workingBal decrementAvailableBalance:remainingBalanceToDecrement 
@@ -152,12 +148,8 @@
 
 - (double)totalCurrentBalance
 {
-	double totalBal = 0.0;
-	for(WorkingBalance *workingBal in self.fundingSources)
-	{
-		assert([workingBal currentBalance]>=0.0);
-		totalBal += [workingBal currentBalance];
-	}
+	double totalBal = [self.fundingSources totalBalances];
+#warning TODO - Possibly need to subract off the total loan balances as a liability	
 	return totalBal;
 }
 
@@ -217,11 +209,9 @@
 
 - (void) resetCurrentBalances
 {
-	for(WorkingBalance *workingBal in self.fundingSources)
-	{
-		assert(workingBal!=nil);
-		[workingBal resetCurrentBalance];
-	}
+	[self.fundingSources resetCurrentBalances];
+	[self.loanBalances resetCurrentBalances];
+	
 	[self.deficitBalance resetCurrentBalance];
 	[self.accruedEstimatedTaxes resetCurrentBalance];
 	[self.nextEstimatedTaxPayment resetCurrentBalance];
@@ -230,10 +220,10 @@
 
 - (void)logCurrentBalances
 {
-	for(WorkingBalance *workingBal in self.fundingSources)
-	{
-		[workingBal logBalance];
-	}
+
+	[self.fundingSources logCurrentBalances];
+	[self.loanBalances logCurrentBalances];
+	
 	[self.deficitBalance logBalance];
 	[self.accruedEstimatedTaxes logBalance];
 	[self.nextEstimatedTaxPayment logBalance];
@@ -242,9 +232,13 @@
 - (void) dealloc
 {
 	[super dealloc];
+	
 	[fundingSources release];
+	[loanBalances release];
+
 	[cashWorkingBalance release];
 	[deficitBalance release];
+
 	[accruedEstimatedTaxes release];
 	[nextEstimatedTaxPayment release];
 }

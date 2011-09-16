@@ -12,6 +12,7 @@
 #import "ValueAsOfCalculator.h"
 
 @class DateSensitiveValue;
+@class MultiScenarioInputValue;
 
 @interface ValueAsOfCalculatorCreator : NSObject <DateSensitiveValueVisitor> {
     @private
@@ -19,6 +20,8 @@
 }
 
 - (id<ValueAsOfCalculator>) createForDateSensitiveValue:(DateSensitiveValue*)dsVal ;
+
++ (id<ValueAsOfCalculator>)createValueAsOfCalc:(MultiScenarioInputValue*)multiScenDateSensitiveVal;
 
 @property(nonatomic,retain) id<ValueAsOfCalculator> valueCalc;
 

@@ -10,15 +10,15 @@
 
 #import "SimEvent.h"
 
+@class InterestBearingWorkingBalance;
+
 @interface LoanPaymentSimEvent : SimEvent {
     @private
-		bool interestIsTaxable;
 		double paymentAmt;
-		double interestAmt;
+		InterestBearingWorkingBalance *loanBalance;
 }
 
-@property bool interestIsTaxable;
 @property double paymentAmt;
-@property double interestAmt;
+@property (nonatomic,retain) InterestBearingWorkingBalance *loanBalance;
 
 @end

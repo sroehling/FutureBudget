@@ -14,35 +14,23 @@
 
 @class EventRepeater;
 @class VariableRateCalculator;
-@class CashWorkingBalance;
+@class InterestBearingWorkingBalance;
 @class LoanInput;
 
 @interface LoanPaymentSimEventCreator : NSObject <SimEventCreator> {
     @private
-		CashWorkingBalance *loanWorkingBalance;
+		InterestBearingWorkingBalance *loanBalance;
         EventRepeater *eventRepeater;
-		VariableRateCalculator *interestRateCalc;
 		LoanInput *loan;
 		
-		id<ValueAsOfCalculator> variableInterestRate;
-		
-		double loanOrigAmount;
-		double unpaidLoanPrincipal;
 		double monthlyPayment;
-		NSDate *paymentInterestStartDate;
 		
 }
 
 @property(nonatomic,retain) EventRepeater *eventRepeater;
-@property(nonatomic,retain) VariableRateCalculator *interestRateCalc;
-@property(nonatomic,retain) CashWorkingBalance *loanWorkingBalance;
+@property(nonatomic,retain) InterestBearingWorkingBalance *loanBalance;
 @property(nonatomic,retain) LoanInput *loan;
 
-@property(nonatomic,retain) id<ValueAsOfCalculator> variableInterestRate;
-
-@property(nonatomic,retain) NSDate *paymentInterestStartDate;
-
-- (id)initWithLoanWorkingBalance:(CashWorkingBalance*)theWorkingBalance
-	andLoan:(LoanInput*)theLoan;
+- (id)initWithLoan:(LoanInput*)theLoan;
 
 @end

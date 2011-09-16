@@ -18,6 +18,7 @@
 #import "DateHelper.h"
 #import "IntermediateVariableRate.h"
 #import "CollectionHelper.h"
+#import "MultiScenarioInputValue.h"
 
 @implementation DateSensitiveValueVariableRateCalculatorCreator
 
@@ -112,6 +113,22 @@
 	
 
 }
+
++(VariableRateCalculator*)createVariableRateCalc:(MultiScenarioInputValue*)multiScenDateSensitiveVal
+	andStartDate:(NSDate*)calcStartDate
+{
+	DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
+		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
+	DateSensitiveValue *dateSensitiveVal = (DateSensitiveValue*)[
+				multiScenDateSensitiveVal getValueForCurrentOrDefaultScenario];
+	assert(dateSensitiveVal != nil);
+	VariableRateCalculator *rateCalc = [calcCreator 
+							createForDateSensitiveValue:dateSensitiveVal 
+							andStartDate:calcStartDate];
+	return rateCalc;
+
+}
+
 
 - (void) dealloc
 {

@@ -10,6 +10,7 @@
 #import "DateSensitiveValue.h"
 #import "FixedValueAsOfCalculator.h"
 #import "VariableValueAsOfCalculator.h"
+#import "MultiScenarioInputValue.h"
 
 
 @implementation ValueAsOfCalculatorCreator
@@ -37,6 +38,21 @@
 		assert(self.valueCalc != nil);
 		return self.valueCalc;
 }
+
+
++ (id<ValueAsOfCalculator>)createValueAsOfCalc:(MultiScenarioInputValue*)multiScenDateSensitiveVal
+{
+	assert(multiScenDateSensitiveVal != nil);
+	ValueAsOfCalculatorCreator *valAsOfCalcCreator = 
+			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];
+	DateSensitiveValue *dateSensitiveVal = (DateSensitiveValue*)[
+			multiScenDateSensitiveVal getValueForCurrentOrDefaultScenario];
+	assert(dateSensitiveVal != nil);
+	id<ValueAsOfCalculator> valCalc = [valAsOfCalcCreator 
+			createForDateSensitiveValue:dateSensitiveVal];
+	return valCalc;
+}
+
 
 - (void) dealloc
 {

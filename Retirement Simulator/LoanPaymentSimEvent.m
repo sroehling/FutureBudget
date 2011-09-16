@@ -9,34 +9,38 @@
 #import "LoanPaymentSimEvent.h"
 #import "NumberHelper.h"
 #import "DateHelper.h"
+#import "InterestBearingWorkingBalance.h"
+#import "LoanPmtDigestEntry.h"
+#import "CashFlowSummations.h"
+#import "FiscalYearDigest.h"
 
 
 @implementation LoanPaymentSimEvent
 
-@synthesize interestIsTaxable;
+@synthesize loanBalance;
 @synthesize paymentAmt;
-@synthesize interestAmt;
+
 
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
-	NSString *currencyAmount = [[NumberHelper theHelper].currencyFormatter 
+	NSString *pmtAmount = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:self.paymentAmt]];
 				
-	NSString *interestAmount = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.interestAmt]];
-    
-    NSLog(@"Doing loan payment event: %@  payment=%@,interest=%@",
+    NSLog(@"Doing loan payment event: %@  payment=%@",
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		  currencyAmount,interestAmount);
-/*		  
-	SavingsContribDigestEntry *savingsContrib = 
-		[[[SavingsContribDigestEntry alloc] 
-		initWithWorkingBalance:self.savingsBalance 
-		andContribAmount:self.contributionAmount
-		andIsTaxable:self.contributionIsTaxable] autorelease];
-	[digest.cashFlowSummations addSavingsContrib:savingsContrib onDate:self.eventDate];
-*/
+		  pmtAmount);
+		  
+	LoanPmtDigestEntry *loanPmt = [[[LoanPmtDigestEntry alloc] 
+		initWithBalance:self.loanBalance andPayment:self.paymentAmt] autorelease];
+	[digest.cashFlowSummations addLoanPmt:loanPmt onDate:self.eventDate];
+}
+
+
+- (void)dealloc
+{
+	[super dealloc];
+	[loanBalance release];
 }
 
 

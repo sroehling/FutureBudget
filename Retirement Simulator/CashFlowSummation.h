@@ -10,6 +10,7 @@
 
 @class SavingsContribDigestEntry;
 @class BalanceAdjustment;
+@class LoanPmtDigestEntry;
 
 @interface CashFlowSummation : NSObject {
     @private
@@ -17,6 +18,7 @@
 #warning TODO - Need to change name of sumIncome to sumGrossIncome if this name better represents the value
 		double sumIncome;
 		NSMutableArray *savingsContribs;
+		NSMutableArray *loanPmts;
 		BalanceAdjustment *sumContributions;
 		bool isEndDateForEstimatedTaxes;
 		bool isEstimatedTaxPaymentDay;
@@ -25,6 +27,9 @@
 - (void)addIncome:(double)incomeAmount;
 - (void)addExpense:(BalanceAdjustment*)expenseAmount;
 - (void) addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib;
+- (void)addLoanPmt:(LoanPmtDigestEntry*)theLoanPmt;
+
+
 - (void)markAsEndDateForEstimatedTaxAccrual;
 - (void)markAsEstimatedTaxPaymentDay;
 - (void)resetSummations;
@@ -34,6 +39,7 @@
 @property(nonatomic,retain) BalanceAdjustment *sumExpenses;
 @property(readonly) double sumIncome;
 @property(nonatomic,retain) NSMutableArray *savingsContribs;
+@property(nonatomic,retain) NSMutableArray *loanPmts;
 @property(nonatomic,retain) BalanceAdjustment *sumContributions;
 @property(readonly) bool isEndDateForEstimatedTaxes;
 @property(readonly) bool isEstimatedTaxPaymentDay;

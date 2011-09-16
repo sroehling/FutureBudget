@@ -23,6 +23,23 @@
 @synthesize taxableWithdrawals;
 @synthesize taxableInterest;
 
+- (id) initWithStartingBalance:(double)theStartBalance 
+	andInterestRateCalc:(VariableRateCalculator*)theInterestRateCalc 
+	andWorkingBalanceName:(NSString *)wbName 
+	andTaxWithdrawals:(bool)doTaxWithdrawals andTaxInterest:(bool)doTaxInterest
+{
+	self = [super initWithStartingBalance:theStartBalance 
+			andStartDate:theInterestRateCalc.startDate];
+	if(self)
+	{
+		self.interestRateCalc = theInterestRateCalc;
+		self.taxableWithdrawals = doTaxWithdrawals;
+		self.taxableInterest = doTaxInterest;
+		self.workingBalanceName = wbName;
+
+	}
+	return self;
+}
 
 - (id) initWithStartingBalance:(double)theStartBalance
 	andInterestRate:(DateSensitiveValue*)theInterestRate
@@ -33,18 +50,16 @@
 {
 	self = [super initWithStartingBalance:theStartBalance 
 		andStartDate:theStartDate];
-	{
+	if(self) {
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 		
 		self.interestRateCalc = [calcCreator 
 							createForDateSensitiveValue:theInterestRate 
 							andStartDate:theStartDate];
-							
-		taxableWithdrawals = doTaxWithdrawals;
-		taxableInterest = doTaxInterest;
-		
-							
+														
+		self.taxableWithdrawals = doTaxWithdrawals;
+		self.taxableInterest = doTaxInterest;
 		self.workingBalanceName = wbName;
 	}
 	return self;

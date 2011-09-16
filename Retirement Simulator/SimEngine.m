@@ -30,6 +30,7 @@
 #import "EstimatedTaxPaymentSimEventCreator.h"
 #import "LoanPaymentSimEventCreator.h"
 #import "SimEventList.h"
+#import "WorkingBalanceCltn.h"
 #import "MultiScenarioInputValue.h"
 
 @implementation SimEngine
@@ -114,26 +115,25 @@
 					initWithSavingsWorkingBalance:savingsBal 
 					andSavingsAcct:savingsAcct] autorelease];
 			[self.eventCreators addObject:savingsEventCreator];
-			[self.workingBalanceMgr addFundingSource:savingsBal];
+			[self.workingBalanceMgr.fundingSources addBalance:savingsBal];
 		}
 	}
+	
 	
 	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	for(LoanInput *loan in inputs)
 	{
-	/*
-		SavingsWorkingBalance *loanBal = 
-			[[[SavingsWorkingBalance alloc] initWithLoan:loan] autorelease];
-		if([self inputIsEnabled:loan.multiScenarioLoanEnabled])
+		bool loanEnabled = true;
+		// TODO - loanEnabled = [self inputIsEnabled:loan.multiScenarioLoanEnabled]
+		if(loanEnabled)
 		{
 			LoanPaymentSimEventCreator *loanPmtEventCreator = 
-				[[[LoanPaymentSimEventCreator alloc] initWithLoanWorkingBalance:nil andLoan:loan] autorelease];
+				[[[LoanPaymentSimEventCreator alloc] initWithLoan:loan] autorelease];
 			[self.eventCreators addObject:loanPmtEventCreator];
-			[self.workingBalanceMgr addLoanBalance:loanBal];
+			[self.workingBalanceMgr.loanBalances addBalance:loanPmtEventCreator.loanBalance];
 		}
-		*/
+		
 	}
-	
 	
 	
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 

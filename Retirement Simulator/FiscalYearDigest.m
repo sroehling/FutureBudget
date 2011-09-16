@@ -21,6 +21,7 @@
 #import "CashFlowSummations.h"
 #import "WorkingBalanceAdjustment.h"
 #import "FlatIncomeTaxRateCalculator.h"
+#import "LoanPmtDigestEntry.h"
 
 @implementation FiscalYearDigest
 
@@ -153,6 +154,19 @@
 			[self processWithdrawal:endOfYearResults 
 				andAmount:[currDayCashFlowSummation.sumExpenses totalAmount] 
 				andDate:currentDate andTaxRate:incomeTaxRate];
+		}
+		if([currDayCashFlowSummation.loanPmts count] > 0)
+		{
+			for(LoanPmtDigestEntry *loanPmt in currDayCashFlowSummation.loanPmts)
+			{
+				WorkingBalanceAdjustment *loanPmtAdjustment = 
+					[loanPmt.loanBalance decrementAvailableBalance:loanPmt.paymentAmt asOfDate:currentDate];
+#warning TODO - Sum up tax deductable interest, as described below.				
+				// TODO - For tax purposes, we need to have some kind of increment like the following
+				// This will be sum up the deductable interest in the same way as is done for expenses.
+				//[eoyResults incrementTotalExpense:withdrawAdj.balanceAdjustment];
+				// [eoyResult incrementTotalLoanPmt:loanPmtAdj.balanceAdjustment
+			}
 		}
 		if([currDayCashFlowSummation.savingsContribs count] > 0)
 		{

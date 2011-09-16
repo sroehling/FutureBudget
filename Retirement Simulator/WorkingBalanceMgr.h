@@ -14,11 +14,15 @@
 @class BalanceAdjustment;
 @class WorkingBalanceAdjustment;
 
+@class WorkingBalanceCltn;
+
 
 @interface WorkingBalanceMgr : NSObject {
 	@private
-		NSMutableArray *fundingSources;
-#warning TODO - Need to reconsider supporting interest with cash working balance.
+		WorkingBalanceCltn *fundingSources;
+		WorkingBalanceCltn *loanBalances;
+
+// TODO - Need to reconsider supporting interest with cash working balance.
 		CashWorkingBalance *cashWorkingBalance;
 		InterestBearingWorkingBalance *deficitBalance;
 		CashWorkingBalance *accruedEstimatedTaxes;
@@ -26,7 +30,8 @@
 		
 }
 
-@property(nonatomic,retain) NSMutableArray *fundingSources;
+@property(nonatomic,retain) WorkingBalanceCltn *fundingSources;
+@property(nonatomic,retain) WorkingBalanceCltn *loanBalances;
 @property(nonatomic,retain) CashWorkingBalance *cashWorkingBalance;
 @property(nonatomic,retain) InterestBearingWorkingBalance *deficitBalance;
 
@@ -43,7 +48,6 @@
 - (double)decrementNextEstimatedTaxPaymentAsOfDate:(NSDate*)theDate;
 
 
-- (void) addFundingSource:(WorkingBalance*)theBalance;
 - (void)carryBalancesForward:(NSDate*)newDate;
 - (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate;
 - (double)totalCurrentBalance;

@@ -24,8 +24,8 @@
 
 @property(nonatomic,retain )VariableRateCalculator *interestRateCalc;
 @property(nonatomic,retain ) NSString *workingBalanceName;
-@property(readonly) bool taxableWithdrawals;
-@property(readonly) bool taxableInterest;
+@property bool taxableWithdrawals;
+@property bool taxableInterest;
 
 - (id) initWithStartingBalance:(double)theStartBalance
 	andInterestRate:(DateSensitiveValue*)theInterestRate
@@ -33,6 +33,12 @@
 	andStartDate:(NSDate*)theStartDate
 	andTaxWithdrawals:(bool)doTaxWithdrawals
 	andTaxInterest:(bool)doTaxInterest;
+	
+	
+- (id) initWithStartingBalance:(double)theStartBalance 
+	andInterestRateCalc:(VariableRateCalculator*)theInterestRateCalc 
+	andWorkingBalanceName:(NSString *)wbName 
+	andTaxWithdrawals:(bool)doTaxWithdrawals andTaxInterest:(bool)doTaxInterest;	
 
 - (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct;
 
