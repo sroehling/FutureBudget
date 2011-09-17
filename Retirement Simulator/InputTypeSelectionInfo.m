@@ -39,7 +39,7 @@
 		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
     FixedValue *fixedVal = 
 		(FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
-    fixedVal.value = [NSNumber numberWithDouble:0.0];
+    fixedVal.value = [NSNumber numberWithDouble:defaultVal];
 	[msFixedVal setDefaultValue:fixedVal];
 	return msFixedVal;
 }
@@ -247,6 +247,8 @@
 	newInput.multiScenarioLoanCostAmtFixed = [self multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioLoanCostAmt = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioLoanCostAmtFixed];
+		
+	newInput.multiScenarioLoanDuration = [self multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
 		
 	newInput.multiScenarioLoanCostGrowthRateFixed = [self multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioLoanCostGrowthRate = [self multiScenInputValueWithDefaultFixedVal:

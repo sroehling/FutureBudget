@@ -38,6 +38,8 @@ NSString * const INPUT_LOAN_MULTI_SCEN_LOAN_COST_GROWTH_RATE_KEY = @"multiScenar
 @dynamic multiScenarioLoanCostGrowthRate;
 @dynamic multiScenarioLoanCostGrowthRateFixed;
 
+@dynamic multiScenarioLoanDuration; // done
+
 @dynamic multiScenarioOrigDate; // done
 @dynamic multiScenarioOrigDateFixed; // done
 

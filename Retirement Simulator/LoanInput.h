@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "Input.h"
 
+#define DEFAULT_LOAN_DURATION_MONTHS 60.0
+
 @class MultiScenarioInputValue;
 @class VariableValue;
 
@@ -50,6 +52,8 @@ extern NSString * const LOAN_INTEREST_RATE_KEY;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioOrigDateFixed;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioLoanCostAmt;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioLoanCostAmtFixed;
+
+@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioLoanDuration;
 
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioLoanCostGrowthRate;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioLoanCostGrowthRateFixed;

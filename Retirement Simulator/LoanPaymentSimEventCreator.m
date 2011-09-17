@@ -23,6 +23,7 @@
 #import "InterestBearingWorkingBalance.h"
 #import "DateHelper.h"
 #import "LoanPaymentSimEvent.h"
+#import "FixedValue.h"
 
 @implementation LoanPaymentSimEventCreator
 
@@ -49,6 +50,15 @@
 	assert(simDate != nil);
 	assert(simDate.date != nil);
 	return simDate.date;
+}
+
+- (double)resolveMultiScenFixedVal:(MultiScenarioInputValue*)multiScenVal
+{
+	assert(multiScenVal != nil);
+	FixedValue *fixedVal = (FixedValue*)[multiScenVal getValueForCurrentOrDefaultScenario];
+	assert(fixedVal != nil);
+	assert(fixedVal.value != nil);
+	return [fixedVal.value doubleValue];
 }
 
 - (NSDate*)loanOrigDate
@@ -173,16 +183,18 @@
 						andDate:resolvedLoanOrigDate]/100.0;
 		assert(annualInterestRateAsOfLoanOrig >= 0.0);
 		
-#warning TODO - Need to reconcile to 2 methods below for calculating the monthly payment. Simply dividing by 12 seems to be the standard, but the first (commented out) one is for the APY
-		
+// TBD  Need to reconcile to 2 methods below for calculating the monthly payment.
+// Simply dividing by 12 seems to be the standard, the first (commented out) one is for the APY
+// and arguably more correct/precise.
 //		double monthlyInterestRateAsOfLoanOrig = [
 //			VariableRate annualRateToPerPeriodRate:annualInterestRateAsOfLoanOrig 
 //			andNumPeriods:12.0];
 			
 		double monthlyInterestRateAsOfLoanOrig = annualInterestRateAsOfLoanOrig / 12.0;
 		
-		double loanTermMonths = 180.0; // TODO - Need to replace this with a value from the loan input
-		
+		double loanTermMonths = [self resolveMultiScenFixedVal:loan.multiScenarioLoanDuration];
+		assert(loanTermMonths > 0.0);
+						
 		monthlyPayment = [VariableRate periodicPaymentForPrincipal:loanOrigAmount
 			andPeriodRate:monthlyInterestRateAsOfLoanOrig andNumPeriods:loanTermMonths];
 		assert(monthlyPayment >= 0.0);

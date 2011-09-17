@@ -196,6 +196,9 @@
 		00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */; };
 		00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */; };
 		00EC45901423C5B100D65D17 /* LoanPmtDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */; };
+		00EC45941423F55D00D65D17 /* DurationFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45931423F55D00D65D17 /* DurationFieldEditViewController.m */; };
+		00EC45971423FFD100D65D17 /* DurationFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45961423FFD000D65D17 /* DurationFieldEditInfo.m */; };
+		00EC459A1424397D00D65D17 /* DurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45991424397C00D65D17 /* DurationInfo.m */; };
 		00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */; };
 		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
 		00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D0140F06AD00FA73AA /* CoreData.framework */; };
@@ -588,6 +591,12 @@
 		00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceCltn.m; sourceTree = "<group>"; };
 		00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanPmtDigestEntry.h; sourceTree = "<group>"; };
 		00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanPmtDigestEntry.m; sourceTree = "<group>"; };
+		00EC45921423F55D00D65D17 /* DurationFieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationFieldEditViewController.h; sourceTree = "<group>"; };
+		00EC45931423F55D00D65D17 /* DurationFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationFieldEditViewController.m; sourceTree = "<group>"; };
+		00EC45951423FFD000D65D17 /* DurationFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationFieldEditInfo.h; sourceTree = "<group>"; };
+		00EC45961423FFD000D65D17 /* DurationFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationFieldEditInfo.m; sourceTree = "<group>"; };
+		00EC45981424397600D65D17 /* DurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationInfo.h; sourceTree = "<group>"; };
+		00EC45991424397C00D65D17 /* DurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInfo.m; sourceTree = "<group>"; };
 		00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceAdjustment.h; sourceTree = "<group>"; };
 		00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceAdjustment.m; sourceTree = "<group>"; };
 		00F217B8140F058600FA73AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -801,6 +810,7 @@
 				0010A57713CFC2070096A20F /* Bool Field */,
 				004A59AE13A07F70009FEF25 /* Number Field */,
 				004A59AC13A07EDB009FEF25 /* Date Field */,
+				00EC45911423F4B200D65D17 /* Duration Field */,
 			);
 			name = Fields;
 			sourceTree = "<group>";
@@ -1464,6 +1474,19 @@
 			name = Loan;
 			sourceTree = "<group>";
 		};
+		00EC45911423F4B200D65D17 /* Duration Field */ = {
+			isa = PBXGroup;
+			children = (
+				00EC45981424397600D65D17 /* DurationInfo.h */,
+				00EC45991424397C00D65D17 /* DurationInfo.m */,
+				00EC45921423F55D00D65D17 /* DurationFieldEditViewController.h */,
+				00EC45931423F55D00D65D17 /* DurationFieldEditViewController.m */,
+				00EC45951423FFD000D65D17 /* DurationFieldEditInfo.h */,
+				00EC45961423FFD000D65D17 /* DurationFieldEditInfo.m */,
+			);
+			name = "Duration Field";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1738,6 +1761,9 @@
 				00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */,
 				00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */,
 				00EC45901423C5B100D65D17 /* LoanPmtDigestEntry.m in Sources */,
+				00EC45941423F55D00D65D17 /* DurationFieldEditViewController.m in Sources */,
+				00EC45971423FFD100D65D17 /* DurationFieldEditInfo.m in Sources */,
+				00EC459A1424397D00D65D17 /* DurationInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

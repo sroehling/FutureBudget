@@ -23,6 +23,7 @@
 #import "SectionInfo.h"
 #import "FormInfo.h"
 #import "FormPopulator.h"
+#import "DurationFieldEditInfo.h"
 #import "SharedEntityVariableValueListMgr.h"
 #import "LocalizationHelper.h"
 #import "SimDateRuntimeInfo.h"
@@ -39,6 +40,7 @@
 #import "AccountContribAmountVariableValueListMgr.h"
 #import "LoanInputVariableValueListMgr.h"
 #import "CashFlowAmountVariableValueListMgr.h"
+#import "MultiScenarioFixedValueFieldInfo.h"
 #import "LoanInput.h"
 
 @implementation DetailInputViewCreator
@@ -371,6 +373,18 @@
 			andDefaultValue:loan.multiScenarioOrigDateFixed 
 			andVarDateRuntimeInfo:origDateInfo andShowEndDates:FALSE
 			andDefaultRelEndDate:nil]];
+
+
+	MultiScenarioFixedValueFieldInfo *loanDurationFieldInfo =
+		[[[MultiScenarioFixedValueFieldInfo alloc] 
+			initWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DURATION_LABEL") 
+			andFieldPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_DURATION_PLACEHOLDER") 
+			andScenario:currentScenario 
+		andInputVal:loan.multiScenarioLoanDuration] autorelease];
+	DurationFieldEditInfo *loanDurationFieldEditInfo = 
+		[[[DurationFieldEditInfo alloc] initWithFieldInfo:loanDurationFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:loanDurationFieldEditInfo];
+
 
 	
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:loan 
