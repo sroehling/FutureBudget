@@ -57,6 +57,17 @@
 "SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Interest rates which can change over time.";
 
 
+"SHARED_PERCENTAGE_VALUE_TITLE" = "Percent";
+"SHARED_PERCENTAGE_INLINE_VALUE_TITLE" = "percent";
+"SHARED_PERCENTAGE_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed percentage over time.";
+"SHARED_PERCENTAGE_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
+"SHARED_PERCENTAGE_VALUE_PROMPT" = "Enter a percent";
+"SHARED_PERCENTAGE_PERIOD" = "every year";
+"SHARED_PERCENTAGE_ACTION_VERB" = "accrue interest";
+"SHARED_PERCENTAGE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Percentage rates which can change over time.";
+
+
+
 "INPUT_NAV_CONTROLLER_BUTTON_TITLE" = "Inputs";
 
 "INPUT_CASHFLOW_TYPE_EXPENSE_INLINE" = "expense";
@@ -95,6 +106,7 @@
 
 "INPUT_LOAN_TITLE" = "Loan";
 "INPUT_LOAN_INLINE_TITLE" = "loan";
+"INPUT_LOAN_ENABLED_FIELD_LABEL" = "Enabled?";
 "INPUT_LOAN_INTEREST_SECTION_TITLE" = "Interest";
 "INPUT_LOAN_TAXABLE_INTEREST_LABEL" = "Taxable Interest?";
 "INPUT_LOAN_STARTING_BALANCE_LABEL" = "Starting Balance";
@@ -108,7 +120,7 @@
 "INPUT_LOAN_ORIG_DATE_DATE_SUBHEADER_FORMAT_NO_NAME" = "This %@ originates on this date.";
 "INPUT_LOAN_DOWN_PMT_SECTION_TITLE" = "Down Payment";
 "INPUT_LOAN_DOWN_PMT_ENABLED_LABEL" = "Make a Down Payment?";
-"INPUT_LOAN_DOWN_PMT_AMT_FIELD_LABEL" = "Down Payment Amount";
+"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL" = "Down Payment Percent";
 "INPUT_LOAN_INTEREST_RATE_FIELD_LABEL" = "Interest Rate";
 "INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL" = "Amount Borrowed";
 "INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL" = "Amount Borrowed Growth Rate";

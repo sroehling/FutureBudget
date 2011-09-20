@@ -103,6 +103,42 @@
 
 }
 
++ (VariableValueRuntimeInfo*)createForSharedPercentageRate:(Input*)theInput
+	andSharedValEntityName:(NSString*)entityName
+{
+	assert(entityName != nil);
+	assert([entityName length] > 0);
+	
+	SharedEntityVariableValueListMgr *sharedPercentageRateMgr = 
+		[[[SharedEntityVariableValueListMgr alloc] 
+		initWithEntity:entityName] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_PERCENTAGE_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_PERCENTAGE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_PERCENTAGE_INLINE_VALUE_TITLE")];
+
+	
+	VariableValueRuntimeInfo *percentageRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueTitle:@"SHARED_PERCENTAGE_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_PERCENTAGE_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_PERCENTAGE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_PERCENTAGE_PERIOD") 
+		andListMgr:sharedPercentageRateMgr
+		andSingleValueSubtitleKey:@"SHARED_PERCENTAGE_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"SHARED_PERCENTAGE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andValuePromptKey:@"SHARED_PERCENTAGE_VALUE_PROMPT"
+		andValueTypeInline:[theInput inlineInputType]
+		andValueTypeTitle:[theInput inputTypeTitle]
+		andValueName:theInput.name
+		andTableSubtitle:tableSubtitle] autorelease];
+		
+	return percentageRuntimeInfo;
+		
+}
+
 + (VariableValueRuntimeInfo*)createForSharedInterestRate:(Input*)theInput
 {
 	SharedEntityVariableValueListMgr *sharedInterestRatesMgr = 

@@ -7,30 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "SimEventCreator.h"
-
 #import "ValueAsOfCalculator.h"
 
 @class EventRepeater;
-@class VariableRateCalculator;
 @class InterestBearingWorkingBalance;
-@class LoanInput;
+@class LoanSimInfo;
 
 @interface LoanPaymentSimEventCreator : NSObject <SimEventCreator> {
     @private
-		InterestBearingWorkingBalance *loanBalance;
         EventRepeater *eventRepeater;
-		LoanInput *loan;
-		
+		LoanSimInfo *loanInfo;
 		double monthlyPayment;
 		
 }
 
 @property(nonatomic,retain) EventRepeater *eventRepeater;
-@property(nonatomic,retain) InterestBearingWorkingBalance *loanBalance;
-@property(nonatomic,retain) LoanInput *loan;
+@property(nonatomic,retain) LoanSimInfo *loanInfo;
 
-- (id)initWithLoan:(LoanInput*)theLoan;
+- (id)initWithLoanInfo:(LoanSimInfo*)theLoanInfo;
 
 @end

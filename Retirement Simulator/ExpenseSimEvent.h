@@ -9,16 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "SimEvent.h"
 
-@class ExpenseInput;
 
 @interface ExpenseSimEvent : SimEvent {
 	@private
 		double expenseAmount;
-		ExpenseInput *expense;
+		bool isTaxable;
     
 }
 
-@property(nonatomic,retain) ExpenseInput *expense;
 @property double expenseAmount;
+@property bool isTaxable;
+
+-(id)initWithEventCreator:(id<SimEventCreator>)eventCreator 
+	andEventDate:(NSDate *)theEventDate andAmount:(double)theAmount 
+	andIsTaxable:(bool)expenseIsTaxable;
+
 
 @end

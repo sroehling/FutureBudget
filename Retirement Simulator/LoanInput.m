@@ -19,7 +19,7 @@ NSString * const INPUT_LOAN_STARTING_BALANCE_KEY = @"startingBalance";
 NSString * const INPUT_LOAN_MULTI_SCEN_EXTRA_PMT_AMT_KEY = @"multiScenarioExtraPmtAmt";
 
 NSString * const LOAN_MULTI_SCEN_ORIG_DATE_KEY = @"multiScenarioOrigDate";
-NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_AMT_KEY = @"multiScenarioDownPmtAmt";
+NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY = @"multiScenarioDownPmtPercent";
 NSString * const INPUT_LOAN_MULTI_SCEN_LOAN_COST_AMT_KEY = @"multiScenarioLoanCostAmt";
 
 NSString * const LOAN_INTEREST_RATE_KEY = @"multiScenarioInterestRate";
@@ -32,6 +32,8 @@ NSString * const INPUT_LOAN_MULTI_SCEN_LOAN_COST_GROWTH_RATE_KEY = @"multiScenar
 
 @dynamic taxableInterest; // done
 @dynamic startingBalance; // done
+
+@dynamic multiScenarioLoanEnabled;
 
 @dynamic multiScenarioLoanCostAmt; // done
 @dynamic multiScenarioLoanCostAmtFixed; // done
@@ -47,8 +49,8 @@ NSString * const INPUT_LOAN_MULTI_SCEN_LOAN_COST_GROWTH_RATE_KEY = @"multiScenar
 @dynamic multiScenarioInterestRate; // done
 
 @dynamic multiScenarioDownPmtEnabled; // done
-@dynamic multiScenarioDownPmtAmt; // done
-@dynamic multiScenarioDownPmtAmtFixed; // done
+@dynamic multiScenarioDownPmtPercent; // done
+@dynamic multiScenarioDownPmtPercentFixed; // done
 
 @dynamic multiScenarioExtraPmtEnabled; // done
 @dynamic multiScenarioExtraPmtAmt; // done
@@ -57,7 +59,6 @@ NSString * const INPUT_LOAN_MULTI_SCEN_LOAN_COST_GROWTH_RATE_KEY = @"multiScenar
 @dynamic multiScenarioExtraPmtGrowthRate;
 @dynamic multiScenarioExtraPmtGrowthRateFixed;
 
-@dynamic variableDownPmtAmt;
 @dynamic variableExtraPmtAmt;
 @dynamic variableLoanCostAmt;
 
@@ -89,34 +90,6 @@ NSString * const INPUT_LOAN_MULTI_SCEN_LOAN_COST_GROWTH_RATE_KEY = @"multiScenar
     [self didChangeValueForKey:@"variableExtraPmtAmt" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
 
-
-- (void)addVariableDownPmtAmtObject:(VariableValue *)value {    
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"variableDownPmtAmt" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey:@"variableDownPmtAmt"] addObject:value];
-    [self didChangeValueForKey:@"variableDownPmtAmt" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-- (void)removeVariableDownPmtAmtObject:(VariableValue *)value {
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"variableDownPmtAmt" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey:@"variableDownPmtAmt"] removeObject:value];
-    [self didChangeValueForKey:@"variableDownPmtAmt" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-- (void)addVariableDownPmtAmt:(NSSet *)value {    
-    [self willChangeValueForKey:@"variableDownPmtAmt" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
-    [[self primitiveValueForKey:@"variableDownPmtAmt"] unionSet:value];
-    [self didChangeValueForKey:@"variableDownPmtAmt" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
-}
-
-- (void)removeVariableDownPmtAmt:(NSSet *)value {
-    [self willChangeValueForKey:@"variableDownPmtAmt" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
-    [[self primitiveValueForKey:@"variableDownPmtAmt"] minusSet:value];
-    [self didChangeValueForKey:@"variableDownPmtAmt" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
-}
 
 
 - (void)addVariableLoanCostAmtObject:(VariableValue *)value {    

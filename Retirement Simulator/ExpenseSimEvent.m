@@ -17,8 +17,28 @@
 
 @implementation ExpenseSimEvent
 
-@synthesize expense;
+//@synthesize expense;
 @synthesize expenseAmount;
+@synthesize isTaxable;
+
+-(id)initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate *)theEventDate 
+	andAmount:(double)theAmount andIsTaxable:(bool)expenseIsTaxable
+{
+	self = [super initWithEventCreator:eventCreator andEventDate:theEventDate];
+	if(self)
+	{
+		assert(theAmount >= 0.0);
+		self.expenseAmount = theAmount;
+		self.isTaxable = expenseIsTaxable;
+	}
+	return self;
+}
+
+-(id)init
+{	
+	assert(0); // must init with amount and taxable flat
+	return nil;
+}
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
@@ -26,13 +46,11 @@
 				stringFromNumber:[NSNumber numberWithDouble:self.expenseAmount]];
 	
     
-    NSLog(@"Doing expense event: %@ %@ %@",
-          expense.name,
+    NSLog(@"Doing expense event: %@ %@",
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		
-	bool doTaxExpense = [self.expense.taxDeductible boolValue]?FALSE:TRUE;
-	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithAmount:self.expenseAmount andIsAmountTaxable:doTaxExpense] autorelease];
+	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithAmount:self.expenseAmount andIsAmountTaxable:self.isTaxable] autorelease];
 		  
 	[digest.cashFlowSummations addExpense:expenseAdj onDate:self.eventDate];
 }
@@ -41,7 +59,6 @@
 - (void) dealloc
 {
 	[super dealloc];
-	[expense release];
 }
 
 @end

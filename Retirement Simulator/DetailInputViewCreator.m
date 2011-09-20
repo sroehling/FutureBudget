@@ -42,6 +42,7 @@
 #import "CashFlowAmountVariableValueListMgr.h"
 #import "MultiScenarioFixedValueFieldInfo.h"
 #import "LoanInput.h"
+#import "LoanDownPmtPercent.h"
 
 @implementation DetailInputViewCreator
 
@@ -339,6 +340,16 @@
 
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_COST_SECTION_TITLE");
+	
+	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
+		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
+			initWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL") 
+			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
+		andInputVal:loan.multiScenarioLoanEnabled] autorelease];
+	BoolFieldEditInfo *enabledFieldEditInfo = 
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+
 
 
 	LoanCostAmtVariableValueListMgr *variableAmountMgr = 
@@ -459,17 +470,15 @@
 		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enableDownPmtFieldInfo] autorelease];
 	[sectionInfo addFieldEditInfo:enableDownPmtFieldEditInfo];
 	
-	LoanDownPmtAmountVariableValueListMgr *downPmtVariableAmountMgr = 
-		[[[LoanDownPmtAmountVariableValueListMgr alloc] initWithLoan:loan] autorelease];
-	VariableValueRuntimeInfo *downPmtVarValRuntimeInfo = [VariableValueRuntimeInfo createForVariableAmount:loan 
-			andVariableValListMgr:downPmtVariableAmountMgr];
+	
+	VariableValueRuntimeInfo *downPmtVarValRuntimeInfo = [VariableValueRuntimeInfo createForSharedPercentageRate:loan andSharedValEntityName:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME];
     [sectionInfo addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
 	  createForScenario:currentScenario andObject:loan 
-		andKey:INPUT_LOAN_MULTI_SCEN_DOWN_PMT_AMT_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_AMT_FIELD_LABEL") 
+		andKey:INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY 
+	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") 
 	  andValRuntimeInfo:downPmtVarValRuntimeInfo
-	  andDefaultFixedVal:loan.multiScenarioDownPmtAmtFixed]];
+	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed]];
 		
 
 

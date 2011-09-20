@@ -11,7 +11,6 @@
 #import "VariableValue.h"
 #import "CollectionHelper.h"
 #import "LoanExtraPmtAmt.h"
-#import "LoanDownPmtAmt.h"
 #import "LoanCostAmt.h"
 
 
@@ -91,29 +90,6 @@
 -(void)objectFinshedBeingAdded:(NSManagedObject*)addedObject
 {
 	[self.loan addVariableExtraPmtAmtObject:(VariableValue*)addedObject];
-}
-
-@end
-
-
-
-
-@implementation LoanDownPmtAmountVariableValueListMgr
-
--(id)initWithLoan:(LoanInput*)theLoan
-{
-	self = [super initWithLoan:theLoan andVariableValEntityName:LOAN_DOWN_PMT_AMT_ENTITY_NAME];
-	return self;
-}
-
-- (NSArray*)variableValues
-{
-	return [CollectionHelper setToSortedArray:self.loan.variableDownPmtAmt withKey:@"name"];	
-}
-
--(void)objectFinshedBeingAdded:(NSManagedObject*)addedObject
-{
-	[self.loan addVariableDownPmtAmtObject:(VariableValue*)addedObject];
 }
 
 @end

@@ -27,4 +27,3 @@
 
 @interface LoanCostAmtVariableValueListMgr: LoanInputVariableValueListMgr { } @end
 @interface LoanExtraPmtAmountVariableValueListMgr: LoanInputVariableValueListMgr { } @end
-@interface LoanDownPmtAmountVariableValueListMgr: LoanInputVariableValueListMgr { } @end

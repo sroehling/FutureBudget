@@ -25,6 +25,7 @@
 #import "SavingsAccount.h"
 #import "BoolInputValue.h"
 #import "SavingsContributionSimEventCreator.h"
+#import "SimInputHelper.h"
 
 #import "EstimatedTaxAccrualSimEventCreator.h"
 #import "EstimatedTaxPaymentSimEventCreator.h"
@@ -32,6 +33,7 @@
 #import "SimEventList.h"
 #import "WorkingBalanceCltn.h"
 #import "MultiScenarioInputValue.h"
+#import "LoanSimInfo.h"
 
 @implementation SimEngine
 
@@ -60,20 +62,6 @@
 }
 
 
-- (bool)inputIsEnabled:(MultiScenarioInputValue*)enabledField
-{
-	assert(enabledField != nil);
-#warning TODO - Need to support a current scenario for simulation, rather than just the default scenario
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
-	assert(currentScenario != nil);
-	BoolInputValue *enabledVal = (BoolInputValue*)
-		[enabledField findInputValueForScenarioOrDefault:currentScenario];
-	assert(enabledVal != nil);
-	bool isEnabled = [enabledVal.isTrue boolValue];
-	return isEnabled;
-}
-
-
 - (void) populateEventCreators
 {
 	self.eventCreators =[[[NSMutableArray alloc] init] autorelease];
@@ -83,7 +71,7 @@
 	for(IncomeInput *income in inputs)
 	{
 		assert(income!=nil);
-		if([self inputIsEnabled:income.multiScenarioCashFlowEnabled])
+		if([SimInputHelper multiScenBoolVal:income.multiScenarioCashFlowEnabled])
 		{
 			[self.eventCreators addObject:
 				[[[IncomeSimEventCreator alloc]initWithIncome:income] autorelease]];
@@ -95,7 +83,7 @@
     for(ExpenseInput *expense in inputs)
     {    
 		assert(expense != nil);
-		if([self inputIsEnabled:expense.multiScenarioCashFlowEnabled])
+		if([SimInputHelper multiScenBoolVal:expense.multiScenarioCashFlowEnabled])
 		{
 			[self.eventCreators addObject:
 				[[[ExpenseSimEventCreator alloc]initWithExpense:expense] autorelease]];
@@ -108,7 +96,7 @@
 	{
 		InterestBearingWorkingBalance *savingsBal = 
 			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:savingsAcct] autorelease];
-		if([self inputIsEnabled:savingsAcct.multiScenarioContribEnabled])
+		if([SimInputHelper multiScenBoolVal:savingsAcct.multiScenarioContribEnabled])
 		{
 			SavingsContributionSimEventCreator *savingsEventCreator = 
 				[[[SavingsContributionSimEventCreator alloc]
@@ -123,14 +111,20 @@
 	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	for(LoanInput *loan in inputs)
 	{
-		bool loanEnabled = true;
-		// TODO - loanEnabled = [self inputIsEnabled:loan.multiScenarioLoanEnabled]
-		if(loanEnabled)
+		if([SimInputHelper multiScenBoolVal:loan.multiScenarioLoanEnabled])
 		{
+			LoanSimInfo *loanInfo = [[[LoanSimInfo alloc]initWithLoan:loan]autorelease];
+			
 			LoanPaymentSimEventCreator *loanPmtEventCreator = 
-				[[[LoanPaymentSimEventCreator alloc] initWithLoan:loan] autorelease];
+				[[[LoanPaymentSimEventCreator alloc] initWithLoanInfo:loanInfo] autorelease];
 			[self.eventCreators addObject:loanPmtEventCreator];
-			[self.workingBalanceMgr.loanBalances addBalance:loanPmtEventCreator.loanBalance];
+			
+			[self.workingBalanceMgr.loanBalances addBalance:loanInfo.loanBalance];
+			
+			if([SimInputHelper multiScenBoolVal:loan.multiScenarioDownPmtEnabled])
+			{
+				
+			}
 		}
 		
 	}

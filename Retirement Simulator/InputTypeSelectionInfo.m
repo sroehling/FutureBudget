@@ -242,6 +242,8 @@
 			
 	newInput.startingBalance = [NSNumber numberWithDouble:0.0];
 	
+	newInput.multiScenarioLoanEnabled = [self multiScenBoolValWithDefault:TRUE];
+	
 	// Loan Cost
 	
 	newInput.multiScenarioLoanCostAmtFixed = [self multiScenFixedValWithDefault:0.0];
@@ -270,9 +272,9 @@
 		
 	newInput.multiScenarioDownPmtEnabled = [self multiScenBoolValWithDefault:FALSE];
 	
-	newInput.multiScenarioDownPmtAmtFixed = [self multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioDownPmtAmt = [self multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioDownPmtAmtFixed];
+	newInput.multiScenarioDownPmtPercentFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioDownPmtPercent = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioDownPmtPercentFixed];
 
 
 	// Extra Payments 

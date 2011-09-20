@@ -18,10 +18,10 @@
 
 - (SimEvent*) createCashFlowSimEvent:(double)cashFlowAmount andEventDate:(NSDate*)theDate
 {
+	bool doTaxExpense = [self.expense.taxDeductible boolValue]?FALSE:TRUE;
+	
 	ExpenseSimEvent *expenseEvent = [[[ExpenseSimEvent alloc]initWithEventCreator:self 
-			andEventDate:theDate ] autorelease];
-	expenseEvent.expense = self.expense;
-	expenseEvent.expenseAmount = cashFlowAmount;
+			andEventDate:theDate andAmount:cashFlowAmount andIsTaxable:doTaxExpense] autorelease];
 
 	return expenseEvent;
 }
