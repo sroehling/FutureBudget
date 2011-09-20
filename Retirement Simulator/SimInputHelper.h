@@ -16,6 +16,10 @@
 
 + (double)multiScenValueAsOfDate:(MultiScenarioInputValue*)multiScenDateSensitiveVal
 	andDate:(NSDate*)resolveDate;
++ (double)multiScenVariableRateMultiplier:(MultiScenarioInputValue*)multiScenDateSensitiveVal
+	sinceStartDate:(NSDate*)startDate asOfDate:(NSDate*)asOfDate;
+	
+	
 + (NSDate*)multiScenFixedDate:(MultiScenarioInputValue*)multiScenDate;
 + (double)multiScenFixedVal:(MultiScenarioInputValue*)multiScenVal;
 + (bool)multiScenBoolVal:(MultiScenarioInputValue*)multiScenBool;

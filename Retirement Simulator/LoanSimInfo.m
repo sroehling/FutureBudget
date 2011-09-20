@@ -23,8 +23,9 @@
 
 @synthesize loan;
 @synthesize loanBalance;
+@synthesize extraPmtGrowthCalc;
 
-- (EventRepeater*)createLoanPmtRepeater
+- (EventRepeater*)createLoanEventRepeater
 {
 	// An event repeater is set up for monthly payments. It repeats indefinitely,
 	// because the principal reaching 0 is used to stop event repeating, not
@@ -42,7 +43,21 @@
                      initWithRepeatOffset:monthlyLoanPmtOffset andRepeatOnce:FALSE 
 					andStartDate:resolvedStartDate andEndDate:resolvedEndDate] autorelease];
 	return pmtRepeater;
+
 }
+
+
+- (EventRepeater*)createLoanPmtRepeater
+{
+	EventRepeater *pmtRepeater = [self createLoanEventRepeater];
+	assert(pmtRepeater != nil);
+	
+	// The first payment always happens one month after origination.
+	[pmtRepeater nextDate];
+
+	return pmtRepeater;	
+}
+
 
 - (NSDate*)calcInterestStartDate
 {
@@ -55,7 +70,7 @@
 	{
 		NSDate *simStartDate = [[SharedAppValues singleton] beginningOfSimStartDate];
 
-		EventRepeater *pmtRepeater = [self createLoanPmtRepeater];
+		EventRepeater *pmtRepeater = [self createLoanEventRepeater];
 		NSDate *paymentInterestStartDate = pmtRepeater.startDate;
 
 		// Loan exists as of the start date. Interest starts on the last
@@ -80,6 +95,63 @@
 
 }
 
+- (double)loanOrigAmount
+{
+	// Calculate the monthly payment, based upon the loan origination amount and interest rate.
+	assert(self.loan.multiScenarioLoanCostAmt != nil);
+	double origAmount = [SimInputHelper multiScenValueAsOfDate:self.loan.multiScenarioLoanCostAmt 
+			andDate:[self loanOrigDate]];
+			
+	if([self loanOriginatesAfterSimStart])
+	{
+		// If the loan originates in the future w.r.t the simulation start date, then
+		// the amount borrowed (i.e., "loan cost") is adjusted by the loan cost growth rate.
+		NSDate *simStartDate = [[SharedAppValues singleton] beginningOfSimStartDate];
+
+		double origAmountMultiplier = [SimInputHelper multiScenVariableRateMultiplier:self.loan.multiScenarioLoanCostGrowthRate sinceStartDate:simStartDate 
+			asOfDate:[self loanOrigDate]];
+		origAmount = origAmount * origAmountMultiplier;
+	}
+			
+	assert(origAmount >= 0.0);
+	return origAmount;
+}
+
+-(double)downPaymentPercent
+{
+	double downPmtPercent = [SimInputHelper 
+		multiScenValueAsOfDate:self.loan.multiScenarioDownPmtPercent 
+		andDate:[self loanOrigDate]];
+	assert(downPmtPercent >= 0.0);
+	assert(downPmtPercent <= 100.0);
+	return downPmtPercent/100.0;
+}
+
+-(double)downPaymentAmount
+{
+	if([SimInputHelper multiScenBoolVal:self.loan.multiScenarioDownPmtEnabled])
+	{
+		double downPmtPercent = [self downPaymentPercent];
+		double totalLoanOrig = [self loanOrigAmount];
+		double downPmtAmount = downPmtPercent * totalLoanOrig;
+		return downPmtAmount;
+	}
+	else
+	{
+		return 0.0;
+	}
+}
+
+
+- (double)startingBalanceAfterDownPayment
+{
+	double loanOrig = [self loanOrigAmount];
+	double downPmtAmount = [self downPaymentAmount];
+	double startingBal = loanOrig - downPmtAmount;
+	assert(startingBal >= 0.0);
+	return startingBal;
+}
+
 
 -(id)initWithLoan:(LoanInput*)theLoan
 {
@@ -90,7 +162,7 @@
 		self.loan = theLoan;
 		
 		
-				// The working balance is setup with a "starting date for interest" (interestStartDate). This
+		// The working balance is setup with a "starting date for interest" (interestStartDate). This
 		// date is either the loan origination date, or the last payment date before the start of simulation
 		NSDate *interestStartDate;
 		double startingLoanBalance = 0.0;
@@ -102,7 +174,7 @@
 			// on the loan should be ignored. This is because the loan will start after the simulation
 			// start date, with a balance that is equal to the total amount borrowed.			
 			interestStartDate = [self loanOrigDate];
-			startingLoanBalance = [self loanOrigAmount];
+			startingLoanBalance = [self startingBalanceAfterDownPayment];
 		}
 		else
 		{
@@ -118,15 +190,19 @@
 		assert(startingLoanBalance >= 0.0);
 		
 		// Setup the working balance for the loan principal.
+// TBD - should the start date be interest start date or simulation start
 		VariableRateCalculator *interestRateCalc = [DateSensitiveValueVariableRateCalculatorCreator 
 			createVariableRateCalc:self.loan.multiScenarioInterestRate 
 			andStartDate:interestStartDate];				
 		self.loanBalance = [[[InterestBearingWorkingBalance alloc] 
 			initWithStartingBalance:startingLoanBalance andInterestRateCalc:interestRateCalc 
 			andWorkingBalanceName:self.loan.name andTaxWithdrawals:FALSE 
-			andTaxInterest:[self interestIsTaxable]] autorelease];		
-
-		
+			andTaxInterest:[self interestIsTaxable]] autorelease];
+			
+		NSDate *simStartDate = [[SharedAppValues singleton] beginningOfSimStartDate];				
+		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator
+			createVariableRateCalc:loan.multiScenarioExtraPmtGrowthRate
+			andStartDate:simStartDate];					
 		
 	}
 	return self;
@@ -156,15 +232,7 @@
 
 }
 
-- (double)loanOrigAmount
-{
-	// Calculate the monthly payment, based upon the loan origination amount and interest rate.
-	assert(self.loan.multiScenarioLoanCostAmt != nil);
-	double origAmount = [SimInputHelper multiScenValueAsOfDate:self.loan.multiScenarioLoanCostAmt 
-			andDate:[self loanOrigDate]];
-	assert(origAmount >= 0.0);
-	return origAmount;
-}
+
 
 -(double)loanTermMonths
 {
@@ -191,9 +259,9 @@
 	double monthlyInterestRateAsOfLoanOrig = annualInterestRateAsOfLoanOrig / 12.0;
 
 
-	double origAmount = [self loanOrigAmount];
+	double startingBal = [self startingBalanceAfterDownPayment];
 	
-	double payment = [VariableRate periodicPaymentForPrincipal:origAmount
+	double payment = [VariableRate periodicPaymentForPrincipal:startingBal
 			andPeriodRate:monthlyInterestRateAsOfLoanOrig andNumPeriods:[self loanTermMonths]];
 	assert(payment >= 0.0);
 	
@@ -201,30 +269,20 @@
 }
 
 
--(double)downPaymentPercent
-{
-	double downPmtPercent = [SimInputHelper 
-		multiScenValueAsOfDate:self.loan.multiScenarioDownPmtPercent 
-		andDate:[self loanOrigDate]];
-	assert(downPmtPercent >= 0.0);
-	assert(downPmtPercent <= 100.0);
-	return downPmtPercent/100.0;
+- (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate
+{	
+
+	double extraPmtAsOfDate = 
+		[SimInputHelper multiScenValueAsOfDate:self.loan.multiScenarioExtraPmtAmt andDate:pmtDate];
+	
+	double extraPmtGrowthSinceSimStart = [self.extraPmtGrowthCalc valueMultiplierForDate:pmtDate];
+	
+	extraPmtAsOfDate = extraPmtAsOfDate * extraPmtGrowthSinceSimStart;
+		
+	return extraPmtAsOfDate;
 }
 
--(double)downPaymentAmount
-{
-	if([SimInputHelper multiScenBoolVal:self.loan.multiScenarioDownPmtEnabled])
-	{
-		double downPmtPercent = [self downPaymentPercent];
-		double totalLoanOrig = [self loanOrigAmount];
-		double downPmtAmount = downPmtPercent * totalLoanOrig;
-		return downPmtAmount;
-	}
-	else
-	{
-		return 0.0;
-	}
-}
+
 
 -(bool)interestIsTaxable;
 {
@@ -243,6 +301,7 @@
 	[super dealloc];
 	[loan release];
 	[loanBalance release];
+	[extraPmtGrowthCalc release];
 }
 
 @end

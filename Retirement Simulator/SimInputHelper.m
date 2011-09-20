@@ -13,6 +13,9 @@
 #import "SimDate.h"
 #import "BoolInputValue.h"
 #import "FixedValue.h"
+#import "DateHelper.h"
+#import "VariableRateCalculator.h"
+#import "DateSensitiveValueVariableRateCalculatorCreator.h"
 
 @implementation SimInputHelper
 
@@ -23,6 +26,21 @@
 	id<ValueAsOfCalculator> amtCalc = [ValueAsOfCalculatorCreator createValueAsOfCalc:multiScenDateSensitiveVal];
 	double valAsOfDate = [amtCalc valueAsOfDate:resolveDate];
 	return valAsOfDate;
+
+}
+
++ (double)multiScenVariableRateMultiplier:(MultiScenarioInputValue*)multiScenDateSensitiveVal
+	sinceStartDate:(NSDate*)startDate asOfDate:(NSDate*)asOfDate
+{
+	assert(asOfDate != nil);
+	assert(startDate != nil);
+	assert([DateHelper dateIsEqualOrLater:asOfDate otherDate:startDate]);
+	assert(multiScenDateSensitiveVal != nil);
+
+	VariableRateCalculator *rateCalc = [DateSensitiveValueVariableRateCalculatorCreator
+		createVariableRateCalc:multiScenDateSensitiveVal
+		andStartDate:startDate];
+	return [rateCalc valueMultiplierForDate:asOfDate];
 
 }
 

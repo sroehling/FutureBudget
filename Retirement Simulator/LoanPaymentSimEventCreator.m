@@ -49,8 +49,6 @@
 - (void)resetSimEventCreation
 {
     self.eventRepeater = [self.loanInfo createLoanPmtRepeater];
-	// The first payment always happens one month after origination.
-	[self.eventRepeater nextDate];
 	
 	monthlyPayment = [self.loanInfo monthlyPayment];
 	assert(monthlyPayment >= 0.0);

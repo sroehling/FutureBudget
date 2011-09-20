@@ -11,11 +11,13 @@
 @class LoanInput;
 @class InterestBearingWorkingBalance;
 @class EventRepeater;
+@class VariableRateCalculator;
 
 @interface LoanSimInfo : NSObject {
     @private
 		LoanInput *loan;
 		InterestBearingWorkingBalance *loanBalance;
+		VariableRateCalculator *extraPmtGrowthCalc;
 }
 
 -(id)initWithLoan:(LoanInput*)theLoan;
@@ -24,6 +26,7 @@
 
 @property(nonatomic,retain) LoanInput *loan;
 @property(nonatomic,retain) InterestBearingWorkingBalance *loanBalance;
+@property(nonatomic,retain) VariableRateCalculator *extraPmtGrowthCalc;
 
 -(double)downPaymentAmount;
 -(NSDate*)loanOrigDate;
@@ -32,5 +35,6 @@
 
 - (EventRepeater*)createLoanPmtRepeater;
 - (double)monthlyPayment;
+- (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate;
 
 @end
