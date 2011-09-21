@@ -15,6 +15,7 @@
 @synthesize persistentStoreCoord;
 @synthesize managedObjContext;
 
+
 - (id) init
 {
 	self = [super init];
@@ -35,6 +36,13 @@
 	return [NSEntityDescription insertNewObjectForEntityForName:entityName 
 					inManagedObjectContext:self.managedObjContext];
 }
+
+
+- (id)createDataModelObject:(NSString*)entityName
+{
+	return [self createObj:entityName];
+}
+
 
 - (void) dealloc
 {

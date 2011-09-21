@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DataModelInterface.h"
 
-@interface InMemoryCoreData : NSObject {
+@interface InMemoryCoreData : NSObject <DataModelInterface> {
     @private
 	   NSManagedObjectModel *managedObjModel;
 	   NSPersistentStoreCoordinator *persistentStoreCoord;

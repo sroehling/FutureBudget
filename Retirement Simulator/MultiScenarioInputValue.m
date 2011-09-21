@@ -21,6 +21,8 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 @implementation MultiScenarioInputValue
 @dynamic scenarioVals;
 
+@synthesize dataModelInterface;
+
 
 - (void)addScenarioValsObject:(ScenarioValue *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
@@ -50,6 +52,25 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
     [self didChangeValueForKey:@"scenarioVals" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
 
+-(id)init
+{
+	self = [super init];
+	if(self)
+	{
+		self.dataModelInterface = [DataModelController theDataModelController];
+	}
+	return self;
+}
+
+- (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+	self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
+	if(self)
+	{
+		self.dataModelInterface = [DataModelController theDataModelController];
+	}
+	return self;
+}
 
 
 -(bool)sameCoreDataObjects:(NSManagedObject*)obj1 comparedTo:(NSManagedObject*)obj2
@@ -126,14 +147,21 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	}
 }
 
+- (InputValue*)getValueForScenarioOrDefault:(Scenario*)theScenario
+{
+	assert(theScenario != nil);
+	InputValue *inputVal = [self findInputValueForScenarioOrDefault:theScenario];
+	assert(inputVal != nil);
+	return inputVal;
+}
+
 -(InputValue*)getValueForCurrentOrDefaultScenario
 {
 #warning TODO - This returns the value for the current *input* scenario ... need to handle differently when calculating results
 	Scenario *currentScenario = [SharedAppValues singleton].currentInputScenario;
 	assert(currentScenario != nil);
-	InputValue *inputVal = [self findInputValueForScenarioOrDefault:currentScenario];
-	assert(inputVal != nil);
-	return inputVal;
+	
+	return [self getValueForScenarioOrDefault:currentScenario];
 }
 
 -(void)setValueForScenario:(Scenario*)scenario andInputValue:(InputValue*)inputValue
@@ -146,8 +174,10 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	{
 		// If we get here, it means there isn't an existing value for the given scenario. 
 		// We must a new ScenarioValue and assign it the scenario and inputValue.
-		ScenarioValue *scenarioVal = (ScenarioValue*)[[DataModelController theDataModelController] 
-													  insertObject:SCENARIO_VALUE_ENTITY_NAME];
+		
+		assert(self.dataModelInterface != nil);
+		
+		ScenarioValue *scenarioVal = (ScenarioValue*)[self.dataModelInterface createDataModelObject:SCENARIO_VALUE_ENTITY_NAME];
 		scenarioVal.scenario = scenario;
 		scenarioVal.inputValue = inputValue;
 		[self addScenarioValsObject:scenarioVal];		
@@ -167,6 +197,11 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	[self setValueForScenario:defaultScen andInputValue:inputValue];
 }
 
+-(void)dealloc
+{
+	[super dealloc];
+	[dataModelInterface release];
+}
 
 
 

@@ -20,17 +20,18 @@
 @implementation SimInputHelper
 
 + (double)multiScenValueAsOfDate:(MultiScenarioInputValue*)multiScenDateSensitiveVal
-	andDate:(NSDate*)resolveDate
+	andDate:(NSDate*)resolveDate andScenario:(Scenario*)theScenario
 {
 	assert(resolveDate != nil);
-	id<ValueAsOfCalculator> amtCalc = [ValueAsOfCalculatorCreator createValueAsOfCalc:multiScenDateSensitiveVal];
+	id<ValueAsOfCalculator> amtCalc = [ValueAsOfCalculatorCreator createValueAsOfCalc:multiScenDateSensitiveVal
+		andScenario:theScenario];
 	double valAsOfDate = [amtCalc valueAsOfDate:resolveDate];
 	return valAsOfDate;
 
 }
 
 + (double)multiScenVariableRateMultiplier:(MultiScenarioInputValue*)multiScenDateSensitiveVal
-	sinceStartDate:(NSDate*)startDate asOfDate:(NSDate*)asOfDate
+	sinceStartDate:(NSDate*)startDate asOfDate:(NSDate*)asOfDate andScenario:(Scenario*)theScenario
 {
 	assert(asOfDate != nil);
 	assert(startDate != nil);
@@ -39,34 +40,34 @@
 
 	VariableRateCalculator *rateCalc = [DateSensitiveValueVariableRateCalculatorCreator
 		createVariableRateCalc:multiScenDateSensitiveVal
-		andStartDate:startDate];
+		andStartDate:startDate andScenario:theScenario];
 	return [rateCalc valueMultiplierForDate:asOfDate];
 
 }
 
 
-+ (NSDate*)multiScenFixedDate:(MultiScenarioInputValue*)multiScenDate
++ (NSDate*)multiScenFixedDate:(MultiScenarioInputValue*)multiScenDate andScenario:(Scenario*)theScenario
 {
 	assert(multiScenDate != nil);
-	SimDate *simDate = (SimDate*)[multiScenDate getValueForCurrentOrDefaultScenario];
+	SimDate *simDate = (SimDate*)[multiScenDate getValueForScenarioOrDefault:theScenario];
 	assert(simDate != nil);
 	assert(simDate.date != nil);
 	return simDate.date;
 }
 
-+ (double)multiScenFixedVal:(MultiScenarioInputValue*)multiScenVal
++ (double)multiScenFixedVal:(MultiScenarioInputValue*)multiScenVal andScenario:(Scenario*)theScenario
 {
 	assert(multiScenVal != nil);
-	FixedValue *fixedVal = (FixedValue*)[multiScenVal getValueForCurrentOrDefaultScenario];
+	FixedValue *fixedVal = (FixedValue*)[multiScenVal getValueForScenarioOrDefault:theScenario];
 	assert(fixedVal != nil);
 	assert(fixedVal.value != nil);
 	return [fixedVal.value doubleValue];
 }
 
-+ (bool)multiScenBoolVal:(MultiScenarioInputValue*)multiScenBool
++ (bool)multiScenBoolVal:(MultiScenarioInputValue*)multiScenBool andScenario:(Scenario*)theScenario
 {
 	assert(multiScenBool != nil);
-	BoolInputValue *boolVal = (BoolInputValue*)[multiScenBool getValueForCurrentOrDefaultScenario];
+	BoolInputValue *boolVal = (BoolInputValue*)[multiScenBool getValueForScenarioOrDefault:theScenario];
 	assert(boolVal != nil);
 	assert(boolVal.isTrue != nil);
 	bool theVal = [boolVal.isTrue boolValue];

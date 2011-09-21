@@ -11,13 +11,17 @@
 
 extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 
+@protocol DataModelInterface;
+
 @class ScenarioValue;
 @class Scenario;
 @class InputValue;
 
 @interface MultiScenarioInputValue : NSManagedObject {
-@private
+	@private
+		id<DataModelInterface> dataModelInterface;
 }
+
 @property (nonatomic, retain) NSSet* scenarioVals;
 
 -(void)setValueForScenario:(Scenario*)scenario andInputValue:(InputValue*)inputValue;
@@ -26,5 +30,8 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 -(InputValue*)getValueForCurrentOrDefaultScenario;
 -(InputValue*)getDefaultValue;
 - (InputValue*)findInputValueForScenario:(Scenario*)scenario;
+- (InputValue*)getValueForScenarioOrDefault:(Scenario*)theScenario;
+
+@property(nonatomic,retain) id<DataModelInterface> dataModelInterface;
 
 @end

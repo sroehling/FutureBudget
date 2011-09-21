@@ -41,12 +41,13 @@
 
 
 + (id<ValueAsOfCalculator>)createValueAsOfCalc:(MultiScenarioInputValue*)multiScenDateSensitiveVal
+	andScenario:(Scenario*)theScenario
 {
 	assert(multiScenDateSensitiveVal != nil);
 	ValueAsOfCalculatorCreator *valAsOfCalcCreator = 
 			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];
 	DateSensitiveValue *dateSensitiveVal = (DateSensitiveValue*)[
-			multiScenDateSensitiveVal getValueForCurrentOrDefaultScenario];
+			multiScenDateSensitiveVal getValueForScenarioOrDefault:theScenario];
 	assert(dateSensitiveVal != nil);
 	id<ValueAsOfCalculator> valCalc = [valAsOfCalcCreator 
 			createForDateSensitiveValue:dateSensitiveVal];

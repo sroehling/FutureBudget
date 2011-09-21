@@ -13,6 +13,7 @@
 @class VariableRateCalculator;
 @class DateSensitiveValue;
 @class MultiScenarioInputValue;
+@class Scenario;
 
 @interface DateSensitiveValueVariableRateCalculatorCreator : NSObject <DateSensitiveValueVisitor> {
     @private
@@ -24,7 +25,7 @@
 										  andStartDate:(NSDate*)theStartDate;
 										  
 +(VariableRateCalculator*)createVariableRateCalc:(MultiScenarioInputValue*)multiScenDateSensitiveVal
-	andStartDate:(NSDate*)calcStartDate;
+	andStartDate:(NSDate*)calcStartDate  andScenario:(Scenario*)theScenario;
 
 @property(nonatomic,retain) NSMutableSet *varRates;
 @property(nonatomic,retain) NSDate *startDate;

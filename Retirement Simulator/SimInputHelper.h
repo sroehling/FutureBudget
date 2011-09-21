@@ -10,18 +10,23 @@
 
 @class MultiScenarioInputValue;
 
+@class Scenario;
+
 @interface SimInputHelper : NSObject {
     
 }
 
 + (double)multiScenValueAsOfDate:(MultiScenarioInputValue*)multiScenDateSensitiveVal
-	andDate:(NSDate*)resolveDate;
+	andDate:(NSDate*)resolveDate andScenario:(Scenario*)theScenario;
+	
 + (double)multiScenVariableRateMultiplier:(MultiScenarioInputValue*)multiScenDateSensitiveVal
-	sinceStartDate:(NSDate*)startDate asOfDate:(NSDate*)asOfDate;
+	sinceStartDate:(NSDate*)startDate asOfDate:(NSDate*)asOfDate andScenario:(Scenario*)theScenario;
 	
 	
-+ (NSDate*)multiScenFixedDate:(MultiScenarioInputValue*)multiScenDate;
-+ (double)multiScenFixedVal:(MultiScenarioInputValue*)multiScenVal;
-+ (bool)multiScenBoolVal:(MultiScenarioInputValue*)multiScenBool;
++ (NSDate*)multiScenFixedDate:(MultiScenarioInputValue*)multiScenDate andScenario:(Scenario*)theScenario;
+
++ (double)multiScenFixedVal:(MultiScenarioInputValue*)multiScenVal andScenario:(Scenario*)theScenario;
+
++ (bool)multiScenBoolVal:(MultiScenarioInputValue*)multiScenBool andScenario:(Scenario*)theScenario;
 
 @end

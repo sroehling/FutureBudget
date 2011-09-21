@@ -11,6 +11,7 @@
 @class FiscalYearDigest;
 @class WorkingBalanceMgr;
 @class SimEventList;
+@class SimParams;
 
 
 @interface SimEngine : NSObject {
@@ -28,6 +29,8 @@
     FiscalYearDigest *digest;
     NSMutableArray *eventCreators;
 	
+	SimParams *simParams;
+	
 	WorkingBalanceMgr *workingBalanceMgr;
     
 }
@@ -39,6 +42,7 @@
 @property(nonatomic,retain) FiscalYearDigest *digest;
 @property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
 @property(nonatomic,retain) SimEventList *eventList;
+@property(nonatomic,retain) SimParams *simParams;
 
 
 @end

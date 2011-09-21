@@ -11,6 +11,8 @@
 
 #import "InputValue.h"
 
+@protocol DataModelInterface;
+
 extern NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME;
 
 typedef enum
@@ -36,6 +38,8 @@ typedef enum
 - (BOOL)eventRepeatsMoreThanOnce;
 - (NSString*)inlineDescription;
 
++ (EventRepeatFrequency*)createInDataModel:(id<DataModelInterface>)dataModel 
+	andPeriod:(EventPeriod)thePeriod andMultiplier:(int)theMultiplier;
 + (EventRepeatFrequency *)createWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier;
 
 @end

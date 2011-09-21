@@ -111,6 +111,8 @@
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
 		0086C08B1428FCE400148785 /* ExtraPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08A1428FCE400148785 /* ExtraPaymentSimEventCreator.m */; };
+		0086C08E14294B4200148785 /* TestLoanInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08D14294B4200148785 /* TestLoanInput.m */; };
+		0086C092142956D500148785 /* SimParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C091142956D500148785 /* SimParams.m */; };
 		0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */; };
 		0087923313A9517000CA9DA7 /* CashFlowAmount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923213A9516E00CA9DA7 /* CashFlowAmount.m */; };
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
@@ -440,6 +442,11 @@
 		0086C0871427D5E300148785 /* LoanSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanSimInfo.m; sourceTree = "<group>"; };
 		0086C0891428FCE400148785 /* ExtraPaymentSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraPaymentSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08A1428FCE400148785 /* ExtraPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraPaymentSimEventCreator.m; sourceTree = "<group>"; };
+		0086C08C14294B4200148785 /* TestLoanInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLoanInput.h; sourceTree = "<group>"; };
+		0086C08D14294B4200148785 /* TestLoanInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLoanInput.m; sourceTree = "<group>"; };
+		0086C090142956D500148785 /* SimParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimParams.h; sourceTree = "<group>"; };
+		0086C091142956D500148785 /* SimParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimParams.m; sourceTree = "<group>"; };
+		0086C094142A3F6400148785 /* DataModelInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelInterface.h; sourceTree = "<group>"; };
 		0087922C13A8F4B400CA9DA7 /* ValueSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueSubtitleTableCell.h; sourceTree = "<group>"; };
 		0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueSubtitleTableCell.m; sourceTree = "<group>"; };
 		0087923113A9516D00CA9DA7 /* CashFlowAmount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowAmount.h; sourceTree = "<group>"; };
@@ -973,6 +980,7 @@
 		004A59A713A02F67009FEF25 /* Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				0086C08F142956AF00148785 /* Setup */,
 				00BC35BF140C5ADF00D79F78 /* Sim Events */,
 				0025776113B292F600D15232 /* Variable Rate Calculator */,
 				0025776213B2932200D15232 /* Variable Value Calculator */,
@@ -1177,9 +1185,8 @@
 		004F5D7613731A4F00E0C4A3 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				0086C093142A3E9200148785 /* Data Model Controller */,
 				00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */,
-				004F5D0C136F52D200E0C4A3 /* DataModelController.h */,
-				004F5D0D136F52D200E0C4A3 /* DataModelController.m */,
 				0036DE2113BE1AF90043F3A5 /* Input Values */,
 				00DC16C313BE10F9006CBACA /* Scenario */,
 				004A59A813A02FA0009FEF25 /* Inputs */,
@@ -1237,6 +1244,25 @@
 				00EC458214214B4700D65D17 /* Cash Flow */,
 			);
 			name = "Simulator Inputs";
+			sourceTree = "<group>";
+		};
+		0086C08F142956AF00148785 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				0086C090142956D500148785 /* SimParams.h */,
+				0086C091142956D500148785 /* SimParams.m */,
+			);
+			name = Setup;
+			sourceTree = "<group>";
+		};
+		0086C093142A3E9200148785 /* Data Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				004F5D0C136F52D200E0C4A3 /* DataModelController.h */,
+				004F5D0D136F52D200E0C4A3 /* DataModelController.m */,
+				0086C094142A3F6400148785 /* DataModelInterface.h */,
+			);
+			name = "Data Model Controller";
 			sourceTree = "<group>";
 		};
 		0087923013A9497400CA9DA7 /* Input Detail */ = {
@@ -1387,6 +1413,8 @@
 				00BC35CA140DA3B600D79F78 /* EventListTest.m */,
 				00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */,
 				00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */,
+				0086C08C14294B4200148785 /* TestLoanInput.h */,
+				0086C08D14294B4200148785 /* TestLoanInput.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -1788,6 +1816,7 @@
 				0086C08514279B7D00148785 /* SimInputHelper.m in Sources */,
 				0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */,
 				0086C08B1428FCE400148785 /* ExtraPaymentSimEventCreator.m in Sources */,
+				0086C092142956D500148785 /* SimParams.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1809,6 +1838,7 @@
 				00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */,
 				00BC35CB140DA3B600D79F78 /* EventListTest.m in Sources */,
 				00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */,
+				0086C08E14294B4200148785 /* TestLoanInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

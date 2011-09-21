@@ -245,6 +245,11 @@
             inManagedObjectContext:self.managedObjectContext];
 }
 
+- (id)createDataModelObject:(NSString *)entityName
+{
+	return [self insertObject:entityName];
+}
+
 - (void)deleteObject:(NSManagedObject*)theObj
 {
     assert(theObj != nil);

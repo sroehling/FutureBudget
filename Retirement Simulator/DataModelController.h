@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DataModelInterface.h"
+
 @class SharedAppValues;
 
-@interface DataModelController : NSObject {
+@interface DataModelController : NSObject <DataModelInterface> {
 }
 
 +(DataModelController*)theDataModelController; // singleton

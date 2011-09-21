@@ -29,8 +29,10 @@
 
 #import "EstimatedTaxAccrualSimEventCreator.h"
 #import "EstimatedTaxPaymentSimEventCreator.h"
+#import "SimParams.h"
 #import "LoanPaymentSimEventCreator.h"
 #import "SimEventList.h"
+#import "DefaultScenario.h"
 #import "WorkingBalanceCltn.h"
 #import "MultiScenarioInputValue.h"
 #import "DownPaymentSimEventCreator.h"
@@ -44,6 +46,7 @@
 @synthesize digest;
 @synthesize workingBalanceMgr;
 @synthesize eventList;
+@synthesize simParams;
 
 
 -(id)init {    
@@ -60,6 +63,7 @@
 	[workingBalanceMgr release];
 	[simEndDate release];   
     [eventList release];
+	[simParams release];
 	[digest release];
 }
 
@@ -73,7 +77,8 @@
 	for(IncomeInput *income in inputs)
 	{
 		assert(income!=nil);
-		if([SimInputHelper multiScenBoolVal:income.multiScenarioCashFlowEnabled])
+		if([SimInputHelper multiScenBoolVal:income.multiScenarioCashFlowEnabled 
+				andScenario:simParams.simScenario])
 		{
 			[self.eventCreators addObject:
 				[[[IncomeSimEventCreator alloc]initWithIncome:income] autorelease]];
@@ -85,7 +90,8 @@
     for(ExpenseInput *expense in inputs)
     {    
 		assert(expense != nil);
-		if([SimInputHelper multiScenBoolVal:expense.multiScenarioCashFlowEnabled])
+		if([SimInputHelper multiScenBoolVal:expense.multiScenarioCashFlowEnabled
+				andScenario:simParams.simScenario])
 		{
 			[self.eventCreators addObject:
 				[[[ExpenseSimEventCreator alloc]initWithExpense:expense] autorelease]];
@@ -98,7 +104,8 @@
 	{
 		InterestBearingWorkingBalance *savingsBal = 
 			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:savingsAcct] autorelease];
-		if([SimInputHelper multiScenBoolVal:savingsAcct.multiScenarioContribEnabled])
+		if([SimInputHelper multiScenBoolVal:savingsAcct.multiScenarioContribEnabled
+				andScenario:simParams.simScenario])
 		{
 			SavingsContributionSimEventCreator *savingsEventCreator = 
 				[[[SavingsContributionSimEventCreator alloc]
@@ -113,22 +120,27 @@
 	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	for(LoanInput *loan in inputs)
 	{
-		if([SimInputHelper multiScenBoolVal:loan.multiScenarioLoanEnabled])
+		if([SimInputHelper multiScenBoolVal:loan.multiScenarioLoanEnabled
+				andScenario:simParams.simScenario])
 		{
-			LoanSimInfo *loanInfo = [[[LoanSimInfo alloc]initWithLoan:loan]autorelease];
+		
+			LoanSimInfo *loanInfo = [[[LoanSimInfo alloc]initWithLoan:loan 
+				andSimParams:self.simParams]autorelease];
 			
 			LoanPaymentSimEventCreator *loanPmtEventCreator = 
 				[[[LoanPaymentSimEventCreator alloc] initWithLoanInfo:loanInfo] autorelease];
 			[self.eventCreators addObject:loanPmtEventCreator];
 			
-			if([SimInputHelper multiScenBoolVal:loan.multiScenarioDownPmtEnabled])
+			if([SimInputHelper multiScenBoolVal:loan.multiScenarioDownPmtEnabled
+					andScenario:simParams.simScenario])
 			{
 				DownPaymentSimEventCreator *downPmtCreator = [[[DownPaymentSimEventCreator alloc]
 					initWithLoanInfo:loanInfo] autorelease];
 				[self.eventCreators addObject:downPmtCreator];
 			}
 			
-			if([SimInputHelper multiScenBoolVal:loan.multiScenarioExtraPmtEnabled])
+			if([SimInputHelper multiScenBoolVal:loan.multiScenarioExtraPmtEnabled
+				andScenario:simParams.simScenario])
 			{
 				ExtraPaymentSimEventCreator *extraPmtCreator = [[[ExtraPaymentSimEventCreator alloc]
 					initWithLoanInfo:loanInfo] autorelease];
@@ -164,7 +176,13 @@
     // Reset the event list
 	self.eventList = [[[SimEventList alloc] init] autorelease];
 	
-    NSDate *simStartDate = [DateHelper beginningOfDay:[SharedAppValues singleton].simStartDate];
+	NSDate *simStartDate = [[SharedAppValues singleton] beginningOfSimStartDate];
+	self.simParams = [[[SimParams alloc] 
+			initWithStartDate:simStartDate 
+			andScenario:[SharedAppValues singleton].defaultScenario] autorelease];
+
+	
+	
 	NSLog(@"Simulation Start: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:simStartDate]);
 	NSDate *digestStartDate = [DateHelper beginningOfYear:simStartDate];
 	self.simEndDate = [[SharedAppValues singleton].simEndDate endDateWithStartDate:simStartDate];

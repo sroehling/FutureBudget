@@ -115,12 +115,12 @@
 }
 
 +(VariableRateCalculator*)createVariableRateCalc:(MultiScenarioInputValue*)multiScenDateSensitiveVal
-	andStartDate:(NSDate*)calcStartDate
+	andStartDate:(NSDate*)calcStartDate andScenario:(Scenario*)theScenario
 {
 	DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 	DateSensitiveValue *dateSensitiveVal = (DateSensitiveValue*)[
-				multiScenDateSensitiveVal getValueForCurrentOrDefaultScenario];
+				multiScenDateSensitiveVal getValueForScenarioOrDefault:theScenario];
 	assert(dateSensitiveVal != nil);
 	VariableRateCalculator *rateCalc = [calcCreator 
 							createForDateSensitiveValue:dateSensitiveVal 

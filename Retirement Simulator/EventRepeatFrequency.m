@@ -123,17 +123,23 @@ NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
     }
 }
 
-+ (EventRepeatFrequency *)createWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
++ (EventRepeatFrequency*)createInDataModel:(id<DataModelInterface>)dataModel 
+	andPeriod:(EventPeriod)thePeriod andMultiplier:(int)theMultiplier
 {
-     
-	EventRepeatFrequency *repeatFrequency  = (EventRepeatFrequency*)[[DataModelController theDataModelController] insertObject:EVENT_REPEAT_FREQUENCY_ENTITY_NAME];
+	EventRepeatFrequency *repeatFrequency  = [dataModel createDataModelObject:EVENT_REPEAT_FREQUENCY_ENTITY_NAME];
  								  
-								  
     repeatFrequency.period = [NSNumber numberWithInt:thePeriod];
     [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
     repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
     NSLog(@"New default repeat frequency: %@",repeatFrequency.description);
 	return repeatFrequency;
+
+}
+
++ (EventRepeatFrequency *)createWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
+{
+     
+	return [EventRepeatFrequency createInDataModel:[DataModelController theDataModelController] andPeriod:thePeriod andMultiplier:theMultiplier];
 }
 
 
