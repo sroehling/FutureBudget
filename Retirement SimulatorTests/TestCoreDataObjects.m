@@ -104,6 +104,17 @@
 	return msInputVal;
 }
 
+- (MultiScenarioInputValue*)multiScenFixedDate:(NSString*)defaultDate
+{
+	MultiScenarioInputValue *msFixedEndDate = [self createTestMultiScenInputVal];
+    FixedDate *fixedEndDate = (FixedDate*)[self.coreData createObj:FIXED_DATE_ENTITY_NAME];
+    fixedEndDate.date = [DateHelper dateFromStr:defaultDate];
+	[msFixedEndDate setValueForScenario:self.testScenario andInputValue:fixedEndDate];
+	return msFixedEndDate;
+
+}
+
+
 - (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday
 {
 	MultiScenarioInputValue *msFixedEndDate = [self createTestMultiScenInputVal];
@@ -113,6 +124,7 @@
 	return msFixedEndDate;
 
 }
+
 
 - (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal
 {

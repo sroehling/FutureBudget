@@ -24,6 +24,17 @@
 
 @synthesize varRates;
 @synthesize startDate;
+@synthesize useLoanAnnualRates;
+
+- (id) init
+{
+	self = [super init];
+	if(self)
+	{	
+		self.useLoanAnnualRates = false;
+	}
+	return self;
+}
 
 - (VariableRateCalculator*)createForDateSensitiveValue:(DateSensitiveValue*)dsVal 
 	andStartDate:(NSDate*)theStartDate;
@@ -42,9 +53,32 @@
 	return rateCalc;
 }
 
+- (double)adjustedAnnualRate:(NSNumber*)annualRateInput
+{
+	assert(annualRateInput != nil);
+	double unadjustedAnnualRate = [annualRateInput doubleValue]/100.0;
+
+	if(self.useLoanAnnualRates)
+	{
+		// The conventional way (at least what is seen in on-line loan calculators
+		// and Excel) to calculate the interest rate for a loan is to divide the 
+		// annual rate by 12, then take that as the actual interest over the period.
+		// However, this value, when compounded annually, is slightly more than the 
+		// given as an input for the yearly rate.
+//		return unadjustedAnnualRate;
+		double monthlyRate = unadjustedAnnualRate / 12.0;
+		double adjustedRate = pow(1.0+monthlyRate, 12.0)-1.0;
+		return adjustedRate;
+	}
+	else
+	{
+		return unadjustedAnnualRate;
+	}
+}
+
 - (void)visitFixedValue:(FixedValue*)fixedVal
 {
-	double annualRate = [fixedVal.value doubleValue]/100.0;
+	double annualRate = [self adjustedAnnualRate:fixedVal.value];
 	[self.varRates addObject:[[[VariableRate alloc] 
 		initWithAnnualRate:annualRate andDaysSinceStart:0]autorelease]];
 }
@@ -53,7 +87,7 @@
 
 - (void)visitVariableValue:(VariableValue*)variableVal
 {
-	double annualRate = [variableVal.startingValue doubleValue]/100.0;
+	double annualRate = [self adjustedAnnualRate:variableVal.startingValue];
 	
 	NSMutableSet *intermediateRates = [[[NSMutableSet alloc] init] autorelease];
 	
@@ -62,7 +96,7 @@
 	for(DateSensitiveValueChange *valChange in variableVal.valueChanges)
 	{
 		NSTimeInterval secondsVsStart = [valChange.startDate.date timeIntervalSinceDate:self.startDate];
-		annualRate = [valChange.newValue doubleValue]/100.0;
+		annualRate = [self adjustedAnnualRate:valChange.newValue];
 		[intermediateRates addObject:[[[IntermediateVariableRate alloc]
 			initWithAnnualRate:annualRate andSecondsVsStart:secondsVsStart] autorelease]];		
 	}
@@ -115,10 +149,13 @@
 }
 
 +(VariableRateCalculator*)createVariableRateCalc:(MultiScenarioInputValue*)multiScenDateSensitiveVal
-	andStartDate:(NSDate*)calcStartDate andScenario:(Scenario*)theScenario
+	andStartDate:(NSDate*)calcStartDate  andScenario:(Scenario*)theScenario 
+		andUseLoanAnnualRates:(bool)useLoanRates
 {
 	DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
+	calcCreator.useLoanAnnualRates = useLoanRates;
+	
 	DateSensitiveValue *dateSensitiveVal = (DateSensitiveValue*)[
 				multiScenDateSensitiveVal getValueForScenarioOrDefault:theScenario];
 	assert(dateSensitiveVal != nil);

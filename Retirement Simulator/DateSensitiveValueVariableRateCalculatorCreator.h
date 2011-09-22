@@ -19,15 +19,18 @@
     @private
 		NSMutableSet *varRates;
 		NSDate *startDate;
+		bool useLoanAnnualRates;
 }
 
 - (VariableRateCalculator*)createForDateSensitiveValue:(DateSensitiveValue*)dsVal 
 										  andStartDate:(NSDate*)theStartDate;
 										  
 +(VariableRateCalculator*)createVariableRateCalc:(MultiScenarioInputValue*)multiScenDateSensitiveVal
-	andStartDate:(NSDate*)calcStartDate  andScenario:(Scenario*)theScenario;
+	andStartDate:(NSDate*)calcStartDate  andScenario:(Scenario*)theScenario 
+		andUseLoanAnnualRates:(bool)useLoanRates;
 
 @property(nonatomic,retain) NSMutableSet *varRates;
 @property(nonatomic,retain) NSDate *startDate;
+@property bool useLoanAnnualRates;
 
 @end

@@ -40,7 +40,7 @@
 
 	VariableRateCalculator *rateCalc = [DateSensitiveValueVariableRateCalculatorCreator
 		createVariableRateCalc:multiScenDateSensitiveVal
-		andStartDate:startDate andScenario:theScenario];
+		andStartDate:startDate andScenario:theScenario andUseLoanAnnualRates:false];
 	return [rateCalc valueMultiplierForDate:asOfDate];
 
 }

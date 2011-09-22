@@ -194,7 +194,8 @@
 // TBD - should the start date be interest start date or simulation start
 		VariableRateCalculator *interestRateCalc = [DateSensitiveValueVariableRateCalculatorCreator 
 			createVariableRateCalc:self.loan.multiScenarioInterestRate 
-			andStartDate:interestStartDate andScenario:simParams.simScenario];				
+			andStartDate:interestStartDate andScenario:simParams.simScenario 
+			andUseLoanAnnualRates:true];				
 		self.loanBalance = [[[InterestBearingWorkingBalance alloc] 
 			initWithStartingBalance:startingLoanBalance andInterestRateCalc:interestRateCalc 
 			andWorkingBalanceName:self.loan.name andTaxWithdrawals:FALSE 
@@ -202,7 +203,8 @@
 			
 		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator
 			createVariableRateCalc:loan.multiScenarioExtraPmtGrowthRate
-			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario];					
+			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario
+			andUseLoanAnnualRates:false];					
 		
 	}
 	return self;

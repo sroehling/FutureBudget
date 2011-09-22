@@ -29,6 +29,7 @@
 - (MultiScenarioInputValue*)multiScenFixedValWithDefault:(double)defaultVal;
 - (MultiScenarioInputValue*)multiScenInputValueWithDefaultFixedVal:(MultiScenarioInputValue*)fixedVal;
 - (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday;
+- (MultiScenarioInputValue*)multiScenFixedDate:(NSString*)defaultDate;
 - (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal;
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyOnce;
 - (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault;
