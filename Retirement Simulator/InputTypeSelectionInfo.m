@@ -21,6 +21,7 @@
 #import "RelativeEndDate.h"
 #import "BoolInputValue.h"
 #import "LoanInput.h"
+#import "AssetInput.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -102,6 +103,14 @@
 	return msFixedRelEndDate;
 }
 
+- (MultiScenarioInputValue*)multiScenNeverEndDate
+{
+	MultiScenarioInputValue *msNeverEndDate = 
+		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msNeverEndDate setDefaultValue:[SharedAppValues singleton].sharedNeverEndDate];
+	return msNeverEndDate;
+}
+
 
 -(void)populateCashFlowInputProperties:(CashFlowInput*)newInput
 {
@@ -123,10 +132,7 @@
 	
     newInput.multiScenarioFixedRelEndDate = [self multiScenRelEndDateWithImmediateDefault];
 
-	MultiScenarioInputValue *msEndDate = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msEndDate setDefaultValue:[SharedAppValues singleton].sharedNeverEndDate];
-	newInput.multiScenarioEndDate = msEndDate;
+	newInput.multiScenarioEndDate = [self multiScenNeverEndDate];
     	
 	newInput.multiScenarioEventRepeatFrequency = [self multiScenarioRepeatFrequencyOnce];
     
@@ -233,6 +239,7 @@
 
 @end
 
+
 @implementation LoanInputTypeSelctionInfo
 
 - (Input*)createInput
@@ -293,6 +300,40 @@
 	
 	[[DataModelController theDataModelController] saveContext];
 		
+	return newInput;
+}
+
+@end
+
+
+@implementation AssetInputTypeSelectionInfo
+
+- (Input*)createInput
+{
+	AssetInput *newInput  = (AssetInput*)[[DataModelController theDataModelController]
+			insertObject:ASSET_INPUT_ENTITY_NAME];
+	
+	newInput.multiScenarioAssetEnabled = [self multiScenBoolValWithDefault:TRUE];
+	
+	
+	newInput.multiScenarioCostFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioCost = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioCostFixed];
+
+	newInput.multiScenarioApprecRateFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioApprecRate = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioApprecRateFixed];
+
+    newInput.multiScenarioPurchaseDateFixed = [self multiScenFixedDateWithDefaultToday];
+	// Note newInput.multiScenarioPurchaseDate is left uninitialized so user can fill in
+    newInput.multiScenarioSaleDateFixed = [self multiScenFixedDateWithDefaultToday];
+	newInput.multiScenarioSaleDateRelativeFixed = [self multiScenRelEndDateWithImmediateDefault];
+	newInput.multiScenarioSaleDate = [self multiScenNeverEndDate];
+		
+	newInput.startingValue = [NSNumber numberWithDouble:0.0];
+	
+	newInput.multiScenarioSaleProceedsTaxable = [self multiScenBoolValWithDefault:TRUE];
+
 	return newInput;
 }
 

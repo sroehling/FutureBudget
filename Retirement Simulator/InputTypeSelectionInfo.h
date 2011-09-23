@@ -33,3 +33,5 @@
 @interface SavingsAccountTypeSelectionInfo : InputTypeSelectionInfo {} @end
 
 @interface LoanInputTypeSelctionInfo : InputTypeSelectionInfo {} @end
+
+@interface AssetInputTypeSelectionInfo : InputTypeSelectionInfo {} @end

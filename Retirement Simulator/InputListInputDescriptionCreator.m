@@ -20,10 +20,12 @@
 #import "LoanInput.h"
 #import "MultiScenarioInputValue.h"
 #import "LocalizationHelper.h"
+#import "AssetInput.h"
 #import "NumberHelper.h"
 #import "CashFlowAmountVariableValueListMgr.h"
 #import "SavingsAccount.h"
 #import "LoanInputVariableValueListMgr.h"
+#import "AssetCostVariableValueListMgr.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -119,6 +121,22 @@
 
 }
 
+
+- (void)visitAsset:(AssetInput*)asset
+{
+	AssetCostVariableValueListMgr *variableAmountMgr = 
+		[[[AssetCostVariableValueListMgr alloc] initWithAsset:asset] autorelease];
+	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
+		createForVariableAmount:asset 
+		andVariableValListMgr:variableAmountMgr];
+	DateSensitiveValue *amount = (DateSensitiveValue*)
+			[asset.multiScenarioCost getValueForCurrentOrDefaultScenario];
+	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
+
+	self.generatedDesc = [NSString 
+		stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_INPUT_LIST_FORMAT"),
+			amountDisplay];
+}
 
 - (NSString*)descripionForInput:(Input*)theInput
 {

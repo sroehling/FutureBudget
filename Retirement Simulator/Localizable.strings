@@ -18,6 +18,7 @@
 "INPUT_LIST_SECTION_TITLE_INCOMES" = "Incomes";
 "INPUT_LIST_SECTION_TITLE_ACCOUNTS" = "Accounts";
 "INPUT_LIST_SECTION_TITLE_LOANS" = "Loans";
+"INPUT_LIST_SECTION_TITLE_ASSETS" = "Assets";
 
 
 "INPUT_EXPENSE_VIEW_TITLE" = "Expense";
@@ -128,6 +129,28 @@
 "INPUT_LOAN_INPUT_LIST_FORMAT" = "Loan of %@, %@";
 "INPUT_LOAN_DURATION_LABEL" = "Duration";
 "INPUT_LOAN_DURATION_PLACEHOLDER" = "Enter a duration";
+
+
+"INPUT_ASSET_TITLE" = "Asset";
+"INPUT_ASSET_VALUE_SECTION_TITLE" = "Value";
+"INPUT_ASSET_ENABLED_FIELD_LABEL" = "Enabled?";
+"INPUT_ASSET_COST_FIELD_LABEL" = "Cost";
+"INPUT_ASSET_STARTING_VALUE_LABEL" = "Starting (Current) Value";
+"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER" = "Enter a value";
+"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL" = "Appreciation/Depreciation Rate";
+"INPUT_ASSET_PROCEEDS_TAXABLE_FIELD_LABEL" = "Sale Proceeds Taxable?";
+"INPUT_ASSET_SALE_DATE_FIELD_LABEL" = "Sale Date";
+"INPUT_ASSET_SALE_DATE_TITLE" =  "Sale Date";
+"INPUT_ASSET_SALE_DATE_SUBHEADER_FORMAT" = "This is the date a sale of %@ %@ is expected to occur";
+"INPUT_ASSET_SALE_DATE_SUBHEADER_FORMAT_NO_NAME" = "The %@ is expected to be sold on this date";
+"INPUT_ASSET_INLINE_INPUT_TYPE" = "asset";
+"INPUT_ASSET_PURCHASE_DATE_FIELD_LABEL" = "Purchase Date";
+"INPUT_ASSET_PURCHASE_DATE_TITLE" = "Purchase Date";
+"INPUT_ASSET_PURCHASE_DATE_SUBHEADER_FORMAT" = "Date the %@ %@ was (or is expected to be) purchased";
+"INPUT_ASSET_PURCHASE_DATE_SUBHEADER_FORMAT_NO_NAME" = "This is the date the %@ was (or is expected to be) purchased";
+"INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE" = "Purchase and Sale";
+"INPUT_ASSET_INPUT_LIST_FORMAT" = "Asset purchased for %@";
+
 
 "INPUT_EXPENSE_TAXES_SECTION_TITLE" = "Taxes";
 "INPUT_EXPENSE_TAXES_SECTION_SUBTITLE" = "Specify whether this expense is tax deductible";

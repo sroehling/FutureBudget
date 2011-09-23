@@ -43,6 +43,8 @@
 #import "MultiScenarioFixedValueFieldInfo.h"
 #import "LoanInput.h"
 #import "LoanDownPmtPercent.h"
+#import "AssetInput.h"
+#import "AssetCostVariableValueListMgr.h"
 
 @implementation DetailInputViewCreator
 
@@ -480,6 +482,98 @@
 	  andValRuntimeInfo:downPmtVarValRuntimeInfo
 	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed]];
 		
+
+
+
+}
+
+- (void)visitAsset:(AssetInput*)asset
+{
+    formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ASSET_TITLE");
+	[self populateInputNameField:asset];
+	
+	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
+
+	SectionInfo *sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE");
+	
+	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
+		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
+			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL") 
+			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
+		andInputVal:asset.multiScenarioAssetEnabled] autorelease];
+	BoolFieldEditInfo *enabledFieldEditInfo = 
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+	
+	AssetCostVariableValueListMgr *variableValueMgr = 
+		[[[AssetCostVariableValueListMgr alloc] initWithAsset:asset] autorelease];
+	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
+		createForVariableAmount:asset
+		andVariableValListMgr:variableValueMgr];
+	[sectionInfo addFieldEditInfo:
+	 [DateSensitiveValueFieldEditInfo 
+	  createForScenario:currentScenario andObject:asset 
+		andKey:INPUT_ASSET_MULTI_SCEN_COST_KEY 
+	  andLabel:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL") 
+	  andValRuntimeInfo:varValRuntimeInfo
+	  andDefaultFixedVal:asset.multiScenarioCostFixed]];
+
+	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:asset 
+             andKey:INPUT_ASSET_STARTING_VALUE_KEY 
+			 andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL")
+			 andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")
+			 andNumberFormatter:[NumberHelper theHelper].currencyFormatter]];
+
+	[sectionInfo addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+         createForScenario:currentScenario andObject:asset 
+			andKey:INPUT_ASSET_MULTI_SCEN_APPREC_RATE_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL") 
+		 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:asset] 
+		 andDefaultFixedVal:asset.multiScenarioApprecRateFixed]];
+ 
+ 
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE");
+ 
+ 
+ 	SimDateRuntimeInfo *purchaseDateInfo = 
+		[SimDateRuntimeInfo createForInput:asset 
+			andFieldTitleKey:@"INPUT_ASSET_PURCHASE_DATE_TITLE" 
+			andSubHeaderFormatKey:@"INPUT_ASSET_PURCHASE_DATE_SUBHEADER_FORMAT" 
+			andSubHeaderFormatKeyNoName:@"INPUT_ASSET_PURCHASE_DATE_SUBHEADER_FORMAT_NO_NAME"];
+    [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
+			andObject:asset andKey:ASSET_INPUT_MULTI_SCEN_PURCHASE_DATE_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_FIELD_LABEL") 
+			andDefaultValue:asset.multiScenarioPurchaseDateFixed 
+			andVarDateRuntimeInfo:purchaseDateInfo andShowEndDates:FALSE
+			andDefaultRelEndDate:nil]];
+
+ 
+ 
+	SimDateRuntimeInfo *saleDateInfo = 
+			[SimDateRuntimeInfo createForInput:asset 
+				andFieldTitleKey:@"INPUT_ASSET_SALE_DATE_TITLE" 
+				andSubHeaderFormatKey:@"INPUT_ASSET_SALE_DATE_SUBHEADER_FORMAT" 
+			andSubHeaderFormatKeyNoName:@"INPUT_ASSET_SALE_DATE_SUBHEADER_FORMAT_NO_NAME"];
+	[sectionInfo addFieldEditInfo:[SimDateFieldEditInfo 
+		createForMultiScenarioVal:currentScenario 
+			andObject:asset andKey:ASSET_MULTI_SCEN_SALE_DATE_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_FIELD_LABEL") 
+			andDefaultValue:asset.multiScenarioSaleDateFixed 
+			andVarDateRuntimeInfo:saleDateInfo andShowEndDates:TRUE
+			andDefaultRelEndDate:asset.multiScenarioSaleDateRelativeFixed]];
+
+ 
+ 	MultiScenarioBoolInputValueFieldInfo *taxableFieldInfo =
+		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
+			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_PROCEEDS_TAXABLE_FIELD_LABEL") 
+			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
+		andInputVal:asset.multiScenarioSaleProceedsTaxable] autorelease];
+	BoolFieldEditInfo *taxableFieldEditInfo = 
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:taxableFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:taxableFieldEditInfo];
 
 
 }

@@ -50,6 +50,11 @@
 	typeInfo.description = LOCALIZED_STR(@"INPUT_LOAN_TITLE");
 	[self.inputTypes addObject:typeInfo];
     
+	typeInfo = [[[AssetInputTypeSelectionInfo alloc] init] autorelease];
+	typeInfo.description = LOCALIZED_STR(@"INPUT_ASSET_TITLE");
+	[self.inputTypes addObject:typeInfo];
+
+	
     typeSelected = FALSE;
 
 

@@ -14,6 +14,7 @@
 @class SavingsAccount;
 @class Account;
 @class LoanInput;
+@class AssetInput;
 
 @protocol InputVisitor <NSObject>
 
@@ -23,5 +24,6 @@
 - (void)visitAccount:(Account*)account;
 - (void)visitSavingsAccount:(SavingsAccount*)savingsAcct;
 - (void)visitLoan:(LoanInput*)loan;
+- (void)visitAsset:(AssetInput*)asset;
 
 @end
