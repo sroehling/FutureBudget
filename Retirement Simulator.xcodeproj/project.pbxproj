@@ -116,6 +116,13 @@
 		0086C09C142B968D00148785 /* AssetInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C09B142B968D00148785 /* AssetInput.m */; };
 		0086C0A0142BBED000148785 /* AssetCostVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C09F142BBED000148785 /* AssetCostVariableValueListMgr.m */; };
 		0086C0A4142BC12A00148785 /* AssetValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0A3142BC12A00148785 /* AssetValue.m */; };
+		0086C0A8142D0C0B00148785 /* AssetPurchaseSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0A7142D0C0B00148785 /* AssetPurchaseSimEventCreator.m */; };
+		0086C0AB142D0DC100148785 /* AssetSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0AA142D0DC100148785 /* AssetSimEventCreator.m */; };
+		0086C0AE142D0FB100148785 /* AssetSaleSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0AD142D0FB100148785 /* AssetSaleSimEventCreator.m */; };
+		0086C0B1142D20CA00148785 /* AssetSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B0142D20C800148785 /* AssetSimEvent.m */; };
+		0086C0B4142D229100148785 /* AssetPurchaseSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B3142D228E00148785 /* AssetPurchaseSimEvent.m */; };
+		0086C0B7142D22B100148785 /* AssetSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B6142D22AB00148785 /* AssetSimInfo.m */; };
+		0086C0BA142D310800148785 /* AssetSaleSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B9142D310400148785 /* AssetSaleSimEvent.m */; };
 		0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */; };
 		0087923313A9517000CA9DA7 /* CashFlowAmount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923213A9516E00CA9DA7 /* CashFlowAmount.m */; };
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
@@ -209,6 +216,7 @@
 		00EC45971423FFD100D65D17 /* DurationFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45961423FFD000D65D17 /* DurationFieldEditInfo.m */; };
 		00EC459A1424397D00D65D17 /* DurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45991424397C00D65D17 /* DurationInfo.m */; };
 		00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */; };
+		00F06921142E2D8200D0E1FB /* AssetDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */; };
 		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
 		00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D0140F06AD00FA73AA /* CoreData.framework */; };
 		00F217D3140F073300FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D2140F073300FA73AA /* CoreData.framework */; };
@@ -456,6 +464,20 @@
 		0086C09F142BBED000148785 /* AssetCostVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetCostVariableValueListMgr.m; sourceTree = "<group>"; };
 		0086C0A2142BC12A00148785 /* AssetValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetValue.h; sourceTree = "<group>"; };
 		0086C0A3142BC12A00148785 /* AssetValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetValue.m; sourceTree = "<group>"; };
+		0086C0A6142D0C0B00148785 /* AssetPurchaseSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetPurchaseSimEventCreator.h; sourceTree = "<group>"; };
+		0086C0A7142D0C0B00148785 /* AssetPurchaseSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetPurchaseSimEventCreator.m; sourceTree = "<group>"; };
+		0086C0A9142D0DC000148785 /* AssetSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSimEventCreator.h; sourceTree = "<group>"; };
+		0086C0AA142D0DC100148785 /* AssetSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSimEventCreator.m; sourceTree = "<group>"; };
+		0086C0AC142D0FB000148785 /* AssetSaleSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSaleSimEventCreator.h; sourceTree = "<group>"; };
+		0086C0AD142D0FB100148785 /* AssetSaleSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSaleSimEventCreator.m; sourceTree = "<group>"; };
+		0086C0AF142D20C600148785 /* AssetSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSimEvent.h; sourceTree = "<group>"; };
+		0086C0B0142D20C800148785 /* AssetSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSimEvent.m; sourceTree = "<group>"; };
+		0086C0B2142D228C00148785 /* AssetPurchaseSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetPurchaseSimEvent.h; sourceTree = "<group>"; };
+		0086C0B3142D228E00148785 /* AssetPurchaseSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetPurchaseSimEvent.m; sourceTree = "<group>"; };
+		0086C0B5142D22A900148785 /* AssetSimInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSimInfo.h; sourceTree = "<group>"; };
+		0086C0B6142D22AB00148785 /* AssetSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSimInfo.m; sourceTree = "<group>"; };
+		0086C0B8142D310100148785 /* AssetSaleSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSaleSimEvent.h; sourceTree = "<group>"; };
+		0086C0B9142D310400148785 /* AssetSaleSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSaleSimEvent.m; sourceTree = "<group>"; };
 		0087922C13A8F4B400CA9DA7 /* ValueSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueSubtitleTableCell.h; sourceTree = "<group>"; };
 		0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueSubtitleTableCell.m; sourceTree = "<group>"; };
 		0087923113A9516D00CA9DA7 /* CashFlowAmount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowAmount.h; sourceTree = "<group>"; };
@@ -627,6 +649,8 @@
 		00EC45991424397C00D65D17 /* DurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInfo.m; sourceTree = "<group>"; };
 		00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceAdjustment.h; sourceTree = "<group>"; };
 		00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceAdjustment.m; sourceTree = "<group>"; };
+		00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AssetDigestEntry.h; sourceTree = "<group>"; };
+		00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetDigestEntry.m; sourceTree = "<group>"; };
 		00F217B8140F058600FA73AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00F217D0140F06AD00FA73AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		00F217D2140F073300FA73AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1106,6 +1130,8 @@
 		004CB03613FC491E000E87A9 /* Digest */ = {
 			isa = PBXGroup;
 			children = (
+				00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */,
+				00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */,
 				00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */,
 				00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */,
 				004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */,
@@ -1231,6 +1257,7 @@
 			children = (
 				0086C08314279B7D00148785 /* SimInputHelper.h */,
 				0086C08414279B7D00148785 /* SimInputHelper.m */,
+				0086C0A5142D0B9300148785 /* Asset */,
 				00EC458414214B9C00D65D17 /* Loan */,
 				00EC458314214B6300D65D17 /* Savings Contributions */,
 				00EC458214214B4700D65D17 /* Cash Flow */,
@@ -1308,6 +1335,27 @@
 				0086C09B142B968D00148785 /* AssetInput.m */,
 				0086C0A2142BC12A00148785 /* AssetValue.h */,
 				0086C0A3142BC12A00148785 /* AssetValue.m */,
+			);
+			name = Asset;
+			sourceTree = "<group>";
+		};
+		0086C0A5142D0B9300148785 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				0086C0B5142D22A900148785 /* AssetSimInfo.h */,
+				0086C0B6142D22AB00148785 /* AssetSimInfo.m */,
+				0086C0AF142D20C600148785 /* AssetSimEvent.h */,
+				0086C0B0142D20C800148785 /* AssetSimEvent.m */,
+				0086C0B8142D310100148785 /* AssetSaleSimEvent.h */,
+				0086C0B9142D310400148785 /* AssetSaleSimEvent.m */,
+				0086C0B2142D228C00148785 /* AssetPurchaseSimEvent.h */,
+				0086C0B3142D228E00148785 /* AssetPurchaseSimEvent.m */,
+				0086C0A9142D0DC000148785 /* AssetSimEventCreator.h */,
+				0086C0AA142D0DC100148785 /* AssetSimEventCreator.m */,
+				0086C0A6142D0C0B00148785 /* AssetPurchaseSimEventCreator.h */,
+				0086C0A7142D0C0B00148785 /* AssetPurchaseSimEventCreator.m */,
+				0086C0AC142D0FB000148785 /* AssetSaleSimEventCreator.h */,
+				0086C0AD142D0FB100148785 /* AssetSaleSimEventCreator.m */,
 			);
 			name = Asset;
 			sourceTree = "<group>";
@@ -1867,6 +1915,14 @@
 				0086C09C142B968D00148785 /* AssetInput.m in Sources */,
 				0086C0A0142BBED000148785 /* AssetCostVariableValueListMgr.m in Sources */,
 				0086C0A4142BC12A00148785 /* AssetValue.m in Sources */,
+				0086C0A8142D0C0B00148785 /* AssetPurchaseSimEventCreator.m in Sources */,
+				0086C0AB142D0DC100148785 /* AssetSimEventCreator.m in Sources */,
+				0086C0AE142D0FB100148785 /* AssetSaleSimEventCreator.m in Sources */,
+				0086C0B1142D20CA00148785 /* AssetSimEvent.m in Sources */,
+				0086C0B4142D229100148785 /* AssetPurchaseSimEvent.m in Sources */,
+				0086C0B7142D22B100148785 /* AssetSimInfo.m in Sources */,
+				0086C0BA142D310800148785 /* AssetSaleSimEvent.m in Sources */,
+				00F06921142E2D8200D0E1FB /* AssetDigestEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

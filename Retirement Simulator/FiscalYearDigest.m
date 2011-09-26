@@ -22,6 +22,8 @@
 #import "WorkingBalanceAdjustment.h"
 #import "FlatIncomeTaxRateCalculator.h"
 #import "LoanPmtDigestEntry.h"
+#import "AssetSimInfo.h"
+#import "AssetDigestEntry.h"
 
 @implementation FiscalYearDigest
 
@@ -87,7 +89,8 @@
 
 }
 
-- (void)processWithdrawal:(EndOfYearDigestResult*)eoyResults andAmount:(double)withdrawAmount 
+- (void)withdrawFundingForExpense:
+	(EndOfYearDigestResult*)eoyResults andAmount:(double)withdrawAmount 
 	andDate:(NSDate*)withdrawDate andTaxRate:(double)taxRate
 {
 	WorkingBalanceAdjustment *withdrawAdj = 
@@ -151,7 +154,7 @@
 		}
 		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
 		{			
-			[self processWithdrawal:endOfYearResults 
+			[self withdrawFundingForExpense:endOfYearResults 
 				andAmount:[currDayCashFlowSummation.sumExpenses totalAmount] 
 				andDate:currentDate andTaxRate:incomeTaxRate];
 		}
@@ -199,6 +202,28 @@
 				}
 			}
 		} // If there are savings contributions on this day
+		if([currDayCashFlowSummation.assetPurchases count] > 0)
+		{
+			for(AssetDigestEntry *assetPurchase in currDayCashFlowSummation.assetPurchases)
+			{
+				assert(assetPurchase != nil);
+				double purchaseCost = [assetPurchase.assetInfo purchaseCost];
+				[self withdrawFundingForExpense:endOfYearResults andAmount:purchaseCost andDate:currentDate andTaxRate:incomeTaxRate];
+				[assetPurchase.assetInfo.assetValue 
+					incrementBalance:purchaseCost asOfDate:currentDate];
+			}
+		}
+		if([currDayCashFlowSummation.assetSales count] > 0)
+		{
+			for(AssetDigestEntry *assetSale in currDayCashFlowSummation.assetSales)
+			{
+				assert(assetSale != nil);
+				double saleValue = 
+					[assetSale.assetInfo.assetValue zeroOutBalanceAsOfDate:currentDate];
+				[self.workingBalanceMgr incrementCashBalance:saleValue asOfDate:currentDate];
+				// TODO - Handle taxes for change in value since purchase
+			}
+		} // If there are asset sales on this date.
 		if([currDayCashFlowSummation isEndDateForEstimatedTaxes])
 		{
 			// Advance all balances and accrue interest to the current date. This is needed so that
@@ -212,7 +237,7 @@
 		{
 			double taxPaymentAmount = [self.workingBalanceMgr 
 					decrementNextEstimatedTaxPaymentAsOfDate:currentDate];
-			[self processWithdrawal:endOfYearResults 
+			[self withdrawFundingForExpense:endOfYearResults 
 				andAmount:taxPaymentAmount andDate:currentDate andTaxRate:incomeTaxRate];
 		}
 		currentDate = [DateHelper nextDay:currentDate];
@@ -225,7 +250,7 @@
 	[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
 		advanceToDate:[DateHelper beginningOfNextYear:self.startDate] andTaxRate:incomeTaxRate];
 
-	endOfYearResults.totalEndOfYearBalance = [self.workingBalanceMgr totalCurrentBalance];
+	endOfYearResults.totalEndOfYearBalance = [self.workingBalanceMgr totalCurrentNetBalance];
 	[endOfYearResults logResults];
 	[self.workingBalanceMgr logCurrentBalances];
 

@@ -28,6 +28,7 @@
 @synthesize deficitBalance;
 @synthesize accruedEstimatedTaxes;
 @synthesize nextEstimatedTaxPayment;
+@synthesize assetValues;
 
 - (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
 	andDeficitBalance:(InterestBearingWorkingBalance*)deficitBal
@@ -40,6 +41,7 @@
 		[self.fundingSources addBalance:cashBal];
 		
 		self.loanBalances = [[[WorkingBalanceCltn alloc] init] autorelease];
+		self.assetValues = [[[WorkingBalanceCltn alloc] init] autorelease];
 		
 		assert(cashBal != nil);
 		self.cashWorkingBalance = cashBal;
@@ -90,6 +92,7 @@
 	
 #warning TODO - Need to do something with the loan interest.
 	BalanceAdjustment *loanInterest = [self.loanBalances advanceBalancesToDate:newDate];
+	[self.assetValues advanceBalancesToDate:newDate];
 		
 	[self.accruedEstimatedTaxes advanceCurrentBalanceToDate:newDate];
 
@@ -103,6 +106,7 @@
 	
 	[self.fundingSources carryBalancesForward:newDate];
 	[self.loanBalances carryBalancesForward:newDate];
+	[self.assetValues carryBalancesForward:newDate];
 
 	
 	[self.deficitBalance carryBalanceForward:newDate];
@@ -146,10 +150,9 @@
 
 }
 
-- (double)totalCurrentBalance
+- (double)totalCurrentNetBalance
 {
-	double totalBal = [self.fundingSources totalBalances];
-#warning TODO - Possibly need to subract off the total loan balances as a liability	
+	double totalBal = [self.fundingSources totalBalances] + [self.assetValues totalBalances] - [self.loanBalances totalBalances] - [self.deficitBalance currentBalance];
 	return totalBal;
 }
 
@@ -211,6 +214,7 @@
 {
 	[self.fundingSources resetCurrentBalances];
 	[self.loanBalances resetCurrentBalances];
+	[self.assetValues resetCurrentBalances];
 	
 	[self.deficitBalance resetCurrentBalance];
 	[self.accruedEstimatedTaxes resetCurrentBalance];
@@ -223,6 +227,7 @@
 
 	[self.fundingSources logCurrentBalances];
 	[self.loanBalances logCurrentBalances];
+	[self.assetValues logCurrentBalances];
 	
 	[self.deficitBalance logBalance];
 	[self.accruedEstimatedTaxes logBalance];
@@ -235,6 +240,7 @@
 	
 	[fundingSources release];
 	[loanBalances release];
+	[assetValues release];
 
 	[cashWorkingBalance release];
 	[deficitBalance release];

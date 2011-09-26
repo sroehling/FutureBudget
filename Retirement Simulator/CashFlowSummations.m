@@ -100,6 +100,21 @@
 
 }
 
+- (void)addAssetPurchase:(AssetDigestEntry *)assetEntry onDate:(NSDate*)purchaseDate
+{
+	CashFlowSummation *theSummation = [self summationForDate:purchaseDate];
+	[theSummation addAssetPurchase:assetEntry];
+	[yearlySummation addAssetPurchase:assetEntry];
+}
+
+- (void)addAssetSale:(AssetDigestEntry *)assetEntry onDate:(NSDate*)purchaseDate
+{
+	CashFlowSummation *theSummation = [self summationForDate:purchaseDate];
+	[theSummation addAssetSale:assetEntry];
+	[yearlySummation addAssetSale:assetEntry];
+
+}
+
 - (void)markEndDateForEstimatedTaxAccrual:(NSDate*)taxEndDate
 {
 	CashFlowSummation *theSummation = [self summationForDate:taxEndDate];

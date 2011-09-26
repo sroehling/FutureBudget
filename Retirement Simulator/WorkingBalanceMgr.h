@@ -21,6 +21,7 @@
 	@private
 		WorkingBalanceCltn *fundingSources;
 		WorkingBalanceCltn *loanBalances;
+		WorkingBalanceCltn *assetValues;
 
 // TODO - Need to reconsider supporting interest with cash working balance.
 		CashWorkingBalance *cashWorkingBalance;
@@ -32,6 +33,7 @@
 
 @property(nonatomic,retain) WorkingBalanceCltn *fundingSources;
 @property(nonatomic,retain) WorkingBalanceCltn *loanBalances;
+@property(nonatomic,retain) WorkingBalanceCltn *assetValues;
 @property(nonatomic,retain) CashWorkingBalance *cashWorkingBalance;
 @property(nonatomic,retain) InterestBearingWorkingBalance *deficitBalance;
 
@@ -50,7 +52,7 @@
 
 - (void)carryBalancesForward:(NSDate*)newDate;
 - (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate;
-- (double)totalCurrentBalance;
+- (double)totalCurrentNetBalance;
 - (void) resetCurrentBalances;
 
 - (void) incrementCashBalance:(double)incomeAmount asOfDate:(NSDate*)newDate;

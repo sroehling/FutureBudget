@@ -20,6 +20,8 @@
 @synthesize sumContributions;
 @synthesize isEndDateForEstimatedTaxes;
 @synthesize isEstimatedTaxPaymentDay;
+@synthesize assetPurchases;
+@synthesize assetSales;
 
 -(id)init
 {
@@ -29,6 +31,9 @@
 		self.savingsContribs = [[[NSMutableArray alloc] init] autorelease];
 		
 		self.loanPmts = [[[NSMutableArray alloc] init] autorelease];
+		
+		self.assetSales = [[[NSMutableArray alloc] init] autorelease];
+		self.assetPurchases = [[[NSMutableArray alloc] init] autorelease];
 		
 		self.sumExpenses = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 		[self resetSummations];
@@ -68,6 +73,18 @@
 	
 }
 
+- (void)addAssetSale:(AssetDigestEntry *)assetEntry
+{
+	assert(assetEntry != nil);
+	[self.assetSales addObject:assetEntry];
+}
+
+- (void)addAssetPurchase:(AssetDigestEntry *)assetEntry
+{
+	assert(assetEntry != nil);
+	[self.assetPurchases addObject:assetEntry];
+}
+
 - (void)markAsEndDateForEstimatedTaxAccrual
 {
 	isEndDateForEstimatedTaxes = TRUE;
@@ -87,6 +104,9 @@
 	[self.savingsContribs removeAllObjects];
 	
 	[self.loanPmts removeAllObjects];
+	
+	[self.assetSales removeAllObjects];
+	[self.assetPurchases removeAllObjects];
 	
 	[self.sumContributions resetToZero];
 	
@@ -110,6 +130,8 @@
 	[loanPmts release];
 	[sumContributions release];
 	[sumExpenses release];
+	[assetSales release];
+	[assetPurchases release];
 }
 
 @end

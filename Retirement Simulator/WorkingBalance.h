@@ -22,6 +22,7 @@
 
 - (BalanceAdjustment*) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
 - (WorkingBalanceAdjustment*) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate;
+- (double)zeroOutBalanceAsOfDate:(NSDate*)newDate;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andStartDate:(NSDate*)theStartDate;

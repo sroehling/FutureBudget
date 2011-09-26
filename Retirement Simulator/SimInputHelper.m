@@ -19,6 +19,13 @@
 
 @implementation SimInputHelper
 
++ (double)doubleVal:(NSNumber*)numberVal
+{
+	assert(numberVal != nil);
+	double theVal = [numberVal doubleValue];
+	return theVal;
+}
+
 + (double)multiScenValueAsOfDate:(MultiScenarioInputValue*)multiScenDateSensitiveVal
 	andDate:(NSDate*)resolveDate andScenario:(Scenario*)theScenario
 {
@@ -45,6 +52,23 @@
 
 }
 
++(double)multiScenRateAdjustedValueAsOfDate:(MultiScenarioInputValue*)multiScenAmount
+	andMultiScenRate:(MultiScenarioInputValue*)multiScenGrowthRate 
+	asOfDate:(NSDate*)asOfDate sinceDate:(NSDate*)startDate
+	forScenario:(Scenario*)theScenario
+{
+	double unadjustedAmount = [SimInputHelper multiScenValueAsOfDate:multiScenAmount 
+			andDate:asOfDate andScenario:theScenario];
+
+	double amountMultiplier = [SimInputHelper multiScenVariableRateMultiplier:multiScenGrowthRate 
+		sinceStartDate:startDate 
+			asOfDate:asOfDate andScenario:theScenario];
+		
+	double adjustedAmount = unadjustedAmount * amountMultiplier;
+			
+	return adjustedAmount;
+}
+
 
 + (NSDate*)multiScenFixedDate:(MultiScenarioInputValue*)multiScenDate andScenario:(Scenario*)theScenario
 {
@@ -53,6 +77,22 @@
 	assert(simDate != nil);
 	assert(simDate.date != nil);
 	return simDate.date;
+}
+
++(NSDate*)multiScenEndDate:(MultiScenarioInputValue*)multiScenEndDate 
+	withStartDate:(MultiScenarioInputValue*)theStartDate
+	andScenario:(Scenario*)theScenario
+{
+	assert(theScenario != nil);
+	
+	NSDate *startDate = [SimInputHelper multiScenFixedDate:theStartDate andScenario:theScenario];
+
+	assert(multiScenEndDate != nil);
+	SimDate *endSimDate = (SimDate*)[multiScenEndDate getValueForScenarioOrDefault:theScenario];
+	assert(endSimDate != nil);
+	
+	NSDate *endDate = [endSimDate endDateWithStartDate:startDate];
+	return endDate;
 }
 
 + (double)multiScenFixedVal:(MultiScenarioInputValue*)multiScenVal andScenario:(Scenario*)theScenario

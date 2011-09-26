@@ -132,6 +132,21 @@
 
 }
 
+- (double)zeroOutBalanceAsOfDate:(NSDate*)newDate
+{
+	// First advance the date, ensuring that any interest/adjustement leading up 
+	// to newDate are included in the balance.
+	[self advanceCurrentBalanceToDate:newDate];
+	
+	double remainingBalance = [self currentBalance];
+	
+	[self decrementAvailableBalance:remainingBalance asOfDate:newDate];
+	
+	currentBalance = 0.0;
+	
+	return remainingBalance;
+}
+
 
 
 - (bool)doTaxWithdrawals

@@ -33,11 +33,18 @@
 #import "LoanPaymentSimEventCreator.h"
 #import "SimEventList.h"
 #import "DefaultScenario.h"
+
 #import "WorkingBalanceCltn.h"
 #import "MultiScenarioInputValue.h"
 #import "DownPaymentSimEventCreator.h"
 #import "ExtraPaymentSimEventCreator.h"
 #import "LoanSimInfo.h"
+
+#import "AssetInput.h"
+#import "AssetSimInfo.h"
+#import "AssetPurchaseSimEventCreator.h"
+#import "AssetSaleSimEventCreator.h"
+
 
 @implementation SimEngine
 
@@ -154,6 +161,38 @@
 		
 	}
 	
+	inputs = [[DataModelController theDataModelController] 
+		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
+	for(AssetInput *asset in inputs)
+	{
+		if([SimInputHelper multiScenBoolVal:asset.multiScenarioAssetEnabled
+				andScenario:simParams.simScenario])
+		{
+			AssetSimInfo *assetInfo =  
+				[[[AssetSimInfo alloc] initWithAsset:asset 
+				andSimParams:self.simParams] autorelease];
+			if([assetInfo ownedForAtLeastOneDay])
+			{
+				// Only include the asset in simulation if it's owned for at least one day.
+				// Otherwise, it's a wash/non-event as far as simulation is concerned.
+				if([assetInfo purchasedAfterSimStart])
+				{
+					AssetPurchaseSimEventCreator *assetPurchaseCreator = 
+					[[[AssetPurchaseSimEventCreator alloc] initWithAssetSimInfo:assetInfo] autorelease];
+					[self.eventCreators addObject:assetPurchaseCreator];
+				}
+			
+				if([assetInfo soldAfterSimStart])
+				{
+					AssetSaleSimEventCreator *assetSaleCreator = 
+					[[[AssetSaleSimEventCreator alloc] initWithAssetSimInfo:assetInfo] autorelease];
+					[self.eventCreators addObject:assetSaleCreator];
+				}
+			
+				[self.workingBalanceMgr.assetValues addBalance:assetInfo.assetValue];
+			} // If asset owned for at least one day
+		} // If asset is enabled
+	}
 	
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
 		initWithStartingMonth:3 andStartingDay:31] autorelease]];
