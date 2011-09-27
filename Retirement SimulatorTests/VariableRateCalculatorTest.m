@@ -228,4 +228,25 @@
 }
 
 
+- (void)testVariableRateCalcWithNegativeVals
+{
+	VariableValue *variableVal = (VariableValue*)[self.coreData createObj:VARIABLE_VALUE_ENTITY_NAME];
+	variableVal.startingValue = [NSNumber numberWithDouble:10.0];
+	variableVal.name = @"Test";
+	[variableVal addValueChangesObject:[TestCoreDataObjects 
+				createTestValueChange:self.coreData andDate:@"2012-01-01" andVal:-10.0]];
+	[variableVal addValueChangesObject:[TestCoreDataObjects
+				createTestValueChange:self.coreData andDate:@"2013-01-01" andVal:-5.0]];
+
+	DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
+		[[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
+	VariableRateCalculator *varRateCalc = 
+		[calcCreator createForDateSensitiveValue:variableVal andStartDate:[DateHelper dateFromStr:@"2011-01-01"]];
+	[self checkOneRateCalc:varRateCalc andDaysSinceStart:0 andExpectedVal:1.0];
+	[self checkOneRateCalc:varRateCalc andDaysSinceStart:365 andExpectedVal:1.1];
+	[self checkOneRateCalc:varRateCalc andDaysSinceStart:730 andExpectedVal:0.99];
+	[self checkOneRateCalc:varRateCalc andDaysSinceStart:1095 andExpectedVal:0.94];
+
+}
+
 @end

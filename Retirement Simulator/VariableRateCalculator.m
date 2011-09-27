@@ -51,8 +51,6 @@
 	VariableRate *currRate = (VariableRate*)[self.variableRates objectAtIndex:currRateIndex];
 	while(currOffset < daysOffsetFromStart)
 	{
-#warning TODO - Need to double-check the interest rate calculations to ensure they are standardized w.r.t. what you'd typically see at a bank, etc.
-
 		unsigned int daysAtCurrentRate;
 		if((currRateIndex + 1) >= [self.variableRates count])
 		{
@@ -108,7 +106,7 @@
 		assert(secondsSinceStart >= 0.0);
 		unsigned int daysSinceStart = floor(secondsSinceStart/SECONDS_PER_DAY);
 		double amountMultiplier = [self valueMultiplierForDay:daysSinceStart];
-		assert(amountMultiplier >= 1.0);
+		assert(amountMultiplier >= 0.0);
 		return amountMultiplier;
 }
 

@@ -34,7 +34,7 @@
 +(double)annualRateToPerPeriodRate:(double)theAnnualRate andNumPeriods:(double)numPeriodsPerYear
 {
 	assert(numPeriodsPerYear >0.0);
-	assert(theAnnualRate >= 0.0);
+	assert(theAnnualRate >= -1.0);
 	
 	// This forumula accounts for compounding of interest: i.e.:
 	// 1+theAnnualRate = (1+perPeriodRate)^numPeriodsPerYear

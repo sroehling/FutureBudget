@@ -19,10 +19,10 @@
 	self = [super init];
 	if(self)
 	{
-		assert(theTaxFreeAmount >= 0.0);
+		// Note that in the case of negative returns, a Balance adjustement may 
+		// be initialized with negative amounts to represent the amount of negative
+		// interest on an investment or asset depreciation.
 		self.taxFreeAmount = theTaxFreeAmount;
-		
-		assert(theTaxableAmount >= 0.0);
 		self.taxableAmount = theTaxableAmount;
 	}
 	return self;

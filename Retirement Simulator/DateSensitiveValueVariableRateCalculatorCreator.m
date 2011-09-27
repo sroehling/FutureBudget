@@ -56,7 +56,12 @@
 - (double)adjustedAnnualRate:(NSNumber*)annualRateInput
 {
 	assert(annualRateInput != nil);
-	double unadjustedAnnualRate = [annualRateInput doubleValue]/100.0;
+	
+	// The annual rate given by the user can be negative, but must be 
+	// greater than -100%; e.g. doesn't make sense to have a -200% annual rate.
+	double annualRateUserInput = [annualRateInput doubleValue];
+	assert(annualRateUserInput >= -100.0);
+	double unadjustedAnnualRate = annualRateUserInput/100.0;
 
 	if(self.useLoanAnnualRates)
 	{
@@ -65,7 +70,6 @@
 		// annual rate by 12, then take that as the actual interest over the period.
 		// However, this value, when compounded annually, is slightly more than the 
 		// given as an input for the yearly rate.
-//		return unadjustedAnnualRate;
 		double monthlyRate = unadjustedAnnualRate / 12.0;
 		double adjustedRate = pow(1.0+monthlyRate, 12.0)-1.0;
 		return adjustedRate;
