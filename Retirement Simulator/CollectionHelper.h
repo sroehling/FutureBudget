@@ -14,5 +14,7 @@
 }
 
 + (NSArray*)setToSortedArray:(NSSet*)theSet withKey:(NSString*)theKey;
-
++ (void)sortMutableArrayInPlace:(NSMutableArray*)theArray withKey:(NSString*)sortKey 
+	ascending:(BOOL)sortAscending;
+	
 @end

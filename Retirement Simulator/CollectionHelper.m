@@ -22,4 +22,22 @@
     return [theSet sortedArrayUsingDescriptors:sortDescriptors];
 }
 
++ (void)sortMutableArrayInPlace:(NSMutableArray*)theArray withKey:(NSString*)sortKey 
+	ascending:(BOOL)sortAscending
+{
+	assert(sortKey != nil);
+	assert([sortKey length] > 0);
+	assert(theArray != nil);
+	
+
+	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] 
+			initWithKey:sortKey ascending:sortAscending] autorelease];
+	NSArray *sortDescriptors = [[[NSArray alloc]
+			initWithObjects:sortDescriptor, nil] autorelease];   
+
+	[theArray sortUsingDescriptors:sortDescriptors];
+
+}
+
+
 @end

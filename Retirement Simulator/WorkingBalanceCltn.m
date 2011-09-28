@@ -9,6 +9,7 @@
 #import "WorkingBalanceCltn.h"
 #import "WorkingBalance.h"
 #import "BalanceAdjustment.h"
+#import "CollectionHelper.h"
 
 @implementation WorkingBalanceCltn
 
@@ -47,12 +48,7 @@
 {
 	if(needsSorting)
 	{
-	    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] 
-			initWithKey:WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY ascending:YES] autorelease];
-		NSArray *sortDescriptors = [[[NSArray alloc]
-			initWithObjects:sortDescriptor, nil] autorelease];   
-
-		[self.workingBalList sortUsingDescriptors:sortDescriptors];
+		[CollectionHelper sortMutableArrayInPlace:self.workingBalList withKey:WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY ascending:TRUE];
 	}
 	needsSorting = false;
 }
