@@ -164,7 +164,7 @@
 			{
 				WorkingBalanceAdjustment *loanPmtAdjustment = 
 					[loanPmt.loanBalance decrementAvailableBalance:loanPmt.paymentAmt asOfDate:currentDate];
-#warning TODO - Sum up tax deductable interest, as described below.				
+// TODO - Sum up tax deductable interest, as described below.				
 				// TODO - For tax purposes, we need to have some kind of increment like the following
 				// This will be sum up the deductable interest in the same way as is done for expenses.
 				//[eoyResults incrementTotalExpense:withdrawAdj.balanceAdjustment];

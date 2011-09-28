@@ -16,7 +16,7 @@
 @interface CashFlowSummation : NSObject {
     @private
 		BalanceAdjustment *sumExpenses;
-#warning TODO - Need to change name of sumIncome to sumGrossIncome if this name better represents the value
+// TODO - Need to change name of sumIncome to sumGrossIncome if this name better represents the value
 		double sumIncome;
 		NSMutableArray *savingsContribs;
 		NSMutableArray *loanPmts;

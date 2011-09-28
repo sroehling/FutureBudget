@@ -307,6 +307,20 @@
 	  andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInterestRate:savingsAcct]
 	  andDefaultFixedVal:savingsAcct.multiScenarioFixedInterestRate]];
 
+
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
+	MultiScenarioFixedValueFieldInfo *withdrawalPriorityFieldInfo =
+		[[[MultiScenarioFixedValueFieldInfo alloc] 
+			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
+			andFieldPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER") 
+			andScenario:currentScenario 
+		andInputVal:savingsAcct.multiScenarioWithdrawalPriority] autorelease];
+   NumberFieldEditInfo *withdrawalPriorityEditInfo = 
+		[[NumberFieldEditInfo alloc] initWithFieldInfo:withdrawalPriorityFieldInfo
+			andNumberFormatter:[NumberHelper theHelper].decimalFormatter];
+	[sectionInfo addFieldEditInfo:withdrawalPriorityEditInfo];
+
 	
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = 

@@ -11,9 +11,13 @@
 @class WorkingBalance;
 @class BalanceAdjustment;
 
+
+
 @interface WorkingBalanceCltn : NSObject {
     @private
 		NSMutableArray *workingBalList;
+		bool needsSorting;
+		
 }
 
 - (void)addBalance:(WorkingBalance*)workingBal;
@@ -22,6 +26,7 @@
 - (void) resetCurrentBalances;
 - (void)logCurrentBalances;
 - (double)totalBalances;
+- (void)sortByWithdrawalOrder;
 
 @property(nonatomic,retain) NSMutableArray *workingBalList;
 

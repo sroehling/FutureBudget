@@ -69,7 +69,7 @@
 		self.assetValue = [[[InterestBearingWorkingBalance alloc] 
 			initWithStartingBalance:startingAssetValue andInterestRateCalc:apprecCalc 
 			andWorkingBalanceName:self.asset.name andTaxWithdrawals:FALSE 
-			andTaxInterest:FALSE] autorelease];
+			andTaxInterest:FALSE andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 
 	}
 	return self;

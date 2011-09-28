@@ -14,15 +14,18 @@
 #import "WorkingBalanceAdjustment.h"
 
 
+NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
+
 @implementation WorkingBalance
 
 @synthesize balanceStartDate;
 @synthesize currentBalance;
 @synthesize startingBalance;
 @synthesize currentBalanceDate;
+@synthesize withdrawPriority;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
-	andStartDate:(NSDate*)theStartDate
+	andStartDate:(NSDate*)theStartDate andWithdrawPriority:(double)theWithdrawPriority
 {
 	self = [super init];
 	if(self)
@@ -32,6 +35,8 @@
 		startingBalance = theStartBalance;
 		
 		[self resetCurrentBalance];
+		
+		self.withdrawPriority = theWithdrawPriority;
 	}
 	return self;
 }

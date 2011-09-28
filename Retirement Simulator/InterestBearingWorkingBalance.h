@@ -13,6 +13,7 @@
 @class SavingsAccount;
 @class DateSensitiveValue;
 @class VariableRateCalculator;
+@class SimParams;
 
 @interface InterestBearingWorkingBalance : WorkingBalance {
     @private
@@ -27,19 +28,22 @@
 @property bool taxableWithdrawals;
 @property bool taxableInterest;
 
+- (id) initWithStartingBalance:(double)theStartBalance 
+	andInterestRateCalc:(VariableRateCalculator*)theInterestRateCalc 
+	andWorkingBalanceName:(NSString *)wbName 
+	andTaxWithdrawals:(bool)doTaxWithdrawals andTaxInterest:(bool)doTaxInterest
+	andWithdrawPriority:(double)theWithdrawPriority;
+	
+	
 - (id) initWithStartingBalance:(double)theStartBalance
 	andInterestRate:(DateSensitiveValue*)theInterestRate
 	andWorkingBalanceName:(NSString*)wbName
 	andStartDate:(NSDate*)theStartDate
 	andTaxWithdrawals:(bool)doTaxWithdrawals
-	andTaxInterest:(bool)doTaxInterest;
-	
-	
-- (id) initWithStartingBalance:(double)theStartBalance 
-	andInterestRateCalc:(VariableRateCalculator*)theInterestRateCalc 
-	andWorkingBalanceName:(NSString *)wbName 
-	andTaxWithdrawals:(bool)doTaxWithdrawals andTaxInterest:(bool)doTaxInterest;	
+	andTaxInterest:(bool)doTaxInterest
+	andWithdrawPriority:(double)theWithdrawPriority;	
 
-- (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct;
+- (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct 
+	andSimParams:(SimParams*)simParams;
 
 @end

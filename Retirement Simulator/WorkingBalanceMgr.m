@@ -68,7 +68,7 @@
 			andInterestRate:[SharedAppValues singleton].deficitInterestRate 
 				andWorkingBalanceName:LOCALIZED_STR(@"DEFICIT_LABEL") 
 				andStartDate:startDate andTaxWithdrawals:FALSE 
-				andTaxInterest:TRUE] autorelease];
+				andTaxInterest:TRUE andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 				
 		return [self initWithCashBalance:cashBal andDeficitBalance:deficitBal andStartDate:startDate];
 }
@@ -90,7 +90,7 @@
 	
 	BalanceAdjustment *fundingSrcInterest = [self.fundingSources advanceBalancesToDate:newDate];
 	
-#warning TODO - Need to do something with the loan interest.
+// TODO - Need to do something with the loan interest.
 	BalanceAdjustment *loanInterest = [self.loanBalances advanceBalancesToDate:newDate];
 	[self.assetValues advanceBalancesToDate:newDate];
 		
@@ -126,6 +126,8 @@
 	double remainingBalanceToDecrement = expenseAmount;
 	WorkingBalanceAdjustment *totalDecremented = 
 		[[[WorkingBalanceAdjustment alloc] initWithZeroAmounts] autorelease];
+		
+	[self.fundingSources sortByWithdrawalOrder];	
 		
 	for(WorkingBalance *workingBal in self.fundingSources.workingBalList)
 	{

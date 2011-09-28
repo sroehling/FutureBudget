@@ -13,4 +13,7 @@
 @interface CashWorkingBalance : WorkingBalance {
 }
 
+- (id) initWithStartingBalance:(double)theStartBalance
+		andStartDate:(NSDate *)theStartDate;
+
 @end

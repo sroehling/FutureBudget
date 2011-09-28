@@ -20,6 +20,7 @@
 	if(self)
 	{
 		self.workingBalList = [[[NSMutableArray alloc] init] autorelease];
+		needsSorting = true;
 	}
 	return self;
 }
@@ -28,6 +29,7 @@
 {
 	assert(workingBal != nil);
 	[self.workingBalList addObject:workingBal];
+	needsSorting = true;
 }
 
 - (void)carryBalancesForward:(NSDate*)newDate
@@ -39,6 +41,20 @@
 		assert(workingBal!=nil);
 		[workingBal carryBalanceForward:newDate];
 	}
+}
+
+- (void)sortByWithdrawalOrder
+{
+	if(needsSorting)
+	{
+	    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] 
+			initWithKey:WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY ascending:YES] autorelease];
+		NSArray *sortDescriptors = [[[NSArray alloc]
+			initWithObjects:sortDescriptor, nil] autorelease];   
+
+		[self.workingBalList sortUsingDescriptors:sortDescriptors];
+	}
+	needsSorting = false;
 }
 
 

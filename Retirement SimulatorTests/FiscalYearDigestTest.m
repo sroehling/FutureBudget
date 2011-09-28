@@ -14,7 +14,7 @@
 
 
 - (void)testDigest {
-#warning TODO - Need to add tests for the FiscalYearDigest
+// TODO - Need to add tests for the FiscalYearDigest
 }
 
 @end

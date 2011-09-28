@@ -14,7 +14,9 @@
 #import "MultiScenarioInputValue.h"
 #import "BalanceAdjustment.h"
 #import "VariableRateCalculator.h"
+#import "SimInputHelper.h"
 #import "DateHelper.h"
+#import "SimParams.h"
 
 @implementation InterestBearingWorkingBalance
 
@@ -27,9 +29,10 @@
 	andInterestRateCalc:(VariableRateCalculator*)theInterestRateCalc 
 	andWorkingBalanceName:(NSString *)wbName 
 	andTaxWithdrawals:(bool)doTaxWithdrawals andTaxInterest:(bool)doTaxInterest
+	andWithdrawPriority:(double)theWithdrawPriority
 {
 	self = [super initWithStartingBalance:theStartBalance 
-			andStartDate:theInterestRateCalc.startDate];
+			andStartDate:theInterestRateCalc.startDate andWithdrawPriority:theWithdrawPriority];
 	if(self)
 	{
 		self.interestRateCalc = theInterestRateCalc;
@@ -47,9 +50,10 @@
 	andStartDate:(NSDate*)theStartDate
 	andTaxWithdrawals:(bool)doTaxWithdrawals
 	andTaxInterest:(bool)doTaxInterest
+	andWithdrawPriority:(double)theWithdrawPriority
 {
 	self = [super initWithStartingBalance:theStartBalance 
-		andStartDate:theStartDate];
+		andStartDate:theStartDate andWithdrawPriority:theWithdrawPriority];
 	if(self) {
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
@@ -66,7 +70,7 @@
 
 }
 
-- (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct
+- (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct andSimParams:(SimParams*)simParams
 {
 
 	DateSensitiveValue *savingsInterestRate = (DateSensitiveValue*)[
@@ -75,10 +79,17 @@
 
 	bool doTaxWithdrawals = [theSavingsAcct.taxableWithdrawals boolValue];
 	bool doTaxInterest = [theSavingsAcct.taxableInterest boolValue];
+	
+	double acctWithdrawPriority = 
+		[SimInputHelper multiScenFixedVal:theSavingsAcct.multiScenarioWithdrawalPriority 
+				andScenario:simParams.simScenario];
+	double acctStartingBalance = [SimInputHelper doubleVal:theSavingsAcct.startingBalance];
 
-	return [self initWithStartingBalance:[theSavingsAcct.startingBalance doubleValue] andInterestRate:savingsInterestRate andWorkingBalanceName:theSavingsAcct.name 
-		andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]
-		andTaxWithdrawals:doTaxWithdrawals andTaxInterest:doTaxInterest];
+	return [self initWithStartingBalance:acctStartingBalance 
+		andInterestRate:savingsInterestRate andWorkingBalanceName:theSavingsAcct.name 
+		andStartDate:simParams.simStartDate
+		andTaxWithdrawals:doTaxWithdrawals andTaxInterest:doTaxInterest 
+		andWithdrawPriority:acctWithdrawPriority];
 }
 
 

@@ -649,7 +649,7 @@
 		00EC45991424397C00D65D17 /* DurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInfo.m; sourceTree = "<group>"; };
 		00ECB9071407FF1C009EDB10 /* WorkingBalanceAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceAdjustment.h; sourceTree = "<group>"; };
 		00ECB9081407FF1C009EDB10 /* WorkingBalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceAdjustment.m; sourceTree = "<group>"; };
-		00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AssetDigestEntry.h; sourceTree = "<group>"; };
+		00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDigestEntry.h; sourceTree = "<group>"; };
 		00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetDigestEntry.m; sourceTree = "<group>"; };
 		00F217B8140F058600FA73AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00F217D0140F06AD00FA73AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1027,6 +1027,7 @@
 				004F5D1013706F7100E0C4A3 /* Input.m */,
 				00ADB3001382CB2B00064651 /* InputVisitor.h */,
 				0086C099142B8D7800148785 /* Accounts */,
+				0036DE2B13BE346F0043F3A5 /* Scenario List */,
 				004CB02F13FC26AB000E87A9 /* Cash Flow */,
 				0086C098142B8D4600148785 /* Loan */,
 				004CB03013FC2A21000E87A9 /* Cash.h */,
@@ -1457,7 +1458,6 @@
 				004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */,
 				004A59A713A02F67009FEF25 /* Simulator */,
 				004F5D701373188900E0C4A3 /* Results View */,
-				0036DE2B13BE346F0043F3A5 /* Scenario List */,
 				0010A58A13D15C5D0096A20F /* Starting Values */,
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004F5D6E1373170C00E0C4A3 /* Application */,

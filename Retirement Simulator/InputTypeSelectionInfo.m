@@ -167,6 +167,8 @@
    newInput.multiScenarioFixedContribRelEndDate = [self multiScenRelEndDateWithImmediateDefault];
 	
 	newInput.multiScenarioContribRepeatFrequency = [self multiScenarioRepeatFrequencyOnce];
+	
+	newInput.multiScenarioWithdrawalPriority = [self multiScenFixedValWithDefault:1.0];
     
 }
 

@@ -11,6 +11,9 @@
 @class BalanceAdjustment;
 @class WorkingBalanceAdjustment;
 
+#define WORKING_BALANCE_WITHDRAW_PRIORITY_MAX 0.0
+
+extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 
 @interface WorkingBalance : NSObject {
     @protected
@@ -18,6 +21,7 @@
 		double startingBalance;
 		double currentBalance;
 		NSDate *currentBalanceDate;
+		double withdrawPriority;
 }
 
 - (BalanceAdjustment*) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
@@ -25,7 +29,7 @@
 - (double)zeroOutBalanceAsOfDate:(NSDate*)newDate;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
-	andStartDate:(NSDate*)theStartDate;
+	andStartDate:(NSDate*)theStartDate andWithdrawPriority:(double)theWithdrawPriority;
 	
 - (void)resetCurrentBalance;
 - (BalanceAdjustment*)advanceCurrentBalanceToDate:(NSDate*)newDate;
@@ -40,5 +44,6 @@
 @property(nonatomic,retain) NSDate *currentBalanceDate;
 @property(readonly) double startingBalance;
 @property(readonly) double currentBalance;
+@property double withdrawPriority;
 
 @end

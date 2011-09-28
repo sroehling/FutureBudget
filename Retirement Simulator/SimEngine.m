@@ -45,6 +45,9 @@
 #import "AssetPurchaseSimEventCreator.h"
 #import "AssetSaleSimEventCreator.h"
 
+#import "SimInputHelper.h"
+
+
 
 @implementation SimEngine
 
@@ -110,7 +113,9 @@
 		for(SavingsAccount *savingsAcct in inputs)
 	{
 		InterestBearingWorkingBalance *savingsBal = 
-			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:savingsAcct] autorelease];
+			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:savingsAcct 
+				andSimParams:self.simParams] autorelease];
+			
 		if([SimInputHelper multiScenBoolVal:savingsAcct.multiScenarioContribEnabled
 				andScenario:simParams.simScenario])
 		{

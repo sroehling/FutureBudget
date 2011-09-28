@@ -9,6 +9,8 @@
 #import "Account.h"
 #import "InputVisitor.h"
 
+
+
 NSString * const ACCOUNT_STARTING_BALANCE_KEY = @"startingBalance";
 NSString * const ACCOUNT_ENTITY_NAME = @"Account";
 NSString * const ACCOUNT_CONTRIB_AMOUNT_ENTITY_NAME = @"AccountContribAmount";
@@ -29,12 +31,15 @@ NSString * const ACCOUNT_VARIABLE_CONTRIB_AMOUNTS_KEY = @"variableContribAmounts
 @dynamic multiScenarioContribStartDate;
 @dynamic multiScenarioContribEndDate;
 
+
 @dynamic multiScenarioFixedContribAmount;
 @dynamic multiScenarioFixedContribStartDate;
 @dynamic multiScenarioFixedContribEndDate;
 @dynamic multiScenarioFixedContribGrowthRate;
 @dynamic multiScenarioFixedContribRelEndDate;
 @dynamic multiScenarioContribEnabled;
+
+@dynamic multiScenarioWithdrawalPriority;
 
 @dynamic variableContribAmounts;
 
