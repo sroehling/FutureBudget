@@ -23,6 +23,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 @synthesize startingBalance;
 @synthesize currentBalanceDate;
 @synthesize withdrawPriority;
+@synthesize deferWithdrawalsUntil;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andStartDate:(NSDate*)theStartDate andWithdrawPriority:(double)theWithdrawPriority
@@ -37,6 +38,9 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 		[self resetCurrentBalance];
 		
 		self.withdrawPriority = theWithdrawPriority;
+		
+		// By default, there is no deferral of withdrawals.
+		self.deferWithdrawalsUntil = nil;
 	}
 	return self;
 }
@@ -62,6 +66,27 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 {
 	assert(0); // must be overridden
 	return nil;
+}
+
+-(BOOL)withdrawalsEnabledAsOfDate:(NSDate*)theDate
+{
+	assert(theDate != nil);
+	if(self.deferWithdrawalsUntil != nil)
+	{
+		if([DateHelper dateIsEqualOrLater:theDate 
+			otherDate:[DateHelper beginningOfDay:self.deferWithdrawalsUntil]])
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+	else
+	{
+		return TRUE;
+	}
 }
 
 
@@ -113,24 +138,32 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	assert(amount >= 0.0);	
 
 	BalanceAdjustment *decrementAmount;
-	if(currentBalance > 0.0)
+	if([self withdrawalsEnabledAsOfDate:newDate])
 	{
-		if(amount <= currentBalance)
+		if(currentBalance > 0.0)
 		{
-			currentBalance -= amount;
-			decrementAmount =  [self createBalanceAdjustmentForWithdrawAmount:amount];
+			if(amount <= currentBalance)
+			{
+				currentBalance -= amount;
+				decrementAmount =  [self createBalanceAdjustmentForWithdrawAmount:amount];
+			}
+			else
+			{
+				double availableAmount = currentBalance;
+				currentBalance = 0.0;
+				decrementAmount = [self createBalanceAdjustmentForWithdrawAmount:availableAmount];
+			}
 		}
 		else
-		{
-			double availableAmount = currentBalance;
-			currentBalance = 0.0;
-			decrementAmount = [self createBalanceAdjustmentForWithdrawAmount:availableAmount];
+		{	
+			decrementAmount = [self createBalanceAdjustmentForWithdrawAmount:0.0];
 		}
 	}
 	else
-	{	
-		decrementAmount = [self createBalanceAdjustmentForWithdrawAmount:0.0];
+	{
+			decrementAmount = [self createBalanceAdjustmentForWithdrawAmount:0.0];		
 	}
+	
 	
 	return [[[WorkingBalanceAdjustment alloc] initWithBalanceAdjustment:decrementAmount 
 		andInterestAdjustment:interestAmount] autorelease];
@@ -143,13 +176,21 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	// to newDate are included in the balance.
 	[self advanceCurrentBalanceToDate:newDate];
 	
-	double remainingBalance = [self currentBalance];
+	if([self withdrawalsEnabledAsOfDate:newDate])
+	{
+		double remainingBalance = [self currentBalance];
 	
-	[self decrementAvailableBalance:remainingBalance asOfDate:newDate];
+		[self decrementAvailableBalance:remainingBalance asOfDate:newDate];
 	
-	currentBalance = 0.0;
+		currentBalance = 0.0;
 	
-	return remainingBalance;
+		return remainingBalance;
+	}
+	else
+	{
+		return 0.0;
+	}
+	
 }
 
 

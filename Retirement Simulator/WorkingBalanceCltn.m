@@ -10,6 +10,7 @@
 #import "WorkingBalance.h"
 #import "BalanceAdjustment.h"
 #import "CollectionHelper.h"
+#import "WorkingBalanceAdjustment.h"
 
 @implementation WorkingBalanceCltn
 

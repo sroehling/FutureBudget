@@ -107,6 +107,8 @@
 		00637A821385D509001E02F1 /* FixedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A811385D509001E02F1 /* FixedValue.m */; };
 		00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */; };
 		00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A8A1386D99A001E02F1 /* InflationRate.m */; };
+		006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */; };
+		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		0086C08114279A3B00148785 /* DownPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */; };
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
@@ -445,6 +447,10 @@
 		00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFieldEditInfo.m; sourceTree = "<group>"; };
 		00637A891386D999001E02F1 /* InflationRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InflationRate.h; sourceTree = "<group>"; };
 		00637A8A1386D99A001E02F1 /* InflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InflationRate.m; sourceTree = "<group>"; };
+		006572D114338E500062C00C /* DeferredWithdrawalFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFieldEditInfo.h; sourceTree = "<group>"; };
+		006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFieldEditInfo.m; sourceTree = "<group>"; };
+		006572D4143393110062C00C /* DeferredWithdrawalFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DeferredWithdrawalFormInfoCreator.h; sourceTree = "<group>"; };
+		006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFormInfoCreator.m; sourceTree = "<group>"; };
 		0086C07F14279A3B00148785 /* DownPaymentSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownPaymentSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownPaymentSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08314279B7D00148785 /* SimInputHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimInputHelper.h; sourceTree = "<group>"; };
@@ -1185,6 +1191,7 @@
 				0049DC7113A28AC600B27046 /* Input List */,
 				0049DC7013A2884D00B27046 /* Input Creation */,
 				004A59A613A0269F009FEF25 /* Repeat Frequency */,
+				006572CF14338DCE0062C00C /* Deferred Withdrawals */,
 				004A59A313A0261F009FEF25 /* Sim Date */,
 				0055A88314168B4900EFB95C /* Bool Input Value */,
 				004A59A213A025E5009FEF25 /* Date Sensitive Value */,
@@ -1264,6 +1271,17 @@
 				00EC458214214B4700D65D17 /* Cash Flow */,
 			);
 			name = "Simulator Inputs";
+			sourceTree = "<group>";
+		};
+		006572CF14338DCE0062C00C /* Deferred Withdrawals */ = {
+			isa = PBXGroup;
+			children = (
+				006572D114338E500062C00C /* DeferredWithdrawalFieldEditInfo.h */,
+				006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */,
+				006572D4143393110062C00C /* DeferredWithdrawalFormInfoCreator.h */,
+				006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */,
+			);
+			name = "Deferred Withdrawals";
 			sourceTree = "<group>";
 		};
 		0086C08F142956AF00148785 /* Setup */ = {
@@ -1923,6 +1941,8 @@
 				0086C0B7142D22B100148785 /* AssetSimInfo.m in Sources */,
 				0086C0BA142D310800148785 /* AssetSaleSimEvent.m in Sources */,
 				00F06921142E2D8200D0E1FB /* AssetDigestEntry.m in Sources */,
+				006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */,
+				006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

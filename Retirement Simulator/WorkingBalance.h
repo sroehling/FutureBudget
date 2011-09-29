@@ -22,6 +22,7 @@ extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 		double currentBalance;
 		NSDate *currentBalanceDate;
 		double withdrawPriority;
+		NSDate *deferWithdrawalsUntil;
 }
 
 - (BalanceAdjustment*) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
@@ -42,6 +43,7 @@ extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 
 @property(nonatomic,retain) NSDate *balanceStartDate;
 @property(nonatomic,retain) NSDate *currentBalanceDate;
+@property(nonatomic,retain) NSDate *deferWithdrawalsUntil;
 @property(readonly) double startingBalance;
 @property(readonly) double currentBalance;
 @property double withdrawPriority;

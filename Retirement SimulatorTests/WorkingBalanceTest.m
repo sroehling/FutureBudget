@@ -149,6 +149,53 @@
 	[self doZeroInterestTests:bal];
 }
 
+- (void)testDeferredWithdrawals
+{
+	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-01"]];
+	double startingBal = 1000.0;
+	
+	CashWorkingBalance *cashBal = [[[CashWorkingBalance alloc] 
+		initWithStartingBalance:startingBal 
+		andStartDate:startDate] autorelease];
+		
+	NSDate *deferUntilDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-01-01"]];
+	cashBal.deferWithdrawalsUntil = deferUntilDate;
+	
+	[cashBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2011-01-01"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:startingBal];
+
+	[cashBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2011-07-01"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:startingBal];
+
+	[cashBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:750.0];
+	
+	[cashBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2012-08-01"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:500.0];
+	
+	
+	InterestBearingWorkingBalance *interestBal = [self 
+		createInterestBearingWorkingAccountWithRate:0.0 andStartDate:startDate 
+	andStartingBal:startingBal];
+	interestBal.deferWithdrawalsUntil = deferUntilDate;
+	
+	[interestBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2011-01-01"]];
+	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal];
+
+	[interestBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2011-07-01"]];
+	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal];
+	
+	[interestBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2011-12-31"]];
+	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal];
+
+	[interestBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:interestBal withExpectedBalance:750.0];
+	
+	[interestBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2012-08-01"]];
+	[self checkCurrentBalance:interestBal withExpectedBalance:500.0];
+
+}
+
 
 
 - (void)testCashBalance

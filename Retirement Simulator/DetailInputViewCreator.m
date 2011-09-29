@@ -45,6 +45,7 @@
 #import "LoanDownPmtPercent.h"
 #import "AssetInput.h"
 #import "AssetCostVariableValueListMgr.h"
+#import "DeferredWithdrawalFieldEditInfo.h"
 
 @implementation DetailInputViewCreator
 
@@ -298,6 +299,7 @@
 	 Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
 
 	SectionInfo *sectionInfo = [formPopulator nextSection];
+	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE");
 	
     [sectionInfo addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
@@ -308,8 +310,15 @@
 	  andDefaultFixedVal:savingsAcct.multiScenarioFixedInterestRate]];
 
 
+	[sectionInfo addFieldEditInfo:
+        [BoolFieldEditInfo createForObject:savingsAcct 
+			andKey:SAVINGS_ACCOUNT_TAXABLE_INTEREST_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_INTEREST_LABEL")]];
+
+
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
+
 	MultiScenarioFixedValueFieldInfo *withdrawalPriorityFieldInfo =
 		[[[MultiScenarioFixedValueFieldInfo alloc] 
 			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
@@ -320,7 +329,15 @@
 		[[NumberFieldEditInfo alloc] initWithFieldInfo:withdrawalPriorityFieldInfo
 			andNumberFormatter:[NumberHelper theHelper].decimalFormatter];
 	[sectionInfo addFieldEditInfo:withdrawalPriorityEditInfo];
+	
+	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
+		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:savingsAcct] autorelease];
+	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
 
+	[sectionInfo addFieldEditInfo:
+        [BoolFieldEditInfo createForObject:savingsAcct 
+			andKey:SAVINGS_ACCOUNT_TAXABLE_WITHDRAWALS_KEY 
+			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_WITHDRAWAL_LABEL")]];
 	
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = 
@@ -332,15 +349,7 @@
 			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTION_LABEL")]];
 
 
-	[sectionInfo addFieldEditInfo:
-        [BoolFieldEditInfo createForObject:savingsAcct 
-			andKey:SAVINGS_ACCOUNT_TAXABLE_WITHDRAWALS_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_WITHDRAWAL_LABEL")]];
 	
-	[sectionInfo addFieldEditInfo:
-        [BoolFieldEditInfo createForObject:savingsAcct 
-			andKey:SAVINGS_ACCOUNT_TAXABLE_INTEREST_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_INTEREST_LABEL")]];
 				
 			
 

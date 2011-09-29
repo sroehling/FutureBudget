@@ -169,6 +169,11 @@
 	newInput.multiScenarioContribRepeatFrequency = [self multiScenarioRepeatFrequencyOnce];
 	
 	newInput.multiScenarioWithdrawalPriority = [self multiScenFixedValWithDefault:1.0];
+	
+	newInput.multiScenarioDeferredWithdrawalsEnabled = [self multiScenBoolValWithDefault:FALSE];
+	newInput.multiScenarioDeferredWithdrawalDateFixed = [self multiScenFixedDateWithDefaultToday];
+	newInput.multiScenarioDeferredWithdrawalDate = [self multiScenInputValueWithDefaultFixedVal:
+		newInput.multiScenarioDeferredWithdrawalDateFixed];
     
 }
 

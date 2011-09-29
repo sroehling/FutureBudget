@@ -110,7 +110,7 @@
 
 		
 	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
-		for(SavingsAccount *savingsAcct in inputs)
+	for(SavingsAccount *savingsAcct in inputs)
 	{
 		InterestBearingWorkingBalance *savingsBal = 
 			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:savingsAcct 
@@ -124,9 +124,18 @@
 					initWithSavingsWorkingBalance:savingsBal 
 					andSavingsAcct:savingsAcct] autorelease];
 			[self.eventCreators addObject:savingsEventCreator];
-			[self.workingBalanceMgr.fundingSources addBalance:savingsBal];
 		}
-	}
+		
+		if([SimInputHelper multiScenBoolVal:savingsAcct.multiScenarioDeferredWithdrawalsEnabled
+			andScenario:simParams.simScenario])
+		{
+			NSDate *deferWithdrawalsDate = [SimInputHelper multiScenFixedDate:savingsAcct.multiScenarioDeferredWithdrawalDate andScenario:simParams.simScenario];
+			assert(deferWithdrawalsDate != nil);
+			savingsBal.deferWithdrawalsUntil = deferWithdrawalsDate;
+		}
+		
+		[self.workingBalanceMgr.fundingSources addBalance:savingsBal];
+	} // for each savings account
 	
 	
 	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];

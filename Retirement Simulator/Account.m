@@ -22,6 +22,8 @@ NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_START_DATE_KEY = @"multiScenarioCont
 NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_END_DATE_KEY = @"multiScenarioContribEndDate";
 NSString * const ACCOUNT_VARIABLE_CONTRIB_AMOUNTS_KEY = @"variableContribAmounts";
 
+NSString * const ACCOUNT_MULTI_SCEN_DEFERRED_WITHDRAWAL_DATE_KEY = @"multiScenarioDeferredWithdrawalDate";
+
 @implementation Account
 @dynamic startingBalance;
 
@@ -38,6 +40,11 @@ NSString * const ACCOUNT_VARIABLE_CONTRIB_AMOUNTS_KEY = @"variableContribAmounts
 @dynamic multiScenarioFixedContribGrowthRate;
 @dynamic multiScenarioFixedContribRelEndDate;
 @dynamic multiScenarioContribEnabled;
+
+@dynamic multiScenarioDeferredWithdrawalsEnabled;
+@dynamic multiScenarioDeferredWithdrawalDate;
+@dynamic multiScenarioDeferredWithdrawalDateFixed;
+
 
 @dynamic multiScenarioWithdrawalPriority;
 

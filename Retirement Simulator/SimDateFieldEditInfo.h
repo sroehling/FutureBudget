@@ -14,6 +14,7 @@
 @class ValueSubtitleTableCell;
 @class SimDateRuntimeInfo;
 @class Scenario;
+@class FixedDate;
 @class FieldInfo;
 @class MultiScenarioInputValue;
 
