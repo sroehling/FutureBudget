@@ -232,7 +232,50 @@
 "SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE" = "Stop after a number of years, months and/or weeks after the start date";
 
 
-"SCENARIO_NAV_CONTROLLER_BUTTON_TITLE" = "Scenarios";
+"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE" = "What If";
+"WHAT_IF_ENABLED_FORM_TITLE" = "Enabled Inputs";
+"WHAT_IF_INPUT_CHANGES_SECTION_TITLE" = "Change Inputs";
+"WHAT_IF_ENABLED_SUBTITLE" = "Enable or disable expenses, asset purchases, savings contributions, etc.";
+"WHAT_IF_ENABLED_ACCOUNT_CONTRIBS" = "Account Contributions";
+"WHAT_IF_ENABLED_LOAN" = "Loans";
+"WHAT_IF_ENABLED_LOAN_EXTRA_PMT" = "Extra Loan Payments";
+"WHAT_IF_ENABLED_EXPENSE" = "Expenses";
+"WHAT_IF_ENABLED_INCOME" = "Incomes";
+"WHAT_IF_ENABLED_ASSET" = "Asset Purchases";
+"WHAT_IF_WITHDRAWALS_FORM_TITLE" = "Withdrawals";
+"WHAT_IF_WITHDRAWALS_SUBTITLE" = "Change the priority of account withdrawals, or change deferred withdrawal dates.";
+"WHAT_IF_WITHDRAWAL_PRIORITY_SECTION_TITLE" = "Withdrawal Priorities";
+"WHAT_IF_WITHDRAWAL_DEFERRED_SECTION_TITLE" = "Deferred Withdrawals";
+"WHAT_IF_AMOUNTS_FORM_TITLE" = "Amounts";
+"WHAT_IF_AMOUNTS_SUBTITLE" = "Change the amounts for income, expenses, asset purchases, loan costs, account contributions or extra loan payments.";
+"WHAT_IF_AMOUNTS_INCOME" = "Income Amount";
+"WHAT_IF_AMOUNTS_EXPENSE" = "Expense Amounts";
+"WHAT_IF_AMOUNTS_ACCOUNT_CONTRIBS" = "Account Contributions";
+"WHAT_IF_AMOUNTS_LOAN_COST" = "Loan Amounts Borrowed";
+"WHAT_IF_AMOUNTS_LOAN_EXTRA_PMT" = "Loan Extra Payments";
+"WHAT_IF_AMOUNTS_ASSET_COST" = "Asset Costs";
+"WHAT_IF_INVESTMENT_RETURN_FORM_TITLE" = "Returns";
+"WHAT_IF_INVESTMENT_RETURN_FIELD_CAPTION" = "Return on Investments";
+"WHAT_IF_INVESTMENT_RETURN_SUBTITLE" = "Change the expected appreciation or depreciation of assets, the interest rates on accounts, or the expected rate of return on investments.";
+"WHAT_IF_RETURN_ASSET_APPRECIATION" = "Asset Appreciation";
+"WHAT_IF_RETURN_SAVINGS_ACCOUNT_INTEREST" = "Savings Interest";
+"WHAT_IF_GROWTH_RATE_FIELD_CAPTION" = "Growth Rates";
+"WHAT_IF_GROWTH_RATE_SUBTITLE" = "Change annual growth rates for incomes, expenses, extra loan payments, or savings contributions.";
+"WHAT_IF_GROWTH_RATE_FORM_TITLE" = "Growth Rates";
+"WHAT_IF_GROWTH_RATE_INCOME" = "Incomes";
+"WHAT_IF_GROWTH_RATE_EXPENSE" = "Expenses";
+"WHAT_IF_GROWTH_RATE_ACCOUNT_CONTRIBS" = "Account Contributions";
+"WHAT_IF_GROWTH_RATE_LOAN_EXTRA_PMT" = "Loan Extra Payments";
+"WHAT_IF_GROWTH_RATE_LOAN_COST" = "Loan Cost (Amount Borrowed)";
+"WHAT_IF_TAXES_FIELD_CAPTION" = "Taxes";
+"WHAT_IF_TAXES_SUBTITLE" = "Change the tax deductability of expenses, contributions, or withdrawals.";
+"WHAT_IF_TAXES_FORM_TITLE" = "Taxes";
+"WHAT_IF_TAXES_EXPENSE_DEDUCTION" = "Deductable Expenses";
+"WHAT_IF_TAXES_ACCOUNT_CONTRIB" = "Deductable Contributions";
+"WHAT_IF_TAXES_ACCOUNT_WITHDRAWAL" = "Deductable Withdrawals";
+"WHAT_IF_TAXES_LOAN_INTEREST" = "Taxable Loan Interest";
+
+
 "SCENARIO_LIST_VIEW_TITLE" = "Scenarios";
 "SCENARIO_DEFAULT_SCENARIO_NAME" = "Default";
 "SCENARIO_LIST_DEFAULT_SCENARIO_CAPTION" = "Default Scenario";

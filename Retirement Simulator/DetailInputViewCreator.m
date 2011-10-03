@@ -331,7 +331,8 @@
 	[sectionInfo addFieldEditInfo:withdrawalPriorityEditInfo];
 	
 	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
-		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:savingsAcct] autorelease];
+		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:savingsAcct
+			andFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")] autorelease];
 	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
 
 	[sectionInfo addFieldEditInfo:
@@ -347,12 +348,6 @@
         [BoolFieldEditInfo createForObject:savingsAcct 
 			andKey:SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTIONS_KEY 
 			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTION_LABEL")]];
-
-
-	
-				
-			
-
 
 }
 
@@ -397,7 +392,6 @@
 		 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:loan] 
 		 andDefaultFixedVal:loan.multiScenarioLoanCostGrowthRateFixed]];
  
-
 	
 	SimDateRuntimeInfo *origDateInfo = 
 		[SimDateRuntimeInfo createForInput:loan 

@@ -171,7 +171,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     id<FieldEditInfo> feInfo = [self.formInfo fieldEditInfoIndexPath:indexPath];
-    return [feInfo cellForFieldEdit:self.tableView];
+	UITableViewCell *feCell = [feInfo cellForFieldEdit:self.tableView];
+	assert(feCell != nil);
+	
+    return feCell;
 }
 
 

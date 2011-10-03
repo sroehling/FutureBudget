@@ -17,11 +17,13 @@
     @private
 		Account *account;
 		ValueSubtitleTableCell *valueCell;
+		NSString *fieldLabel;
 }
 
 @property(nonatomic,retain) Account *account;
 @property(nonatomic,retain) ValueSubtitleTableCell *valueCell;
+@property(nonatomic,retain) NSString *fieldLabel;
 
--(id)initWithAccount:(Account*)theAccount;
+-(id)initWithAccount:(Account*)theAccount andFieldLabel:(NSString*)theFieldLabel;
 
 @end

@@ -109,6 +109,8 @@
 		00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A8A1386D99A001E02F1 /* InflationRate.m */; };
 		006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */; };
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
+		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
+		006572DE1434FBA70062C00C /* StaticNavFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */; };
 		0086C08114279A3B00148785 /* DownPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */; };
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
@@ -449,8 +451,12 @@
 		00637A8A1386D99A001E02F1 /* InflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InflationRate.m; sourceTree = "<group>"; };
 		006572D114338E500062C00C /* DeferredWithdrawalFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFieldEditInfo.h; sourceTree = "<group>"; };
 		006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFieldEditInfo.m; sourceTree = "<group>"; };
-		006572D4143393110062C00C /* DeferredWithdrawalFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DeferredWithdrawalFormInfoCreator.h; sourceTree = "<group>"; };
+		006572D4143393110062C00C /* DeferredWithdrawalFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFormInfoCreator.h; sourceTree = "<group>"; };
 		006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFormInfoCreator.m; sourceTree = "<group>"; };
+		006572D81434F7A30062C00C /* WhatIfFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatIfFormInfoCreator.h; sourceTree = "<group>"; };
+		006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatIfFormInfoCreator.m; sourceTree = "<group>"; };
+		006572DC1434FBA70062C00C /* StaticNavFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNavFieldEditInfo.h; sourceTree = "<group>"; };
+		006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNavFieldEditInfo.m; sourceTree = "<group>"; };
 		0086C07F14279A3B00148785 /* DownPaymentSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownPaymentSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownPaymentSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08314279B7D00148785 /* SimInputHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimInputHelper.h; sourceTree = "<group>"; };
@@ -864,6 +870,7 @@
 		0049DC6F13A2880700B27046 /* Fields */ = {
 			isa = PBXGroup;
 			children = (
+				006572DB1434FB8D0062C00C /* Static Navigational Field */,
 				0055A8971418519500EFB95C /* Name Field */,
 				0010A57713CFC2070096A20F /* Bool Field */,
 				004A59AE13A07F70009FEF25 /* Number Field */,
@@ -908,8 +915,6 @@
 				0049DC8413A6550C00B27046 /* FormFieldWithSubtitleTableCell.m */,
 				0087922C13A8F4B400CA9DA7 /* ValueSubtitleTableCell.h */,
 				0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */,
-				0095E98813BA5876000555AC /* StaticFieldEditInfo.h */,
-				0095E98913BA5876000555AC /* StaticFieldEditInfo.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -1187,6 +1192,7 @@
 		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
+				006572D71434F3610062C00C /* What If */,
 				0087923013A9497400CA9DA7 /* Input Detail */,
 				0049DC7113A28AC600B27046 /* Input List */,
 				0049DC7013A2884D00B27046 /* Input Creation */,
@@ -1282,6 +1288,26 @@
 				006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */,
 			);
 			name = "Deferred Withdrawals";
+			sourceTree = "<group>";
+		};
+		006572D71434F3610062C00C /* What If */ = {
+			isa = PBXGroup;
+			children = (
+				006572D81434F7A30062C00C /* WhatIfFormInfoCreator.h */,
+				006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */,
+			);
+			name = "What If";
+			sourceTree = "<group>";
+		};
+		006572DB1434FB8D0062C00C /* Static Navigational Field */ = {
+			isa = PBXGroup;
+			children = (
+				0095E98913BA5876000555AC /* StaticFieldEditInfo.m */,
+				0095E98813BA5876000555AC /* StaticFieldEditInfo.h */,
+				006572DC1434FBA70062C00C /* StaticNavFieldEditInfo.h */,
+				006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */,
+			);
+			name = "Static Navigational Field";
 			sourceTree = "<group>";
 		};
 		0086C08F142956AF00148785 /* Setup */ = {
@@ -1943,6 +1969,8 @@
 				00F06921142E2D8200D0E1FB /* AssetDigestEntry.m in Sources */,
 				006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */,
 				006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */,
+				006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */,
+				006572DE1434FBA70062C00C /* StaticNavFieldEditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

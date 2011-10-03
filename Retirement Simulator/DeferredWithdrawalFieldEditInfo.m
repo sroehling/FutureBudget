@@ -23,6 +23,7 @@
 
 @synthesize account;
 @synthesize valueCell;
+@synthesize fieldLabel;
 
 -(bool)deferredWithdrawalsEnabled
 {
@@ -34,7 +35,7 @@
 
 - (void) configureValueCell
 {
-	self.valueCell.caption.text = [self textLabel];
+	self.valueCell.caption.text = self.fieldLabel;
 	self.valueCell.valueDescription.textColor = [ColorHelper blueTableTextColor];
 	self.valueCell.valueDescription.text = [self detailTextLabel];
 	
@@ -56,13 +57,16 @@
 	
 }
 
--(id)initWithAccount:(Account*)theAccount
+-(id)initWithAccount:(Account*)theAccount andFieldLabel:(NSString*)theFieldLabel
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theAccount != nil);
 		self.account = theAccount;
+		
+		assert(theFieldLabel != nil);
+		self.fieldLabel  = theFieldLabel;
 		
 		
 		self.valueCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
@@ -82,7 +86,7 @@
 
 - (NSString*) textLabel
 {
-    return LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL");
+    return @"";
 }
 
 
@@ -148,6 +152,7 @@
 	[super dealloc];
 	[account release];
 	[valueCell release];
+	[fieldLabel release];
 }
 
 

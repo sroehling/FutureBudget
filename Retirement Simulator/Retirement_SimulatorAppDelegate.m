@@ -11,6 +11,7 @@
 
 #import "InputListFormInfoCreator.h"
 #import "ResultsViewController.h"
+#import "WhatIfFormInfoCreator.h"
 #import "GenericFieldBasedTableEditViewController.h"
 #import "ScenarioListFormInfoCreator.h"
 #import "SelectableObjectTableEditViewController.h"
@@ -43,14 +44,17 @@
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
 	inputNavController.title = LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
 	inputNavController.tabBarItem.image = [UIImage imageNamed:@"piggy.png"];
-	
-	ScenarioListFormInfoCreator *scenarioFormInfoCreator = 
-		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
-	UIViewController *scenarioController = [[[GenericFieldBasedTableEditViewController alloc]
-		initWithFormInfoCreator:scenarioFormInfoCreator] autorelease];
-	UINavigationController *scenarioNavController = [[[UINavigationController alloc] initWithRootViewController:scenarioController] autorelease];
-	scenarioNavController.title = LOCALIZED_STR(@"SCENARIO_NAV_CONTROLLER_BUTTON_TITLE");
-	scenarioNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
+
+// TODO - Delete ScenarioListFormInfoCreator (after copying any reusable code from the file)	
+//	ScenarioListFormInfoCreator *scenarioFormInfoCreator = 
+//		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
+	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
+		[[[WhatIfFormInfoCreator alloc] init] autorelease];
+	UIViewController *whatIfController = [[[GenericFieldBasedTableEditViewController alloc]
+		initWithFormInfoCreator:whatIfFormInfoCreator] autorelease];
+	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
+	whatIfNavController.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
+	whatIfNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
 	
 	StartingValsFormInfoCreator *startingValsFormInfoCreator = 
 		[[[StartingValsFormInfoCreator alloc] init] autorelease];
@@ -80,7 +84,7 @@
 	
 	self.tabBarController.viewControllers =
 		[NSArray arrayWithObjects:inputNavController, 
-			scenarioNavController,startingValsNavController,
+			whatIfNavController,startingValsNavController,
 			resultsNavController, moreNavController, nil]; 
 	
     // Add the tab bar controller's current view as a subview of the window
