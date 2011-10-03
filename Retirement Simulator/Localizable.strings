@@ -274,6 +274,10 @@
 "WHAT_IF_TAXES_ACCOUNT_CONTRIB" = "Deductable Contributions";
 "WHAT_IF_TAXES_ACCOUNT_WITHDRAWAL" = "Deductable Withdrawals";
 "WHAT_IF_TAXES_LOAN_INTEREST" = "Taxable Loan Interest";
+"WHAT_IF_SCENARIO_SECTION_TITLE" = "Manage Scenarios";
+"WHAT_IF_SCENARIO_SECTION_SUBTITLE" = "Changes to inputs are saved under the current scenario, so the 'what if' impact of these changes can be seen in the results.";
+"WHAT_IF_SCENARIO_SUBTITLE" = "Create a new scenario, or change the current scenario.";
+"WHAT_IF_SCENARIO_FORM_TITLE" = "Current Scenario";
 
 
 "SCENARIO_LIST_VIEW_TITLE" = "Scenarios";

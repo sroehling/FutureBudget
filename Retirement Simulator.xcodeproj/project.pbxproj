@@ -189,6 +189,8 @@
 		00E6CC8313F4543A005EEC64 /* SingleScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8213F45436005EEC64 /* SingleScenarioRelativeEndDateFieldInfo.m */; };
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* CashFlowSummation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */; };
+		00E7D053143A284400B0815E /* SelectableObjectTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */; };
+		00E7D056143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */; };
 		00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */; };
 		00EC1F91139737D20085B25C /* SimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F90139737D20085B25C /* SimDate.m */; };
 		00EC1F941397396D0085B25C /* MilestoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F931397396D0085B25C /* MilestoneDate.m */; };
@@ -603,6 +605,11 @@
 		00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigest.m; sourceTree = "<group>"; };
 		00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowSummation.h; sourceTree = "<group>"; };
 		00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowSummation.m; sourceTree = "<group>"; };
+		00E7D04F143A277C00B0815E /* GenericTableViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewFactory.h; sourceTree = "<group>"; };
+		00E7D051143A284400B0815E /* SelectableObjectTableViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableObjectTableViewControllerFactory.h; sourceTree = "<group>"; };
+		00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableObjectTableViewControllerFactory.m; sourceTree = "<group>"; };
+		00E7D054143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableEditViewControllerFactory.h; sourceTree = "<group>"; };
+		00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableEditViewControllerFactory.m; sourceTree = "<group>"; };
 		00EC1F8B139736D40085B25C /* SimDateFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateFormInfoCreator.m; sourceTree = "<group>"; };
 		00EC1F8F139737D20085B25C /* SimDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDate.h; sourceTree = "<group>"; };
@@ -1059,6 +1066,7 @@
 		004A59AA13A07E3E009FEF25 /* Generic Table Views */ = {
 			isa = PBXGroup;
 			children = (
+				00E7D04F143A277C00B0815E /* GenericTableViewFactory.h */,
 				00ADB2F51381B33800064651 /* FieldEditTableViewController.h */,
 				00ADB2F61381B33900064651 /* FieldEditTableViewController.m */,
 				00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */,
@@ -1067,8 +1075,12 @@
 				00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */,
 				00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */,
 				00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */,
+				00E7D051143A284400B0815E /* SelectableObjectTableViewControllerFactory.h */,
+				00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */,
 				00ADB2FB1381C1DC00064651 /* GenericFieldBasedTableEditViewController.h */,
 				00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */,
+				00E7D054143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.h */,
+				00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */,
 				0049DC7E13A572B900B27046 /* FinishedAddingObjectListener.h */,
 			);
 			name = "Generic Table Views";
@@ -1971,6 +1983,8 @@
 				006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */,
 				006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */,
 				006572DE1434FBA70062C00C /* StaticNavFieldEditInfo.m in Sources */,
+				00E7D053143A284400B0815E /* SelectableObjectTableViewControllerFactory.m in Sources */,
+				00E7D056143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

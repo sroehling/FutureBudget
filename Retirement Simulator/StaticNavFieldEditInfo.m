@@ -13,15 +13,17 @@
 #import "ColorHelper.h"
 #import "GenericFieldBasedTableEditViewController.h"
 #import "FormFieldWithSubtitleTableCell.h"
+#import "GenericTableViewFactory.h"
+#import "GenericFieldBasedTableEditViewControllerFactory.h"
 
 @implementation StaticNavFieldEditInfo
 
 @synthesize valueCell;
-@synthesize formInfoCreator;
+@synthesize subViewFactory;
 
-- (id) initWithCaption:(NSString*)caption 
-	andSubtitle:(NSString*)subtitle 
-	andSubFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator
+- (id) initWithCaption:(NSString *)caption andSubtitle:(NSString *)subtitle 
+		andContentDescription:(NSString*)contentDesc
+		andSubViewFactory:(id<GenericTableViewFactory>)theSubViewFactory
 {
 	self = [super init];
 	if(self)
@@ -34,16 +36,34 @@
 
 		self.valueCell.caption.text = caption;
 		
+		self.valueCell.contentDescription.text = contentDesc;
+		
 		if(subtitle != nil)
 		{
 			self.valueCell.subTitle.text = subtitle;
 		}
 		
-		assert(theFormInfoCreator != nil);
-		self.formInfoCreator = theFormInfoCreator;
+		
+		
+		assert(theSubViewFactory != nil);
+		self.subViewFactory = theSubViewFactory;
+		
 
 	}
 	return self;
+
+}
+
+- (id) initWithCaption:(NSString*)caption 
+	andSubtitle:(NSString*)subtitle 
+	andContentDescription:(NSString*)contentDesc
+	andSubFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator
+{
+	id<GenericTableViewFactory> theSubViewFactory = [[[GenericFieldBasedTableEditViewControllerFactory alloc]
+			initWithFormInfoCreator:theFormInfoCreator] autorelease];
+	return [self initWithCaption:caption andSubtitle:subtitle 
+		andContentDescription:contentDesc
+		andSubViewFactory:theSubViewFactory];
 }
 
 - (id) init
@@ -66,9 +86,7 @@
 - (UIViewController*)fieldEditController
 {
 
-	UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
-	    initWithFormInfoCreator:self.formInfoCreator] autorelease];
-	return controller;	
+	return [self.subViewFactory createTableView];	
 
 }
 
@@ -110,7 +128,7 @@
 {
 	[super dealloc];
 	[valueCell release];
-	[formInfoCreator release];
+	[subViewFactory release];
 }
 
 @end

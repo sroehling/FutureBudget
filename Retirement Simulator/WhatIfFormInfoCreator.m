@@ -28,9 +28,13 @@
 #import "CashFlowAmountVariableValueListMgr.h"
 #import "VariableValueRuntimeInfo.h"
 #import "DateSensitiveValueFieldEditInfo.h"
+#import "Scenario.h"
 #import "AccountContribAmountVariableValueListMgr.h"
 #import "LoanInputVariableValueListMgr.h"
 #import "AssetCostVariableValueListMgr.h"
+#import "ScenarioListFormInfoCreator.h"
+#import "ManagedObjectFieldInfo.h"
+#import "SelectableObjectTableViewControllerFactory.h"
 
 @implementation WhatIfFormInfoCreator
 
@@ -39,16 +43,41 @@
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
-		
+	
 	SectionInfo *sectionInfo = [formPopulator nextSection];
+	
+	SharedAppValues *theSharedAppValues = [SharedAppValues singleton];
+	ManagedObjectFieldInfo *currentScenarioFieldInfo = 
+		[[[ManagedObjectFieldInfo alloc] initWithManagedObject:theSharedAppValues andFieldKey:SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY 
+			andFieldLabel:@"dummy" andFieldPlaceholder:@"dummy"] autorelease];
+	ScenarioListFormInfoCreator *scenarioFormInfoCreator = 
+		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
+		
+	SelectableObjectTableViewControllerFactory *scenarioListViewFactory = 
+		[[[SelectableObjectTableViewControllerFactory alloc] initWithFormInfoCreator:scenarioFormInfoCreator andAssignedField:currentScenarioFieldInfo] autorelease];
+			
+	
+	sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_SCENARIO_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"WHAT_IF_SCENARIO_SECTION_SUBTITLE");
+	StaticNavFieldEditInfo *scenarioFieldEditInfo = 
+		[[[StaticNavFieldEditInfo alloc] 
+			initWithCaption:LOCALIZED_STR(@"WHAT_IF_SCENARIO_FORM_TITLE")
+			andSubtitle:LOCALIZED_STR(@"WHAT_IF_SCENARIO_SUBTITLE") 
+			andContentDescription:theSharedAppValues.currentInputScenario.scenarioName
+			andSubViewFactory:scenarioListViewFactory] autorelease];
+	[sectionInfo addFieldEditInfo:scenarioFieldEditInfo];		
+			
+					
+	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_INPUT_CHANGES_SECTION_TITLE");
 	
 	id<FormInfoCreator> whatIfFormInfoCreator = 
 		[[[WhatIfInputsEnabledFormInfoCreator alloc] init] autorelease];
 	StaticNavFieldEditInfo *whatIfFieldEditInfo = 
 		[[[StaticNavFieldEditInfo alloc] 
-			initWithCaption:LOCALIZED_STR(@"WHAT_IF_ENABLED_FORM_TITLE")  
+			initWithCaption:LOCALIZED_STR(@"WHAT_IF_ENABLED_FORM_TITLE") 
 			andSubtitle:LOCALIZED_STR(@"WHAT_IF_ENABLED_SUBTITLE") 
+			andContentDescription:nil  
 			andSubFormInfoCreator:whatIfFormInfoCreator] autorelease];
 	[sectionInfo addFieldEditInfo:whatIfFieldEditInfo];
 	
@@ -57,6 +86,7 @@
 	whatIfFieldEditInfo = [[[StaticNavFieldEditInfo alloc] 
 			initWithCaption:LOCALIZED_STR(@"WHAT_IF_WITHDRAWALS_FORM_TITLE")  
 			andSubtitle:LOCALIZED_STR(@"WHAT_IF_WITHDRAWALS_SUBTITLE") 
+			andContentDescription:nil  
 			andSubFormInfoCreator:whatIfFormInfoCreator] autorelease];
 	[sectionInfo addFieldEditInfo:whatIfFieldEditInfo];
 
@@ -64,6 +94,7 @@
 	whatIfFieldEditInfo = [[[StaticNavFieldEditInfo alloc] 
 			initWithCaption:LOCALIZED_STR(@"WHAT_IF_AMOUNTS_FORM_TITLE")  
 			andSubtitle:LOCALIZED_STR(@"WHAT_IF_AMOUNTS_SUBTITLE") 
+			andContentDescription:nil  
 			andSubFormInfoCreator:whatIfFormInfoCreator] autorelease];
 	[sectionInfo addFieldEditInfo:whatIfFieldEditInfo];
 
@@ -72,6 +103,7 @@
 	whatIfFieldEditInfo = [[[StaticNavFieldEditInfo alloc] 
 			initWithCaption:LOCALIZED_STR(@"WHAT_IF_INVESTMENT_RETURN_FIELD_CAPTION")  
 			andSubtitle:LOCALIZED_STR(@"WHAT_IF_INVESTMENT_RETURN_SUBTITLE") 
+			andContentDescription:nil  
 			andSubFormInfoCreator:whatIfFormInfoCreator] autorelease];
 	[sectionInfo addFieldEditInfo:whatIfFieldEditInfo];
 
@@ -79,6 +111,7 @@
 	whatIfFieldEditInfo = [[[StaticNavFieldEditInfo alloc] 
 			initWithCaption:LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_FIELD_CAPTION")  
 			andSubtitle:LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_SUBTITLE") 
+			andContentDescription:nil  
 			andSubFormInfoCreator:whatIfFormInfoCreator] autorelease];
 	[sectionInfo addFieldEditInfo:whatIfFieldEditInfo];
 
@@ -86,6 +119,7 @@
 	whatIfFieldEditInfo = [[[StaticNavFieldEditInfo alloc] 
 			initWithCaption:LOCALIZED_STR(@"WHAT_IF_TAXES_FIELD_CAPTION")  
 			andSubtitle:LOCALIZED_STR(@"WHAT_IF_TAXES_SUBTITLE") 
+			andContentDescription:nil  
 			andSubFormInfoCreator:whatIfFormInfoCreator] autorelease];
 	[sectionInfo addFieldEditInfo:whatIfFieldEditInfo];
 

@@ -12,18 +12,24 @@
 
 @class FormFieldWithSubtitleTableCell;
 @protocol FormInfoCreator;
+@protocol GenericTableViewFactory;
 
 @interface StaticNavFieldEditInfo : NSObject <FieldEditInfo> {
     @private
 		FormFieldWithSubtitleTableCell *valueCell;
-		id<FormInfoCreator> formInfoCreator;
+		id<GenericTableViewFactory> subViewFactory;
 }
 
 @property(nonatomic,retain) FormFieldWithSubtitleTableCell *valueCell;
-@property(nonatomic,retain) id<FormInfoCreator> formInfoCreator;
+@property(nonatomic,retain) id<GenericTableViewFactory> subViewFactory;
+
+- (id) initWithCaption:(NSString *)caption andSubtitle:(NSString *)subtitle
+		andContentDescription:(NSString*)contentDesc 
+		andSubViewFactory:(id<GenericTableViewFactory>)theSubViewFactory;
 
 - (id) initWithCaption:(NSString*)caption 
 	andSubtitle:(NSString*)subtitle 
+	andContentDescription:(NSString*)contentDesc
 	andSubFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator;
 
 @end
