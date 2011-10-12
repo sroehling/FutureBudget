@@ -22,6 +22,7 @@
 #import "LocalizationHelper.h"
 #import "AssetInput.h"
 #import "NumberHelper.h"
+#import "TaxInput.h"
 #import "CashFlowAmountVariableValueListMgr.h"
 #import "SavingsAccount.h"
 #import "LoanInputVariableValueListMgr.h"
@@ -136,6 +137,11 @@
 	self.generatedDesc = [NSString 
 		stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_INPUT_LIST_FORMAT"),
 			amountDisplay];
+}
+
+- (void)visitTax:(TaxInput *)tax
+{
+	self.generatedDesc = tax.name;
 }
 
 - (NSString*)descripionForInput:(Input*)theInput

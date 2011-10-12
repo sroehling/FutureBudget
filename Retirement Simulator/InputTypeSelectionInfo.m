@@ -22,6 +22,13 @@
 #import "BoolInputValue.h"
 #import "LoanInput.h"
 #import "AssetInput.h"
+#import "MultiScenarioAmount.h"
+#import "MultiScenarioGrowthRate.h"
+#import "TaxInput.h"
+#import "TaxBracket.h"
+#import "ItemizedTaxAmt.h"
+#import "ItemizedTaxAmts.h"
+#import "InputCreationHelper.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -34,16 +41,6 @@
     return nil;
 }
 
-- (MultiScenarioInputValue*)multiScenFixedValWithDefault:(double)defaultVal
-{
-	MultiScenarioInputValue *msFixedVal = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-    FixedValue *fixedVal = 
-		(FixedValue*)[[DataModelController theDataModelController]insertObject:FIXED_VALUE_ENTITY_NAME];
-    fixedVal.value = [NSNumber numberWithDouble:defaultVal];
-	[msFixedVal setDefaultValue:fixedVal];
-	return msFixedVal;
-}
 
 - (MultiScenarioInputValue*)multiScenInputValueWithDefaultFixedVal:(MultiScenarioInputValue*)fixedVal
 {
@@ -111,6 +108,33 @@
 	return msNeverEndDate;
 }
 
+- (MultiScenarioAmount*)multiScenAmountWithDefault:(double)defaultVal
+{
+	MultiScenarioAmount *msAmount = 
+		[[DataModelController theDataModelController] 
+			insertObject:MULTI_SCEN_AMOUNT_ENTITY_NAME];
+			
+    msAmount.defaultFixedAmount = [InputCreationHelper multiScenFixedValWithDefault:0.0];
+	msAmount.amount = [self multiScenInputValueWithDefaultFixedVal:
+		msAmount.defaultFixedAmount];
+
+	return msAmount;
+}
+
+- (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal
+{
+	MultiScenarioGrowthRate *msGrowthRate = 
+		[[DataModelController theDataModelController] 
+			insertObject:MULTI_SCEN_GROWTH_RATE_ENTITY_NAME];
+			
+    msGrowthRate.defaultFixedGrowthRate = [InputCreationHelper multiScenFixedValWithDefault:0.0];
+	msGrowthRate.growthRate = 
+		[self multiScenInputValueWithDefaultFixedVal:msGrowthRate.defaultFixedGrowthRate];
+	
+			
+	return msGrowthRate;
+}
+
 
 -(void)populateCashFlowInputProperties:(CashFlowInput*)newInput
 {
@@ -122,9 +146,9 @@
 	
 	newInput.multiScenarioCashFlowEnabled = [self multiScenBoolValWithDefault:TRUE];
     
-    newInput.multiScenarioFixedGrowthRate = [self multiScenFixedValWithDefault:0.0];
+    newInput.multiScenarioFixedGrowthRate = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 
-	newInput.multiScenarioFixedAmount = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioFixedAmount = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 
     newInput.multiScenarioFixedStartDate = [self multiScenFixedDateWithDefaultToday];
     
@@ -149,10 +173,10 @@
 	
 	newInput.multiScenarioContribEnabled = [self multiScenBoolValWithDefault:TRUE];
 
-    newInput.multiScenarioFixedContribGrowthRate = [self multiScenFixedValWithDefault:0.0];
+    newInput.multiScenarioFixedContribGrowthRate = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioContribGrowthRate = [self multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioFixedContribGrowthRate];
 
-    newInput.multiScenarioFixedContribAmount = [self multiScenFixedValWithDefault:0.0];
+    newInput.multiScenarioFixedContribAmount = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioContribAmount = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioFixedContribAmount];
 	
@@ -168,7 +192,7 @@
 	
 	newInput.multiScenarioContribRepeatFrequency = [self multiScenarioRepeatFrequencyOnce];
 	
-	newInput.multiScenarioWithdrawalPriority = [self multiScenFixedValWithDefault:1.0];
+	newInput.multiScenarioWithdrawalPriority = [InputCreationHelper multiScenFixedValWithDefault:1.0];
 	
 	newInput.multiScenarioDeferredWithdrawalsEnabled = [self multiScenBoolValWithDefault:FALSE];
 	newInput.multiScenarioDeferredWithdrawalDateFixed = [self multiScenFixedDateWithDefaultToday];
@@ -231,7 +255,7 @@
 	savingsAcct.taxableWithdrawals = [NSNumber numberWithBool:TRUE];
 	savingsAcct.taxableInterest = [NSNumber numberWithBool:FALSE];
 	
-    savingsAcct.multiScenarioFixedInterestRate = [self multiScenFixedValWithDefault:0.0];
+    savingsAcct.multiScenarioFixedInterestRate = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	savingsAcct.multiScenarioInterestRate = [self multiScenInputValueWithDefaultFixedVal:
 		savingsAcct.multiScenarioFixedInterestRate];
 
@@ -260,13 +284,13 @@
 	
 	// Loan Cost
 	
-	newInput.multiScenarioLoanCostAmtFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioLoanCostAmtFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioLoanCostAmt = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioLoanCostAmtFixed];
 		
-	newInput.multiScenarioLoanDuration = [self multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
+	newInput.multiScenarioLoanDuration = [InputCreationHelper multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
 		
-	newInput.multiScenarioLoanCostGrowthRateFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioLoanCostGrowthRateFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioLoanCostGrowthRate = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioLoanCostGrowthRateFixed];
 		
@@ -276,7 +300,7 @@
 
 	// Interest
 
-	newInput.multiScenarioInterestRateFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioInterestRateFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioInterestRate = [self 
 		multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioInterestRateFixed];
 
@@ -286,7 +310,7 @@
 		
 	newInput.multiScenarioDownPmtEnabled = [self multiScenBoolValWithDefault:FALSE];
 	
-	newInput.multiScenarioDownPmtPercentFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioDownPmtPercentFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioDownPmtPercent = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioDownPmtPercentFixed];
 
@@ -295,11 +319,11 @@
 	
 	newInput.multiScenarioExtraPmtEnabled = [self multiScenBoolValWithDefault:FALSE];
 	
-	newInput.multiScenarioExtraPmtAmtFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioExtraPmtAmtFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioExtraPmtAmt = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioExtraPmtAmtFixed];
 		
-	newInput.multiScenarioExtraPmtGrowthRateFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioExtraPmtGrowthRateFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioExtraPmtGrowthRate = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioExtraPmtGrowthRateFixed];
 	
@@ -323,11 +347,11 @@
 	newInput.multiScenarioAssetEnabled = [self multiScenBoolValWithDefault:TRUE];
 	
 	
-	newInput.multiScenarioCostFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioCostFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioCost = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioCostFixed];
 
-	newInput.multiScenarioApprecRateFixed = [self multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioApprecRateFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
 	newInput.multiScenarioApprecRate = [self multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioApprecRateFixed];
 
@@ -343,5 +367,46 @@
 
 	return newInput;
 }
+
+@end
+
+
+@implementation TaxInputTypeSelectionInfo
+
+
+- (TaxBracket*)createTaxBracket
+{
+	TaxBracket *taxBracket = (TaxBracket*)[[DataModelController theDataModelController]
+			insertObject:TAX_BRACKET_ENTITY_NAME];
+	taxBracket.cutoffGrowthRate = [self multiScenGrowthRateWithDefault:0.0];
+	return taxBracket;
+}
+
+- (Input*)createInput
+{
+	TaxInput *newInput  = (TaxInput*)[[DataModelController theDataModelController]
+			insertObject:TAX_INPUT_ENTITY_NAME];
+	
+	newInput.multiScenarioTaxEnabled = [self multiScenBoolValWithDefault:TRUE];
+	
+	newInput.exemptionAmt = [self multiScenAmountWithDefault:0.0];
+	newInput.stdDeductionAmt = [self multiScenAmountWithDefault:0.0];
+	newInput.exemptionGrowthRate = [self multiScenGrowthRateWithDefault:0.0];
+	newInput.stdDeductionGrowthRate = [self multiScenGrowthRateWithDefault:0.0];
+	
+	newInput.itemizedAdjustments = [[DataModelController theDataModelController] 
+			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
+	newInput.itemizedDeductions = [[DataModelController theDataModelController] 
+			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
+	newInput.itemizedIncomeSources = [[DataModelController theDataModelController] 
+			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
+	newInput.itemizedCredits = [[DataModelController theDataModelController] 
+			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
+
+	newInput.taxBracket = [self createTaxBracket];
+
+	return newInput;
+}
+
 
 @end

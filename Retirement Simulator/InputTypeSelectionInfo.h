@@ -35,3 +35,5 @@
 @interface LoanInputTypeSelctionInfo : InputTypeSelectionInfo {} @end
 
 @interface AssetInputTypeSelectionInfo : InputTypeSelectionInfo {} @end
+
+@interface TaxInputTypeSelectionInfo : InputTypeSelectionInfo {} @end

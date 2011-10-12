@@ -13,6 +13,8 @@
 
 @implementation FormPopulator
 
+@synthesize currentSection;
+
 @synthesize formInfo;
 
 - (id) init
@@ -29,17 +31,20 @@
 {
     [super dealloc];
     [formInfo release];
+	[currentSection release];
 }
 
 - (SectionInfo*)nextSection
 {
     SectionInfo *nextSection = [[[SectionInfo alloc]init] autorelease];
+	self.currentSection = nextSection;
     [formInfo addSection:nextSection];
     return nextSection;
 }
 
 - (void)nextCustomSection:(SectionInfo*)customSection
 {
+	self.currentSection = customSection;
     [formInfo addSection:customSection];
 }
 

@@ -46,18 +46,31 @@
 #import "AssetInput.h"
 #import "AssetCostVariableValueListMgr.h"
 #import "DeferredWithdrawalFieldEditInfo.h"
+#import "TaxInput.h"
+#import "MultiScenarioAmount.h"
+#import "MultiScenarioAmountVariableValueListMgr.h"
+#import "MultiScenarioGrowthRate.h"
+#import "SharedEntityVariableValueListMgr.h"
+#import "InflationRate.h"
+#import "ItemizedTaxAmtsFormInfoCreator.h"
+#import "StaticNavFieldEditInfo.h"
+#import "ItemizedTaxAmtsInfo.h"
+#import "TaxBracketFormInfoCreator.h"
 
 @implementation DetailInputViewCreator
 
 @synthesize input;
+@synthesize isForNewObject;
 
--(id) initWithInput:(Input*)theInput
+-(id) initWithInput:(Input*)theInput andIsForNewObject:(BOOL)forNewObject
 {
     self = [super init];
     if(self)
     {
         assert(theInput!=nil);
         self.input = theInput;
+		
+		self.isForNewObject = forNewObject;
     }
     return self;
 }
@@ -90,6 +103,108 @@
     [sectionInfo addFieldEditInfo:fieldEditInfo];
 
 }
+
+-(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
+	inSection:(SectionInfo*)sectionInfo 
+	withValueTitle:(NSString*)valueTitleStringFileKey
+{
+	MultiScenarioAmountVariableValueListMgr *variableValueMgr = 
+		[[[MultiScenarioAmountVariableValueListMgr alloc] initWithMultiScenarioAmount:theAmount] autorelease];
+		
+	NSString *inlineType = @"TBD Type";
+	NSString *valueTitle = LOCALIZED_STR(valueTitleStringFileKey);
+	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
+		
+	NSString *tableSubtitle = [NSString 
+	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
+	 inlineType,
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
+						
+	VariableValueRuntimeInfo *amountRuntimeInfo = 
+		[[[VariableValueRuntimeInfo alloc]
+		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
+		andValueTitle:valueTitleStringFileKey 
+		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
+		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableValueMgr
+		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
+		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
+		  andValueTypeInline:inlineType
+		  andValueTypeTitle:valueTitle
+		  andValueName:@"Name TBD"
+		  andTableSubtitle:tableSubtitle]
+		 autorelease];
+		
+	[sectionInfo addFieldEditInfo:
+	 [DateSensitiveValueFieldEditInfo 
+	  createForScenario:currentScenario andObject:theAmount 
+		andKey:MULTI_SCEN_AMOUNT_AMOUNT_KEY 
+	  andLabel:valueTitle
+	  andValRuntimeInfo:amountRuntimeInfo
+	  andDefaultFixedVal:theAmount.defaultFixedAmount]];
+}
+
+-(void)populateBoolField:(MultiScenarioInputValue*)boolVal inSection:(SectionInfo*)sectionInfo
+	withLabel:(NSString*)labelStringFileKey
+{
+
+	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
+
+	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
+		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
+			initWithFieldLabel:LOCALIZED_STR(labelStringFileKey) 
+			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
+		andInputVal:boolVal] autorelease];
+	BoolFieldEditInfo *enabledFieldEditInfo = 
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+
+}
+
+-(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
+	inSection:(SectionInfo*)sectionInfo
+	withLabel:(NSString*)labelStringFileKey
+{
+	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
+	
+	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE")];
+
+	NSString *valueLabel = LOCALIZED_STR(labelStringFileKey);
+	
+	VariableValueRuntimeInfo *grRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueTitle:@"INPUT_INFLATION_RATE_VALUE_TITLE"
+		andInlineValueTitleKey:@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 
+		andListMgr:sharedInflationRatesMgr
+		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
+		andValueTypeInline:@"inline type TBD"
+		andValueTypeTitle:valueLabel
+		andValueName:@"Name TBD"
+		andTableSubtitle:tableSubtitle] autorelease];
+
+
+	[sectionInfo addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+         createForScenario:currentScenario andObject:growthRate 
+			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
+			andLabel:LOCALIZED_STR(labelStringFileKey) 
+		 andValRuntimeInfo:grRuntimeInfo 
+		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate]];
+ 
+}
+
+
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
@@ -591,6 +706,61 @@
 	BoolFieldEditInfo *taxableFieldEditInfo = 
 		[[[BoolFieldEditInfo alloc] initWithFieldInfo:taxableFieldInfo] autorelease];
 	[sectionInfo addFieldEditInfo:taxableFieldEditInfo];
+
+
+}
+
+- (void)visitTax:(TaxInput *)tax
+{
+    formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_TAX_TITLE");
+	[self populateInputNameField:tax];
+	
+	SectionInfo *sectionInfo = [formPopulator nextSection];
+	
+	[self populateBoolField:tax.multiScenarioTaxEnabled inSection:sectionInfo 
+		withLabel:@"INPUT_TAX_ENABLED_FIELD_LABEL"];
+		
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_SUBTITLE");
+	
+	ItemizedTaxAmtsInfo *taxSourceInfo = [[[ItemizedTaxAmtsInfo alloc] 
+		initWithItemizedTaxAmts:tax.itemizedIncomeSources 
+		andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE")
+		andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT")
+		andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE")] autorelease];
+	ItemizedTaxAmtsFormInfoCreator *itemizedTaxSourceFormCreator = 
+		[[[ItemizedTaxAmtsFormInfoCreator alloc] 
+			initWithItemizedTaxAmtsInfo:taxSourceInfo andIsForNewObject:self.isForNewObject] autorelease];
+	StaticNavFieldEditInfo *taxSourcesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]initWithCaption:@"Tax Sources" andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:itemizedTaxSourceFormCreator] autorelease];
+	[sectionInfo addFieldEditInfo:taxSourcesFieldEditInfo];
+
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_SUBTITLE");
+
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_SUBTITLE");
+	[self populateMultiScenarioAmount:tax.exemptionAmt 
+		inSection:sectionInfo withValueTitle:@"INPUT_TAX_EXEMPTION_AMOUNT_TITLE"];
+	[self populateMultiScenarioGrowthRate:tax.exemptionGrowthRate 
+		inSection:sectionInfo withLabel:@"INPUT_TAX_EXEMPTION_GROWTH_RATE_LABEL"];
+
+
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_SUBTITLE");
+	[self populateMultiScenarioAmount:tax.stdDeductionAmt inSection:sectionInfo 
+		withValueTitle:@"INPUT_TAX_STD_DEDUCTION_TITLE"];
+	[self populateMultiScenarioGrowthRate:tax.stdDeductionGrowthRate inSection:sectionInfo withLabel:@"INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL"];
+	
+	sectionInfo = [formPopulator nextSection];
+	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
+		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket] autorelease];
+	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]initWithCaption:@"Tax Rates" andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
+	[sectionInfo addFieldEditInfo:taxRatesFieldEditInfo];
+
 
 
 }

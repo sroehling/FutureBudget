@@ -54,6 +54,11 @@
 	typeInfo.description = LOCALIZED_STR(@"INPUT_ASSET_TITLE");
 	[self.inputTypes addObject:typeInfo];
 
+
+	typeInfo = [[[TaxInputTypeSelectionInfo alloc] init] autorelease];
+	typeInfo.description = LOCALIZED_STR(@"INPUT_TAX_TITLE");
+	[self.inputTypes addObject:typeInfo];
+
 	
     typeSelected = FALSE;
 
@@ -116,7 +121,7 @@
     Input *newInput = [typeInfo createInput]; // create the managed (core data) object for the given input
     
     DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc] 
-                        initWithInput:newInput] autorelease];
+                        initWithInput:newInput andIsForNewObject:TRUE] autorelease];
     
     
     UIViewController *addView =  [[[GenericFieldBasedTableAddViewController alloc] 

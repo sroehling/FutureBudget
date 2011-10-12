@@ -28,22 +28,16 @@
 	self = [super init];
 	if(self)
 	{
-		assert(caption != nil);
 		
 		self.valueCell = [[[FormFieldWithSubtitleTableCell alloc] initWithFrame:CGRectZero] autorelease];
 		self.valueCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;   
 		self.valueCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;;
 
+		assert(caption != nil);
 		self.valueCell.caption.text = caption;
 		
 		self.valueCell.contentDescription.text = contentDesc;
-		
-		if(subtitle != nil)
-		{
-			self.valueCell.subTitle.text = subtitle;
-		}
-		
-		
+		self.valueCell.subTitle.text = subtitle;
 		
 		assert(theSubViewFactory != nil);
 		self.subViewFactory = theSubViewFactory;

@@ -14,9 +14,11 @@
 @interface FormPopulator : NSObject {
     @private
         FormInfo *formInfo;
+		SectionInfo *currentSection;
 }
 
 @property(nonatomic,retain) FormInfo *formInfo;
+@property(nonatomic,retain) SectionInfo *currentSection;
 
 // Advance to the next section, allocating a default SectionInfo Object
 - (SectionInfo*) nextSection;

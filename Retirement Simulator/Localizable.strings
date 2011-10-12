@@ -19,6 +19,7 @@
 "INPUT_LIST_SECTION_TITLE_ACCOUNTS" = "Accounts";
 "INPUT_LIST_SECTION_TITLE_LOANS" = "Loans";
 "INPUT_LIST_SECTION_TITLE_ASSETS" = "Assets";
+"INPUT_LIST_SECTION_TITLE_TAXES" = "Taxes";
 
 
 "INPUT_EXPENSE_VIEW_TITLE" = "Expense";
@@ -164,10 +165,37 @@
 "INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE" = "Purchase and Sale";
 "INPUT_ASSET_INPUT_LIST_FORMAT" = "Asset purchased for %@";
 
+"INPUT_TAX_TITLE" = "Tax";
+"INPUT_TAX_INLINE_INPUT_TYPE" = "tax";
+"INPUT_TAX_ENABLED_FIELD_LABEL" = "Enable Tax?";
+"INPUT_TAX_SOURCES_SECTION_TITLE" = "Tax Sources";
+"INPUT_TAX_SOURCES_SECTION_SUBTITLE" = "Specify where the taxes come from, including incomes, savings interest, asset sales, taxable withdrawals, or investment gains. The total amount from all sources is typically called a gross income.";
+"INPUT_TAX_ADJUSTMENT_SECTION_TITLE" = "Adjustments";
+"INPUT_TAX_ADJUSTMENT_SECTION_SUBTITLE" = "Specify adjustments to the total taxable amount (gross income), including eligible expenses, account contributions, or loan interest. The result after subtracting these adjustement is typically called an adjusted gross income (AGI).";
+"INPUT_TAX_DEDUCTION_SECTION_TITLE" = "Deductions";
+"INPUT_TAX_DEDUCTION_SECTION_SUBTITLE" = "Specify a standard deduction and/or itemized deductions, of which the greater of the two is subtracted from the adjusted gross income. Itemized deductions include eligible expenses, account interest, and loan interest";
+"INPUT_TAX_STD_DEDUCTION_TITLE" = "Standard Deduction";
+"INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL" = "Standard Deduction Growth";
 
 "INPUT_EXPENSE_TAXES_SECTION_TITLE" = "Taxes";
 "INPUT_EXPENSE_TAXES_SECTION_SUBTITLE" = "Specify whether this expense is tax deductible";
 "INPUT_EXPENSE_TAXES_TAX_DEDUCTIBLE_LABEL" = "Deductible?";
+"INPUT_TAX_EXEMPTION_SECTION_TITLE" = "Exemptions";
+"INPUT_TAX_EXEMPTION_SECTION_SUBTITLE" = "In addition to specific adjustments, eligible exemptions (such as for children) further reduce the tax liability";
+"INPUT_TAX_EXEMPTION_AMOUNT_TITLE" = "Exemption Amount";
+"INPUT_TAX_EXEMPTION_GROWTH_RATE_LABEL" = "Exemption Growth";
+"INPUT_TAX_ITEMIZED_SOURCES_TITLE" = "Tax Sources";
+"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE" = "Tax Source";
+"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT" = "Percentage Taxed";
+"INPUT_TAX_ITEMIZED_SOURCES_SELECTION_TITLE" = "Taxable Incomes";
+
+"TAX_BRACKET_FORM_TITLE" = "Tax Brackets";
+"TAX_BRACKET_ENTRY_FORM_TITLE" = "Tax Bracket";
+"TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_LABEL" = "Cutoff Amount";
+"TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_PLACEHOLDER" = "Enter an Amount";
+"TAX_BRACKET_ENTRY_TAX_PERCENT_LABEL" = "Tax Percent";
+"TAX_BRACKET_ENTRY_TAX_PERCENT_PLACEHOLDER" = "Enter a percent";
+"TAX_BRACKET_ENTRY_LIST_FORMAT" = "%@ and above";
 
 "CASH_LABEL" = "Cash";
 "DEFICIT_LABEL" = "Deficit";

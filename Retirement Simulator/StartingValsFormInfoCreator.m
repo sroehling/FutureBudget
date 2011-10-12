@@ -73,6 +73,7 @@
 		[sectionInfo addFieldEditInfo:acctBalanceFieldEditInfo];
 	}
 	
+	// TODO - Switch over to use populateCurrencyField from InputFormPopulator
 	Cash *theCash = [SharedAppValues singleton].cash;
 	NumberFieldEditInfo *cashBalanceFieldEditInfo = 
 			[NumberFieldEditInfo createForObject:theCash andKey:CASH_STARTING_BALANCE_KEY 
@@ -85,7 +86,7 @@
 	sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_DEFICITS_SECTION_TITLE");
 	sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE");
 
-	
+	// TODO - Switch to use populatePercentField from InputFormPopulator
 	NumberFieldEditInfo *deficitInterestFieldEditInfo = 
 			[NumberFieldEditInfo createForObject:[SharedAppValues singleton].deficitInterestRate 
 				andKey:FIXED_VALUE_VALUE_KEY 

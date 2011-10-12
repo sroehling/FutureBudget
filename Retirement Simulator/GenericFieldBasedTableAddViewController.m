@@ -22,15 +22,26 @@
 #pragma mark -
 #pragma mark Observing changes to objects while add operation in place
 
-
-- (void)managedObjectsSaved
+- (void)updateSaveButtonEnabled
 {
-    NSLog(@"Managed objects changed");
     if([self.formInfo allFieldsInitialized])
     {
         self.saveButton.enabled = TRUE;
     }
+	else
+	{
+		self.saveButton.enabled = FALSE;
+	}
+
 }
+
+- (void)managedObjectsSaved
+{
+    NSLog(@"Managed objects changed");
+	[self updateSaveButtonEnabled];
+}
+
+
 
 
 - (void)stopObservingObjectChangeNotifications
@@ -109,7 +120,8 @@
     UIBarButtonItem *saveButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save)] autorelease];
     self.navigationItem.rightBarButtonItem = saveButtonItem;
     self.saveButton = saveButtonItem;
-    self.saveButton.enabled = FALSE;
+	
+	[self updateSaveButtonEnabled];
         
     [self startObservingObjectChangeNotifications];
    

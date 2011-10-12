@@ -68,7 +68,7 @@
 - (UIViewController*)fieldEditController
 {
     DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc]
-					initWithInput:self.input] autorelease];
+					initWithInput:self.input andIsForNewObject:FALSE] autorelease];
     UIViewController *detailViewController = 
 		[[[GenericFieldBasedTableEditViewController alloc] 
 		  initWithFormInfoCreator:detailViewCreator] autorelease];

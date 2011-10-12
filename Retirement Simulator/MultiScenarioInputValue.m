@@ -186,7 +186,6 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	{
 		scenarioVal.inputValue = inputValue;		
 	}
-	[[DataModelController theDataModelController] saveContext];
 }
 
 -(void)setDefaultValue:(InputValue*)inputValue

@@ -22,6 +22,7 @@
 #import "LocalizationHelper.h"
 #import "Account.h"
 #import "AssetInput.h"
+#import "TaxInput.h"
 #import "SelectScenarioTableHeaderButtonDelegate.h"
 
 @implementation InputListFormInfoCreator
@@ -120,6 +121,22 @@
 			assert(asset != nil);
 			InputFieldEditInfo *inputFieldEditInfo =
 				[[[InputFieldEditInfo alloc] initWithInput:asset] autorelease];
+			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
+		}
+	}
+
+
+	inputs = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:TAX_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	if([inputs count] > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_TAXES");
+		for(TaxInput *tax in inputs)
+		{    
+			assert(tax != nil);
+			InputFieldEditInfo *inputFieldEditInfo =
+				[[[InputFieldEditInfo alloc] initWithInput:tax] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
