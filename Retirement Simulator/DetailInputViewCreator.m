@@ -23,7 +23,6 @@
 #import "SectionInfo.h"
 #import "FormInfo.h"
 #import "FormPopulator.h"
-#import "DurationFieldEditInfo.h"
 #import "SharedEntityVariableValueListMgr.h"
 #import "LocalizationHelper.h"
 #import "SimDateRuntimeInfo.h"
@@ -57,10 +56,13 @@
 #import "ItemizedTaxAmtsInfo.h"
 #import "TaxBracketFormInfoCreator.h"
 
+#import "InputFormPopulator.h"
+
 @implementation DetailInputViewCreator
 
 @synthesize input;
 @synthesize isForNewObject;
+@synthesize formPopulator;
 
 -(id) initWithInput:(Input*)theInput andIsForNewObject:(BOOL)forNewObject
 {
@@ -83,8 +85,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    [formPopulator release];
-    formPopulator = [[FormPopulator alloc] init];
+    self.formPopulator = [[[InputFormPopulator alloc] initForNewObject:self.isForNewObject] autorelease];
     
     [self.input acceptInputVisitor:self];
     
@@ -92,124 +93,12 @@
 
 }
 
-- (void)populateInputNameField:(Input*)theInput
-{
-   SectionInfo *sectionInfo = [formPopulator nextSection];
-	
-	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:theInput andFieldKey:INPUT_NAME_KEY andFieldLabel:LOCALIZED_STR(@"INPUT_NAME_FIELD_LABEL")
-	 andFieldPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")] autorelease];
-	 NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
-	
-    [sectionInfo addFieldEditInfo:fieldEditInfo];
-
-}
-
--(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
-	inSection:(SectionInfo*)sectionInfo 
-	withValueTitle:(NSString*)valueTitleStringFileKey
-{
-	MultiScenarioAmountVariableValueListMgr *variableValueMgr = 
-		[[[MultiScenarioAmountVariableValueListMgr alloc] initWithMultiScenarioAmount:theAmount] autorelease];
-		
-	NSString *inlineType = @"TBD Type";
-	NSString *valueTitle = LOCALIZED_STR(valueTitleStringFileKey);
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
-		
-	NSString *tableSubtitle = [NSString 
-	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
-	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
-	 inlineType,
-	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
-						
-	VariableValueRuntimeInfo *amountRuntimeInfo = 
-		[[[VariableValueRuntimeInfo alloc]
-		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
-		andValueTitle:valueTitleStringFileKey 
-		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
-		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableValueMgr
-		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
-		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
-		  andValueTypeInline:inlineType
-		  andValueTypeTitle:valueTitle
-		  andValueName:@"Name TBD"
-		  andTableSubtitle:tableSubtitle]
-		 autorelease];
-		
-	[sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:theAmount 
-		andKey:MULTI_SCEN_AMOUNT_AMOUNT_KEY 
-	  andLabel:valueTitle
-	  andValRuntimeInfo:amountRuntimeInfo
-	  andDefaultFixedVal:theAmount.defaultFixedAmount]];
-}
-
--(void)populateBoolField:(MultiScenarioInputValue*)boolVal inSection:(SectionInfo*)sectionInfo
-	withLabel:(NSString*)labelStringFileKey
-{
-
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
-
-	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(labelStringFileKey) 
-			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-		andInputVal:boolVal] autorelease];
-	BoolFieldEditInfo *enabledFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
-
-}
-
--(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
-	inSection:(SectionInfo*)sectionInfo
-	withLabel:(NSString*)labelStringFileKey
-{
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
-	
-	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
-	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
-	
-	NSString *tableSubtitle = [NSString 
-			stringWithFormat:LOCALIZED_STR(@"INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT"),
-			LOCALIZED_STR(@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"),
-			LOCALIZED_STR(@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE")];
-
-	NSString *valueLabel = LOCALIZED_STR(labelStringFileKey);
-	
-	VariableValueRuntimeInfo *grRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
-		initWithFormatter:[NumberHelper theHelper].percentFormatter 
-		andValueTitle:@"INPUT_INFLATION_RATE_VALUE_TITLE"
-		andInlineValueTitleKey:@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"
-		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
-		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 
-		andListMgr:sharedInflationRatesMgr
-		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
-		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
-		andValueTypeInline:@"inline type TBD"
-		andValueTypeTitle:valueLabel
-		andValueName:@"Name TBD"
-		andTableSubtitle:tableSubtitle] autorelease];
-
-
-	[sectionInfo addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
-         createForScenario:currentScenario andObject:growthRate 
-			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
-			andLabel:LOCALIZED_STR(labelStringFileKey) 
-		 andValRuntimeInfo:grRuntimeInfo 
-		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate]];
- 
-}
-
 
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
 
-	[self populateInputNameField:cashFlow];
+	[self.formPopulator populateInputNameField:cashFlow];
 	
  	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 	      
@@ -217,14 +106,8 @@
     
     SectionInfo *sectionInfo  = [formPopulator nextSection];
 	
-	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL") 
-			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-		andInputVal:cashFlow.multiScenarioCashFlowEnabled] autorelease];
-	BoolFieldEditInfo *enabledFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+	
+	[self.formPopulator populateMultiScenBoolField:cashFlow.multiScenarioCashFlowEnabled withLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL")];
 
     sectionInfo.title = 
 		LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_SECTION_TITLE");
@@ -268,12 +151,11 @@
 			andDefaultRelEndDate:nil]];
 	
 
-
-    RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo 
-		createForScenario:currentScenario andObject:cashFlow 
-		andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY
+	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
+		[self.formPopulator populateRepeatFrequency:cashFlow
+		andFreqKey:CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
-    [sectionInfo addFieldEditInfo:repeatFrequencyInfo];
+
     
     // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
     // than "Once", such that an end date is needed. TBD - Should the end date in this case default to 
@@ -326,31 +208,23 @@
 {
     formPopulator.formInfo.title = 
 		LOCALIZED_STR(@"INPUT_ACCOUNT_TITLE");
-	[self populateInputNameField:account];
+	[self.formPopulator populateInputNameField:account];
 
  	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 	
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 
-	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:account 
-             andKey:ACCOUNT_STARTING_BALANCE_KEY 
-			 andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_STARTING_BALANCE_LABEL")
-			 andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")
-			 andNumberFormatter:[NumberHelper theHelper].currencyFormatter]];
+	[self.formPopulator populateCurrencyField:account andValKey:ACCOUNT_STARTING_BALANCE_KEY
+		andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_STARTING_BALANCE_LABEL") 
+			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")];
 
 	sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = 
-		LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
+    sectionInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
 		
-	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL") 
-			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-		andInputVal:account.multiScenarioContribEnabled] autorelease];
-	BoolFieldEditInfo *enabledFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
-	
+		
+	[self.formPopulator populateMultiScenBoolField:account.multiScenarioContribEnabled 
+			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL")];
+		
 	
 	AccountContribAmountVariableValueListMgr *variableAmountMgr = 
 		[[[AccountContribAmountVariableValueListMgr alloc] initWithAccount:account] autorelease];
@@ -380,12 +254,18 @@
 			andDefaultValue:account.multiScenarioFixedContribStartDate 
 			andVarDateRuntimeInfo:startDateInfo andShowEndDates:FALSE
 			andDefaultRelEndDate:nil]];
-			
-   RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo 
-		createForScenario:currentScenario andObject:account 
-		andKey:ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY
+
+
+	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
+		[self.formPopulator populateRepeatFrequency:account
+		andFreqKey:ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
-    [sectionInfo addFieldEditInfo:repeatFrequencyInfo];
+
+    
+    // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
+    // than "Once", such that an end date is needed. TBD - Should the end date in this case default to 
+    // "Plan end date".
+	if([repeatFrequencyInfo.fieldInfo fieldIsInitializedInParentObject])	
     {
         EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)[repeatFrequencyInfo.fieldInfo getFieldValue];
         assert(repeatFreq != nil);
@@ -434,16 +314,8 @@
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
 
-	MultiScenarioFixedValueFieldInfo *withdrawalPriorityFieldInfo =
-		[[[MultiScenarioFixedValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
-			andFieldPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER") 
-			andScenario:currentScenario 
-		andInputVal:savingsAcct.multiScenarioWithdrawalPriority] autorelease];
-   NumberFieldEditInfo *withdrawalPriorityEditInfo = 
-		[[NumberFieldEditInfo alloc] initWithFieldInfo:withdrawalPriorityFieldInfo
-			andNumberFormatter:[NumberHelper theHelper].decimalFormatter];
-	[sectionInfo addFieldEditInfo:withdrawalPriorityEditInfo];
+	[self.formPopulator populateMultiScenFixedValField:savingsAcct.multiScenarioWithdrawalPriority andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
+		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
 	
 	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
 		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:savingsAcct
@@ -469,22 +341,16 @@
 - (void) visitLoan:(LoanInput*)loan
 {
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_LOAN_TITLE");
-	[self populateInputNameField:loan];
+	[self.formPopulator populateInputNameField:loan];
 	
 	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
 
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_COST_SECTION_TITLE");
 	
-	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL") 
-			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-		andInputVal:loan.multiScenarioLoanEnabled] autorelease];
-	BoolFieldEditInfo *enabledFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
-
+	
+	[self.formPopulator populateMultiScenBoolField:loan.multiScenarioLoanEnabled 
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
 
 
 	LoanCostAmtVariableValueListMgr *variableAmountMgr = 
@@ -519,24 +385,14 @@
 			andVarDateRuntimeInfo:origDateInfo andShowEndDates:FALSE
 			andDefaultRelEndDate:nil]];
 
-
-	MultiScenarioFixedValueFieldInfo *loanDurationFieldInfo =
-		[[[MultiScenarioFixedValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DURATION_LABEL") 
-			andFieldPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_DURATION_PLACEHOLDER") 
-			andScenario:currentScenario 
-		andInputVal:loan.multiScenarioLoanDuration] autorelease];
-	DurationFieldEditInfo *loanDurationFieldEditInfo = 
-		[[[DurationFieldEditInfo alloc] initWithFieldInfo:loanDurationFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:loanDurationFieldEditInfo];
-
+	[self.formPopulator populateMultiScenarioDuration:loan.multiScenarioLoanDuration 
+		andLabel:LOCALIZED_STR(@"INPUT_LOAN_DURATION_LABEL") 
+		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_DURATION_PLACEHOLDER") ];
 
 	
-	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:loan 
-             andKey:INPUT_LOAN_STARTING_BALANCE_KEY 
-			 andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL")
-			 andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")
-			 andNumberFormatter:[NumberHelper theHelper].currencyFormatter]];
+	[self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY 
+		andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL") 
+		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
 			 
 	sectionInfo = [formPopulator nextSection]; 
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_INTEREST_SECTION_TITLE");
@@ -561,14 +417,9 @@
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_SECTION_TITLE");
 
-	MultiScenarioBoolInputValueFieldInfo *enableExtraPmtFieldInfo =
-		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL") 
-			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-		andInputVal:loan.multiScenarioExtraPmtEnabled] autorelease];
-	BoolFieldEditInfo *enableExtraPmtFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enableExtraPmtFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:enableExtraPmtFieldEditInfo];
+
+	[self.formPopulator populateMultiScenBoolField:loan.multiScenarioExtraPmtEnabled 
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL")];
 	
 	LoanExtraPmtAmountVariableValueListMgr *extraPmtVariableAmountMgr = 
 		[[[LoanExtraPmtAmountVariableValueListMgr alloc] initWithLoan:loan] autorelease];
@@ -591,18 +442,12 @@
 		 andDefaultFixedVal:loan.multiScenarioExtraPmtGrowthRateFixed]];
 
 		
-		
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_SECTION_TITLE");
 
-	MultiScenarioBoolInputValueFieldInfo *enableDownPmtFieldInfo =
-		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_ENABLED_LABEL") 
-			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-		andInputVal:loan.multiScenarioDownPmtEnabled] autorelease];
-	BoolFieldEditInfo *enableDownPmtFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enableDownPmtFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:enableDownPmtFieldEditInfo];
+
+	[self.formPopulator populateMultiScenBoolField:loan.multiScenarioDownPmtEnabled 
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_ENABLED_LABEL")];
 	
 	
 	VariableValueRuntimeInfo *downPmtVarValRuntimeInfo = [VariableValueRuntimeInfo createForSharedPercentageRate:loan andSharedValEntityName:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME];
@@ -622,21 +467,17 @@
 - (void)visitAsset:(AssetInput*)asset
 {
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ASSET_TITLE");
-	[self populateInputNameField:asset];
+	[self.formPopulator populateInputNameField:asset];
 	
 	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
 
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE");
 	
-	MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL") 
-			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-		andInputVal:asset.multiScenarioAssetEnabled] autorelease];
-	BoolFieldEditInfo *enabledFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+	
+	[self.formPopulator populateMultiScenBoolField:asset.multiScenarioAssetEnabled 
+			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
+	
 	
 	AssetCostVariableValueListMgr *variableValueMgr = 
 		[[[AssetCostVariableValueListMgr alloc] initWithAsset:asset] autorelease];
@@ -651,11 +492,10 @@
 	  andValRuntimeInfo:varValRuntimeInfo
 	  andDefaultFixedVal:asset.multiScenarioCostFixed]];
 
-	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:asset 
-             andKey:INPUT_ASSET_STARTING_VALUE_KEY 
-			 andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL")
-			 andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")
-			 andNumberFormatter:[NumberHelper theHelper].currencyFormatter]];
+
+	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
+		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
+		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
 
 	[sectionInfo addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
@@ -698,14 +538,8 @@
 			andDefaultRelEndDate:asset.multiScenarioSaleDateRelativeFixed]];
 
  
- 	MultiScenarioBoolInputValueFieldInfo *taxableFieldInfo =
-		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_PROCEEDS_TAXABLE_FIELD_LABEL") 
-			andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-		andInputVal:asset.multiScenarioSaleProceedsTaxable] autorelease];
-	BoolFieldEditInfo *taxableFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:taxableFieldInfo] autorelease];
-	[sectionInfo addFieldEditInfo:taxableFieldEditInfo];
+ 	[self.formPopulator populateMultiScenBoolField:asset.multiScenarioSaleProceedsTaxable 
+			withLabel:LOCALIZED_STR(@"INPUT_ASSET_PROCEEDS_TAXABLE_FIELD_LABEL")];
 
 
 }
@@ -713,12 +547,12 @@
 - (void)visitTax:(TaxInput *)tax
 {
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_TAX_TITLE");
-	[self populateInputNameField:tax];
+	[self.formPopulator populateInputNameField:tax];
 	
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	
-	[self populateBoolField:tax.multiScenarioTaxEnabled inSection:sectionInfo 
-		withLabel:@"INPUT_TAX_ENABLED_FIELD_LABEL"];
+	[self.formPopulator populateMultiScenBoolField:tax.multiScenarioTaxEnabled  
+		withLabel:LOCALIZED_STR(@"INPUT_TAX_ENABLED_FIELD_LABEL")];
 		
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE");
@@ -742,26 +576,27 @@
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_TITLE");
 	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_SUBTITLE");
-	[self populateMultiScenarioAmount:tax.exemptionAmt 
-		inSection:sectionInfo withValueTitle:@"INPUT_TAX_EXEMPTION_AMOUNT_TITLE"];
-	[self populateMultiScenarioGrowthRate:tax.exemptionGrowthRate 
-		inSection:sectionInfo withLabel:@"INPUT_TAX_EXEMPTION_GROWTH_RATE_LABEL"];
+	[self.formPopulator populateMultiScenarioAmount:tax.exemptionAmt 
+		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_AMOUNT_TITLE")];
+	[self.formPopulator populateMultiScenarioGrowthRate:tax.exemptionGrowthRate 
+		withLabel:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_GROWTH_RATE_LABEL")];
 
 
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_TITLE");
 	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_SUBTITLE");
-	[self populateMultiScenarioAmount:tax.stdDeductionAmt inSection:sectionInfo 
-		withValueTitle:@"INPUT_TAX_STD_DEDUCTION_TITLE"];
-	[self populateMultiScenarioGrowthRate:tax.stdDeductionGrowthRate inSection:sectionInfo withLabel:@"INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL"];
+
+	[self.formPopulator populateMultiScenarioAmount:tax.stdDeductionAmt 
+		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_TITLE")];
+
+	[self.formPopulator populateMultiScenarioGrowthRate:tax.stdDeductionGrowthRate  
+		withLabel:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL")];
 	
 	sectionInfo = [formPopulator nextSection];
 	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
 		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket] autorelease];
 	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]initWithCaption:@"Tax Rates" andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
 	[sectionInfo addFieldEditInfo:taxRatesFieldEditInfo];
-
-
 
 }
 
