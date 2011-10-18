@@ -23,10 +23,9 @@
 #import "AssetInput.h"
 #import "NumberHelper.h"
 #import "TaxInput.h"
-#import "CashFlowAmountVariableValueListMgr.h"
 #import "SavingsAccount.h"
-#import "LoanInputVariableValueListMgr.h"
-#import "AssetCostVariableValueListMgr.h"
+#import "MultiScenarioGrowthRate.h"
+#import "MultiScenarioAmount.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -35,14 +34,13 @@
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
-	CashFlowAmountVariableValueListMgr *variableAmountMgr = 
-		[[[CashFlowAmountVariableValueListMgr alloc] initWithCashFlow:cashFlow] autorelease];
 	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
-		createForVariableAmount:cashFlow 
-		andVariableValListMgr:variableAmountMgr];
+		createForMultiScenarioAmount:cashFlow.amount 
+		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")];
+	
 
 	DateSensitiveValue *amount = (DateSensitiveValue*)
-			[cashFlow.multiScenarioAmount getValueForCurrentOrDefaultScenario];
+			[cashFlow.amount.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
 
 	SimDate *startDate = (SimDate*)[cashFlow.multiScenarioStartDate getValueForCurrentOrDefaultScenario]; 
@@ -61,7 +59,7 @@
 	}
 	
 	DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)
-			[cashFlow.multiScenarioAmountGrowthRate getValueForCurrentOrDefaultScenario];
+			[cashFlow.amountGrowthRate.growthRate getValueForCurrentOrDefaultScenario];
 	
 	NSString *inflationDesc = [amountGrowthRate 
 		inlineDescription:[VariableValueRuntimeInfo createForSharedInflationRate:cashFlow]];
@@ -87,7 +85,7 @@
 - (void)visitSavingsAccount:(SavingsAccount*)savingsAcct
 {
 	DateSensitiveValue *interestRate = (DateSensitiveValue*)
-		[savingsAcct.multiScenarioInterestRate getValueForCurrentOrDefaultScenario];
+		[savingsAcct.interestRate.growthRate getValueForCurrentOrDefaultScenario];
 
 	NSString *interestRateDisplay = [interestRate inlineDescription:
 		[VariableValueRuntimeInfo createForSharedInterestRate:savingsAcct]];
@@ -101,18 +99,17 @@
 - (void)visitLoan:(LoanInput *)loan
 {
 	DateSensitiveValue *interestRate = (DateSensitiveValue*)
-		[loan.multiScenarioInterestRate getValueForCurrentOrDefaultScenario];
+		[loan.interestRate.growthRate getValueForCurrentOrDefaultScenario];
 	NSString *interestRateDisplay = [interestRate inlineDescription:
 		[VariableValueRuntimeInfo createForSharedInterestRate:loan]];
 
+	
 
-	LoanCostAmtVariableValueListMgr *variableAmountMgr = 
-		[[[LoanCostAmtVariableValueListMgr alloc] initWithLoan:loan] autorelease];
 	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
-		createForVariableAmount:loan 
-		andVariableValListMgr:variableAmountMgr];
+		createForMultiScenarioAmount:loan.loanCost 
+		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")];
 	DateSensitiveValue *amount = (DateSensitiveValue*)
-			[loan.multiScenarioLoanCostAmt getValueForCurrentOrDefaultScenario];
+			[loan.loanCost.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
 
 
@@ -125,13 +122,11 @@
 
 - (void)visitAsset:(AssetInput*)asset
 {
-	AssetCostVariableValueListMgr *variableAmountMgr = 
-		[[[AssetCostVariableValueListMgr alloc] initWithAsset:asset] autorelease];
-	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
-		createForVariableAmount:asset 
-		andVariableValListMgr:variableAmountMgr];
+	VariableValueRuntimeInfo *varValRuntimeInfo = 
+		[VariableValueRuntimeInfo createForMultiScenarioAmount:asset.cost 
+		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")];
 	DateSensitiveValue *amount = (DateSensitiveValue*)
-			[asset.multiScenarioCost getValueForCurrentOrDefaultScenario];
+			[asset.cost.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
 
 	self.generatedDesc = [NSString 

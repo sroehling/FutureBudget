@@ -25,16 +25,15 @@
 #import "NumberFieldEditInfo.h"
 #import "NumberHelper.h"
 #import "DeferredWithdrawalFieldEditInfo.h"
-#import "CashFlowAmountVariableValueListMgr.h"
 #import "VariableValueRuntimeInfo.h"
 #import "DateSensitiveValueFieldEditInfo.h"
 #import "Scenario.h"
-#import "AccountContribAmountVariableValueListMgr.h"
-#import "LoanInputVariableValueListMgr.h"
-#import "AssetCostVariableValueListMgr.h"
 #import "ScenarioListFormInfoCreator.h"
 #import "ManagedObjectFieldInfo.h"
+
 #import "SelectableObjectTableViewControllerFactory.h"
+
+#import "InputFormPopulator.h"
 
 @implementation WhatIfFormInfoCreator
 
@@ -135,7 +134,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_ENABLED_FORM_TITLE");
 	
@@ -335,14 +334,12 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_AMOUNTS_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
-	
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
-	
+		
 	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -351,18 +348,8 @@
 
 		for(IncomeInput *income in inputs)
 		{
-			CashFlowAmountVariableValueListMgr *variableAmountMgr = 
-				[[[CashFlowAmountVariableValueListMgr alloc] initWithCashFlow:income] autorelease];
-			VariableValueRuntimeInfo *varValRuntimeInfo =  [VariableValueRuntimeInfo createForVariableAmount:income 
-			andVariableValListMgr:variableAmountMgr];
-			[sectionInfo addFieldEditInfo:
-			[DateSensitiveValueFieldEditInfo 
-			  createForScenario:currentScenario andObject:income 
-				andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_KEY 
-			  andLabel:income.name
-			  andValRuntimeInfo:varValRuntimeInfo
-			  andDefaultFixedVal:income.multiScenarioFixedAmount]];
-
+			[formPopulator populateMultiScenarioAmount:income.amount 
+				withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")];
 		}
 	}
 	
@@ -374,19 +361,10 @@
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_AMOUNTS_EXPENSE");
 
 		for(ExpenseInput *expense in inputs)
-		{    
-			CashFlowAmountVariableValueListMgr *variableAmountMgr = 
-				[[[CashFlowAmountVariableValueListMgr alloc] initWithCashFlow:expense] autorelease];
-			VariableValueRuntimeInfo *varValRuntimeInfo =  [VariableValueRuntimeInfo createForVariableAmount:expense 
-				andVariableValListMgr:variableAmountMgr];
-			[sectionInfo addFieldEditInfo:
-			[DateSensitiveValueFieldEditInfo 
-			  createForScenario:currentScenario andObject:expense 
-				andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_KEY 
-			  andLabel:expense.name
-			  andValRuntimeInfo:varValRuntimeInfo
-			  andDefaultFixedVal:expense.multiScenarioFixedAmount]];
-		}
+		{   
+			[formPopulator populateMultiScenarioAmount:expense.amount 
+				withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")];
+ 		}
 	}
 	
 	inputs = [[DataModelController theDataModelController] 
@@ -398,17 +376,7 @@
 	
 		for(SavingsAccount *savingsAcct in inputs)
 		{
-			AccountContribAmountVariableValueListMgr *variableAmountMgr = 
-				[[[AccountContribAmountVariableValueListMgr alloc] initWithAccount:savingsAcct] autorelease];
-			VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo createForVariableAmount:savingsAcct 
-				andVariableValListMgr:variableAmountMgr];
-			[sectionInfo addFieldEditInfo:
-			 [DateSensitiveValueFieldEditInfo 
-			  createForScenario:currentScenario andObject:savingsAcct 
-				andKey:ACCOUNT_MULTI_SCEN_CONTRIB_AMOUNT_KEY 
-			  andLabel:savingsAcct.name 
-			  andValRuntimeInfo:varValRuntimeInfo
-			  andDefaultFixedVal:savingsAcct.multiScenarioFixedContribAmount]];
+			[formPopulator populateMultiScenarioAmount:savingsAcct.contribAmount withValueTitle:savingsAcct.name];
 		}
 	}
 	
@@ -421,17 +389,7 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			LoanCostAmtVariableValueListMgr *variableAmountMgr = 
-				[[[LoanCostAmtVariableValueListMgr alloc] initWithLoan:loan] autorelease];
-			VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo createForVariableAmount:loan 
-				andVariableValListMgr:variableAmountMgr];
-			[sectionInfo addFieldEditInfo:
-			 [DateSensitiveValueFieldEditInfo 
-			  createForScenario:currentScenario andObject:loan 
-				andKey:INPUT_LOAN_MULTI_SCEN_LOAN_COST_AMT_KEY 
-			  andLabel:loan.name 
-			  andValRuntimeInfo:varValRuntimeInfo
-			  andDefaultFixedVal:loan.multiScenarioLoanCostAmtFixed]];
+			[formPopulator populateMultiScenarioAmount:loan.loanCost withValueTitle:loan.name]; 
 		}
 	}
 
@@ -443,18 +401,8 @@
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_AMOUNTS_LOAN_EXTRA_PMT");
 
 		for(LoanInput *loan in inputs)
-		{
-			LoanExtraPmtAmountVariableValueListMgr *extraPmtVariableAmountMgr = 
-				[[[LoanExtraPmtAmountVariableValueListMgr alloc] initWithLoan:loan] autorelease];
-			VariableValueRuntimeInfo *extraPmtVarValRuntimeInfo = [VariableValueRuntimeInfo createForVariableAmount:loan 
-				andVariableValListMgr:extraPmtVariableAmountMgr];	
-			[sectionInfo addFieldEditInfo:
-			 [DateSensitiveValueFieldEditInfo 
-			  createForScenario:currentScenario andObject:loan 
-				andKey:INPUT_LOAN_MULTI_SCEN_EXTRA_PMT_AMT_KEY 
-			  andLabel:loan.name 
-			  andValRuntimeInfo:extraPmtVarValRuntimeInfo
-			  andDefaultFixedVal:loan.multiScenarioExtraPmtAmtFixed]];
+		{		
+			[formPopulator populateMultiScenarioAmount:loan.extraPmtAmt withValueTitle:loan.name];
 		}
 	}
 
@@ -468,19 +416,7 @@
 		
 		for(AssetInput *asset in inputs)
 		{
-			AssetCostVariableValueListMgr *variableValueMgr = 
-				[[[AssetCostVariableValueListMgr alloc] initWithAsset:asset] autorelease];
-			VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
-				createForVariableAmount:asset
-				andVariableValListMgr:variableValueMgr];
-			[sectionInfo addFieldEditInfo:
-			 [DateSensitiveValueFieldEditInfo 
-			  createForScenario:currentScenario andObject:asset 
-				andKey:INPUT_ASSET_MULTI_SCEN_COST_KEY 
-			  andLabel:asset.name
-			  andValRuntimeInfo:varValRuntimeInfo
-			  andDefaultFixedVal:asset.multiScenarioCostFixed]];
-
+			[formPopulator populateMultiScenarioAmount:asset.cost withValueTitle:asset.name];
 		}
 	}
 	
@@ -496,14 +432,12 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_INVESTMENT_RETURN_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
-	
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
-	
+		
 	NSSet *inputs = [[DataModelController theDataModelController] 
 					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
@@ -513,13 +447,7 @@
 	
 		for(SavingsAccount *savingsAcct in inputs)
 		{
-		   [sectionInfo addFieldEditInfo:
-			 [DateSensitiveValueFieldEditInfo 
-			  createForScenario:currentScenario andObject:savingsAcct 
-				andKey:SAVINGS_ACCOUNT_INTEREST_RATE_KEY 
-			  andLabel:savingsAcct.name 
-			  andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInterestRate:savingsAcct]
-			  andDefaultFixedVal:savingsAcct.multiScenarioFixedInterestRate]];
+			[formPopulator populateMultiScenarioGrowthRate:savingsAcct.interestRate withLabel:savingsAcct.name];
 		}
 	}
 	
@@ -533,14 +461,7 @@
 		
 		for(AssetInput *asset in inputs)
 		{
-			[sectionInfo addFieldEditInfo:
-				[DateSensitiveValueFieldEditInfo 
-				 createForScenario:currentScenario andObject:asset 
-					andKey:INPUT_ASSET_MULTI_SCEN_APPREC_RATE_KEY 
-					andLabel:asset.name 
-				 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:asset] 
-				 andDefaultFixedVal:asset.multiScenarioApprecRateFixed]];
- 
+			[formPopulator populateMultiScenarioGrowthRate:asset.apprecRate withLabel:asset.name]; 
 		}
 	}
 	
@@ -555,14 +476,12 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
-	
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
-	
+		
 	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -571,13 +490,7 @@
 
 		for(IncomeInput *income in inputs)
 		{
-			[sectionInfo addFieldEditInfo:
-				[DateSensitiveValueFieldEditInfo 
-				 createForScenario:currentScenario andObject:income 
-					andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY 
-					andLabel:income.name
-				 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:income] 
-				 andDefaultFixedVal:income.multiScenarioFixedGrowthRate]];
+			[formPopulator populateMultiScenarioGrowthRate:income.amountGrowthRate withLabel:income.name];
 		}
 	}
 	
@@ -591,13 +504,7 @@
 
 		for(ExpenseInput *expense in inputs)
 		{    
-			[sectionInfo addFieldEditInfo:
-				[DateSensitiveValueFieldEditInfo 
-				 createForScenario:currentScenario andObject:expense 
-					andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY 
-					andLabel:expense.name
-				 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:expense] 
-				 andDefaultFixedVal:expense.multiScenarioFixedGrowthRate]];
+			[formPopulator populateMultiScenarioGrowthRate:expense.amountGrowthRate withLabel:expense.name];
 		}
 	}
 	
@@ -610,14 +517,7 @@
 	
 		for(SavingsAccount *savingsAcct in inputs)
 		{
-			[sectionInfo addFieldEditInfo:
-				[DateSensitiveValueFieldEditInfo 
-				 createForScenario:currentScenario andObject:savingsAcct 
-					andKey:ACCOUNT_MULTI_SCEN_CONTRIB_GROWTH_RATE_KEY 
-					andLabel:savingsAcct.name
-				 andValRuntimeInfo:[VariableValueRuntimeInfo 
-					createForSharedInflationRate:savingsAcct] 
-				 andDefaultFixedVal:savingsAcct.multiScenarioFixedContribGrowthRate]];
+			[formPopulator populateMultiScenarioGrowthRate:savingsAcct.contribGrowthRate withLabel:savingsAcct.name];
 		}
 	}
 	
@@ -630,13 +530,7 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[sectionInfo addFieldEditInfo:
-				[DateSensitiveValueFieldEditInfo 
-				 createForScenario:currentScenario andObject:loan 
-					andKey:INPUT_LOAN_MULTI_SCEN_EXTRA_PMT_GROWTH_RATE_KEY 
-					andLabel:loan.name 
-				 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:loan] 
-				 andDefaultFixedVal:loan.multiScenarioExtraPmtGrowthRateFixed]];
+			[formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate withLabel:loan.name];
 		}
 	}
 
@@ -649,13 +543,21 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[sectionInfo addFieldEditInfo:
-				[DateSensitiveValueFieldEditInfo 
-				 createForScenario:currentScenario andObject:loan 
-					andKey:INPUT_LOAN_MULTI_SCEN_LOAN_COST_GROWTH_RATE_KEY 
-					andLabel:loan.name 
-				 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:loan] 
-				 andDefaultFixedVal:loan.multiScenarioLoanCostGrowthRateFixed]];
+			[formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate withLabel:loan.name];
+		}
+	}
+
+
+	inputs = [[DataModelController theDataModelController] 
+			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_LOAN_INTEREST");
+
+		for(LoanInput *loan in inputs)
+		{
+			[formPopulator populateMultiScenarioGrowthRate:loan.interestRate withLabel:loan.name];
 		}
 	}
 

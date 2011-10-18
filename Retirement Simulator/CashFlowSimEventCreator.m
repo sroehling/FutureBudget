@@ -18,6 +18,8 @@
 #import "VariableRateCalculator.h"
 #import "ValueAsOfCalculatorCreator.h"
 #import "MultiScenarioInputValue.h"
+#import "MultiScenarioAmount.h"
+#import "MultiScenarioGrowthRate.h"
 
 @protocol SimEventCreator;
 
@@ -39,14 +41,14 @@
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 
-		DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)[self.cashFlow.multiScenarioAmountGrowthRate
+		DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)[self.cashFlow.amountGrowthRate.growthRate
 			getValueForCurrentOrDefaultScenario];
 		
 		self.varRateCalc = [calcCreator 
 							createForDateSensitiveValue:amountGrowthRate 
 							andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
 							
-		DateSensitiveValue *amount = (DateSensitiveValue*)[self.cashFlow.multiScenarioAmount 
+		DateSensitiveValue *amount = (DateSensitiveValue*)[self.cashFlow.amount.amount 
 				getValueForCurrentOrDefaultScenario];					
 		ValueAsOfCalculatorCreator *varAmountCalcCreator = 
 			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];

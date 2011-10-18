@@ -164,33 +164,10 @@
 	withValueTitle:(NSString*)valueTitle
 {
 	assert(theAmount != nil);
-	assert([StringValidation nonEmptyString:valueTitle]);
-
-	MultiScenarioAmountVariableValueListMgr *variableValueMgr = 
-		[[[MultiScenarioAmountVariableValueListMgr alloc] initWithMultiScenarioAmount:theAmount] autorelease];
-		
-	NSString *inlineType = @"TBD Type";
-		
-	NSString *tableSubtitle = [NSString 
-	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
-	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
-	 inlineType,
-	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
-						
-	VariableValueRuntimeInfo *amountRuntimeInfo = 
-		[[[VariableValueRuntimeInfo alloc]
-		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
-		andValueTitle:valueTitle 
-		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
-		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableValueMgr
-		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
-		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
-		  andValueTypeInline:inlineType
-		  andValueTypeTitle:valueTitle
-		  andValueName:@"Name TBD"
-		  andTableSubtitle:tableSubtitle]
-		 autorelease];
+	
+	
+	VariableValueRuntimeInfo *amountRuntimeInfo = [VariableValueRuntimeInfo 
+		createForMultiScenarioAmount:theAmount withValueTitle:valueTitle];
 		
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:

@@ -8,7 +8,6 @@
 
 #import "VariableValueRuntimeInfo.h"
 #import "SharedEntityVariableValueListMgr.h"
-#import "CashFlowAmountVariableValueListMgr.h"
 #import "LocalizationHelper.h"
 #import "NumberHelper.h"
 #import "CashFlowInput.h"
@@ -16,9 +15,9 @@
 #import "InflationRate.h"
 #import "LoanInput.h"
 #import "InterestRate.h"
-#import "AccountContribAmountVariableValueListMgr.h"
-#import "LoanInputVariableValueListMgr.h"
 #import "VariableValueListMgr.h"
+#import "MultiScenarioAmountVariableValueListMgr.h"
+#import "StringValidation.h"
 
 @implementation VariableValueRuntimeInfo
 
@@ -228,6 +227,43 @@
 		 
 	return amountRuntimeInfo;
 
+}
+
+
+
++(VariableValueRuntimeInfo*)createForMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
+	withValueTitle:(NSString*)valueTitle
+{
+	assert(theAmount != nil);
+	assert([StringValidation nonEmptyString:valueTitle]);
+
+	MultiScenarioAmountVariableValueListMgr *variableValueMgr = 
+		[[[MultiScenarioAmountVariableValueListMgr alloc] initWithMultiScenarioAmount:theAmount] autorelease];
+		
+	NSString *inlineType = @"TBD Type";
+		
+	NSString *theTableSubtitle = [NSString 
+	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
+	 inlineType,
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
+						
+	VariableValueRuntimeInfo *amountRuntimeInfo = 
+		[[[VariableValueRuntimeInfo alloc]
+		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
+		andValueTitle:valueTitle 
+		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
+		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableValueMgr
+		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
+		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
+		  andValueTypeInline:inlineType
+		  andValueTypeTitle:valueTitle
+		  andValueName:@"Name TBD"
+		  andTableSubtitle:theTableSubtitle]
+		 autorelease];
+		 
+	return amountRuntimeInfo;
 }
 
 

@@ -15,6 +15,8 @@
 #import "VariableRateCalculator.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
 #import "InterestBearingWorkingBalance.h"
+#import "MultiScenarioGrowthRate.h"
+#import "MultiScenarioAmount.h"
 
 @implementation AssetSimInfo
 
@@ -60,7 +62,7 @@
 			startingAssetValue = [SimInputHelper doubleVal:asset.startingValue];
 		}
 		VariableRateCalculator *apprecCalc = [DateSensitiveValueVariableRateCalculatorCreator 
-			createVariableRateCalc:self.asset.multiScenarioApprecRate 
+			createVariableRateCalc:self.asset.apprecRate.growthRate 
 			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario 
 			andUseLoanAnnualRates:false];
 		bool taxableProceeds = [SimInputHelper multiScenBoolVal:self.asset.multiScenarioSaleProceedsTaxable
@@ -81,15 +83,15 @@
 	if([self purchasedAfterSimStart])
 	{
 		// If the purchase is in the future, then we adjust it's price for the appreciation rate.
-		cost = [SimInputHelper multiScenRateAdjustedValueAsOfDate:self.asset.multiScenarioCost 
-			andMultiScenRate:self.asset.multiScenarioApprecRate asOfDate:[self purchaseDate] 
+		cost = [SimInputHelper multiScenRateAdjustedValueAsOfDate:self.asset.cost.amount 
+			andMultiScenRate:self.asset.apprecRate.growthRate asOfDate:[self purchaseDate] 
 			sinceDate:self.simParams.simStartDate forScenario:self.simParams.simScenario];
 	}
 	else
 	{
 		// If the purchase was in the past, the purchase cost is assumed to be the unadjusted
 		// value given by the user.
-		cost = [SimInputHelper multiScenValueAsOfDate:self.asset.multiScenarioCost 
+		cost = [SimInputHelper multiScenValueAsOfDate:self.asset.cost.amount 
 			andDate:[self purchaseDate] andScenario:self.simParams.simScenario];
 		
 	}

@@ -43,11 +43,10 @@
     //      newInput.amountGrowthRate
 	
 	newInput.multiScenarioCashFlowEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
+	
+	newInput.amountGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.amount = [InputCreationHelper multiScenAmountWithDefault:0.0];
     
-    newInput.multiScenarioFixedGrowthRate = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-
-	newInput.multiScenarioFixedAmount = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-
     newInput.multiScenarioFixedStartDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
     
     newInput.multiScenarioFixedEndDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
@@ -71,12 +70,9 @@
 	
 	newInput.multiScenarioContribEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
 
-    newInput.multiScenarioFixedContribGrowthRate = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioContribGrowthRate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioFixedContribGrowthRate];
+	newInput.contribGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-    newInput.multiScenarioFixedContribAmount = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioContribAmount = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioFixedContribAmount];
+	newInput.contribAmount = [InputCreationHelper multiScenAmountWithDefault:0.0];
 	
     newInput.multiScenarioFixedContribStartDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
 	newInput.multiScenarioContribStartDate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
@@ -153,9 +149,7 @@
 	savingsAcct.taxableWithdrawals = [NSNumber numberWithBool:TRUE];
 	savingsAcct.taxableInterest = [NSNumber numberWithBool:FALSE];
 	
-    savingsAcct.multiScenarioFixedInterestRate = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	savingsAcct.multiScenarioInterestRate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		savingsAcct.multiScenarioFixedInterestRate];
+	savingsAcct.interestRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
     [[DataModelController theDataModelController] saveContext];
@@ -181,26 +175,19 @@
 	newInput.multiScenarioLoanEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
 	// Loan Cost
+	newInput.loanCost = [InputCreationHelper multiScenAmountWithDefault:0.0];
 	
-	newInput.multiScenarioLoanCostAmtFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioLoanCostAmt = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioLoanCostAmtFixed];
 		
 	newInput.multiScenarioLoanDuration = [InputCreationHelper multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
-		
-	newInput.multiScenarioLoanCostGrowthRateFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioLoanCostGrowthRate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioLoanCostGrowthRateFixed];
+	
+	newInput.loanCostGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 		
 	newInput.multiScenarioOrigDateFixed = [InputCreationHelper multiScenFixedDateWithDefaultToday];
 	newInput.multiScenarioOrigDate = [InputCreationHelper 
 		multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioOrigDateFixed ];
 
 	// Interest
-
-	newInput.multiScenarioInterestRateFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioInterestRate = [InputCreationHelper 
-		multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioInterestRateFixed];
+	newInput.interestRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	newInput.taxableInterest = [NSNumber numberWithBool:TRUE];		
 		
@@ -217,13 +204,8 @@
 	
 	newInput.multiScenarioExtraPmtEnabled = [InputCreationHelper multiScenBoolValWithDefault:FALSE];
 	
-	newInput.multiScenarioExtraPmtAmtFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioExtraPmtAmt = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioExtraPmtAmtFixed];
-		
-	newInput.multiScenarioExtraPmtGrowthRateFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioExtraPmtGrowthRate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioExtraPmtGrowthRateFixed];
+	newInput.extraPmtAmt = [InputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.extraPmtGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	newInput.multiScenarioExtraPmtFrequency = [InputCreationHelper multiScenarioRepeatFrequencyOnce];
 	
@@ -244,14 +226,9 @@
 	
 	newInput.multiScenarioAssetEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
-	
-	newInput.multiScenarioCostFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioCost = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioCostFixed];
+	newInput.cost = [InputCreationHelper multiScenAmountWithDefault:0.0];
 
-	newInput.multiScenarioApprecRateFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioApprecRate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioApprecRateFixed];
+	newInput.apprecRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
     newInput.multiScenarioPurchaseDateFixed = [InputCreationHelper multiScenFixedDateWithDefaultToday];
 	// Note newInput.multiScenarioPurchaseDate is left uninitialized so user can fill in

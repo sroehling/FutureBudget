@@ -19,6 +19,8 @@
 #import "SavingsContributionSimEvent.h"
 #import "InterestBearingWorkingBalance.h"
 #import "MultiScenarioInputValue.h"
+#import "MultiScenarioAmount.h"
+#import "MultiScenarioGrowthRate.h"
 
 
 @implementation SavingsContributionSimEventCreator
@@ -45,14 +47,14 @@
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 
 		DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)[
-			savingsAcct.multiScenarioContribGrowthRate
+			savingsAcct.contribGrowthRate.growthRate
 			getValueForCurrentOrDefaultScenario];
 		
 		self.varRateCalc = [calcCreator 
 							createForDateSensitiveValue:amountGrowthRate 
 							andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
 							
-		DateSensitiveValue *amount = (DateSensitiveValue*)[savingsAcct.multiScenarioContribAmount 
+		DateSensitiveValue *amount = (DateSensitiveValue*)[savingsAcct.contribAmount.amount 
 				getValueForCurrentOrDefaultScenario];					
 		ValueAsOfCalculatorCreator *varAmountCalcCreator = 
 			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];

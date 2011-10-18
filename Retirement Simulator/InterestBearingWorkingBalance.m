@@ -16,6 +16,7 @@
 #import "VariableRateCalculator.h"
 #import "SimInputHelper.h"
 #import "DateHelper.h"
+#import "MultiScenarioGrowthRate.h"
 #import "SimParams.h"
 
 @implementation InterestBearingWorkingBalance
@@ -74,7 +75,7 @@
 {
 
 	DateSensitiveValue *savingsInterestRate = (DateSensitiveValue*)[
-			theSavingsAcct.multiScenarioInterestRate
+			theSavingsAcct.interestRate.growthRate
 			getValueForCurrentOrDefaultScenario];
 
 	bool doTaxWithdrawals = [theSavingsAcct.taxableWithdrawals boolValue];

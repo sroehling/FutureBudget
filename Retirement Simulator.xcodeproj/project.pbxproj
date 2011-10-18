@@ -119,7 +119,6 @@
 		005AE72013C55ED2001D99C6 /* FieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE71F13C55ED2001D99C6 /* FieldInfo.m */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
-		0063505513E76782002E38FA /* AccountContribAmountVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */; };
 		0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505713EA1900002E38FA /* RelativeEndDate.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
@@ -138,7 +137,6 @@
 		0086C08E14294B4200148785 /* TestLoanInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08D14294B4200148785 /* TestLoanInput.m */; };
 		0086C092142956D500148785 /* SimParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C091142956D500148785 /* SimParams.m */; };
 		0086C09C142B968D00148785 /* AssetInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C09B142B968D00148785 /* AssetInput.m */; };
-		0086C0A0142BBED000148785 /* AssetCostVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C09F142BBED000148785 /* AssetCostVariableValueListMgr.m */; };
 		0086C0A4142BC12A00148785 /* AssetValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0A3142BC12A00148785 /* AssetValue.m */; };
 		0086C0A8142D0C0B00148785 /* AssetPurchaseSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0A7142D0C0B00148785 /* AssetPurchaseSimEventCreator.m */; };
 		0086C0AB142D0DC100148785 /* AssetSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0AA142D0DC100148785 /* AssetSimEventCreator.m */; };
@@ -148,9 +146,7 @@
 		0086C0B7142D22B100148785 /* AssetSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B6142D22AB00148785 /* AssetSimInfo.m */; };
 		0086C0BA142D310800148785 /* AssetSaleSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B9142D310400148785 /* AssetSaleSimEvent.m */; };
 		0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */; };
-		0087923313A9517000CA9DA7 /* CashFlowAmount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923213A9516E00CA9DA7 /* CashFlowAmount.m */; };
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
-		0087923A13AAC33200CA9DA7 /* CashFlowAmountVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923913AAC33000CA9DA7 /* CashFlowAmountVariableValueListMgr.m */; };
 		0087923D13ABAFC500CA9DA7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0087923C13ABAFC500CA9DA7 /* Localizable.strings */; };
 		0087924013ABB47100CA9DA7 /* LocalizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */; };
 		0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */; };
@@ -233,10 +229,7 @@
 		00EC455F141B169E00D65D17 /* piggy.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC455E141B169E00D65D17 /* piggy.png */; };
 		00EC4561141B183D00D65D17 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC4560141B183D00D65D17 /* clock.png */; };
 		00EC4566141EC05A00D65D17 /* LoanInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC4565141EC05900D65D17 /* LoanInput.m */; };
-		00EC456C141F205A00D65D17 /* LoanExtraPmtAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC456B141F205500D65D17 /* LoanExtraPmtAmt.m */; };
 		00EC4578141FBA6C00D65D17 /* LoanDownPmtPercent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC4577141FBA6B00D65D17 /* LoanDownPmtPercent.m */; };
-		00EC457B141FE23B00D65D17 /* LoanCostAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC457A141FE23900D65D17 /* LoanCostAmt.m */; };
-		00EC45811420448400D65D17 /* LoanInputVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45801420448200D65D17 /* LoanInputVariableValueListMgr.m */; };
 		00EC458714214C1E00D65D17 /* LoanPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */; };
 		00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */; };
 		00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */; };
@@ -500,8 +493,6 @@
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
 		005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedValueFieldInfo.m; sourceTree = "<group>"; };
-		0063505313E76782002E38FA /* AccountContribAmountVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountContribAmountVariableValueListMgr.h; sourceTree = "<group>"; };
-		0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountContribAmountVariableValueListMgr.m; sourceTree = "<group>"; };
 		0063505613EA1900002E38FA /* RelativeEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDate.h; sourceTree = "<group>"; };
 		0063505713EA1900002E38FA /* RelativeEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDate.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
@@ -539,8 +530,6 @@
 		0086C094142A3F6400148785 /* DataModelInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelInterface.h; sourceTree = "<group>"; };
 		0086C09A142B968C00148785 /* AssetInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetInput.h; sourceTree = "<group>"; };
 		0086C09B142B968D00148785 /* AssetInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetInput.m; sourceTree = "<group>"; };
-		0086C09E142BBED000148785 /* AssetCostVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetCostVariableValueListMgr.h; sourceTree = "<group>"; };
-		0086C09F142BBED000148785 /* AssetCostVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetCostVariableValueListMgr.m; sourceTree = "<group>"; };
 		0086C0A2142BC12A00148785 /* AssetValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetValue.h; sourceTree = "<group>"; };
 		0086C0A3142BC12A00148785 /* AssetValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetValue.m; sourceTree = "<group>"; };
 		0086C0A6142D0C0B00148785 /* AssetPurchaseSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetPurchaseSimEventCreator.h; sourceTree = "<group>"; };
@@ -559,13 +548,9 @@
 		0086C0B9142D310400148785 /* AssetSaleSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSaleSimEvent.m; sourceTree = "<group>"; };
 		0087922C13A8F4B400CA9DA7 /* ValueSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueSubtitleTableCell.h; sourceTree = "<group>"; };
 		0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueSubtitleTableCell.m; sourceTree = "<group>"; };
-		0087923113A9516D00CA9DA7 /* CashFlowAmount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowAmount.h; sourceTree = "<group>"; };
-		0087923213A9516E00CA9DA7 /* CashFlowAmount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowAmount.m; sourceTree = "<group>"; };
 		0087923413AA466A00CA9DA7 /* VariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923513AA47D300CA9DA7 /* SharedEntityVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedEntityVariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedEntityVariableValueListMgr.m; sourceTree = "<group>"; };
-		0087923813AAC32E00CA9DA7 /* CashFlowAmountVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowAmountVariableValueListMgr.h; sourceTree = "<group>"; };
-		0087923913AAC33000CA9DA7 /* CashFlowAmountVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowAmountVariableValueListMgr.m; sourceTree = "<group>"; };
 		0087923C13ABAFC500CA9DA7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		0087923E13ABB47100CA9DA7 /* LocalizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationHelper.h; sourceTree = "<group>"; };
 		0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationHelper.m; sourceTree = "<group>"; };
@@ -715,14 +700,8 @@
 		00EC4560141B183D00D65D17 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		00EC4564141EC05900D65D17 /* LoanInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanInput.h; sourceTree = "<group>"; };
 		00EC4565141EC05900D65D17 /* LoanInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanInput.m; sourceTree = "<group>"; };
-		00EC456A141F205400D65D17 /* LoanExtraPmtAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanExtraPmtAmt.h; sourceTree = "<group>"; };
-		00EC456B141F205500D65D17 /* LoanExtraPmtAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanExtraPmtAmt.m; sourceTree = "<group>"; };
 		00EC4576141FBA6A00D65D17 /* LoanDownPmtPercent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanDownPmtPercent.h; sourceTree = "<group>"; };
 		00EC4577141FBA6B00D65D17 /* LoanDownPmtPercent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanDownPmtPercent.m; sourceTree = "<group>"; };
-		00EC4579141FE23700D65D17 /* LoanCostAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanCostAmt.h; sourceTree = "<group>"; };
-		00EC457A141FE23900D65D17 /* LoanCostAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanCostAmt.m; sourceTree = "<group>"; };
-		00EC457F1420448100D65D17 /* LoanInputVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanInputVariableValueListMgr.h; sourceTree = "<group>"; };
-		00EC45801420448200D65D17 /* LoanInputVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanInputVariableValueListMgr.m; sourceTree = "<group>"; };
 		00EC458514214C1E00D65D17 /* LoanPaymentSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanPaymentSimEventCreator.h; sourceTree = "<group>"; };
 		00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanPaymentSimEventCreator.m; sourceTree = "<group>"; };
 		00EC458814225B9000D65D17 /* LoanPaymentSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanPaymentSimEvent.h; sourceTree = "<group>"; };
@@ -1163,8 +1142,6 @@
 				00637A811385D509001E02F1 /* FixedValue.m */,
 				00637A891386D999001E02F1 /* InflationRate.h */,
 				00637A8A1386D99A001E02F1 /* InflationRate.m */,
-				0087923113A9516D00CA9DA7 /* CashFlowAmount.h */,
-				0087923213A9516E00CA9DA7 /* CashFlowAmount.m */,
 				0025775D13B2341E00D15232 /* DateSensitiveValueVisitor.h */,
 				0010A58713D0B1DB0096A20F /* InterestRate.h */,
 				0010A58813D0B1DC0096A20F /* InterestRate.m */,
@@ -1515,12 +1492,8 @@
 			children = (
 				00EC4564141EC05900D65D17 /* LoanInput.h */,
 				00EC4565141EC05900D65D17 /* LoanInput.m */,
-				00EC456A141F205400D65D17 /* LoanExtraPmtAmt.h */,
-				00EC456B141F205500D65D17 /* LoanExtraPmtAmt.m */,
 				00EC4576141FBA6A00D65D17 /* LoanDownPmtPercent.h */,
 				00EC4577141FBA6B00D65D17 /* LoanDownPmtPercent.m */,
-				00EC4579141FE23700D65D17 /* LoanCostAmt.h */,
-				00EC457A141FE23900D65D17 /* LoanCostAmt.m */,
 			);
 			name = Loan;
 			sourceTree = "<group>";
@@ -1539,17 +1512,9 @@
 		0086C09D142BBE6400148785 /* Variable Value List Mgrs */ = {
 			isa = PBXGroup;
 			children = (
-				0087923813AAC32E00CA9DA7 /* CashFlowAmountVariableValueListMgr.h */,
-				0087923913AAC33000CA9DA7 /* CashFlowAmountVariableValueListMgr.m */,
 				0087923413AA466A00CA9DA7 /* VariableValueListMgr.h */,
 				0087923513AA47D300CA9DA7 /* SharedEntityVariableValueListMgr.h */,
 				0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */,
-				0063505313E76782002E38FA /* AccountContribAmountVariableValueListMgr.h */,
-				0063505413E76782002E38FA /* AccountContribAmountVariableValueListMgr.m */,
-				00EC457F1420448100D65D17 /* LoanInputVariableValueListMgr.h */,
-				00EC45801420448200D65D17 /* LoanInputVariableValueListMgr.m */,
-				0086C09E142BBED000148785 /* AssetCostVariableValueListMgr.h */,
-				0086C09F142BBED000148785 /* AssetCostVariableValueListMgr.m */,
 				0023796A143F7423006650E3 /* MultiScenarioAmountVariableValueListMgr.h */,
 				0023796B143F7423006650E3 /* MultiScenarioAmountVariableValueListMgr.m */,
 			);
@@ -2056,9 +2021,7 @@
 				0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */,
 				0041263E13A7DED9008F0647 /* InputListObjectAdder.m in Sources */,
 				0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */,
-				0087923313A9517000CA9DA7 /* CashFlowAmount.m in Sources */,
 				0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */,
-				0087923A13AAC33200CA9DA7 /* CashFlowAmountVariableValueListMgr.m in Sources */,
 				0087924013ABB47100CA9DA7 /* LocalizationHelper.m in Sources */,
 				0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */,
 				0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */,
@@ -2095,7 +2058,6 @@
 				0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */,
 				0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */,
 				0010A58D13D15C8B0096A20F /* StartingValsFormInfoCreator.m in Sources */,
-				0063505513E76782002E38FA /* AccountContribAmountVariableValueListMgr.m in Sources */,
 				0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */,
 				00E6CC6B13F04F52005EEC64 /* RelativeDatePickerViewController.m in Sources */,
 				00E6CC6F13F079A9005EEC64 /* RelativeEndDateFieldEditInfo.m in Sources */,
@@ -2138,10 +2100,7 @@
 				0055A89D1418551C00EFB95C /* NameFieldEditInfo.m in Sources */,
 				0055A8A01419500400EFB95C /* SectionHeaderWithSubtitle.m in Sources */,
 				00EC4566141EC05A00D65D17 /* LoanInput.m in Sources */,
-				00EC456C141F205A00D65D17 /* LoanExtraPmtAmt.m in Sources */,
 				00EC4578141FBA6C00D65D17 /* LoanDownPmtPercent.m in Sources */,
-				00EC457B141FE23B00D65D17 /* LoanCostAmt.m in Sources */,
-				00EC45811420448400D65D17 /* LoanInputVariableValueListMgr.m in Sources */,
 				00EC458714214C1E00D65D17 /* LoanPaymentSimEventCreator.m in Sources */,
 				00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */,
 				00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */,
@@ -2155,7 +2114,6 @@
 				0086C08B1428FCE400148785 /* ExtraPaymentSimEventCreator.m in Sources */,
 				0086C092142956D500148785 /* SimParams.m in Sources */,
 				0086C09C142B968D00148785 /* AssetInput.m in Sources */,
-				0086C0A0142BBED000148785 /* AssetCostVariableValueListMgr.m in Sources */,
 				0086C0A4142BC12A00148785 /* AssetValue.m in Sources */,
 				0086C0A8142D0C0B00148785 /* AssetPurchaseSimEventCreator.m in Sources */,
 				0086C0AB142D0DC100148785 /* AssetSimEventCreator.m in Sources */,

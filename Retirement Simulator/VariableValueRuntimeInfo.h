@@ -14,6 +14,7 @@
 @class SavingsAccount;
 @class LoanInput;
 @class Account;
+@class MultiScenarioAmount;
 
 @interface VariableValueRuntimeInfo : NSObject {
 	@private
@@ -70,5 +71,8 @@ andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
 	andSharedValEntityName:(NSString*)entityName;
 + (VariableValueRuntimeInfo*)createForVariableAmount:(Input*)theInput 
 	andVariableValListMgr:(id<VariableValueListMgr>)listMgr;
+	
++(VariableValueRuntimeInfo*)createForMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
+	withValueTitle:(NSString*)valueTitle;	
 
 @end

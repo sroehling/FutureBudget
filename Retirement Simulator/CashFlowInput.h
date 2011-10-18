@@ -17,11 +17,11 @@
 @class FixedValue;
 @class VariableValue;
 @class MultiScenarioInputValue;
+@class MultiScenarioGrowthRate;
+@class MultiScenarioAmount;
 
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_START_DATE_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_END_DATE_KEY;
-extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_KEY;
-extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_START_DATE_KEY;
 extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_FIXED_END_DATE_KEY;
@@ -31,7 +31,6 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_CASH_FLOW_ENABLED_KEY;
 @private
 }
 
-@property (nonatomic,retain) NSSet* variableAmounts;
 
 // These properties hold onto a single fixed
 // date value the user can select. If the user then
@@ -41,18 +40,14 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_CASH_FLOW_ENABLED_KEY;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedStartDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedEndDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedRelEndDate;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedGrowthRate;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedAmount;
 
+@property(nonatomic,retain) MultiScenarioAmount *amount;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioStartDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioEndDate;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioAmount;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioAmountGrowthRate;
+@property(nonatomic,retain) MultiScenarioGrowthRate *amountGrowthRate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioEventRepeatFrequency;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioCashFlowEnabled;
 
-
-- (void)addVariableAmountsObject:(VariableValue *)value;
 
 @end
 

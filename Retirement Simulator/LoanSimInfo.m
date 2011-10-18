@@ -18,6 +18,8 @@
 #import "SharedAppValues.h"
 #import "SimParams.h"
 #import "NeverEndDate.h"
+#import "MultiScenarioAmount.h"
+#import "MultiScenarioGrowthRate.h"
 
 @implementation LoanSimInfo
 
@@ -97,15 +99,15 @@
 - (double)loanOrigAmount
 {
 	// Calculate the monthly payment, based upon the loan origination amount and interest rate.
-	assert(self.loan.multiScenarioLoanCostAmt != nil);
-	double origAmount = [SimInputHelper multiScenValueAsOfDate:self.loan.multiScenarioLoanCostAmt 
+	assert(self.loan.loanCost != nil);
+	double origAmount = [SimInputHelper multiScenValueAsOfDate:self.loan.loanCost.amount 
 			andDate:[self loanOrigDate] andScenario:simParams.simScenario];
 			
 	if([self loanOriginatesAfterSimStart])
 	{
 		// If the loan originates in the future w.r.t the simulation start date, then
 		// the amount borrowed (i.e., "loan cost") is adjusted by the loan cost growth rate.
-		double origAmountMultiplier = [SimInputHelper multiScenVariableRateMultiplier:self.loan.multiScenarioLoanCostGrowthRate sinceStartDate:self.simParams.simStartDate 
+		double origAmountMultiplier = [SimInputHelper multiScenVariableRateMultiplier:self.loan.loanCostGrowthRate.growthRate sinceStartDate:self.simParams.simStartDate 
 			asOfDate:[self loanOrigDate] andScenario:simParams.simScenario];
 		origAmount = origAmount * origAmountMultiplier;
 	}
@@ -193,7 +195,7 @@
 		// Setup the working balance for the loan principal.
 // TBD - should the start date be interest start date or simulation start
 		VariableRateCalculator *interestRateCalc = [DateSensitiveValueVariableRateCalculatorCreator 
-			createVariableRateCalc:self.loan.multiScenarioInterestRate 
+			createVariableRateCalc:self.loan.interestRate.growthRate 
 			andStartDate:interestStartDate andScenario:simParams.simScenario 
 			andUseLoanAnnualRates:true];				
 		self.loanBalance = [[[InterestBearingWorkingBalance alloc] 
@@ -202,7 +204,7 @@
 			andTaxInterest:[self interestIsTaxable] andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 			
 		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator
-			createVariableRateCalc:loan.multiScenarioExtraPmtGrowthRate
+			createVariableRateCalc:loan.extraPmtGrowthRate.growthRate
 			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario
 			andUseLoanAnnualRates:false];					
 		
@@ -248,7 +250,7 @@
 - (double)monthlyPayment
 {
 	double annualInterestRateAsOfLoanOrig = 
-		[SimInputHelper multiScenValueAsOfDate:self.loan.multiScenarioInterestRate 
+		[SimInputHelper multiScenValueAsOfDate:self.loan.interestRate.growthRate 
 			andDate:[self loanOrigDate] andScenario:simParams.simScenario]/100.0;
 	assert(annualInterestRateAsOfLoanOrig >= 0.0);
 
@@ -276,7 +278,7 @@
 {	
 
 	double extraPmtAsOfDate = 
-		[SimInputHelper multiScenValueAsOfDate:self.loan.multiScenarioExtraPmtAmt andDate:pmtDate
+		[SimInputHelper multiScenValueAsOfDate:self.loan.extraPmtAmt.amount andDate:pmtDate
 				andScenario:simParams.simScenario];
 	
 	double extraPmtGrowthSinceSimStart = [self.extraPmtGrowthCalc valueMultiplierForDate:pmtDate];

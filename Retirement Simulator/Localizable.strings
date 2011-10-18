@@ -295,6 +295,7 @@
 "WHAT_IF_GROWTH_RATE_ACCOUNT_CONTRIBS" = "Account Contributions";
 "WHAT_IF_GROWTH_RATE_LOAN_EXTRA_PMT" = "Loan Extra Payments";
 "WHAT_IF_GROWTH_RATE_LOAN_COST" = "Loan Cost (Amount Borrowed)";
+"WHAT_IF_GROWTH_RATE_LOAN_INTEREST" = "Loan Interest Rate";
 "WHAT_IF_TAXES_FIELD_CAPTION" = "Taxes";
 "WHAT_IF_TAXES_SUBTITLE" = "Change the tax deductability of expenses, contributions, or withdrawals.";
 "WHAT_IF_TAXES_FORM_TITLE" = "Taxes";

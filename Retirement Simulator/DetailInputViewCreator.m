@@ -36,14 +36,10 @@
 #import "VariableValueRuntimeInfo.h"
 #import "MultiScenarioBoolInputValueFieldInfo.h"
 #import "NameFieldEditInfo.h"
-#import "AccountContribAmountVariableValueListMgr.h"
-#import "LoanInputVariableValueListMgr.h"
-#import "CashFlowAmountVariableValueListMgr.h"
 #import "MultiScenarioFixedValueFieldInfo.h"
 #import "LoanInput.h"
 #import "LoanDownPmtPercent.h"
 #import "AssetInput.h"
-#import "AssetCostVariableValueListMgr.h"
 #import "DeferredWithdrawalFieldEditInfo.h"
 #import "TaxInput.h"
 #import "MultiScenarioAmount.h"
@@ -112,26 +108,11 @@
     sectionInfo.title = 
 		LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_SECTION_TITLE");
 	
+	[self.formPopulator populateMultiScenarioAmount:cashFlow.amount 
+		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")];
 	
-	CashFlowAmountVariableValueListMgr *variableAmountMgr = 
-		[[[CashFlowAmountVariableValueListMgr alloc] initWithCashFlow:cashFlow] autorelease];
-	VariableValueRuntimeInfo *varValRuntimeInfo =  [VariableValueRuntimeInfo createForVariableAmount:cashFlow 
-		andVariableValListMgr:variableAmountMgr];
-    [sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:cashFlow 
-		andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL") 
-	  andValRuntimeInfo:varValRuntimeInfo
-	  andDefaultFixedVal:cashFlow.multiScenarioFixedAmount]];
-
-    [sectionInfo addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
-         createForScenario:currentScenario andObject:cashFlow 
-			andKey:CASH_FLOW_INPUT_MULTI_SCENARIO_AMOUNT_GROWTH_RATE_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL") 
-		 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:cashFlow] 
-		 andDefaultFixedVal:cashFlow.multiScenarioFixedGrowthRate]];
+	[self.formPopulator populateMultiScenarioGrowthRate:cashFlow.amountGrowthRate 
+		withLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL")];
 
     // Occurences section
 
@@ -225,27 +206,11 @@
 	[self.formPopulator populateMultiScenBoolField:account.multiScenarioContribEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL")];
 		
-	
-	AccountContribAmountVariableValueListMgr *variableAmountMgr = 
-		[[[AccountContribAmountVariableValueListMgr alloc] initWithAccount:account] autorelease];
-	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo createForVariableAmount:account 
-		andVariableValListMgr:variableAmountMgr];
-    [sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:account 
-		andKey:ACCOUNT_MULTI_SCEN_CONTRIB_AMOUNT_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL") 
-	  andValRuntimeInfo:varValRuntimeInfo
-	  andDefaultFixedVal:account.multiScenarioFixedContribAmount]];
+	[self.formPopulator populateMultiScenarioAmount:account.contribAmount withValueTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL")];
 	  
-    [sectionInfo addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
-         createForScenario:currentScenario andObject:account 
-			andKey:ACCOUNT_MULTI_SCEN_CONTRIB_GROWTH_RATE_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL") 
-		 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:account] 
-		 andDefaultFixedVal:account.multiScenarioFixedContribGrowthRate]];
-
+	[self.formPopulator populateMultiScenarioGrowthRate:account.contribGrowthRate 
+		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL")];
+		
 	SimDateRuntimeInfo *startDateInfo = 
 		[SimDateRuntimeInfo createForInput:account andFieldTitleKey:@"INPUT_CASH_FLOW_START_DATE_TITLE" andSubHeaderFormatKey:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" andSubHeaderFormatKeyNoName:@"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME"];
     [sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForMultiScenarioVal:currentScenario 
@@ -290,19 +255,11 @@
 
 - (void) visitSavingsAccount:(SavingsAccount *)savingsAcct
 {
-		
-	 Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
-
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE");
 	
-    [sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:savingsAcct 
-		andKey:SAVINGS_ACCOUNT_INTEREST_RATE_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_FIELD_LABEL") 
-	  andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInterestRate:savingsAcct]
-	  andDefaultFixedVal:savingsAcct.multiScenarioFixedInterestRate]];
+	[self.formPopulator populateMultiScenarioGrowthRate:savingsAcct.interestRate 
+		withLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_FIELD_LABEL")];
 
 
 	[sectionInfo addFieldEditInfo:
@@ -352,27 +309,11 @@
 	[self.formPopulator populateMultiScenBoolField:loan.multiScenarioLoanEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
 
+	[self.formPopulator populateMultiScenarioAmount:loan.loanCost 
+		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")];
 
-	LoanCostAmtVariableValueListMgr *variableAmountMgr = 
-		[[[LoanCostAmtVariableValueListMgr alloc] initWithLoan:loan] autorelease];
-	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo createForVariableAmount:loan 
-		andVariableValListMgr:variableAmountMgr];
-	[sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:loan 
-		andKey:INPUT_LOAN_MULTI_SCEN_LOAN_COST_AMT_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL") 
-	  andValRuntimeInfo:varValRuntimeInfo
-	  andDefaultFixedVal:loan.multiScenarioLoanCostAmtFixed]];
+	[self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")];
 	  
-	[sectionInfo addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
-         createForScenario:currentScenario andObject:loan 
-			andKey:INPUT_LOAN_MULTI_SCEN_LOAN_COST_GROWTH_RATE_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL") 
-		 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:loan] 
-		 andDefaultFixedVal:loan.multiScenarioLoanCostGrowthRateFixed]];
- 
 	
 	SimDateRuntimeInfo *origDateInfo = 
 		[SimDateRuntimeInfo createForInput:loan 
@@ -398,14 +339,8 @@
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_INTEREST_SECTION_TITLE");
 	
 	
-	[sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:loan 
-		andKey:LOAN_INTEREST_RATE_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") 
-	  andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInterestRate:loan]
-	  andDefaultFixedVal:loan.multiScenarioInterestRateFixed]];
-
+	[self.formPopulator populateMultiScenarioGrowthRate:loan.interestRate 
+		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") ];
 	
 	
 	[sectionInfo addFieldEditInfo:
@@ -421,25 +356,10 @@
 	[self.formPopulator populateMultiScenBoolField:loan.multiScenarioExtraPmtEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL")];
 	
-	LoanExtraPmtAmountVariableValueListMgr *extraPmtVariableAmountMgr = 
-		[[[LoanExtraPmtAmountVariableValueListMgr alloc] initWithLoan:loan] autorelease];
-	VariableValueRuntimeInfo *extraPmtVarValRuntimeInfo = [VariableValueRuntimeInfo createForVariableAmount:loan 
-		andVariableValListMgr:extraPmtVariableAmountMgr];	
-    [sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:loan 
-		andKey:INPUT_LOAN_MULTI_SCEN_EXTRA_PMT_AMT_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL") 
-	  andValRuntimeInfo:extraPmtVarValRuntimeInfo
-	  andDefaultFixedVal:loan.multiScenarioExtraPmtAmtFixed]];
+	[self.formPopulator populateMultiScenarioAmount:loan.extraPmtAmt 
+		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL")];
 	  
-	[sectionInfo addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
-         createForScenario:currentScenario andObject:loan 
-			andKey:INPUT_LOAN_MULTI_SCEN_EXTRA_PMT_GROWTH_RATE_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL") 
-		 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:loan] 
-		 andDefaultFixedVal:loan.multiScenarioExtraPmtGrowthRateFixed]];
+	[self.formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL")];  
 
 		
 	sectionInfo = [formPopulator nextSection];
@@ -478,32 +398,16 @@
 	[self.formPopulator populateMultiScenBoolField:asset.multiScenarioAssetEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
 	
+	[self.formPopulator populateMultiScenarioAmount:asset.cost 
+		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")];
 	
-	AssetCostVariableValueListMgr *variableValueMgr = 
-		[[[AssetCostVariableValueListMgr alloc] initWithAsset:asset] autorelease];
-	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
-		createForVariableAmount:asset
-		andVariableValListMgr:variableValueMgr];
-	[sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:asset 
-		andKey:INPUT_ASSET_MULTI_SCEN_COST_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL") 
-	  andValRuntimeInfo:varValRuntimeInfo
-	  andDefaultFixedVal:asset.multiScenarioCostFixed]];
-
 
 	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
 		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
 
-	[sectionInfo addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
-         createForScenario:currentScenario andObject:asset 
-			andKey:INPUT_ASSET_MULTI_SCEN_APPREC_RATE_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL") 
-		 andValRuntimeInfo:[VariableValueRuntimeInfo createForSharedInflationRate:asset] 
-		 andDefaultFixedVal:asset.multiScenarioApprecRateFixed]];
+	[self.formPopulator populateMultiScenarioGrowthRate:asset.apprecRate 
+		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")];
  
  
 	sectionInfo = [formPopulator nextSection];

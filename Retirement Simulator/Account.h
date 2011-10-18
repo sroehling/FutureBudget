@@ -14,16 +14,16 @@ extern NSString * const ACCOUNT_STARTING_BALANCE_KEY;
 extern NSString * const ACCOUNT_ENTITY_NAME;
 extern NSString * const ACCOUNT_CONTRIB_AMOUNT_ENTITY_NAME;
 
-extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_AMOUNT_KEY;
-extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_GROWTH_RATE_KEY;
+
 extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY;
 extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_START_DATE_KEY;
 extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_END_DATE_KEY;
-extern NSString * const ACCOUNT_VARIABLE_CONTRIB_AMOUNTS_KEY;
 extern NSString * const ACCOUNT_MULTI_SCEN_DEFERRED_WITHDRAWAL_DATE_KEY;
 
 @class VariableValue;
 @class MultiScenarioInputValue;
+@class MultiScenarioGrowthRate;
+@class MultiScenarioAmount;
 
 @interface Account : Input {
 @private
@@ -31,17 +31,15 @@ extern NSString * const ACCOUNT_MULTI_SCEN_DEFERRED_WITHDRAWAL_DATE_KEY;
 @property (nonatomic, retain) NSNumber * startingBalance;
 
 
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribAmount;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribGrowthRate;
+@property(nonatomic,retain) MultiScenarioAmount *contribAmount;
+@property(nonatomic,retain) MultiScenarioGrowthRate *contribGrowthRate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribRepeatFrequency;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribStartDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribEndDate;
 
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedContribAmount;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedContribStartDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedContribEndDate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedContribRelEndDate;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioFixedContribGrowthRate;
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribEnabled;
 
 
@@ -53,8 +51,5 @@ extern NSString * const ACCOUNT_MULTI_SCEN_DEFERRED_WITHDRAWAL_DATE_KEY;
 
 @property(nonatomic,retain) MultiScenarioInputValue *multiScenarioWithdrawalPriority;
 
-@property (nonatomic,retain) NSSet* variableContribAmounts;
-
-- (void)addVariableContribAmountsObject:(VariableValue *)value;
 
 @end
