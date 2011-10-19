@@ -15,10 +15,12 @@
 @interface DeferredWithdrawalFormInfoCreator : NSObject <FormInfoCreator> {
     @private
 		Account *account;
+		BOOL isNewAccount;
 }
 
 @property(nonatomic,retain) Account *account;
+@property BOOL isNewAccount;
 
-- (id)initWithAccount:(Account*)theAccount;
+- (id)initWithAccount:(Account*)theAccount andIsNewAccount:(BOOL)accountIsNew;
 
 @end

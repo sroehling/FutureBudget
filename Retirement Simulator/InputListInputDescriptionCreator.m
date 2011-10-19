@@ -26,6 +26,8 @@
 #import "SavingsAccount.h"
 #import "MultiScenarioGrowthRate.h"
 #import "MultiScenarioAmount.h"
+#import "MultiScenarioSimDate.h"
+#import "MultiScenarioSimEndDate.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -43,7 +45,8 @@
 			[cashFlow.amount.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
 
-	SimDate *startDate = (SimDate*)[cashFlow.multiScenarioStartDate getValueForCurrentOrDefaultScenario]; 
+	SimDate *startDate = (SimDate*)[cashFlow.startDate.simDate
+	 getValueForCurrentOrDefaultScenario]; 
 	NSString *startDateDisplay = [startDate 
 						inlineDescription:[DateHelper theHelper].mediumDateFormatter];
 	EventRepeatFrequency *repeatFreq = 
@@ -52,9 +55,10 @@
 	NSString *untilDesc = @"";
 	if([repeatFreq eventRepeatsMoreThanOnce])
 	{
-		SimDate *endDate = (SimDate*)[cashFlow.multiScenarioEndDate getValueForCurrentOrDefaultScenario];
+		SimDate *endDate = (SimDate*)[cashFlow.endDate.simDate
+			getValueForCurrentOrDefaultScenario];
 	    NSString *endDateDisplay = [endDate 
-									inlineDescription:[DateHelper theHelper].mediumDateFormatter];;
+				inlineDescription:[DateHelper theHelper].mediumDateFormatter];;
 		untilDesc = [NSString stringWithFormat:@" until %@",endDateDisplay];
 	}
 	

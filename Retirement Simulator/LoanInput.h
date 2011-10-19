@@ -14,17 +14,14 @@
 #define DEFAULT_LOAN_DURATION_MONTHS 60.0
 
 @class MultiScenarioInputValue;
-@class VariableValue;
 @class MultiScenarioAmount;
 @class MultiScenarioGrowthRate;
+@class MultiScenarioSimDate;
 
 extern NSString * const LOAN_INPUT_ENTITY_NAME;
 
 extern NSString * const LOAN_INPUT_TAXABLE_INTEREST_KEY;
 extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
-
-
-extern NSString * const LOAN_MULTI_SCEN_ORIG_DATE_KEY;
 extern NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY;
 
 
@@ -37,21 +34,15 @@ extern NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioLoanEnabled;
 
 @property (nonatomic, retain) MultiScenarioGrowthRate * interestRate;
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioOrigDate;
-
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioExtraPmtEnabled;
-
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioExtraPmtFrequency;
-
 @property (nonatomic, retain) MultiScenarioAmount * extraPmtAmt;
 @property (nonatomic, retain) MultiScenarioGrowthRate * extraPmtGrowthRate;
-
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioDownPmtEnabled;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioDownPmtPercent;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioDownPmtPercentFixed;
 
-
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioOrigDateFixed;
+@property (nonatomic, retain) MultiScenarioSimDate * origDate;
 
 @property (nonatomic, retain) MultiScenarioAmount * loanCost;
 @property (nonatomic, retain) MultiScenarioGrowthRate *loanCostGrowthRate;

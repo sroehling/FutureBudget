@@ -21,6 +21,8 @@
 #import "MultiScenarioInputValue.h"
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioGrowthRate.h"
+#import "MultiScenarioSimDate.h"
+#import "MultiScenarioSimEndDate.h"
 
 
 @implementation SavingsContributionSimEventCreator
@@ -68,11 +70,11 @@
 - (void)resetSimEventCreation
 {
 
-	SimDate *startDate = (SimDate*)[self.savingsAcct.multiScenarioContribStartDate 
+	SimDate *startDate = (SimDate*)[self.savingsAcct.contribStartDate.simDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedStartDate = startDate.date;
 			
-	SimDate *endDate = (SimDate*)[self.savingsAcct.multiScenarioContribEndDate 
+	SimDate *endDate = (SimDate*)[self.savingsAcct.contribEndDate.simDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
 	

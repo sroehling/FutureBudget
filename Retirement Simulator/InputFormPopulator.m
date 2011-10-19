@@ -39,6 +39,12 @@
 
 #import "DurationFieldEditInfo.h"
 
+#import "SimDateFieldEditInfo.h"
+#import "SimDateRuntimeInfo.h"
+
+#import "MultiScenarioSimDate.h"
+#import "MultiScenarioSimEndDate.h"
+
 @implementation InputFormPopulator
 
 @synthesize inputScenario;
@@ -260,7 +266,61 @@
 	[self.currentSection addFieldEditInfo:durationFieldEditInfo];
 }
 
+-(void)populateMultiScenSimDate:(MultiScenarioSimDate*)multiScenSimDate 
+	andLabel:(NSString*)label andTitle:(NSString*)title
+{
+	assert(multiScenSimDate != nil);
+	assert([StringValidation nonEmptyString:label]);
+	assert([StringValidation nonEmptyString:title]);
+	
+	NSString *tableHeader= @"Table Header TBD";
+	NSString *tableSubHeader = @"Table sub header TBD";
+	BOOL supportEndDates = FALSE;
 
+ 	SimDateRuntimeInfo *simDateInfo = 
+		[[[SimDateRuntimeInfo alloc] initWithTableTitle:title 
+			andHeader:tableHeader andSubHeader:tableSubHeader 
+			andSupportsNeverEndDate:supportEndDates] autorelease];
+			
+	SimDateFieldEditInfo *simDateFieldEditInfo = 
+		[SimDateFieldEditInfo createForMultiScenarioVal:self.inputScenario 
+			andObject:multiScenSimDate andKey:MULTI_SCEN_SIM_DATE_SIM_DATE_KEY 
+			andLabel:label 
+			andDefaultValue:multiScenSimDate.defaultFixedSimDate 
+			andVarDateRuntimeInfo:simDateInfo andShowEndDates:supportEndDates
+			andDefaultRelEndDate:nil];
+		
+    [self.currentSection addFieldEditInfo:simDateFieldEditInfo];
+
+}
+
+-(void)populateMultiScenSimEndDate:(MultiScenarioSimEndDate*)multiScenSimEndDate 
+	andLabel:(NSString*)label andTitle:(NSString*)title
+{
+	assert(multiScenSimEndDate != nil);
+	assert([StringValidation nonEmptyString:label]);
+	assert([StringValidation nonEmptyString:title]);
+	
+	NSString *tableHeader= @"Table Header TBD";
+	NSString *tableSubHeader = @"Table sub header TBD";
+	BOOL doSupportNeverEndDates = TRUE;
+
+ 	SimDateRuntimeInfo *simDateInfo = 
+		[[[SimDateRuntimeInfo alloc] initWithTableTitle:title 
+			andHeader:tableHeader andSubHeader:tableSubHeader 
+			andSupportsNeverEndDate:doSupportNeverEndDates] autorelease];
+			
+	SimDateFieldEditInfo *simDateFieldEditInfo = 
+		[SimDateFieldEditInfo createForMultiScenarioVal:self.inputScenario 
+			andObject:multiScenSimEndDate andKey:MULTI_SCEN_SIM_END_DATE_SIM_DATE_KEY 
+			andLabel:label 
+			andDefaultValue:multiScenSimEndDate.defaultFixedSimDate 
+			andVarDateRuntimeInfo:simDateInfo andShowEndDates:doSupportNeverEndDates
+			andDefaultRelEndDate:multiScenSimEndDate.defaultFixedRelativeEndDate];
+
+    [self.currentSection addFieldEditInfo:simDateFieldEditInfo];
+
+}
 
 
 -(void)dealloc

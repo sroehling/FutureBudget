@@ -16,8 +16,6 @@ NSString * const LOAN_INPUT_ENTITY_NAME = @"LoanInput";
 
 NSString * const LOAN_INPUT_TAXABLE_INTEREST_KEY = @"taxableInterest";
 NSString * const INPUT_LOAN_STARTING_BALANCE_KEY = @"startingBalance";
-
-NSString * const LOAN_MULTI_SCEN_ORIG_DATE_KEY = @"multiScenarioOrigDate";
 NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY = @"multiScenarioDownPmtPercent";
 
 
@@ -32,8 +30,7 @@ NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY = @"multiScenarioDow
 
 @dynamic multiScenarioLoanDuration; // done
 
-@dynamic multiScenarioOrigDate; // done
-@dynamic multiScenarioOrigDateFixed; // done
+@dynamic origDate;
 
 @dynamic interestRate; // done
 

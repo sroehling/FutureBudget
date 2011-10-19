@@ -36,62 +36,37 @@
 
 -(void)populateCashFlowInputProperties:(CashFlowInput*)newInput
 {
-    // The following fields are not initialized upon creation, since the user
-    // must provide a value (one can't be defaulted).
-    //      newInput.name
-    //      newInput.amount
-    //      newInput.amountGrowthRate
-	
-	newInput.multiScenarioCashFlowEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
+	newInput.multiScenarioCashFlowEnabled = [InputCreationHelper 
+		multiScenBoolValWithDefault:TRUE];
 	
 	newInput.amountGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	newInput.amount = [InputCreationHelper multiScenAmountWithDefault:0.0];
     
-    newInput.multiScenarioFixedStartDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
-    
-    newInput.multiScenarioFixedEndDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
-	
-    newInput.multiScenarioFixedRelEndDate = [InputCreationHelper multiScenRelEndDateWithImmediateDefault];
-
-	newInput.multiScenarioEndDate = [InputCreationHelper multiScenNeverEndDate];
-    	
+	newInput.startDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
+    newInput.endDate = [InputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+   	
 	newInput.multiScenarioEventRepeatFrequency = [InputCreationHelper multiScenarioRepeatFrequencyOnce];
     
 }
 
 -(void)populateAccountInputProperties:(Account*)newInput
 {
-    // The following fields are not initialized upon creation, since the user
-    // must provide a value (one can't be defaulted).
-    //      newInput.name
-    //      newInput.amount
-    //      newInput.amountGrowthRate
-	
-	
 	newInput.multiScenarioContribEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	newInput.contribGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	newInput.contribAmount = [InputCreationHelper multiScenAmountWithDefault:0.0];
 	
-    newInput.multiScenarioFixedContribStartDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
-	newInput.multiScenarioContribStartDate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioFixedContribStartDate];
-	
-    newInput.multiScenarioFixedContribEndDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
-	newInput.multiScenarioContribEndDate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioFixedContribEndDate];
-	
-   newInput.multiScenarioFixedContribRelEndDate = [InputCreationHelper multiScenRelEndDateWithImmediateDefault];
-	
+	newInput.contribStartDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
+	newInput.contribEndDate = [InputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+		
 	newInput.multiScenarioContribRepeatFrequency = [InputCreationHelper multiScenarioRepeatFrequencyOnce];
 	
-	newInput.multiScenarioWithdrawalPriority = [InputCreationHelper multiScenFixedValWithDefault:1.0];
+	newInput.multiScenarioWithdrawalPriority = [InputCreationHelper 
+		multiScenFixedValWithDefault:1.0];
 	
 	newInput.multiScenarioDeferredWithdrawalsEnabled = [InputCreationHelper multiScenBoolValWithDefault:FALSE];
-	newInput.multiScenarioDeferredWithdrawalDateFixed = [InputCreationHelper multiScenFixedDateWithDefaultToday];
-	newInput.multiScenarioDeferredWithdrawalDate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
-		newInput.multiScenarioDeferredWithdrawalDateFixed];
+	newInput.deferredWithdrawalDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
     
 }
 
@@ -182,9 +157,7 @@
 	
 	newInput.loanCostGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 		
-	newInput.multiScenarioOrigDateFixed = [InputCreationHelper multiScenFixedDateWithDefaultToday];
-	newInput.multiScenarioOrigDate = [InputCreationHelper 
-		multiScenInputValueWithDefaultFixedVal:newInput.multiScenarioOrigDateFixed ];
+	newInput.origDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
 
 	// Interest
 	newInput.interestRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
@@ -230,11 +203,9 @@
 
 	newInput.apprecRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-    newInput.multiScenarioPurchaseDateFixed = [InputCreationHelper multiScenFixedDateWithDefaultToday];
-	// Note newInput.multiScenarioPurchaseDate is left uninitialized so user can fill in
-    newInput.multiScenarioSaleDateFixed = [InputCreationHelper multiScenFixedDateWithDefaultToday];
-	newInput.multiScenarioSaleDateRelativeFixed = [InputCreationHelper multiScenRelEndDateWithImmediateDefault];
-	newInput.multiScenarioSaleDate = [InputCreationHelper multiScenNeverEndDate];
+	newInput.purchaseDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
+	
+	newInput.saleDate = [InputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 		
 	newInput.startingValue = [NSNumber numberWithDouble:0.0];
 	

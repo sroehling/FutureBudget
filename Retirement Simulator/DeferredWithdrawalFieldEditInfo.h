@@ -16,14 +16,17 @@
 @interface DeferredWithdrawalFieldEditInfo : NSObject <FieldEditInfo> {
     @private
 		Account *account;
+		BOOL isNewAccount;
 		ValueSubtitleTableCell *valueCell;
 		NSString *fieldLabel;
 }
 
 @property(nonatomic,retain) Account *account;
+@property BOOL isNewAccount;
 @property(nonatomic,retain) ValueSubtitleTableCell *valueCell;
 @property(nonatomic,retain) NSString *fieldLabel;
 
--(id)initWithAccount:(Account*)theAccount andFieldLabel:(NSString*)theFieldLabel;
+-(id)initWithAccount:(Account*)theAccount andFieldLabel:(NSString*)theFieldLabel
+	andIsNewAccount:(BOOL)accountIsNew;
 
 @end

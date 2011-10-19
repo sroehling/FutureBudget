@@ -14,8 +14,6 @@
 
 NSString * const ASSET_INPUT_ENTITY_NAME = @"AssetInput";
 NSString * const INPUT_ASSET_STARTING_VALUE_KEY = @"startingValue";
-NSString * const ASSET_MULTI_SCEN_SALE_DATE_KEY = @"multiScenarioSaleDate";
-NSString * const ASSET_INPUT_MULTI_SCEN_PURCHASE_DATE_KEY = @"multiScenarioPurchaseDate";
 
 @implementation AssetInput
 
@@ -24,13 +22,8 @@ NSString * const ASSET_INPUT_MULTI_SCEN_PURCHASE_DATE_KEY = @"multiScenarioPurch
 @dynamic cost;
 @dynamic apprecRate;
 @dynamic startingValue;
-
-@dynamic multiScenarioPurchaseDate;
-@dynamic multiScenarioPurchaseDateFixed;
-
-@dynamic multiScenarioSaleDate;
-@dynamic multiScenarioSaleDateFixed;
-@dynamic multiScenarioSaleDateRelativeFixed;
+@dynamic purchaseDate;
+@dynamic saleDate;
 
 
 @dynamic multiScenarioSaleProceedsTaxable;
@@ -51,7 +44,5 @@ NSString * const ASSET_INPUT_MULTI_SCEN_PURCHASE_DATE_KEY = @"multiScenarioPurch
 {
 	return LOCALIZED_STR(@"INPUT_ASSET_TITLE");
 }
-
-
 
 @end

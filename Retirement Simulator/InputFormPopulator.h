@@ -17,6 +17,8 @@
 @class SectionInfo;
 @class Scenario;
 @class RepeatFrequencyFieldEditInfo;
+@class MultiScenarioSimDate;
+@class MultiScenarioSimEndDate;
 
 @interface InputFormPopulator : FormPopulator {
     @private
@@ -51,5 +53,10 @@
 		
 -(void)populateMultiScenarioDuration:(MultiScenarioInputValue*)duration 
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder;
+	
+-(void)populateMultiScenSimDate:(MultiScenarioSimDate*)multiScenSimDate 
+	andLabel:(NSString*)label andTitle:(NSString*)title;
+-(void)populateMultiScenSimEndDate:(MultiScenarioSimEndDate*)multiScenSimEndDate 
+	andLabel:(NSString*)label andTitle:(NSString*)title;
 	
 @end

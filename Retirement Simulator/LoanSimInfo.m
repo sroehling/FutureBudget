@@ -20,6 +20,7 @@
 #import "NeverEndDate.h"
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioGrowthRate.h"
+#import "MultiScenarioSimDate.h"
 
 @implementation LoanSimInfo
 
@@ -216,8 +217,8 @@
 
 -(NSDate*)loanOrigDate
 {
-	assert(self.loan.multiScenarioOrigDate != nil);
-	return [SimInputHelper multiScenFixedDate:self.loan.multiScenarioOrigDate
+	assert(self.loan.origDate != nil);
+	return [SimInputHelper multiScenFixedDate:self.loan.origDate.simDate
 			andScenario:simParams.simScenario];
 }
 

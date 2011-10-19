@@ -44,6 +44,8 @@
 		002379941440A11B006650E3 /* ItemizedTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 002379931440A11B006650E3 /* ItemizedTaxAmtCreator.m */; };
 		0023799814412BBE006650E3 /* FinishedAddingItemizedTaxAmtListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023799714412BBD006650E3 /* FinishedAddingItemizedTaxAmtListener.m */; };
 		0023799D14413D49006650E3 /* ItemizedTaxAmtFieldPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023799C14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.m */; };
+		00254FF2144E62F2000AB7B3 /* MultiScenarioSimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */; };
+		00254FF5144F22C3000AB7B3 /* MultiScenarioSimEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
 		0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775213B1778600D15232 /* VariableRateCalculator.m */; };
@@ -337,6 +339,10 @@
 		0023799A14413978006650E3 /* ItemizedTaxAmtVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtVisitor.h; sourceTree = "<group>"; };
 		0023799B14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtFieldPopulator.h; sourceTree = "<group>"; };
 		0023799C14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtFieldPopulator.m; sourceTree = "<group>"; };
+		00254FF0144E62F1000AB7B3 /* MultiScenarioSimDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioSimDate.h; sourceTree = "<group>"; };
+		00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioSimDate.m; sourceTree = "<group>"; };
+		00254FF3144F22C2000AB7B3 /* MultiScenarioSimEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioSimEndDate.h; sourceTree = "<group>"; };
+		00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioSimEndDate.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
 		0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateRuntimeInfo.m; sourceTree = "<group>"; };
 		0025774E13AFDE2800D15232 /* StringLookupTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLookupTable.h; sourceTree = "<group>"; };
@@ -906,6 +912,23 @@
 			name = "Tax Bracket";
 			sourceTree = "<group>";
 		};
+		00254FEA144E5F31000AB7B3 /* Multi Scenario Values */ = {
+			isa = PBXGroup;
+			children = (
+				0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */,
+				0036DE2513BE2D710043F3A5 /* MultiScenarioInputValue.h */,
+				00237959143E4FA4006650E3 /* MultiScenarioGrowthRate.m */,
+				00237958143E4FA4006650E3 /* MultiScenarioGrowthRate.h */,
+				00237964143E5E4B006650E3 /* MultiScenarioAmount.h */,
+				00237965143E5E4B006650E3 /* MultiScenarioAmount.m */,
+				00254FF0144E62F1000AB7B3 /* MultiScenarioSimDate.h */,
+				00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */,
+				00254FF3144F22C2000AB7B3 /* MultiScenarioSimEndDate.h */,
+				00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */,
+			);
+			name = "Multi Scenario Values";
+			sourceTree = "<group>";
+		};
 		0025776113B292F600D15232 /* Variable Rate Calculator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1379,6 +1402,7 @@
 				00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */,
 				0036DE2113BE1AF90043F3A5 /* Input Values */,
 				00DC16C313BE10F9006CBACA /* Scenario */,
+				00254FEA144E5F31000AB7B3 /* Multi Scenario Values */,
 				004A59A813A02FA0009FEF25 /* Inputs */,
 				0095E98B13BA9A7D000555AC /* SharedAppValues.h */,
 				0095E98C13BA9A90000555AC /* SharedAppValues.m */,
@@ -1769,12 +1793,6 @@
 				0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */,
 				0036DE2213BE2C5C0043F3A5 /* ScenarioValue.h */,
 				0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */,
-				0036DE2513BE2D710043F3A5 /* MultiScenarioInputValue.h */,
-				0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */,
-				00237958143E4FA4006650E3 /* MultiScenarioGrowthRate.h */,
-				00237959143E4FA4006650E3 /* MultiScenarioGrowthRate.m */,
-				00237964143E5E4B006650E3 /* MultiScenarioAmount.h */,
-				00237965143E5E4B006650E3 /* MultiScenarioAmount.m */,
 			);
 			name = Scenario;
 			sourceTree = "<group>";
@@ -2153,6 +2171,8 @@
 				00AA79BE1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m in Sources */,
 				00AA79C11441F07400FED301 /* TaxBracketEntryFormInfoCreator.m in Sources */,
 				00F1D9D61443F5D300BCB5E9 /* FinishedAddingTaxBracketEntryListener.m in Sources */,
+				00254FF2144E62F2000AB7B3 /* MultiScenarioSimDate.m in Sources */,
+				00254FF5144F22C3000AB7B3 /* MultiScenarioSimEndDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

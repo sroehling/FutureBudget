@@ -19,6 +19,8 @@
 #import "NeverEndDate.h"
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioGrowthRate.h"
+#import "MultiScenarioSimDate.h"
+#import "MultiScenarioSimEndDate.h"
 
 @implementation InputCreationHelper
 
@@ -127,6 +129,30 @@
 		insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
 	[msNeverEndDate setDefaultValue:[SharedAppValues singleton].sharedNeverEndDate];
 	return msNeverEndDate;
+}
+
++(MultiScenarioSimDate*)multiScenSimDateWithDefaultToday
+{
+	MultiScenarioSimDate *msSimDate = 
+		[[DataModelController theDataModelController] 
+		insertObject:MULTI_SCEN_SIM_DATE_ENTITY_NAME];
+
+    msSimDate.defaultFixedSimDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
+	msSimDate.simDate = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:msSimDate.defaultFixedSimDate];
+
+	return msSimDate;
+}
+
++(MultiScenarioSimEndDate*)multiScenSimEndDateWithDefaultNeverEndDate
+{
+	MultiScenarioSimEndDate *msSimEndDate = 
+		[[DataModelController theDataModelController] 
+		insertObject:MULTI_SCEN_SIM_END_DATE_ENTITY_NAME];
+		
+    msSimEndDate.defaultFixedSimDate = [InputCreationHelper multiScenFixedDateWithDefaultToday];
+	msSimEndDate.defaultFixedRelativeEndDate = [InputCreationHelper multiScenRelEndDateWithImmediateDefault];
+	msSimEndDate.simDate = [InputCreationHelper multiScenNeverEndDate];
+	return msSimEndDate;
 }
 
 

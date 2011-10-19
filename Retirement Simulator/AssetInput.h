@@ -12,29 +12,27 @@
 
 extern NSString * const ASSET_INPUT_ENTITY_NAME;
 extern NSString * const INPUT_ASSET_STARTING_VALUE_KEY;
-extern NSString * const ASSET_MULTI_SCEN_SALE_DATE_KEY;
-extern NSString * const ASSET_INPUT_MULTI_SCEN_PURCHASE_DATE_KEY;
 
 @class MultiScenarioInputValue;
 @class MultiScenarioGrowthRate;
+@class MultiScenarioSimDate;
+@class MultiScenarioSimEndDate;
 @class MultiScenarioAmount;
-@class VariableValue;
 
 @interface AssetInput : Input {
 @private
 }
 @property (nonatomic, retain) NSNumber * startingValue;
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioPurchaseDate;
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioPurchaseDateFixed;
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioSaleDate;
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioSaleDateFixed;
+@property (nonatomic, retain) MultiScenarioSimDate * purchaseDate;
+
+@property (nonatomic, retain) MultiScenarioSimEndDate * saleDate;
+
+// TODO - For all MultiScenarioAmount,MultiScenarioGrowthRate references, need to make them 
+// required in the data model.
+
 @property (nonatomic, retain) MultiScenarioAmount * cost;
 @property (nonatomic, retain) MultiScenarioGrowthRate * apprecRate;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioAssetEnabled;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioSaleProceedsTaxable;
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioSaleDateRelativeFixed;
-
-
-
 
 @end

@@ -20,6 +20,8 @@
 #import "MultiScenarioInputValue.h"
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioGrowthRate.h"
+#import "MultiScenarioSimDate.h"
+#import "MultiScenarioSimEndDate.h"
 
 @protocol SimEventCreator;
 
@@ -68,11 +70,11 @@
 
 - (void)resetSimEventCreation
 {
-	SimDate *startDate = (SimDate*)[self.cashFlow.multiScenarioStartDate 
+	SimDate *startDate = (SimDate*)[self.cashFlow.startDate.simDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedStartDate = startDate.date;
 			
-	SimDate *endDate = (SimDate*)[self.cashFlow.multiScenarioEndDate 
+	SimDate *endDate = (SimDate*)[self.cashFlow.endDate.simDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
 

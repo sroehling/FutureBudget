@@ -276,6 +276,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
+	BOOL isNewObject = FALSE;
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWALS_FORM_TITLE");
@@ -318,7 +319,8 @@
 		{
 			DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
 				[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:savingsAcct
-					andFieldLabel:savingsAcct.name] autorelease];
+					andFieldLabel:savingsAcct.name
+					andIsNewAccount:isNewObject] autorelease];
 				[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
 
 		}

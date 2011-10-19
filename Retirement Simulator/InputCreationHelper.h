@@ -10,7 +10,9 @@
 
 @class MultiScenarioInputValue;
 @class MultiScenarioAmount;
+@class MultiScenarioSimDate;
 @class MultiScenarioGrowthRate;
+@class MultiScenarioSimEndDate;
 
 @interface InputCreationHelper : NSObject {
     
@@ -32,5 +34,8 @@
 + (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday;
 + (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault;
 + (MultiScenarioInputValue*)multiScenNeverEndDate;
+
++(MultiScenarioSimDate*)multiScenSimDateWithDefaultToday;
++(MultiScenarioSimEndDate*)multiScenSimEndDateWithDefaultNeverEndDate;
 
 @end

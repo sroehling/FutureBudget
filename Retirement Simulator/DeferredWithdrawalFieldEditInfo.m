@@ -18,10 +18,12 @@
 #import "SimDate.h"
 #import "DateHelper.h"
 #import "MultiScenarioInputValue.h"
+#import "MultiScenarioSimDate.h"
 
 @implementation DeferredWithdrawalFieldEditInfo
 
 @synthesize account;
+@synthesize isNewAccount;
 @synthesize valueCell;
 @synthesize fieldLabel;
 
@@ -41,7 +43,7 @@
 	
 	if([self deferredWithdrawalsEnabled])
 	{
-		SimDate *deferDate = (SimDate*)[self.account.multiScenarioDeferredWithdrawalDate getValueForCurrentOrDefaultScenario];
+		SimDate *deferDate = (SimDate*)[self.account.deferredWithdrawalDate.simDate getValueForCurrentOrDefaultScenario];
 		assert(deferDate != nil);
 		
 	    NSString *deferDateDisplay = [deferDate 
@@ -58,6 +60,7 @@
 }
 
 -(id)initWithAccount:(Account*)theAccount andFieldLabel:(NSString*)theFieldLabel
+	andIsNewAccount:(BOOL)accountIsNew
 {
 	self = [super init];
 	if(self)
@@ -67,6 +70,8 @@
 		
 		assert(theFieldLabel != nil);
 		self.fieldLabel  = theFieldLabel;
+		
+		self.isNewAccount = accountIsNew;
 		
 		
 		self.valueCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
@@ -106,7 +111,8 @@
 {
 
 	DeferredWithdrawalFormInfoCreator *dwFormInfoCreator = 
-		[[[DeferredWithdrawalFormInfoCreator alloc] initWithAccount:self.account] autorelease];
+		[[[DeferredWithdrawalFormInfoCreator alloc] 
+			initWithAccount:self.account andIsNewAccount:self.isNewAccount] autorelease];
 	UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
 	    initWithFormInfoCreator:dwFormInfoCreator] autorelease];
 	return controller;	

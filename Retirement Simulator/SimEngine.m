@@ -46,6 +46,7 @@
 #import "AssetSaleSimEventCreator.h"
 
 #import "SimInputHelper.h"
+#import "MultiScenarioSimDate.h"
 
 
 
@@ -129,7 +130,7 @@
 		if([SimInputHelper multiScenBoolVal:savingsAcct.multiScenarioDeferredWithdrawalsEnabled
 			andScenario:simParams.simScenario])
 		{
-			NSDate *deferWithdrawalsDate = [SimInputHelper multiScenFixedDate:savingsAcct.multiScenarioDeferredWithdrawalDate andScenario:simParams.simScenario];
+			NSDate *deferWithdrawalsDate = [SimInputHelper multiScenFixedDate:savingsAcct.deferredWithdrawalDate.simDate andScenario:simParams.simScenario];
 			assert(deferWithdrawalsDate != nil);
 			savingsBal.deferWithdrawalsUntil = deferWithdrawalsDate;
 		}

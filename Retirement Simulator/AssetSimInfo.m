@@ -17,6 +17,8 @@
 #import "InterestBearingWorkingBalance.h"
 #import "MultiScenarioGrowthRate.h"
 #import "MultiScenarioAmount.h"
+#import "MultiScenarioSimDate.h"
+#import "MultiScenarioSimEndDate.h"
 
 @implementation AssetSimInfo
 
@@ -39,13 +41,13 @@
 		self.asset = theAsset;
 		
 		self.purchaseDate = [SimInputHelper 
-			multiScenFixedDate:self.asset.multiScenarioPurchaseDate 
+			multiScenFixedDate:self.asset.purchaseDate.simDate 
 			andScenario:self.simParams.simScenario];
 		assert(self.purchaseDate != nil);
 
 		self.saleDate = [SimInputHelper 
-			multiScenEndDate:self.asset.multiScenarioSaleDate 
-			withStartDate:self.asset.multiScenarioPurchaseDate 
+			multiScenEndDate:self.asset.saleDate.simDate 
+			withStartDate:self.asset.purchaseDate.simDate 
 			andScenario:self.simParams.simScenario];
 		assert(self.saleDate != nil);
 		
