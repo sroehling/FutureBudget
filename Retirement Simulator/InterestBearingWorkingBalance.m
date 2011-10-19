@@ -82,7 +82,7 @@
 	bool doTaxInterest = [theSavingsAcct.taxableInterest boolValue];
 	
 	double acctWithdrawPriority = 
-		[SimInputHelper multiScenFixedVal:theSavingsAcct.multiScenarioWithdrawalPriority 
+		[SimInputHelper multiScenFixedVal:theSavingsAcct.withdrawalPriority 
 				andScenario:simParams.simScenario];
 	double acctStartingBalance = [SimInputHelper doubleVal:theSavingsAcct.startingBalance];
 

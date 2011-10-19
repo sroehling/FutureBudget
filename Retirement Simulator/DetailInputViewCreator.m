@@ -104,7 +104,7 @@
     SectionInfo *sectionInfo  = [formPopulator nextSection];
 	
 	
-	[self.formPopulator populateMultiScenBoolField:cashFlow.multiScenarioCashFlowEnabled withLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL")];
+	[self.formPopulator populateMultiScenBoolField:cashFlow.cashFlowEnabled withLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL")];
 
     sectionInfo.title = 
 		LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_SECTION_TITLE");
@@ -126,7 +126,7 @@
 
 	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
 		[self.formPopulator populateRepeatFrequency:cashFlow
-		andFreqKey:CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY 
+		andFreqKey:CASH_FLOW_INPUT_EVENT_REPEAT_FREQUENCY_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
 
     
@@ -188,7 +188,7 @@
     sectionInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
 		
 		
-	[self.formPopulator populateMultiScenBoolField:account.multiScenarioContribEnabled 
+	[self.formPopulator populateMultiScenBoolField:account.contribEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL")];
 		
 	[self.formPopulator populateMultiScenarioAmount:account.contribAmount withValueTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL")];
@@ -242,7 +242,8 @@
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
 
-	[self.formPopulator populateMultiScenFixedValField:savingsAcct.multiScenarioWithdrawalPriority andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
+	[self.formPopulator populateMultiScenFixedValField:savingsAcct.withdrawalPriority 
+		andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
 		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
 	
 	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
@@ -278,7 +279,7 @@
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_COST_SECTION_TITLE");
 	
 	
-	[self.formPopulator populateMultiScenBoolField:loan.multiScenarioLoanEnabled 
+	[self.formPopulator populateMultiScenBoolField:loan.loanEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
 
 	[self.formPopulator populateMultiScenarioAmount:loan.loanCost 
@@ -291,7 +292,7 @@
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL")];
 	
-	[self.formPopulator populateMultiScenarioDuration:loan.multiScenarioLoanDuration 
+	[self.formPopulator populateMultiScenarioDuration:loan.loanDuration 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_DURATION_LABEL") 
 		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_DURATION_PLACEHOLDER") ];
 
@@ -318,7 +319,7 @@
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_SECTION_TITLE");
 
 
-	[self.formPopulator populateMultiScenBoolField:loan.multiScenarioExtraPmtEnabled 
+	[self.formPopulator populateMultiScenBoolField:loan.extraPmtEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL")];
 	
 	[self.formPopulator populateMultiScenarioAmount:loan.extraPmtAmt 
@@ -331,7 +332,7 @@
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_SECTION_TITLE");
 
 
-	[self.formPopulator populateMultiScenBoolField:loan.multiScenarioDownPmtEnabled 
+	[self.formPopulator populateMultiScenBoolField:loan.downPmtEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_ENABLED_LABEL")];
 	
 	
@@ -358,7 +359,7 @@
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE");
 	
 	
-	[self.formPopulator populateMultiScenBoolField:asset.multiScenarioAssetEnabled 
+	[self.formPopulator populateMultiScenBoolField:asset.assetEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
 	
 	[self.formPopulator populateMultiScenarioAmount:asset.cost 
@@ -398,7 +399,7 @@
 	
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	
-	[self.formPopulator populateMultiScenBoolField:tax.multiScenarioTaxEnabled  
+	[self.formPopulator populateMultiScenBoolField:tax.taxEnabled  
 		withLabel:LOCALIZED_STR(@"INPUT_TAX_ENABLED_FIELD_LABEL")];
 		
 	sectionInfo = [formPopulator nextSection];

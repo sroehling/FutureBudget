@@ -17,7 +17,7 @@ NSString * const INPUT_ASSET_STARTING_VALUE_KEY = @"startingValue";
 
 @implementation AssetInput
 
-@dynamic multiScenarioAssetEnabled;
+@dynamic assetEnabled;
 
 @dynamic cost;
 @dynamic apprecRate;

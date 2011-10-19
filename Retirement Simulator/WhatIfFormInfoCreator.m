@@ -143,7 +143,7 @@
 
 		for(IncomeInput *income in inputs)
 		{
-			[formPopulator populateMultiScenBoolField:income.multiScenarioCashFlowEnabled withLabel:income.name];
+			[formPopulator populateMultiScenBoolField:income.cashFlowEnabled withLabel:income.name];
 		}
 	}
 	
@@ -157,7 +157,7 @@
 
 		for(ExpenseInput *expense in inputs)
 		{    
-			[formPopulator populateMultiScenBoolField:expense.multiScenarioCashFlowEnabled withLabel:expense.name];
+			[formPopulator populateMultiScenBoolField:expense.cashFlowEnabled withLabel:expense.name];
 		}
 	}
 	
@@ -170,7 +170,7 @@
 	
 		for(SavingsAccount *savingsAcct in inputs)
 		{
-			[formPopulator populateMultiScenBoolField:savingsAcct.multiScenarioContribEnabled withLabel:savingsAcct.name];
+			[formPopulator populateMultiScenBoolField:savingsAcct.contribEnabled withLabel:savingsAcct.name];
 		}
 	}
 	
@@ -183,7 +183,7 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[formPopulator populateMultiScenBoolField:loan.multiScenarioLoanEnabled withLabel:loan.name];
+			[formPopulator populateMultiScenBoolField:loan.loanEnabled withLabel:loan.name];
 		}
 	}
 	
@@ -196,7 +196,7 @@
 		
 		for(AssetInput *asset in inputs)
 		{
-			[formPopulator populateMultiScenBoolField:asset.multiScenarioAssetEnabled withLabel:asset.name];			
+			[formPopulator populateMultiScenBoolField:asset.assetEnabled withLabel:asset.name];			
 		}
 	}
 	
@@ -209,7 +209,7 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[formPopulator populateMultiScenBoolField:loan.multiScenarioExtraPmtEnabled withLabel:loan.name];			
+			[formPopulator populateMultiScenBoolField:loan.extraPmtEnabled withLabel:loan.name];			
 		}
 	}
 	
@@ -240,7 +240,7 @@
 	
 		for(SavingsAccount *savingsAcct in inputs)
 		{
-			[formPopulator populateMultiScenFixedValField:savingsAcct.multiScenarioWithdrawalPriority 
+			[formPopulator populateMultiScenFixedValField:savingsAcct.withdrawalPriority 
 				andValLabel:savingsAcct.name
 				andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
 		}

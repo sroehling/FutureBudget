@@ -12,10 +12,7 @@
 #import "VariableValue.h"
 
 
-NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY =
-	@"multiScenarioEventRepeatFrequency";
-NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_CASH_FLOW_ENABLED_KEY=
-	@"multiScenarioCashFlowEnabled";
+NSString * const CASH_FLOW_INPUT_EVENT_REPEAT_FREQUENCY_KEY = @"eventRepeatFrequency";
 
 
 @implementation CashFlowInput
@@ -23,8 +20,8 @@ NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_CASH_FLOW_ENABLED_KEY=
 @dynamic startDate;
 @dynamic endDate;
 @dynamic amount;
-@dynamic multiScenarioEventRepeatFrequency;
-@dynamic multiScenarioCashFlowEnabled;
+@dynamic eventRepeatFrequency;
+@dynamic cashFlowEnabled;
 @dynamic amountGrowthRate;
 
 

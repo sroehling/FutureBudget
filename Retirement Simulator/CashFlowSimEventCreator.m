@@ -79,7 +79,7 @@
 	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
-		[self.cashFlow.multiScenarioEventRepeatFrequency getValueForCurrentOrDefaultScenario];
+		[self.cashFlow.eventRepeatFrequency getValueForCurrentOrDefaultScenario];
     self.eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
                      andStartDate:resolvedStartDate andEndDate:resolvedEndDate];

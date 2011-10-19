@@ -18,8 +18,7 @@
 @class MultiScenarioSimEndDate;
 
 
-extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_EVENT_REPEAT_FREQUENCY_KEY;
-extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_CASH_FLOW_ENABLED_KEY;
+extern NSString * const CASH_FLOW_INPUT_EVENT_REPEAT_FREQUENCY_KEY;
 
 @interface CashFlowInput : Input {
 @private
@@ -30,8 +29,8 @@ extern NSString * const CASH_FLOW_INPUT_MULTI_SCENARIO_CASH_FLOW_ENABLED_KEY;
 @property(nonatomic,retain) MultiScenarioSimEndDate *endDate;
 @property(nonatomic,retain) MultiScenarioAmount *amount;
 @property(nonatomic,retain) MultiScenarioGrowthRate *amountGrowthRate;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioEventRepeatFrequency;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioCashFlowEnabled;
+@property(nonatomic,retain) MultiScenarioInputValue *eventRepeatFrequency;
+@property(nonatomic,retain) MultiScenarioInputValue *cashFlowEnabled;
 
 
 @end

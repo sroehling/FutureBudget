@@ -17,7 +17,7 @@ extern NSString * const TAX_INPUT_ENTITY_NAME;
 @interface TaxInput : Input {
 @private
 }
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioTaxEnabled;
+@property (nonatomic, retain) MultiScenarioInputValue * taxEnabled;
 
 @property (nonatomic, retain) ItemizedTaxAmts * itemizedIncomeSources;
 

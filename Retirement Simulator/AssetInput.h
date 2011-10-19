@@ -32,7 +32,7 @@ extern NSString * const INPUT_ASSET_STARTING_VALUE_KEY;
 
 @property (nonatomic, retain) MultiScenarioAmount * cost;
 @property (nonatomic, retain) MultiScenarioGrowthRate * apprecRate;
-@property (nonatomic, retain) MultiScenarioInputValue * multiScenarioAssetEnabled;
+@property (nonatomic, retain) MultiScenarioInputValue * assetEnabled;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioSaleProceedsTaxable;
 
 @end

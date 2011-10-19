@@ -28,19 +28,19 @@ extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY;
 
 @property(nonatomic,retain) MultiScenarioAmount *contribAmount;
 @property(nonatomic,retain) MultiScenarioGrowthRate *contribGrowthRate;
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribRepeatFrequency;
+@property(nonatomic,retain) MultiScenarioInputValue *contribRepeatFrequency;
 @property(nonatomic,retain) MultiScenarioSimDate *contribStartDate;
 @property(nonatomic,retain) MultiScenarioSimEndDate *contribEndDate;
 
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioContribEnabled;
+@property(nonatomic,retain) MultiScenarioInputValue *contribEnabled;
 
 
 // TBD - Depending on the final class structure of accounts, investments, etc., should
 // the deferred withdrawal info be pushed into a dedicated class.
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioDeferredWithdrawalsEnabled;
+@property(nonatomic,retain) MultiScenarioInputValue *deferredWithdrawalsEnabled;
 @property(nonatomic,retain) MultiScenarioSimDate *deferredWithdrawalDate;
 
-@property(nonatomic,retain) MultiScenarioInputValue *multiScenarioWithdrawalPriority;
+@property(nonatomic,retain) MultiScenarioInputValue *withdrawalPriority;
 
 
 @end

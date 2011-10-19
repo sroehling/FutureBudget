@@ -52,11 +52,11 @@
 	LoanInput *theLoan  = (LoanInput*)[self.coreData createObj:LOAN_INPUT_ENTITY_NAME];
 	
 	theLoan.startingBalance = [NSNumber numberWithDouble:0.0];
-	theLoan.multiScenarioLoanEnabled = [testObjs multiScenBoolValWithDefault:TRUE];
+	theLoan.loanEnabled = [testObjs multiScenBoolValWithDefault:TRUE];
 	
 	// Loan Cost
 	theLoan.multiScenarioLoanCostAmt = [testObjs multiScenFixedValWithDefault:loanCost];
-	theLoan.multiScenarioLoanDuration = [testObjs multiScenFixedValWithDefault:durationMonths];			
+	theLoan.loanDuration = [testObjs multiScenFixedValWithDefault:durationMonths];			
 	theLoan.multiScenarioLoanCostGrowthRate = [testObjs multiScenFixedValWithDefault:0.0];;
 	theLoan.multiScenarioOrigDate = [testObjs multiScenFixedDate:@"2012-01-01"];
 

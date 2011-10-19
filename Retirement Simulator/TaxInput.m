@@ -19,7 +19,7 @@ NSString * const TAX_INPUT_ENTITY_NAME = @"TaxInput";
 
 @implementation TaxInput
 
-@dynamic multiScenarioTaxEnabled;
+@dynamic taxEnabled;
 @dynamic exemptionAmt;
 @dynamic stdDeductionAmt;
 @dynamic exemptionGrowthRate;

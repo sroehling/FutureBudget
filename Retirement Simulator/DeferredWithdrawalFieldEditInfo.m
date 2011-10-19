@@ -30,7 +30,7 @@
 -(bool)deferredWithdrawalsEnabled
 {
  	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
-	return [SimInputHelper multiScenBoolVal:self.account.multiScenarioDeferredWithdrawalsEnabled
+	return [SimInputHelper multiScenBoolVal:self.account.deferredWithdrawalsEnabled
 		andScenario:currentScenario];
 }
 

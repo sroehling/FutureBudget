@@ -129,7 +129,7 @@
 
 -(double)downPaymentAmount
 {
-	if([SimInputHelper multiScenBoolVal:self.loan.multiScenarioDownPmtEnabled 
+	if([SimInputHelper multiScenBoolVal:self.loan.downPmtEnabled 
 			andScenario:simParams.simScenario])
 	{
 		double downPmtPercent = [self downPaymentPercent];
@@ -241,8 +241,8 @@
 
 -(double)loanTermMonths
 {
-	assert(loan.multiScenarioLoanDuration != nil);
-	double termMonths = [SimInputHelper multiScenFixedVal:loan.multiScenarioLoanDuration
+	assert(loan.loanDuration != nil);
+	double termMonths = [SimInputHelper multiScenFixedVal:loan.loanDuration
 		andScenario:simParams.simScenario];
 	assert(termMonths > 0.0);
 	return termMonths;

@@ -88,7 +88,7 @@
 	for(IncomeInput *income in inputs)
 	{
 		assert(income!=nil);
-		if([SimInputHelper multiScenBoolVal:income.multiScenarioCashFlowEnabled 
+		if([SimInputHelper multiScenBoolVal:income.cashFlowEnabled 
 				andScenario:simParams.simScenario])
 		{
 			[self.eventCreators addObject:
@@ -101,7 +101,7 @@
     for(ExpenseInput *expense in inputs)
     {    
 		assert(expense != nil);
-		if([SimInputHelper multiScenBoolVal:expense.multiScenarioCashFlowEnabled
+		if([SimInputHelper multiScenBoolVal:expense.cashFlowEnabled
 				andScenario:simParams.simScenario])
 		{
 			[self.eventCreators addObject:
@@ -117,7 +117,7 @@
 			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:savingsAcct 
 				andSimParams:self.simParams] autorelease];
 			
-		if([SimInputHelper multiScenBoolVal:savingsAcct.multiScenarioContribEnabled
+		if([SimInputHelper multiScenBoolVal:savingsAcct.contribEnabled
 				andScenario:simParams.simScenario])
 		{
 			SavingsContributionSimEventCreator *savingsEventCreator = 
@@ -127,7 +127,7 @@
 			[self.eventCreators addObject:savingsEventCreator];
 		}
 		
-		if([SimInputHelper multiScenBoolVal:savingsAcct.multiScenarioDeferredWithdrawalsEnabled
+		if([SimInputHelper multiScenBoolVal:savingsAcct.deferredWithdrawalsEnabled
 			andScenario:simParams.simScenario])
 		{
 			NSDate *deferWithdrawalsDate = [SimInputHelper multiScenFixedDate:savingsAcct.deferredWithdrawalDate.simDate andScenario:simParams.simScenario];
@@ -142,7 +142,7 @@
 	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	for(LoanInput *loan in inputs)
 	{
-		if([SimInputHelper multiScenBoolVal:loan.multiScenarioLoanEnabled
+		if([SimInputHelper multiScenBoolVal:loan.loanEnabled
 				andScenario:simParams.simScenario])
 		{
 		
@@ -153,7 +153,7 @@
 				[[[LoanPaymentSimEventCreator alloc] initWithLoanInfo:loanInfo] autorelease];
 			[self.eventCreators addObject:loanPmtEventCreator];
 			
-			if([SimInputHelper multiScenBoolVal:loan.multiScenarioDownPmtEnabled
+			if([SimInputHelper multiScenBoolVal:loan.downPmtEnabled
 					andScenario:simParams.simScenario])
 			{
 				DownPaymentSimEventCreator *downPmtCreator = [[[DownPaymentSimEventCreator alloc]
@@ -161,7 +161,7 @@
 				[self.eventCreators addObject:downPmtCreator];
 			}
 			
-			if([SimInputHelper multiScenBoolVal:loan.multiScenarioExtraPmtEnabled
+			if([SimInputHelper multiScenBoolVal:loan.extraPmtEnabled
 				andScenario:simParams.simScenario])
 			{
 				ExtraPaymentSimEventCreator *extraPmtCreator = [[[ExtraPaymentSimEventCreator alloc]
@@ -180,7 +180,7 @@
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
 	for(AssetInput *asset in inputs)
 	{
-		if([SimInputHelper multiScenBoolVal:asset.multiScenarioAssetEnabled
+		if([SimInputHelper multiScenBoolVal:asset.assetEnabled
 				andScenario:simParams.simScenario])
 		{
 			AssetSimInfo *assetInfo =  

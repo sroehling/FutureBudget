@@ -50,7 +50,7 @@
 	NSString *startDateDisplay = [startDate 
 						inlineDescription:[DateHelper theHelper].mediumDateFormatter];
 	EventRepeatFrequency *repeatFreq = 
-		(EventRepeatFrequency*)[cashFlow.multiScenarioEventRepeatFrequency getValueForCurrentOrDefaultScenario];
+		(EventRepeatFrequency*)[cashFlow.eventRepeatFrequency getValueForCurrentOrDefaultScenario];
 	NSString *repeatDesc = [repeatFreq inlineDescription];
 	NSString *untilDesc = @"";
 	if([repeatFreq eventRepeatsMoreThanOnce])

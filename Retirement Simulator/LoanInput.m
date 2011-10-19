@@ -24,26 +24,26 @@ NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY = @"multiScenarioDow
 @dynamic taxableInterest; // done
 @dynamic startingBalance; // done
 
-@dynamic multiScenarioLoanEnabled;
+@dynamic loanEnabled;
 
 @dynamic loanCostGrowthRate;
 
-@dynamic multiScenarioLoanDuration; // done
+@dynamic loanDuration; // done
 
 @dynamic origDate;
 
 @dynamic interestRate; // done
 
-@dynamic multiScenarioDownPmtEnabled; // done
+@dynamic downPmtEnabled; // done
 @dynamic multiScenarioDownPmtPercent; // done
 @dynamic multiScenarioDownPmtPercentFixed; // done
 
-@dynamic multiScenarioExtraPmtEnabled; // done
+@dynamic extraPmtEnabled; // done
 
 @dynamic extraPmtAmt;
 @dynamic loanCost;
 
-@dynamic multiScenarioExtraPmtFrequency;
+@dynamic extraPmtFrequency;
 
 @dynamic extraPmtGrowthRate;
 

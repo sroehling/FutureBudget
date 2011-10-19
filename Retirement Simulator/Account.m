@@ -14,7 +14,7 @@
 NSString * const ACCOUNT_STARTING_BALANCE_KEY = @"startingBalance";
 NSString * const ACCOUNT_ENTITY_NAME = @"Account";
 
-NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY = @"multiScenarioContribRepeatFrequency";
+NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY = @"contribRepeatFrequency";
 
 @implementation Account
 
@@ -22,16 +22,16 @@ NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY = @"multiScenar
 @dynamic contribAmount;
 @dynamic contribGrowthRate;
 
-@dynamic multiScenarioContribRepeatFrequency;
+@dynamic contribRepeatFrequency;
 @dynamic contribStartDate;
 @dynamic contribEndDate;
-@dynamic multiScenarioContribEnabled;
+@dynamic contribEnabled;
 
-@dynamic multiScenarioDeferredWithdrawalsEnabled;
+@dynamic deferredWithdrawalsEnabled;
 @dynamic deferredWithdrawalDate;
 
 
-@dynamic multiScenarioWithdrawalPriority;
+@dynamic withdrawalPriority;
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

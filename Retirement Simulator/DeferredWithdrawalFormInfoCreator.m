@@ -45,7 +45,7 @@
 	
 	[formPopulator nextSection];
 		
-	[formPopulator populateMultiScenBoolField:account.multiScenarioDeferredWithdrawalsEnabled withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")];
+	[formPopulator populateMultiScenBoolField:account.deferredWithdrawalsEnabled withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")];
 	
 	[formPopulator populateMultiScenSimDate:account.deferredWithdrawalDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_FIELD_LABEL") 

@@ -83,7 +83,7 @@
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedEndDate]);
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
-		[savingsAcct.multiScenarioContribRepeatFrequency getValueForCurrentOrDefaultScenario];
+		[savingsAcct.contribRepeatFrequency getValueForCurrentOrDefaultScenario];
 	// TODO - Need to pass in an end date to the event repeat frequency
     self.eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
