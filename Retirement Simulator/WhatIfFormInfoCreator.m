@@ -17,16 +17,11 @@
 #import "BoolFieldEditInfo.h"
 #import "LoanInput.h"
 #import "SharedAppValues.h"
-#import "MultiScenarioBoolInputValueFieldInfo.h"
 #import "ExpenseInput.h"
 #import "IncomeInput.h"
 #import "AssetInput.h"
-#import "MultiScenarioFixedValueFieldInfo.h"
-#import "NumberFieldEditInfo.h"
 #import "NumberHelper.h"
 #import "DeferredWithdrawalFieldEditInfo.h"
-#import "VariableValueRuntimeInfo.h"
-#import "DateSensitiveValueFieldEditInfo.h"
 #import "Scenario.h"
 #import "ScenarioListFormInfoCreator.h"
 #import "ManagedObjectFieldInfo.h"
@@ -139,9 +134,7 @@
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_ENABLED_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
-	
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
-	
+		
 	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -150,14 +143,7 @@
 
 		for(IncomeInput *income in inputs)
 		{
-			MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-				[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-					initWithFieldLabel:income.name
-					andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-				andInputVal:income.multiScenarioCashFlowEnabled] autorelease];
-			BoolFieldEditInfo *enabledFieldEditInfo = 
-				[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-			[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+			[formPopulator populateMultiScenBoolField:income.multiScenarioCashFlowEnabled withLabel:income.name];
 		}
 	}
 	
@@ -171,14 +157,7 @@
 
 		for(ExpenseInput *expense in inputs)
 		{    
-			MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-				[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-					initWithFieldLabel:expense.name
-					andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-				andInputVal:expense.multiScenarioCashFlowEnabled] autorelease];
-			BoolFieldEditInfo *enabledFieldEditInfo = 
-				[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-			[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+			[formPopulator populateMultiScenBoolField:expense.multiScenarioCashFlowEnabled withLabel:expense.name];
 		}
 	}
 	
@@ -191,14 +170,7 @@
 	
 		for(SavingsAccount *savingsAcct in inputs)
 		{
-			MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-				[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-					initWithFieldLabel:savingsAcct.name 
-					andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-				andInputVal:savingsAcct.multiScenarioContribEnabled] autorelease];
-			BoolFieldEditInfo *enabledFieldEditInfo = 
-				[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-			[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
+			[formPopulator populateMultiScenBoolField:savingsAcct.multiScenarioContribEnabled withLabel:savingsAcct.name];
 		}
 	}
 	
@@ -211,15 +183,7 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-			[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-				initWithFieldLabel:loan.name 
-				andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-			andInputVal:loan.multiScenarioLoanEnabled] autorelease];
-			BoolFieldEditInfo *enabledFieldEditInfo = 
-			[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-			[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
-
+			[formPopulator populateMultiScenBoolField:loan.multiScenarioLoanEnabled withLabel:loan.name];
 		}
 	}
 	
@@ -232,15 +196,7 @@
 		
 		for(AssetInput *asset in inputs)
 		{
-			MultiScenarioBoolInputValueFieldInfo *enabledFieldInfo =
-				[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-					initWithFieldLabel:asset.name 
-					andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-				andInputVal:asset.multiScenarioAssetEnabled] autorelease];
-			BoolFieldEditInfo *enabledFieldEditInfo = 
-				[[[BoolFieldEditInfo alloc] initWithFieldInfo:enabledFieldInfo] autorelease];
-			[sectionInfo addFieldEditInfo:enabledFieldEditInfo];
-			
+			[formPopulator populateMultiScenBoolField:asset.multiScenarioAssetEnabled withLabel:asset.name];			
 		}
 	}
 	
@@ -253,15 +209,7 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			MultiScenarioBoolInputValueFieldInfo *enableExtraPmtFieldInfo =
-				[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-					initWithFieldLabel:loan.name 
-					andFieldPlaceholder:@"n/a" andScenario:currentScenario 
-				andInputVal:loan.multiScenarioExtraPmtEnabled] autorelease];
-			BoolFieldEditInfo *enableExtraPmtFieldEditInfo = 
-				[[[BoolFieldEditInfo alloc] initWithFieldInfo:enableExtraPmtFieldInfo] autorelease];
-			[sectionInfo addFieldEditInfo:enableExtraPmtFieldEditInfo];
-
+			[formPopulator populateMultiScenBoolField:loan.multiScenarioExtraPmtEnabled withLabel:loan.name];			
 		}
 	}
 	
@@ -277,14 +225,11 @@
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
 	BOOL isNewObject = FALSE;
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isNewObject] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWALS_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
-	
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
-		
 	
 	NSSet *inputs = [[DataModelController theDataModelController] 
 					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
@@ -295,16 +240,9 @@
 	
 		for(SavingsAccount *savingsAcct in inputs)
 		{
-			MultiScenarioFixedValueFieldInfo *withdrawalPriorityFieldInfo =
-				[[[MultiScenarioFixedValueFieldInfo alloc] 
-					initWithFieldLabel:savingsAcct.name 
-					andFieldPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER") 
-					andScenario:currentScenario 
-				andInputVal:savingsAcct.multiScenarioWithdrawalPriority] autorelease];
-			NumberFieldEditInfo *withdrawalPriorityEditInfo = 
-				[[NumberFieldEditInfo alloc] initWithFieldInfo:withdrawalPriorityFieldInfo
-					andNumberFormatter:[NumberHelper theHelper].decimalFormatter];
-			[sectionInfo addFieldEditInfo:withdrawalPriorityEditInfo];
+			[formPopulator populateMultiScenFixedValField:savingsAcct.multiScenarioWithdrawalPriority 
+				andValLabel:savingsAcct.name
+				andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
 		}
 	}
 	
