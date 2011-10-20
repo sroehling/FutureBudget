@@ -36,7 +36,8 @@
 {
 	assert(income != nil);
 	IncomeItemizedTaxAmt *itemizedTaxAmt = [[DataModelController theDataModelController] insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
-	itemizedTaxAmt.multiScenarioApplicablePercent = [InputCreationHelper multiScenFixedValWithDefault:100.0];
+	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] initWithDataModelInterface:[DataModelController theDataModelController]] autorelease];
+	itemizedTaxAmt.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
 	itemizedTaxAmt.income  = self.income;
 	return itemizedTaxAmt;
 

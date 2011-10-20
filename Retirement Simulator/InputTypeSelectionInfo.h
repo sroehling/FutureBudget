@@ -10,15 +10,19 @@
 
 @class Input;
 @class CashFlowInput;
+@class InputCreationHelper;
 
 @interface InputTypeSelectionInfo : NSObject {
     @private
 // TODO - Need to replace description with another name
     NSString *description;
+	@protected
+	InputCreationHelper *inputCreationHelper;
 
 }
 
 @property(nonatomic,retain) NSString *description;
+@property(nonatomic,retain) InputCreationHelper *inputCreationHelper;
 
 - (Input*)createInput; // must be overriden
 

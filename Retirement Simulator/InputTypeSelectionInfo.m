@@ -25,6 +25,23 @@
 @implementation InputTypeSelectionInfo
 
 @synthesize description;
+@synthesize inputCreationHelper;
+
+-(id)init
+{
+	self = [super init];
+	if(self)
+	{
+		self.inputCreationHelper = [[[InputCreationHelper alloc] initWithDataModelInterface:[DataModelController theDataModelController]] autorelease];
+	}
+	return self;
+}
+
+-(void)dealloc
+{
+	[super dealloc];
+	[inputCreationHelper release];
+}
 
 -(Input*)createInput
 {
@@ -36,37 +53,37 @@
 
 -(void)populateCashFlowInputProperties:(CashFlowInput*)newInput
 {
-	newInput.cashFlowEnabled = [InputCreationHelper 
+	newInput.cashFlowEnabled = [inputCreationHelper 
 		multiScenBoolValWithDefault:TRUE];
 	
-	newInput.amountGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	newInput.amount = [InputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.amount = [inputCreationHelper multiScenAmountWithDefault:0.0];
     
-	newInput.startDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
-    newInput.endDate = [InputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+	newInput.startDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
+    newInput.endDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
    	
-	newInput.eventRepeatFrequency = [InputCreationHelper multiScenarioRepeatFrequencyOnce];
+	newInput.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
     
 }
 
 -(void)populateAccountInputProperties:(Account*)newInput
 {
-	newInput.contribEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
+	newInput.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
-	newInput.contribGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.contribGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	newInput.contribAmount = [InputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.contribAmount = [inputCreationHelper multiScenAmountWithDefault:0.0];
 	
-	newInput.contribStartDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
-	newInput.contribEndDate = [InputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+	newInput.contribStartDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
+	newInput.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 		
-	newInput.contribRepeatFrequency = [InputCreationHelper multiScenarioRepeatFrequencyOnce];
+	newInput.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	
-	newInput.withdrawalPriority = [InputCreationHelper 
+	newInput.withdrawalPriority = [inputCreationHelper 
 		multiScenFixedValWithDefault:1.0];
 	
-	newInput.deferredWithdrawalsEnabled = [InputCreationHelper multiScenBoolValWithDefault:FALSE];
-	newInput.deferredWithdrawalDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
+	newInput.deferredWithdrawalsEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	newInput.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
     
 }
 
@@ -124,7 +141,7 @@
 	savingsAcct.taxableWithdrawals = [NSNumber numberWithBool:TRUE];
 	savingsAcct.taxableInterest = [NSNumber numberWithBool:FALSE];
 	
-	savingsAcct.interestRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	savingsAcct.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
     [[DataModelController theDataModelController] saveContext];
@@ -147,40 +164,40 @@
 			
 	newInput.startingBalance = [NSNumber numberWithDouble:0.0];
 	
-	newInput.loanEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
+	newInput.loanEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
 	// Loan Cost
-	newInput.loanCost = [InputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.loanCost = [inputCreationHelper multiScenAmountWithDefault:0.0];
 	
 		
-	newInput.loanDuration = [InputCreationHelper multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
+	newInput.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
 	
-	newInput.loanCostGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 		
-	newInput.origDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
+	newInput.origDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
 
 	// Interest
-	newInput.interestRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	newInput.taxableInterest = [NSNumber numberWithBool:TRUE];		
 		
 	// Down Payment	
 		
-	newInput.downPmtEnabled = [InputCreationHelper multiScenBoolValWithDefault:FALSE];
+	newInput.downPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	
-	newInput.multiScenarioDownPmtPercentFixed = [InputCreationHelper multiScenFixedValWithDefault:0.0];
-	newInput.multiScenarioDownPmtPercent = [InputCreationHelper multiScenInputValueWithDefaultFixedVal:
+	newInput.multiScenarioDownPmtPercentFixed = [inputCreationHelper multiScenFixedValWithDefault:0.0];
+	newInput.multiScenarioDownPmtPercent = [inputCreationHelper multiScenInputValueWithDefaultFixedVal:
 		newInput.multiScenarioDownPmtPercentFixed];
 
 
 	// Extra Payments 
 	
-	newInput.extraPmtEnabled = [InputCreationHelper multiScenBoolValWithDefault:FALSE];
+	newInput.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	
-	newInput.extraPmtAmt = [InputCreationHelper multiScenAmountWithDefault:0.0];
-	newInput.extraPmtGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.extraPmtAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	newInput.extraPmtFrequency = [InputCreationHelper multiScenarioRepeatFrequencyOnce];
+	newInput.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	
 	[[DataModelController theDataModelController] saveContext];
 		
@@ -197,19 +214,19 @@
 	AssetInput *newInput  = (AssetInput*)[[DataModelController theDataModelController]
 			insertObject:ASSET_INPUT_ENTITY_NAME];
 	
-	newInput.assetEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
+	newInput.assetEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
-	newInput.cost = [InputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.cost = [inputCreationHelper multiScenAmountWithDefault:0.0];
 
-	newInput.apprecRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	newInput.purchaseDate = [InputCreationHelper multiScenSimDateWithDefaultToday];
+	newInput.purchaseDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
 	
-	newInput.saleDate = [InputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+	newInput.saleDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 		
 	newInput.startingValue = [NSNumber numberWithDouble:0.0];
 	
-	newInput.multiScenarioSaleProceedsTaxable = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
+	newInput.multiScenarioSaleProceedsTaxable = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	return newInput;
 }
@@ -224,7 +241,7 @@
 {
 	TaxBracket *taxBracket = (TaxBracket*)[[DataModelController theDataModelController]
 			insertObject:TAX_BRACKET_ENTITY_NAME];
-	taxBracket.cutoffGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	return taxBracket;
 }
 
@@ -233,12 +250,12 @@
 	TaxInput *newInput  = (TaxInput*)[[DataModelController theDataModelController]
 			insertObject:TAX_INPUT_ENTITY_NAME];
 	
-	newInput.taxEnabled = [InputCreationHelper multiScenBoolValWithDefault:TRUE];
+	newInput.taxEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
-	newInput.exemptionAmt = [InputCreationHelper multiScenAmountWithDefault:0.0];
-	newInput.stdDeductionAmt = [InputCreationHelper multiScenAmountWithDefault:0.0];
-	newInput.exemptionGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	newInput.stdDeductionGrowthRate = [InputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.exemptionAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.stdDeductionAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.exemptionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.stdDeductionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	newInput.itemizedAdjustments = [[DataModelController theDataModelController] 
 			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
