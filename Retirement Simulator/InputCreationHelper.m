@@ -21,24 +21,36 @@
 #import "MultiScenarioSimDate.h"
 #import "MultiScenarioSimEndDate.h"
 #import "DataModelInterface.h"
+#import "DataModelController.h"
 
 @implementation InputCreationHelper
+
 @synthesize dataModel;
+@synthesize sharedAppVals;
 
 -(id)initWithDataModelInterface:(id<DataModelInterface>)theDataModelInterface
+	andSharedAppVals:(SharedAppValues*)theSharedAppVals
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theDataModelInterface != nil);
 		self.dataModel = theDataModelInterface;
+		
+		assert(theSharedAppVals != nil);
+		self.sharedAppVals = theSharedAppVals;
 	}
 	return self;
 }
 
+-(id)initForDatabaseInputs
+{
+	return [self initWithDataModelInterface:[DataModelController theDataModelController] andSharedAppVals:[SharedAppValues singleton]];
+}
+
 - (id) init
 {
-	assert(0); // must init with data model interface;
+	assert(0); // must init with data model interface and shared app vals
 	return nil;
 }
 
@@ -46,6 +58,7 @@
 {
 	[super dealloc];
 	[dataModel release];
+	[sharedAppVals release];
 }
 
 - (MultiScenarioInputValue*)multiScenInputValue
@@ -53,6 +66,7 @@
 	MultiScenarioInputValue *msInputVal = 
 		[self.dataModel createDataModelObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
 	msInputVal.dataModelInterface = self.dataModel;
+	msInputVal.sharedAppVals = self.sharedAppVals;
 	return msInputVal;
 }
 
@@ -117,7 +131,7 @@
 
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyOnce
 {
-	EventRepeatFrequency *repeatOnce = [SharedAppValues singleton].repeatOnceFreq;
+	EventRepeatFrequency *repeatOnce = self.sharedAppVals.repeatOnceFreq;
 	assert(repeatOnce != nil);
 	MultiScenarioInputValue *msRepeatFreq = [self multiScenInputValue];
 	[msRepeatFreq setDefaultValue:repeatOnce];
@@ -125,15 +139,24 @@
 
 }
 
-- (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday
+- (MultiScenarioInputValue*)multiScenFixedDateWithDefault:(NSDate*)defaultDate
 {
+	assert(defaultDate != nil);
+	
 	MultiScenarioInputValue *msFixedEndDate = [self multiScenInputValue];
 	
     FixedDate *fixedEndDate = (FixedDate*)[self.dataModel createDataModelObject:FIXED_DATE_ENTITY_NAME];
-    fixedEndDate.date = [NSDate date];
+    fixedEndDate.date = defaultDate;
 	[msFixedEndDate setDefaultValue:fixedEndDate];
 	return msFixedEndDate;
 
+}
+
+
+
+- (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday
+{
+	return [self multiScenFixedDateWithDefault:[NSDate date]];
 }
 
 - (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault
@@ -152,19 +175,27 @@
 {
 	MultiScenarioInputValue *msNeverEndDate = [self multiScenInputValue];
 	
-	[msNeverEndDate setDefaultValue:[SharedAppValues singleton].sharedNeverEndDate];
+	[msNeverEndDate setDefaultValue:self.sharedAppVals.sharedNeverEndDate];
 	return msNeverEndDate;
+}
+
+- (MultiScenarioSimDate*)multiScenSimDateWithDefault:(NSDate*)defaultDate
+{
+	assert(defaultDate != nil);
+	
+	MultiScenarioSimDate *msSimDate = 
+		[self.dataModel createDataModelObject:MULTI_SCEN_SIM_DATE_ENTITY_NAME];
+
+    msSimDate.defaultFixedSimDate = [self multiScenFixedDateWithDefault:defaultDate];
+	msSimDate.simDate = [self multiScenInputValueWithDefaultFixedVal:msSimDate.defaultFixedSimDate];
+
+	return msSimDate;
+
 }
 
 - (MultiScenarioSimDate*)multiScenSimDateWithDefaultToday
 {
-	MultiScenarioSimDate *msSimDate = 
-		[self.dataModel createDataModelObject:MULTI_SCEN_SIM_DATE_ENTITY_NAME];
-
-    msSimDate.defaultFixedSimDate = [self multiScenFixedDateWithDefaultToday];
-	msSimDate.simDate = [self multiScenInputValueWithDefaultFixedVal:msSimDate.defaultFixedSimDate];
-
-	return msSimDate;
+	return [self multiScenSimDateWithDefault:[NSDate date]];
 }
 
 - (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefaultNeverEndDate

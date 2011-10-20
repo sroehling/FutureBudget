@@ -15,6 +15,10 @@
 #import "DateHelper.h"
 #import "TestCoreDataObjects.h"
 
+// TODO - Remove dependences of this class on the TestCoreDataObjects class, and
+// place it on the InputCreationHelper. This will make this class consistent with
+// the loan tests.
+
 @implementation VariableValueCalculatorTest
 
 @synthesize coreData;

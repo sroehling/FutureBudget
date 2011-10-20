@@ -32,7 +32,7 @@
 	self = [super init];
 	if(self)
 	{
-		self.inputCreationHelper = [[[InputCreationHelper alloc] initWithDataModelInterface:[DataModelController theDataModelController]] autorelease];
+		self.inputCreationHelper = [[[InputCreationHelper alloc] initForDatabaseInputs] autorelease];
 	}
 	return self;
 }

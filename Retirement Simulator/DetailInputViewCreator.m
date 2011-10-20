@@ -178,13 +178,13 @@
 		LOCALIZED_STR(@"INPUT_ACCOUNT_TITLE");
 	[self.formPopulator populateInputNameField:account];
 	
-	SectionInfo *sectionInfo = [formPopulator nextSection];
+	 [formPopulator nextSection];
 
 	[self.formPopulator populateCurrencyField:account andValKey:ACCOUNT_STARTING_BALANCE_KEY
 		andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_STARTING_BALANCE_LABEL") 
 			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")];
 
-	sectionInfo = [formPopulator nextSection];
+	SectionInfo *sectionInfo = [formPopulator nextSection];
     sectionInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
 		
 		
@@ -397,12 +397,12 @@
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_TAX_TITLE");
 	[self.formPopulator populateInputNameField:tax];
 	
-	SectionInfo *sectionInfo = [formPopulator nextSection];
+	[formPopulator nextSection];
 	
 	[self.formPopulator populateMultiScenBoolField:tax.taxEnabled  
 		withLabel:LOCALIZED_STR(@"INPUT_TAX_ENABLED_FIELD_LABEL")];
 		
-	sectionInfo = [formPopulator nextSection];
+	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE");
 	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_SUBTITLE");
 	

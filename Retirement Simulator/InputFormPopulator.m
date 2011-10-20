@@ -120,8 +120,8 @@
 			andFieldPlaceholder:prompt
 			andScenario:self.inputScenario  andInputVal:inputVal] autorelease];
    NumberFieldEditInfo *fieldEditInfo = 
-		[[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo
-			andNumberFormatter:[NumberHelper theHelper].decimalFormatter];
+		[[[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo
+			andNumberFormatter:[NumberHelper theHelper].decimalFormatter] autorelease];
 	assert(self.currentSection != nil);
 	
 	assert(self.currentSection != nil);

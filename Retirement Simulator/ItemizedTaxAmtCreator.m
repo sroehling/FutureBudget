@@ -8,6 +8,7 @@
 
 #import "ItemizedTaxAmtCreator.h"
 #import "InputCreationHelper.h"
+#import "SharedAppValues.h"
 #import "DataModelController.h"
 #import "IncomeItemizedTaxAmt.h"
 
@@ -36,7 +37,8 @@
 {
 	assert(income != nil);
 	IncomeItemizedTaxAmt *itemizedTaxAmt = [[DataModelController theDataModelController] insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
-	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] initWithDataModelInterface:[DataModelController theDataModelController]] autorelease];
+	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
+		initForDatabaseInputs] autorelease];
 	itemizedTaxAmt.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
 	itemizedTaxAmt.income  = self.income;
 	return itemizedTaxAmt;

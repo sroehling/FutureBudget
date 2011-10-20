@@ -16,15 +16,15 @@
 #import <UIKit/UIKit.h>
 
 @class InMemoryCoreData;
-@class TestCoreDataObjects;
+@class SharedAppValues;
 
 @interface TestLoanInput : SenTestCase {
     @private
 		InMemoryCoreData *coreData;
-		TestCoreDataObjects *testObjs;
+		SharedAppValues *testAppVals;
 }
 
 @property(nonatomic,retain) InMemoryCoreData *coreData;
-@property(nonatomic,retain) TestCoreDataObjects *testObjs;
+@property(nonatomic,retain) SharedAppValues *testAppVals;
 
 @end

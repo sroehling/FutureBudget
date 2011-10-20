@@ -13,17 +13,22 @@
 @class MultiScenarioSimDate;
 @class MultiScenarioGrowthRate;
 @class MultiScenarioSimEndDate;
+@class SharedAppValues;
 
 @protocol DataModelInterface;
 
 @interface InputCreationHelper : NSObject {
     @private
 		id<DataModelInterface> dataModel;
+		SharedAppValues *sharedAppVals;
 }
 
 @property(nonatomic,retain) id<DataModelInterface> dataModel;
+@property(nonatomic,retain) SharedAppValues *sharedAppVals;
 
--(id)initWithDataModelInterface:(id<DataModelInterface>)theDataModelInterface;
+-(id)initWithDataModelInterface:(id<DataModelInterface>)theDataModelInterface
+	andSharedAppVals:(SharedAppValues*)theSharedAppVals;
+-(id)initForDatabaseInputs;
 
 // TODO - Consider making this a class which can be instantiated and parameterize 
 // the Core Data method for creating the objects. This way this class can be used
@@ -43,6 +48,8 @@
 - (MultiScenarioInputValue*)multiScenNeverEndDate;
 
 - (MultiScenarioSimDate*)multiScenSimDateWithDefaultToday;
+- (MultiScenarioSimDate*)multiScenSimDateWithDefault:(NSDate*)defaultDate;
+
 - (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefaultNeverEndDate;
 
 @end

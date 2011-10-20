@@ -19,9 +19,11 @@
 NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputValue";
 
 @implementation MultiScenarioInputValue
+
 @dynamic scenarioVals;
 
 @synthesize dataModelInterface;
+@synthesize sharedAppVals;
 
 
 - (void)addScenarioValsObject:(ScenarioValue *)value {    
@@ -57,7 +59,14 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	self = [super init];
 	if(self)
 	{
+		// Since this object instantiates other CoreData objects,
+		// we need the ability to specify what kind of data model interace is 
+		// used to create those objects and also have as a parameter the default
+		// data which is referenced from this class. This is needed primarily
+		// to support unit testing with this object; i.e. when creating objects
+		// using an in-memory core data is necessary.
 		self.dataModelInterface = [DataModelController theDataModelController];
+		self.sharedAppVals = [SharedAppValues singleton];
 	}
 	return self;
 }
@@ -68,6 +77,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	if(self)
 	{
 		self.dataModelInterface = [DataModelController theDataModelController];
+		self.sharedAppVals = [SharedAppValues singleton];
 	}
 	return self;
 }
@@ -109,7 +119,8 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 
 -(InputValue*)getDefaultValue
 {
-	DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
+	DefaultScenario *defaultScen = self.sharedAppVals.defaultScenario;
+	assert(defaultScen != nil);
 	ScenarioValue *defaultScenarioVal = [self findScenarioValueForScenario:defaultScen];
 	assert(defaultScenarioVal != nil);
 	return defaultScenarioVal.inputValue;
@@ -124,12 +135,13 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	}
 	else
 	{
+		Scenario *defaultScen = self.sharedAppVals.defaultScenario;
+		assert(defaultScen != nil);
+		
 		// If a value is not found for scenario, "revert to default" and 
 		// check if there is a default value
-		if(![self sameCoreDataObjects:scenario 
-			comparedTo:[SharedAppValues singleton].defaultScenario])
-		{
-			DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
+		if(![self sameCoreDataObjects:scenario comparedTo:defaultScen])
+		{			
 			ScenarioValue *defaultScenarioVal = [self findScenarioValueForScenario:defaultScen];
 			if(defaultScenarioVal != nil)
 			{
@@ -158,7 +170,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 -(InputValue*)getValueForCurrentOrDefaultScenario
 {
 // TODO - This returns the value for the current *input* scenario ... need to handle differently when calculating results
-	Scenario *currentScenario = [SharedAppValues singleton].currentInputScenario;
+	Scenario *currentScenario = self.sharedAppVals.currentInputScenario;
 	assert(currentScenario != nil);
 	
 	return [self getValueForScenarioOrDefault:currentScenario];
@@ -190,7 +202,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 
 -(void)setDefaultValue:(InputValue*)inputValue
 {
-	DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
+	DefaultScenario *defaultScen = self.sharedAppVals.defaultScenario;
 	assert(defaultScen != nil);
 	assert(inputValue != nil);
 	[self setValueForScenario:defaultScen andInputValue:inputValue];
@@ -200,6 +212,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 {
 	[super dealloc];
 	[dataModelInterface release];
+	[sharedAppVals release];
 }
 
 

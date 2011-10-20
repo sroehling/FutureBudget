@@ -57,6 +57,63 @@ static SharedAppValues *theSharedAppVals;
 	theSharedAppVals = theAppVals;
 }
 
++(SharedAppValues*)createWithDataModelInterface:(id<DataModelInterface>)dataModelInterface
+{
+
+	EventRepeatFrequency *repeatOnce = 
+		[EventRepeatFrequency createInDataModel:dataModelInterface 
+			andPeriod:kEventPeriodOnce andMultiplier:1];
+	[EventRepeatFrequency createInDataModel:dataModelInterface 
+			andPeriod:kEventPeriodWeek andMultiplier:1];
+	[EventRepeatFrequency createInDataModel:dataModelInterface 
+			andPeriod:kEventPeriodWeek andMultiplier:2];
+	[EventRepeatFrequency createInDataModel:dataModelInterface 
+			andPeriod:kEventPeriodMonth andMultiplier:1];
+	[EventRepeatFrequency createInDataModel:dataModelInterface 
+			andPeriod:kEventPeriodMonth andMultiplier:3];
+	[EventRepeatFrequency createInDataModel:dataModelInterface 
+			andPeriod:kEventPeriodMonth andMultiplier:6];
+	[EventRepeatFrequency createInDataModel:dataModelInterface 
+			andPeriod:kEventPeriodYear andMultiplier:1];        
+
+	SharedAppValues *sharedVals = [dataModelInterface createDataModelObject:SHARED_APP_VALUES_ENTITY_NAME];
+	
+	NeverEndDate *theNeverEndDate = [dataModelInterface createDataModelObject:NEVER_END_DATE_ENTITY_NAME];
+	theNeverEndDate.date = [DateHelper dateFromStr:NEVER_END_PSEUDO_END_DATE];
+	sharedVals.sharedNeverEndDate = theNeverEndDate;
+	
+	DefaultScenario *defaultScenario = (DefaultScenario*)[dataModelInterface createDataModelObject:DEFAULT_SCENARIO_ENTITY_NAME];
+	sharedVals.defaultScenario = defaultScenario;
+	sharedVals.currentInputScenario = defaultScenario;
+	
+	sharedVals.repeatOnceFreq = repeatOnce;
+	
+	sharedVals.simStartDate = [[[NSDate alloc] init] autorelease];
+	
+	RelativeEndDate *theSimEndDate = [dataModelInterface createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
+	theSimEndDate.years = [NSNumber numberWithInt:DEFAULT_SIM_END_DATE_OFFSET_YEARS];
+	theSimEndDate.months = [NSNumber numberWithInt:0];
+	theSimEndDate.weeks = [NSNumber numberWithInt:0];
+	sharedVals.simEndDate = theSimEndDate;
+	sharedVals.defaultFixedRelativeEndDate = theSimEndDate;
+
+	
+	FixedDate *fixedEndDate = (FixedDate*)[dataModelInterface createDataModelObject:FIXED_DATE_ENTITY_NAME];
+	fixedEndDate.date = [NSDate date];
+	sharedVals.defaultFixedSimEndDate = fixedEndDate;
+	
+	
+	Cash *theCash = (Cash*)[dataModelInterface createDataModelObject:CASH_ENTITY_NAME];
+	theCash.startingBalance = [NSNumber numberWithDouble:0.0];
+	sharedVals.cash = theCash;
+	
+	FixedValue *theDeficitInterestRate = (FixedValue*)[dataModelInterface createDataModelObject:FIXED_VALUE_ENTITY_NAME];
+	theDeficitInterestRate.value = [NSNumber numberWithDouble:DEFAULT_DEFICIT_INTEREST_RATE];
+	sharedVals.deficitInterestRate = theDeficitInterestRate;
+
+	return sharedVals;
+}
+
 +(void)initFromDatabase
 {
     NSLog(@"Initializing database with default data ...");
@@ -66,54 +123,7 @@ static SharedAppValues *theSharedAppVals;
 	{
 		NSLog(@"Initializing shared values ...");
 
-        EventRepeatFrequency *repeatOnce = 
-			[EventRepeatFrequency createWithPeriod:kEventPeriodOnce andMultiplier:1];
-        [EventRepeatFrequency createWithPeriod:kEventPeriodWeek andMultiplier:1];
-        [EventRepeatFrequency createWithPeriod:kEventPeriodWeek andMultiplier:2];
-        [EventRepeatFrequency createWithPeriod:kEventPeriodMonth andMultiplier:1];
-        [EventRepeatFrequency createWithPeriod:kEventPeriodMonth andMultiplier:3];
-        [EventRepeatFrequency createWithPeriod:kEventPeriodMonth andMultiplier:6];
-        [EventRepeatFrequency createWithPeriod:kEventPeriodYear andMultiplier:1];        
-
-
-		SharedAppValues *sharedVals = [[DataModelController theDataModelController] insertObject:SHARED_APP_VALUES_ENTITY_NAME];
-		NeverEndDate *theNeverEndDate = [[DataModelController theDataModelController] insertObject:NEVER_END_DATE_ENTITY_NAME];
-		theNeverEndDate.date = [DateHelper dateFromStr:NEVER_END_PSEUDO_END_DATE];
-		sharedVals.sharedNeverEndDate = theNeverEndDate;
-		
-		DefaultScenario *defaultScenario = (DefaultScenario*)[[DataModelController theDataModelController] insertObject:DEFAULT_SCENARIO_ENTITY_NAME];
-		sharedVals.defaultScenario = defaultScenario;
-		sharedVals.currentInputScenario = defaultScenario;
-		
-		sharedVals.repeatOnceFreq = repeatOnce;
-		
-		sharedVals.simStartDate = [[[NSDate alloc] init] autorelease];
-		
-		RelativeEndDate *theSimEndDate = [[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
-		theSimEndDate.years = [NSNumber numberWithInt:DEFAULT_SIM_END_DATE_OFFSET_YEARS];
-		theSimEndDate.months = [NSNumber numberWithInt:0];
-		theSimEndDate.weeks = [NSNumber numberWithInt:0];
-		sharedVals.simEndDate = theSimEndDate;
-		sharedVals.defaultFixedRelativeEndDate = theSimEndDate;
-
-		
-		FixedDate *fixedEndDate = (FixedDate*)[[
-			DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
-		fixedEndDate.date = [NSDate date];
-		sharedVals.defaultFixedSimEndDate = fixedEndDate;
-		
-		
-		Cash *theCash = (Cash*)[[
-			DataModelController theDataModelController] insertObject:CASH_ENTITY_NAME];
-		theCash.startingBalance = [NSNumber numberWithDouble:0.0];
-		sharedVals.cash = theCash;
-		
-		FixedValue *theDeficitInterestRate = (FixedValue*)[[
-			DataModelController theDataModelController] insertObject:FIXED_VALUE_ENTITY_NAME];
-		theDeficitInterestRate.value = [NSNumber numberWithDouble:DEFAULT_DEFICIT_INTEREST_RATE];
-		sharedVals.deficitInterestRate = theDeficitInterestRate;
-
-		
+		SharedAppValues *sharedVals = [SharedAppValues createWithDataModelInterface:[DataModelController theDataModelController]];
 		[SharedAppValues initSingleton:sharedVals];
 
 	}

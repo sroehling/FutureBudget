@@ -16,6 +16,7 @@
 @class SimDate;
 @class FixedDate;
 @class Cash;
+@protocol DataModelInterface;
 @class RelativeEndDate;
 @class FixedValue;
 
@@ -45,6 +46,7 @@ extern NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY;
 -(NSDate*)beginningOfSimStartDate;
 
 +(void)initSingleton:(SharedAppValues*)theAppVals;
++(SharedAppValues*)createWithDataModelInterface:(id<DataModelInterface>)dataModelInterface;
 +(SharedAppValues*)singleton;
 +(void)initFromDatabase;
 

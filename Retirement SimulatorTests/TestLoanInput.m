@@ -10,7 +10,6 @@
 
 #import "InMemoryCoreData.h"
 #import "MultiScenarioInputValue.h"
-#import "TestCoreDataObjects.h"
 #import "DateHelper.h"
 #import "WorkingBalanceAdjustment.h"
 #import "BalanceAdjustment.h"
@@ -21,6 +20,7 @@
 #import "SharedAppValues.h"
 #import "EventRepeater.h"
 #import "DefaultScenario.h"
+#import "InputCreationHelper.h"
 
 #import "LoanSimInfo.h"
 
@@ -28,19 +28,19 @@
 @implementation TestLoanInput
 
 @synthesize coreData;
-@synthesize testObjs;
+@synthesize testAppVals;
 
 
 - (void)setUp
 {
 	self.coreData = [[[InMemoryCoreData alloc] init] autorelease];
-	self.testObjs = [[[TestCoreDataObjects alloc] initWithCoreData:self.coreData] autorelease];
+	self.testAppVals = [SharedAppValues createWithDataModelInterface:self.coreData];
 }
 
 - (void)tearDown
 {
 	[coreData release];
-	[testObjs release];
+	[testAppVals release];
 }
 
 - (LoanInput*)createTestLoanWithLoanCost:(double)loanCost 
@@ -51,31 +51,34 @@
 {
 	LoanInput *theLoan  = (LoanInput*)[self.coreData createObj:LOAN_INPUT_ENTITY_NAME];
 	
+	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
+		initWithDataModelInterface:self.coreData andSharedAppVals:testAppVals] autorelease];
+	
 	theLoan.startingBalance = [NSNumber numberWithDouble:0.0];
-	theLoan.loanEnabled = [testObjs multiScenBoolValWithDefault:TRUE];
-	
+	theLoan.loanEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+
 	// Loan Cost
-	theLoan.multiScenarioLoanCostAmt = [testObjs multiScenFixedValWithDefault:loanCost];
-	theLoan.loanDuration = [testObjs multiScenFixedValWithDefault:durationMonths];			
-	theLoan.multiScenarioLoanCostGrowthRate = [testObjs multiScenFixedValWithDefault:0.0];;
-	theLoan.multiScenarioOrigDate = [testObjs multiScenFixedDate:@"2012-01-01"];
-
+	theLoan.loanCost = [inputCreationHelper multiScenAmountWithDefault:loanCost];
+	theLoan.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:durationMonths];
+	theLoan.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	NSDate *origDate = [DateHelper dateFromStr:@"2012-01-01"];
+	theLoan.origDate = [inputCreationHelper multiScenSimDateWithDefault:origDate];
+	
 	// Interest
-	theLoan.multiScenarioInterestRate = [testObjs multiScenFixedValWithDefault:interestRate];
+	theLoan.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:interestRate];
 	theLoan.taxableInterest = [NSNumber numberWithBool:TRUE];		
-		
+
 	// Down Payment	
-	theLoan.multiScenarioDownPmtEnabled = [testObjs multiScenBoolValWithDefault:TRUE];
-	theLoan.multiScenarioDownPmtPercent = [testObjs multiScenFixedValWithDefault:downPmtPercent];
-
-
-	// Extra Payments 
-	theLoan.multiScenarioExtraPmtEnabled = [testObjs multiScenBoolValWithDefault:TRUE];
-	theLoan.multiScenarioExtraPmtAmt = [testObjs multiScenFixedValWithDefault:extraPmt];
-	theLoan.multiScenarioExtraPmtGrowthRate = [testObjs multiScenFixedValWithDefault:0.0];
+	theLoan.downPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	theLoan.multiScenarioDownPmtPercent = [inputCreationHelper multiScenFixedValWithDefault:downPmtPercent];
 	
-	theLoan.multiScenarioExtraPmtFrequency = [testObjs multiScenarioRepeatFrequencyOnce];
 	
+	// Extra Payments
+	theLoan.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	theLoan.extraPmtAmt = [inputCreationHelper multiScenAmountWithDefault:extraPmt];
+	theLoan.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	theLoan.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+
 	return theLoan;
 
 
@@ -124,7 +127,7 @@
 		
 	SimParams *simParams = [[[SimParams alloc] 
 		initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] 
-		andScenario:self.testObjs.testScenario] autorelease];
+		andScenario:self.testAppVals.defaultScenario] autorelease];
 	LoanSimInfo *loanInfo = [[[LoanSimInfo alloc] initWithLoan:theLoan andSimParams:simParams] autorelease];
 	
 	
