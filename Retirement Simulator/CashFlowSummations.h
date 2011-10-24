@@ -13,6 +13,8 @@
 @class CashFlowSummation;
 @class LoanPmtDigestEntry;
 @class AssetDigestEntry;
+@class CashFlowDigestEntry;
+@class InputValDigestSummation;
 
 @interface CashFlowSummations : NSObject {
     @private
@@ -25,7 +27,8 @@
 -(id)initWithStartDate:(NSDate*)startDate;
 
 - (void)addExpense:(BalanceAdjustment*)amount onDate:(NSDate*)expenseDate;
-- (void)addIncome:(double)amount onDate:(NSDate*)incomeDate;
+
+- (void)addIncome:(CashFlowDigestEntry*)incomeEntry onDate:(NSDate*)incomeDate;
 - (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate;
 - (void)addLoanPmt:(LoanPmtDigestEntry*)loanPmt onDate:(NSDate*)pmtDate;
 - (void)addAssetSale:(AssetDigestEntry*)assetEntry onDate:(NSDate*)purchaseDate;

@@ -22,6 +22,7 @@
 #import "LoanInput.h"
 #import "InterestBearingWorkingBalance.h"
 #import "IncomeSimEventCreator.h"
+#import "IncomeSimInfo.h"
 #import "SavingsAccount.h"
 #import "BoolInputValue.h"
 #import "SavingsContributionSimEventCreator.h"
@@ -91,8 +92,11 @@
 		if([SimInputHelper multiScenBoolVal:income.cashFlowEnabled 
 				andScenario:simParams.simScenario])
 		{
+ 
+			IncomeSimInfo *incomeSimInfo = [[[IncomeSimInfo alloc] initWithIncome:income] autorelease];
+			
 			[self.eventCreators addObject:
-				[[[IncomeSimEventCreator alloc]initWithIncome:income] autorelease]];
+				[[[IncomeSimEventCreator alloc] initWithIncomeSimInfo:incomeSimInfo] autorelease]];
 		}
 	}
 
@@ -104,6 +108,8 @@
 		if([SimInputHelper multiScenBoolVal:expense.cashFlowEnabled
 				andScenario:simParams.simScenario])
 		{
+			// TODO - Create an InputValDigestSummation to track the overall amount
+			// spent for this particular expense. 
 			[self.eventCreators addObject:
 				[[[ExpenseSimEventCreator alloc]initWithExpense:expense] autorelease]];
 		}

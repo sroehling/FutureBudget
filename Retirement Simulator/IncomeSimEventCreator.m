@@ -9,41 +9,45 @@
 #import "IncomeSimEventCreator.h"
 #import "IncomeInput.h"
 #import "IncomeSimEvent.h"
+#import "IncomeSimInfo.h"
 
 
 @implementation IncomeSimEventCreator
 
-@synthesize income;
+@synthesize incomeInfo;
 
 - (SimEvent*) createCashFlowSimEvent:(double)cashFlowAmount andEventDate:(NSDate*)theDate
 {
 	IncomeSimEvent *incomeEvent = [[[IncomeSimEvent alloc]initWithEventCreator:self 
 			andEventDate:theDate ] autorelease];
-	incomeEvent.income = self.income;
+	incomeEvent.incomeInfo = self.incomeInfo;
 	incomeEvent.incomeAmount = cashFlowAmount;
 
 	return incomeEvent;
 }
 
-- (id) initWithIncome:(IncomeInput *)theIncome
+
+- (id)initWithIncomeSimInfo:(IncomeSimInfo*)theIncomeSimInfo
 {
-	self = [super initWithCashFlow:theIncome];
+	self = [super initWithCashFlow:theIncomeSimInfo.income];
 	if(self)
 	{
-		self.income = theIncome;
+		assert(theIncomeSimInfo != nil);
+		self.incomeInfo = theIncomeSimInfo;
 	}
 	return self;
+
 }
 
 - (id)initWithCashFlow:(CashFlowInput *)theCashFlow
 {
-	assert(0); // must init with income
+	assert(0); // must init with income info
 }
 
 - (void)dealloc
 {
 	[super dealloc];
-	[income release];
+	[incomeInfo release];
 }
 
 @end

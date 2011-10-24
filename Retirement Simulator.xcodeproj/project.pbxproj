@@ -46,6 +46,9 @@
 		0023799D14413D49006650E3 /* ItemizedTaxAmtFieldPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023799C14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.m */; };
 		00254FF2144E62F2000AB7B3 /* MultiScenarioSimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */; };
 		00254FF5144F22C3000AB7B3 /* MultiScenarioSimEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */; };
+		00254FF814521A02000AB7B3 /* InputValDigestSummation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF7145219FF000AB7B3 /* InputValDigestSummation.m */; };
+		00254FFB1452374B000AB7B3 /* CashFlowDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FFA1452374A000AB7B3 /* CashFlowDigestEntry.m */; };
+		00254FFE14531415000AB7B3 /* IncomeSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FFD14531415000AB7B3 /* IncomeSimInfo.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
 		0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775213B1778600D15232 /* VariableRateCalculator.m */; };
@@ -343,6 +346,12 @@
 		00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioSimDate.m; sourceTree = "<group>"; };
 		00254FF3144F22C2000AB7B3 /* MultiScenarioSimEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioSimEndDate.h; sourceTree = "<group>"; };
 		00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioSimEndDate.m; sourceTree = "<group>"; };
+		00254FF6145219FD000AB7B3 /* InputValDigestSummation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputValDigestSummation.h; sourceTree = "<group>"; };
+		00254FF7145219FF000AB7B3 /* InputValDigestSummation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputValDigestSummation.m; sourceTree = "<group>"; };
+		00254FF914523749000AB7B3 /* CashFlowDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowDigestEntry.h; sourceTree = "<group>"; };
+		00254FFA1452374A000AB7B3 /* CashFlowDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowDigestEntry.m; sourceTree = "<group>"; };
+		00254FFC14531413000AB7B3 /* IncomeSimInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeSimInfo.h; sourceTree = "<group>"; };
+		00254FFD14531415000AB7B3 /* IncomeSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeSimInfo.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
 		0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateRuntimeInfo.m; sourceTree = "<group>"; };
 		0025774E13AFDE2800D15232 /* StringLookupTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLookupTable.h; sourceTree = "<group>"; };
@@ -1320,6 +1329,10 @@
 		004CB03613FC491E000E87A9 /* Digest */ = {
 			isa = PBXGroup;
 			children = (
+				00254FF6145219FD000AB7B3 /* InputValDigestSummation.h */,
+				00254FF7145219FF000AB7B3 /* InputValDigestSummation.m */,
+				00254FF914523749000AB7B3 /* CashFlowDigestEntry.h */,
+				00254FFA1452374A000AB7B3 /* CashFlowDigestEntry.m */,
 				00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */,
 				00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */,
 				00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */,
@@ -1800,6 +1813,8 @@
 		00EC458214214B4700D65D17 /* Cash Flow */ = {
 			isa = PBXGroup;
 			children = (
+				00254FFC14531413000AB7B3 /* IncomeSimInfo.h */,
+				00254FFD14531415000AB7B3 /* IncomeSimInfo.m */,
 				005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */,
 				005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */,
 				004CB02013FACE17000E87A9 /* IncomeSimEventCreator.h */,
@@ -2173,6 +2188,9 @@
 				00F1D9D61443F5D300BCB5E9 /* FinishedAddingTaxBracketEntryListener.m in Sources */,
 				00254FF2144E62F2000AB7B3 /* MultiScenarioSimDate.m in Sources */,
 				00254FF5144F22C3000AB7B3 /* MultiScenarioSimEndDate.m in Sources */,
+				00254FF814521A02000AB7B3 /* InputValDigestSummation.m in Sources */,
+				00254FFB1452374B000AB7B3 /* CashFlowDigestEntry.m in Sources */,
+				00254FFE14531415000AB7B3 /* IncomeSimInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "BalanceAdjustment.h"
 #import "SavingsContribDigestEntry.h"
 #import "LoanPmtDigestEntry.h"
+#import "CashFlowDigestEntry.h"
 
 @implementation CashFlowSummation
 
@@ -22,12 +23,15 @@
 @synthesize isEstimatedTaxPaymentDay;
 @synthesize assetPurchases;
 @synthesize assetSales;
+@synthesize incomeCashFlows;
 
 -(id)init
 {
 	self = [super init];
 	if(self)
 	{
+		self.incomeCashFlows = [[[NSMutableArray alloc] init] autorelease];
+		
 		self.savingsContribs = [[[NSMutableArray alloc] init] autorelease];
 		
 		self.loanPmts = [[[NSMutableArray alloc] init] autorelease];
@@ -46,10 +50,12 @@
 	return self;
 }
 
-- (void)addIncome:(double)incomeAmount;
+- (void)addIncome:(CashFlowDigestEntry*)incomeDigestEntry;
 {
-	assert(incomeAmount >=0.0);
-	sumIncome += incomeAmount;
+	assert(incomeDigestEntry.amount >=0.0);
+	sumIncome += incomeDigestEntry.amount;
+	
+	[self.incomeCashFlows addObject:incomeDigestEntry];
 }
 
 - (void)addExpense:(BalanceAdjustment*)expenseAmount
@@ -101,6 +107,7 @@
 	
 	[sumExpenses resetToZero];
 	
+	[self.incomeCashFlows removeAllObjects];
 	[self.savingsContribs removeAllObjects];
 	
 	[self.loanPmts removeAllObjects];
@@ -132,6 +139,7 @@
 	[sumExpenses release];
 	[assetSales release];
 	[assetPurchases release];
+	[incomeCashFlows release];
 }
 
 @end

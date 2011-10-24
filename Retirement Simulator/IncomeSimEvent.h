@@ -10,15 +10,15 @@
 
 #import "SimEvent.h"
 
-@class IncomeInput;
+@class IncomeSimInfo;
 
 @interface IncomeSimEvent : SimEvent {
     @private
-		IncomeInput *income;
+		IncomeSimInfo *incomeInfo;
 		double incomeAmount;
 }
 
-@property(nonatomic,retain) IncomeInput *income;
+@property(nonatomic,retain) IncomeSimInfo *incomeInfo;
 @property double incomeAmount;
 
 @end

@@ -12,11 +12,13 @@
 #import "DateHelper.h"
 #import "FiscalYearDigest.h"
 #import "CashFlowSummations.h"
+#import "IncomeSimInfo.h"
+#import "CashFlowDigestEntry.h"
 
 
 @implementation IncomeSimEvent
 
-@synthesize income;
+@synthesize incomeInfo;
 @synthesize incomeAmount;
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
@@ -26,18 +28,20 @@
 	
     
     NSLog(@"Doing income event: %@ %@ %@",
-          income.name,
+          self.incomeInfo.income.name,
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		  
-	[digest.cashFlowSummations addIncome:self.incomeAmount onDate:self.eventDate];
+	CashFlowDigestEntry *digestEntry = [[[CashFlowDigestEntry alloc] initWithAmount:self.incomeAmount andCashFlowSummation:self.incomeInfo.digestSum] autorelease];	  
+		  
+	[digest.cashFlowSummations addIncome:digestEntry onDate:self.eventDate];
 }
 
 
 - (void) dealloc
 {
 	[super dealloc];
-	[income release];
+	[incomeInfo release];
 	
 }
 

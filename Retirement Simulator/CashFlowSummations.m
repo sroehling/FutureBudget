@@ -92,12 +92,11 @@
 	[yearlySummation addExpense:amount];
 }
 
-- (void)addIncome:(double)amount onDate:(NSDate*)incomeDate
+-(void)addIncome:(CashFlowDigestEntry*)incomeEntry onDate:(NSDate*)incomeDate
 {
 	CashFlowSummation *theSummation = [self summationForDate:incomeDate];
-	[theSummation addIncome:amount];
-	[yearlySummation addIncome:amount];
-
+	[theSummation addIncome:incomeEntry];
+	[yearlySummation addIncome:incomeEntry];
 }
 
 - (void)addAssetPurchase:(AssetDigestEntry *)assetEntry onDate:(NSDate*)purchaseDate
