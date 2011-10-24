@@ -17,5 +17,6 @@
 @property double currentSum;
 
 -(void)resetSum;
+-(void)incrementSum:(double)amount;
 
 @end

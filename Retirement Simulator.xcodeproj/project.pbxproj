@@ -165,6 +165,11 @@
 		0095E97513B92794000555AC /* NeverEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E97413B92794000555AC /* NeverEndDate.m */; };
 		0095E98A13BA5876000555AC /* StaticFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E98913BA5876000555AC /* StaticFieldEditInfo.m */; };
 		0095E98D13BA9A9F000555AC /* SharedAppValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E98C13BA9A90000555AC /* SharedAppValues.m */; };
+		0099A1411455D03400E35AF9 /* ItemizedTaxCalcPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1401455D03400E35AF9 /* ItemizedTaxCalcPopulator.m */; };
+		0099A1441455D1AA00E35AF9 /* TaxInputCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1431455D1AA00E35AF9 /* TaxInputCalc.m */; };
+		0099A1471455D61C00E35AF9 /* InputSimInfoCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1461455D61B00E35AF9 /* InputSimInfoCltn.m */; };
+		0099A14B1455EF4600E35AF9 /* ItemizedTaxCalcEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A14A1455EF4500E35AF9 /* ItemizedTaxCalcEntry.m */; };
+		0099A14E1455F42A00E35AF9 /* ItemizedTaxCalcEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A14D1455F42900E35AF9 /* ItemizedTaxCalcEntries.m */; };
 		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
 		00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAB138EC87A00663C7F /* SectionInfo.m */; };
 		00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAE138ECA8700663C7F /* FormInfo.m */; };
@@ -588,6 +593,16 @@
 		0095E98913BA5876000555AC /* StaticFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticFieldEditInfo.m; sourceTree = "<group>"; };
 		0095E98B13BA9A7D000555AC /* SharedAppValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedAppValues.h; sourceTree = "<group>"; };
 		0095E98C13BA9A90000555AC /* SharedAppValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedAppValues.m; sourceTree = "<group>"; };
+		0099A13F1455D03400E35AF9 /* ItemizedTaxCalcPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxCalcPopulator.h; sourceTree = "<group>"; };
+		0099A1401455D03400E35AF9 /* ItemizedTaxCalcPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxCalcPopulator.m; sourceTree = "<group>"; };
+		0099A1421455D1AA00E35AF9 /* TaxInputCalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxInputCalc.h; sourceTree = "<group>"; };
+		0099A1431455D1AA00E35AF9 /* TaxInputCalc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputCalc.m; sourceTree = "<group>"; };
+		0099A1451455D61B00E35AF9 /* InputSimInfoCltn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputSimInfoCltn.h; sourceTree = "<group>"; };
+		0099A1461455D61B00E35AF9 /* InputSimInfoCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputSimInfoCltn.m; sourceTree = "<group>"; };
+		0099A1491455EF4500E35AF9 /* ItemizedTaxCalcEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxCalcEntry.h; sourceTree = "<group>"; };
+		0099A14A1455EF4500E35AF9 /* ItemizedTaxCalcEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxCalcEntry.m; sourceTree = "<group>"; };
+		0099A14C1455F42900E35AF9 /* ItemizedTaxCalcEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxCalcEntries.h; sourceTree = "<group>"; };
+		0099A14D1455F42900E35AF9 /* ItemizedTaxCalcEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxCalcEntries.m; sourceTree = "<group>"; };
 		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
 		00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableAddViewController.m; sourceTree = "<group>"; };
 		00A14BAA138EC87900663C7F /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
@@ -821,14 +836,22 @@
 			name = "Working Balance";
 			sourceTree = "<group>";
 		};
-		00160CAF1406DC4B001D472F /* Tax Rate Calculator */ = {
+		00160CAF1406DC4B001D472F /* Taxes */ = {
 			isa = PBXGroup;
 			children = (
 				00160CAE1406DC3A001D472F /* IncomeTaxRateCalculator.h */,
 				00160CB31406DD2E001D472F /* FlatIncomeTaxRateCalculator.h */,
 				00160CB41406DD2E001D472F /* FlatIncomeTaxRateCalculator.m */,
+				0099A1491455EF4500E35AF9 /* ItemizedTaxCalcEntry.h */,
+				0099A14A1455EF4500E35AF9 /* ItemizedTaxCalcEntry.m */,
+				0099A14C1455F42900E35AF9 /* ItemizedTaxCalcEntries.h */,
+				0099A14D1455F42900E35AF9 /* ItemizedTaxCalcEntries.m */,
+				0099A13F1455D03400E35AF9 /* ItemizedTaxCalcPopulator.h */,
+				0099A1401455D03400E35AF9 /* ItemizedTaxCalcPopulator.m */,
+				0099A1421455D1AA00E35AF9 /* TaxInputCalc.h */,
+				0099A1431455D1AA00E35AF9 /* TaxInputCalc.m */,
 			);
-			name = "Tax Rate Calculator";
+			name = Taxes;
 			sourceTree = "<group>";
 		};
 		00237954143E4EED006650E3 /* Taxes */ = {
@@ -1201,7 +1224,7 @@
 				00BC35BF140C5ADF00D79F78 /* Sim Events */,
 				0025776113B292F600D15232 /* Variable Rate Calculator */,
 				0025776213B2932200D15232 /* Variable Value Calculator */,
-				00160CAF1406DC4B001D472F /* Tax Rate Calculator */,
+				00160CAF1406DC4B001D472F /* Taxes */,
 				00BC35B4140C06AA00D79F78 /* Estimated Taxes */,
 				00160CA714055EEC001D472F /* Working Balance */,
 				004CB03613FC491E000E87A9 /* Digest */,
@@ -1464,6 +1487,7 @@
 		005731EC137874A1008D13C1 /* Simulator Inputs */ = {
 			isa = PBXGroup;
 			children = (
+				0099A1481455D63800E35AF9 /* Sim Info */,
 				0086C08314279B7D00148785 /* SimInputHelper.h */,
 				0086C08414279B7D00148785 /* SimInputHelper.m */,
 				0086C0A5142D0B9300148785 /* Asset */,
@@ -1644,6 +1668,15 @@
 				0063505713EA1900002E38FA /* RelativeEndDate.m */,
 			);
 			name = "Sim Dates";
+			sourceTree = "<group>";
+		};
+		0099A1481455D63800E35AF9 /* Sim Info */ = {
+			isa = PBXGroup;
+			children = (
+				0099A1451455D61B00E35AF9 /* InputSimInfoCltn.h */,
+				0099A1461455D61B00E35AF9 /* InputSimInfoCltn.m */,
+			);
+			name = "Sim Info";
 			sourceTree = "<group>";
 		};
 		00A36BC6136C6CAD008A5C4C = {
@@ -2191,6 +2224,11 @@
 				00254FF814521A02000AB7B3 /* InputValDigestSummation.m in Sources */,
 				00254FFB1452374B000AB7B3 /* CashFlowDigestEntry.m in Sources */,
 				00254FFE14531415000AB7B3 /* IncomeSimInfo.m in Sources */,
+				0099A1411455D03400E35AF9 /* ItemizedTaxCalcPopulator.m in Sources */,
+				0099A1441455D1AA00E35AF9 /* TaxInputCalc.m in Sources */,
+				0099A1471455D61C00E35AF9 /* InputSimInfoCltn.m in Sources */,
+				0099A14B1455EF4600E35AF9 /* ItemizedTaxCalcEntry.m in Sources */,
+				0099A14E1455F42A00E35AF9 /* ItemizedTaxCalcEntries.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

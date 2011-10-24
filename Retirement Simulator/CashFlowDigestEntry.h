@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class InputValDigestSummation;
+@class WorkingBalanceMgr;
 
 @interface CashFlowDigestEntry : NSObject {
     @private
@@ -21,5 +22,8 @@
 
 -(id)initWithAmount:(double)theAmount 
 	andCashFlowSummation:(InputValDigestSummation*)theSummation;
+
+-(void)processEntry:(WorkingBalanceMgr*)workingBalanceMgr
+	andDate:(NSDate*)currentDate;
 
 @end

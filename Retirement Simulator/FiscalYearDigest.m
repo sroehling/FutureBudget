@@ -24,6 +24,7 @@
 #import "LoanPmtDigestEntry.h"
 #import "AssetSimInfo.h"
 #import "AssetDigestEntry.h"
+#import "CashFlowDigestEntry.h"
 
 @implementation FiscalYearDigest
 
@@ -151,6 +152,13 @@
 			[self.workingBalanceMgr 
 				incrementCashBalance:afterTaxIncome asOfDate:currentDate];
 			[endOfYearResults incrementTotalIncomeTaxes:taxesToPayOnIncome];
+		}
+		if([currDayCashFlowSummation.incomeCashFlows count] > 0)
+		{
+			for(CashFlowDigestEntry *incomeCashFlow in currDayCashFlowSummation.incomeCashFlows)
+			{
+				[incomeCashFlow processEntry:self.workingBalanceMgr andDate:currentDate];
+			}
 		}
 		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
 		{			

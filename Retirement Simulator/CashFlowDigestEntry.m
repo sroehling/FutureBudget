@@ -7,12 +7,14 @@
 //
 
 #import "CashFlowDigestEntry.h"
-
+#import "InputValDigestSummation.h"
+#import "WorkingBalanceMgr.h"
 
 @implementation CashFlowDigestEntry
 
 @synthesize amount;
 @synthesize cashFlowSummation;
+
 
 -(id)initWithAmount:(double)theAmount andCashFlowSummation:(InputValDigestSummation*)theSummation
 {
@@ -26,6 +28,13 @@
 		self.cashFlowSummation = theSummation;
 	}
 	return self;
+}
+
+-(void)processEntry:(WorkingBalanceMgr*)workingBalanceMgr
+	andDate:(NSDate*)currentDate
+{
+		[self.cashFlowSummation incrementSum:self.amount];
+		[workingBalanceMgr incrementCashBalance:amount asOfDate:currentDate];
 }
 
 -(id)init

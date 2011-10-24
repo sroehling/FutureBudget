@@ -8,12 +8,13 @@
 
 #import "SimParams.h"
 #import "Scenario.h"
-
+#import "InputSimInfoCltn.h"
 
 @implementation SimParams
 
 @synthesize simStartDate;
 @synthesize simScenario;
+@synthesize incomeInfo;
 
 - (id)initWithStartDate:(NSDate*)startDate andScenario:(Scenario*)scenario
 {
@@ -25,6 +26,8 @@
 		
 		assert(scenario != nil);
 		self.simScenario = scenario;
+		
+		self.incomeInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 	}
 	return self;
 }
@@ -40,6 +43,7 @@
 	[super dealloc];
 	[simStartDate release];
 	[simScenario release];
+	[incomeInfo release];
 }
 
 @end

@@ -46,8 +46,14 @@
 #import "AssetPurchaseSimEventCreator.h"
 #import "AssetSaleSimEventCreator.h"
 
+#import "TaxInput.h"
+#import "TaxInputCalc.h"
+
 #import "SimInputHelper.h"
 #import "MultiScenarioSimDate.h"
+
+#import "InputSimInfoCltn.h"
+#import "TaxInputCalc.h"
 
 
 
@@ -94,6 +100,8 @@
 		{
  
 			IncomeSimInfo *incomeSimInfo = [[[IncomeSimInfo alloc] initWithIncome:income] autorelease];
+			
+			[self.simParams.incomeInfo addSimInfo:income withSimInfo:incomeSimInfo];
 			
 			[self.eventCreators addObject:
 				[[[IncomeSimEventCreator alloc] initWithIncomeSimInfo:incomeSimInfo] autorelease]];
@@ -213,6 +221,17 @@
 				[self.workingBalanceMgr.assetValues addBalance:assetInfo.assetValue];
 			} // If asset owned for at least one day
 		} // If asset is enabled
+	}
+	
+	inputs = [[DataModelController theDataModelController] 
+		fetchObjectsForEntityName:TAX_INPUT_ENTITY_NAME];
+	for(TaxInput *tax in inputs)
+	{
+		if([SimInputHelper multiScenBoolVal:tax.taxEnabled
+				andScenario:simParams.simScenario])
+		{
+			TaxInputCalc *taxCal = [[[TaxInputCalc alloc] initWithTaxInput:tax andSimParams:self.simParams] autorelease];
+		}
 	}
 	
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
