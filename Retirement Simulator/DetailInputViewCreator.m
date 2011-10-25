@@ -154,15 +154,6 @@
 {    
     formPopulator.formInfo.title = 
 	       LOCALIZED_STR(@"INPUT_EXPENSE_VIEW_TITLE");
-		   
-	SectionInfo *sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = LOCALIZED_STR(@"INPUT_EXPENSE_TAXES_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_EXPENSE_TAXES_SECTION_SUBTITLE");
-	[sectionInfo addFieldEditInfo:
-        [BoolFieldEditInfo createForObject:expense 
-			andKey:EXPENSE_INPUT_TAX_DEDUCTIBLE_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_EXPENSE_TAXES_TAX_DEDUCTIBLE_LABEL")]];
-	
 	   
 }
 
@@ -233,12 +224,6 @@
 		withLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_FIELD_LABEL")];
 
 
-	[sectionInfo addFieldEditInfo:
-        [BoolFieldEditInfo createForObject:savingsAcct 
-			andKey:SAVINGS_ACCOUNT_TAXABLE_INTEREST_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_INTEREST_LABEL")]];
-
-
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
 
@@ -251,21 +236,6 @@
 			andFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")
 			andIsNewAccount:self.isForNewObject] autorelease];
 	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
-
-	[sectionInfo addFieldEditInfo:
-        [BoolFieldEditInfo createForObject:savingsAcct 
-			andKey:SAVINGS_ACCOUNT_TAXABLE_WITHDRAWALS_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_WITHDRAWAL_LABEL")]];
-	
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = 
-		LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXES_SECTION_TITLE");
-	
-	[sectionInfo addFieldEditInfo:
-        [BoolFieldEditInfo createForObject:savingsAcct 
-			andKey:SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTIONS_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTION_LABEL")]];
-
 }
 
 - (void) visitLoan:(LoanInput*)loan
@@ -308,12 +278,6 @@
 	[self.formPopulator populateMultiScenarioGrowthRate:loan.interestRate 
 		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") ];
 	
-	
-	[sectionInfo addFieldEditInfo:
-        [BoolFieldEditInfo createForObject:loan 
-			andKey:LOAN_INPUT_TAXABLE_INTEREST_KEY 
-			andLabel:LOCALIZED_STR(@"INPUT_LOAN_TAXABLE_INTEREST_LABEL")]];
-			
 
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_SECTION_TITLE");
@@ -385,10 +349,6 @@
 	[self.formPopulator populateMultiScenSimEndDate:asset.saleDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_TITLE")];
-  
- 	[self.formPopulator populateMultiScenBoolField:asset.multiScenarioSaleProceedsTaxable 
-			withLabel:LOCALIZED_STR(@"INPUT_ASSET_PROCEEDS_TAXABLE_FIELD_LABEL")];
-
 
 }
 

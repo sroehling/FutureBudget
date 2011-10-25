@@ -12,16 +12,10 @@
 #import "LocalizationHelper.h"
 
 NSString * const SAVINGS_ACCOUNT_ENTITY_NAME = @"SavingsAccount";
-NSString * const SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTIONS_KEY = @"taxableContributions";
-NSString * const SAVINGS_ACCOUNT_TAXABLE_WITHDRAWALS_KEY = @"taxableWithdrawals";
-NSString * const SAVINGS_ACCOUNT_TAXABLE_INTEREST_KEY = @"taxableInterest";
 
 
 @implementation SavingsAccount
 
-@dynamic taxableContributions;
-@dynamic taxableWithdrawals;
-@dynamic taxableInterest;
 @dynamic interestRate;
 
 

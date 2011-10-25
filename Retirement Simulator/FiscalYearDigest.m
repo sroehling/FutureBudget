@@ -20,7 +20,6 @@
 #import "Cash.h"
 #import "CashFlowSummations.h"
 #import "WorkingBalanceAdjustment.h"
-#import "FlatIncomeTaxRateCalculator.h"
 #import "LoanPmtDigestEntry.h"
 #import "AssetSimInfo.h"
 #import "AssetDigestEntry.h"
@@ -31,7 +30,6 @@
 @synthesize startDate;
 @synthesize workingBalanceMgr;
 @synthesize cashFlowSummations;
-@synthesize incomeTaxRateCalc;
 @synthesize savedEndOfYearResults;
 
 -(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr
@@ -40,11 +38,7 @@
 	if(self)
 	{
 		assert(theStartDate != nil);
-		
-		// Initially dummy up with a flat tax calculator
-		self.incomeTaxRateCalc = 
-			[[[FlatIncomeTaxRateCalculator alloc] initWithRate:0.25] autorelease];
-		
+				
 		self.startDate = theStartDate;
 
 		self.cashFlowSummations = [[[CashFlowSummations alloc] initWithStartDate:theStartDate] autorelease];
@@ -57,34 +51,20 @@
 	return self;
 }
 
-- (double)calcTaxesFromTotalTaxableAmount:(double)taxableAmount andTaxRate:(double)taxRate
-{
-	assert(taxRate >= 0.0);
-	assert(taxRate <= 1.0);
-	assert(taxableAmount >= 0);
-	return taxableAmount * taxRate;
-}
-
-- (void)accrueEstimatedTaxesForTaxableAmount:(double)taxableAmount 
-	andTaxRate:(double)taxRate andDate:(NSDate*)accrualDate
-{
-	double taxesToBePaid = 
-		[self calcTaxesFromTotalTaxableAmount:taxableAmount
-		andTaxRate:taxRate];
-	
-	[self.workingBalanceMgr incrementAccruedEstimatedTaxes:taxesToBePaid asOfDate:accrualDate];
-
-}
 
 - (void)advanceWorkingBalancesAndAccrueInterest:(EndOfYearDigestResult*)theResults 
 	advanceToDate:(NSDate*)advanceDate
-	andTaxRate:(double)taxRate
 {
 	BalanceAdjustment *interestAccruedForAdvance = 
 		[self.workingBalanceMgr advanceBalancesToDate:advanceDate];
 	
+		
+	// TODO - Need to store itemized sums of interest
+	// for the TaxInputCalc objects.			
+	/*
 	[self accrueEstimatedTaxesForTaxableAmount:interestAccruedForAdvance.taxableAmount 
 		andTaxRate:taxRate andDate:advanceDate];
+	*/
 		
 	[theResults incrementTotalInterest:interestAccruedForAdvance];
 
@@ -92,7 +72,7 @@
 
 - (void)withdrawFundingForExpense:
 	(EndOfYearDigestResult*)eoyResults andAmount:(double)withdrawAmount 
-	andDate:(NSDate*)withdrawDate andTaxRate:(double)taxRate
+	andDate:(NSDate*)withdrawDate
 {
 	WorkingBalanceAdjustment *withdrawAdj = 
 		[self.workingBalanceMgr decrementBalanceFromFundingList:withdrawAmount 
@@ -109,14 +89,15 @@
 	[eoyResults incrementTotalInterest:withdrawAdj.interestAdjustement];
 	[eoyResults incrementTotalExpense:withdrawAdj.balanceAdjustment];
 	
+	/*
 	[self accrueEstimatedTaxesForTaxableAmount:[withdrawAdj totalTaxableInterestAndBalance] 
 		andTaxRate:taxRate andDate:withdrawDate];
-	
+	*/
 
 }
 
 
-- (EndOfYearDigestResult*)processDigestWithTaxRate:(double)incomeTaxRate
+- (EndOfYearDigestResult*)processDigest
 {
 	
 	[self.workingBalanceMgr resetCurrentBalances];
@@ -131,28 +112,6 @@
 		CashFlowSummation *currDayCashFlowSummation = 
 			[self.cashFlowSummations summationForDayIndex:currDayIndex];
 		
-		if(currDayCashFlowSummation.sumIncome >0.0)
-		{
-			[endOfYearResults incrementTotalIncome:currDayCashFlowSummation.sumIncome];
-			
-			assert(incomeTaxRate >= 0.0);
-			assert(incomeTaxRate <= 1.0);
-			double taxesToPayOnIncome = currDayCashFlowSummation.sumIncome * incomeTaxRate;
-			double afterTaxIncome = currDayCashFlowSummation.sumIncome - taxesToPayOnIncome;
-			
-			// Unlike the handling for expenses and savings 
-			// contributions (see below), there is no need to track
-			// the interest for incrementing the cash balance. 
-			// However, if we ever support an "interest bearing"
-			// cash working balance (e.g. for people who have
-			// interest bearing checking), the code below will need
-			// to be changed to also sum up the interest generated
-			// advancing (and thus generating interest), then 
-			// incrementing the cash working balance.
-			[self.workingBalanceMgr 
-				incrementCashBalance:afterTaxIncome asOfDate:currentDate];
-			[endOfYearResults incrementTotalIncomeTaxes:taxesToPayOnIncome];
-		}
 		if([currDayCashFlowSummation.incomeCashFlows count] > 0)
 		{
 			for(CashFlowDigestEntry *incomeCashFlow in currDayCashFlowSummation.incomeCashFlows)
@@ -163,8 +122,7 @@
 		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
 		{			
 			[self withdrawFundingForExpense:endOfYearResults 
-				andAmount:[currDayCashFlowSummation.sumExpenses totalAmount] 
-				andDate:currentDate andTaxRate:incomeTaxRate];
+				andAmount:[currDayCashFlowSummation.sumExpenses totalAmount] andDate:currentDate];
 		}
 		if([currDayCashFlowSummation.loanPmts count] > 0)
 		{
@@ -191,8 +149,7 @@
 					if(actualContrib>0.0)
 					{
 						BalanceAdjustment *contribAdjustment = 
-							[[[BalanceAdjustment alloc] initWithAmount:actualContrib 
-							andIsAmountTaxable:savingsContrib.contribIsTaxable] autorelease];
+							[[[BalanceAdjustment alloc] initWithAmount:actualContrib] autorelease];
 						[endOfYearResults incrementTotalExpense:contribAdjustment];
 						BalanceAdjustment *interestAccruedLeadingUpToSavingsContribution = 
 							[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
@@ -202,10 +159,12 @@
 						// accrue some interest. This interest is added to the end of year results for 
 						// tax calculations.
 						[endOfYearResults incrementTotalInterest:interestAccruedLeadingUpToSavingsContribution];
-							
+				/*
+									
 						[self accrueEstimatedTaxesForTaxableAmount:
 							interestAccruedLeadingUpToSavingsContribution.taxableAmount  
-							andTaxRate:incomeTaxRate andDate:currentDate];
+								andTaxRate:incomeTaxRate andDate:currentDate];
+				*/
 					}
 				}
 			}
@@ -216,7 +175,7 @@
 			{
 				assert(assetPurchase != nil);
 				double purchaseCost = [assetPurchase.assetInfo purchaseCost];
-				[self withdrawFundingForExpense:endOfYearResults andAmount:purchaseCost andDate:currentDate andTaxRate:incomeTaxRate];
+				[self withdrawFundingForExpense:endOfYearResults andAmount:purchaseCost andDate:currentDate];
 				[assetPurchase.assetInfo.assetValue 
 					incrementBalance:purchaseCost asOfDate:currentDate];
 			}
@@ -237,16 +196,18 @@
 			// Advance all balances and accrue interest to the current date. This is needed so that
 			// all the estimated taxes can be included. 
 			[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
-				advanceToDate:currentDate andTaxRate:incomeTaxRate];
+				advanceToDate:currentDate];
 
 			[self.workingBalanceMgr setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:currentDate];
 		}
 		if([currDayCashFlowSummation isEstimatedTaxPaymentDay])
 		{
+		/*
 			double taxPaymentAmount = [self.workingBalanceMgr 
 					decrementNextEstimatedTaxPaymentAsOfDate:currentDate];
 			[self withdrawFundingForExpense:endOfYearResults 
-				andAmount:taxPaymentAmount andDate:currentDate andTaxRate:incomeTaxRate];
+				andAmount:taxPaymentAmount andDate:currentDate];
+		*/
 		}
 		currentDate = [DateHelper nextDay:currentDate];
 	} // for each day in the year
@@ -256,7 +217,7 @@
 	// are changed, some interest might be accrued leading up to the end of the year. This interest
 	// needs to be included in the total interest for the year, so that taxes can be calculated.
 	[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
-		advanceToDate:[DateHelper beginningOfNextYear:self.startDate] andTaxRate:incomeTaxRate];
+		advanceToDate:[DateHelper beginningOfNextYear:self.startDate]];
 
 	endOfYearResults.totalEndOfYearBalance = [self.workingBalanceMgr totalCurrentNetBalance];
 	[endOfYearResults logResults];
@@ -276,46 +237,35 @@
 	// to be paid. Not having processed the digest entries for withdrawals and
 	// savings interest, we can't include that yet in the total. As a result, the
 	// amount of tax withheld from income will initially be a little low.
-	CashFlowSummation *yearlySummation = self.cashFlowSummations.yearlySummation;
-	assert(yearlySummation != nil);
-	double totalYearlyTaxableIncome = yearlySummation.sumIncome;
+
 	// Note that for the first pass, total deductions
 	// is an estimation of the *expected* tax deductable
 	// expenses and contributions. However, in reality,
 	// this could be reduced, since not all the 
 	// contributions may get funding (e.g., if the
 	// cash balance runs low).
-	double totalDeductions = [yearlySummation totalDeductions];
 	
-	double incomeTaxRate = [self.incomeTaxRateCalc 
-		taxRateForGrossIncome:totalYearlyTaxableIncome andDeductions:totalDeductions];
-	EndOfYearDigestResult *firstPassResults = [self processDigestWithTaxRate:incomeTaxRate];
+	EndOfYearDigestResult *firstPassResults = [self processDigest];
 
 	//-------------------------------------------------------------------------------------
 	NSLog(@"doMultiPassDigestCalcs: Starting 2nd pass of digest calculations");
 	// For the second pass, also include in the taxable income calculations the 
 	// taxable savings interest and any taxable account withdrawals incurred through expenses 
-	totalYearlyTaxableIncome = yearlySummation.sumIncome + 
-		[firstPassResults totalTaxableWithdrawalsAndSavingsInterest];
+
 	// For the second pass, we can also include the *actual* expense and contribution
 	// amounts accrued over the year. This may be somewhat less than the estimated
 	// deduction from the 1st pass, since some contributions may not be fully funded
 	// if there's not enough cash available.
-	totalDeductions = [firstPassResults totalDeductableExpenseAndContributions];
-	incomeTaxRate = [self.incomeTaxRateCalc 
-		taxRateForGrossIncome:totalYearlyTaxableIncome andDeductions:totalDeductions];
-		
-	double yearlyEstimatedTaxes = 	[firstPassResults totalTaxableWithdrawalsAndSavingsInterest] * incomeTaxRate;
 	// TODO - Need to have some kind of event handling to process the estimated taxes as an event.
 		
-	EndOfYearDigestResult *secondPassResults = [self processDigestWithTaxRate:incomeTaxRate];
+	EndOfYearDigestResult *secondPassResults = [self processDigest];
 	
 		
 	
 	NSLog(@"doMultiPassDigestCalcs: Done with digest calculations");
 	
 	return secondPassResults;
-	
+
 }
 
 - (void)advanceToNextYear
@@ -346,7 +296,6 @@
 	[super dealloc];
 	[cashFlowSummations release];
 	[startDate release];
-	[incomeTaxRateCalc release];
 	[savedEndOfYearResults release];
 
 }

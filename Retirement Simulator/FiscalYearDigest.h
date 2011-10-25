@@ -14,14 +14,11 @@
 @class BalanceAdjustment;
 @class CashFlowSummations;
 
-#import "IncomeTaxRateCalculator.h"
-
 @interface FiscalYearDigest : NSObject {
     @private
 		CashFlowSummations *cashFlowSummations;
 		NSDate *startDate;
 		WorkingBalanceMgr *workingBalanceMgr;
-		id<IncomeTaxRateCalculator> incomeTaxRateCalc;
 		
 		NSMutableArray *savedEndOfYearResults;
 }
@@ -33,7 +30,6 @@
 @property(nonatomic,retain) NSDate *startDate;
 @property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
 @property(nonatomic,retain) CashFlowSummations *cashFlowSummations;
-@property(nonatomic,retain) id<IncomeTaxRateCalculator> incomeTaxRateCalc;
 @property(nonatomic,retain) NSMutableArray *savedEndOfYearResults;
 
 @end

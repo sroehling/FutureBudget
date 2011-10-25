@@ -65,8 +65,7 @@
 	theLoan.origDate = [inputCreationHelper multiScenSimDateWithDefault:origDate];
 	
 	// Interest
-	theLoan.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:interestRate];
-	theLoan.taxableInterest = [NSNumber numberWithBool:TRUE];		
+	theLoan.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:interestRate];	
 
 	// Down Payment	
 	theLoan.downPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
@@ -115,7 +114,7 @@
 	WorkingBalanceAdjustment *loanPmtAdjustment = 
 			[loanInfo.loanBalance decrementAvailableBalance:paymentAmount asOfDate:pmtDate];
 	NSLog(@"Balance after pmt: %0.2f",[loanInfo.loanBalance currentBalance]);
-	NSLog(@"Interest in pmt: %0.2f",loanPmtAdjustment.interestAdjustement.taxableAmount);
+	NSLog(@"Interest in pmt: %0.2f",loanPmtAdjustment.interestAdjustement.amount);
 
 }
 

@@ -15,7 +15,6 @@
 
 @synthesize totalIncome;
 @synthesize totalExpense;
-@synthesize totalIncomeTaxes;
 @synthesize totalInterest;
 @synthesize totalWithdrawals;
 @synthesize endDate;
@@ -49,11 +48,6 @@
 	totalIncome += incomeAmount;
 }
 
-- (void)incrementTotalIncomeTaxes:(double)taxAmount
-{
-	assert(taxAmount >= 0.0);
-	totalIncomeTaxes += taxAmount;
-}
 
 - (void)incrementTotalExpense:(BalanceAdjustment*)theExpense
 {
@@ -74,18 +68,6 @@
 }
 
 
-- (double)totalTaxableWithdrawalsAndSavingsInterest
-{
-	return totalInterest.taxableAmount + totalWithdrawals.taxableAmount;
-}
-
--(double)totalDeductableExpenseAndContributions
-{
-	// Expenses and contributions are combined in the year end result, 
-	// so all that needs to be returned is the total expense's taxFreeAmount.
-	return totalExpense.taxFreeAmount;
-}
-
 - (NSInteger)yearNumber
 {
 	return [DateHelper yearOfDate:self.endDate];
@@ -97,10 +79,6 @@
 				stringFromNumber:[NSNumber numberWithDouble:self.totalIncome]];
 	NSLog(@"Total Income: %@",totalIncomeCurrency);
 	
-	NSString *totalIncomeTaxCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.totalIncomeTaxes]];
-	NSLog(@"Total Income Taxes: %@",totalIncomeTaxCurrency);
-
 	NSString *totalInterestCurrency = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:[self.totalInterest totalAmount]]];
 	NSLog(@"Total Interest: %@",totalInterestCurrency);

@@ -67,13 +67,10 @@
 			createVariableRateCalc:self.asset.apprecRate.growthRate 
 			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario 
 			andUseLoanAnnualRates:false];
-		bool taxableProceeds = [SimInputHelper multiScenBoolVal:self.asset.multiScenarioSaleProceedsTaxable
-			andScenario:self.simParams.simScenario];
 		// TODO - Need to figure out where to handle taxableProceeds
 		self.assetValue = [[[InterestBearingWorkingBalance alloc] 
 			initWithStartingBalance:startingAssetValue andInterestRateCalc:apprecCalc 
-			andWorkingBalanceName:self.asset.name andTaxWithdrawals:FALSE 
-			andTaxInterest:FALSE andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
+			andWorkingBalanceName:self.asset.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 
 	}
 	return self;

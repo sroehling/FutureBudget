@@ -201,8 +201,7 @@
 			andUseLoanAnnualRates:true];				
 		self.loanBalance = [[[InterestBearingWorkingBalance alloc] 
 			initWithStartingBalance:startingLoanBalance andInterestRateCalc:interestRateCalc 
-			andWorkingBalanceName:self.loan.name andTaxWithdrawals:FALSE 
-			andTaxInterest:[self interestIsTaxable] andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
+			andWorkingBalanceName:self.loan.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 			
 		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator
 			createVariableRateCalc:loan.extraPmtGrowthRate.growthRate
@@ -290,12 +289,6 @@
 }
 
 
-
--(bool)interestIsTaxable;
-{
-	assert(loan.taxableInterest != nil);
-	return [loan.taxableInterest boolValue];
-}
 
 -(id)init
 {

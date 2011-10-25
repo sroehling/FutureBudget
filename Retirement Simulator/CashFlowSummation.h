@@ -17,8 +17,6 @@
 @interface CashFlowSummation : NSObject {
     @private
 		BalanceAdjustment *sumExpenses;
-// TODO - Need to change name of sumIncome to sumGrossIncome if this name better represents the value
-		double sumIncome;
 		NSMutableArray *savingsContribs;
 		NSMutableArray *loanPmts;
 		NSMutableArray *assetPurchases;
@@ -42,10 +40,7 @@
 - (void)markAsEstimatedTaxPaymentDay;
 - (void)resetSummations;
 
-- (double)totalDeductions;
-
 @property(nonatomic,retain) BalanceAdjustment *sumExpenses;
-@property(readonly) double sumIncome;
 @property(nonatomic,retain) NSMutableArray *savingsContribs;
 @property(nonatomic,retain) NSMutableArray *loanPmts;
 @property(nonatomic,retain) NSMutableArray *assetPurchases;

@@ -16,11 +16,9 @@
     @private
 		InterestBearingWorkingBalance *savingsBalance;
 		double contributionAmount;
-		bool contributionIsTaxable;
 }
 
 @property(nonatomic,retain) InterestBearingWorkingBalance *savingsBalance;
 @property double contributionAmount;
-@property bool contributionIsTaxable;
 
 @end

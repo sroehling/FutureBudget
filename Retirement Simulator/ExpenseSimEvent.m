@@ -19,17 +19,15 @@
 
 //@synthesize expense;
 @synthesize expenseAmount;
-@synthesize isTaxable;
 
 -(id)initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate *)theEventDate 
-	andAmount:(double)theAmount andIsTaxable:(bool)expenseIsTaxable
+	andAmount:(double)theAmount
 {
 	self = [super initWithEventCreator:eventCreator andEventDate:theEventDate];
 	if(self)
 	{
 		assert(theAmount >= 0.0);
 		self.expenseAmount = theAmount;
-		self.isTaxable = expenseIsTaxable;
 	}
 	return self;
 }
@@ -45,12 +43,11 @@
 	NSString *currencyAmount = [[NumberHelper theHelper].currencyFormatter 
 				stringFromNumber:[NSNumber numberWithDouble:self.expenseAmount]];
 	
-    
     NSLog(@"Doing expense event: %@ %@",
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		
-	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithAmount:self.expenseAmount andIsAmountTaxable:self.isTaxable] autorelease];
+	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithAmount:self.expenseAmount] autorelease];
 		  
 	[digest.cashFlowSummations addExpense:expenseAdj onDate:self.eventDate];
 }

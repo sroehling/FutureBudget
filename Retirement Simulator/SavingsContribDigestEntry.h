@@ -15,16 +15,14 @@
     @private
 		InterestBearingWorkingBalance *workingBalance;
 		double contribAmount;
-		bool contribIsTaxable;
 		BalanceAdjustment *contribAdjustment;
 }
 
 - (id) initWithWorkingBalance:(InterestBearingWorkingBalance*)theBalance 
-	andContribAmount:(double)theAmount andIsTaxable:(bool)isTaxable;
+	andContribAmount:(double)theAmount;
 
 @property(nonatomic,retain) InterestBearingWorkingBalance *workingBalance;
 @property(readonly) double contribAmount;
-@property bool contribIsTaxable;
 @property(nonatomic,retain) BalanceAdjustment *contribAdjustment;
 
 @end

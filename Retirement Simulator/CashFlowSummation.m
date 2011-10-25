@@ -15,7 +15,6 @@
 @implementation CashFlowSummation
 
 @synthesize sumExpenses;
-@synthesize sumIncome;
 @synthesize savingsContribs;
 @synthesize loanPmts;
 @synthesize sumContributions;
@@ -52,9 +51,7 @@
 
 - (void)addIncome:(CashFlowDigestEntry*)incomeDigestEntry;
 {
-	assert(incomeDigestEntry.amount >=0.0);
-	sumIncome += incomeDigestEntry.amount;
-	
+	assert(incomeDigestEntry.amount >=0.0);	
 	[self.incomeCashFlows addObject:incomeDigestEntry];
 }
 
@@ -103,8 +100,6 @@
 
 - (void)resetSummations
 {
-	sumIncome = 0.0;
-	
 	[sumExpenses resetToZero];
 	
 	[self.incomeCashFlows removeAllObjects];
@@ -119,14 +114,6 @@
 	
 	isEndDateForEstimatedTaxes = FALSE;
 	isEstimatedTaxPaymentDay = FALSE;
-}
-
--(double)totalDeductions
-{
-	double totalDeductableExpense = self.sumExpenses.taxFreeAmount;
-	double totalDeductableContributions = self.sumContributions.taxFreeAmount;
-	double totalDeductions = totalDeductableExpense + totalDeductableContributions;
-	return totalDeductions;
 }
 
 

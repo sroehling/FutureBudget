@@ -61,7 +61,7 @@
 		{
 			ExpenseSimEvent *downPmtEvent = [[[ExpenseSimEvent alloc] initWithEventCreator:self 
 				andEventDate:[self.loanInfo loanOrigDate] 
-				andAmount:downPmtAmount andIsTaxable:TRUE] autorelease];
+				andAmount:downPmtAmount] autorelease];
 			return downPmtEvent;
 		}
 		else

@@ -11,51 +11,32 @@
 
 @implementation BalanceAdjustment
 
-@synthesize taxableAmount;
-@synthesize taxFreeAmount;
+@synthesize amount;
 
-- (id) initWithTaxFreeAmount:(double)theTaxFreeAmount andTaxableAmount:(double)theTaxableAmount;
+- (id) initWithAmount:(double)theAmount
 {
 	self = [super init];
 	if(self)
 	{
-		// Note that in the case of negative returns, a Balance adjustement may 
-		// be initialized with negative amounts to represent the amount of negative
-		// interest on an investment or asset depreciation.
-		self.taxFreeAmount = theTaxFreeAmount;
-		self.taxableAmount = theTaxableAmount;
+		self.amount = theAmount;
 	}
 	return self;
 }
 
-- (id) initWithAmount:(double)theAmount andIsAmountTaxable:(bool)isTaxable
-{
-	if(isTaxable)
-	{
-		return [self initWithTaxFreeAmount:0.0 andTaxableAmount:theAmount];
-	}
-	else
-	{
-		return [self initWithTaxFreeAmount:theAmount andTaxableAmount:0.0];
-	}
-}
-
 - (id) initWithZeroAmount
 {
-	return [self initWithTaxFreeAmount:0.0 andTaxableAmount:0.0];
+	return [self initWithAmount:0.0];
 }
 
 - (void) addAdjustment:(BalanceAdjustment*)otherAdjustment
 {
 	assert(otherAdjustment != nil);
-	self.taxableAmount += otherAdjustment.taxableAmount;
-	self.taxFreeAmount += otherAdjustment.taxFreeAmount;
+	self.amount += otherAdjustment.amount;
 }
 
 - (void) resetToZero
 {
-	taxFreeAmount = 0.0;
-	taxableAmount = 0.0;
+	amount = 0.0;
 }
 
 -(id) init
@@ -65,7 +46,7 @@
 
 - (double) totalAmount
 {
-	return (self.taxableAmount + self.taxFreeAmount);
+	return self.amount;
 }
 
 @end

@@ -26,8 +26,6 @@ NSString * const INPUT_ASSET_STARTING_VALUE_KEY = @"startingValue";
 @dynamic saleDate;
 
 
-@dynamic multiScenarioSaleProceedsTaxable;
-
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
 {
     [super acceptInputVisitor:inputVisitor];

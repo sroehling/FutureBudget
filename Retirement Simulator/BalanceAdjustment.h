@@ -11,19 +11,16 @@
 
 @interface BalanceAdjustment : NSObject {
     @private
-		double taxFreeAmount;
-		double taxableAmount;
+		double amount;
 }
 
-- (id) initWithTaxFreeAmount:(double)theTaxFreeAmount andTaxableAmount:(double)theTaxableAmount;
 - (id) initWithZeroAmount;
-- (id) initWithAmount:(double)theAmount andIsAmountTaxable:(bool)isTaxable;
+- (id) initWithAmount:(double)theAmount;
 
 - (void) addAdjustment:(BalanceAdjustment*)otherAdjustment;
 - (void) resetToZero;
 
-@property double taxFreeAmount;
-@property double taxableAmount;
+@property double amount;
 
 - (double)totalAmount;
 

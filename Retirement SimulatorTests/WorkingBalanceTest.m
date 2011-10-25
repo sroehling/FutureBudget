@@ -43,8 +43,7 @@
 	
 	InterestBearingWorkingBalance *workingBal = 
 		[[[InterestBearingWorkingBalance alloc] initWithStartingBalance:startBalance andInterestRate:fixedInterestRate andWorkingBalanceName:@"TestAcct" 
-		andStartDate:startDate andTaxWithdrawals:FALSE
-		andTaxInterest:FALSE andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
+		andStartDate:startDate andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 	
 	return workingBal;
 

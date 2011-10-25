@@ -53,13 +53,9 @@
 
 "INPUT_SAVINGS_ACCOUNT_STARTING_BALANCE_LABEL" = "Starting Balance";
 "INPUT_SAVINGS_ACCOUNT_INPUT_LIST_DETAIL_FORMAT" = "Starting balance of %@, %@";
-"INPUT_SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTION_LABEL" = "Contributions Taxable?";
-"INPUT_SAVINGS_ACCOUNT_TAXABLE_WITHDRAWAL_LABEL" = "Withdrawals Taxable?";
-"INPUT_SAVINGS_ACCOUNT_TAXABLE_INTEREST_LABEL" = "Interest Taxable?";
 "INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_FIELD_LABEL" = "Interest Rate";
 "INPUT_TYPE_SAVINGS_ACCOUNT_INLINE" = "savings account";
 "INPUT_TYPE_SAVINGS_ACCOUNT_TITLE" = "Savings Account";
-"INPUT_SAVINGS_ACCOUNT_TAXES_SECTION_TITLE" = "Taxes";
 
 
 "SHARED_INTEREST_RATE_VALUE_TITLE" = "Interest Rate";
@@ -123,7 +119,6 @@
 "INPUT_LOAN_INLINE_TITLE" = "loan";
 "INPUT_LOAN_ENABLED_FIELD_LABEL" = "Enabled?";
 "INPUT_LOAN_INTEREST_SECTION_TITLE" = "Interest";
-"INPUT_LOAN_TAXABLE_INTEREST_LABEL" = "Taxable Interest?";
 "INPUT_LOAN_STARTING_BALANCE_LABEL" = "Starting Balance";
 "INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER" = "Enter a balance";
 "INPUT_LOAN_COST_SECTION_TITLE" = "Loan Origination";
@@ -152,7 +147,6 @@
 "INPUT_ASSET_STARTING_VALUE_LABEL" = "Starting (Current) Value";
 "INPUT_ASSET_STARTING_VALUE_PLACEHOLDER" = "Enter a value";
 "INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL" = "Appreciation/Depreciation Rate";
-"INPUT_ASSET_PROCEEDS_TAXABLE_FIELD_LABEL" = "Sale Proceeds Taxable?";
 "INPUT_ASSET_SALE_DATE_FIELD_LABEL" = "Sale Date";
 "INPUT_ASSET_SALE_DATE_TITLE" =  "Sale Date";
 "INPUT_ASSET_SALE_DATE_SUBHEADER_FORMAT" = "This is the date a sale of %@ %@ is expected to occur";
@@ -177,9 +171,6 @@
 "INPUT_TAX_STD_DEDUCTION_TITLE" = "Standard Deduction";
 "INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL" = "Standard Deduction Growth";
 
-"INPUT_EXPENSE_TAXES_SECTION_TITLE" = "Taxes";
-"INPUT_EXPENSE_TAXES_SECTION_SUBTITLE" = "Specify whether this expense is tax deductible";
-"INPUT_EXPENSE_TAXES_TAX_DEDUCTIBLE_LABEL" = "Deductible?";
 "INPUT_TAX_EXEMPTION_SECTION_TITLE" = "Exemptions";
 "INPUT_TAX_EXEMPTION_SECTION_SUBTITLE" = "In addition to specific adjustments, eligible exemptions (such as for children) further reduce the tax liability";
 "INPUT_TAX_EXEMPTION_AMOUNT_TITLE" = "Exemption Amount";
@@ -299,10 +290,6 @@
 "WHAT_IF_TAXES_FIELD_CAPTION" = "Taxes";
 "WHAT_IF_TAXES_SUBTITLE" = "Change the tax deductability of expenses, contributions, or withdrawals.";
 "WHAT_IF_TAXES_FORM_TITLE" = "Taxes";
-"WHAT_IF_TAXES_EXPENSE_DEDUCTION" = "Deductable Expenses";
-"WHAT_IF_TAXES_ACCOUNT_CONTRIB" = "Deductable Contributions";
-"WHAT_IF_TAXES_ACCOUNT_WITHDRAWAL" = "Deductable Withdrawals";
-"WHAT_IF_TAXES_LOAN_INTEREST" = "Taxable Loan Interest";
 "WHAT_IF_SCENARIO_SECTION_TITLE" = "Manage Scenarios";
 "WHAT_IF_SCENARIO_SECTION_SUBTITLE" = "Changes to inputs are saved under the current scenario, so the 'what if' impact of these changes can be seen in the results.";
 "WHAT_IF_SCENARIO_SUBTITLE" = "Create a new scenario, or change the current scenario.";

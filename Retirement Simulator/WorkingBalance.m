@@ -119,16 +119,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 
 - (BalanceAdjustment*)createBalanceAdjustmentForWithdrawAmount:(double)theAmount
 {
-	if([self doTaxWithdrawals])
-	{
-		return [[[BalanceAdjustment alloc] 
-			initWithTaxFreeAmount:0.0 andTaxableAmount:theAmount] autorelease];
-	}
-	else
-	{
-		return [[[BalanceAdjustment alloc] 
-			initWithTaxFreeAmount:theAmount andTaxableAmount:0.0] autorelease];
-	}
+	return [[[BalanceAdjustment alloc] initWithAmount:theAmount] autorelease];
 }
 
 - (WorkingBalanceAdjustment*) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate
@@ -193,20 +184,6 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	
 }
 
-
-
-- (bool)doTaxWithdrawals
-{
-	assert(0); // must be overridden
-	return FALSE;
-}
-
-
-- (bool)doTaxInterest
-{
-	assert(0); // must be overridden
-	return FALSE;
-}
 
 - (NSString*)balanceName
 {

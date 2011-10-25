@@ -37,8 +37,6 @@ extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 - (BalanceAdjustment*)carryBalanceForward:(NSDate*)newStartDate;
 
 - (NSString*)balanceName;
-- (bool)doTaxWithdrawals;
-- (bool)doTaxInterest;
 - (void)logBalance;
 
 @property(nonatomic,retain) NSDate *balanceStartDate;

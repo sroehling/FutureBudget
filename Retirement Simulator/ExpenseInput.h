@@ -11,13 +11,11 @@
 #import "CashFlowInput.h"
 
 extern NSString * const EXPENSE_INPUT_ENTITY_NAME;
-extern NSString * const EXPENSE_INPUT_TAX_DEDUCTIBLE_KEY;
 
 @class EventRepeatFrequency;
 
 @interface ExpenseInput : CashFlowInput {
 @private
 }
-@property (nonatomic, retain) NSNumber * taxDeductible;
 
 @end

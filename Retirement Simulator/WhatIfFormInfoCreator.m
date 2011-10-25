@@ -517,79 +517,11 @@
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_TAXES_FORM_TITLE");
 	
-	SectionInfo *sectionInfo;
-	
 	// TODO - Need to migrate the inputs referenced below over to the multi-scenario
 	// boolean values, in which case the currentScenario local variable will be 
 	// needed.
 	// Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 	
-	
-	NSSet *inputs = [[DataModelController theDataModelController] 
-				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
-	if([inputs count]  > 0)
-	{
-
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_TAXES_EXPENSE_DEDUCTION");
-
-		for(ExpenseInput *expense in inputs)
-		{    
-			[sectionInfo addFieldEditInfo:
-				[BoolFieldEditInfo createForObject:expense 
-					andKey:EXPENSE_INPUT_TAX_DEDUCTIBLE_KEY 
-					andLabel:expense.name]];
-		}
-	}
-	
-	inputs = [[DataModelController theDataModelController] 
-					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
-	if([inputs count]  > 0)
-	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_TAXES_ACCOUNT_CONTRIB");
-	
-		for(SavingsAccount *savingsAcct in inputs)
-		{
-			[sectionInfo addFieldEditInfo:
-				[BoolFieldEditInfo createForObject:savingsAcct 
-					andKey:SAVINGS_ACCOUNT_TAXABLE_CONTRIBUTIONS_KEY 
-					andLabel:savingsAcct.name]];
-		}
-	}
-
-	inputs = [[DataModelController theDataModelController] 
-				fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
-	if([inputs count]  > 0)
-	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_TAXES_ACCOUNT_WITHDRAWAL");
-	
-		for(SavingsAccount *savingsAcct in inputs)
-		{
-			[sectionInfo addFieldEditInfo:
-				[BoolFieldEditInfo createForObject:savingsAcct 
-					andKey:SAVINGS_ACCOUNT_TAXABLE_WITHDRAWALS_KEY 
-					andLabel:savingsAcct.name]];
-		}
-	}
-
-	
-	inputs = [[DataModelController theDataModelController] 
-			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
-	if([inputs count]  > 0)
-	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_TAXES_LOAN_INTEREST");
-
-		for(LoanInput *loan in inputs)
-		{
-			[sectionInfo addFieldEditInfo:
-				[BoolFieldEditInfo createForObject:loan 
-					andKey:LOAN_INPUT_TAXABLE_INTEREST_KEY 
-					andLabel:loan.name]];
-		}
-	}
 
 
 	return formPopulator.formInfo;

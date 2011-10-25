@@ -98,9 +98,7 @@
     ExpenseInput *newInput  = (ExpenseInput*)[[DataModelController theDataModelController]
 		insertObject:EXPENSE_INPUT_ENTITY_NAME];;
   
-    [self populateCashFlowInputProperties:newInput];
-	newInput.taxDeductible = [NSNumber numberWithBool:FALSE];
-    
+    [self populateCashFlowInputProperties:newInput];    
     [[DataModelController theDataModelController] saveContext];
     
     return newInput;
@@ -137,9 +135,6 @@
 	[self populateAccountInputProperties:savingsAcct];
 
 	savingsAcct.startingBalance = [NSNumber numberWithDouble:0.0];
-	savingsAcct.taxableContributions = [NSNumber numberWithBool:FALSE];
-	savingsAcct.taxableWithdrawals = [NSNumber numberWithBool:TRUE];
-	savingsAcct.taxableInterest = [NSNumber numberWithBool:FALSE];
 	
 	savingsAcct.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -178,8 +173,6 @@
 
 	// Interest
 	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-
-	newInput.taxableInterest = [NSNumber numberWithBool:TRUE];		
 		
 	// Down Payment	
 		
@@ -226,8 +219,6 @@
 		
 	newInput.startingValue = [NSNumber numberWithDouble:0.0];
 	
-	newInput.multiScenarioSaleProceedsTaxable = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-
 	return newInput;
 }
 

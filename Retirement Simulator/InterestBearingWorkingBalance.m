@@ -23,13 +23,10 @@
 
 @synthesize interestRateCalc;
 @synthesize workingBalanceName;
-@synthesize taxableWithdrawals;
-@synthesize taxableInterest;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andInterestRateCalc:(VariableRateCalculator*)theInterestRateCalc 
 	andWorkingBalanceName:(NSString *)wbName 
-	andTaxWithdrawals:(bool)doTaxWithdrawals andTaxInterest:(bool)doTaxInterest
 	andWithdrawPriority:(double)theWithdrawPriority
 {
 	self = [super initWithStartingBalance:theStartBalance 
@@ -37,8 +34,6 @@
 	if(self)
 	{
 		self.interestRateCalc = theInterestRateCalc;
-		self.taxableWithdrawals = doTaxWithdrawals;
-		self.taxableInterest = doTaxInterest;
 		self.workingBalanceName = wbName;
 
 	}
@@ -49,8 +44,6 @@
 	andInterestRate:(DateSensitiveValue*)theInterestRate
 	andWorkingBalanceName:(NSString*)wbName
 	andStartDate:(NSDate*)theStartDate
-	andTaxWithdrawals:(bool)doTaxWithdrawals
-	andTaxInterest:(bool)doTaxInterest
 	andWithdrawPriority:(double)theWithdrawPriority
 {
 	self = [super initWithStartingBalance:theStartBalance 
@@ -63,8 +56,6 @@
 							createForDateSensitiveValue:theInterestRate 
 							andStartDate:theStartDate];
 														
-		self.taxableWithdrawals = doTaxWithdrawals;
-		self.taxableInterest = doTaxInterest;
 		self.workingBalanceName = wbName;
 	}
 	return self;
@@ -77,9 +68,6 @@
 	DateSensitiveValue *savingsInterestRate = (DateSensitiveValue*)[
 			theSavingsAcct.interestRate.growthRate
 			getValueForCurrentOrDefaultScenario];
-
-	bool doTaxWithdrawals = [theSavingsAcct.taxableWithdrawals boolValue];
-	bool doTaxInterest = [theSavingsAcct.taxableInterest boolValue];
 	
 	double acctWithdrawPriority = 
 		[SimInputHelper multiScenFixedVal:theSavingsAcct.withdrawalPriority 
@@ -88,8 +76,7 @@
 
 	return [self initWithStartingBalance:acctStartingBalance 
 		andInterestRate:savingsInterestRate andWorkingBalanceName:theSavingsAcct.name 
-		andStartDate:simParams.simStartDate
-		andTaxWithdrawals:doTaxWithdrawals andTaxInterest:doTaxInterest 
+		andStartDate:simParams.simStartDate 
 		andWithdrawPriority:acctWithdrawPriority];
 }
 
@@ -118,23 +105,12 @@
 	double interestAmount = newBalance - currentBalance;
 	
 	BalanceAdjustment *interest = [[[BalanceAdjustment alloc] 
-		initWithAmount:interestAmount 
-		andIsAmountTaxable:self.taxableInterest] autorelease];
+		initWithAmount:interestAmount] autorelease];
 	
 	currentBalance = newBalance;
 	self.currentBalanceDate = newDate;
 	
 	return interest;
-}
-
-- (bool)doTaxWithdrawals
-{
-	return self.taxableWithdrawals;
-}
-
-- (bool)doTaxInterest
-{
-	return self.taxableInterest;
 }
 
 

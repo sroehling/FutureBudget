@@ -14,14 +14,12 @@
 
 NSString * const LOAN_INPUT_ENTITY_NAME = @"LoanInput";
 
-NSString * const LOAN_INPUT_TAXABLE_INTEREST_KEY = @"taxableInterest";
 NSString * const INPUT_LOAN_STARTING_BALANCE_KEY = @"startingBalance";
 NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY = @"multiScenarioDownPmtPercent";
 
 
 @implementation LoanInput
 
-@dynamic taxableInterest; // done
 @dynamic startingBalance; // done
 
 @dynamic loanEnabled;

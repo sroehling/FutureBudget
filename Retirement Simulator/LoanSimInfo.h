@@ -34,7 +34,6 @@
 -(double)downPaymentAmount;
 -(NSDate*)loanOrigDate;
 - (double)loanOrigAmount;
--(bool)interestIsTaxable;
 
 - (EventRepeater*)createLoanPmtRepeater;
 - (double)monthlyPayment;

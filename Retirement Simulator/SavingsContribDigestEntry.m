@@ -13,12 +13,11 @@
 
 @synthesize workingBalance;
 @synthesize contribAmount;
-@synthesize contribIsTaxable;
 @synthesize contribAdjustment;
 
 
 - (id) initWithWorkingBalance:(InterestBearingWorkingBalance*)theBalance 
-	andContribAmount:(double)theAmount andIsTaxable:(bool)isTaxable
+	andContribAmount:(double)theAmount
 {
 	self = [super init];
 	if(self)
@@ -28,11 +27,9 @@
 		
 		assert(theAmount >= 0.0);
 		contribAmount = theAmount;
-
-		self.contribIsTaxable = isTaxable;
 		
 		self.contribAdjustment = [[[BalanceAdjustment alloc] 
-			initWithAmount:theAmount andIsAmountTaxable:isTaxable] autorelease];
+			initWithAmount:theAmount] autorelease];
 		
 	}
 	return self;

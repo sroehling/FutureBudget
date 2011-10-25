@@ -23,7 +23,6 @@
 		00160CA614055DFF001D472F /* BalanceAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA514055DFD001D472F /* BalanceAdjustment.m */; };
 		00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA91406B365001D472F /* EndOfYearDigestResult.m */; };
 		00160CAD1406C9AD001D472F /* CashFlowSummations.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CAC1406C9A6001D472F /* CashFlowSummations.m */; };
-		00160CB51406DD2F001D472F /* FlatIncomeTaxRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CB41406DD2E001D472F /* FlatIncomeTaxRateCalculator.m */; };
 		00237957143E4F5D006650E3 /* TaxBracketEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237956143E4F5D006650E3 /* TaxBracketEntry.m */; };
 		0023795A143E4FA4006650E3 /* MultiScenarioGrowthRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237959143E4FA4006650E3 /* MultiScenarioGrowthRate.m */; };
 		0023795D143E5009006650E3 /* TaxBracket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023795C143E5009006650E3 /* TaxBracket.m */; };
@@ -303,9 +302,6 @@
 		00160CA91406B365001D472F /* EndOfYearDigestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearDigestResult.m; sourceTree = "<group>"; };
 		00160CAB1406C9A5001D472F /* CashFlowSummations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowSummations.h; sourceTree = "<group>"; };
 		00160CAC1406C9A6001D472F /* CashFlowSummations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowSummations.m; sourceTree = "<group>"; };
-		00160CAE1406DC3A001D472F /* IncomeTaxRateCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeTaxRateCalculator.h; sourceTree = "<group>"; };
-		00160CB31406DD2E001D472F /* FlatIncomeTaxRateCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatIncomeTaxRateCalculator.h; sourceTree = "<group>"; };
-		00160CB41406DD2E001D472F /* FlatIncomeTaxRateCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatIncomeTaxRateCalculator.m; sourceTree = "<group>"; };
 		00237955143E4F5D006650E3 /* TaxBracketEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntry.h; sourceTree = "<group>"; };
 		00237956143E4F5D006650E3 /* TaxBracketEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketEntry.m; sourceTree = "<group>"; };
 		00237958143E4FA4006650E3 /* MultiScenarioGrowthRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioGrowthRate.h; sourceTree = "<group>"; };
@@ -839,9 +835,6 @@
 		00160CAF1406DC4B001D472F /* Taxes */ = {
 			isa = PBXGroup;
 			children = (
-				00160CAE1406DC3A001D472F /* IncomeTaxRateCalculator.h */,
-				00160CB31406DD2E001D472F /* FlatIncomeTaxRateCalculator.h */,
-				00160CB41406DD2E001D472F /* FlatIncomeTaxRateCalculator.m */,
 				0099A1491455EF4500E35AF9 /* ItemizedTaxCalcEntry.h */,
 				0099A14A1455EF4500E35AF9 /* ItemizedTaxCalcEntry.m */,
 				0099A14C1455F42900E35AF9 /* ItemizedTaxCalcEntries.h */,
@@ -2151,7 +2144,6 @@
 				00160CA614055DFF001D472F /* BalanceAdjustment.m in Sources */,
 				00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */,
 				00160CAD1406C9AD001D472F /* CashFlowSummations.m in Sources */,
-				00160CB51406DD2F001D472F /* FlatIncomeTaxRateCalculator.m in Sources */,
 				00ECB9091407FF1D009EDB10 /* WorkingBalanceAdjustment.m in Sources */,
 				00BC35B8140C4FD400D79F78 /* EstimatedTaxAccrualSimEventCreator.m in Sources */,
 				00BC35BB140C546600D79F78 /* EstimatedTaxAccrualSimEvent.m in Sources */,
