@@ -8,7 +8,7 @@
 
 #import "LoanPmtDigestEntry.h"
 #import "InterestBearingWorkingBalance.h"
-
+#import "DigestEntryProcessingParams.h"
 
 @implementation LoanPmtDigestEntry
 
@@ -34,6 +34,14 @@
 	assert(0); // must init with balance and payment amount
 	return nil;
 }
+
+-(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
+{
+	[self.loanBalance decrementAvailableBalance:self.paymentAmt 
+		asOfDate:processingParams.currentDate];
+
+}
+
 
 - (void)dealloc
 {

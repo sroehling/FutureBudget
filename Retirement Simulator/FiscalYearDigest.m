@@ -21,9 +21,11 @@
 #import "CashFlowSummations.h"
 #import "WorkingBalanceAdjustment.h"
 #import "LoanPmtDigestEntry.h"
+#import "DigestEntryProcessingParams.h"
 #import "AssetSimInfo.h"
 #import "AssetDigestEntry.h"
-#import "CashFlowDigestEntry.h"
+#import "IncomeDigestEntry.h"
+#import "DigestEntry.h"
 
 @implementation FiscalYearDigest
 
@@ -70,31 +72,6 @@
 
 }
 
-- (void)withdrawFundingForExpense:
-	(EndOfYearDigestResult*)eoyResults andAmount:(double)withdrawAmount 
-	andDate:(NSDate*)withdrawDate
-{
-	WorkingBalanceAdjustment *withdrawAdj = 
-		[self.workingBalanceMgr decrementBalanceFromFundingList:withdrawAmount 
-		asOfDate:withdrawDate];
-	assert([withdrawAdj.balanceAdjustment totalAmount] <= withdrawAmount);
-	
-	[eoyResults incrementTotalWithdrawals:withdrawAdj.balanceAdjustment];
-				
-	// By withdrawing/decrementing the expenses from the funding list, the 
-	// different funding sources will advance their balances to currentDate,
-	// accruing interest for the amount of time advanced. This interest is 
-	// summed up in withdrawAmount.interestAdjustment and 
-	// added to the end of year tax calculations.
-	[eoyResults incrementTotalInterest:withdrawAdj.interestAdjustement];
-	[eoyResults incrementTotalExpense:withdrawAdj.balanceAdjustment];
-	
-	/*
-	[self accrueEstimatedTaxesForTaxableAmount:[withdrawAdj totalTaxableInterestAndBalance] 
-		andTaxRate:taxRate andDate:withdrawDate];
-	*/
-
-}
 
 
 - (EndOfYearDigestResult*)processDigest
@@ -112,85 +89,16 @@
 		CashFlowSummation *currDayCashFlowSummation = 
 			[self.cashFlowSummations summationForDayIndex:currDayIndex];
 		
-		if([currDayCashFlowSummation.incomeCashFlows count] > 0)
+		if([currDayCashFlowSummation.digestEntries count] > 0)
 		{
-			for(CashFlowDigestEntry *incomeCashFlow in currDayCashFlowSummation.incomeCashFlows)
+			DigestEntryProcessingParams *processingParams = 
+				[[DigestEntryProcessingParams alloc] initWithWorkingBalanceMgr:self.workingBalanceMgr andDayIndex:currDayIndex andCurrentDate:currentDate];
+			for(id<DigestEntry> digestEntry in currDayCashFlowSummation.digestEntries)
 			{
-				[incomeCashFlow processEntry:self.workingBalanceMgr andDate:currentDate];
+				[digestEntry processDigestEntry:processingParams];
 			}
+			[processingParams release];
 		}
-		if([currDayCashFlowSummation.sumExpenses totalAmount] > 0.0)
-		{			
-			[self withdrawFundingForExpense:endOfYearResults 
-				andAmount:[currDayCashFlowSummation.sumExpenses totalAmount] andDate:currentDate];
-		}
-		if([currDayCashFlowSummation.loanPmts count] > 0)
-		{
-			for(LoanPmtDigestEntry *loanPmt in currDayCashFlowSummation.loanPmts)
-			{
-				WorkingBalanceAdjustment *loanPmtAdjustment = 
-					[loanPmt.loanBalance decrementAvailableBalance:loanPmt.paymentAmt asOfDate:currentDate];
-// TODO - Sum up tax deductable interest, as described below.				
-				// TODO - For tax purposes, we need to have some kind of increment like the following
-				// This will be sum up the deductable interest in the same way as is done for expenses.
-				//[eoyResults incrementTotalExpense:withdrawAdj.balanceAdjustment];
-				// [eoyResult incrementTotalLoanPmt:loanPmtAdj.balanceAdjustment
-			}
-		}
-		if([currDayCashFlowSummation.savingsContribs count] > 0)
-		{
-			for(SavingsContribDigestEntry *savingsContrib in currDayCashFlowSummation.savingsContribs)
-			{
-				if(savingsContrib.contribAmount>0.0)
-				{
-					double actualContrib = [self.workingBalanceMgr
-						decrementAvailableCashBalance:savingsContrib.contribAmount 
-						asOfDate:currentDate];
-					if(actualContrib>0.0)
-					{
-						BalanceAdjustment *contribAdjustment = 
-							[[[BalanceAdjustment alloc] initWithAmount:actualContrib] autorelease];
-						[endOfYearResults incrementTotalExpense:contribAdjustment];
-						BalanceAdjustment *interestAccruedLeadingUpToSavingsContribution = 
-							[savingsContrib.workingBalance incrementBalance:actualContrib asOfDate:currentDate];
-							
-						// Similar to what happens for expenses (see comment above), by processing
-						// the savings contribution, we advance the balance on the savings account and 
-						// accrue some interest. This interest is added to the end of year results for 
-						// tax calculations.
-						[endOfYearResults incrementTotalInterest:interestAccruedLeadingUpToSavingsContribution];
-				/*
-									
-						[self accrueEstimatedTaxesForTaxableAmount:
-							interestAccruedLeadingUpToSavingsContribution.taxableAmount  
-								andTaxRate:incomeTaxRate andDate:currentDate];
-				*/
-					}
-				}
-			}
-		} // If there are savings contributions on this day
-		if([currDayCashFlowSummation.assetPurchases count] > 0)
-		{
-			for(AssetDigestEntry *assetPurchase in currDayCashFlowSummation.assetPurchases)
-			{
-				assert(assetPurchase != nil);
-				double purchaseCost = [assetPurchase.assetInfo purchaseCost];
-				[self withdrawFundingForExpense:endOfYearResults andAmount:purchaseCost andDate:currentDate];
-				[assetPurchase.assetInfo.assetValue 
-					incrementBalance:purchaseCost asOfDate:currentDate];
-			}
-		}
-		if([currDayCashFlowSummation.assetSales count] > 0)
-		{
-			for(AssetDigestEntry *assetSale in currDayCashFlowSummation.assetSales)
-			{
-				assert(assetSale != nil);
-				double saleValue = 
-					[assetSale.assetInfo.assetValue zeroOutBalanceAsOfDate:currentDate];
-				[self.workingBalanceMgr incrementCashBalance:saleValue asOfDate:currentDate];
-				// TODO - Handle taxes for change in value since purchase
-			}
-		} // If there are asset sales on this date.
 		if([currDayCashFlowSummation isEndDateForEstimatedTaxes])
 		{
 			// Advance all balances and accrue interest to the current date. This is needed so that

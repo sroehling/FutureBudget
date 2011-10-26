@@ -33,7 +33,7 @@
 		  
 	LoanPmtDigestEntry *loanPmt = [[[LoanPmtDigestEntry alloc] 
 		initWithBalance:self.loanBalance andPayment:self.paymentAmt] autorelease];
-	[digest.cashFlowSummations addLoanPmt:loanPmt onDate:self.eventDate];
+	[digest.cashFlowSummations addDigestEntry:loanPmt onDate:self.eventDate];
 }
 
 

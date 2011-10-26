@@ -14,20 +14,27 @@
 #import "FiscalYearDigest.h"
 #import "BalanceAdjustment.h"
 #import "CashFlowSummations.h"
+#import "ExpenseDigestEntry.h"
 
 @implementation ExpenseSimEvent
 
 //@synthesize expense;
 @synthesize expenseAmount;
+@synthesize expenseInfo;
 
--(id)initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate *)theEventDate 
-	andAmount:(double)theAmount
+
+-(id)initWithEventCreator:(id<SimEventCreator>)eventCreator 
+	andEventDate:(NSDate *)theEventDate andAmount:(double)theAmount
+	andExpenseInfo:(ExpenseSimInfo*)theExpenseInfo
 {
 	self = [super initWithEventCreator:eventCreator andEventDate:theEventDate];
 	if(self)
 	{
 		assert(theAmount >= 0.0);
 		self.expenseAmount = theAmount;
+		
+		assert(theExpenseInfo != nil);
+		self.expenseInfo = theExpenseInfo;
 	}
 	return self;
 }
@@ -46,16 +53,19 @@
     NSLog(@"Doing expense event: %@ %@",
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
-		
-	BalanceAdjustment *expenseAdj = [[[BalanceAdjustment alloc] initWithAmount:self.expenseAmount] autorelease];
 		  
-	[digest.cashFlowSummations addExpense:expenseAdj onDate:self.eventDate];
+	ExpenseDigestEntry *expenseEntry =
+		[[[ExpenseDigestEntry alloc] initWithAmount:self.expenseAmount 
+			andCashFlowSummation:self.expenseInfo.digestSum] autorelease];
+		  
+	[digest.cashFlowSummations addDigestEntry:expenseEntry onDate:self.eventDate];
 }
 
 
 - (void) dealloc
 {
 	[super dealloc];
+	[expenseInfo release];
 }
 
 @end

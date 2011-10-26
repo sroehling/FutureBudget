@@ -8,7 +8,7 @@
 
 #import "AssetSaleSimEvent.h"
 #import "FiscalYearDigest.h"
-#import "AssetDigestEntry.h"
+#import "AssetSaleDigestEntry.h"
 #import "FiscalYearDigest.h"
 #import "CashFlowSummations.h"
 
@@ -16,9 +16,9 @@
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
-	AssetDigestEntry *assetEntry = [[[AssetDigestEntry alloc] 
+	AssetSaleDigestEntry *assetEntry = [[[AssetSaleDigestEntry alloc] 
 		initWithAssetSimInfo:self.assetSimInfo] autorelease];
-	[digest.cashFlowSummations addAssetSale:assetEntry onDate:self.eventDate];
+	[digest.cashFlowSummations addDigestEntry:assetEntry onDate:self.eventDate];
 
 }
 

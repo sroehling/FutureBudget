@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DigestEntry.h"
+
 @class InterestBearingWorkingBalance;
 
-@interface LoanPmtDigestEntry : NSObject {
+@interface LoanPmtDigestEntry : NSObject <DigestEntry> {
     @private
 		InterestBearingWorkingBalance *loanBalance;
 		double paymentAmt;

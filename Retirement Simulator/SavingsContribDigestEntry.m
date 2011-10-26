@@ -8,13 +8,14 @@
 
 #import "SavingsContribDigestEntry.h"
 #import "BalanceAdjustment.h"
+#import "DigestEntryProcessingParams.h"
+#import "WorkingBalanceMgr.h"
+#import "InterestBearingWorkingBalance.h"
 
 @implementation SavingsContribDigestEntry
 
 @synthesize workingBalance;
 @synthesize contribAmount;
-@synthesize contribAdjustment;
-
 
 - (id) initWithWorkingBalance:(InterestBearingWorkingBalance*)theBalance 
 	andContribAmount:(double)theAmount
@@ -26,10 +27,8 @@
 		self.workingBalance = theBalance;
 		
 		assert(theAmount >= 0.0);
-		contribAmount = theAmount;
+		self.contribAmount = theAmount;
 		
-		self.contribAdjustment = [[[BalanceAdjustment alloc] 
-			initWithAmount:theAmount] autorelease];
 		
 	}
 	return self;
@@ -40,11 +39,29 @@
 	assert(0); // Must init with working balance and contribution amount
 }
 
+
+-(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
+{
+	if(self.contribAmount>0.0)
+	{
+		double actualContrib = [processingParams.workingBalanceMgr
+			decrementAvailableCashBalance:self.contribAmount 
+			asOfDate:processingParams.currentDate];
+		if(actualContrib>0.0)
+		{
+//			BalanceAdjustment *interestAccruedLeadingUpToSavingsContribution = 
+			[self.workingBalance incrementBalance:actualContrib 
+					asOfDate:processingParams.currentDate];				
+		}
+	}
+
+}
+
+
 - (void) dealloc
 {
 	[super dealloc];
 	[workingBalance release];
-	[contribAdjustment release];
 }
 
 @end

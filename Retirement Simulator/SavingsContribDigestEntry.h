@@ -7,22 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DigestEntry.h"
 
 @class InterestBearingWorkingBalance;
-@class BalanceAdjustment;
 
-@interface SavingsContribDigestEntry : NSObject {
+
+@interface SavingsContribDigestEntry : NSObject <DigestEntry> {
     @private
 		InterestBearingWorkingBalance *workingBalance;
 		double contribAmount;
-		BalanceAdjustment *contribAdjustment;
 }
 
 - (id) initWithWorkingBalance:(InterestBearingWorkingBalance*)theBalance 
 	andContribAmount:(double)theAmount;
 
 @property(nonatomic,retain) InterestBearingWorkingBalance *workingBalance;
-@property(readonly) double contribAmount;
-@property(nonatomic,retain) BalanceAdjustment *contribAdjustment;
+@property double contribAmount;
 
 @end

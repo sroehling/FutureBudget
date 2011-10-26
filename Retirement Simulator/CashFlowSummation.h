@@ -9,44 +9,26 @@
 #import <Foundation/Foundation.h>
 
 @class SavingsContribDigestEntry;
-@class BalanceAdjustment;
 @class LoanPmtDigestEntry;
-@class AssetDigestEntry;
-@class CashFlowDigestEntry;
+
+@protocol DigestEntry;
 
 @interface CashFlowSummation : NSObject {
     @private
-		BalanceAdjustment *sumExpenses;
-		NSMutableArray *savingsContribs;
-		NSMutableArray *loanPmts;
-		NSMutableArray *assetPurchases;
-		NSMutableArray *assetSales;
-		NSMutableArray *incomeCashFlows;
-		BalanceAdjustment *sumContributions;
+		NSMutableArray *digestEntries;
+		
 		bool isEndDateForEstimatedTaxes;
 		bool isEstimatedTaxPaymentDay;
 }
 
-- (void)addIncome:(CashFlowDigestEntry*)incomeDigestEntry;
-
-- (void)addExpense:(BalanceAdjustment*)expenseAmount;
-- (void) addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib;
-- (void)addLoanPmt:(LoanPmtDigestEntry*)theLoanPmt;
-- (void)addAssetSale:(AssetDigestEntry*)assetEntry;
-- (void)addAssetPurchase:(AssetDigestEntry*)assetEntry;
-
+- (void)addDigestEntry:(id<DigestEntry>)digestEntry;
 
 - (void)markAsEndDateForEstimatedTaxAccrual;
 - (void)markAsEstimatedTaxPaymentDay;
+
 - (void)resetSummations;
 
-@property(nonatomic,retain) BalanceAdjustment *sumExpenses;
-@property(nonatomic,retain) NSMutableArray *savingsContribs;
-@property(nonatomic,retain) NSMutableArray *loanPmts;
-@property(nonatomic,retain) NSMutableArray *assetPurchases;
-@property(nonatomic,retain) NSMutableArray *assetSales;
-@property(nonatomic,retain) NSMutableArray *incomeCashFlows;
-@property(nonatomic,retain) BalanceAdjustment *sumContributions;
+@property(nonatomic,retain) NSMutableArray *digestEntries;
 @property(readonly) bool isEndDateForEstimatedTaxes;
 @property(readonly) bool isEstimatedTaxPaymentDay;
 

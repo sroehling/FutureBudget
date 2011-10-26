@@ -138,6 +138,7 @@
 		remainingBalanceToDecrement -= [amountDecremented.balanceAdjustment totalAmount];
 		if(remainingBalanceToDecrement <= 0.0)
 		{
+			assert([totalDecremented.balanceAdjustment totalAmount] <= expenseAmount);
 			return totalDecremented;
 		}
 	}
@@ -147,6 +148,7 @@
 		double deficitAmount = expenseAmount - [totalDecremented.balanceAdjustment totalAmount];
 		[self.deficitBalance incrementBalance:deficitAmount asOfDate:newDate];
 	}
+	assert([totalDecremented.balanceAdjustment totalAmount] <= expenseAmount);
 	return totalDecremented;
 
 }

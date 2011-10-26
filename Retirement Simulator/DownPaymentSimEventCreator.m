@@ -12,6 +12,7 @@
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
 #import "SharedAppValues.h"
 #import "ExpenseSimEvent.h"
+#import "LoanDownPmtSimEvent.h"
 #import "DateHelper.h"
 #import "LoanSimInfo.h"
 
@@ -59,7 +60,7 @@
 	
 		if(downPmtAmount > 0)
 		{
-			ExpenseSimEvent *downPmtEvent = [[[ExpenseSimEvent alloc] initWithEventCreator:self 
+			LoanDownPmtSimEvent *downPmtEvent = [[[LoanDownPmtSimEvent alloc] initWithEventCreator:self 
 				andEventDate:[self.loanInfo loanOrigDate] 
 				andAmount:downPmtAmount] autorelease];
 			return downPmtEvent;

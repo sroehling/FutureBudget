@@ -46,7 +46,7 @@
 		00254FF2144E62F2000AB7B3 /* MultiScenarioSimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */; };
 		00254FF5144F22C3000AB7B3 /* MultiScenarioSimEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */; };
 		00254FF814521A02000AB7B3 /* InputValDigestSummation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF7145219FF000AB7B3 /* InputValDigestSummation.m */; };
-		00254FFB1452374B000AB7B3 /* CashFlowDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FFA1452374A000AB7B3 /* CashFlowDigestEntry.m */; };
+		00254FFB1452374B000AB7B3 /* IncomeDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FFA1452374A000AB7B3 /* IncomeDigestEntry.m */; };
 		00254FFE14531415000AB7B3 /* IncomeSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FFD14531415000AB7B3 /* IncomeSimInfo.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
 		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
@@ -169,6 +169,13 @@
 		0099A1471455D61C00E35AF9 /* InputSimInfoCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1461455D61B00E35AF9 /* InputSimInfoCltn.m */; };
 		0099A14B1455EF4600E35AF9 /* ItemizedTaxCalcEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A14A1455EF4500E35AF9 /* ItemizedTaxCalcEntry.m */; };
 		0099A14E1455F42A00E35AF9 /* ItemizedTaxCalcEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A14D1455F42900E35AF9 /* ItemizedTaxCalcEntries.m */; };
+		0099A152145746E300E35AF9 /* DigestEntryProcessingParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A151145746E000E35AF9 /* DigestEntryProcessingParams.m */; };
+		0099A1561457524000E35AF9 /* AssetPurchaseDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1551457524000E35AF9 /* AssetPurchaseDigestEntry.m */; };
+		0099A159145756CC00E35AF9 /* AssetSaleDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A158145756CB00E35AF9 /* AssetSaleDigestEntry.m */; };
+		0099A15C145759DF00E35AF9 /* CashFlowDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A15B145759DC00E35AF9 /* CashFlowDigestEntry.m */; };
+		0099A15F14575B1200E35AF9 /* ExpenseDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A15E14575B0F00E35AF9 /* ExpenseDigestEntry.m */; };
+		0099A16214575E5A00E35AF9 /* ExpenseSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */; };
+		0099A165145784CD00E35AF9 /* LoanDownPmtSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A164145784CC00E35AF9 /* LoanDownPmtSimEvent.m */; };
 		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
 		00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAB138EC87A00663C7F /* SectionInfo.m */; };
 		00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAE138ECA8700663C7F /* FormInfo.m */; };
@@ -349,8 +356,8 @@
 		00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioSimEndDate.m; sourceTree = "<group>"; };
 		00254FF6145219FD000AB7B3 /* InputValDigestSummation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputValDigestSummation.h; sourceTree = "<group>"; };
 		00254FF7145219FF000AB7B3 /* InputValDigestSummation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputValDigestSummation.m; sourceTree = "<group>"; };
-		00254FF914523749000AB7B3 /* CashFlowDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowDigestEntry.h; sourceTree = "<group>"; };
-		00254FFA1452374A000AB7B3 /* CashFlowDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowDigestEntry.m; sourceTree = "<group>"; };
+		00254FF914523749000AB7B3 /* IncomeDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeDigestEntry.h; sourceTree = "<group>"; };
+		00254FFA1452374A000AB7B3 /* IncomeDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeDigestEntry.m; sourceTree = "<group>"; };
 		00254FFC14531413000AB7B3 /* IncomeSimInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeSimInfo.h; sourceTree = "<group>"; };
 		00254FFD14531415000AB7B3 /* IncomeSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeSimInfo.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
@@ -599,6 +606,21 @@
 		0099A14A1455EF4500E35AF9 /* ItemizedTaxCalcEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxCalcEntry.m; sourceTree = "<group>"; };
 		0099A14C1455F42900E35AF9 /* ItemizedTaxCalcEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxCalcEntries.h; sourceTree = "<group>"; };
 		0099A14D1455F42900E35AF9 /* ItemizedTaxCalcEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxCalcEntries.m; sourceTree = "<group>"; };
+		0099A14F145746AD00E35AF9 /* DigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigestEntry.h; sourceTree = "<group>"; };
+		0099A150145746DD00E35AF9 /* DigestEntryProcessingParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigestEntryProcessingParams.h; sourceTree = "<group>"; };
+		0099A151145746E000E35AF9 /* DigestEntryProcessingParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigestEntryProcessingParams.m; sourceTree = "<group>"; };
+		0099A1541457523F00E35AF9 /* AssetPurchaseDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetPurchaseDigestEntry.h; sourceTree = "<group>"; };
+		0099A1551457524000E35AF9 /* AssetPurchaseDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetPurchaseDigestEntry.m; sourceTree = "<group>"; };
+		0099A157145756C900E35AF9 /* AssetSaleDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSaleDigestEntry.h; sourceTree = "<group>"; };
+		0099A158145756CB00E35AF9 /* AssetSaleDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSaleDigestEntry.m; sourceTree = "<group>"; };
+		0099A15A145759D900E35AF9 /* CashFlowDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowDigestEntry.h; sourceTree = "<group>"; };
+		0099A15B145759DC00E35AF9 /* CashFlowDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowDigestEntry.m; sourceTree = "<group>"; };
+		0099A15D14575B0A00E35AF9 /* ExpenseDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseDigestEntry.h; sourceTree = "<group>"; };
+		0099A15E14575B0F00E35AF9 /* ExpenseDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseDigestEntry.m; sourceTree = "<group>"; };
+		0099A16014575E5200E35AF9 /* ExpenseSimInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseSimInfo.h; sourceTree = "<group>"; };
+		0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseSimInfo.m; sourceTree = "<group>"; };
+		0099A163145784CA00E35AF9 /* LoanDownPmtSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanDownPmtSimEvent.h; sourceTree = "<group>"; };
+		0099A164145784CC00E35AF9 /* LoanDownPmtSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanDownPmtSimEvent.m; sourceTree = "<group>"; };
 		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
 		00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableAddViewController.m; sourceTree = "<group>"; };
 		00A14BAA138EC87900663C7F /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
@@ -1345,20 +1367,9 @@
 		004CB03613FC491E000E87A9 /* Digest */ = {
 			isa = PBXGroup;
 			children = (
+				0099A15314574EF700E35AF9 /* Digest Entry */,
 				00254FF6145219FD000AB7B3 /* InputValDigestSummation.h */,
 				00254FF7145219FF000AB7B3 /* InputValDigestSummation.m */,
-				00254FF914523749000AB7B3 /* CashFlowDigestEntry.h */,
-				00254FFA1452374A000AB7B3 /* CashFlowDigestEntry.m */,
-				00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */,
-				00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */,
-				00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */,
-				00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */,
-				004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */,
-				004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */,
-				00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */,
-				00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */,
-				00160CAB1406C9A5001D472F /* CashFlowSummations.h */,
-				00160CAC1406C9A6001D472F /* CashFlowSummations.m */,
 				00160CA81406B363001D472F /* EndOfYearDigestResult.h */,
 				00160CA91406B365001D472F /* EndOfYearDigestResult.m */,
 				004CB01713F9B797000E87A9 /* DigestUpdateEventCreator.h */,
@@ -1487,6 +1498,8 @@
 				00EC458414214B9C00D65D17 /* Loan */,
 				00EC458314214B6300D65D17 /* Savings Contributions */,
 				00EC458214214B4700D65D17 /* Cash Flow */,
+				0099A1661457AC6200E35AF9 /* Income */,
+				0099A1671457ACCD00E35AF9 /* Expense */,
 			);
 			name = "Simulator Inputs";
 			sourceTree = "<group>";
@@ -1591,18 +1604,24 @@
 			children = (
 				0086C0B5142D22A900148785 /* AssetSimInfo.h */,
 				0086C0B6142D22AB00148785 /* AssetSimInfo.m */,
-				0086C0AF142D20C600148785 /* AssetSimEvent.h */,
-				0086C0B0142D20C800148785 /* AssetSimEvent.m */,
-				0086C0B8142D310100148785 /* AssetSaleSimEvent.h */,
-				0086C0B9142D310400148785 /* AssetSaleSimEvent.m */,
-				0086C0B2142D228C00148785 /* AssetPurchaseSimEvent.h */,
-				0086C0B3142D228E00148785 /* AssetPurchaseSimEvent.m */,
 				0086C0A9142D0DC000148785 /* AssetSimEventCreator.h */,
 				0086C0AA142D0DC100148785 /* AssetSimEventCreator.m */,
 				0086C0A6142D0C0B00148785 /* AssetPurchaseSimEventCreator.h */,
 				0086C0A7142D0C0B00148785 /* AssetPurchaseSimEventCreator.m */,
 				0086C0AC142D0FB000148785 /* AssetSaleSimEventCreator.h */,
 				0086C0AD142D0FB100148785 /* AssetSaleSimEventCreator.m */,
+				00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */,
+				00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */,
+				0086C0AF142D20C600148785 /* AssetSimEvent.h */,
+				0086C0B0142D20C800148785 /* AssetSimEvent.m */,
+				0086C0B8142D310100148785 /* AssetSaleSimEvent.h */,
+				0086C0B9142D310400148785 /* AssetSaleSimEvent.m */,
+				0086C0B2142D228C00148785 /* AssetPurchaseSimEvent.h */,
+				0086C0B3142D228E00148785 /* AssetPurchaseSimEvent.m */,
+				0099A1541457523F00E35AF9 /* AssetPurchaseDigestEntry.h */,
+				0099A1551457524000E35AF9 /* AssetPurchaseDigestEntry.m */,
+				0099A157145756C900E35AF9 /* AssetSaleDigestEntry.h */,
+				0099A158145756CB00E35AF9 /* AssetSaleDigestEntry.m */,
 			);
 			name = Asset;
 			sourceTree = "<group>";
@@ -1670,6 +1689,50 @@
 				0099A1461455D61B00E35AF9 /* InputSimInfoCltn.m */,
 			);
 			name = "Sim Info";
+			sourceTree = "<group>";
+		};
+		0099A15314574EF700E35AF9 /* Digest Entry */ = {
+			isa = PBXGroup;
+			children = (
+				0099A150145746DD00E35AF9 /* DigestEntryProcessingParams.h */,
+				0099A151145746E000E35AF9 /* DigestEntryProcessingParams.m */,
+				0099A14F145746AD00E35AF9 /* DigestEntry.h */,
+				00E6CC8713F99FA9005EEC64 /* CashFlowSummation.h */,
+				00E6CC8813F99FA9005EEC64 /* CashFlowSummation.m */,
+				00160CAB1406C9A5001D472F /* CashFlowSummations.h */,
+				00160CAC1406C9A6001D472F /* CashFlowSummations.m */,
+			);
+			name = "Digest Entry";
+			sourceTree = "<group>";
+		};
+		0099A1661457AC6200E35AF9 /* Income */ = {
+			isa = PBXGroup;
+			children = (
+				00254FFC14531413000AB7B3 /* IncomeSimInfo.h */,
+				00254FFD14531415000AB7B3 /* IncomeSimInfo.m */,
+				004CB02013FACE17000E87A9 /* IncomeSimEventCreator.h */,
+				004CB02113FACE18000E87A9 /* IncomeSimEventCreator.m */,
+				004CB02913FAD364000E87A9 /* IncomeSimEvent.h */,
+				004CB02A13FAD364000E87A9 /* IncomeSimEvent.m */,
+				00254FF914523749000AB7B3 /* IncomeDigestEntry.h */,
+				00254FFA1452374A000AB7B3 /* IncomeDigestEntry.m */,
+			);
+			name = Income;
+			sourceTree = "<group>";
+		};
+		0099A1671457ACCD00E35AF9 /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+				0099A16014575E5200E35AF9 /* ExpenseSimInfo.h */,
+				0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */,
+				004CB02313FAD0BA000E87A9 /* ExpenseSimEventCreator.h */,
+				004CB02413FAD0BA000E87A9 /* ExpenseSimEventCreator.m */,
+				004CB02613FAD1D2000E87A9 /* ExpenseSimEvent.h */,
+				004CB02713FAD1D2000E87A9 /* ExpenseSimEvent.m */,
+				0099A15D14575B0A00E35AF9 /* ExpenseDigestEntry.h */,
+				0099A15E14575B0F00E35AF9 /* ExpenseDigestEntry.m */,
+			);
+			name = Expense;
 			sourceTree = "<group>";
 		};
 		00A36BC6136C6CAD008A5C4C = {
@@ -1839,18 +1902,10 @@
 		00EC458214214B4700D65D17 /* Cash Flow */ = {
 			isa = PBXGroup;
 			children = (
-				00254FFC14531413000AB7B3 /* IncomeSimInfo.h */,
-				00254FFD14531415000AB7B3 /* IncomeSimInfo.m */,
+				0099A15A145759D900E35AF9 /* CashFlowDigestEntry.h */,
+				0099A15B145759DC00E35AF9 /* CashFlowDigestEntry.m */,
 				005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */,
 				005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */,
-				004CB02013FACE17000E87A9 /* IncomeSimEventCreator.h */,
-				004CB02113FACE18000E87A9 /* IncomeSimEventCreator.m */,
-				004CB02313FAD0BA000E87A9 /* ExpenseSimEventCreator.h */,
-				004CB02413FAD0BA000E87A9 /* ExpenseSimEventCreator.m */,
-				004CB02613FAD1D2000E87A9 /* ExpenseSimEvent.h */,
-				004CB02713FAD1D2000E87A9 /* ExpenseSimEvent.m */,
-				004CB02913FAD364000E87A9 /* IncomeSimEvent.h */,
-				004CB02A13FAD364000E87A9 /* IncomeSimEvent.m */,
 			);
 			name = "Cash Flow";
 			sourceTree = "<group>";
@@ -1862,6 +1917,8 @@
 				004CB03813FC831B000E87A9 /* SavingsContributionSimEvent.m */,
 				004CB03A13FC8355000E87A9 /* SavingsContributionSimEventCreator.h */,
 				004CB03B13FC8357000E87A9 /* SavingsContributionSimEventCreator.m */,
+				004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */,
+				004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */,
 			);
 			name = "Savings Contributions";
 			sourceTree = "<group>";
@@ -1871,14 +1928,18 @@
 			children = (
 				0086C0861427D5E300148785 /* LoanSimInfo.h */,
 				0086C0871427D5E300148785 /* LoanSimInfo.m */,
-				00EC458814225B9000D65D17 /* LoanPaymentSimEvent.h */,
-				00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */,
 				00EC458514214C1E00D65D17 /* LoanPaymentSimEventCreator.h */,
 				00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */,
 				0086C07F14279A3B00148785 /* DownPaymentSimEventCreator.h */,
 				0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */,
 				0086C0891428FCE400148785 /* ExtraPaymentSimEventCreator.h */,
 				0086C08A1428FCE400148785 /* ExtraPaymentSimEventCreator.m */,
+				00EC458814225B9000D65D17 /* LoanPaymentSimEvent.h */,
+				00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */,
+				0099A163145784CA00E35AF9 /* LoanDownPmtSimEvent.h */,
+				0099A164145784CC00E35AF9 /* LoanDownPmtSimEvent.m */,
+				00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */,
+				00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */,
 			);
 			name = Loan;
 			sourceTree = "<group>";
@@ -2214,13 +2275,20 @@
 				00254FF2144E62F2000AB7B3 /* MultiScenarioSimDate.m in Sources */,
 				00254FF5144F22C3000AB7B3 /* MultiScenarioSimEndDate.m in Sources */,
 				00254FF814521A02000AB7B3 /* InputValDigestSummation.m in Sources */,
-				00254FFB1452374B000AB7B3 /* CashFlowDigestEntry.m in Sources */,
+				00254FFB1452374B000AB7B3 /* IncomeDigestEntry.m in Sources */,
 				00254FFE14531415000AB7B3 /* IncomeSimInfo.m in Sources */,
 				0099A1411455D03400E35AF9 /* ItemizedTaxCalcPopulator.m in Sources */,
 				0099A1441455D1AA00E35AF9 /* TaxInputCalc.m in Sources */,
 				0099A1471455D61C00E35AF9 /* InputSimInfoCltn.m in Sources */,
 				0099A14B1455EF4600E35AF9 /* ItemizedTaxCalcEntry.m in Sources */,
 				0099A14E1455F42A00E35AF9 /* ItemizedTaxCalcEntries.m in Sources */,
+				0099A152145746E300E35AF9 /* DigestEntryProcessingParams.m in Sources */,
+				0099A1561457524000E35AF9 /* AssetPurchaseDigestEntry.m in Sources */,
+				0099A159145756CC00E35AF9 /* AssetSaleDigestEntry.m in Sources */,
+				0099A15C145759DF00E35AF9 /* CashFlowDigestEntry.m in Sources */,
+				0099A15F14575B1200E35AF9 /* ExpenseDigestEntry.m in Sources */,
+				0099A16214575E5A00E35AF9 /* ExpenseSimInfo.m in Sources */,
+				0099A165145784CD00E35AF9 /* LoanDownPmtSimEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,6 +45,7 @@
 #import "AssetSimInfo.h"
 #import "AssetPurchaseSimEventCreator.h"
 #import "AssetSaleSimEventCreator.h"
+#import "ExpenseSimInfo.h"
 
 #import "TaxInput.h"
 #import "TaxInputCalc.h"
@@ -116,10 +117,10 @@
 		if([SimInputHelper multiScenBoolVal:expense.cashFlowEnabled
 				andScenario:simParams.simScenario])
 		{
-			// TODO - Create an InputValDigestSummation to track the overall amount
-			// spent for this particular expense. 
+			ExpenseSimInfo *expenseInfo = [[[ExpenseSimInfo alloc] initWithExpense:expense] autorelease]; 
+			
 			[self.eventCreators addObject:
-				[[[ExpenseSimEventCreator alloc]initWithExpense:expense] autorelease]];
+				[[[ExpenseSimEventCreator alloc]initWithExpenseInfo:expenseInfo] autorelease]];
 		}
     }
 

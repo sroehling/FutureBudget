@@ -9,27 +9,29 @@
 #import "ExpenseSimEventCreator.h"
 #import "ExpenseSimEvent.h"
 #import "ExpenseInput.h"
+#import "ExpenseSimInfo.h"
 
 #import "SimEvent.h"
 
 @implementation ExpenseSimEventCreator
 
-@synthesize expense;
+@synthesize expenseInfo;
 
 - (SimEvent*) createCashFlowSimEvent:(double)cashFlowAmount andEventDate:(NSDate*)theDate
 {	
 	ExpenseSimEvent *expenseEvent = [[[ExpenseSimEvent alloc]initWithEventCreator:self 
-			andEventDate:theDate andAmount:cashFlowAmount] autorelease];
+			andEventDate:theDate andAmount:cashFlowAmount andExpenseInfo:self.expenseInfo] autorelease];
 
 	return expenseEvent;
 }
 
-- (id)initWithExpense:(ExpenseInput*)theExpense
+- (id)initWithExpenseInfo:(ExpenseSimInfo*)theExpenseInfo
 {
-	self = [super initWithCashFlow:theExpense];
+	self = [super initWithCashFlow:theExpenseInfo.expense];
 	if(self)
 	{
-		self.expense = theExpense;
+		assert(theExpenseInfo != nil);
+		self.expenseInfo = theExpenseInfo;
 	}
 	return self;
 }
@@ -42,7 +44,7 @@
 - (void)dealloc
 {
 	[super dealloc];
-	[expense release];
+	[expenseInfo release];
 }
 
 @end

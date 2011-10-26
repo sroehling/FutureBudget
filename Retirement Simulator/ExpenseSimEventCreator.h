@@ -10,15 +10,15 @@
 
 #import "CashFlowSimEventCreator.h"
 
-@class ExpenseInput;
+@class ExpenseSimInfo;
 
 @interface ExpenseSimEventCreator : CashFlowSimEventCreator {
     @private
-		ExpenseInput *expense;
+		ExpenseSimInfo *expenseInfo;
 }
 
-- (id)initWithExpense:(ExpenseInput*)theExpense;
+- (id)initWithExpenseInfo:(ExpenseSimInfo*)theExpenseInfo;
 
-@property(nonatomic,retain) ExpenseInput *expense;
+@property(nonatomic,retain) ExpenseSimInfo *expenseInfo;
 
 @end

@@ -13,7 +13,7 @@
 #import "FiscalYearDigest.h"
 #import "CashFlowSummations.h"
 #import "IncomeSimInfo.h"
-#import "CashFlowDigestEntry.h"
+#import "IncomeDigestEntry.h"
 
 
 @implementation IncomeSimEvent
@@ -32,9 +32,10 @@
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		  
-	CashFlowDigestEntry *digestEntry = [[[CashFlowDigestEntry alloc] initWithAmount:self.incomeAmount andCashFlowSummation:self.incomeInfo.digestSum] autorelease];	  
+	IncomeDigestEntry *digestEntry = [[[IncomeDigestEntry alloc] 
+		initWithAmount:self.incomeAmount andCashFlowSummation:self.incomeInfo.digestSum] autorelease];	  
 		  
-	[digest.cashFlowSummations addIncome:digestEntry onDate:self.eventDate];
+	[digest.cashFlowSummations addDigestEntry:digestEntry onDate:self.eventDate];
 }
 
 

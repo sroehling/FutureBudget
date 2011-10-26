@@ -35,7 +35,7 @@
 		[[[SavingsContribDigestEntry alloc] 
 		initWithWorkingBalance:self.savingsBalance 
 		andContribAmount:self.contributionAmount] autorelease];
-	[digest.cashFlowSummations addSavingsContrib:savingsContrib onDate:self.eventDate];
+	[digest.cashFlowSummations addDigestEntry:savingsContrib onDate:self.eventDate];
 }
 
 

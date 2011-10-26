@@ -13,8 +13,7 @@
 @implementation CashFlowSummations
 
 @synthesize startDate;
-@synthesize yearlySummation;
-
+@synthesize cashFlowSummations;
 
 -(id)initWithStartDate:(NSDate*)theStartDate
 {
@@ -26,10 +25,9 @@
 		{
 			summationInit[i] = [[[CashFlowSummation alloc] init] autorelease];
 		}
-		cashFlowSummations = [[NSArray alloc] initWithObjects:summationInit count:MAX_DAYS_IN_YEAR];
-		
-		self.yearlySummation = [[[CashFlowSummation alloc] init] autorelease];
-		
+		self.cashFlowSummations = [[[NSArray alloc] 
+			initWithObjects:summationInit count:MAX_DAYS_IN_YEAR] autorelease];
+				
 		assert(theStartDate != nil);
 		self.startDate = theStartDate;
 	}
@@ -42,16 +40,14 @@
 }
 
 
-
 - (void)resetSummations
 {
 	for(int i=0; i < MAX_DAYS_IN_YEAR; i++)
 	{
-		CashFlowSummation *theSummation = (CashFlowSummation*)[cashFlowSummations objectAtIndex:i];
+		CashFlowSummation *theSummation = (CashFlowSummation*)[self.cashFlowSummations objectAtIndex:i];
 		assert(theSummation != nil);
 		[theSummation resetSummations];
 	}
-	[yearlySummation resetSummations];
 }
 
 - (void)resetSummationsAndAdvanceStartDate:(NSDate*)newStartDate
@@ -70,7 +66,7 @@
 	assert(timeAfterStart>=0.0);
 	NSInteger daysSinceStart = floor(timeAfterStart / SECONDS_PER_DAY);
 	assert(daysSinceStart < MAX_DAYS_IN_YEAR);
-	CashFlowSummation *theSummation = (CashFlowSummation*)[cashFlowSummations objectAtIndex:daysSinceStart];
+	CashFlowSummation *theSummation = (CashFlowSummation*)[self.cashFlowSummations objectAtIndex:daysSinceStart];
 	assert(theSummation != nil);
 	return theSummation;
 }
@@ -80,39 +76,18 @@
 	assert(dayIndex >= 0);
 	assert(dayIndex < MAX_DAYS_IN_YEAR);
 	CashFlowSummation *cashFlowSummation = 
-			(CashFlowSummation*)[cashFlowSummations objectAtIndex:dayIndex];
+			(CashFlowSummation*)[self.cashFlowSummations objectAtIndex:dayIndex];
 	assert(cashFlowSummation != nil);
 	return cashFlowSummation;
 }
 
-- (void)addExpense:(BalanceAdjustment*)amount onDate:(NSDate*)expenseDate
+
+-(void)addDigestEntry:(id<DigestEntry>)digestEntry onDate:(NSDate*)entryDate
 {
-	CashFlowSummation *theSummation = [self summationForDate:expenseDate];
-	[theSummation addExpense:amount];
-	[yearlySummation addExpense:amount];
+	CashFlowSummation *theSummation = [self summationForDate:entryDate];
+	[theSummation addDigestEntry:digestEntry];
 }
 
--(void)addIncome:(CashFlowDigestEntry*)incomeEntry onDate:(NSDate*)incomeDate
-{
-	CashFlowSummation *theSummation = [self summationForDate:incomeDate];
-	[theSummation addIncome:incomeEntry];
-	[yearlySummation addIncome:incomeEntry];
-}
-
-- (void)addAssetPurchase:(AssetDigestEntry *)assetEntry onDate:(NSDate*)purchaseDate
-{
-	CashFlowSummation *theSummation = [self summationForDate:purchaseDate];
-	[theSummation addAssetPurchase:assetEntry];
-	[yearlySummation addAssetPurchase:assetEntry];
-}
-
-- (void)addAssetSale:(AssetDigestEntry *)assetEntry onDate:(NSDate*)purchaseDate
-{
-	CashFlowSummation *theSummation = [self summationForDate:purchaseDate];
-	[theSummation addAssetSale:assetEntry];
-	[yearlySummation addAssetSale:assetEntry];
-
-}
 
 - (void)markEndDateForEstimatedTaxAccrual:(NSDate*)taxEndDate
 {
@@ -127,27 +102,11 @@
 
 }
 
-- (void)addSavingsContrib:(SavingsContribDigestEntry*)savingsContrib onDate:(NSDate*)contribDate
-{
-	CashFlowSummation *theSummation = [self summationForDate:contribDate];
-	[theSummation addSavingsContrib:savingsContrib];
-	[yearlySummation addSavingsContrib:savingsContrib];
-}
-
-
-- (void)addLoanPmt:(LoanPmtDigestEntry*)loanPmt onDate:(NSDate*)pmtDate;
-{
-	CashFlowSummation *theSummation = [self summationForDate:pmtDate];
-	[theSummation addLoanPmt:loanPmt];
-	[yearlySummation addLoanPmt:loanPmt];
-}
-
 - (void) dealloc
 {
 	[super dealloc];
 	[cashFlowSummations release];
 	[startDate release];
-	[yearlySummation release];
 }
 
 

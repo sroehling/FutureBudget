@@ -2,13 +2,12 @@
 //  CashFlowDigestEntry.m
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 10/21/11.
+//  Created by Steve Roehling on 10/25/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "CashFlowDigestEntry.h"
-#import "InputValDigestSummation.h"
-#import "WorkingBalanceMgr.h"
+
 
 @implementation CashFlowDigestEntry
 
@@ -30,12 +29,6 @@
 	return self;
 }
 
--(void)processEntry:(WorkingBalanceMgr*)workingBalanceMgr
-	andDate:(NSDate*)currentDate
-{
-		[self.cashFlowSummation incrementSum:self.amount];
-		[workingBalanceMgr incrementCashBalance:amount asOfDate:currentDate];
-}
 
 -(id)init
 {
@@ -48,5 +41,6 @@
 	[super dealloc];
 	[cashFlowSummation release];
 }
+
 
 @end
