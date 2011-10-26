@@ -11,7 +11,7 @@
 #import "NumberHelper.h"
 #import "DateHelper.h"
 #import "FiscalYearDigest.h"
-#import "CashFlowSummations.h"
+#import "FiscalYearDigestEntries.h"
 #import "IncomeSimInfo.h"
 #import "IncomeDigestEntry.h"
 
@@ -35,7 +35,7 @@
 	IncomeDigestEntry *digestEntry = [[[IncomeDigestEntry alloc] 
 		initWithAmount:self.incomeAmount andCashFlowSummation:self.incomeInfo.digestSum] autorelease];	  
 		  
-	[digest.cashFlowSummations addDigestEntry:digestEntry onDate:self.eventDate];
+	[digest.digestEntries addDigestEntry:digestEntry onDate:self.eventDate];
 }
 
 

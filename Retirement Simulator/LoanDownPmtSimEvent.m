@@ -11,7 +11,7 @@
 #import "ExpenseDigestEntry.h"
 #import "InputValDigestSummation.h"
 #import "FiscalYearDigest.h"
-#import "CashFlowSummations.h"
+#import "FiscalYearDigestEntries.h"
 
 
 @implementation LoanDownPmtSimEvent
@@ -40,7 +40,7 @@
 		[[[ExpenseDigestEntry alloc] initWithAmount:self.downPmtAmt 
 			andCashFlowSummation:digestSum] autorelease];
 		  
-	[digest.cashFlowSummations addDigestEntry:expenseEntry onDate:self.eventDate];
+	[digest.digestEntries addDigestEntry:expenseEntry onDate:self.eventDate];
 }
 
 

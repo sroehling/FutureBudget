@@ -13,7 +13,7 @@
 #import "NumberHelper.h"
 #import "FiscalYearDigest.h"
 #import "BalanceAdjustment.h"
-#import "CashFlowSummations.h"
+#import "FiscalYearDigestEntries.h"
 #import "ExpenseDigestEntry.h"
 
 @implementation ExpenseSimEvent
@@ -58,7 +58,7 @@
 		[[[ExpenseDigestEntry alloc] initWithAmount:self.expenseAmount 
 			andCashFlowSummation:self.expenseInfo.digestSum] autorelease];
 		  
-	[digest.cashFlowSummations addDigestEntry:expenseEntry onDate:self.eventDate];
+	[digest.digestEntries addDigestEntry:expenseEntry onDate:self.eventDate];
 }
 
 

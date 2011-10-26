@@ -11,7 +11,7 @@
 #import "DateHelper.h"
 #import "InterestBearingWorkingBalance.h"
 #import "LoanPmtDigestEntry.h"
-#import "CashFlowSummations.h"
+#import "FiscalYearDigestEntries.h"
 #import "FiscalYearDigest.h"
 
 
@@ -33,7 +33,7 @@
 		  
 	LoanPmtDigestEntry *loanPmt = [[[LoanPmtDigestEntry alloc] 
 		initWithBalance:self.loanBalance andPayment:self.paymentAmt] autorelease];
-	[digest.cashFlowSummations addDigestEntry:loanPmt onDate:self.eventDate];
+	[digest.digestEntries addDigestEntry:loanPmt onDate:self.eventDate];
 }
 
 

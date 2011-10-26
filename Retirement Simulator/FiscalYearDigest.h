@@ -12,11 +12,11 @@
 @class WorkingBalanceMgr;
 @class SavingsContribDigestEntry;
 @class BalanceAdjustment;
-@class CashFlowSummations;
+@class FiscalYearDigestEntries;
 
 @interface FiscalYearDigest : NSObject {
     @private
-		CashFlowSummations *cashFlowSummations;
+		FiscalYearDigestEntries *digestEntries;
 		NSDate *startDate;
 		WorkingBalanceMgr *workingBalanceMgr;
 		
@@ -29,7 +29,7 @@
 
 @property(nonatomic,retain) NSDate *startDate;
 @property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
-@property(nonatomic,retain) CashFlowSummations *cashFlowSummations;
+@property(nonatomic,retain) FiscalYearDigestEntries *digestEntries;
 @property(nonatomic,retain) NSMutableArray *savedEndOfYearResults;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "EstimatedTaxAccrualSimEvent.h"
 #import "FiscalYearDigest.h"
-#import "CashFlowSummations.h"
+#import "FiscalYearDigestEntries.h"
 #import "DateHelper.h"
 
 
@@ -19,7 +19,7 @@
 	NSLog(@"Estimated tax accrual: %@ %@",
 		[[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		[self.eventDate description]);
-	[digest.cashFlowSummations markEndDateForEstimatedTaxAccrual:self.eventDate];
+	[digest.digestEntries markEndDateForEstimatedTaxAccrual:self.eventDate];
 }
 
 

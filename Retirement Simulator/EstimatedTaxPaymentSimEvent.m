@@ -9,7 +9,7 @@
 #import "EstimatedTaxPaymentSimEvent.h"
 #import "DateHelper.h"
 #import "FiscalYearDigest.h"
-#import "CashFlowSummations.h"
+#import "FiscalYearDigestEntries.h"
 
 
 @implementation EstimatedTaxPaymentSimEvent
@@ -19,7 +19,7 @@
 	NSLog(@"Estimated tax payment: %@ %@",
 		[[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		[self.eventDate description]);
-	[digest.cashFlowSummations markDateForEstimatedTaxPayment:self.eventDate];
+	[digest.digestEntries markDateForEstimatedTaxPayment:self.eventDate];
 }
 
 

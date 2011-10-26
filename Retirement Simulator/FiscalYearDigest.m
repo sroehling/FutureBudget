@@ -7,7 +7,7 @@
 //
 
 #import "FiscalYearDigest.h"
-#import "CashFlowSummation.h"
+#import "DigestEntryCltn.h"
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "CashWorkingBalance.h"
@@ -18,7 +18,7 @@
 #import "InterestBearingWorkingBalance.h"
 #import "EndOfYearDigestResult.h"
 #import "Cash.h"
-#import "CashFlowSummations.h"
+#import "FiscalYearDigestEntries.h"
 #import "WorkingBalanceAdjustment.h"
 #import "LoanPmtDigestEntry.h"
 #import "DigestEntryProcessingParams.h"
@@ -31,7 +31,7 @@
 
 @synthesize startDate;
 @synthesize workingBalanceMgr;
-@synthesize cashFlowSummations;
+@synthesize digestEntries;
 @synthesize savedEndOfYearResults;
 
 -(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr
@@ -43,7 +43,7 @@
 				
 		self.startDate = theStartDate;
 
-		self.cashFlowSummations = [[[CashFlowSummations alloc] initWithStartDate:theStartDate] autorelease];
+		self.digestEntries = [[[FiscalYearDigestEntries alloc] initWithStartDate:theStartDate] autorelease];
 		
 		assert(wbMgr != nil);
 		self.workingBalanceMgr = wbMgr;
@@ -86,20 +86,20 @@
 	NSDate *currentDate = self.startDate;
 	for(int currDayIndex=0; currDayIndex < MAX_DAYS_IN_YEAR; currDayIndex++)
 	{
-		CashFlowSummation *currDayCashFlowSummation = 
-			[self.cashFlowSummations summationForDayIndex:currDayIndex];
+		DigestEntryCltn *currDayDigestEntries = 
+			[self.digestEntries entriesForDayIndex:currDayIndex];
 		
-		if([currDayCashFlowSummation.digestEntries count] > 0)
+		if([currDayDigestEntries.digestEntries count] > 0)
 		{
 			DigestEntryProcessingParams *processingParams = 
 				[[DigestEntryProcessingParams alloc] initWithWorkingBalanceMgr:self.workingBalanceMgr andDayIndex:currDayIndex andCurrentDate:currentDate];
-			for(id<DigestEntry> digestEntry in currDayCashFlowSummation.digestEntries)
+			for(id<DigestEntry> digestEntry in currDayDigestEntries.digestEntries)
 			{
 				[digestEntry processDigestEntry:processingParams];
 			}
 			[processingParams release];
 		}
-		if([currDayCashFlowSummation isEndDateForEstimatedTaxes])
+		if([currDayDigestEntries isEndDateForEstimatedTaxes])
 		{
 			// Advance all balances and accrue interest to the current date. This is needed so that
 			// all the estimated taxes can be included. 
@@ -108,7 +108,7 @@
 
 			[self.workingBalanceMgr setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:currentDate];
 		}
-		if([currDayCashFlowSummation isEstimatedTaxPaymentDay])
+		if([currDayDigestEntries isEstimatedTaxPaymentDay])
 		{
 		/*
 			double taxPaymentAmount = [self.workingBalanceMgr 
@@ -191,7 +191,7 @@
 	[self.workingBalanceMgr carryBalancesForward:self.startDate];
 	NSLog(@"Done Advancing digest to next year start = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
-	[self.cashFlowSummations resetSummationsAndAdvanceStartDate:self.startDate];
+	[self.digestEntries resetEntriesAndAdvanceStartDate:self.startDate];
 }
 
 - (id) init
@@ -202,7 +202,7 @@
 - (void) dealloc
 {
 	[super dealloc];
-	[cashFlowSummations release];
+	[digestEntries release];
 	[startDate release];
 	[savedEndOfYearResults release];
 
