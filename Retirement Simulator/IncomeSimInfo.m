@@ -10,6 +10,8 @@
 
 #import "IncomeInput.h"
 #import "InputValDigestSummation.h"
+#import "SimParams.h"
+#import "InputValDigestSummations.h"
 
 
 @implementation IncomeSimInfo
@@ -17,7 +19,7 @@
 @synthesize digestSum;
 @synthesize income;
 
--(id)initWithIncome:(IncomeInput*)theIncome
+-(id)initWithIncome:(IncomeInput*)theIncome andSimParams:(SimParams*)theSimParams
 {
 	self = [super init];
 	if(self)
@@ -26,6 +28,7 @@
 		self.income = theIncome;
 
 		self.digestSum = [[[InputValDigestSummation alloc] init] autorelease];
+		[theSimParams.digestSums addDigestSum:self.digestSum];
 	}
 	return self;
 }

@@ -20,6 +20,6 @@
 @property(nonatomic,retain) InputValDigestSummation *digestSum;
 
 -(id)initWithTaxPerc:(double)taxPerc andDigestSum:(InputValDigestSummation*)theSum;
--(double)calcItemizedTaxAmt;
+-(double)calcYearlyItemizedAmt;
 
 @end

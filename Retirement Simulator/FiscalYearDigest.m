@@ -26,29 +26,31 @@
 #import "AssetDigestEntry.h"
 #import "IncomeDigestEntry.h"
 #import "DigestEntry.h"
+#import "TaxInputCalcs.h"
+#import "SimParams.h"
 
 @implementation FiscalYearDigest
 
-@synthesize startDate;
-@synthesize workingBalanceMgr;
+@synthesize simParams;
 @synthesize digestEntries;
 @synthesize savedEndOfYearResults;
+@synthesize currentYearDigestStartDate;
 
--(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr
+
+-(id)initWithSimParams:(SimParams*)theSimParams
 {
 	self = [super init];
 	if(self)
 	{
-		assert(theStartDate != nil);
-				
-		self.startDate = theStartDate;
+		assert(theSimParams != nil);
+		self.simParams = theSimParams;
 
-		self.digestEntries = [[[FiscalYearDigestEntries alloc] initWithStartDate:theStartDate] autorelease];
-		
-		assert(wbMgr != nil);
-		self.workingBalanceMgr = wbMgr;
-		
+		self.digestEntries = [[[FiscalYearDigestEntries alloc] 
+			initWithStartDate:self.simParams.digestStartDate] autorelease];
 		self.savedEndOfYearResults = [[[NSMutableArray alloc] init] autorelease];
+		
+		self.currentYearDigestStartDate = self.simParams.digestStartDate;
+
 	}
 	return self;
 }
@@ -58,9 +60,8 @@
 	advanceToDate:(NSDate*)advanceDate
 {
 	BalanceAdjustment *interestAccruedForAdvance = 
-		[self.workingBalanceMgr advanceBalancesToDate:advanceDate];
+		[self.simParams.workingBalanceMgr advanceBalancesToDate:advanceDate];
 	
-		
 	// TODO - Need to store itemized sums of interest
 	// for the TaxInputCalc objects.			
 	/*
@@ -77,13 +78,14 @@
 - (EndOfYearDigestResult*)processDigest
 {
 	
-	[self.workingBalanceMgr resetCurrentBalances];
-	NSDate *endOfYearDate = [DateHelper endOfYear:self.startDate];
+	[self.simParams.workingBalanceMgr resetCurrentBalances];
+	NSDate *endOfYearDate = [DateHelper endOfYear:self.currentYearDigestStartDate];
 
 	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] 
 		initWithEndDate:endOfYearDate] autorelease];
 	
-	NSDate *currentDate = self.startDate;
+	NSDate *currentDate = self.currentYearDigestStartDate;
+	
 	for(int currDayIndex=0; currDayIndex < MAX_DAYS_IN_YEAR; currDayIndex++)
 	{
 		DigestEntryCltn *currDayDigestEntries = 
@@ -92,7 +94,9 @@
 		if([currDayDigestEntries.digestEntries count] > 0)
 		{
 			DigestEntryProcessingParams *processingParams = 
-				[[DigestEntryProcessingParams alloc] initWithWorkingBalanceMgr:self.workingBalanceMgr andDayIndex:currDayIndex andCurrentDate:currentDate];
+				[[DigestEntryProcessingParams alloc] 
+				initWithWorkingBalanceMgr:self.simParams.workingBalanceMgr 
+				andDayIndex:currDayIndex andCurrentDate:currentDate];
 			for(id<DigestEntry> digestEntry in currDayDigestEntries.digestEntries)
 			{
 				[digestEntry processDigestEntry:processingParams];
@@ -106,7 +110,7 @@
 			[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
 				advanceToDate:currentDate];
 
-			[self.workingBalanceMgr setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:currentDate];
+			[self.simParams.workingBalanceMgr setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:currentDate];
 		}
 		if([currDayDigestEntries isEstimatedTaxPaymentDay])
 		{
@@ -120,16 +124,19 @@
 		currentDate = [DateHelper nextDay:currentDate];
 	} // for each day in the year
 
+	// Update the effective tax rates for the tax inputs. This needs to be done at the end of 
+	// processing the digest, since all the InputValDigestSummation objects referenced by the
+	// TaxInputCalcs will have been populated with income, interest, etc.
+	[self.simParams.taxInputCalcs updateEffectiveTaxRates];
 
 	// Advance all the working balances to the end of this year. Although none of the current balances
 	// are changed, some interest might be accrued leading up to the end of the year. This interest
 	// needs to be included in the total interest for the year, so that taxes can be calculated.
 	[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
-		advanceToDate:[DateHelper beginningOfNextYear:self.startDate]];
+		advanceToDate:[DateHelper beginningOfNextYear:self.currentYearDigestStartDate]];
 
-	endOfYearResults.totalEndOfYearBalance = [self.workingBalanceMgr totalCurrentNetBalance];
+	endOfYearResults.totalEndOfYearBalance = [self.simParams.workingBalanceMgr totalCurrentNetBalance];
 	[endOfYearResults logResults];
-	[self.workingBalanceMgr logCurrentBalances];
 
 	return endOfYearResults;
 }
@@ -140,7 +147,6 @@
 
 
 	//-------------------------------------------------------------------------------------
-	NSLog(@"doMultiPassDigestCalcs: Starting first pass of digest calculations");
 	// In the first pass, we use just the total income as an estimation of the taxes
 	// to be paid. Not having processed the digest entries for withdrawals and
 	// savings interest, we can't include that yet in the total. As a result, the
@@ -156,7 +162,6 @@
 	EndOfYearDigestResult *firstPassResults = [self processDigest];
 
 	//-------------------------------------------------------------------------------------
-	NSLog(@"doMultiPassDigestCalcs: Starting 2nd pass of digest calculations");
 	// For the second pass, also include in the taxable income calculations the 
 	// taxable savings interest and any taxable account withdrawals incurred through expenses 
 
@@ -168,10 +173,6 @@
 		
 	EndOfYearDigestResult *secondPassResults = [self processDigest];
 	
-		
-	
-	NSLog(@"doMultiPassDigestCalcs: Done with digest calculations");
-	
 	return secondPassResults;
 
 }
@@ -179,19 +180,17 @@
 - (void)advanceToNextYear
 {
 	NSLog(@"Advancing digest to next year from last year start = %@",
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
-	[self.workingBalanceMgr logCurrentBalances];
+		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.currentYearDigestStartDate]);
+//	[self.simParams.workingBalanceMgr logCurrentBalances];
 
 	EndOfYearDigestResult *endOfYearResults = [self doMultiPassDigestCalcs];
 	assert(endOfYearResults != nil);
 	[self.savedEndOfYearResults addObject:endOfYearResults];
 
 	// Advance the digest to the next year
-	self.startDate = [DateHelper beginningOfNextYear:self.startDate];
-	[self.workingBalanceMgr carryBalancesForward:self.startDate];
-	NSLog(@"Done Advancing digest to next year start = %@",
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.startDate]);
-	[self.digestEntries resetEntriesAndAdvanceStartDate:self.startDate];
+	self.currentYearDigestStartDate = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
+	[self.simParams.workingBalanceMgr carryBalancesForward:self.currentYearDigestStartDate];
+	[self.digestEntries resetEntriesAndAdvanceStartDate:self.currentYearDigestStartDate];
 }
 
 - (id) init
@@ -203,9 +202,9 @@
 {
 	[super dealloc];
 	[digestEntries release];
-	[startDate release];
+	[currentYearDigestStartDate release];
 	[savedEndOfYearResults release];
-
+	[simParams release];
 }
 
 @end

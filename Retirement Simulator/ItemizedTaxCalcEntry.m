@@ -37,10 +37,9 @@
 	return nil;
 }
 
--(double)calcItemizedTaxAmt
+-(double)calcYearlyItemizedAmt
 {
-	assert(digestSum.currentSum >= 0.0);
-	return self.applicableTaxPerc * digestSum.currentSum;
+	return self.applicableTaxPerc * digestSum.yearlyTotal;
 }
 
 -(void)dealloc

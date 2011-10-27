@@ -11,12 +11,12 @@
 
 @interface InputValDigestSummation : NSObject {
     @private
-		double currentSum;
+		double *currentSum;
 }
 
-@property double currentSum;
-
 -(void)resetSum;
--(void)incrementSum:(double)amount;
+-(void)incrementSum:(double)amount onDay:(NSInteger)dayIndex;
+
+-(double)yearlyTotal;
 
 @end

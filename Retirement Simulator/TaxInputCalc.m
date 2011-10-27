@@ -13,12 +13,15 @@
 #import "ItemizedTaxCalcPopulator.h"
 #import "SimParams.h"
 #import "ItemizedTaxCalcEntries.h"
+#import "TaxBracketCalc.h"
 #import "IncomeSimInfo.h"
 
 @implementation TaxInputCalc
 
 @synthesize taxInput;
 @synthesize incomeCalcEntries;
+@synthesize effectiveTaxRate;
+@synthesize taxBracketCalc;
 
 -(id)initWithTaxInput:(TaxInput*)theTaxInput andSimParams:(SimParams*)theSimParams
 {
@@ -28,8 +31,11 @@
 		assert(theTaxInput != nil);
 		self.taxInput = theTaxInput;
 		
-		self.incomeCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams andItemizedTaxAmts:self.taxInput.itemizedIncomeSources] autorelease];
-		
+		self.incomeCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
+			andItemizedTaxAmts:self.taxInput.itemizedIncomeSources] autorelease];
+			
+		self.taxBracketCalc = [[[TaxBracketCalc alloc] initWithTaxBracket:theTaxInput.taxBracket] autorelease];
+		self.effectiveTaxRate = 0.0;
 	}
 	return self;
 }
@@ -40,11 +46,22 @@
 	return nil;
 }
 
+
+-(void)updateEffectiveTaxRate
+{
+	double grossIncome = [self.incomeCalcEntries calcTotalYearlyItemizedAmt];
+	
+	// TODO - subtract off deductions, std deduction, etc. to come up with taxable income;
+	double taxableIncome = grossIncome;
+	self.effectiveTaxRate = [self.taxBracketCalc calcEffectiveTaxRate:taxableIncome];
+}
+
 -(void)dealloc
 {
 	[super dealloc];
 	[taxInput release];
 	[incomeCalcEntries release];
+	[taxBracketCalc release];
 }
 
 @end

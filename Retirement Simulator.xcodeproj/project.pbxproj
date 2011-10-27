@@ -111,6 +111,9 @@
 		004F5D8B1374566200E0C4A3 /* TestSimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8A1374566200E0C4A3 /* TestSimEngine.m */; };
 		004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */; };
 		004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D9613749AB300E0C4A3 /* TestSimEvent.m */; };
+		0052E20514586FC900FEC4E2 /* TaxBracketCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E20414586FC900FEC4E2 /* TaxBracketCalc.m */; };
+		0052E2081459B03300FEC4E2 /* TaxInputCalcs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E2071459B03300FEC4E2 /* TaxInputCalcs.m */; };
+		0052E20B1459BB0900FEC4E2 /* InputValDigestSummations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E20A1459BB0800FEC4E2 /* InputValDigestSummations.m */; };
 		0055A881141681C500EFB95C /* BoolInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A880141681C400EFB95C /* BoolInputValue.m */; };
 		0055A88A1416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */; };
 		0055A8951417DB4C00EFB95C /* TableCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8941417DB4A00EFB95C /* TableCellHelper.m */; };
@@ -307,7 +310,7 @@
 		00160CA514055DFD001D472F /* BalanceAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceAdjustment.m; sourceTree = "<group>"; };
 		00160CA81406B363001D472F /* EndOfYearDigestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndOfYearDigestResult.h; sourceTree = "<group>"; };
 		00160CA91406B365001D472F /* EndOfYearDigestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearDigestResult.m; sourceTree = "<group>"; };
-		00160CAB1406C9A5001D472F /* FiscalYearDigestEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; path = FiscalYearDigestEntries.h; sourceTree = "<group>"; };
+		00160CAB1406C9A5001D472F /* FiscalYearDigestEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestEntries.h; sourceTree = "<group>"; };
 		00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestEntries.m; sourceTree = "<group>"; };
 		00237955143E4F5D006650E3 /* TaxBracketEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntry.h; sourceTree = "<group>"; };
 		00237956143E4F5D006650E3 /* TaxBracketEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketEntry.m; sourceTree = "<group>"; };
@@ -491,6 +494,12 @@
 		004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEventCreator.m; sourceTree = "<group>"; };
 		004F5D9513749AB300E0C4A3 /* TestSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSimEvent.h; sourceTree = "<group>"; };
 		004F5D9613749AB300E0C4A3 /* TestSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSimEvent.m; sourceTree = "<group>"; };
+		0052E20314586FC800FEC4E2 /* TaxBracketCalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketCalc.h; sourceTree = "<group>"; };
+		0052E20414586FC900FEC4E2 /* TaxBracketCalc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketCalc.m; sourceTree = "<group>"; };
+		0052E2061459B03200FEC4E2 /* TaxInputCalcs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxInputCalcs.h; sourceTree = "<group>"; };
+		0052E2071459B03300FEC4E2 /* TaxInputCalcs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputCalcs.m; sourceTree = "<group>"; };
+		0052E2091459BB0800FEC4E2 /* InputValDigestSummations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputValDigestSummations.h; sourceTree = "<group>"; };
+		0052E20A1459BB0800FEC4E2 /* InputValDigestSummations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputValDigestSummations.m; sourceTree = "<group>"; };
 		0055A87F141681C400EFB95C /* BoolInputValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoolInputValue.h; sourceTree = "<group>"; };
 		0055A880141681C400EFB95C /* BoolInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolInputValue.m; sourceTree = "<group>"; };
 		0055A8881416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioBoolInputValueFieldInfo.h; sourceTree = "<group>"; };
@@ -707,7 +716,7 @@
 		00E6CC8213F45436005EEC64 /* SingleScenarioRelativeEndDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleScenarioRelativeEndDateFieldInfo.m; sourceTree = "<group>"; };
 		00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigest.h; sourceTree = "<group>"; };
 		00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigest.m; sourceTree = "<group>"; };
-		00E6CC8713F99FA9005EEC64 /* DigestEntryCltn.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DigestEntryCltn.h; sourceTree = "<group>"; };
+		00E6CC8713F99FA9005EEC64 /* DigestEntryCltn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigestEntryCltn.h; sourceTree = "<group>"; };
 		00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigestEntryCltn.m; sourceTree = "<group>"; };
 		00E7D04F143A277C00B0815E /* GenericTableViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewFactory.h; sourceTree = "<group>"; };
 		00E7D051143A284400B0815E /* SelectableObjectTableViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableObjectTableViewControllerFactory.h; sourceTree = "<group>"; };
@@ -863,8 +872,12 @@
 				0099A14D1455F42900E35AF9 /* ItemizedTaxCalcEntries.m */,
 				0099A13F1455D03400E35AF9 /* ItemizedTaxCalcPopulator.h */,
 				0099A1401455D03400E35AF9 /* ItemizedTaxCalcPopulator.m */,
+				0052E20314586FC800FEC4E2 /* TaxBracketCalc.h */,
+				0052E20414586FC900FEC4E2 /* TaxBracketCalc.m */,
 				0099A1421455D1AA00E35AF9 /* TaxInputCalc.h */,
 				0099A1431455D1AA00E35AF9 /* TaxInputCalc.m */,
+				0052E2061459B03200FEC4E2 /* TaxInputCalcs.h */,
+				0052E2071459B03300FEC4E2 /* TaxInputCalcs.m */,
 			);
 			name = Taxes;
 			sourceTree = "<group>";
@@ -1367,15 +1380,11 @@
 		004CB03613FC491E000E87A9 /* Digest */ = {
 			isa = PBXGroup;
 			children = (
+				0052E20C1459BC9100FEC4E2 /* Input Val Digest Sum */,
+				0052E201145863AC00FEC4E2 /* Digest Update Event */,
 				0099A15314574EF700E35AF9 /* Digest Entry */,
-				00254FF6145219FD000AB7B3 /* InputValDigestSummation.h */,
-				00254FF7145219FF000AB7B3 /* InputValDigestSummation.m */,
 				00160CA81406B363001D472F /* EndOfYearDigestResult.h */,
 				00160CA91406B365001D472F /* EndOfYearDigestResult.m */,
-				004CB01713F9B797000E87A9 /* DigestUpdateEventCreator.h */,
-				004CB01813F9B797000E87A9 /* DigestUpdateEventCreator.m */,
-				004CB01B13F9C985000E87A9 /* DigestUpdateEvent.h */,
-				004CB01C13F9C986000E87A9 /* DigestUpdateEvent.m */,
 				00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */,
 				00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */,
 			);
@@ -1457,6 +1466,28 @@
 				004F5D7F13733BC100E0C4A3 /* SimEngine.m */,
 			);
 			name = "Simulator Engine";
+			sourceTree = "<group>";
+		};
+		0052E201145863AC00FEC4E2 /* Digest Update Event */ = {
+			isa = PBXGroup;
+			children = (
+				004CB01713F9B797000E87A9 /* DigestUpdateEventCreator.h */,
+				004CB01813F9B797000E87A9 /* DigestUpdateEventCreator.m */,
+				004CB01B13F9C985000E87A9 /* DigestUpdateEvent.h */,
+				004CB01C13F9C986000E87A9 /* DigestUpdateEvent.m */,
+			);
+			name = "Digest Update Event";
+			sourceTree = "<group>";
+		};
+		0052E20C1459BC9100FEC4E2 /* Input Val Digest Sum */ = {
+			isa = PBXGroup;
+			children = (
+				00254FF6145219FD000AB7B3 /* InputValDigestSummation.h */,
+				00254FF7145219FF000AB7B3 /* InputValDigestSummation.m */,
+				0052E2091459BB0800FEC4E2 /* InputValDigestSummations.h */,
+				0052E20A1459BB0800FEC4E2 /* InputValDigestSummations.m */,
+			);
+			name = "Input Val Digest Sum";
 			sourceTree = "<group>";
 		};
 		0055A88314168B4900EFB95C /* Bool Input Value */ = {
@@ -2289,6 +2320,9 @@
 				0099A15F14575B1200E35AF9 /* ExpenseDigestEntry.m in Sources */,
 				0099A16214575E5A00E35AF9 /* ExpenseSimInfo.m in Sources */,
 				0099A165145784CD00E35AF9 /* LoanDownPmtSimEvent.m in Sources */,
+				0052E20514586FC900FEC4E2 /* TaxBracketCalc.m in Sources */,
+				0052E2081459B03300FEC4E2 /* TaxInputCalcs.m in Sources */,
+				0052E20B1459BB0900FEC4E2 /* InputValDigestSummations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

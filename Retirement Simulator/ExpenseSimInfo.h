@@ -10,6 +10,7 @@
 
 @class ExpenseInput;
 @class InputValDigestSummation;
+@class SimParams;
 
 @interface ExpenseSimInfo : NSObject {
     @private
@@ -20,6 +21,6 @@
 @property(nonatomic,retain) ExpenseInput *expense;
 @property(nonatomic,retain) InputValDigestSummation *digestSum;
 
--(id)initWithExpense:(ExpenseInput*)theExpense;
+-(id)initWithExpense:(ExpenseInput*)theExpense andSimParams:(SimParams*)theSimParams;
 
 @end

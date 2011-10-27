@@ -55,17 +55,17 @@
 
 #import "InputSimInfoCltn.h"
 #import "TaxInputCalc.h"
+#import "TaxInputCalcs.h"
 
 
 
 @implementation SimEngine
 
 @synthesize eventCreators;
-@synthesize simEndDate;
 @synthesize digest;
-@synthesize workingBalanceMgr;
 @synthesize eventList;
 @synthesize simParams;
+
 
 
 -(id)init {    
@@ -78,9 +78,7 @@
 
 -(void)dealloc {
     [super dealloc];
-    [eventCreators release];
-	[workingBalanceMgr release];
-	[simEndDate release];   
+    [eventCreators release]; 
     [eventList release];
 	[simParams release];
 	[digest release];
@@ -100,8 +98,8 @@
 				andScenario:simParams.simScenario])
 		{
  
-			IncomeSimInfo *incomeSimInfo = [[[IncomeSimInfo alloc] initWithIncome:income] autorelease];
-			
+			IncomeSimInfo *incomeSimInfo = [[[IncomeSimInfo alloc] initWithIncome:income
+				andSimParams:self.simParams] autorelease];
 			[self.simParams.incomeInfo addSimInfo:income withSimInfo:incomeSimInfo];
 			
 			[self.eventCreators addObject:
@@ -117,7 +115,9 @@
 		if([SimInputHelper multiScenBoolVal:expense.cashFlowEnabled
 				andScenario:simParams.simScenario])
 		{
-			ExpenseSimInfo *expenseInfo = [[[ExpenseSimInfo alloc] initWithExpense:expense] autorelease]; 
+			ExpenseSimInfo *expenseInfo = [[[ExpenseSimInfo alloc] initWithExpense:expense
+				andSimParams:self.simParams] autorelease]; 
+			[self.simParams.expenseInfo addSimInfo:expense withSimInfo:expenseInfo];
 			
 			[self.eventCreators addObject:
 				[[[ExpenseSimEventCreator alloc]initWithExpenseInfo:expenseInfo] autorelease]];
@@ -150,7 +150,7 @@
 			savingsBal.deferWithdrawalsUntil = deferWithdrawalsDate;
 		}
 		
-		[self.workingBalanceMgr.fundingSources addBalance:savingsBal];
+		[self.simParams.workingBalanceMgr.fundingSources addBalance:savingsBal];
 	} // for each savings account
 	
 	
@@ -184,7 +184,7 @@
 				[self.eventCreators addObject:extraPmtCreator];
 			}
 
-			[self.workingBalanceMgr.loanBalances addBalance:loanInfo.loanBalance];
+			[self.simParams.workingBalanceMgr.loanBalances addBalance:loanInfo.loanBalance];
 
 
 		}
@@ -219,7 +219,7 @@
 					[self.eventCreators addObject:assetSaleCreator];
 				}
 			
-				[self.workingBalanceMgr.assetValues addBalance:assetInfo.assetValue];
+				[self.simParams.workingBalanceMgr.assetValues addBalance:assetInfo.assetValue];
 			} // If asset owned for at least one day
 		} // If asset is enabled
 	}
@@ -231,7 +231,9 @@
 		if([SimInputHelper multiScenBoolVal:tax.taxEnabled
 				andScenario:simParams.simScenario])
 		{
-			TaxInputCalc *taxCal = [[[TaxInputCalc alloc] initWithTaxInput:tax andSimParams:self.simParams] autorelease];
+			TaxInputCalc *taxCalc = [[[TaxInputCalc alloc] initWithTaxInput:tax 
+					andSimParams:self.simParams] autorelease];
+			[self.simParams.taxInputCalcs addTaxInputCalc:taxCalc];
 		}
 	}
 	
@@ -261,19 +263,11 @@
 			initWithStartDate:simStartDate 
 			andScenario:[SharedAppValues singleton].defaultScenario] autorelease];
 
-	
-	
-	NSLog(@"Simulation Start: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:simStartDate]);
-	NSDate *digestStartDate = [DateHelper beginningOfYear:simStartDate];
-	self.simEndDate = [[SharedAppValues singleton].simEndDate endDateWithStartDate:simStartDate];
-
-	
-	self.workingBalanceMgr = [[[WorkingBalanceMgr alloc] initWithStartDate:digestStartDate] autorelease];
 		
 	[self populateEventCreators];
 	
 	NSLog(@"Initial working balances ...");
-	[self.workingBalanceMgr logCurrentBalances];
+	[self.simParams.workingBalanceMgr logCurrentBalances];
     
     // At the beginning of the simulation, iterate through the
     // event creators and have them create their first event.
@@ -296,7 +290,7 @@
 	assert(simStartDate != nil);
 	
 	
-	self.digest = [[[FiscalYearDigest alloc] initWithStartDate:digestStartDate andWorkingBalances:self.workingBalanceMgr] autorelease];
+	self.digest = [[[FiscalYearDigest alloc] initWithSimParams:self.simParams] autorelease];
 }
 
 #pragma mark - Private methods for simulator engine
@@ -317,7 +311,7 @@
 - (bool) eventEarlierOrSameTimeAsSimEnd: (SimEvent*)theEvent
 {
     NSComparisonResult eventComparedToSimEnd = 
-    [[theEvent eventDate] compare:self.simEndDate];
+    [[theEvent eventDate] compare:self.simParams.simEndDate];
     
     // Comparison is to determine if the event's time is "not later"
     // than the results checkpoint date.
@@ -340,7 +334,8 @@
     
     [self resetSimulator];
     
-    NSLog(@"Plan end date: %@",[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.simEndDate]);
+    NSLog(@"Plan end date: %@",[[DateHelper theHelper].mediumDateFormatter 
+		stringFromDate:self.simParams.simEndDate]);
     
 	SimEvent* nextEventToProcess = [self.eventList nextEvent];
     while ((nextEventToProcess != nil) &&

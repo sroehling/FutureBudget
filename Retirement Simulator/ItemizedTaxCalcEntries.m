@@ -42,14 +42,14 @@
 	return self;
 }
 
--(double)calcTotalItemizedTaxAmt
+-(double)calcTotalYearlyItemizedAmt
 {
 	double totalAmt = 0.0;
 	
 	for(ItemizedTaxCalcEntry *calcEntry in self.calcEntries)
 	{
 		assert(calcEntry != nil);
-		double itemizedAmt = [calcEntry calcItemizedTaxAmt];
+		double itemizedAmt = [calcEntry calcYearlyItemizedAmt];
 		assert(itemizedAmt >= 0.0);
 		totalAmt += itemizedAmt;
 	}

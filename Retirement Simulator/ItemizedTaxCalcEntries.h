@@ -19,6 +19,6 @@
 @property(nonatomic,retain) NSMutableArray *calcEntries;
 
 -(id)initWithSimParams:(SimParams*)simParams andItemizedTaxAmts:(ItemizedTaxAmts*)itemizedTaxAmts;
--(double)calcTotalItemizedTaxAmt;
+-(double)calcTotalYearlyItemizedAmt;
 
 @end

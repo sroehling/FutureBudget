@@ -10,6 +10,7 @@
 
 @class IncomeInput;
 @class InputValDigestSummation;
+@class SimParams;
 
 @interface IncomeSimInfo : NSObject {
     @private
@@ -20,6 +21,6 @@
 @property(nonatomic,retain) IncomeInput *income;
 @property(nonatomic,retain) InputValDigestSummation *digestSum;
 
--(id)initWithIncome:(IncomeInput*)theIncome;
+-(id)initWithIncome:(IncomeInput*)theIncome andSimParams:(SimParams*)theSimParams;
 
 @end

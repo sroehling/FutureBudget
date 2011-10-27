@@ -8,28 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-@class CashWorkingBalance;
 @class WorkingBalanceMgr;
-@class SavingsContribDigestEntry;
-@class BalanceAdjustment;
 @class FiscalYearDigestEntries;
+@class SimParams;
 
 @interface FiscalYearDigest : NSObject {
     @private
 		FiscalYearDigestEntries *digestEntries;
-		NSDate *startDate;
-		WorkingBalanceMgr *workingBalanceMgr;
-		
+		NSDate *currentYearDigestStartDate;
 		NSMutableArray *savedEndOfYearResults;
+		SimParams *simParams;
 }
 
--(id)initWithStartDate:(NSDate*)theStartDate andWorkingBalances:(WorkingBalanceMgr*)wbMgr;
+-(id)initWithSimParams:(SimParams*)theSimParams;
 
 - (void)advanceToNextYear;
 
-@property(nonatomic,retain) NSDate *startDate;
-@property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
+
 @property(nonatomic,retain) FiscalYearDigestEntries *digestEntries;
 @property(nonatomic,retain) NSMutableArray *savedEndOfYearResults;
+@property(nonatomic,retain) SimParams *simParams;
+@property(nonatomic,retain) NSDate *currentYearDigestStartDate;
 
 @end
