@@ -12,17 +12,18 @@
 #import "DateSensitiveValue.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
 #import "MultiScenarioInputValue.h"
-#import "BalanceAdjustment.h"
 #import "VariableRateCalculator.h"
 #import "SimInputHelper.h"
 #import "DateHelper.h"
 #import "MultiScenarioGrowthRate.h"
+#import "InputValDigestSummation.h"
 #import "SimParams.h"
 
 @implementation InterestBearingWorkingBalance
 
 @synthesize interestRateCalc;
 @synthesize workingBalanceName;
+@synthesize accruedInterest;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andInterestRateCalc:(VariableRateCalculator*)theInterestRateCalc 
@@ -35,6 +36,7 @@
 	{
 		self.interestRateCalc = theInterestRateCalc;
 		self.workingBalanceName = wbName;
+		self.accruedInterest = [[[InputValDigestSummation alloc] init] autorelease];
 
 	}
 	return self;
@@ -55,8 +57,8 @@
 		self.interestRateCalc = [calcCreator 
 							createForDateSensitiveValue:theInterestRate 
 							andStartDate:theStartDate];
-														
 		self.workingBalanceName = wbName;
+		self.accruedInterest = [[[InputValDigestSummation alloc] init] autorelease];
 	}
 	return self;
 
@@ -93,7 +95,7 @@
 }
 
 
-- (BalanceAdjustment*)advanceCurrentBalanceToDate:(NSDate*)newDate
+- (void)advanceCurrentBalanceToDate:(NSDate*)newDate
 {
 	assert(newDate != nil);
 	assert([DateHelper dateIsEqualOrLater:newDate otherDate:self.currentBalanceDate]);
@@ -104,13 +106,11 @@
 	double newBalance = currentBalance * balanceMultiplier;
 	double interestAmount = newBalance - currentBalance;
 	
-	BalanceAdjustment *interest = [[[BalanceAdjustment alloc] 
-		initWithAmount:interestAmount] autorelease];
+	// TODO - put interestAmount into the accruedInterest variable
 	
 	currentBalance = newBalance;
 	self.currentBalanceDate = newDate;
 	
-	return interest;
 }
 
 
@@ -125,6 +125,7 @@
 	[super dealloc];
 	[interestRateCalc release];
 	[workingBalanceName release];
+	[accruedInterest release];
 }
 
 

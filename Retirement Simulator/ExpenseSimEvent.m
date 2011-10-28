@@ -12,7 +12,6 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "FiscalYearDigest.h"
-#import "BalanceAdjustment.h"
 #import "FiscalYearDigestEntries.h"
 #import "ExpenseDigestEntry.h"
 

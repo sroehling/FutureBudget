@@ -51,12 +51,12 @@
 
 
 - (void)carryBalancesForward:(NSDate*)newDate;
-- (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate;
+- (void)advanceBalancesToDate:(NSDate*)newDate;
 - (double)totalCurrentNetBalance;
 - (void) resetCurrentBalances;
 
 - (void) incrementCashBalance:(double)incomeAmount asOfDate:(NSDate*)newDate;
-- (WorkingBalanceAdjustment*) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate;
+- (double) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate;
 - (double) decrementAvailableCashBalance:(double)expenseAmount asOfDate:(NSDate*)newDate;
 
 - (void)logCurrentBalances;

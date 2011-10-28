@@ -13,16 +13,19 @@
 @class SavingsAccount;
 @class DateSensitiveValue;
 @class VariableRateCalculator;
+@class InputValDigestSummation;
 @class SimParams;
 
 @interface InterestBearingWorkingBalance : WorkingBalance {
     @private
 		VariableRateCalculator *interestRateCalc;
+		InputValDigestSummation *accruedInterest;
 		NSString *workingBalanceName;
 }
 
 @property(nonatomic,retain )VariableRateCalculator *interestRateCalc;
 @property(nonatomic,retain ) NSString *workingBalanceName;
+@property(nonatomic,retain) InputValDigestSummation *accruedInterest;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andInterestRateCalc:(VariableRateCalculator*)theInterestRateCalc 

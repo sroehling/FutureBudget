@@ -25,16 +25,16 @@ extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 		NSDate *deferWithdrawalsUntil;
 }
 
-- (BalanceAdjustment*) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
-- (WorkingBalanceAdjustment*) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate;
+- (void) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
+- (double) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate;
 - (double)zeroOutBalanceAsOfDate:(NSDate*)newDate;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andStartDate:(NSDate*)theStartDate andWithdrawPriority:(double)theWithdrawPriority;
 	
 - (void)resetCurrentBalance;
-- (BalanceAdjustment*)advanceCurrentBalanceToDate:(NSDate*)newDate;
-- (BalanceAdjustment*)carryBalanceForward:(NSDate*)newStartDate;
+- (void)advanceCurrentBalanceToDate:(NSDate*)newDate;
+- (void)carryBalanceForward:(NSDate*)newStartDate;
 
 - (NSString*)balanceName;
 - (void)logBalance;

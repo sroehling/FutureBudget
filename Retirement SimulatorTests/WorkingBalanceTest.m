@@ -11,8 +11,6 @@
 #import "InMemoryCoreData.h"
 #import "WorkingBalance.h"
 #import "DateHelper.h"
-#import "BalanceAdjustment.h"
-#import "WorkingBalanceAdjustment.h"
 #import "SavingsAccount.h"
 #import "FixedValue.h"
 #import "InterestBearingWorkingBalance.h"
@@ -70,10 +68,10 @@
 	@"checkAvailableBalanceDecrement: Expecting %0.2f, got %0.2f for working balance = %@ (before decrement)",
 							   expectedBalBefore,bal.currentBalance,bal.balanceName);
 
-	WorkingBalanceAdjustment *avail = [bal decrementAvailableBalance:decrAmt asOfDate:decrDate];
-		STAssertEqualsWithAccuracy(expectedAvail, [avail.balanceAdjustment totalAmount], 0.001,
+	double avail = [bal decrementAvailableBalance:decrAmt asOfDate:decrDate];
+		STAssertEqualsWithAccuracy(expectedAvail, avail, 0.001,
 	@"checkAvailableBalanceDecrement: Expecting %0.2f, got %0.2f for available balance = %@",
-							   expectedAvail,[avail.balanceAdjustment totalAmount],bal.balanceName);
+							   expectedAvail,avail,bal.balanceName);
 	
 	[bal logBalance];
 	
@@ -243,13 +241,13 @@
 	[self checkCurrentBalance:cashBal withExpectedBalance:0];
 	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
 
-	WorkingBalanceAdjustment *decrementAmount = [workingBalMgr decrementBalanceFromFundingList:1000 
+	double decrementAmount = [workingBalMgr decrementBalanceFromFundingList:1000 
 		asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
 	[self checkCurrentBalance:cashBal withExpectedBalance:0];
 	[self checkCurrentBalance:deficitBal withExpectedBalance:1000];
-	STAssertEqualsWithAccuracy([decrementAmount.balanceAdjustment totalAmount], 0.0, 0.001,
+	STAssertEqualsWithAccuracy(decrementAmount, 0.0, 0.001,
 		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for decrement amount",
-							   0.0,[decrementAmount.balanceAdjustment totalAmount]);
+							   0.0,decrementAmount);
 	
 	[workingBalMgr incrementCashBalance:500 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
 	[self checkCurrentBalance:cashBal withExpectedBalance:0];

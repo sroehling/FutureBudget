@@ -11,7 +11,6 @@
 #import "SharedAppValues.h"
 #import "DateHelper.h"
 #import "SharedAppValues.h"
-#import "BalanceAdjustment.h"
 #import "LocalizationHelper.h"
 
 // Cash always has the highest priority for withdrawals.
@@ -46,13 +45,12 @@
 }
 
 
-- (BalanceAdjustment*)advanceCurrentBalanceToDate:(NSDate*)newDate
+- (void)advanceCurrentBalanceToDate:(NSDate*)newDate
 {
 	assert(newDate != nil);
 	assert([DateHelper dateIsEqualOrLater:newDate otherDate:self.currentBalanceDate]);
 	self.currentBalanceDate = newDate;
 	// NOTE - current balance is left unchanged
-	return [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 }
 
 - (bool)doTaxWithdrawals

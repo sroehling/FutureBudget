@@ -7,16 +7,11 @@
 //
 
 #import "EndOfYearDigestResult.h"
-#import "BalanceAdjustment.h"
 #import "NumberHelper.h"
 #import "DateHelper.h"
 
 @implementation EndOfYearDigestResult
 
-@synthesize totalIncome;
-@synthesize totalExpense;
-@synthesize totalInterest;
-@synthesize totalWithdrawals;
 @synthesize endDate;
 @synthesize totalEndOfYearBalance;
 
@@ -25,10 +20,6 @@
 	self = [super init];
 	if(self)
 	{
-		self.totalExpense = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
-		self.totalInterest = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
-		self.totalWithdrawals = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
-		totalIncome = 0.0;
 		assert(endOfYearDate != nil);
 		self.endDate = endOfYearDate;
 		self.totalEndOfYearBalance = 0.0;
@@ -42,31 +33,6 @@
 	assert(0); // must call with end date
 }
 
-- (void)incrementTotalIncome:(double)incomeAmount
-{
-	assert(incomeAmount >= 0.0);
-	totalIncome += incomeAmount;
-}
-
-
-- (void)incrementTotalExpense:(BalanceAdjustment*)theExpense
-{
-	assert(theExpense != nil);
-	[totalExpense addAdjustment:theExpense];
-}
-
-- (void)incrementTotalWithdrawals:(BalanceAdjustment*)theWithdrawal
-{
-	assert(theWithdrawal != nil);
-	[totalWithdrawals addAdjustment:theWithdrawal];
-}
-
-- (void)incrementTotalInterest:(BalanceAdjustment*)theInterest
-{
-	assert(theInterest != nil);
-	[totalInterest addAdjustment:theInterest];
-}
-
 
 - (NSInteger)yearNumber
 {
@@ -75,26 +41,12 @@
 
 - (void)logResults
 {
-	NSString *totalIncomeCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.totalIncome]];
-	NSLog(@"Total Income: %@",totalIncomeCurrency);
-	
-	NSString *totalInterestCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:[self.totalInterest totalAmount]]];
-	NSLog(@"Total Interest: %@",totalInterestCurrency);
-
-	NSString *totalExpenseCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:[self.totalExpense totalAmount]]];
-	NSLog(@"Total Expense: %@",totalExpenseCurrency);
 
 }
 
 - (void) dealloc
 {
 	[super dealloc];
-	[totalExpense release];
-	[totalInterest release];
-	[totalWithdrawals release];
 }
 
 @end

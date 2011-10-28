@@ -22,7 +22,7 @@
 
 - (void)addBalance:(WorkingBalance*)workingBal;
 - (void)carryBalancesForward:(NSDate*)newDate;
-- (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate;
+- (void)advanceBalancesToDate:(NSDate*)newDate;
 - (void) resetCurrentBalances;
 - (void)logCurrentBalances;
 - (double)totalBalances;

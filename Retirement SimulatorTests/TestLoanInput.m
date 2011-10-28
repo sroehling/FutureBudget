@@ -11,8 +11,6 @@
 #import "InMemoryCoreData.h"
 #import "MultiScenarioInputValue.h"
 #import "DateHelper.h"
-#import "WorkingBalanceAdjustment.h"
-#import "BalanceAdjustment.h"
 #import "InterestBearingWorkingBalance.h"
 #import "FixedValue.h"
 #import "SimParams.h"
@@ -111,10 +109,8 @@
 	double paymentAmount = [loanInfo monthlyPayment];
 	
 	NSLog(@"Balance before pmt: %0.2f",[loanInfo.loanBalance currentBalance]);
-	WorkingBalanceAdjustment *loanPmtAdjustment = 
-			[loanInfo.loanBalance decrementAvailableBalance:paymentAmount asOfDate:pmtDate];
+	[loanInfo.loanBalance decrementAvailableBalance:paymentAmount asOfDate:pmtDate];
 	NSLog(@"Balance after pmt: %0.2f",[loanInfo.loanBalance currentBalance]);
-	NSLog(@"Interest in pmt: %0.2f",loanPmtAdjustment.interestAdjustement.amount);
 
 }
 

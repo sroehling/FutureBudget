@@ -8,9 +8,7 @@
 
 #import "WorkingBalanceCltn.h"
 #import "WorkingBalance.h"
-#import "BalanceAdjustment.h"
 #import "CollectionHelper.h"
-#import "WorkingBalanceAdjustment.h"
 
 @implementation WorkingBalanceCltn
 
@@ -55,17 +53,13 @@
 }
 
 
-- (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate
+- (void)advanceBalancesToDate:(NSDate*)newDate
 {
-	BalanceAdjustment *totalInterest = [[[BalanceAdjustment alloc] initWithZeroAmount] autorelease];
 	for(WorkingBalance *workingBal in self.workingBalList)
 	{
 		assert(workingBal!=nil);
-		BalanceAdjustment *currentWorkingBalInterest = 
-			[workingBal advanceCurrentBalanceToDate:newDate];
-		[totalInterest addAdjustment:currentWorkingBalInterest];
+		[workingBal advanceCurrentBalanceToDate:newDate];
 	}
-	return totalInterest;
 }
 
 - (void) resetCurrentBalances

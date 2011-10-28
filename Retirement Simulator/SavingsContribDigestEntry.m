@@ -7,7 +7,6 @@
 //
 
 #import "SavingsContribDigestEntry.h"
-#import "BalanceAdjustment.h"
 #import "DigestEntryProcessingParams.h"
 #import "WorkingBalanceMgr.h"
 #import "InterestBearingWorkingBalance.h"
@@ -49,7 +48,6 @@
 			asOfDate:processingParams.currentDate];
 		if(actualContrib>0.0)
 		{
-//			BalanceAdjustment *interestAccruedLeadingUpToSavingsContribution = 
 			[self.workingBalance incrementBalance:actualContrib 
 					asOfDate:processingParams.currentDate];				
 		}

@@ -12,14 +12,12 @@
 #import "NumberHelper.h"
 #import "CashWorkingBalance.h"
 #import "SavingsContribDigestEntry.h"
-#import "BalanceAdjustment.h"
 #import "WorkingBalanceMgr.h"
 #import "SharedAppValues.h"
 #import "InterestBearingWorkingBalance.h"
 #import "EndOfYearDigestResult.h"
 #import "Cash.h"
 #import "FiscalYearDigestEntries.h"
-#import "WorkingBalanceAdjustment.h"
 #import "LoanPmtDigestEntry.h"
 #import "DigestEntryProcessingParams.h"
 #import "AssetSimInfo.h"
@@ -54,24 +52,6 @@
 
 	}
 	return self;
-}
-
-
-- (void)advanceWorkingBalancesAndAccrueInterest:(EndOfYearDigestResult*)theResults 
-	advanceToDate:(NSDate*)advanceDate
-{
-	BalanceAdjustment *interestAccruedForAdvance = 
-		[self.simParams.workingBalanceMgr advanceBalancesToDate:advanceDate];
-	
-	// TODO - Need to store itemized sums of interest
-	// for the TaxInputCalc objects.			
-	/*
-	[self accrueEstimatedTaxesForTaxableAmount:interestAccruedForAdvance.taxableAmount 
-		andTaxRate:taxRate andDate:advanceDate];
-	*/
-		
-	[theResults incrementTotalInterest:interestAccruedForAdvance];
-
 }
 
 
@@ -141,8 +121,7 @@
 	// Advance all the working balances to the end of this year. Although none of the current balances
 	// are changed, some interest might be accrued leading up to the end of the year. This interest
 	// needs to be included in the total interest for the year, so that taxes can be calculated.
-	[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
-		advanceToDate:[DateHelper beginningOfNextYear:self.currentYearDigestStartDate]];
+	[self.simParams.workingBalanceMgr advanceBalancesToDate:[DateHelper beginningOfNextYear:self.currentYearDigestStartDate]];
 
 	endOfYearResults.totalEndOfYearBalance = [self.simParams.workingBalanceMgr totalCurrentNetBalance];
 	[endOfYearResults logResults];

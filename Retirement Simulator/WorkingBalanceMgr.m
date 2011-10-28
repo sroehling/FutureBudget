@@ -16,8 +16,6 @@
 #import "FixedValue.h"
 #import "Cash.h"
 #import "InterestBearingWorkingBalance.h"
-#import "BalanceAdjustment.h"
-#import "WorkingBalanceAdjustment.h"
 #import "WorkingBalanceCltn.h"
 
 @implementation WorkingBalanceMgr
@@ -79,7 +77,7 @@
 
 
 
-- (BalanceAdjustment*)advanceBalancesToDate:(NSDate*)newDate
+- (void)advanceBalancesToDate:(NSDate*)newDate
 {
 	// Note - Even though cashWorkingBalance is in self.fundingSources,
 	// we advance cashWorkingBalance up front, ensuring it is not tallied with
@@ -87,15 +85,13 @@
 	[self.deficitBalance advanceCurrentBalanceToDate:newDate];
 	[self.cashWorkingBalance advanceCurrentBalanceToDate:newDate];
 	
-	BalanceAdjustment *fundingSrcInterest = [self.fundingSources advanceBalancesToDate:newDate];
+	[self.fundingSources advanceBalancesToDate:newDate];
 	
-// TODO - Need to do something with the loan interest.
-	BalanceAdjustment *loanInterest = [self.loanBalances advanceBalancesToDate:newDate];
+	[self.loanBalances advanceBalancesToDate:newDate];
 	[self.assetValues advanceBalancesToDate:newDate];
 		
 	[self.accruedEstimatedTaxes advanceCurrentBalanceToDate:newDate];
 
-	return fundingSrcInterest;
 }
 
 
@@ -120,35 +116,33 @@
 
 
 
-- (WorkingBalanceAdjustment*) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate
+- (double) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate
 {
 	double remainingBalanceToDecrement = expenseAmount;
-	WorkingBalanceAdjustment *totalDecremented = 
-		[[[WorkingBalanceAdjustment alloc] initWithZeroAmounts] autorelease];
+	double totalDecremented = 0.0;
 		
 	[self.fundingSources sortByWithdrawalOrder];	
 		
 	for(WorkingBalance *workingBal in self.fundingSources.workingBalList)
 	{
-		WorkingBalanceAdjustment * amountDecremented = 
-			[workingBal decrementAvailableBalance:remainingBalanceToDecrement 
-			asOfDate:newDate];
-		assert([amountDecremented.balanceAdjustment totalAmount] <= remainingBalanceToDecrement);
-		[totalDecremented addAdjustment:amountDecremented];
-		remainingBalanceToDecrement -= [amountDecremented.balanceAdjustment totalAmount];
+		double amountDecremented = [workingBal decrementAvailableBalance:remainingBalanceToDecrement 
+				asOfDate:newDate];
+		assert(amountDecremented <= remainingBalanceToDecrement);
+		totalDecremented += amountDecremented;
+		remainingBalanceToDecrement -= amountDecremented;
 		if(remainingBalanceToDecrement <= 0.0)
 		{
-			assert([totalDecremented.balanceAdjustment totalAmount] <= expenseAmount);
+			assert(totalDecremented <= expenseAmount);
 			return totalDecremented;
 		}
 	}
-	assert([totalDecremented.balanceAdjustment totalAmount] <= expenseAmount);
-	if([totalDecremented.balanceAdjustment totalAmount] < expenseAmount)
+	assert(totalDecremented <= expenseAmount);
+	if(totalDecremented < expenseAmount)
 	{
-		double deficitAmount = expenseAmount - [totalDecremented.balanceAdjustment totalAmount];
+		double deficitAmount = expenseAmount - totalDecremented;
 		[self.deficitBalance incrementBalance:deficitAmount asOfDate:newDate];
 	}
-	assert([totalDecremented.balanceAdjustment totalAmount] <= expenseAmount);
+	assert(totalDecremented <= expenseAmount);
 	return totalDecremented;
 
 }
@@ -163,13 +157,14 @@
 {
 	// Reduce the deficit first
 	assert(incomeAmount >= 0.0);
-	WorkingBalanceAdjustment *deficitReduction = [self.deficitBalance 
+	double deficitReduction = [self.deficitBalance 
 		decrementAvailableBalance:incomeAmount asOfDate:newDate];
-	assert([deficitReduction.balanceAdjustment totalAmount] <= incomeAmount);
+
+	assert(deficitReduction <= incomeAmount);
 	
 	// Put the remainder into the cash balance
-	double incomeAvailableForCashIncrement = 
-		incomeAmount - [deficitReduction.balanceAdjustment totalAmount];
+	double incomeAvailableForCashIncrement = incomeAmount - deficitReduction;
+	
 	[self.cashWorkingBalance incrementBalance:incomeAvailableForCashIncrement asOfDate:newDate];
 }
 
@@ -185,9 +180,9 @@
 	}
 	else
 	{
-		WorkingBalanceAdjustment *decrementAmount = [self.cashWorkingBalance 
+		double decrementAmount = [self.cashWorkingBalance 
 			decrementAvailableBalance:expenseAmount asOfDate:newDate];
-		return [decrementAmount.balanceAdjustment totalAmount];
+		return decrementAmount;
 	}
 }
 
