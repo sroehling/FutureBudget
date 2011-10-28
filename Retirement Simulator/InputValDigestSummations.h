@@ -18,5 +18,6 @@
 @property(nonatomic,retain) NSMutableArray *inputValDigestSums;
 
 -(void)addDigestSum:(InputValDigestSummation*)digestSum;
+-(void)resetSums;
 
 @end

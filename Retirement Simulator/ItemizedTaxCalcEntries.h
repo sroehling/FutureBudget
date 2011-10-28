@@ -20,5 +20,6 @@
 
 -(id)initWithSimParams:(SimParams*)simParams andItemizedTaxAmts:(ItemizedTaxAmts*)itemizedTaxAmts;
 -(double)calcTotalYearlyItemizedAmt;
+-(double)dailyItemizedAmnt:(NSInteger)dayIndex;
 
 @end

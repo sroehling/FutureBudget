@@ -8,6 +8,7 @@
 
 #import "ItemizedTaxCalcEntry.h"
 #import "InputValDigestSummation.h"
+#import "DateHelper.h"
 
 
 @implementation ItemizedTaxCalcEntry
@@ -40,6 +41,13 @@
 -(double)calcYearlyItemizedAmt
 {
 	return self.applicableTaxPerc * digestSum.yearlyTotal;
+}
+
+-(double)dailyItemizedAmt:(NSInteger)dayIndex
+{
+	assert(dayIndex >= 0);
+	assert(dayIndex < MAX_DAYS_IN_YEAR);
+	return self.applicableTaxPerc * [self.digestSum dailySum:dayIndex]; 
 }
 
 -(void)dealloc

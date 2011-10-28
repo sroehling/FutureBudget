@@ -59,7 +59,7 @@
 			assert(amountTaxableUnderPrevRate >= 0.0);
 			totalTax += amountTaxableUnderPrevRate * prevRate;
 			
-			if(taxableIncome > currCutoffAmount)
+			if(taxableIncome <= currCutoffAmount)
 			{
 				// no need to continue, all the tax revenue is covered under the previous
 				// cutoff.
@@ -71,7 +71,7 @@
 		}
 		// If we make it here, then there's still some taxable income within the top bracket.
 		double amountTaxableUnderTopBracket = taxableIncome - prevCutoffAmount;
-		assert(amountTaxableUnderTopBracket > 0.0);
+		assert(amountTaxableUnderTopBracket >= 0.0);
 		totalTax += amountTaxableUnderTopBracket * prevRate;
 		
 		return totalTax/taxableIncome;

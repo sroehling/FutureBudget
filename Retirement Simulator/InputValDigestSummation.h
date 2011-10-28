@@ -17,6 +17,8 @@
 -(void)resetSum;
 -(void)incrementSum:(double)amount onDay:(NSInteger)dayIndex;
 
+
 -(double)yearlyTotal;
+-(double)dailySum:(NSInteger)dayIndex;
 
 @end

@@ -21,5 +21,6 @@
 
 -(id)initWithTaxPerc:(double)taxPerc andDigestSum:(InputValDigestSummation*)theSum;
 -(double)calcYearlyItemizedAmt;
+-(double)dailyItemizedAmt:(NSInteger)dayIndex;
 
 @end

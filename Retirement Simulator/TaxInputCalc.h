@@ -12,6 +12,7 @@
 @class ItemizedTaxCalcEntries;
 @class SimParams;
 @class TaxBracketCalc;
+@class DigestEntryProcessingParams;
 
 @interface TaxInputCalc : NSObject {
     @private
@@ -28,5 +29,6 @@
 
 -(id)initWithTaxInput:(TaxInput*)theTaxInput andSimParams:(SimParams*)theSimParams;
 -(void)updateEffectiveTaxRate;
+-(void)processDailyTaxPmt:(DigestEntryProcessingParams*)processingParams;
 
 @end

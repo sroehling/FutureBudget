@@ -11,6 +11,7 @@
 #import "ItemizedTaxAmts.h"
 #import "ItemizedTaxCalcPopulator.h"
 #import "ItemizedTaxCalcEntry.h"
+#import "DateHelper.h"
 
 @implementation ItemizedTaxCalcEntries
 
@@ -54,6 +55,24 @@
 		totalAmt += itemizedAmt;
 	}
 	return totalAmt;
+}
+
+-(double)dailyItemizedAmnt:(NSInteger)dayIndex
+{
+	assert(dayIndex >= 0);
+	assert(dayIndex < MAX_DAYS_IN_YEAR);
+
+	double totalAmt = 0.0;
+	
+	for(ItemizedTaxCalcEntry *calcEntry in self.calcEntries)
+	{
+		assert(calcEntry != nil);
+		double itemizedAmt = [calcEntry dailyItemizedAmt:dayIndex];
+		assert(itemizedAmt >= 0.0);
+		totalAmt += itemizedAmt;
+	}
+	return totalAmt;
+
 }
 
 -(void)dealloc

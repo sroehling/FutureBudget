@@ -25,6 +25,7 @@
 #import "AssetSimInfo.h"
 #import "AssetDigestEntry.h"
 #import "IncomeDigestEntry.h"
+#import "InputValDigestSummations.h"
 #import "DigestEntry.h"
 #import "TaxInputCalcs.h"
 #import "SimParams.h"
@@ -91,26 +92,29 @@
 		DigestEntryCltn *currDayDigestEntries = 
 			[self.digestEntries entriesForDayIndex:currDayIndex];
 		
-		if([currDayDigestEntries.digestEntries count] > 0)
-		{
-			DigestEntryProcessingParams *processingParams = 
+		DigestEntryProcessingParams *processingParams = 
 				[[DigestEntryProcessingParams alloc] 
 				initWithWorkingBalanceMgr:self.simParams.workingBalanceMgr 
 				andDayIndex:currDayIndex andCurrentDate:currentDate];
+		
+		if([currDayDigestEntries.digestEntries count] > 0)
+		{
 			for(id<DigestEntry> digestEntry in currDayDigestEntries.digestEntries)
 			{
 				[digestEntry processDigestEntry:processingParams];
 			}
-			[processingParams release];
 		}
+		[self.simParams.taxInputCalcs processDailyTaxPmts:processingParams];
+
 		if([currDayDigestEntries isEndDateForEstimatedTaxes])
 		{
 			// Advance all balances and accrue interest to the current date. This is needed so that
 			// all the estimated taxes can be included. 
-			[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
+/*			[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
 				advanceToDate:currentDate];
 
 			[self.simParams.workingBalanceMgr setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:currentDate];
+*/
 		}
 		if([currDayDigestEntries isEstimatedTaxPaymentDay])
 		{
@@ -121,13 +125,18 @@
 				andAmount:taxPaymentAmount andDate:currentDate];
 		*/
 		}
+
 		currentDate = [DateHelper nextDay:currentDate];
+		[processingParams release];
 	} // for each day in the year
 
 	// Update the effective tax rates for the tax inputs. This needs to be done at the end of 
 	// processing the digest, since all the InputValDigestSummation objects referenced by the
 	// TaxInputCalcs will have been populated with income, interest, etc.
 	[self.simParams.taxInputCalcs updateEffectiveTaxRates];
+	
+	// Reset all the digest sums used to tally up taxable incomes, expenses, interest, etc.
+	[self.simParams.digestSums resetSums];
 
 	// Advance all the working balances to the end of this year. Although none of the current balances
 	// are changed, some interest might be accrued leading up to the end of the year. This interest
@@ -159,7 +168,7 @@
 	// contributions may get funding (e.g., if the
 	// cash balance runs low).
 	
-	EndOfYearDigestResult *firstPassResults = [self processDigest];
+	[self processDigest];
 
 	//-------------------------------------------------------------------------------------
 	// For the second pass, also include in the taxable income calculations the 

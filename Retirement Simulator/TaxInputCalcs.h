@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class TaxInputCalc;
+@class DigestEntryProcessingParams;
 
 @interface TaxInputCalcs : NSObject {
     @private
@@ -20,5 +21,6 @@
 -(void)addTaxInputCalc:(TaxInputCalc*)theTaxInputCalc;
 
 -(void)updateEffectiveTaxRates;
+-(void)processDailyTaxPmts:(DigestEntryProcessingParams*)processingParams;
 
 @end

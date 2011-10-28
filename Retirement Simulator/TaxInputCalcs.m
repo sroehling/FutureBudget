@@ -38,6 +38,14 @@
 	}
 }
 
+-(void)processDailyTaxPmts:(DigestEntryProcessingParams*)processingParams
+{
+	for(TaxInputCalc *taxInputCalc in self.taxInputCalcs)
+	{
+		[taxInputCalc processDailyTaxPmt:processingParams];
+	}
+}
+
 -(void)dealloc
 {
 	[super dealloc];

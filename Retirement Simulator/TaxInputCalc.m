@@ -15,6 +15,8 @@
 #import "ItemizedTaxCalcEntries.h"
 #import "TaxBracketCalc.h"
 #import "IncomeSimInfo.h"
+#import "DigestEntryProcessingParams.h"
+#import "WorkingBalanceMgr.h"
 
 @implementation TaxInputCalc
 
@@ -22,6 +24,7 @@
 @synthesize incomeCalcEntries;
 @synthesize effectiveTaxRate;
 @synthesize taxBracketCalc;
+
 
 -(id)initWithTaxInput:(TaxInput*)theTaxInput andSimParams:(SimParams*)theSimParams
 {
@@ -54,6 +57,20 @@
 	// TODO - subtract off deductions, std deduction, etc. to come up with taxable income;
 	double taxableIncome = grossIncome;
 	self.effectiveTaxRate = [self.taxBracketCalc calcEffectiveTaxRate:taxableIncome];
+}
+
+-(void)processDailyTaxPmt:(DigestEntryProcessingParams*)processingParams
+{
+	assert(processingParams!=nil);
+	
+	double dailyTaxableAmt = [self.incomeCalcEntries dailyItemizedAmnt:processingParams.dayIndex];
+	double dailyTaxDue = dailyTaxableAmt * self.effectiveTaxRate;
+	if(dailyTaxDue > 0.0)
+	{
+		[processingParams.workingBalanceMgr decrementBalanceFromFundingList:dailyTaxDue 
+			asOfDate:processingParams.currentDate];
+
+	}
 }
 
 -(void)dealloc

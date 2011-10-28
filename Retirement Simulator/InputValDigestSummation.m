@@ -55,6 +55,13 @@
 	return total;	
 }
 
+-(double)dailySum:(NSInteger)dayIndex
+{
+	assert(dayIndex >= 0);
+	assert(dayIndex < MAX_DAYS_IN_YEAR);
+	return currentSum[dayIndex];
+}
+
 -(void)dealloc
 {
 	[super dealloc];
