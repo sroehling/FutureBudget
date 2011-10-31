@@ -99,6 +99,11 @@
 {
 	assert(newDate != nil);
 	assert([DateHelper dateIsEqualOrLater:newDate otherDate:self.currentBalanceDate]);
+	
+	if([DateHelper dateIsEqual:newDate otherDate:self.currentBalanceDate])
+	{
+		return;
+	}
 
 	double balanceMultiplier = [self.interestRateCalc 
 		valueMultiplierBetweenStartDate:self.currentBalanceDate andEndDate:newDate];
@@ -106,7 +111,14 @@
 	double newBalance = currentBalance * balanceMultiplier;
 	double interestAmount = newBalance - currentBalance;
 	
-	// TODO - put interestAmount into the accruedInterest variable
+	NSInteger daysSinceCurrentBalanceDate = [DateHelper daysOffset:newDate vsEarlierDate:self.currentBalanceDate];
+	assert(daysSinceCurrentBalanceDate > 0);
+	NSInteger interestDayIndex = daysSinceCurrentBalanceDate - 1;
+	assert(interestDayIndex >= 0);
+	assert(interestDayIndex < MAX_DAYS_IN_YEAR);
+
+	[self.accruedInterest incrementSum:interestAmount onDay:interestDayIndex];
+	
 	
 	currentBalance = newBalance;
 	self.currentBalanceDate = newDate;

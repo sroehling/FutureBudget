@@ -67,6 +67,8 @@
 	
 	NSDate *currentDate = self.currentYearDigestStartDate;
 	
+	// TODO - Stop the iteration if the currentDate falls into the next year,
+	// not just when it reaches MAX_DAYS_IN_YEAR.
 	for(int currDayIndex=0; currDayIndex < MAX_DAYS_IN_YEAR; currDayIndex++)
 	{
 		DigestEntryCltn *currDayDigestEntries = 
@@ -110,6 +112,12 @@
 		[processingParams release];
 	} // for each day in the year
 
+	// Advance all the working balances to the end of this year. Although none of the current balances
+	// are changed, some interest might be accrued leading up to the end of the year. This interest
+	// needs to be included in the total interest for the year, so that taxes can be calculated.
+	[self.simParams.workingBalanceMgr advanceBalancesToDate:
+		[DateHelper beginningOfNextYear:self.currentYearDigestStartDate]];
+
 	// Update the effective tax rates for the tax inputs. This needs to be done at the end of 
 	// processing the digest, since all the InputValDigestSummation objects referenced by the
 	// TaxInputCalcs will have been populated with income, interest, etc.
@@ -118,10 +126,6 @@
 	// Reset all the digest sums used to tally up taxable incomes, expenses, interest, etc.
 	[self.simParams.digestSums resetSums];
 
-	// Advance all the working balances to the end of this year. Although none of the current balances
-	// are changed, some interest might be accrued leading up to the end of the year. This interest
-	// needs to be included in the total interest for the year, so that taxes can be calculated.
-	[self.simParams.workingBalanceMgr advanceBalancesToDate:[DateHelper beginningOfNextYear:self.currentYearDigestStartDate]];
 
 	endOfYearResults.totalEndOfYearBalance = [self.simParams.workingBalanceMgr totalCurrentNetBalance];
 	[endOfYearResults logResults];

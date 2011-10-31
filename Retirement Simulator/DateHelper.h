@@ -26,6 +26,7 @@
 + (NSDate*)sameYearDifferentDay:(NSDate*)dateWithinYear andMonth:(NSInteger)monthNum andDay:(NSInteger)dayNum;
 + (NSDate*)beginningOfDay:(NSDate*)theDate;
 + (NSDate*)endOfDay:(NSDate*)theDate;
++ (NSInteger)daysOffset:(NSDate*)theDate vsEarlierDate:(NSDate*)otherDate;
 + (NSDate*)beginningOfNextYear:(NSDate*)dateWithinPreviousYear;
 + (NSDate*)nextDay:(NSDate*)currentDay;
 + (NSDate*)endOfYear:(NSDate*)dateWithinYear;
@@ -33,6 +34,7 @@
 
 + (bool)dateIsEqualOrLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate;
 + (bool)dateIsLater:(NSDate*)theDate otherDate:(NSDate*)comparisonDate;
++ (bool)dateIsEqual:(NSDate*)theDate otherDate:(NSDate*)comparisonDate;
 
 @property(nonatomic,retain)  NSDateFormatter *mediumDateFormatter;
 @property(nonatomic,retain) NSDateFormatter *longDateFormatter;

@@ -18,9 +18,15 @@
 #import "ItemizedTaxAmtFieldPopulator.h"
 #import "SharedAppValues.h"
 #import "Scenario.h"
+
 #import "IncomeItemizedTaxAmt.h"
 #import "IncomeInput.h"
 
+#import "ExpenseInput.h"
+#import "ExpenseItemizedTaxAmt.h"
+
+#import "SavingsAccount.h"
+#import "SavingsInterestItemizedTaxAmt.h"
 
 @implementation ItemizedTaxAmtsFormInfoCreator
 
@@ -69,7 +75,35 @@
 		for(IncomeItemizedTaxAmt *itemizedIncome in fieldPopulator.itemizedIncomes )
 		{
 			[formPopulator populateMultiScenFixedValField:
-			itemizedIncome.multiScenarioApplicablePercent andValLabel:itemizedIncome.income.name andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+				itemizedIncome.multiScenarioApplicablePercent 
+				andValLabel:itemizedIncome.income.name 
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+		}
+	}
+	
+	if([fieldPopulator.itemizedExpenses count] > 0)
+	{
+		[formPopulator nextSection];
+		
+		for(ExpenseItemizedTaxAmt *itemizedExpense in fieldPopulator.itemizedExpenses)
+		{
+			[formPopulator populateMultiScenFixedValField:
+				itemizedExpense.multiScenarioApplicablePercent 
+				andValLabel:itemizedExpense.expense.name 
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+		}
+	}
+	
+	if([fieldPopulator.itemizedSavingsInterest count] > 0)
+	{
+		[formPopulator nextSection];
+		
+		for(SavingsInterestItemizedTaxAmt *itemizedSavings in fieldPopulator.itemizedSavingsInterest)
+		{
+			[formPopulator populateMultiScenFixedValField:
+				itemizedSavings.multiScenarioApplicablePercent 
+				andValLabel:itemizedSavings.savingsAcct.name 
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
 		}
 	}
 

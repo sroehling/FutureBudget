@@ -98,13 +98,7 @@
 {
 		assert(theDate != nil);
 		assert([DateHelper dateIsEqualOrLater:theDate otherDate:self.startDate]);
-
-		NSTimeInterval secondsSinceStart = [theDate timeIntervalSinceDate:self.startDate];
-		// TBD - is the right to not include values which come before the start date? Or
-		// Should the startingvalue come before all other values, meaning a variable
-		// value could be in effect at the start date.
-		assert(secondsSinceStart >= 0.0);
-		unsigned int daysSinceStart = floor(secondsSinceStart/SECONDS_PER_DAY);
+		NSInteger daysSinceStart = [DateHelper daysOffset:theDate vsEarlierDate:self.startDate];
 		double amountMultiplier = [self valueMultiplierForDay:daysSinceStart];
 		assert(amountMultiplier >= 0.0);
 		return amountMultiplier;

@@ -57,6 +57,7 @@
 #import "TaxInputCalc.h"
 #import "TaxInputCalcs.h"
 
+#import "SavingsAccountSimInfo.h"
 
 
 @implementation SimEngine
@@ -128,29 +129,24 @@
 	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
 	for(SavingsAccount *savingsAcct in inputs)
 	{
-		InterestBearingWorkingBalance *savingsBal = 
-			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:savingsAcct 
+	
+		SavingsAccountSimInfo *savingsAcctSimInfo = 
+			[[[SavingsAccountSimInfo alloc] initWithSavingsAcct:savingsAcct
 				andSimParams:self.simParams] autorelease];
+		[self.simParams.savingsInfo addSimInfo:savingsAcct withSimInfo:savingsAcctSimInfo];
 			
 		if([SimInputHelper multiScenBoolVal:savingsAcct.contribEnabled
 				andScenario:simParams.simScenario])
 		{
 			SavingsContributionSimEventCreator *savingsEventCreator = 
 				[[[SavingsContributionSimEventCreator alloc]
-					initWithSavingsWorkingBalance:savingsBal 
+					initWithSavingsWorkingBalance:savingsAcctSimInfo.savingsBal 
 					andSavingsAcct:savingsAcct] autorelease];
 			[self.eventCreators addObject:savingsEventCreator];
 		}
 		
-		if([SimInputHelper multiScenBoolVal:savingsAcct.deferredWithdrawalsEnabled
-			andScenario:simParams.simScenario])
-		{
-			NSDate *deferWithdrawalsDate = [SimInputHelper multiScenFixedDate:savingsAcct.deferredWithdrawalDate.simDate andScenario:simParams.simScenario];
-			assert(deferWithdrawalsDate != nil);
-			savingsBal.deferWithdrawalsUntil = deferWithdrawalsDate;
-		}
 		
-		[self.simParams.workingBalanceMgr.fundingSources addBalance:savingsBal];
+		[self.simParams.workingBalanceMgr.fundingSources addBalance:savingsAcctSimInfo.savingsBal];
 	} // for each savings account
 	
 	

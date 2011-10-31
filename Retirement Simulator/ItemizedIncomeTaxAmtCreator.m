@@ -1,16 +1,16 @@
 //
-//  ItemizedTaxAmtCreator.m
+//  ItemizedIncomeTaxAmtCreator.m
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 10/8/11.
+//  Created by Steve Roehling on 10/31/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ItemizedTaxAmtCreator.h"
-#import "InputCreationHelper.h"
-#import "SharedAppValues.h"
+#import "ItemizedIncomeTaxAmtCreator.h"
 #import "DataModelController.h"
+#import "InputCreationHelper.h"
 #import "IncomeItemizedTaxAmt.h"
+
 
 @implementation ItemizedIncomeTaxAmtCreator
 
@@ -50,5 +50,6 @@
 	[super dealloc];
 	[income release];
 }
+
 
 @end

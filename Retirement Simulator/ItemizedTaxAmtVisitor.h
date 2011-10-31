@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @class IncomeItemizedTaxAmt;
+@class ExpenseItemizedTaxAmt;
+@class SavingsInterestItemizedTaxAmt;
 
 @protocol ItemizedTaxAmtVisitor <NSObject>
 
 -(void)visitIncomeItemizedTaxAmt:(IncomeItemizedTaxAmt*)itemizedTaxAmt;
+-(void)visitExpenseItemizedTaxAmt:(ExpenseItemizedTaxAmt*)itemizedTaxAmt;
+-(void)visitSavingsInterestItemizedTaxAmt:(SavingsInterestItemizedTaxAmt*)itemizedTaxAmt;
 
 @end

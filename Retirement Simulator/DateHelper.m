@@ -75,6 +75,23 @@
 	return false;
 }
 
++ (bool)dateIsEqual:(NSDate*)theDate otherDate:(NSDate*)comparisonDate
+{
+	assert(theDate != nil);
+	assert(comparisonDate!=nil);
+	NSDate *beginningDate = [DateHelper beginningOfDay:theDate];
+	NSDate *beginningOtherDate = [DateHelper beginningOfDay:comparisonDate];
+	NSComparisonResult comparison = [beginningDate compare:beginningOtherDate];
+	if(comparison == NSOrderedSame)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 + (NSDate*)nextDay:(NSDate*)currentDay
 {
 	assert(currentDay != nil);
@@ -144,6 +161,26 @@
 	NSDate *roundedDate = [[DateHelper theHelper].gregorian dateFromComponents:components];
 	assert(roundedDate!=nil);
 	return roundedDate;
+}
+
+
++(NSInteger)daysOffset:(NSDate*)theDate vsEarlierDate:(NSDate*)otherDate
+{
+
+		assert(theDate != nil);
+		assert(otherDate != nil);
+
+		NSDate *beginningOfOtherDate = [DateHelper beginningOfDay:otherDate];
+		assert([DateHelper dateIsEqualOrLater:theDate otherDate:beginningOfOtherDate]);
+		
+		NSTimeInterval secondsSinceStart = [theDate timeIntervalSinceDate:beginningOfOtherDate];
+		// TBD - is the right to not include values which come before the start date? Or
+		// Should the startingvalue come before all other values, meaning a variable
+		// value could be in effect at the start date.
+		assert(secondsSinceStart >= 0.0);
+		NSInteger daysSinceStart = floor(secondsSinceStart/SECONDS_PER_DAY);
+		assert(daysSinceStart >= 0);
+		return daysSinceStart;
 }
 
 + (NSDate*)endOfDay:(NSDate*)theDate

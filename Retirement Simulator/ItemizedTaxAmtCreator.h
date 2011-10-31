@@ -10,19 +10,9 @@
 
 
 @class ItemizedTaxAmt;
-@class IncomeInput;
 
 @protocol ItemizedTaxAmtCreator <NSObject>
 
 - (ItemizedTaxAmt*)createItemizedTaxAmt;
 
-@end
-
-
-@interface ItemizedIncomeTaxAmtCreator: NSObject <ItemizedTaxAmtCreator> {
-	@private
-		IncomeInput *income;
-}
-@property(nonatomic,retain) IncomeInput *income;
-- (id)initWithIncome:(IncomeInput*)theIncome;
 @end

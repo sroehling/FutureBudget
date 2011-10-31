@@ -39,7 +39,6 @@
 		00237986143FFF3D006650E3 /* ItemizedTaxAmtObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237985143FFF3C006650E3 /* ItemizedTaxAmtObjectAdder.m */; };
 		0023798914409665006650E3 /* IncomeItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023798814409662006650E3 /* IncomeItemizedTaxAmt.m */; };
 		0023799014409B47006650E3 /* InputCreationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023798F14409B46006650E3 /* InputCreationHelper.m */; };
-		002379941440A11B006650E3 /* ItemizedTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 002379931440A11B006650E3 /* ItemizedTaxAmtCreator.m */; };
 		0023799814412BBE006650E3 /* FinishedAddingItemizedTaxAmtListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023799714412BBD006650E3 /* FinishedAddingItemizedTaxAmtListener.m */; };
 		0023799D14413D49006650E3 /* ItemizedTaxAmtFieldPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023799C14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.m */; };
 		00254FF2144E62F2000AB7B3 /* MultiScenarioSimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */; };
@@ -113,6 +112,9 @@
 		0052E20514586FC900FEC4E2 /* TaxBracketCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E20414586FC900FEC4E2 /* TaxBracketCalc.m */; };
 		0052E2081459B03300FEC4E2 /* TaxInputCalcs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E2071459B03300FEC4E2 /* TaxInputCalcs.m */; };
 		0052E20B1459BB0900FEC4E2 /* InputValDigestSummations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E20A1459BB0800FEC4E2 /* InputValDigestSummations.m */; };
+		0052E20F145BAD1500FEC4E2 /* SavingsAccountSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E20E145BAD1500FEC4E2 /* SavingsAccountSimInfo.m */; };
+		0052E212145C4AE200FEC4E2 /* ExpenseItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E211145C4AE100FEC4E2 /* ExpenseItemizedTaxAmt.m */; };
+		0052E215145C54D300FEC4E2 /* SavingsInterestItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E214145C54D100FEC4E2 /* SavingsInterestItemizedTaxAmt.m */; };
 		0055A881141681C500EFB95C /* BoolInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A880141681C400EFB95C /* BoolInputValue.m */; };
 		0055A88A1416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */; };
 		0055A8951417DB4C00EFB95C /* TableCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8941417DB4A00EFB95C /* TableCellHelper.m */; };
@@ -136,6 +138,9 @@
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
 		006572DE1434FBA70062C00C /* StaticNavFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */; };
+		006D3A5A145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */; };
+		006D3A5E145F006A004AF798 /* ItemizedSavingsTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A5D145F006A004AF798 /* ItemizedSavingsTaxAmtCreator.m */; };
+		006D3A61145F0484004AF798 /* ItemizedIncomeTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A60145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.m */; };
 		0086C08114279A3B00148785 /* DownPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */; };
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
@@ -343,7 +348,6 @@
 		0023798E14409B46006650E3 /* InputCreationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputCreationHelper.h; sourceTree = "<group>"; };
 		0023798F14409B46006650E3 /* InputCreationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputCreationHelper.m; sourceTree = "<group>"; };
 		002379921440A11A006650E3 /* ItemizedTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtCreator.h; sourceTree = "<group>"; };
-		002379931440A11B006650E3 /* ItemizedTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtCreator.m; sourceTree = "<group>"; };
 		0023799614412BBC006650E3 /* FinishedAddingItemizedTaxAmtListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishedAddingItemizedTaxAmtListener.h; sourceTree = "<group>"; };
 		0023799714412BBD006650E3 /* FinishedAddingItemizedTaxAmtListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishedAddingItemizedTaxAmtListener.m; sourceTree = "<group>"; };
 		0023799A14413978006650E3 /* ItemizedTaxAmtVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtVisitor.h; sourceTree = "<group>"; };
@@ -496,6 +500,12 @@
 		0052E2071459B03300FEC4E2 /* TaxInputCalcs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputCalcs.m; sourceTree = "<group>"; };
 		0052E2091459BB0800FEC4E2 /* InputValDigestSummations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputValDigestSummations.h; sourceTree = "<group>"; };
 		0052E20A1459BB0800FEC4E2 /* InputValDigestSummations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputValDigestSummations.m; sourceTree = "<group>"; };
+		0052E20D145BAD1400FEC4E2 /* SavingsAccountSimInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsAccountSimInfo.h; sourceTree = "<group>"; };
+		0052E20E145BAD1500FEC4E2 /* SavingsAccountSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsAccountSimInfo.m; sourceTree = "<group>"; };
+		0052E210145C4AE000FEC4E2 /* ExpenseItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseItemizedTaxAmt.h; sourceTree = "<group>"; };
+		0052E211145C4AE100FEC4E2 /* ExpenseItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseItemizedTaxAmt.m; sourceTree = "<group>"; };
+		0052E213145C54CF00FEC4E2 /* SavingsInterestItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsInterestItemizedTaxAmt.h; sourceTree = "<group>"; };
+		0052E214145C54D100FEC4E2 /* SavingsInterestItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingsInterestItemizedTaxAmt.m; sourceTree = "<group>"; };
 		0055A87F141681C400EFB95C /* BoolInputValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoolInputValue.h; sourceTree = "<group>"; };
 		0055A880141681C400EFB95C /* BoolInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolInputValue.m; sourceTree = "<group>"; };
 		0055A8881416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioBoolInputValueFieldInfo.h; sourceTree = "<group>"; };
@@ -543,6 +553,12 @@
 		006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatIfFormInfoCreator.m; sourceTree = "<group>"; };
 		006572DC1434FBA70062C00C /* StaticNavFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNavFieldEditInfo.h; sourceTree = "<group>"; };
 		006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNavFieldEditInfo.m; sourceTree = "<group>"; };
+		006D3A58145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedExpenseTaxAmtCreator.h; sourceTree = "<group>"; };
+		006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedExpenseTaxAmtCreator.m; sourceTree = "<group>"; };
+		006D3A5C145F006A004AF798 /* ItemizedSavingsTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedSavingsTaxAmtCreator.h; sourceTree = "<group>"; };
+		006D3A5D145F006A004AF798 /* ItemizedSavingsTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedSavingsTaxAmtCreator.m; sourceTree = "<group>"; };
+		006D3A5F145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedIncomeTaxAmtCreator.h; sourceTree = "<group>"; };
+		006D3A60145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedIncomeTaxAmtCreator.m; sourceTree = "<group>"; };
 		0086C07F14279A3B00148785 /* DownPaymentSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownPaymentSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownPaymentSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08314279B7D00148785 /* SimInputHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimInputHelper.h; sourceTree = "<group>"; };
@@ -912,10 +928,15 @@
 				00237975143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.m */,
 				00237977143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.h */,
 				00237978143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.m */,
-				002379921440A11A006650E3 /* ItemizedTaxAmtCreator.h */,
-				002379931440A11B006650E3 /* ItemizedTaxAmtCreator.m */,
 				0023799614412BBC006650E3 /* FinishedAddingItemizedTaxAmtListener.h */,
 				0023799714412BBD006650E3 /* FinishedAddingItemizedTaxAmtListener.m */,
+				002379921440A11A006650E3 /* ItemizedTaxAmtCreator.h */,
+				006D3A58145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.h */,
+				006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */,
+				006D3A5C145F006A004AF798 /* ItemizedSavingsTaxAmtCreator.h */,
+				006D3A5D145F006A004AF798 /* ItemizedSavingsTaxAmtCreator.m */,
+				006D3A5F145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.h */,
+				006D3A60145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.m */,
 			);
 			name = "Creating Itemizations";
 			sourceTree = "<group>";
@@ -943,6 +964,10 @@
 				0023798714409660006650E3 /* IncomeItemizedTaxAmt.h */,
 				0023798814409662006650E3 /* IncomeItemizedTaxAmt.m */,
 				0023799A14413978006650E3 /* ItemizedTaxAmtVisitor.h */,
+				0052E210145C4AE000FEC4E2 /* ExpenseItemizedTaxAmt.h */,
+				0052E211145C4AE100FEC4E2 /* ExpenseItemizedTaxAmt.m */,
+				0052E213145C54CF00FEC4E2 /* SavingsInterestItemizedTaxAmt.h */,
+				0052E214145C54D100FEC4E2 /* SavingsInterestItemizedTaxAmt.m */,
 			);
 			name = "Itemized Tax Amounts";
 			sourceTree = "<group>";
@@ -1517,7 +1542,7 @@
 				0086C08414279B7D00148785 /* SimInputHelper.m */,
 				0086C0A5142D0B9300148785 /* Asset */,
 				00EC458414214B9C00D65D17 /* Loan */,
-				00EC458314214B6300D65D17 /* Savings Contributions */,
+				00EC458314214B6300D65D17 /* Savings */,
 				00EC458214214B4700D65D17 /* Cash Flow */,
 				0099A1661457AC6200E35AF9 /* Income */,
 				0099A1671457ACCD00E35AF9 /* Expense */,
@@ -1931,7 +1956,7 @@
 			name = "Cash Flow";
 			sourceTree = "<group>";
 		};
-		00EC458314214B6300D65D17 /* Savings Contributions */ = {
+		00EC458314214B6300D65D17 /* Savings */ = {
 			isa = PBXGroup;
 			children = (
 				004CB03713FC8319000E87A9 /* SavingsContributionSimEvent.h */,
@@ -1940,8 +1965,10 @@
 				004CB03B13FC8357000E87A9 /* SavingsContributionSimEventCreator.m */,
 				004CB04C1402BCB6000E87A9 /* SavingsContribDigestEntry.h */,
 				004CB04D1402BCBA000E87A9 /* SavingsContribDigestEntry.m */,
+				0052E20D145BAD1400FEC4E2 /* SavingsAccountSimInfo.h */,
+				0052E20E145BAD1500FEC4E2 /* SavingsAccountSimInfo.m */,
 			);
-			name = "Savings Contributions";
+			name = Savings;
 			sourceTree = "<group>";
 		};
 		00EC458414214B9C00D65D17 /* Loan */ = {
@@ -2284,7 +2311,6 @@
 				00237986143FFF3D006650E3 /* ItemizedTaxAmtObjectAdder.m in Sources */,
 				0023798914409665006650E3 /* IncomeItemizedTaxAmt.m in Sources */,
 				0023799014409B47006650E3 /* InputCreationHelper.m in Sources */,
-				002379941440A11B006650E3 /* ItemizedTaxAmtCreator.m in Sources */,
 				0023799814412BBE006650E3 /* FinishedAddingItemizedTaxAmtListener.m in Sources */,
 				0023799D14413D49006650E3 /* ItemizedTaxAmtFieldPopulator.m in Sources */,
 				00AA79BB1441E8AF00FED301 /* TaxBracketFormInfoCreator.m in Sources */,
@@ -2311,6 +2337,12 @@
 				0052E20514586FC900FEC4E2 /* TaxBracketCalc.m in Sources */,
 				0052E2081459B03300FEC4E2 /* TaxInputCalcs.m in Sources */,
 				0052E20B1459BB0900FEC4E2 /* InputValDigestSummations.m in Sources */,
+				0052E20F145BAD1500FEC4E2 /* SavingsAccountSimInfo.m in Sources */,
+				0052E212145C4AE200FEC4E2 /* ExpenseItemizedTaxAmt.m in Sources */,
+				0052E215145C54D300FEC4E2 /* SavingsInterestItemizedTaxAmt.m in Sources */,
+				006D3A5A145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m in Sources */,
+				006D3A5E145F006A004AF798 /* ItemizedSavingsTaxAmtCreator.m in Sources */,
+				006D3A61145F0484004AF798 /* ItemizedIncomeTaxAmtCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

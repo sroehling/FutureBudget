@@ -9,14 +9,24 @@
 #import "ItemizedTaxCalcPopulator.h"
 
 #import "ItemizedTaxAmt.h"
-#import "IncomeItemizedTaxAmt.h"
-#import "IncomeSimInfo.h"
 #import "SimParams.h"
 #import "InputSimInfoCltn.h"
-#import "IncomeInput.h"
 #import "ItemizedTaxAmt.h"
 #import "ItemizedTaxCalcEntry.h"
 #import "SimInputHelper.h"
+
+#import "IncomeInput.h"
+#import "IncomeItemizedTaxAmt.h"
+#import "IncomeSimInfo.h"
+
+#import "ExpenseInput.h"
+#import "ExpenseItemizedTaxAmt.h"
+#import "ExpenseSimInfo.h"
+
+#import "SavingsAccount.h"
+#import "SavingsInterestItemizedTaxAmt.h"
+#import "SavingsAccountSimInfo.h"
+#import "InterestBearingWorkingBalance.h"
 
 
 @implementation ItemizedTaxCalcPopulator
@@ -44,6 +54,26 @@
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.digestSum] autorelease];
 	
 }
+
+-(void)visitExpenseItemizedTaxAmt:(ExpenseItemizedTaxAmt*)itemizedTaxAmt
+{
+	ExpenseSimInfo *simInfo = [self.simParams.incomeInfo 
+		getSimInfo:itemizedTaxAmt.expense];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.digestSum] autorelease];
+	
+}
+
+-(void)visitSavingsInterestItemizedTaxAmt:(SavingsInterestItemizedTaxAmt *)itemizedTaxAmt
+{
+	SavingsAccountSimInfo *simInfo = [self.simParams.savingsInfo
+		getSimInfo:itemizedTaxAmt.savingsAcct];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.savingsBal.accruedInterest] autorelease];
+}
+
 
 -(id)initWithSimParams:(SimParams*)theSimParams
 {
