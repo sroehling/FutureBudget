@@ -19,6 +19,10 @@
 		NSMutableArray *itemizedIncomes;
 		NSMutableArray *itemizedExpenses;
 		NSMutableArray *itemizedSavingsInterest;
+		NSMutableArray *itemizedAccountContribs;
+		NSMutableArray *itemizedAccountWithdrawals;
+		NSMutableArray *itemizedAssets;
+		NSMutableArray *itemizedLoans;
 }
 
 
@@ -27,7 +31,10 @@
 @property(nonatomic,retain) NSMutableArray *itemizedIncomes;
 @property(nonatomic,retain) NSMutableArray *itemizedExpenses;
 @property(nonatomic,retain) NSMutableArray *itemizedSavingsInterest;
-
+@property(nonatomic,retain) NSMutableArray *itemizedAccountContribs;
+@property(nonatomic,retain) NSMutableArray *itemizedAccountWithdrawals;
+@property(nonatomic,retain) NSMutableArray *itemizedAssets;
+@property(nonatomic,retain) NSMutableArray *itemizedLoans;
 
 -(id)initWithItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts;
 

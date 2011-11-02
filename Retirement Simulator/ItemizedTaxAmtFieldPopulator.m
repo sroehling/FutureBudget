@@ -20,6 +20,10 @@
 @synthesize itemizedIncomes;
 @synthesize itemizedExpenses;
 @synthesize itemizedSavingsInterest;
+@synthesize itemizedAccountContribs;
+@synthesize itemizedAccountWithdrawals;
+@synthesize itemizedAssets;
+@synthesize itemizedLoans;
 
 
 -(id)initWithItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts
@@ -33,6 +37,10 @@
 		self.itemizedIncomes = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedExpenses =  [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedSavingsInterest = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedAccountContribs = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedAccountWithdrawals = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedAssets = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedLoans = [[[NSMutableArray alloc] init] autorelease];
 		
 		for(ItemizedTaxAmt *itemizedTaxAmt in self.itemizedTaxAmts.itemizedAmts)
 		{
@@ -62,6 +70,30 @@
 	[self.itemizedSavingsInterest addObject:itemizedTaxAmt];
 }
 
+-(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedAccountContribs addObject:itemizedTaxAmt];
+}
+
+-(void)visitAccountWithdrawalItemizedTaxAmt:(AccountWithdrawalItemizedTaxAmt *)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedAccountWithdrawals addObject:itemizedTaxAmt];
+}
+
+-(void)visitAssetGainItemizedTaxAmt:(AssetGainItemizedTaxAmt *)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedAssets addObject:itemizedTaxAmt];
+}
+
+-(void)visitLoanInterestItemizedTaxAmt:(LoanInterestItemizedTaxAmt *)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedLoans addObject:itemizedTaxAmt];
+}
+
 -(void)dealloc
 {
 	[super dealloc];
@@ -70,6 +102,10 @@
 	[itemizedIncomes release];
 	[itemizedExpenses release];
 	[itemizedSavingsInterest release];
+	[itemizedAccountContribs release];
+	[itemizedAccountWithdrawals release];
+	[itemizedAssets release];
+	[itemizedLoans release];
 }
 
 @end

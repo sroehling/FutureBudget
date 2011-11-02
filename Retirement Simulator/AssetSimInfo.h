@@ -11,12 +11,15 @@
 @class AssetInput;
 @class InterestBearingWorkingBalance;
 @class SimParams;
+@class InputValDigestSummation;
+@class DigestEntryProcessingParams;
 
 @interface AssetSimInfo : NSObject {
 	@private
 		AssetInput *asset;
 		InterestBearingWorkingBalance *assetValue;
 		SimParams *simParams;
+		InputValDigestSummation *sumGainsLosses;
 		
 		NSDate *purchaseDate;
 		NSDate *saleDate;
@@ -28,6 +31,7 @@
 @property(nonatomic,retain) SimParams *simParams;
 @property(nonatomic,retain) NSDate *purchaseDate;
 @property(nonatomic,retain) NSDate *saleDate;
+@property(nonatomic,retain) InputValDigestSummation *sumGainsLosses;
 
 -(bool)purchasedAfterSimStart;
 - (bool)soldAfterSimStart;
@@ -35,5 +39,6 @@
 - (double)purchaseCost;
 
 -(id)initWithAsset:(AssetInput*)theAsset andSimParams:(SimParams*)theSimParams;
+-(void)processSale:(DigestEntryProcessingParams*)processingParams;
 
 @end

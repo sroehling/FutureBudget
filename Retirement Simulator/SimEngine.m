@@ -159,6 +159,8 @@
 		
 			LoanSimInfo *loanInfo = [[[LoanSimInfo alloc]initWithLoan:loan 
 				andSimParams:self.simParams]autorelease];
+			[self.simParams.loanInfo addSimInfo:loan withSimInfo:loanInfo];
+
 			
 			LoanPaymentSimEventCreator *loanPmtEventCreator = 
 				[[[LoanPaymentSimEventCreator alloc] initWithLoanInfo:loanInfo] autorelease];
@@ -197,6 +199,9 @@
 			AssetSimInfo *assetInfo =  
 				[[[AssetSimInfo alloc] initWithAsset:asset 
 				andSimParams:self.simParams] autorelease];
+			[self.simParams.assetInfo addSimInfo:asset withSimInfo:assetInfo];
+				
+				
 			if([assetInfo ownedForAtLeastOneDay])
 			{
 				// Only include the asset in simulation if it's owned for at least one day.

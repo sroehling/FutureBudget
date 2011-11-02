@@ -28,6 +28,16 @@
 #import "SavingsAccount.h"
 #import "SavingsInterestItemizedTaxAmt.h"
 
+#import "Account.h"
+#import "AccountContribItemizedTaxAmt.h"
+#import "AccountWithdrawalItemizedTaxAmt.h"
+
+#import "AssetInput.h"
+#import "AssetGainItemizedTaxAmt.h"
+
+#import "LoanInput.h"
+#import "LoanInterestItemizedTaxAmt.h"
+
 @implementation ItemizedTaxAmtsFormInfoCreator
 
 @synthesize itemizedTaxAmtsInfo;
@@ -106,6 +116,65 @@
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
 		}
 	}
+	
+	if([fieldPopulator.itemizedAccountContribs  count] > 0)
+	{
+		[formPopulator nextSection];
+		for(AccountContribItemizedTaxAmt *itemizedAccountContrib in 
+			fieldPopulator.itemizedAccountContribs)
+		{
+			[formPopulator populateMultiScenFixedValField:
+				itemizedAccountContrib.multiScenarioApplicablePercent 
+				andValLabel:itemizedAccountContrib.account.name 
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+		}
+		
+	}
+
+	if([fieldPopulator.itemizedAccountWithdrawals  count] > 0)
+	{
+		[formPopulator nextSection];
+		for(AccountWithdrawalItemizedTaxAmt *itemizedAccountWithdrawal in 
+			fieldPopulator.itemizedAccountWithdrawals)
+		{
+			[formPopulator populateMultiScenFixedValField:
+				itemizedAccountWithdrawal.multiScenarioApplicablePercent 
+				andValLabel:itemizedAccountWithdrawal.account.name 
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+		}
+		
+	}
+	
+	
+	if([fieldPopulator.itemizedAssets  count] > 0)
+	{
+		[formPopulator nextSection];
+		for(AssetGainItemizedTaxAmt *itemizedAssetGain in 
+			fieldPopulator.itemizedAssets)
+		{
+			[formPopulator populateMultiScenFixedValField:
+				itemizedAssetGain.multiScenarioApplicablePercent 
+				andValLabel:itemizedAssetGain.asset.name 
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+		}
+		
+	}
+
+
+	if([fieldPopulator.itemizedLoans  count] > 0)
+	{
+		[formPopulator nextSection];
+		for(LoanInterestItemizedTaxAmt *itemizedLoanInterest in 
+			fieldPopulator.itemizedLoans)
+		{
+			[formPopulator populateMultiScenFixedValField:
+				itemizedLoanInterest.multiScenarioApplicablePercent 
+				andValLabel:itemizedLoanInterest.loan.name 
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+		}
+		
+	}
+
 
 	return formPopulator.formInfo;
 	

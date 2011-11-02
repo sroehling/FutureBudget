@@ -24,19 +24,15 @@
 	return self;
 }
 
--(NSString*)inputKey:(Input*)theInput
-{
-	assert(theInput != nil);
-	return [[[theInput objectID] URIRepresentation] absoluteString];
-}
 
 -(id)findSimInfo:(Input*)theInput
 {
-	return [self.inputSimInfoMap objectForKey:[self inputKey:theInput]];
+	return [self.inputSimInfoMap objectForKey:[theInput objectID]];
 }
 
 -(id)getSimInfo:(Input*)theInput
 {
+
 	id theSimInfo = [self findSimInfo:theInput];
 	assert(theSimInfo != nil);
 	return theSimInfo;
@@ -47,8 +43,11 @@
 	assert(theInput != nil);
 	assert(simInfo != nil);
 	assert([self findSimInfo:theInput] == nil); // duplicates not allowed
-		
-	[self.inputSimInfoMap setValue:simInfo forKey:[self inputKey:theInput]];
+	
+	// TODO - Need to definitively verify insertion and retrieval of 
+	// objects into the dictionary. An ID stored with the input is
+	// likely needed.
+	[self.inputSimInfoMap setObject:simInfo forKey:[theInput objectID]];
 }
 
 -(void)dealloc

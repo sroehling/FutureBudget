@@ -18,10 +18,7 @@
 
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
-	double saleValue = [self.assetInfo.assetValue 
-		zeroOutBalanceAsOfDate:processingParams.currentDate];
-	[processingParams.workingBalanceMgr incrementCashBalance:saleValue 
-			asOfDate:processingParams.currentDate];
+	[self.assetInfo processSale:processingParams];
 }
 
 @end

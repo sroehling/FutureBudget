@@ -19,6 +19,10 @@
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioSimDate.h"
 #import "MultiScenarioSimEndDate.h"
+#import "InputValDigestSummation.h"
+#import "InputValDigestSummations.h"
+#import "DigestEntryProcessingParams.h"
+#import "WorkingBalanceMgr.h"
 
 @implementation AssetSimInfo
 
@@ -27,6 +31,7 @@
 @synthesize simParams;
 @synthesize purchaseDate;
 @synthesize saleDate;
+@synthesize sumGainsLosses;
 
 
 -(id)initWithAsset:(AssetInput*)theAsset andSimParams:(SimParams*)theSimParams
@@ -39,6 +44,9 @@
 	
 		assert(theAsset != nil);
 		self.asset = theAsset;
+		
+		self.sumGainsLosses = [[[InputValDigestSummation alloc] init] autorelease];
+		[theSimParams.digestSums addDigestSum:self.sumGainsLosses];
 		
 		self.purchaseDate = [SimInputHelper 
 			multiScenFixedDate:self.asset.purchaseDate.simDate 
@@ -97,6 +105,20 @@
 	return cost;
 }
 
+-(void)processSale:(DigestEntryProcessingParams*)processingParams
+{
+	double saleValue = [self.assetValue 
+		zeroOutBalanceAsOfDate:processingParams.currentDate];
+	double purchaseCost  = [self purchaseCost];
+	double gain = saleValue-purchaseCost;
+	assert(gain >= 0.0); // TODO - losses not handled yet
+	
+	[self.sumGainsLosses incrementSum:gain onDay:processingParams.dayIndex];
+	
+	[processingParams.workingBalanceMgr incrementCashBalance:saleValue 
+			asOfDate:processingParams.currentDate];
+}
+
 -(bool)ownedForAtLeastOneDay
 {
 	NSDate *beginningOfPurchaseDate = [DateHelper beginningOfDay:self.purchaseDate];
@@ -151,6 +173,7 @@
 	[simParams release];
 	[purchaseDate release];
 	[saleDate release];
+	[sumGainsLosses release];
 }
 
 @end

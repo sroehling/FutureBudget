@@ -10,6 +10,7 @@
 
 @class BalanceAdjustment;
 @class WorkingBalanceAdjustment;
+@class InputValDigestSummation;
 
 #define WORKING_BALANCE_WITHDRAW_PRIORITY_MAX 0.0
 
@@ -23,6 +24,10 @@ extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 		NSDate *currentBalanceDate;
 		double withdrawPriority;
 		NSDate *deferWithdrawalsUntil;
+		InputValDigestSummation *contribs;
+		InputValDigestSummation *withdrawals;
+
+
 }
 
 - (void) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
@@ -45,5 +50,8 @@ extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 @property(readonly) double startingBalance;
 @property(readonly) double currentBalance;
 @property double withdrawPriority;
+
+@property(nonatomic,retain) InputValDigestSummation *contribs;
+@property(nonatomic,retain) InputValDigestSummation *withdrawals;
 
 @end

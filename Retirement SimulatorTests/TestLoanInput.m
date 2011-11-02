@@ -177,6 +177,12 @@
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
 		expectedPmtDate:@"2012-12-01" inContext:@"testSimpleLoan: pmt 11"];
 		
+	// Working balances accrue digest results in yearly increments, indexed by 
+	// a "day index" from 0 to 365. Therefore, when testing with working balances,
+	// it is necessary to advance the working balance if dates in a new year are
+	// being tested.
+	[loanInfo.loanBalance carryBalanceForward:[DateHelper dateFromStr:@"2013-01-01"]];
+		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
 		expectedPmtDate:@"2013-01-01" inContext:@"testSimpleLoan: pmt 12"];
 

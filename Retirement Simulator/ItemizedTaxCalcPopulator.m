@@ -23,9 +23,24 @@
 #import "ExpenseItemizedTaxAmt.h"
 #import "ExpenseSimInfo.h"
 
+#import "Account.h"
+#import "AccountContribItemizedTaxAmt.h"
+#import "AccountWithdrawalItemizedTaxAmt.h"
+
+#import "AssetInput.h"
+#import "AssetSimInfo.h"
+#import "AssetGainItemizedTaxAmt.h"
+
+
 #import "SavingsAccount.h"
 #import "SavingsInterestItemizedTaxAmt.h"
 #import "SavingsAccountSimInfo.h"
+
+
+#import "LoanInput.h"
+#import "LoanSimInfo.h"
+#import "LoanInterestItemizedTaxAmt.h"
+
 #import "InterestBearingWorkingBalance.h"
 
 
@@ -72,6 +87,47 @@
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.savingsBal.accruedInterest] autorelease];
+}
+
+-(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt
+{
+	SavingsAccountSimInfo *simInfo = [self.simParams.savingsInfo
+		getSimInfo:itemizedTaxAmt.account];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
+		andDigestSum:simInfo.savingsBal.contribs] autorelease];
+
+}
+
+-(void)visitAccountWithdrawalItemizedTaxAmt:(AccountWithdrawalItemizedTaxAmt *)itemizedTaxAmt
+{
+	SavingsAccountSimInfo *simInfo = [self.simParams.savingsInfo
+		getSimInfo:itemizedTaxAmt.account];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
+		andDigestSum:simInfo.savingsBal.withdrawals] autorelease];
+
+}
+
+-(void)visitAssetGainItemizedTaxAmt:(AssetGainItemizedTaxAmt *)itemizedTaxAmt
+{
+	AssetSimInfo *simInfo = [self.simParams.assetInfo
+		getSimInfo:itemizedTaxAmt.asset];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
+		andDigestSum:simInfo.sumGainsLosses] autorelease];
+}
+
+-(void)visitLoanInterestItemizedTaxAmt:(LoanInterestItemizedTaxAmt *)itemizedTaxAmt
+{
+	LoanSimInfo *simInfo = [self.simParams.loanInfo getSimInfo:itemizedTaxAmt.loan];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
+		andDigestSum:simInfo.loanBalance.accruedInterest] autorelease];	
 }
 
 

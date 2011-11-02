@@ -10,6 +10,7 @@
 #import "SharedAppValues.h"
 #import "DateHelper.h"
 #import "NumberHelper.h"
+#import "InputValDigestSummation.h"
 
 
 NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
@@ -22,6 +23,8 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 @synthesize currentBalanceDate;
 @synthesize withdrawPriority;
 @synthesize deferWithdrawalsUntil;
+@synthesize contribs;
+@synthesize withdrawals;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andStartDate:(NSDate*)theStartDate andWithdrawPriority:(double)theWithdrawPriority
@@ -39,6 +42,10 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 		
 		// By default, there is no deferral of withdrawals.
 		self.deferWithdrawalsUntil = nil;
+		
+		self.contribs = [[[InputValDigestSummation alloc] init] autorelease];
+		self.withdrawals = [[[InputValDigestSummation alloc] init] autorelease];
+
 	}
 	return self;
 }
@@ -58,6 +65,8 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 {
 	[super dealloc];
 	[balanceStartDate release];
+	[contribs release];
+	[withdrawals release];
 }
 
 - (void)advanceCurrentBalanceToDate:(NSDate*)newDate
@@ -105,6 +114,10 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 
 	assert(amount >= 0.0);
 	currentBalance += amount;
+	
+	NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
+		vsEarlierDate:self.balanceStartDate];
+	[self.contribs incrementSum:amount onDay:daysSinceStartDate];
 }
 
 
@@ -141,6 +154,10 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 			decrementAmount = 0.0;	
 	}
 	
+	NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
+		vsEarlierDate:self.balanceStartDate];
+	[self.withdrawals incrementSum:decrementAmount onDay:daysSinceStartDate];
+	
 	return decrementAmount;
 
 }
@@ -159,6 +176,10 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	
 		currentBalance = 0.0;
 	
+		NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
+			vsEarlierDate:self.balanceStartDate];
+		[self.withdrawals incrementSum:remainingBalance onDay:daysSinceStartDate];
+
 		return remainingBalance;
 	}
 	else

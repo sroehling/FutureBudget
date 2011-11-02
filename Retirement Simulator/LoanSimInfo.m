@@ -21,6 +21,8 @@
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioGrowthRate.h"
 #import "MultiScenarioSimDate.h"
+#import "DigestEntryProcessingParams.h"
+#import "InputValDigestSummations.h"
 
 @implementation LoanSimInfo
 
@@ -202,6 +204,7 @@
 		self.loanBalance = [[[InterestBearingWorkingBalance alloc] 
 			initWithStartingBalance:startingLoanBalance andInterestRateCalc:interestRateCalc 
 			andWorkingBalanceName:self.loan.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
+		[simParams.digestSums addDigestSum:self.loanBalance.accruedInterest];
 			
 		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator
 			createVariableRateCalc:loan.extraPmtGrowthRate.growthRate

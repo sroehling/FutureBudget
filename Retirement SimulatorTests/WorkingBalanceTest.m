@@ -128,6 +128,7 @@
 	InterestBearingWorkingBalance *bal = [self createInterestBearingWorkingAccountWithRate:100 andStartDate:startDate andStartingBal:1000];
 	
 	[bal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
+
 	[self checkCurrentBalance:bal withExpectedBalance:2000];
 
 	[bal incrementBalance:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
@@ -167,6 +168,8 @@
 	[cashBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	[self checkCurrentBalance:cashBal withExpectedBalance:750.0];
 	
+	[cashBal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
+	
 	[cashBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2012-08-01"]];
 	[self checkCurrentBalance:cashBal withExpectedBalance:500.0];
 	
@@ -184,6 +187,9 @@
 	
 	[interestBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2011-12-31"]];
 	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal];
+
+	[interestBal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
+
 
 	[interestBal decrementAvailableBalance:250.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	[self checkCurrentBalance:interestBal withExpectedBalance:750.0];

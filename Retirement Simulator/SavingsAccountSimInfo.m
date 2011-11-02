@@ -13,6 +13,7 @@
 #import "SimDate.h"
 #import "SimInputHelper.h"
 #import "MultiScenarioSimDate.h"
+#import "InputValDigestSummations.h"
 
 @implementation SavingsAccountSimInfo
 	
@@ -30,6 +31,12 @@
 		self.savingsBal = 
 			[[[InterestBearingWorkingBalance alloc] initWithSavingsAcct:theSavingsAcct 
 				andSimParams:simParams] autorelease];
+		// TBD - Is this the best place to populate the SimParam's digestSums for the 
+		// savings acct? Should it instead be done inside the WorkingBalance?
+		[simParams.digestSums addDigestSum:self.savingsBal.contribs];
+		[simParams.digestSums addDigestSum:self.savingsBal.withdrawals];
+		[simParams.digestSums addDigestSum:self.savingsBal.accruedInterest];
+
 				
 		if([SimInputHelper multiScenBoolVal:theSavingsAcct.deferredWithdrawalsEnabled
 			andScenario:simParams.simScenario])
