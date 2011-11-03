@@ -23,9 +23,9 @@
 #import "InterestBearingWorkingBalance.h"
 #import "IncomeSimEventCreator.h"
 #import "IncomeSimInfo.h"
-#import "SavingsAccount.h"
+#import "Account.h"
 #import "BoolInputValue.h"
-#import "SavingsContributionSimEventCreator.h"
+#import "AccountContribSimEventCreator.h"
 #import "SimInputHelper.h"
 
 #import "EstimatedTaxAccrualSimEventCreator.h"
@@ -57,7 +57,7 @@
 #import "TaxInputCalc.h"
 #import "TaxInputCalcs.h"
 
-#import "SavingsAccountSimInfo.h"
+#import "AccountSimInfo.h"
 
 
 @implementation SimEngine
@@ -126,27 +126,26 @@
     }
 
 		
-	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
-	for(SavingsAccount *savingsAcct in inputs)
+	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
+	for(Account *acct in inputs)
 	{
 	
-		SavingsAccountSimInfo *savingsAcctSimInfo = 
-			[[[SavingsAccountSimInfo alloc] initWithSavingsAcct:savingsAcct
+		AccountSimInfo *acctSimInfo = 
+			[[[AccountSimInfo alloc] initWithAcct:acct
 				andSimParams:self.simParams] autorelease];
-		[self.simParams.savingsInfo addSimInfo:savingsAcct withSimInfo:savingsAcctSimInfo];
+		[self.simParams.acctInfo addSimInfo:acct withSimInfo:acctSimInfo];
 			
-		if([SimInputHelper multiScenBoolVal:savingsAcct.contribEnabled
+		if([SimInputHelper multiScenBoolVal:acct.contribEnabled
 				andScenario:simParams.simScenario])
 		{
-			SavingsContributionSimEventCreator *savingsEventCreator = 
-				[[[SavingsContributionSimEventCreator alloc]
-					initWithSavingsWorkingBalance:savingsAcctSimInfo.savingsBal 
-					andSavingsAcct:savingsAcct] autorelease];
+			AccountContribSimEventCreator *savingsEventCreator = 
+				[[[AccountContribSimEventCreator alloc]
+					initWithWorkingBalance:acctSimInfo.acctBal andAcct:acct] autorelease];
 			[self.eventCreators addObject:savingsEventCreator];
 		}
 		
 		
-		[self.simParams.workingBalanceMgr.fundingSources addBalance:savingsAcctSimInfo.savingsBal];
+		[self.simParams.workingBalanceMgr.fundingSources addBalance:acctSimInfo.acctBal];
 	} // for each savings account
 	
 	

@@ -21,7 +21,7 @@
 "INPUT_LIST_SECTION_TITLE_ASSETS" = "Assets";
 "INPUT_LIST_SECTION_TITLE_TAXES" = "Taxes";
 
-"ITEMIZED_TAX_SAVINGS_INTEREST_SECTION_TITLE" = "Savings Interest";
+"ITEMIZED_TAX_ACCOUNT_INTEREST_SECTION_TITLE" = "Savings Interest";
 "ITEMIZED_TAX_ACCOUNT_CONTRIBUTIONS_SECTION_TITLE" = "Account Contributions";
 "ITEMIZED_TAX_ACCOUNT_WITHDRAWALS_SECTION_TITLE" = "Account Withdrawals";
 "ITEMIZED_TAX_ASSET_GAIN_SECTION_TITLE" = "Asset Gain/Loss";
@@ -37,7 +37,7 @@
 "INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER" = "Enter a balance";
 
 
-"INPUT_ACCOUNT_TITLE" = "Savings Account";
+"INPUT_ACCOUNT_TITLE" = "Account";
 "INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE" = "Contributions";
 "INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL" = "Amount";
 "INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL" = "Enable Contribution?";
@@ -55,11 +55,10 @@
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_FIELD_LABEL" = "Defer Withdrawals Until";
 "INPUT_ACCOUNT_WITHDRAWAL_DEFER_DATE_SUBTITLE_FORMAT" = "Defer withdrawals until %@";
 "INPUT_ACCOUNT_INTEREST_SECTION_TITLE" = "Interest";
+"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL" = "Interest/Growth Rate";
+"INPUT_ACCOUNT_STARTING_BALANCE_LABEL" = "Starting Balance";
+"INPUT_ACCOUNT_INPUT_LIST_DETAIL_FORMAT" = "Starting balance of %@, %@";
 
-
-"INPUT_SAVINGS_ACCOUNT_STARTING_BALANCE_LABEL" = "Starting Balance";
-"INPUT_SAVINGS_ACCOUNT_INPUT_LIST_DETAIL_FORMAT" = "Starting balance of %@, %@";
-"INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_FIELD_LABEL" = "Interest Rate";
 "INPUT_TYPE_SAVINGS_ACCOUNT_INLINE" = "savings account";
 "INPUT_TYPE_SAVINGS_ACCOUNT_TITLE" = "Savings Account";
 
@@ -283,7 +282,7 @@
 "WHAT_IF_INVESTMENT_RETURN_FIELD_CAPTION" = "Return on Investments";
 "WHAT_IF_INVESTMENT_RETURN_SUBTITLE" = "Change the expected appreciation or depreciation of assets, the interest rates on accounts, or the expected rate of return on investments.";
 "WHAT_IF_RETURN_ASSET_APPRECIATION" = "Asset Appreciation";
-"WHAT_IF_RETURN_SAVINGS_ACCOUNT_INTEREST" = "Savings Interest";
+"WHAT_IF_RETURN_ACCOUNT_INTEREST" = "Savings Interest";
 "WHAT_IF_GROWTH_RATE_FIELD_CAPTION" = "Growth Rates";
 "WHAT_IF_GROWTH_RATE_SUBTITLE" = "Change annual growth rates for incomes, expenses, extra loan payments, or savings contributions.";
 "WHAT_IF_GROWTH_RATE_FORM_TITLE" = "Growth Rates";

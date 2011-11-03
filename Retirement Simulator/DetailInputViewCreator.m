@@ -172,7 +172,7 @@
 	 [formPopulator nextSection];
 
 	[self.formPopulator populateCurrencyField:account andValKey:ACCOUNT_STARTING_BALANCE_KEY
-		andLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_STARTING_BALANCE_LABEL") 
+		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_LABEL") 
 			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")];
 
 	SectionInfo *sectionInfo = [formPopulator nextSection];
@@ -195,6 +195,28 @@
 		[self.formPopulator populateRepeatFrequency:account
 		andFreqKey:ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
+		
+		
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE");
+	
+	[self.formPopulator populateMultiScenarioGrowthRate:account.interestRate 
+		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")];
+
+
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
+
+	[self.formPopulator populateMultiScenFixedValField:account.withdrawalPriority 
+		andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
+		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
+	
+	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
+		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:account
+			andFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")
+			andIsNewAccount:self.isForNewObject] autorelease];
+	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
+	
 
     
     // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
@@ -217,25 +239,6 @@
 
 - (void) visitSavingsAccount:(SavingsAccount *)savingsAcct
 {
-	SectionInfo *sectionInfo = [formPopulator nextSection];
-	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE");
-	
-	[self.formPopulator populateMultiScenarioGrowthRate:savingsAcct.interestRate 
-		withLabel:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INTEREST_RATE_FIELD_LABEL")];
-
-
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
-
-	[self.formPopulator populateMultiScenFixedValField:savingsAcct.withdrawalPriority 
-		andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
-		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
-	
-	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
-		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:savingsAcct
-			andFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")
-			andIsNewAccount:self.isForNewObject] autorelease];
-	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
 }
 
 - (void) visitLoan:(LoanInput*)loan

@@ -85,6 +85,9 @@
 	newInput.deferredWithdrawalsEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	newInput.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
     
+	newInput.startingBalance = [NSNumber numberWithDouble:0.0];
+	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
 }
 
 
@@ -130,14 +133,10 @@
 
 -(Input*)createInput
 {
-	SavingsAccount *savingsAcct = (SavingsAccount*)[[DataModelController theDataModelController] insertObject:SAVINGS_ACCOUNT_ENTITY_NAME];	
+	SavingsAccount *savingsAcct = (SavingsAccount*)[[DataModelController theDataModelController] 
+		insertObject:SAVINGS_ACCOUNT_ENTITY_NAME];	
 	
 	[self populateAccountInputProperties:savingsAcct];
-
-	savingsAcct.startingBalance = [NSNumber numberWithDouble:0.0];
-	
-	savingsAcct.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-
 	
     [[DataModelController theDataModelController] saveContext];
     

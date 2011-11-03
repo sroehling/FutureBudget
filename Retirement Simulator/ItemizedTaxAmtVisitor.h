@@ -10,7 +10,7 @@
 
 @class IncomeItemizedTaxAmt;
 @class ExpenseItemizedTaxAmt;
-@class SavingsInterestItemizedTaxAmt;
+@class AccountInterestItemizedTaxAmt;
 @class AccountContribItemizedTaxAmt;
 @class AccountWithdrawalItemizedTaxAmt;
 @class AssetGainItemizedTaxAmt;
@@ -20,7 +20,8 @@
 
 -(void)visitIncomeItemizedTaxAmt:(IncomeItemizedTaxAmt*)itemizedTaxAmt;
 -(void)visitExpenseItemizedTaxAmt:(ExpenseItemizedTaxAmt*)itemizedTaxAmt;
--(void)visitSavingsInterestItemizedTaxAmt:(SavingsInterestItemizedTaxAmt*)itemizedTaxAmt;
+
+-(void)visitAccountInterestItemizedTaxAmt:(AccountInterestItemizedTaxAmt*)itemizedTaxAmt;
 
 -(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt*)
 	itemizedTaxAmt;

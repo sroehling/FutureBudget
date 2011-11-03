@@ -11,7 +11,7 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "CashWorkingBalance.h"
-#import "SavingsContribDigestEntry.h"
+#import "AccountContribDigestEntry.h"
 #import "WorkingBalanceMgr.h"
 #import "SharedAppValues.h"
 #import "InterestBearingWorkingBalance.h"

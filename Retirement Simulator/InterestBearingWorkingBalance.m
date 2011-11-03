@@ -7,7 +7,7 @@
 //
 
 #import "InterestBearingWorkingBalance.h"
-#import "SavingsAccount.h"
+#import "Account.h"
 #import "SharedAppValues.h"
 #import "DateSensitiveValue.h"
 #import "DateSensitiveValueVariableRateCalculatorCreator.h"
@@ -64,20 +64,20 @@
 
 }
 
-- (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct andSimParams:(SimParams*)simParams
+- (id) initWithAcct:(Account*)theAcct andSimParams:(SimParams*)simParams
 {
 
 	DateSensitiveValue *savingsInterestRate = (DateSensitiveValue*)[
-			theSavingsAcct.interestRate.growthRate
+			theAcct.interestRate.growthRate
 			getValueForCurrentOrDefaultScenario];
 	
 	double acctWithdrawPriority = 
-		[SimInputHelper multiScenFixedVal:theSavingsAcct.withdrawalPriority 
+		[SimInputHelper multiScenFixedVal:theAcct.withdrawalPriority 
 				andScenario:simParams.simScenario];
-	double acctStartingBalance = [SimInputHelper doubleVal:theSavingsAcct.startingBalance];
+	double acctStartingBalance = [SimInputHelper doubleVal:theAcct.startingBalance];
 
 	return [self initWithStartingBalance:acctStartingBalance 
-		andInterestRate:savingsInterestRate andWorkingBalanceName:theSavingsAcct.name 
+		andInterestRate:savingsInterestRate andWorkingBalanceName:theAcct.name 
 		andStartDate:simParams.simStartDate 
 		andWithdrawPriority:acctWithdrawPriority];
 }

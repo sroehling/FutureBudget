@@ -82,21 +82,20 @@
 
 - (void)visitAccount:(Account *)account
 {
-   // no-op: implementation in sub-classes
+	DateSensitiveValue *interestRate = (DateSensitiveValue*)
+		[account.interestRate.growthRate getValueForCurrentOrDefaultScenario];
+
+	NSString *interestRateDisplay = [interestRate inlineDescription:
+		[VariableValueRuntimeInfo createForSharedInterestRate:account]];
+
+	NSString *startingBalanceStr = [[NumberHelper theHelper] displayStrFromStoredVal:account.startingBalance andFormatter:[NumberHelper theHelper].currencyFormatter];
+	self.generatedDesc= [NSString 
+		stringWithFormat:LOCALIZED_STR(@"INPUT_ACCOUNT_INPUT_LIST_DETAIL_FORMAT"),startingBalanceStr,interestRateDisplay];
 }
 
 
 - (void)visitSavingsAccount:(SavingsAccount*)savingsAcct
 {
-	DateSensitiveValue *interestRate = (DateSensitiveValue*)
-		[savingsAcct.interestRate.growthRate getValueForCurrentOrDefaultScenario];
-
-	NSString *interestRateDisplay = [interestRate inlineDescription:
-		[VariableValueRuntimeInfo createForSharedInterestRate:savingsAcct]];
-
-	NSString *startingBalanceStr = [[NumberHelper theHelper] displayStrFromStoredVal:savingsAcct.startingBalance andFormatter:[NumberHelper theHelper].currencyFormatter];
-	self.generatedDesc= [NSString 
-		stringWithFormat:LOCALIZED_STR(@"INPUT_SAVINGS_ACCOUNT_INPUT_LIST_DETAIL_FORMAT"),startingBalanceStr,interestRateDisplay];
 		
 }
 

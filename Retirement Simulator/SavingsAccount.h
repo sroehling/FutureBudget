@@ -17,6 +17,5 @@ extern NSString * const SAVINGS_ACCOUNT_ENTITY_NAME;
 @interface SavingsAccount : Account {
 @private
 }
-@property (nonatomic, retain) MultiScenarioGrowthRate * interestRate;
 
 @end

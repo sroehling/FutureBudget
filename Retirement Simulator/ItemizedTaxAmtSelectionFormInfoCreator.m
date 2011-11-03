@@ -19,8 +19,8 @@
 #import "ExpenseInput.h"
 #import "ItemizedExpenseTaxAmtCreator.h"
 
-#import "SavingsAccount.h"
-#import "ItemizedSavingsTaxAmtCreator.h"
+#import "Account.h"
+#import "ItemizedAccountTaxAmtCreator.h"
 
 #import "Account.h"
 #import "ItemizedAccountContribTaxAmtCreator.h"
@@ -110,21 +110,22 @@
 
 	
 	inputs = [[DataModelController theDataModelController]
-			fetchSortedObjectsWithEntityName:SAVINGS_ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_SAVINGS_INTEREST_SECTION_TITLE");
-		for(SavingsAccount *savingsAcct in inputs)
+		sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ACCOUNT_INTEREST_SECTION_TITLE");
+		for(Account *acct in inputs)
 		{
 			id<ItemizedTaxAmtCreator> savingsTaxAmtCreator = 
-				[[[ItemizedSavingsTaxAmtCreator alloc] initWithSavingsAcct:savingsAcct ] autorelease]; 
+				[[[ItemizedAccountTaxAmtCreator alloc] initWithAcct:acct ] autorelease]; 
 			id<GenericTableViewFactory> itemizedAddViewFactory = 
 				[[[ItemizedTableViewAddItemTableViewFactory alloc] 
 					initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
 					andItemizedTaxAmtCreator:savingsTaxAmtCreator] autorelease];
 			StaticNavFieldEditInfo *itemizedSavingsSelectionFieldEditInfo =
-				[[[StaticNavFieldEditInfo alloc] initWithCaption:savingsAcct.name andSubtitle:nil andContentDescription:nil 
+				[[[StaticNavFieldEditInfo alloc] initWithCaption:acct.name 
+				andSubtitle:nil andContentDescription:nil 
 				andSubViewFactory:itemizedAddViewFactory] autorelease];
 			[sectionInfo addFieldEditInfo:itemizedSavingsSelectionFieldEditInfo];
 		}

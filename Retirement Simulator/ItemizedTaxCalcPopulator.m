@@ -32,9 +32,9 @@
 #import "AssetGainItemizedTaxAmt.h"
 
 
-#import "SavingsAccount.h"
-#import "SavingsInterestItemizedTaxAmt.h"
-#import "SavingsAccountSimInfo.h"
+#import "Account.h"
+#import "AccountInterestItemizedTaxAmt.h"
+#import "AccountSimInfo.h"
 
 
 #import "LoanInput.h"
@@ -80,34 +80,32 @@
 	
 }
 
--(void)visitSavingsInterestItemizedTaxAmt:(SavingsInterestItemizedTaxAmt *)itemizedTaxAmt
+-(void)visitAccountInterestItemizedTaxAmt:(AccountInterestItemizedTaxAmt *)itemizedTaxAmt
 {
-	SavingsAccountSimInfo *simInfo = [self.simParams.savingsInfo
-		getSimInfo:itemizedTaxAmt.savingsAcct];
+	AccountSimInfo *simInfo = [self.simParams.acctInfo getSimInfo:itemizedTaxAmt.account];
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
-	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.savingsBal.accruedInterest] autorelease];
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.acctBal.accruedInterest] autorelease];
 }
 
 -(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt
 {
-	SavingsAccountSimInfo *simInfo = [self.simParams.savingsInfo
-		getSimInfo:itemizedTaxAmt.account];
+	AccountSimInfo *simInfo = [self.simParams.acctInfo getSimInfo:itemizedTaxAmt.account];
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
-		andDigestSum:simInfo.savingsBal.contribs] autorelease];
+		andDigestSum:simInfo.acctBal.contribs] autorelease];
 
 }
 
 -(void)visitAccountWithdrawalItemizedTaxAmt:(AccountWithdrawalItemizedTaxAmt *)itemizedTaxAmt
 {
-	SavingsAccountSimInfo *simInfo = [self.simParams.savingsInfo
+	AccountSimInfo *simInfo = [self.simParams.acctInfo
 		getSimInfo:itemizedTaxAmt.account];
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
-		andDigestSum:simInfo.savingsBal.withdrawals] autorelease];
+		andDigestSum:simInfo.acctBal.withdrawals] autorelease];
 
 }
 

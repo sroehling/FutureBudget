@@ -7,9 +7,6 @@
 //
 
 #import "DigestEntryCltn.h"
-#import "SavingsContribDigestEntry.h"
-#import "LoanPmtDigestEntry.h"
-#import "IncomeDigestEntry.h"
 
 @implementation DigestEntryCltn
 

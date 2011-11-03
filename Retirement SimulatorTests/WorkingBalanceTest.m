@@ -11,7 +11,6 @@
 #import "InMemoryCoreData.h"
 #import "WorkingBalance.h"
 #import "DateHelper.h"
-#import "SavingsAccount.h"
 #import "FixedValue.h"
 #import "InterestBearingWorkingBalance.h"
 #import "WorkingBalanceMgr.h"

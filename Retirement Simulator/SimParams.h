@@ -24,7 +24,7 @@
 		
 		InputSimInfoCltn *incomeInfo;
 		InputSimInfoCltn *expenseInfo;
-		InputSimInfoCltn *savingsInfo;
+		InputSimInfoCltn *acctInfo;
 		InputSimInfoCltn *assetInfo;
 		InputSimInfoCltn *loanInfo;
 
@@ -46,7 +46,7 @@
 
 @property(nonatomic,retain) InputSimInfoCltn *incomeInfo;
 @property(nonatomic,retain) InputSimInfoCltn *expenseInfo;
-@property(nonatomic,retain) InputSimInfoCltn *savingsInfo;
+@property(nonatomic,retain) InputSimInfoCltn *acctInfo;
 @property(nonatomic,retain) InputSimInfoCltn *assetInfo;
 @property(nonatomic,retain) InputSimInfoCltn *loanInfo;
 

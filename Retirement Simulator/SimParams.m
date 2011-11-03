@@ -26,7 +26,7 @@
 
 @synthesize incomeInfo;
 @synthesize expenseInfo;
-@synthesize savingsInfo;
+@synthesize acctInfo;
 @synthesize assetInfo;
 @synthesize loanInfo;
 
@@ -50,7 +50,7 @@
 		
 		self.incomeInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 		self.expenseInfo = [[[InputSimInfoCltn alloc] init] autorelease];
-		self.savingsInfo = [[[InputSimInfoCltn alloc] init] autorelease];
+		self.acctInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 		self.assetInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 		self.loanInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 		
@@ -83,7 +83,7 @@
 	
 	[incomeInfo release];
 	[expenseInfo release];
-	[savingsInfo release];
+	[acctInfo release];
 	[assetInfo release];
 	[loanInfo release];
 	

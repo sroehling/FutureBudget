@@ -11,7 +11,6 @@
 
 @class Input;
 @class CashFlowInput;
-@class SavingsAccount;
 @class LoanInput;
 @class Account;
 @class MultiScenarioAmount;

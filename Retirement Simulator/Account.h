@@ -31,6 +31,7 @@ extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY;
 @property(nonatomic,retain) MultiScenarioInputValue *contribRepeatFrequency;
 @property(nonatomic,retain) MultiScenarioSimDate *contribStartDate;
 @property(nonatomic,retain) MultiScenarioSimEndDate *contribEndDate;
+@property (nonatomic, retain) MultiScenarioGrowthRate * interestRate;
 
 @property(nonatomic,retain) MultiScenarioInputValue *contribEnabled;
 

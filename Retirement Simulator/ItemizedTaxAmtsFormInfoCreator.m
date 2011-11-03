@@ -25,8 +25,8 @@
 #import "ExpenseInput.h"
 #import "ExpenseItemizedTaxAmt.h"
 
-#import "SavingsAccount.h"
-#import "SavingsInterestItemizedTaxAmt.h"
+#import "Account.h"
+#import "AccountInterestItemizedTaxAmt.h"
 
 #import "Account.h"
 #import "AccountContribItemizedTaxAmt.h"
@@ -104,15 +104,15 @@
 		}
 	}
 	
-	if([fieldPopulator.itemizedSavingsInterest count] > 0)
+	if([fieldPopulator.itemizedAccountInterest count] > 0)
 	{
 		[formPopulator nextSection];
 		
-		for(SavingsInterestItemizedTaxAmt *itemizedSavings in fieldPopulator.itemizedSavingsInterest)
+		for(AccountInterestItemizedTaxAmt *itemizedSavings in fieldPopulator.itemizedAccountInterest)
 		{
 			[formPopulator populateMultiScenFixedValField:
 				itemizedSavings.multiScenarioApplicablePercent 
-				andValLabel:itemizedSavings.savingsAcct.name 
+				andValLabel:itemizedSavings.account.name 
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
 		}
 	}

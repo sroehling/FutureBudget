@@ -29,6 +29,7 @@ NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY = @"contribRepe
 
 @dynamic deferredWithdrawalsEnabled;
 @dynamic deferredWithdrawalDate;
+@dynamic interestRate;
 
 
 @dynamic withdrawalPriority;

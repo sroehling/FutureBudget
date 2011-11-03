@@ -10,7 +10,7 @@
 
 #import "WorkingBalance.h"
 
-@class SavingsAccount;
+@class Account;
 @class DateSensitiveValue;
 @class VariableRateCalculator;
 @class InputValDigestSummation;
@@ -39,7 +39,7 @@
 	andStartDate:(NSDate*)theStartDate
 	andWithdrawPriority:(double)theWithdrawPriority;	
 
-- (id) initWithSavingsAcct:(SavingsAccount*)theSavingsAcct 
+- (id) initWithAcct:(Account*)theAcct 
 	andSimParams:(SimParams*)simParams;
 
 @end

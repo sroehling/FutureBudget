@@ -19,7 +19,7 @@
 
 @synthesize itemizedIncomes;
 @synthesize itemizedExpenses;
-@synthesize itemizedSavingsInterest;
+@synthesize itemizedAccountInterest;
 @synthesize itemizedAccountContribs;
 @synthesize itemizedAccountWithdrawals;
 @synthesize itemizedAssets;
@@ -36,7 +36,7 @@
 		
 		self.itemizedIncomes = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedExpenses =  [[[NSMutableArray alloc] init] autorelease];
-		self.itemizedSavingsInterest = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedAccountInterest = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountContribs = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountWithdrawals = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAssets = [[[NSMutableArray alloc] init] autorelease];
@@ -64,10 +64,10 @@
 	[self.itemizedExpenses addObject:itemizedTaxAmt];
 }
 
--(void)visitSavingsInterestItemizedTaxAmt:(SavingsInterestItemizedTaxAmt *)itemizedTaxAmt
+-(void)visitAccountInterestItemizedTaxAmt:(AccountInterestItemizedTaxAmt *)itemizedTaxAmt
 {
 	assert(itemizedTaxAmt != nil);
-	[self.itemizedSavingsInterest addObject:itemizedTaxAmt];
+	[self.itemizedAccountInterest addObject:itemizedTaxAmt];
 }
 
 -(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt
@@ -101,7 +101,7 @@
 	
 	[itemizedIncomes release];
 	[itemizedExpenses release];
-	[itemizedSavingsInterest release];
+	[itemizedAccountInterest release];
 	[itemizedAccountContribs release];
 	[itemizedAccountWithdrawals release];
 	[itemizedAssets release];

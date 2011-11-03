@@ -18,7 +18,7 @@
 		
 		NSMutableArray *itemizedIncomes;
 		NSMutableArray *itemizedExpenses;
-		NSMutableArray *itemizedSavingsInterest;
+		NSMutableArray *itemizedAccountInterest;
 		NSMutableArray *itemizedAccountContribs;
 		NSMutableArray *itemizedAccountWithdrawals;
 		NSMutableArray *itemizedAssets;
@@ -30,7 +30,7 @@
 
 @property(nonatomic,retain) NSMutableArray *itemizedIncomes;
 @property(nonatomic,retain) NSMutableArray *itemizedExpenses;
-@property(nonatomic,retain) NSMutableArray *itemizedSavingsInterest;
+@property(nonatomic,retain) NSMutableArray *itemizedAccountInterest;
 @property(nonatomic,retain) NSMutableArray *itemizedAccountContribs;
 @property(nonatomic,retain) NSMutableArray *itemizedAccountWithdrawals;
 @property(nonatomic,retain) NSMutableArray *itemizedAssets;

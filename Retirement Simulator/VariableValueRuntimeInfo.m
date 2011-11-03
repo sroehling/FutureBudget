@@ -11,7 +11,6 @@
 #import "LocalizationHelper.h"
 #import "NumberHelper.h"
 #import "CashFlowInput.h"
-#import "SavingsAccount.h"
 #import "InflationRate.h"
 #import "LoanInput.h"
 #import "InterestRate.h"

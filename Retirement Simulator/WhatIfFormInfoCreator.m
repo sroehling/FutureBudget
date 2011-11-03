@@ -13,10 +13,10 @@
 #import "LocalizationHelper.h"
 #import "StaticNavFieldEditInfo.h"
 #import "DataModelController.h"
-#import "SavingsAccount.h"
 #import "BoolFieldEditInfo.h"
 #import "LoanInput.h"
 #import "SharedAppValues.h"
+#import "Account.h"
 #import "ExpenseInput.h"
 #import "IncomeInput.h"
 #import "AssetInput.h"
@@ -162,15 +162,15 @@
 	}
 	
 	inputs = [[DataModelController theDataModelController] 
-					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_ENABLED_ACCOUNT_CONTRIBS");
 	
-		for(SavingsAccount *savingsAcct in inputs)
+		for(Account *acct in inputs)
 		{
-			[formPopulator populateMultiScenBoolField:savingsAcct.contribEnabled withLabel:savingsAcct.name];
+			[formPopulator populateMultiScenBoolField:acct.contribEnabled withLabel:acct.name];
 		}
 	}
 	
@@ -232,32 +232,32 @@
 	SectionInfo *sectionInfo;
 	
 	NSSet *inputs = [[DataModelController theDataModelController] 
-					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWAL_PRIORITY_SECTION_TITLE");
 	
-		for(SavingsAccount *savingsAcct in inputs)
+		for(Account *acct in inputs)
 		{
-			[formPopulator populateMultiScenFixedValField:savingsAcct.withdrawalPriority 
-				andValLabel:savingsAcct.name
+			[formPopulator populateMultiScenFixedValField:acct.withdrawalPriority 
+				andValLabel:acct.name
 				andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
 		}
 	}
 	
 	inputs = [[DataModelController theDataModelController] 
-					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWAL_DEFERRED_SECTION_TITLE");
 		
-		for(SavingsAccount *savingsAcct in inputs)
+		for(Account *acct in inputs)
 		{
 			DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
-				[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:savingsAcct
-					andFieldLabel:savingsAcct.name
+				[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:acct
+					andFieldLabel:acct.name
 					andIsNewAccount:isNewObject] autorelease];
 				[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
 
@@ -308,15 +308,15 @@
 	}
 	
 	inputs = [[DataModelController theDataModelController] 
-					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_AMOUNTS_ACCOUNT_CONTRIBS");
 	
-		for(SavingsAccount *savingsAcct in inputs)
+		for(Account *acct in inputs)
 		{
-			[formPopulator populateMultiScenarioAmount:savingsAcct.contribAmount withValueTitle:savingsAcct.name];
+			[formPopulator populateMultiScenarioAmount:acct.contribAmount withValueTitle:acct.name];
 		}
 	}
 	
@@ -379,15 +379,15 @@
 	SectionInfo *sectionInfo;
 		
 	NSSet *inputs = [[DataModelController theDataModelController] 
-					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_RETURN_SAVINGS_ACCOUNT_INTEREST");
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_RETURN_ACCOUNT_INTEREST");
 	
-		for(SavingsAccount *savingsAcct in inputs)
+		for(Account *acct in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:savingsAcct.interestRate withLabel:savingsAcct.name];
+			[formPopulator populateMultiScenarioGrowthRate:acct.interestRate withLabel:acct.name];
 		}
 	}
 	
@@ -449,15 +449,16 @@
 	}
 	
 	inputs = [[DataModelController theDataModelController] 
-					fetchObjectsForEntityName:SAVINGS_ACCOUNT_ENTITY_NAME];
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_ACCOUNT_CONTRIBS");
 	
-		for(SavingsAccount *savingsAcct in inputs)
+		for(Account *acct in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:savingsAcct.contribGrowthRate withLabel:savingsAcct.name];
+			[formPopulator populateMultiScenarioGrowthRate:acct.contribGrowthRate 
+				withLabel:acct.name];
 		}
 	}
 	

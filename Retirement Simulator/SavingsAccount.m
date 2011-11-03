@@ -16,9 +16,6 @@ NSString * const SAVINGS_ACCOUNT_ENTITY_NAME = @"SavingsAccount";
 
 @implementation SavingsAccount
 
-@dynamic interestRate;
-
-
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
 {
     [super acceptInputVisitor:inputVisitor];
