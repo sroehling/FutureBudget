@@ -19,6 +19,6 @@
 
 -(id)initWithTaxBracket:(TaxBracket*)theTaxBracket;
 
--(double)calcEffectiveTaxRate:(double)taxableIncome;
+-(double)calcEffectiveTaxRate:(double)taxableIncome withCredits:(double)creditAmount;
 
 @end

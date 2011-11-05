@@ -72,7 +72,7 @@
 
 -(void)visitExpenseItemizedTaxAmt:(ExpenseItemizedTaxAmt*)itemizedTaxAmt
 {
-	ExpenseSimInfo *simInfo = [self.simParams.incomeInfo 
+	ExpenseSimInfo *simInfo = [self.simParams.expenseInfo 
 		getSimInfo:itemizedTaxAmt.expense];
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
@@ -90,6 +90,7 @@
 
 -(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt
 {
+	NSLog(@"Initializing tax amount: %@",itemizedTaxAmt.account.name);
 	AccountSimInfo *simInfo = [self.simParams.acctInfo getSimInfo:itemizedTaxAmt.account];
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	

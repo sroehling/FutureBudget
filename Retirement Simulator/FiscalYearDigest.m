@@ -115,13 +115,14 @@
 	// Advance all the working balances to the end of this year. Although none of the current balances
 	// are changed, some interest might be accrued leading up to the end of the year. This interest
 	// needs to be included in the total interest for the year, so that taxes can be calculated.
-	[self.simParams.workingBalanceMgr advanceBalancesToDate:
-		[DateHelper beginningOfNextYear:self.currentYearDigestStartDate]];
+	NSDate *beginningOfNextYear = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
+	[self.simParams.workingBalanceMgr advanceBalancesToDate:beginningOfNextYear];
 
 	// Update the effective tax rates for the tax inputs. This needs to be done at the end of 
 	// processing the digest, since all the InputValDigestSummation objects referenced by the
 	// TaxInputCalcs will have been populated with income, interest, etc.
-	[self.simParams.taxInputCalcs updateEffectiveTaxRates];
+	// TBD - Should the date passed be the end this year, or the beginning of next year.
+	[self.simParams.taxInputCalcs updateEffectiveTaxRates:beginningOfNextYear];
 	
 	// Reset all the digest sums used to tally up taxable incomes, expenses, interest, etc.
 	[self.simParams.digestSums resetSums];

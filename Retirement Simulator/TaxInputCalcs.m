@@ -30,11 +30,12 @@
 	[self.taxInputCalcs addObject:theTaxInputCalc];
 }
 
--(void)updateEffectiveTaxRates
+-(void)updateEffectiveTaxRates:(NSDate*)currentDate
 {
+	assert(currentDate != nil);
 	for(TaxInputCalc *taxInputCalc in self.taxInputCalcs)
 	{
-		[taxInputCalc updateEffectiveTaxRate];
+		[taxInputCalc updateEffectiveTaxRate:currentDate];
 	}
 }
 

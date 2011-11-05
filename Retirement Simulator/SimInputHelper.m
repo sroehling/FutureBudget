@@ -7,7 +7,11 @@
 //
 
 #import "SimInputHelper.h"
+
 #import "MultiScenarioInputValue.h"
+#import "MultiScenarioAmount.h"
+#import "MultiScenarioGrowthRate.h"
+
 #import "ValueAsOfCalculator.h"
 #import "ValueAsOfCalculatorCreator.h"
 #import "SimDate.h"
@@ -57,6 +61,13 @@
 	asOfDate:(NSDate*)asOfDate sinceDate:(NSDate*)startDate
 	forScenario:(Scenario*)theScenario
 {
+	assert(theScenario != nil);
+	assert(startDate != nil);
+	assert(asOfDate != nil);
+	assert([DateHelper dateIsEqualOrLater:asOfDate otherDate:startDate]);
+	assert(multiScenGrowthRate != nil);
+	assert(multiScenAmount != nil);
+
 	double unadjustedAmount = [SimInputHelper multiScenValueAsOfDate:multiScenAmount 
 			andDate:asOfDate andScenario:theScenario];
 
@@ -67,6 +78,16 @@
 	double adjustedAmount = unadjustedAmount * amountMultiplier;
 			
 	return adjustedAmount;
+}
+
++(double)multiScenRateAdjustedAmount:(MultiScenarioAmount*)multiScenAmount
+	andMultiScenRate:(MultiScenarioGrowthRate*)growthRate asOfDate:(NSDate *)asOfDate 
+	sinceDate:(NSDate *)startDate forScenario:(Scenario *)theScenario
+{
+	
+	return [SimInputHelper multiScenRateAdjustedValueAsOfDate:multiScenAmount.amount 
+	andMultiScenRate:growthRate.growthRate asOfDate:asOfDate sinceDate:startDate forScenario:theScenario];
+
 }
 
 

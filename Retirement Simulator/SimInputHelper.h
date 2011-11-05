@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @class MultiScenarioInputValue;
+@class MultiScenarioAmount;
+@class MultiScenarioGrowthRate;
 
 @class Scenario;
 
@@ -26,6 +28,10 @@
 	andMultiScenRate:(MultiScenarioInputValue*)multiScenGrowthRate 
 	asOfDate:(NSDate*)asOfDate sinceDate:(NSDate*)startDate
 	forScenario:(Scenario*)theScenario;	
+	
++(double)multiScenRateAdjustedAmount:(MultiScenarioAmount*)multiScenAmount
+	andMultiScenRate:(MultiScenarioGrowthRate*)growthRate asOfDate:(NSDate *)asOfDate 
+	sinceDate:(NSDate *)startDate forScenario:(Scenario *)theScenario;
 	
 + (NSDate*)multiScenFixedDate:(MultiScenarioInputValue*)multiScenDate andScenario:(Scenario*)theScenario;
 +(NSDate*)multiScenEndDate:(MultiScenarioInputValue*)multiScenEndDate 

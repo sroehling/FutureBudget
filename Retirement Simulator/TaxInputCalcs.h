@@ -20,7 +20,7 @@
 
 -(void)addTaxInputCalc:(TaxInputCalc*)theTaxInputCalc;
 
--(void)updateEffectiveTaxRates;
+-(void)updateEffectiveTaxRates:(NSDate*)currentDate;
 -(void)processDailyTaxPmts:(DigestEntryProcessingParams*)processingParams;
 
 @end

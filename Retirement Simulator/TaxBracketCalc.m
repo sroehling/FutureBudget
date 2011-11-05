@@ -34,9 +34,13 @@
 	return nil;
 }
 
--(double)calcEffectiveTaxRate:(double)taxableIncome
+-(double)calcEffectiveTaxRate:(double)taxableIncome withCredits:(double)creditAmount
 {
+	// TODO - We definitely need a unit test of this method
 	assert(taxableIncome >= 0.0);
+	assert(creditAmount >= 0.0);
+	
+	
 	if([self.taxBracketEntries count] == 0)
 	{
 		return 0.0;
@@ -63,7 +67,16 @@
 			{
 				// no need to continue, all the tax revenue is covered under the previous
 				// cutoff.
-				return totalTax/taxableIncome;
+				
+				if(creditAmount >= totalTax)
+				{
+					return 0.0;
+				}
+				else
+				{
+					return (totalTax - creditAmount)/taxableIncome;
+				}
+
 			}
 			
 			prevCutoffAmount = currCutoffAmount;
@@ -74,7 +87,15 @@
 		assert(amountTaxableUnderTopBracket >= 0.0);
 		totalTax += amountTaxableUnderTopBracket * prevRate;
 		
-		return totalTax/taxableIncome;
+		if(creditAmount >= totalTax)
+		{
+			return 0.0;
+		}
+		else
+		{
+			return (totalTax - creditAmount)/taxableIncome;
+		}
+		
 	}
 }
 
