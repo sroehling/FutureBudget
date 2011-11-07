@@ -19,16 +19,20 @@ NSString * const TAX_INPUT_ENTITY_NAME = @"TaxInput";
 
 @implementation TaxInput
 
-@dynamic taxEnabled;
+
 @dynamic exemptionAmt;
-@dynamic stdDeductionAmt;
 @dynamic exemptionGrowthRate;
-@dynamic itemizedDeductions;
 @dynamic itemizedAdjustments;
 @dynamic itemizedCredits;
+@dynamic itemizedDeductions;
 @dynamic itemizedIncomeSources;
+@dynamic stdDeductionAmt;
 @dynamic stdDeductionGrowthRate;
 @dynamic taxBracket;
+@dynamic taxEnabled;
+
+
+
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
