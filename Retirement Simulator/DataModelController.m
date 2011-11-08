@@ -108,11 +108,13 @@
         return __persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"ExampleCoreData.sqlite"];
-    
+      NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"AppData.sqlite"];
+  
     NSError *error = nil;
-    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] 
+				initWithManagedObjectModel:[self managedObjectModel]];
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType 
+	   configuration:nil URL:storeURL options:nil error:&error])
     {
         /*
          TODO - Replace this implementation with code to handle the error appropriately.
@@ -241,8 +243,13 @@
 {
     assert(entityName != nil);
     assert([entityName length] >0);
-    return [NSEntityDescription insertNewObjectForEntityForName:entityName 
+	
+	id theObject = [NSEntityDescription insertNewObjectForEntityForName:entityName 
             inManagedObjectContext:self.managedObjectContext];
+	assert(theObject != nil);
+	[theObject retain];
+	[theObject autorelease];
+	return theObject;
 }
 
 - (id)createDataModelObject:(NSString *)entityName

@@ -11,6 +11,9 @@
 
 
 @implementation ItemizedTaxAmt
+
+@dynamic itemizedTaxAmts;
+
 @dynamic multiScenarioApplicablePercent;
 
 -(void)acceptVisitor:(id<ItemizedTaxAmtVisitor>)visitor

@@ -10,12 +10,16 @@
 #import <CoreData/CoreData.h>
 
 @class MultiScenarioInputValue;
+@class ItemizedTaxAmts;
+
 @protocol ItemizedTaxAmtVisitor;
+
 
 @interface ItemizedTaxAmt : NSManagedObject {
 @private
 }
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioApplicablePercent;
+@property (nonatomic, retain) ItemizedTaxAmts * itemizedTaxAmts;
 
 -(void)acceptVisitor:(id<ItemizedTaxAmtVisitor>)visitor;
 
