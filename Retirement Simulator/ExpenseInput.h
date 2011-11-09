@@ -18,4 +18,8 @@ extern NSString * const EXPENSE_INPUT_ENTITY_NAME;
 @private
 }
 
+// Inverse Relationship
+@property (nonatomic, retain) NSSet* expenseItemizedTaxAmts;
+
+
 @end

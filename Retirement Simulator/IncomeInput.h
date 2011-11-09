@@ -16,4 +16,8 @@ extern NSString * const INCOME_INPUT_ENTITY_NAME;
 @private
 }
 
+// Inverse Relationship
+@property (nonatomic, retain) NSSet* incomeItemizedTaxAmts;
+
+
 @end

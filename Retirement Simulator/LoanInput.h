@@ -47,6 +47,9 @@ extern NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY;
 
 @property (nonatomic, retain) MultiScenarioInputValue * loanDuration;
 
+// Inverse Relationship
+@property (nonatomic, retain) NSSet* loanInterestItemizedTaxAmts;
+
 
 
 @end

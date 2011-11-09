@@ -16,4 +16,7 @@ extern NSString * const ASSET_VALUE_ENTITY_NAME;
 @private
 }
 
+@property (nonatomic, retain) NSSet* assetGainItemizedTaxAmts;
+
+
 @end

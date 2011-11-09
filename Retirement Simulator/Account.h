@@ -43,5 +43,11 @@ extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY;
 
 @property(nonatomic,retain) MultiScenarioInputValue *withdrawalPriority;
 
+// Inverse Relationships
+@property (nonatomic, retain) NSSet* accountWithdrawalItemizedTaxAmt;
+@property (nonatomic, retain) NSSet* accountInterestItemizedTaxAmt;
+@property (nonatomic, retain) NSSet* accountContribItemizedTaxAmt;
+
+
 
 @end
