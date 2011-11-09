@@ -15,6 +15,11 @@
 @dynamic defaultFixedStartDate;
 @dynamic newValue;
 
+// Inverse property
+@dynamic variableValueValueChange;
+
+
+
 -(NSDate*)resolvedStartDate
 {
 	assert(self.startDate != nil);

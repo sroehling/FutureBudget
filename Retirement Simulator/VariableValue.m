@@ -20,6 +20,10 @@ NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
 @dynamic startingValue;
 @dynamic valueChanges;
 
+// Inverse relationship
+@dynamic multiScenAmountVariableAmounts;
+
+
 - (void)addValueChangesObject:(DateSensitiveValueChange *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
     [self willChangeValueForKey:@"valueChanges" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];

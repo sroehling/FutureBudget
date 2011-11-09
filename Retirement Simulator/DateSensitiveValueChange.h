@@ -11,6 +11,7 @@
 
 @class SimDate;
 @class FixedDate;
+@class VariableValue;
 
 @interface DateSensitiveValueChange : NSManagedObject {
 @private
@@ -18,6 +19,10 @@
 @property (nonatomic, retain) SimDate * startDate;
 @property(nonatomic,retain) FixedDate *defaultFixedStartDate;
 @property (nonatomic, retain) NSNumber * newValue;
+
+// Inverse property
+@property (nonatomic, retain) VariableValue * variableValueValueChange;
+
 
 
 // The resolvedStartDate method is needed so that calculations involving

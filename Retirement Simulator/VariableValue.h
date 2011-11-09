@@ -11,6 +11,7 @@
 #import "DateSensitiveValue.h"
 
 @class DateSensitiveValueChange;
+@class MultiScenarioAmount;
 
 extern NSString * const VARIABLE_VALUE_ENTITY_NAME;
 
@@ -20,6 +21,10 @@ extern NSString * const VARIABLE_VALUE_ENTITY_NAME;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * startingValue;
 @property (nonatomic, retain) NSSet* valueChanges;
+
+// Inverse relationship
+@property (nonatomic, retain) MultiScenarioAmount * multiScenAmountVariableAmounts;
+
 
 - (void)addValueChangesObject:(DateSensitiveValueChange *)value;
 
