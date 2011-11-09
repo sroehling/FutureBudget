@@ -28,5 +28,6 @@ NSString * const MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY = @"growthRate";
 @dynamic loanCostGrowthRate;
 @dynamic loanExtraPmtGrowthRate;
 @dynamic loanInterestRate;
+@dynamic taxBracketCutoffGrowthRate;
 
 @end

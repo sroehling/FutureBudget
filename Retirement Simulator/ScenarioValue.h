@@ -12,11 +12,16 @@
 extern NSString * const SCENARIO_VALUE_ENTITY_NAME;
 
 @class InputValue, Scenario;
+@class MultiScenarioInputValue;
 
 @interface ScenarioValue : NSManagedObject {
 @private
 }
 @property (nonatomic, retain) InputValue * inputValue;
 @property (nonatomic, retain) Scenario * scenario;
+
+// Inverse property
+@property (nonatomic, retain) MultiScenarioInputValue * multiScenInputValueScenarioVals;
+
 
 @end

@@ -14,6 +14,10 @@
 @private
 }
 
+// Inverse property
+@property (nonatomic, retain) NSSet* scenarioValueScenario;
+
+
 - (NSString *)scenarioName;
 
 @end

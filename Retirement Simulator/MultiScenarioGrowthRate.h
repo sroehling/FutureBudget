@@ -20,6 +20,7 @@ extern NSString * const MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY;
 @class CashFlowInput;
 @class LoanInput;
 @class MultiScenarioGrowthRate;
+@class TaxBracket;
 
 @interface MultiScenarioGrowthRate : NSManagedObject {
 @private
@@ -37,6 +38,7 @@ extern NSString * const MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY;
 @property (nonatomic, retain) LoanInput * loanCostGrowthRate;
 @property (nonatomic, retain) LoanInput * loanExtraPmtGrowthRate;
 @property (nonatomic, retain) LoanInput * loanInterestRate;
+@property (nonatomic, retain) TaxBracket * taxBracketCutoffGrowthRate;
 
 
 @end

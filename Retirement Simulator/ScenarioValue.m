@@ -16,6 +16,7 @@ NSString * const SCENARIO_VALUE_ENTITY_NAME = @"ScenarioValue";
 @dynamic inputValue;
 @dynamic scenario;
 
-
+// Inverse property
+@dynamic multiScenInputValueScenarioVals;
 
 @end

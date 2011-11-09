@@ -17,4 +17,9 @@ NSString * const TAX_BRACKET_ENTRY_ENTITY_NAME = @"TaxBracketEntry";
 @dynamic cutoffAmount;
 @dynamic taxPercent;
 
+// Inverse relationship
+@dynamic taxBracketEntries;
+
+
+
 @end
