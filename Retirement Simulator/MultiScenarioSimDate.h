@@ -15,6 +15,11 @@ extern NSString * const MULTI_SCEN_SIM_DATE_SIM_DATE_KEY;
 
 @class MultiScenarioInputValue;
 
+@class Account;
+@class AssetInput;
+@class CashFlowInput;
+@class LoanInput;
+
 @interface MultiScenarioSimDate : NSManagedObject {
 @private
 }
@@ -26,5 +31,13 @@ extern NSString * const MULTI_SCEN_SIM_DATE_SIM_DATE_KEY;
 // the same fixed date, rather than the fixed
 // date reverting back to zero.
 @property (nonatomic, retain) MultiScenarioInputValue * defaultFixedSimDate;
+
+// Inverse relationships
+@property (nonatomic, retain) Account * accountContribStartDate;
+@property (nonatomic, retain) Account * accountDeferredWithdrawalDate;
+@property (nonatomic, retain) AssetInput * assetPurchaseDate;
+@property (nonatomic, retain) CashFlowInput * cashFlowStartDate;
+@property (nonatomic, retain) LoanInput * loanOrigDate;
+
 
 @end

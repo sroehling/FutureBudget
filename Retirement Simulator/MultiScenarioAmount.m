@@ -19,6 +19,14 @@ NSString * const MULTI_SCEN_AMOUNT_AMOUNT_KEY = @"amount";
 @dynamic defaultFixedAmount;
 @dynamic variableAmounts;
 
+// Inverse relationships
+@dynamic accountContribAmount;
+@dynamic assetCost;
+@dynamic taxExemptionAmt;
+@dynamic taxStdDeductionAmt;
+@dynamic cashFlowAmount;
+@dynamic loanCost;
+@dynamic loanExtraPmtAmt;
 
 
 - (void)addVariableAmountsObject:(VariableValue *)value {    

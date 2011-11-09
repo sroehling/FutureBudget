@@ -22,6 +22,36 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 
 @dynamic scenarioVals;
 
+@dynamic itemizedTaxAmtApplicablePerc;
+@dynamic accountContribEnabled;
+@dynamic accountContribRepeatFrequency;
+@dynamic accountDeferredWithdrawalsEnabled;
+@dynamic accountWithdrawalPriority;
+@dynamic assetEnabled;
+@dynamic taxEnabled;
+@dynamic cashFlowEnabled;
+@dynamic cashFlowEventRepeatFrequency;
+@dynamic loanDownPmtEnabled;
+@dynamic loanDownPmtPercent;
+@dynamic loanDownPmtPercentFixed;
+@dynamic loanDuration;
+@dynamic loanEnabled;
+@dynamic loanExtraPmtEnabled;
+@dynamic loanExtraPmtFrequency;
+@dynamic multiScenAmountAmount;
+@dynamic multiScenarioDefaultFixedAmount;
+@dynamic multiScenGrowthRateDefaultFixedGrowthRate;
+@dynamic multiScenGrowthRateGrowthRate;
+@dynamic multiScenSimDateDefaultSimDate;
+@dynamic multiScenSimDateSimDate;
+@dynamic multiScenSimEndDateDefaultFixedSimDate;
+@dynamic multiScenSimEndDateFixedRelativeEndDate;
+@dynamic multiScenSimEndDateSimDate;
+
+
+
+
+
 @synthesize dataModelInterface;
 @synthesize sharedAppVals;
 

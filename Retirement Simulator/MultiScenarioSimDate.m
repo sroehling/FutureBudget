@@ -16,6 +16,13 @@ NSString * const MULTI_SCEN_SIM_DATE_SIM_DATE_KEY = @"simDate";
 @dynamic simDate;
 @dynamic defaultFixedSimDate;
 
+// Inverse relationships
+@dynamic accountContribStartDate;
+@dynamic accountDeferredWithdrawalDate;
+@dynamic assetPurchaseDate;
+@dynamic cashFlowStartDate;
+@dynamic loanOrigDate;
+
 
 
 @end

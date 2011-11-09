@@ -14,6 +14,13 @@ NSString * const ITEMIZED_TAX_AMTS_ENTITY_NAME = @"ItemizedTaxAmts";
 @implementation ItemizedTaxAmts
 @dynamic itemizedAmts;
 
+// Inverse Relationships
+@dynamic taxItemizedAdjustments;
+@dynamic taxItemizedCredits;
+@dynamic taxItemizedDeductions;
+@dynamic taxItemizedIncomeSources;
+
+
 - (void)addItemizedAmtsObject:(ItemizedTaxAmt *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
     [self willChangeValueForKey:@"itemizedAmts" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];

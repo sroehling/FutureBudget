@@ -18,4 +18,13 @@ NSString * const MULTI_SCEN_SIM_END_DATE_SIM_DATE_KEY = @"simDate";
 @dynamic simDate;
 @dynamic defaultFixedRelativeEndDate;
 
+// Inverse relationshiops
+@dynamic accountContribEndDate;
+@dynamic assetSaleDate;
+@dynamic cashFlowEndDate;
+
+
+
+
+
 @end

@@ -18,6 +18,15 @@ NSString * const MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY = @"growthRate";
 @dynamic growthRate;
 @dynamic defaultFixedGrowthRate;
 
-
+// Inverse relationships
+@dynamic accountContribGrowthRate;
+@dynamic accountInterestRate;
+@dynamic assetApprecRate;
+@dynamic taxExemptionGrowthRate;
+@dynamic taxStdDeductionGrowthRate;
+@dynamic cashFlowAmountGrowthRate;
+@dynamic loanCostGrowthRate;
+@dynamic loanExtraPmtGrowthRate;
+@dynamic loanInterestRate;
 
 @end
