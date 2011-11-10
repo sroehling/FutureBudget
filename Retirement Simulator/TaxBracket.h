@@ -12,12 +12,18 @@
 extern NSString * const TAX_BRACKET_ENTITY_NAME;
 
 @class MultiScenarioGrowthRate, TaxBracketEntry;
+@class TaxInput;
 
 @interface TaxBracket : NSManagedObject {
 @private
 }
 @property (nonatomic, retain) MultiScenarioGrowthRate * cutoffGrowthRate;
 @property (nonatomic, retain) NSSet* taxBracketEntries;
+
+
+// Inverse relationship
+@property (nonatomic, retain) TaxInput * taxInputTaxBracket;
+
 
 - (void)addTaxBracketEntriesObject:(TaxBracketEntry *)value;
 

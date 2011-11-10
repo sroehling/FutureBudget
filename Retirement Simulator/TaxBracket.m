@@ -16,6 +16,17 @@ NSString * const TAX_BRACKET_ENTITY_NAME = @"TaxBracket";
 @dynamic cutoffGrowthRate;
 @dynamic taxBracketEntries;
 
+// Inverse Relationship
+
+// TBD - Do we need shared TaxBrackets? The inverse relationship below is setup such that 
+// the tax bracket is ownded by the TaxInput, and is deleted with the TaxInput. We need
+// to reconsider if tax brackets can be shared amongst TaxInputs, or we support instantiation
+// of common tax brackets, or something else.
+
+@dynamic taxInputTaxBracket;
+
+
+
 
 - (void)addTaxBracketEntriesObject:(TaxBracketEntry *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
