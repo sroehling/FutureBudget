@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Input.h"
 
+@class SharedAppValues;
 
 extern NSString * const CASH_STARTING_BALANCE_KEY;
 extern NSString * const CASH_ENTITY_NAME;
@@ -18,5 +19,8 @@ extern NSString * const CASH_ENTITY_NAME;
 @private
 }
 @property (nonatomic, retain) NSNumber * startingBalance;
+
+@property (nonatomic, retain) SharedAppValues * sharedAppValsCash;
+
 
 @end

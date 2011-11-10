@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class SharedAppValues;
 
 @interface Scenario : NSManagedObject {
 @private
@@ -16,6 +17,7 @@
 
 // Inverse property
 @property (nonatomic, retain) NSSet* scenarioValueScenario;
+@property (nonatomic, retain) SharedAppValues * sharedAppValsCurrentInputScenario;
 
 
 - (NSString *)scenarioName;

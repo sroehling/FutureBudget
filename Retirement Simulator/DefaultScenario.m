@@ -13,6 +13,10 @@ NSString * const DEFAULT_SCENARIO_ENTITY_NAME = @"DefaultScenario";
 
 @implementation DefaultScenario
 
+@dynamic sharedAppValsDefaultScenario;
+
+
+
 - (NSString *)scenarioName
 {
 	return LOCALIZED_STR(@"SCENARIO_DEFAULT_SCENARIO_NAME");

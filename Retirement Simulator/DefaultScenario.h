@@ -10,10 +10,16 @@
 #import <CoreData/CoreData.h>
 #import "Scenario.h"
 
+@class SharedAppValues;
+
 extern NSString * const DEFAULT_SCENARIO_ENTITY_NAME;
 
 @interface DefaultScenario : Scenario {
 @private
 }
+
+// Inverse relationship
+@property (nonatomic, retain) SharedAppValues * sharedAppValsDefaultScenario;
+
 
 @end

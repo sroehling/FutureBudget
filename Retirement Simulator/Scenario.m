@@ -11,6 +11,9 @@
 
 @implementation Scenario
 
+@dynamic sharedAppValsCurrentInputScenario;
+
+
 @dynamic scenarioValueScenario;
 
 - (void)addScenarioValueScenarioObject:(ScenarioValue *)value {    
