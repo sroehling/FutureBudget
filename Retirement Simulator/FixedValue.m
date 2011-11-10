@@ -17,6 +17,13 @@ NSString * const FIXED_VALUE_VALUE_KEY = @"value";
 @implementation FixedValue
 @dynamic value;
 
+// TODO - Need more handling for cascading deletes involving this object (and other InputValue descendents). 
+// As it is implemented now, deleting a reference to this
+// object may result in an orphan.
+@dynamic sharedAppValuesDeficitInterestRate;
+
+
+
 - (NSString*) valueDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
     return [[NumberHelper theHelper] displayStrFromStoredVal:self.value andFormatter:valueRuntimeInfo.valueFormatter];

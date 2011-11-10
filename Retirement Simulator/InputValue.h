@@ -14,4 +14,8 @@
 @private
 }
 
+// Inverse Relationships
+@property (nonatomic, retain) NSSet* scenarioValInputValues;
+
+
 @end

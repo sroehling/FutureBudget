@@ -13,10 +13,15 @@
 extern NSString * const FIXED_VALUE_ENTITY_NAME;
 extern NSString * const FIXED_VALUE_VALUE_KEY;
 
+@class SharedAppValues;
+
 @interface FixedValue : DateSensitiveValue {
 @private
 }
 @property (nonatomic, retain) NSNumber * value;
+
+@property (nonatomic, retain) SharedAppValues * sharedAppValuesDeficitInterestRate;
+
 
 @end
 

@@ -17,6 +17,13 @@ NSString * const NEVER_END_PSEUDO_END_DATE = @"2500-12-31";
 
 @implementation NeverEndDate
 
+// TODO - Need more handling for cascading deletes involving this object (and other InputValue descendents). 
+// As it is implemented now, deleting a reference to this
+// object may result in an orphan.
+
+@dynamic sharedAppValsNeverEndDate;
+
+
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat
 {
 	return LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_INLINE_LABEL");

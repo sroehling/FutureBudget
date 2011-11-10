@@ -13,8 +13,13 @@
 extern NSString * const NEVER_END_DATE_ENTITY_NAME;
 extern NSString * const NEVER_END_PSEUDO_END_DATE;
 
+@class SharedAppValues;
+
 @interface NeverEndDate : SimDate {
 @private
 }
+
+@property (nonatomic, retain) SharedAppValues * sharedAppValsNeverEndDate;
+
 
 @end

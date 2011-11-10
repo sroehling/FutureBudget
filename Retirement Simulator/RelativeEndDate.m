@@ -21,6 +21,12 @@ NSString * const RELATIVE_END_DATE_ENTITY_NAME = @"RelativeEndDate";
 @dynamic months;
 @dynamic weeks;
 
+// TODO - Need more handling for cascading deletes involving this object (and other InputValue descendents). 
+// As it is implemented now, deleting a reference to this
+// object may result in an orphan.
+
+@dynamic sharedAppValuesDefaultRelEndDate;
+
 
 - (NSString *)yearLabel
 {

@@ -17,6 +17,16 @@ NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
 @dynamic periodMultiplier;
 
 
+// TODO - Need more handling for cascading deletes involving this object (and other InputValue descendents). 
+// As it is implemented now, deleting a reference to this
+// object may result in an orphan.
+
+
+// Inverse Relationship
+@dynamic sharedAppValsRepeatOnceFreq;
+
+
+
 - (void)setPeriodWithPeriodEnum:(EventPeriod)thePeriod
 {
     self.period = [NSNumber numberWithInt:thePeriod];

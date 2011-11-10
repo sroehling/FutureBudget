@@ -13,6 +13,7 @@
 extern NSString * const RELATIVE_END_DATE_ENTITY_NAME;
 
 @class RelativeEndDateInfo;
+@class SharedAppValues;
 
 #define RELATIVE_END_DATE_NUM_INCREMENT_TYPES 4
 
@@ -23,6 +24,9 @@ extern NSString * const RELATIVE_END_DATE_ENTITY_NAME;
 @property (nonatomic, retain) NSNumber * years;
 @property (nonatomic, retain) NSNumber * months;
 @property (nonatomic, retain) NSNumber * weeks;
+
+@property (nonatomic, retain) SharedAppValues * sharedAppValuesDefaultRelEndDate;
+
 
 - (RelativeEndDateInfo*)relEndDateInfo;
 - (void)setWithRelEndDateInfo:(RelativeEndDateInfo*)theRelEndDateInfo;

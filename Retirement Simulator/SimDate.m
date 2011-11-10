@@ -15,6 +15,12 @@ NSString * const SIM_DATE_DATE_KEY = @"date";
 
 @dynamic date;
 
+// TODO - Need more handling for cascading deletes involving
+// this object. As it is implemented now, deleting a reference to this
+// fixed value will result in an orphan.
+@dynamic dateSensitiveValueChangeStartDate;
+@dynamic sharedAppValsSimEndDate;
+
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat
 {
 	assert(0); // must be overridden

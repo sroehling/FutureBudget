@@ -12,6 +12,7 @@
 #import "InputValue.h"
 
 @protocol DataModelInterface;
+@class SharedAppValues;
 
 extern NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME;
 
@@ -31,6 +32,10 @@ typedef enum
 }
 @property (nonatomic, retain) NSNumber * period;
 @property (nonatomic, retain) NSNumber * periodMultiplier;
+
+// Inverse relationship
+@property (nonatomic, retain) SharedAppValues * sharedAppValsRepeatOnceFreq;
+
 
 
 - (void)setPeriodWithPeriodEnum:(EventPeriod)thePeriod;

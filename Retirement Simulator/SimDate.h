@@ -14,10 +14,18 @@
 
 extern NSString * const SIM_DATE_DATE_KEY;
 
+@class DateSensitiveValueChange;
+@class SharedAppValues;
+
 @interface SimDate : InputValue {
 @private
 }
 @property (nonatomic, retain) NSDate *date;
+
+// Inverse Relationships
+@property (nonatomic, retain) DateSensitiveValueChange * dateSensitiveValueChangeStartDate;
+@property (nonatomic, retain) SharedAppValues * sharedAppValsSimEndDate;
+
 
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat;
 - (NSString *)dateLabel;

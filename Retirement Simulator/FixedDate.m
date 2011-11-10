@@ -13,6 +13,14 @@ NSString * const FIXED_DATE_ENTITY_NAME = @"FixedDate";
 
 @implementation FixedDate
 
+// Inverse relationship
+
+// TODO - Need more handling for cascading deletes involving
+// this object. As it is implemented now, deleting a reference to this
+// fixed value will result in an orphan.
+@dynamic dateSensValChangeDefaultStartDate;
+@dynamic sharedAppValsDefaultFixedSimEndDate;
+
 
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat
 {

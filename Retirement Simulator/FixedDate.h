@@ -10,9 +10,17 @@
 #import <CoreData/CoreData.h>
 #import "SimDate.h"
 
+@class DateSensitiveValueChange;
+@class SharedAppValues;
+
 @interface FixedDate : SimDate {
 @private
 }
+
+//Inverse relationship
+@property (nonatomic, retain) DateSensitiveValueChange * dateSensValChangeDefaultStartDate;
+@property (nonatomic, retain) SharedAppValues * sharedAppValsDefaultFixedSimEndDate;
+
 
 @end
 
