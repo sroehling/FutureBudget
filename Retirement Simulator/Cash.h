@@ -20,6 +20,10 @@ extern NSString * const CASH_ENTITY_NAME;
 }
 @property (nonatomic, retain) NSNumber * startingBalance;
 
+// Inverse relationship to the default/shared values shared by the 
+// entire application. This relationship is setup with a Deny delete
+// rule, ensuring this Cash input is not deleted if it is referred
+// to as the app's default Cash input.
 @property (nonatomic, retain) SharedAppValues * sharedAppValsCash;
 
 
