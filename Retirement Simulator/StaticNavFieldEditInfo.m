@@ -15,11 +15,13 @@
 #import "FormFieldWithSubtitleTableCell.h"
 #import "GenericTableViewFactory.h"
 #import "GenericFieldBasedTableEditViewControllerFactory.h"
+#import "DataModelController.h"
 
 @implementation StaticNavFieldEditInfo
 
 @synthesize valueCell;
 @synthesize subViewFactory;
+@synthesize objectForDelete;
 
 - (id) initWithCaption:(NSString *)caption andSubtitle:(NSString *)subtitle 
 		andContentDescription:(NSString*)contentDesc
@@ -123,6 +125,27 @@
 	[super dealloc];
 	[valueCell release];
 	[subViewFactory release];
+	[objectForDelete release];
+}
+
+-(BOOL)supportsDelete
+{
+	if(self.objectForDelete != nil)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+
+- (void)deleteObject
+{
+	assert(self.objectForDelete != nil);
+	[[DataModelController theDataModelController] deleteObject:self.objectForDelete];
+	self.objectForDelete = nil;
 }
 
 @end

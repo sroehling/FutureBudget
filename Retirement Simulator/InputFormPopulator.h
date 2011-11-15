@@ -36,6 +36,9 @@
 
 -(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
 	andValLabel:(NSString*)label andPrompt:(NSString*)prompt;
+-(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
+	andValLabel:(NSString*)label andPrompt:(NSString*)prompt 
+		andObjectForDelete:(NSManagedObject*)objForDelete;
 	
 -(void)populateCurrencyField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder;

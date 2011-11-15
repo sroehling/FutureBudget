@@ -34,6 +34,9 @@
         initialFormInfo.title = @"Dummy";
 
         self.formInfo = initialFormInfo;
+		
+		enteringEditMode = FALSE;
+		enteringEditModeEditing = FALSE;
     }
     return self;
     
@@ -135,11 +138,23 @@
 {
         // create the parent view that will hold header Label
     
+	
+		// When a call to setEditing is made, the sections are refreshed
+		// before the edit mode is propagated to super. In this case, the
+		// edit mode for showing the section headers is the edit mode
+		// after the setEditing will be complete, not the current (yet to be
+		// updated) value of self.editing.
+		BOOL editMode = self.editing;
+		if(enteringEditMode)
+		{
+			editMode = enteringEditModeEditing;
+		}
+	
         SectionInfo* sectionInfo = [self.formInfo sectionInfoAtIndex:section];
         if([sectionInfo.title length] > 0)
         {
             return [sectionInfo viewForSectionHeader:tableView.bounds.size.width
-                                         andEditMode:self.editing];
+                                         andEditMode:editMode];
         }
         else
         {
@@ -199,16 +214,29 @@
     return indexPath;
 }
 
+- (void)refreshSectionsForEditMode
+{
+    NSIndexSet *sectionIndices = [self.formInfo sectionIndicesNeedingRefreshForEditMode];
+	[self.tableView reloadSections:sectionIndices 
+                  withRowAnimation:UITableViewRowAnimationNone];
+
+}
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     
+    // Reload the sections depending upon if we're in edit mode or not. This is needed 
+	// for sections which show different controls depending upon if they are in edit mode
+	// or not. There is an order dependency to call refreshSectionsForEdit mode before
+	// [super setEditing]; calling refreshSectionsForEdit after causes the cells to 
+	// behave improperly with the delete buttons (i.e., the big "Delete" button on the
+	// right is not shown when the icon-based delete button on the left is pressed.
+	enteringEditMode = TRUE;
+	enteringEditModeEditing = editing;
+	[self refreshSectionsForEditMode];
+	enteringEditMode = FALSE;
+	
     [super setEditing:editing animated:animated];
 
-    // Reload the sections depending upon if we're in edit mode or not. This is needed for sections
-
-    NSIndexSet *sectionIndices = [self.formInfo sectionIndicesNeedingRefreshForEditMode];
-    [self.tableView reloadSections:sectionIndices 
-                  withRowAnimation:UITableViewRowAnimationNone];
 }
 
 

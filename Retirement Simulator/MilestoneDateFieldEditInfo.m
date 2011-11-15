@@ -16,6 +16,7 @@
 #import "DateHelper.h"
 #import "MilestoneDateFormPopulator.h"
 #import "ValueSubtitleTableCell.h"
+#import "DataModelController.h"
 
 @implementation MilestoneDateFieldEditInfo
 
@@ -110,6 +111,21 @@
 - (NSManagedObject*) managedObject
 {
     return self.milestoneDate;
+}
+
+-(BOOL)supportsDelete
+{
+	// TODO - Need to ensure the milestone date is not referred to by other inputs before
+	// allowing it to be deleted.
+	return TRUE;
+}
+
+
+- (void)deleteObject
+{
+	assert(self.milestoneDate != nil);
+	[[DataModelController theDataModelController] deleteObject:self.milestoneDate];
+	self.milestoneDate = nil;
 }
 
 

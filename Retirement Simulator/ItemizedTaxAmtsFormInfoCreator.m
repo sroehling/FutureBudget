@@ -87,7 +87,8 @@
 			[formPopulator populateMultiScenFixedValField:
 				itemizedIncome.multiScenarioApplicablePercent 
 				andValLabel:itemizedIncome.income.name 
-				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
+				andObjectForDelete:itemizedIncome];
 		}
 	}
 	
@@ -100,7 +101,8 @@
 			[formPopulator populateMultiScenFixedValField:
 				itemizedExpense.multiScenarioApplicablePercent 
 				andValLabel:itemizedExpense.expense.name 
-				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
+				andObjectForDelete:itemizedExpense];
 		}
 	}
 	
@@ -113,7 +115,8 @@
 			[formPopulator populateMultiScenFixedValField:
 				itemizedSavings.multiScenarioApplicablePercent 
 				andValLabel:itemizedSavings.account.name 
-				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
+				andObjectForDelete:itemizedSavings];
 		}
 	}
 	
@@ -126,7 +129,8 @@
 			[formPopulator populateMultiScenFixedValField:
 				itemizedAccountContrib.multiScenarioApplicablePercent 
 				andValLabel:itemizedAccountContrib.account.name 
-				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt 
+				andObjectForDelete:itemizedAccountContrib];
 		}
 		
 	}
@@ -140,7 +144,8 @@
 			[formPopulator populateMultiScenFixedValField:
 				itemizedAccountWithdrawal.multiScenarioApplicablePercent 
 				andValLabel:itemizedAccountWithdrawal.account.name 
-				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
+				andObjectForDelete:itemizedAccountWithdrawal];
 		}
 		
 	}
@@ -155,7 +160,8 @@
 			[formPopulator populateMultiScenFixedValField:
 				itemizedAssetGain.multiScenarioApplicablePercent 
 				andValLabel:itemizedAssetGain.asset.name 
-				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
+				andObjectForDelete:itemizedAssetGain];
 		}
 		
 	}
@@ -170,7 +176,8 @@
 			[formPopulator populateMultiScenFixedValField:
 				itemizedLoanInterest.multiScenarioApplicablePercent 
 				andValLabel:itemizedLoanInterest.loan.name 
-				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
+				andObjectForDelete:itemizedLoanInterest];
 		}
 		
 	}

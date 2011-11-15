@@ -20,7 +20,7 @@
 #import "GenericFieldBasedTableEditViewController.h"
 #import "VariableValueFormInfoCreator.h"
 #import "ValueSubtitleTableCell.h"
-
+#import "DataModelController.h"
 
 @implementation VariableValueFieldEditInfo
 
@@ -120,6 +120,18 @@
 - (NSManagedObject*) managedObject
 {
     return self.variableVal;
+}
+
+-(BOOL)supportsDelete
+{
+	return TRUE;
+}
+
+-(void)deleteObject
+{
+	assert(self.variableVal != nil);
+	[[DataModelController theDataModelController] deleteObject:self.variableVal];
+	self.variableVal = nil;
 }
 
 @end

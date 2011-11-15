@@ -97,6 +97,28 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView 
+	commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
+	forRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+    // If row is deleted, remove it from the list.
+	
+	id<FieldEditInfo> fieldEditInfoForRow = [self.formInfo fieldEditInfoIndexPath:indexPath];
+	
+	assert([fieldEditInfoForRow respondsToSelector: @selector(supportsDelete)]);
+	assert([fieldEditInfoForRow supportsDelete]);
+	assert([fieldEditInfoForRow respondsToSelector: @selector(deleteObject)]);
+	
+    if (editingStyle == UITableViewCellEditingStyleDelete) 
+	{
+		[fieldEditInfoForRow deleteObject];
+		[self.formInfo removeFieldEditInfo:indexPath];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+			withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+
 
 #pragma mark -
 #pragma mark Editing
@@ -142,6 +164,32 @@
 		
 	}	
  }
+ 
+ 
+ - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView 
+	editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+	id<FieldEditInfo> fieldEditInfoForRow = [self.formInfo fieldEditInfoIndexPath:indexPath];
+	assert(fieldEditInfoForRow != nil);
+
+	if([fieldEditInfoForRow respondsToSelector: @selector(supportsDelete)])
+	{
+		if([fieldEditInfoForRow supportsDelete])
+		{
+			return UITableViewCellEditingStyleDelete;
+		}
+		else 
+		{
+			return UITableViewCellEditingStyleNone;
+		}
+	}
+	else
+	{
+		return UITableViewCellEditingStyleNone;
+	}
+}
+
+
  
  - (void) dealloc
  {

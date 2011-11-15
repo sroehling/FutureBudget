@@ -11,6 +11,7 @@
 
 @protocol FieldEditInfo <NSObject>
 
+@required
 - (NSString*)textLabel;
 - (NSString*)detailTextLabel;
 
@@ -30,5 +31,9 @@
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView*)tableView;
 - (CGFloat)cellHeightForWidth:(CGFloat)width;
+
+@optional
+- (BOOL)supportsDelete;
+- (void)deleteObject;
 
 @end

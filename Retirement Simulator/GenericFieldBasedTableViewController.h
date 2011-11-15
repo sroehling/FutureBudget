@@ -18,6 +18,12 @@
         // formInfoCreator is used to initially populate, then repopulate the 
         // view as needed.
         id<FormInfoCreator> formInfoCreator;
+		
+		// The following 2 member variables
+		// track section updates when entering
+		// or exiting edit mode.
+		BOOL enteringEditMode;
+		BOOL enteringEditModeEditing;
 }
 
 @property(nonatomic,retain) FormInfo *formInfo;

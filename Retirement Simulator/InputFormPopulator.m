@@ -108,7 +108,8 @@
 
 
 -(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
-	andValLabel:(NSString*)label andPrompt:(NSString*)prompt
+	andValLabel:(NSString*)label andPrompt:(NSString*)prompt 
+		andObjectForDelete:(NSManagedObject*)objForDelete
 {
 	assert(inputVal != nil);
 	assert([StringValidation nonEmptyString:label]);
@@ -122,12 +123,22 @@
    NumberFieldEditInfo *fieldEditInfo = 
 		[[[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo
 			andNumberFormatter:[NumberHelper theHelper].decimalFormatter] autorelease];
+	fieldEditInfo.objectForDelete = objForDelete;
 	assert(self.currentSection != nil);
 	
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:fieldEditInfo];
 
 }
+
+-(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
+	andValLabel:(NSString*)label andPrompt:(NSString*)prompt
+{
+	[self populateMultiScenFixedValField:inputVal andValLabel:label
+	 andPrompt:prompt andObjectForDelete:nil];
+}
+
+
 
 
 

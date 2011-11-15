@@ -11,6 +11,7 @@
 #import "NumberHelper.h"
 #import "StringValidation.h"
 #import "ManagedObjectFieldInfo.h"
+#import "DataModelController.h"
 #import "FieldInfo.h"
 
 
@@ -18,6 +19,7 @@
 
 
 @synthesize numberFormatter;
+@synthesize objectForDelete;
 
 
 + (NumberFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
@@ -78,6 +80,7 @@
 - (void)dealloc {
     [super dealloc];
     [numberFormatter release];
+	[objectForDelete release];
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -112,6 +115,25 @@
     
     return cell;
     
+}
+
+-(BOOL)supportsDelete
+{
+	if(self.objectForDelete != nil)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+-(void)deleteObject
+{
+	assert(self.objectForDelete != nil);
+	[[DataModelController theDataModelController] deleteObject:self.objectForDelete];
+	self.objectForDelete = nil;
 }
 
 

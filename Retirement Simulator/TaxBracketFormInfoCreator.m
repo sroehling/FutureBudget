@@ -60,6 +60,7 @@
 			[[[StaticNavFieldEditInfo alloc] initWithCaption:bracketEntryCaption 
 				andSubtitle:nil andContentDescription:percentTaxStr 
 				andSubFormInfoCreator:taxBracketEntryFormInfoCreator] autorelease];
+		taxBracketEntryFieldEditInfo.objectForDelete = taxBracketEntry;
 		
 		[sectionInfo addFieldEditInfo:taxBracketEntryFieldEditInfo];
 

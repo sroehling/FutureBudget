@@ -26,6 +26,8 @@
 - (void) addFieldEditInfo:(id<FieldEditInfo>)fieldEditInfo;
 
 - (id<FieldEditInfo>)fieldEditInfoAtRowIndex:(NSUInteger)rowIndex;
+- (void)removeFieldEditInfoAtRowIndex:(NSUInteger)rowIndex;
+
 - (NSInteger)numFields;
 - (BOOL)allFieldsInitialized;
 - (void)disableFieldChanges;

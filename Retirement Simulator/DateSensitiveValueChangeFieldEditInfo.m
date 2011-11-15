@@ -15,6 +15,7 @@
 #import "ValueSubtitleTableCell.h"
 #import "SimDate.h"
 #import "LocalizationHelper.h"
+#import "DataModelController.h"
 
 @implementation DateSensitiveValueChangeFieldEditInfo
 
@@ -125,6 +126,18 @@ andVariableValue:(VariableValue*)theVariableVal
     return self.valChange;
 }
 
+-(BOOL)supportsDelete
+{
+	return TRUE;
+}
+
+
+-(void)deleteObject
+{
+	assert(self.valChange != nil);
+	[[DataModelController theDataModelController] deleteObject:self.valChange];
+	self.valChange = nil;
+}
 
 
 

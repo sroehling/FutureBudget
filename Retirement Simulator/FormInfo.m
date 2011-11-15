@@ -15,6 +15,7 @@
 @synthesize title;
 @synthesize objectAdder;
 @synthesize headerView;
+@synthesize sections;
 
 
 - (id) init
@@ -22,7 +23,7 @@
     self = [super init];
     if(self)
     {
-        sections = [[NSMutableArray alloc] init];
+        self.sections = [[[NSMutableArray alloc] init] autorelease];;
         self.title = @"";
     }
     return self;
@@ -31,7 +32,7 @@
 - (void) addSection:(SectionInfo*)section
 {
     assert(section != nil);
-    [sections addObject:section];
+    [self.sections addObject:section];
 }
 
 - (void)dealloc
@@ -57,11 +58,20 @@
     return indexedSection;
 }
 
+
 - (id<FieldEditInfo>)fieldEditInfoIndexPath:(NSIndexPath *)indexPath
 {
     assert(indexPath != nil);
     SectionInfo *indexedSection = [self sectionInfoAtIndex:indexPath.section];
+	assert(indexedSection != nil);
     return [indexedSection fieldEditInfoAtRowIndex:indexPath.row];
+}
+
+- (void)removeFieldEditInfo:(NSIndexPath*)indexPath
+{
+	SectionInfo *indexedSection = [self sectionInfoAtIndex:indexPath.section];
+	assert(indexedSection != nil);
+	[indexedSection removeFieldEditInfoAtRowIndex:indexPath.row];
 }
 
 

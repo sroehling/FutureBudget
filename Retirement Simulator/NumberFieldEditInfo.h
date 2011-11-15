@@ -17,6 +17,7 @@
 @interface NumberFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
 @private  
     NSNumberFormatter *numberFormatter;
+	NSManagedObject *objectForDelete;
 
 }
 
@@ -28,5 +29,7 @@
 					 
 - (id) initWithFieldInfo:(FieldInfo *)theFieldInfo 
       andNumberFormatter:(NSNumberFormatter*)numFormatter;
+	  
+@property(nonatomic,retain) NSManagedObject *objectForDelete;
 
 @end

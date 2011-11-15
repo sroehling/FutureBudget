@@ -12,6 +12,7 @@
 #import "InputListInputDescriptionCreator.h"
 #import "DetailInputViewCreator.h"
 #import "GenericFieldBasedTableEditViewController.h"
+#import "DataModelController.h"
 
 
 @implementation InputFieldEditInfo
@@ -116,6 +117,19 @@
 - (NSManagedObject*) managedObject
 {
     return self.input;
+}
+
+-(BOOL)supportsDelete
+{
+	return TRUE;
+}
+
+
+- (void)deleteObject
+{
+	assert(self.input != nil);
+	[[DataModelController theDataModelController] deleteObject:self.input];
+	self.input = nil;
 }
 
 @end

@@ -30,6 +30,7 @@
 		
 		self.subTitle = [TableCellHelper createWrappedSubtitleLabel];
 		[self.contentView addSubview: self.subTitle];
+		
 	}    
 	return self;
 }

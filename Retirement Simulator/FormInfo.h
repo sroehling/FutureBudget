@@ -22,6 +22,7 @@
 }
 
 @property(nonatomic,retain) NSString *title;
+@property(nonatomic,retain) NSMutableArray *sections;
 @property(nonatomic,retain) id<TableViewObjectAdder> objectAdder;
 @property(nonatomic,retain) UIView *headerView;
 
@@ -31,6 +32,7 @@
 
 - (NSManagedObject*)objectAtPath:(NSIndexPath *)indexPath;
 - (NSIndexPath*)pathForObject:(NSManagedObject *)object;
+- (void)removeFieldEditInfo:(NSIndexPath*)indexPath;
 
 - (NSUInteger)numSections;
 - (SectionInfo*)sectionInfoAtIndex:(NSUInteger)sectionIndex;

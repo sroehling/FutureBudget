@@ -90,9 +90,23 @@
     return feInfoForRow;
 }
 
+- (void)removeFieldEditInfoAtRowIndex:(NSUInteger)rowIndex
+{
+	assert(rowIndex < [fieldEditInfo count]);
+	[fieldEditInfo removeObjectAtIndex:rowIndex];
+}
+
 - (NSInteger)numFields
 {
     return [fieldEditInfo count];
+}
+
+-(void)configureSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing
+{
+	self.sectionHeader.headerLabel.text = self.title;
+	self.sectionHeader.subtitle = self.subTitle;
+	[self.sectionHeader sizeForTableWidth:tableWidth andEditMode:editing];
+
 }
 
 - (UIView*)viewForSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing
@@ -101,9 +115,7 @@
     // Returning nil will cause the view to revert to the default
     if([self.title length] > 0)
     {
-		self.sectionHeader.headerLabel.text = self.title;
-		self.sectionHeader.subtitle = self.subTitle;
-		[self.sectionHeader sizeForTableWidth:tableWidth andEditMode:editing];
+		[self configureSectionHeader:tableWidth andEditMode:editing];
 		return self.sectionHeader;
        
     }

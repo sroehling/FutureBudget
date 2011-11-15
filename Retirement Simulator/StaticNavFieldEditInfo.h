@@ -18,10 +18,12 @@
     @private
 		FormFieldWithSubtitleTableCell *valueCell;
 		id<GenericTableViewFactory> subViewFactory;
+		NSManagedObject *objectForDelete;
 }
 
 @property(nonatomic,retain) FormFieldWithSubtitleTableCell *valueCell;
 @property(nonatomic,retain) id<GenericTableViewFactory> subViewFactory;
+@property(nonatomic,retain) NSManagedObject *objectForDelete;
 
 - (id) initWithCaption:(NSString *)caption andSubtitle:(NSString *)subtitle
 		andContentDescription:(NSString*)contentDesc 

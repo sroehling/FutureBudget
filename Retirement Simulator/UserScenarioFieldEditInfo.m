@@ -11,6 +11,7 @@
 #import "GenericFieldBasedTableEditViewController.h"
 #import "FormFieldWithSubtitleTableCell.h"
 #import "UserScenarioFormInfoCreator.h"
+#import "DataModelController.h"
 
 
 @implementation UserScenarioFieldEditInfo
@@ -105,6 +106,20 @@
 - (NSManagedObject*) managedObject
 {
     return self.userScen;
+}
+
+-(BOOL)supportsDelete
+{
+	return TRUE;
+}
+
+- (void)deleteObject
+{
+	// TODO - Need to ensure the current scenario reverts back to default when 
+	// deleting the scenario and the current scenario is this one.
+	assert(self.userScen != nil);
+	[[DataModelController theDataModelController] deleteObject:self.userScen];
+	self.userScen = nil;
 }
 
 @end
