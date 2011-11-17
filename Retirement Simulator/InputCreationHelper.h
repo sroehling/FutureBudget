@@ -13,6 +13,7 @@
 @class MultiScenarioSimDate;
 @class MultiScenarioGrowthRate;
 @class MultiScenarioSimEndDate;
+@class FixedValue;
 @class SharedAppValues;
 
 @protocol DataModelInterface;
@@ -35,6 +36,7 @@
 // for testing as well as with a production database.
 - (MultiScenarioInputValue*)multiScenFixedValWithDefault:(double)defaultVal;
 - (MultiScenarioInputValue*)multiScenInputValueWithDefaultFixedVal:(MultiScenarioInputValue*)fixedVal;
+- (FixedValue*)fixedValueForValue:(double)val;
 
 - (MultiScenarioAmount*)multiScenAmountWithDefault:(double)defaultVal;
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal;

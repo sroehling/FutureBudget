@@ -12,5 +12,8 @@
 @protocol DataModelInterface <NSObject>
 
 - (id)createDataModelObject:(NSString*)entityName;
+- (void)deleteObject:(NSManagedObject*)theObject;
+-(void)saveContext;
+- (NSArray*)fetchResults:(NSString*)entityName includePendingChanges:(BOOL)doIncludePendingChanges;
 
 @end

@@ -26,21 +26,37 @@
 
 @synthesize description;
 @synthesize inputCreationHelper;
+@synthesize dataModelInterface;
 
--(id)init
+-(id)initWithInputCreationHelper:(InputCreationHelper*)theHelper 
+	andDataModelInterface:(id<DataModelInterface>)theDataModelInterface
 {
 	self = [super init];
 	if(self)
 	{
-		self.inputCreationHelper = [[[InputCreationHelper alloc] initForDatabaseInputs] autorelease];
+		assert(theHelper != nil);
+		self.inputCreationHelper = theHelper;
+		
+		assert(theDataModelInterface != nil);
+		self.dataModelInterface = theDataModelInterface;
 	}
 	return self;
 }
+
+-(id)init
+{
+	InputCreationHelper *theHelper = [[[InputCreationHelper alloc] initForDatabaseInputs] autorelease];
+	return [self initWithInputCreationHelper:theHelper 
+		andDataModelInterface:[DataModelController theDataModelController]];
+}
+
+
 
 -(void)dealloc
 {
 	[super dealloc];
 	[inputCreationHelper release];
+	[dataModelInterface release];
 }
 
 -(Input*)createInput
@@ -98,11 +114,13 @@
 
 -(Input*)createInput
 {
-    ExpenseInput *newInput  = (ExpenseInput*)[[DataModelController theDataModelController]
-		insertObject:EXPENSE_INPUT_ENTITY_NAME];;
+	
+    ExpenseInput *newInput  = (ExpenseInput*)[self.dataModelInterface 
+		createDataModelObject:EXPENSE_INPUT_ENTITY_NAME];;
   
-    [self populateCashFlowInputProperties:newInput];    
-    [[DataModelController theDataModelController] saveContext];
+    [self populateCashFlowInputProperties:newInput];  
+	
+	[self.dataModelInterface saveContext];
     
     return newInput;
 }
@@ -113,8 +131,8 @@
 
 -(Input*)createInput
 {
-    IncomeInput *newInput  = (IncomeInput*)[[DataModelController theDataModelController]
-		insertObject:INCOME_INPUT_ENTITY_NAME];
+    IncomeInput *newInput  = (IncomeInput*)[self.dataModelInterface 
+		createDataModelObject:INCOME_INPUT_ENTITY_NAME];
 	
     [self populateCashFlowInputProperties:newInput];
     
@@ -133,8 +151,8 @@
 
 -(Input*)createInput
 {
-	SavingsAccount *savingsAcct = (SavingsAccount*)[[DataModelController theDataModelController] 
-		insertObject:SAVINGS_ACCOUNT_ENTITY_NAME];	
+	SavingsAccount *savingsAcct = (SavingsAccount*)[self.dataModelInterface 
+		createDataModelObject:SAVINGS_ACCOUNT_ENTITY_NAME];	
 	
 	[self populateAccountInputProperties:savingsAcct];
 	
@@ -153,8 +171,8 @@
 
 - (Input*)createInput
 {
-	LoanInput *newInput  = (LoanInput*)[[DataModelController theDataModelController]
-			insertObject:LOAN_INPUT_ENTITY_NAME];
+	LoanInput *newInput  = (LoanInput*)[self.dataModelInterface 
+		createDataModelObject:LOAN_INPUT_ENTITY_NAME];
 			
 	newInput.startingBalance = [NSNumber numberWithDouble:0.0];
 	
@@ -203,8 +221,8 @@
 
 - (Input*)createInput
 {
-	AssetInput *newInput  = (AssetInput*)[[DataModelController theDataModelController]
-			insertObject:ASSET_INPUT_ENTITY_NAME];
+	AssetInput *newInput  = (AssetInput*)[self.dataModelInterface 
+		createDataModelObject:ASSET_INPUT_ENTITY_NAME];
 	
 	newInput.assetEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
@@ -229,16 +247,16 @@
 
 - (TaxBracket*)createTaxBracket
 {
-	TaxBracket *taxBracket = (TaxBracket*)[[DataModelController theDataModelController]
-			insertObject:TAX_BRACKET_ENTITY_NAME];
+	TaxBracket *taxBracket = (TaxBracket*)[self.dataModelInterface 
+		createDataModelObject:TAX_BRACKET_ENTITY_NAME];
 	taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	return taxBracket;
 }
 
 - (Input*)createInput
 {
-	TaxInput *newInput  = (TaxInput*)[[DataModelController theDataModelController]
-			insertObject:TAX_INPUT_ENTITY_NAME];
+	TaxInput *newInput  = (TaxInput*)[self.dataModelInterface 
+		createDataModelObject:TAX_INPUT_ENTITY_NAME];
 	
 	newInput.taxEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
@@ -247,14 +265,14 @@
 	newInput.exemptionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	newInput.stdDeductionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	newInput.itemizedAdjustments = [[DataModelController theDataModelController] 
-			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
-	newInput.itemizedDeductions = [[DataModelController theDataModelController] 
-			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
-	newInput.itemizedIncomeSources = [[DataModelController theDataModelController] 
-			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
-	newInput.itemizedCredits = [[DataModelController theDataModelController] 
-			insertObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
+	newInput.itemizedAdjustments = [self.dataModelInterface 
+		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
+	newInput.itemizedDeductions = [self.dataModelInterface 
+		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
+	newInput.itemizedIncomeSources = [self.dataModelInterface 
+		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
+	newInput.itemizedCredits = [self.dataModelInterface 
+		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
 
 	newInput.taxBracket = [self createTaxBracket];
 

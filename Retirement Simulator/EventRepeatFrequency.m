@@ -141,7 +141,6 @@ NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
     repeatFrequency.period = [NSNumber numberWithInt:thePeriod];
     [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
     repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
-    NSLog(@"New default repeat frequency: %@",repeatFrequency.description);
 	return repeatFrequency;
 
 }

@@ -8,21 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class Input;
 @class CashFlowInput;
 @class InputCreationHelper;
+@protocol DataModelInterface;
 
 @interface InputTypeSelectionInfo : NSObject {
     @private
 // TODO - Need to replace description with another name
     NSString *description;
 	@protected
+	id<DataModelInterface> dataModelInterface;
 	InputCreationHelper *inputCreationHelper;
 
 }
 
 @property(nonatomic,retain) NSString *description;
 @property(nonatomic,retain) InputCreationHelper *inputCreationHelper;
+@property(nonatomic,retain) id<DataModelInterface> dataModelInterface;
+
+-(id)initWithInputCreationHelper:(InputCreationHelper*)theHelper 
+	andDataModelInterface:(id<DataModelInterface>)theDataModelInterface;
 
 - (Input*)createInput; // must be overriden
 

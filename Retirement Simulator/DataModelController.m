@@ -225,6 +225,35 @@
 }
 
 
+- (NSArray*)fetchResults:(NSString*)entityName includePendingChanges:(BOOL)doIncludePendingChanges
+{
+
+	NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:entityName 
+                                   inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    [request setEntity:entity];
+	
+	// IMPORTANT: The default for includesPendingChanges is TRUE, meaning
+	// the returned results will include any pending changes not saved
+	// to the persistent store. Setting to FALSE gives a results that mirrors
+	// what is actually stored.
+	request.includesPendingChanges = doIncludePendingChanges;
+	
+	
+   NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request 
+                                                                error:&error];
+    if (error != nil)
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        [NSException raise:NSGenericException format:[error description] arguments:nil];
+    }
+
+	return results;
+}
+
 - (bool) entitiesExistForEntityName:(NSString *)entityName
 {
     NSSet *entities = [self fetchObjectsForEntityName:entityName];

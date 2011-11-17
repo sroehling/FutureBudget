@@ -22,5 +22,8 @@
 @property(nonatomic,retain) NSManagedObjectContext *managedObjContext;
 
 - (id)createObj:(NSString*)entityName;
+- (void)deleteObject:(NSManagedObject*)theObj;
+- (void)saveContext;
+- (NSArray*)fetchResults:(NSString*)entityName includePendingChanges:(BOOL)doIncludePendingChanges;
 
 @end

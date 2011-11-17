@@ -241,6 +241,7 @@
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
 		00E7D053143A284400B0815E /* SelectableObjectTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */; };
 		00E7D056143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */; };
+		00E898281472F30700FB3D01 /* DataModelDeleteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E898271472F30700FB3D01 /* DataModelDeleteTest.m */; };
 		00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */; };
 		00EC1F91139737D20085B25C /* SimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F90139737D20085B25C /* SimDate.m */; };
 		00EC1F941397396D0085B25C /* MilestoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F931397396D0085B25C /* MilestoneDate.m */; };
@@ -759,6 +760,8 @@
 		00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableObjectTableViewControllerFactory.m; sourceTree = "<group>"; };
 		00E7D054143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableEditViewControllerFactory.h; sourceTree = "<group>"; };
 		00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableEditViewControllerFactory.m; sourceTree = "<group>"; };
+		00E898261472F30700FB3D01 /* DataModelDeleteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelDeleteTest.h; sourceTree = "<group>"; };
+		00E898271472F30700FB3D01 /* DataModelDeleteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelDeleteTest.m; sourceTree = "<group>"; };
 		00EC1F8B139736D40085B25C /* SimDateFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateFormInfoCreator.m; sourceTree = "<group>"; };
 		00EC1F8F139737D20085B25C /* SimDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDate.h; sourceTree = "<group>"; };
@@ -1914,6 +1917,8 @@
 				00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */,
 				0086C08C14294B4200148785 /* TestLoanInput.h */,
 				0086C08D14294B4200148785 /* TestLoanInput.m */,
+				00E898261472F30700FB3D01 /* DataModelDeleteTest.h */,
+				00E898271472F30700FB3D01 /* DataModelDeleteTest.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -2413,6 +2418,7 @@
 				00BC35CB140DA3B600D79F78 /* EventListTest.m in Sources */,
 				00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */,
 				0086C08E14294B4200148785 /* TestLoanInput.m in Sources */,
+				00E898281472F30700FB3D01 /* DataModelDeleteTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

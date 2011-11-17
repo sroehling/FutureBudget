@@ -101,7 +101,6 @@
     MultiScenarioFixedValueFieldInfo *defaultFixedValFieldInfo =
 		[[[MultiScenarioFixedValueFieldInfo alloc]initWithFieldLabel:label 
 		andFieldPlaceholder:dsvValuePlaceholder andScenario:theScenario andInputVal:defaultFixedVal]autorelease];
-    NSLog(@"Default value for date sensitive field: %@",[defaultFixedValFieldInfo description]);
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
 
     DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]                                                       

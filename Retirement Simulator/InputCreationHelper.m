@@ -70,6 +70,13 @@
 	return msInputVal;
 }
 
+- (FixedValue*)fixedValueForValue:(double)val
+{
+    FixedValue *fixedVal = 
+		(FixedValue*)[self.dataModel createDataModelObject:FIXED_VALUE_ENTITY_NAME];
+    fixedVal.value = [NSNumber numberWithDouble:val];
+	return fixedVal;
+}
 
 - (MultiScenarioInputValue*)multiScenFixedValWithDefault:(double)defaultVal
 {
