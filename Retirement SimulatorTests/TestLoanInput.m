@@ -8,7 +8,7 @@
 
 #import "TestLoanInput.h"
 
-#import "InMemoryCoreData.h"
+#import "DataModelController.h"
 #import "MultiScenarioInputValue.h"
 #import "DateHelper.h"
 #import "InterestBearingWorkingBalance.h"
@@ -31,7 +31,7 @@
 
 - (void)setUp
 {
-	self.coreData = [[[InMemoryCoreData alloc] init] autorelease];
+	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
 	self.testAppVals = [SharedAppValues createWithDataModelInterface:self.coreData];
 }
 
@@ -47,7 +47,7 @@
 	andDownPmtPercent:(double)downPmtPercent
 	andExtraPmtAmt:(double)extraPmt
 {
-	LoanInput *theLoan  = (LoanInput*)[self.coreData createObj:LOAN_INPUT_ENTITY_NAME];
+	LoanInput *theLoan  = (LoanInput*)[self.coreData createDataModelObject:LOAN_INPUT_ENTITY_NAME];
 	
 	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
 		initWithDataModelInterface:self.coreData andSharedAppVals:testAppVals] autorelease];

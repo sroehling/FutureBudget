@@ -7,7 +7,7 @@
 //
 
 #import "MultiScenarioInputValueTest.h"
-#import "InMemoryCoreData.h"
+#import "DataModelController.h"
 #import "MultiScenarioInputValue.h"
 #import "DataModelController.h"
 #import "FixedValue.h"
@@ -23,7 +23,7 @@
 
 - (void)setUp
 {
-	self.coreData = [[[InMemoryCoreData alloc] init] autorelease];
+	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
 }
 
 - (void)tearDown

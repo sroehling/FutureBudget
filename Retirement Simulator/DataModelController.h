@@ -17,12 +17,13 @@
 
 +(DataModelController*)theDataModelController; // singleton
 
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+- (id) initForInMemoryStorage; // In for in-memory storage (for testing)
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
 - (NSSet *)fetchObjectsForEntityName:(NSString *)entityName;
 - (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName 
                                       sortKey:(NSString*)theSortKey;

@@ -54,7 +54,6 @@
 		0025776613B2940100D15232 /* FixedValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776513B2940100D15232 /* FixedValueAsOfCalculator.m */; };
 		0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */; };
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
-		0025776F13B42EE300D15232 /* InMemoryCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776E13B42EE000D15232 /* InMemoryCoreData.m */; };
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
 		0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1513BE19F20043F3A5 /* Scenario.m */; };
 		0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1913BE1A370043F3A5 /* UserScenario.m */; };
@@ -390,8 +389,6 @@
 		0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueAsOfCalculator.m; sourceTree = "<group>"; };
 		0025776A13B2971A00D15232 /* ValueAsOfCalculatorCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueAsOfCalculatorCreator.h; sourceTree = "<group>"; };
 		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
-		0025776D13B42EDF00D15232 /* InMemoryCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMemoryCoreData.h; sourceTree = "<group>"; };
-		0025776E13B42EE000D15232 /* InMemoryCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMemoryCoreData.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
 		0036DE1413BE19F20043F3A5 /* Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scenario.h; sourceTree = "<group>"; };
@@ -1079,8 +1076,6 @@
 		0025777313B438E000D15232 /* Test Helper Code */ = {
 			isa = PBXGroup;
 			children = (
-				0025776D13B42EDF00D15232 /* InMemoryCoreData.h */,
-				0025776E13B42EE000D15232 /* InMemoryCoreData.m */,
 				0095E96613B69C66000555AC /* TestCoreDataObjects.h */,
 				0095E96713B69C66000555AC /* TestCoreDataObjects.m */,
 			);
@@ -2408,7 +2403,6 @@
 				004F5D8E13745ADC00E0C4A3 /* TestSimEventCreator.m in Sources */,
 				004F5D9713749AB300E0C4A3 /* TestSimEvent.m in Sources */,
 				0025775C13B17BB500D15232 /* VariableRateCalculatorTest.m in Sources */,
-				0025776F13B42EE300D15232 /* InMemoryCoreData.m in Sources */,
 				0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */,
 				0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */,
 				0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */,

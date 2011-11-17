@@ -7,7 +7,7 @@
 //
 
 #import "VariableValueCalculatorTest.h"
-#import "InMemoryCoreData.h"
+#import "DataModelController.h"
 #import "ValueAsOfCalculatorCreator.h"
 #import "ValueAsOfCalculator.h"
 #import "FixedValue.h"
@@ -25,7 +25,7 @@
 
 - (void)setUp
 {
-	self.coreData = [[[InMemoryCoreData alloc] init] autorelease];
+	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
 }
 
 - (void)tearDown
@@ -50,7 +50,8 @@
 
 - (void)testVariableValue
 {
-	VariableValue *variableVal = (VariableValue*)[self.coreData createObj:VARIABLE_VALUE_ENTITY_NAME];
+	VariableValue *variableVal = (VariableValue*)[self.coreData 
+		createDataModelObject:VARIABLE_VALUE_ENTITY_NAME];
 	variableVal.startingValue = [NSNumber numberWithDouble:10.0];
 	variableVal.name = @"Test";
 	
@@ -86,7 +87,8 @@
 
 - (void)testFixedValue
 {
-	FixedValue *fixedVal = (FixedValue*)[self.coreData createObj:FIXED_VALUE_ENTITY_NAME];
+	FixedValue *fixedVal = (FixedValue*)[self.coreData 
+		createDataModelObject:FIXED_VALUE_ENTITY_NAME];
 	fixedVal.value = [NSNumber numberWithDouble:1000];
 	
 	ValueAsOfCalculatorCreator *calcCreator = [[[ValueAsOfCalculatorCreator alloc] init] autorelease];

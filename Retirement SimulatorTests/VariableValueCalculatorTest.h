@@ -14,14 +14,14 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <UIKit/UIKit.h>
-@class InMemoryCoreData;
+@class DataModelController;
 
 
 @interface VariableValueCalculatorTest : SenTestCase {
 	@private
-		InMemoryCoreData *coreData;
+		DataModelController *coreData;
 }
 
-@property(nonatomic,retain) InMemoryCoreData *coreData;
+@property(nonatomic,retain) DataModelController *coreData;
 
 @end

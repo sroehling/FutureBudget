@@ -15,16 +15,16 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <UIKit/UIKit.h>
 
-@class InMemoryCoreData;
+@class DataModelController;
 @class SharedAppValues;
 
 @interface TestLoanInput : SenTestCase {
     @private
-		InMemoryCoreData *coreData;
+		DataModelController *coreData;
 		SharedAppValues *testAppVals;
 }
 
-@property(nonatomic,retain) InMemoryCoreData *coreData;
+@property(nonatomic,retain) DataModelController *coreData;
 @property(nonatomic,retain) SharedAppValues *testAppVals;
 
 @end

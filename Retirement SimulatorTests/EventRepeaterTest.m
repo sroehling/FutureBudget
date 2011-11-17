@@ -9,7 +9,7 @@
 #import "EventRepeaterTest.h"
 
 #import "EventRepeater.h"
-#import "InMemoryCoreData.h"
+#import "DataModelController.h"
 #import "EventRepeatFrequency.h"
 #import "DateHelper.h"
 
@@ -20,7 +20,8 @@
 
 - (EventRepeatFrequency*)createOneRepeatFrequencyWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
 {
-	EventRepeatFrequency *repeatFrequency  = [self.coreData createObj:EVENT_REPEAT_FREQUENCY_ENTITY_NAME];
+	EventRepeatFrequency *repeatFrequency  = [self.coreData 
+		createDataModelObject:EVENT_REPEAT_FREQUENCY_ENTITY_NAME];
     repeatFrequency.period = [NSNumber numberWithInt:thePeriod];
     [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
     repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
@@ -30,7 +31,7 @@
 
 - (void)setUp
 {
-	self.coreData = [[[InMemoryCoreData alloc] init] autorelease];
+	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
 }
 
 - (void)tearDown

@@ -15,107 +15,55 @@
 
 @implementation DataModelController
 
+@synthesize managedObjectContext;
+@synthesize managedObjectModel;
+@synthesize persistentStoreCoordinator;
 
-@synthesize managedObjectContext=__managedObjectContext;
-
-@synthesize managedObjectModel=__managedObjectModel;
-
-@synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
-
+/**
+ Returns the URL to the application's Documents directory.
+ */
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
 
 - (void)dealloc
 {
-    [__managedObjectContext release];
-    [__managedObjectModel release];
-    [__persistentStoreCoordinator release];
     [super dealloc];
+    [managedObjectContext release];
+    [managedObjectModel release];
+    [persistentStoreCoordinator release];
 }
 
 
-+(DataModelController*)theDataModelController
-{  
-    static DataModelController *theDataModelController;  
-    @synchronized(self)  
-    {    if(!theDataModelController)      
-            theDataModelController =[[DataModelController alloc] init];
-            return theDataModelController;
-    }
-}
-
-- (void)saveContext
+- (void)initCoreDataObjects
 {
-    NSError *error = nil;
-    if (self.managedObjectContext!= nil)
-    {
-        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error])
-        {
-            /*
-             TODO: Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
-    }
+	NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"DataModel" 
+			withExtension:@"momd"];
+	self.managedObjectModel = [[[NSManagedObjectModel alloc] 
+			initWithContentsOfURL:modelURL] autorelease];
+
+	self.persistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] 
+			initWithManagedObjectModel:self.managedObjectModel] autorelease]; 
+
+	self.managedObjectContext =[[[NSManagedObjectContext alloc] init] autorelease];
+	self.managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
 }
 
-#pragma mark - Core Data stack
 
-/**
- Returns the managed object context for the application.
- If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
- */
-- (NSManagedObjectContext *)managedObjectContext
+-(id) init
 {
-    if (__managedObjectContext != nil)
-    {
-        return __managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil)
-    {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return __managedObjectContext;
-}
-
-/**
- Returns the managed object model for the application.
- If the model doesn't already exist, it is created from the application's model.
- */
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (__managedObjectModel != nil)
-    {
-        return __managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"DataModel" withExtension:@"momd"];
-    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
-    return __managedObjectModel;
-}
-
-/**
- Returns the persistent store coordinator for the application.
- If the coordinator doesn't already exist, it is created and the application's store added to it.
- */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (__persistentStoreCoordinator != nil)
-    {
-        return __persistentStoreCoordinator;
-    }
-    
-      NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"AppData.sqlite"];
-  
-    NSError *error = nil;
-    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] 
-				initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType 
-	   configuration:nil URL:storeURL options:nil error:&error])
-    {
+	self = [super init];
+	if(self)
+	{
+		[self initCoreDataObjects];
+		
+		NSError *error;
+		NSURL *storeURL = [[self applicationDocumentsDirectory] 
+			URLByAppendingPathComponent:@"AppData.sqlite"];
+		if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType 
+			configuration:nil URL:storeURL options:nil error:&error])
+		{
         /*
          TODO - Replace this implementation with code to handle the error appropriately.
          
@@ -139,22 +87,59 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        [NSException raise:NSGenericException format:[error description] arguments:nil];
-    }    
-    
-    return __persistentStoreCoordinator;
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			[NSException raise:NSGenericException format:[error description] arguments:nil];
+		}
+	}
+	return self;
+ 
 }
 
-#pragma mark - Application's Documents directory
-
-/**
- Returns the URL to the application's Documents directory.
- */
-- (NSURL *)applicationDocumentsDirectory
+- (id) initForInMemoryStorage
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+	self = [super init];
+	if(self)
+	{
+		[self initCoreDataObjects];
+		NSError *error = nil;
+		if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType 
+			configuration:nil URL:nil options:nil error:&error])
+		{
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			[NSException raise:NSGenericException format:[error description] arguments:nil];
+		}
+		
+	}
+	return self;
 }
+
+
+
+
++(DataModelController*)theDataModelController
+{  
+    static DataModelController *theDataModelController;  
+    @synchronized(self)  
+    {    if(!theDataModelController)      
+            theDataModelController =[[DataModelController alloc] init];
+            return theDataModelController;
+    }
+}
+
+- (void)saveContext
+{
+    NSError *error = nil;
+    if (self.managedObjectContext!= nil)
+    {
+        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error])
+        {
+             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			[NSException raise:NSGenericException format:[error description] arguments:nil];
+        } 
+    }
+}
+
+
 
 
 - (NSFetchRequest*)createSortedFetchRequestWithEntityName:(NSString *)entityName
@@ -290,8 +275,6 @@
 {
     assert(theObj != nil);
     [self.managedObjectContext deleteObject:theObj];
-    [self saveContext];
-    
 }
 
 

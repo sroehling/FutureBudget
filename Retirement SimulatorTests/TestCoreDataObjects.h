@@ -8,22 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@class InMemoryCoreData;
+@class DataModelController;
 @class DateSensitiveValueChange;
 @class MultiScenarioInputValue;
 @class Scenario;
 
 @interface TestCoreDataObjects : NSObject {
 	@private
-		InMemoryCoreData *coreData;
+		DataModelController *coreData;
 		Scenario *testScenario;
     
 }
 
-@property(nonatomic,retain) InMemoryCoreData *coreData;
+@property(nonatomic,retain) DataModelController *coreData;
 @property(nonatomic,retain) Scenario *testScenario;
 
-- (id) initWithCoreData:(InMemoryCoreData*)theCoreData;
+- (id) initWithCoreData:(DataModelController*)theCoreData;
 
 
 - (MultiScenarioInputValue*)multiScenFixedValWithDefault:(double)defaultVal;
@@ -34,10 +34,10 @@
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyOnce;
 - (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault;
 
-+ (DateSensitiveValueChange*)createTestValueChange:(InMemoryCoreData*)coreData 
++ (DateSensitiveValueChange*)createTestValueChange:(DataModelController*)coreData 
 		andDateObj:(NSDate*)dateObj andVal:(double)val;
 										   
-+ (DateSensitiveValueChange*)createTestValueChange:(InMemoryCoreData*)coreData 
++ (DateSensitiveValueChange*)createTestValueChange:(DataModelController*)coreData 
    andDate:(NSString*)dateStr andVal:(double)val;
 
 @end

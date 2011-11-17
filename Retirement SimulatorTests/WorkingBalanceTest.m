@@ -8,7 +8,7 @@
 
 #import "WorkingBalanceTest.h"
 #import "CashWorkingBalance.h"
-#import "InMemoryCoreData.h"
+#import "DataModelController.h"
 #import "WorkingBalance.h"
 #import "DateHelper.h"
 #import "FixedValue.h"
@@ -23,7 +23,7 @@
 
 - (void)setUp
 {
-	self.coreData = [[[InMemoryCoreData alloc] init] autorelease];
+	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
 }
 
 - (void)tearDown
@@ -35,7 +35,7 @@
 	andStartDate:(NSDate*)startDate andStartingBal:(double)startBalance
 {
 	FixedValue *fixedInterestRate =  
-		(FixedValue*)[self.coreData createObj:FIXED_VALUE_ENTITY_NAME];
+		(FixedValue*)[self.coreData createDataModelObject:FIXED_VALUE_ENTITY_NAME];
 	fixedInterestRate.value =  [NSNumber numberWithDouble:interestRate];
 	
 	InterestBearingWorkingBalance *workingBal = 

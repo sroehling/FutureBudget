@@ -8,7 +8,6 @@
 
 #import "DataModelDeleteTest.h"
 
-#import "InMemoryCoreData.h"
 #import "SharedAppValues.h"
 #import "MultiScenarioInputValue.h"
 #import "DefaultScenario.h"
@@ -39,7 +38,7 @@
 	self.testAppVals = [SharedAppValues singleton];
 */
 
-	self.coreDataInterface = [[[InMemoryCoreData alloc] init] autorelease];	
+	self.coreDataInterface = [[[DataModelController alloc] initForInMemoryStorage] autorelease]; 
 	self.testAppVals = [SharedAppValues createWithDataModelInterface:self.coreDataInterface];
 	
 	self.inputCreationHelper = [[[InputCreationHelper alloc] 

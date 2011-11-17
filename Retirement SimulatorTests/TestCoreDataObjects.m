@@ -10,7 +10,7 @@
 #import "DateSensitiveValueChange.h"
 #import "DateSensitiveValue.h"
 #import "FixedDate.h"
-#import "InMemoryCoreData.h"
+#import "DataModelController.h"
 #import "DateHelper.h"
 #import "MultiScenarioInputValue.h"
 #import "FixedValue.h"
@@ -27,7 +27,7 @@
 @synthesize coreData;
 @synthesize testScenario;
 
-- (id) initWithCoreData:(InMemoryCoreData*)theCoreData
+- (id) initWithCoreData:(DataModelController*)theCoreData
 {
 	self = [super init];
 	if(self)
@@ -35,7 +35,8 @@
 		assert(theCoreData != nil);
 		self.coreData = theCoreData;
 		
-		UserScenario *theScenario = [self.coreData createObj:USER_SCENARIO_ENTITY_NAME];
+		UserScenario *theScenario = [self.coreData 
+			createDataModelObject:USER_SCENARIO_ENTITY_NAME];
 		theScenario.name = @"test";
 		self.testScenario = theScenario;
 	}
@@ -57,12 +58,14 @@
 
 
 
-+ (DateSensitiveValueChange*)createTestValueChange:(InMemoryCoreData*)coreData 
++ (DateSensitiveValueChange*)createTestValueChange:(DataModelController*)coreData 
 										   andDateObj:(NSDate*)dateObj andVal:(double)val
 {
-	DateSensitiveValueChange *valChange = (DateSensitiveValueChange*)[coreData createObj:DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME];
+	DateSensitiveValueChange *valChange = (DateSensitiveValueChange*)[coreData 
+		createDataModelObject:DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME];
 	
-	FixedDate *fixedStartDate = (FixedDate*) [coreData createObj:FIXED_DATE_ENTITY_NAME];
+	FixedDate *fixedStartDate = (FixedDate*) [coreData 
+		createDataModelObject:FIXED_DATE_ENTITY_NAME];
 	fixedStartDate.date = dateObj;
 	
 	valChange.startDate = fixedStartDate;
@@ -70,7 +73,7 @@
 	return valChange;
 }
 
-+ (DateSensitiveValueChange*)createTestValueChange:(InMemoryCoreData*)coreData 
++ (DateSensitiveValueChange*)createTestValueChange:(DataModelController*)coreData 
 										   andDate:(NSString*)dateStr andVal:(double)val
 {
 	NSDate *theDate = [DateHelper dateFromStr:dateStr];
@@ -80,7 +83,7 @@
 
 - (MultiScenarioInputValue*)createTestMultiScenInputVal
 {
-	MultiScenarioInputValue *testInputVal = [self.coreData createObj:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	MultiScenarioInputValue *testInputVal = [self.coreData createDataModelObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
 	testInputVal.dataModelInterface = self.coreData;
 	return testInputVal;
 }
@@ -89,7 +92,7 @@
 - (MultiScenarioInputValue*)multiScenFixedValWithDefault:(double)defaultVal
 {
 	MultiScenarioInputValue *msFixedVal = [self createTestMultiScenInputVal];
-    FixedValue *fixedVal = (FixedValue*)[self.coreData createObj:FIXED_VALUE_ENTITY_NAME];
+    FixedValue *fixedVal = (FixedValue*)[self.coreData createDataModelObject:FIXED_VALUE_ENTITY_NAME];
     fixedVal.value = [NSNumber numberWithDouble:defaultVal];
 	[msFixedVal setValueForScenario:self.testScenario andInputValue:fixedVal];
 	return msFixedVal;
@@ -107,7 +110,7 @@
 - (MultiScenarioInputValue*)multiScenFixedDate:(NSString*)defaultDate
 {
 	MultiScenarioInputValue *msFixedEndDate = [self createTestMultiScenInputVal];
-    FixedDate *fixedEndDate = (FixedDate*)[self.coreData createObj:FIXED_DATE_ENTITY_NAME];
+    FixedDate *fixedEndDate = (FixedDate*)[self.coreData createDataModelObject:FIXED_DATE_ENTITY_NAME];
     fixedEndDate.date = [DateHelper dateFromStr:defaultDate];
 	[msFixedEndDate setValueForScenario:self.testScenario andInputValue:fixedEndDate];
 	return msFixedEndDate;
@@ -118,7 +121,7 @@
 - (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday
 {
 	MultiScenarioInputValue *msFixedEndDate = [self createTestMultiScenInputVal];
-    FixedDate *fixedEndDate = (FixedDate*)[self.coreData createObj:FIXED_DATE_ENTITY_NAME];
+    FixedDate *fixedEndDate = (FixedDate*)[self.coreData createDataModelObject:FIXED_DATE_ENTITY_NAME];
     fixedEndDate.date = [NSDate date];
 	[msFixedEndDate setValueForScenario:self.testScenario andInputValue:fixedEndDate];
 	return msFixedEndDate;
@@ -130,7 +133,7 @@
 {
 	MultiScenarioInputValue *msBoolVal = [self createTestMultiScenInputVal];
 	BoolInputValue *boolVal = 
-		[self.coreData createObj:BOOL_INPUT_VALUE_ENTITY_NAME];
+		[self.coreData createDataModelObject:BOOL_INPUT_VALUE_ENTITY_NAME];
 	boolVal.isTrue = [NSNumber numberWithBool:theDefaultVal];
 	[msBoolVal setValueForScenario:self.testScenario andInputValue:boolVal];
 	return msBoolVal;
@@ -152,7 +155,7 @@
 - (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault
 {
 	MultiScenarioInputValue *msFixedRelEndDate =[self createTestMultiScenInputVal];
-	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[self.coreData createObj:RELATIVE_END_DATE_ENTITY_NAME];
+	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[self.coreData createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
 	fixedRelEndDate.years = [NSNumber numberWithInt:0];
 	fixedRelEndDate.months = [NSNumber numberWithInt:0];
 	fixedRelEndDate.weeks = [NSNumber numberWithInt:0];

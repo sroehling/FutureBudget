@@ -16,7 +16,6 @@
 #import <UIKit/UIKit.h>
 #import "DataModelInterface.h"
 
-@class InMemoryCoreData;
 @class SharedAppValues;
 @class InputCreationHelper;
 @class DataModelInterface;

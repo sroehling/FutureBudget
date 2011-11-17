@@ -16,14 +16,14 @@
 #import <UIKit/UIKit.h>
 //#import "application_headers" as required
 
-@class InMemoryCoreData;
+@class DataModelController;
 
 
 @interface MultiScenarioInputValueTest : SenTestCase {
 @private
-	InMemoryCoreData *coreData;
+	DataModelController *coreData;
 }
 
-@property(nonatomic,retain) InMemoryCoreData *coreData;
+@property(nonatomic,retain) DataModelController *coreData;
 
 @end
