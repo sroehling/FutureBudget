@@ -54,7 +54,7 @@
 #import "StaticNavFieldEditInfo.h"
 #import "ItemizedTaxAmtsInfo.h"
 #import "TaxBracketFormInfoCreator.h"
-
+#import "PositiveNumberValidator.h"
 #import "InputFormPopulator.h"
 
 @implementation DetailInputViewCreator
@@ -209,7 +209,8 @@
 
 	[self.formPopulator populateMultiScenFixedValField:account.withdrawalPriority 
 		andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
-		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
+		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")
+		andValidator:[[[PositiveNumberValidator alloc] init] autorelease]];
 	
 	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
 		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:account
@@ -278,7 +279,7 @@
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_INTEREST_SECTION_TITLE");
 	
 	
-	[self.formPopulator populateMultiScenarioGrowthRate:loan.interestRate 
+	[self.formPopulator populateMultiScenarioInterestRate:loan.interestRate 
 		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") ];
 	
 

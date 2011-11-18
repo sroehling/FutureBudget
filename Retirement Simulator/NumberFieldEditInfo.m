@@ -13,6 +13,8 @@
 #import "ManagedObjectFieldInfo.h"
 #import "DataModelController.h"
 #import "FieldInfo.h"
+#import "NumberFieldValidator.h"
+
 
 
 @implementation NumberFieldEditInfo
@@ -20,11 +22,13 @@
 
 @synthesize numberFormatter;
 @synthesize objectForDelete;
+@synthesize validator;
 
 
 + (NumberFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                                andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
                         andNumberFormatter:(NSNumberFormatter*)numFormatter
+						andValidator:(NumberFieldValidator*)theValidator
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
@@ -33,21 +37,26 @@
     ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
               initWithManagedObject:obj andFieldKey:key andFieldLabel:label 
 										 andFieldPlaceholder:placeholder];
-    NumberFieldEditInfo *fieldEditInfo = [[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo andNumberFormatter:numFormatter];
+    NumberFieldEditInfo *fieldEditInfo = [[NumberFieldEditInfo alloc] 
+		initWithFieldInfo:fieldInfo andNumberFormatter:numFormatter andValidator:theValidator];
     [fieldEditInfo autorelease];
     [fieldInfo release];
+	
     
     return fieldEditInfo;
 }
 
 - (id) initWithFieldInfo:(FieldInfo *)theFieldInfo 
       andNumberFormatter:(NSNumberFormatter*)numFormatter
+	  andValidator:(NumberFieldValidator*)theValidator
 {
     self = [super initWithFieldInfo:theFieldInfo];
     if(self)
     {
         assert(numFormatter != nil);
         self.numberFormatter = numFormatter;
+		self.validator = theValidator;
+
     }
     return self;
 }
@@ -81,6 +90,7 @@
     [super dealloc];
     [numberFormatter release];
 	[objectForDelete release];
+	[validator release];
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width

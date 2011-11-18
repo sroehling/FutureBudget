@@ -10,6 +10,8 @@
 #import "NumberFieldEditInfo.h"
 #import "NumberHelper.h"
 #import "TableCellHelper.h"
+#import "NumberFieldValidator.h"
+#import "LocalizationHelper.h"
 
 NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 
@@ -69,6 +71,7 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 {
     assert(self.fieldEditInfo != nil);
     // Done with editing - commit the value if it's changed
+	
     
     NSNumber *theValue = [[NumberHelper theHelper].decimalFormatter 
                           numberFromString:theTextField.text];
@@ -76,6 +79,9 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
     {
         [self.fieldEditInfo.fieldInfo setFieldValue:theValue];       
     }
+	
+		// TODO - Add custom validation code here.
+
     
     // Restore the text in the field to the format as specified
     // by the FieldEditInfo
@@ -117,11 +123,35 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 				[[NumberHelper theHelper].decimalFormatter numberFromString:theTextField.text];
 			if(theNumber ==  nil)
 			{
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Entry Error"
-					message:@"Enter a number"
-					delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+				NSString *errorMsg = LOCALIZED_STR(@"NUMBER_VALIDATION_VALIDATION_NOT_A_NUMBER_MSG");
+				if(self.fieldEditInfo.validator != nil)
+				{
+					errorMsg = LOCALIZED_STR(self.fieldEditInfo.validator.validationFailedMsg);
+				}
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:LOCALIZED_STR(@"NUMBER_VALIDATION_VALIDATION_ERROR_POPUP_TITLE")
+					message:errorMsg delegate:self 
+					cancelButtonTitle:LOCALIZED_STR(@"NUMBER_VALIDATION_POPUP_CANCEL_BUTTON_TITLE") 
+					otherButtonTitles:nil] autorelease];
 				[av show];
 				return NO;			
+			}
+			
+			if(self.fieldEditInfo.validator != nil)
+			{
+				if([self.fieldEditInfo.validator validateNumber:theNumber])
+				{
+					return YES;
+				}
+				else
+				{
+					assert(self.fieldEditInfo.validator.validationFailedMsg != nil);
+					UIAlertView *av = [[[UIAlertView alloc] initWithTitle:LOCALIZED_STR(@"NUMBER_VALIDATION_VALIDATION_ERROR_POPUP_TITLE")
+					message:self.fieldEditInfo.validator.validationFailedMsg delegate:self 
+					cancelButtonTitle:LOCALIZED_STR(@"NUMBER_VALIDATION_POPUP_CANCEL_BUTTON_TITLE") 
+					otherButtonTitles:nil] autorelease];
+					[av show];
+					return NO;			
+				}
 			}
 			
 		}	

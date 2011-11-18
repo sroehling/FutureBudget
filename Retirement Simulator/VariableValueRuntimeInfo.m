@@ -16,11 +16,17 @@
 #import "InterestRate.h"
 #import "VariableValueListMgr.h"
 #import "MultiScenarioAmountVariableValueListMgr.h"
+#import "NumberFieldValidator.h"
 #import "StringValidation.h"
+
+#import "PercentFieldValidator.h"
+#import "PositiveAmountValidator.h"
+#import "GrowthRateFieldValidator.h"
 
 @implementation VariableValueRuntimeInfo
 
 @synthesize valueFormatter;
+@synthesize valueValidator;
 @synthesize valueTitleKey;
 @synthesize valueVerb;
 @synthesize periodDesc;
@@ -35,6 +41,7 @@
 @synthesize tableSubtitle;
 
 - (id) initWithFormatter:(NSNumberFormatter*)valFormatter
+			andValueValidator:(NumberFieldValidator*)valValidator
 		   andValueTitle:(NSString*)title 
 		andInlineValueTitleKey:(NSString*)theInlineValueTitleKey
 			andValueVerb:(NSString*)verb
@@ -55,6 +62,7 @@
 		assert(title != nil);
 		assert([title length] > 0);
 		self.valueFormatter = valFormatter;
+		self.valueValidator = valValidator;
 		self.valueTitleKey = title;
 		self.valueVerb = verb;
 		self.periodDesc = thePeriodDesc;
@@ -75,6 +83,7 @@
 {
 	[super dealloc];
 	[valueFormatter release];
+	[valueValidator release];
 	[valueTitleKey release];
 	[valueVerb release];
 	[periodDesc release];
@@ -120,6 +129,7 @@
 	
 	VariableValueRuntimeInfo *percentageRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
 		andValueTitle:@"SHARED_PERCENTAGE_VALUE_TITLE"
 		andInlineValueTitleKey:@"SHARED_PERCENTAGE_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"SHARED_PERCENTAGE_ACTION_VERB")
@@ -152,6 +162,7 @@
 	
 	VariableValueRuntimeInfo *interestRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
 		andValueTitle:@"SHARED_INTEREST_RATE_VALUE_TITLE"
 		andInlineValueTitleKey:@"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"SHARED_INTEREST_RATE_ACTION_VERB")
@@ -172,6 +183,10 @@
 + (VariableValueRuntimeInfo*)createForSharedInflationRate:(Input*)theInput
 {
 
+	// TODO - Review this and the other "create For" methods for duplication with the 
+	// code that creates VariableRuntimeInfo's in the input creation helper code.
+	// Either call these "createFor..." methods from there or delete these methods.
+
 	assert(theInput != nil);
 	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
@@ -184,6 +199,7 @@
 	
 	VariableValueRuntimeInfo *inflationRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[GrowthRateFieldValidator alloc] init] autorelease]
 		andValueTitle:@"INPUT_INFLATION_RATE_VALUE_TITLE"
 		andInlineValueTitleKey:@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
@@ -212,6 +228,7 @@
 	VariableValueRuntimeInfo *amountRuntimeInfo = 
 		[[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
+		andValueValidator: [[[PositiveAmountValidator alloc] init] autorelease]
 		andValueTitle:@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE" 
 		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
 		andValueVerb:@"" andPeriodDesc:@"" andListMgr:listMgr
@@ -250,6 +267,7 @@
 	VariableValueRuntimeInfo *amountRuntimeInfo = 
 		[[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
+		andValueValidator: [[[PositiveAmountValidator alloc] init] autorelease]
 		andValueTitle:valueTitle 
 		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
 		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableValueMgr

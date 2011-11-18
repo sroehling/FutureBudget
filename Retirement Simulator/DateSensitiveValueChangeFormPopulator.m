@@ -54,7 +54,7 @@
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
 			createForObject:dsValueChange andKey:@"newValue" andLabel:newValueLabel
 			andPlaceholder:newValuePlaceholder 
-			andNumberFormatter:valRuntimeInfo.valueFormatter]];
+			andNumberFormatter:valRuntimeInfo.valueFormatter andValidator:valRuntimeInfo.valueValidator]];
 	
 }
 

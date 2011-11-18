@@ -91,7 +91,7 @@
     
 	NumberFieldEditInfo *valueFieldEditInfo = 
 		[[[NumberFieldEditInfo alloc]initWithFieldInfo:self.defaultValFieldInfo
-		 andNumberFormatter:self.varValRuntimeInfo.valueFormatter] autorelease];
+		 andNumberFormatter:self.varValRuntimeInfo.valueFormatter andValidator:self.varValRuntimeInfo.valueValidator] autorelease];
 	[sectionInfo addFieldEditInfo:valueFieldEditInfo];
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]

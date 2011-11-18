@@ -195,6 +195,11 @@
 		00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAE138ECA8700663C7F /* FormInfo.m */; };
 		00A14BB2138FEBE800663C7F /* FormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BB1138FEBE600663C7F /* FormPopulator.m */; };
 		00A14BB5138FF53700663C7F /* GenericFieldBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */; };
+		00A254BE1476BB65004F63E3 /* NumberFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254BD1476BB64004F63E3 /* NumberFieldValidator.m */; };
+		00A254C11476BDD2004F63E3 /* PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */; };
+		00A254C41476CBEC004F63E3 /* PositiveAmountValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C31476CBEC004F63E3 /* PositiveAmountValidator.m */; };
+		00A254C71476D138004F63E3 /* GrowthRateFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C61476D137004F63E3 /* GrowthRateFieldValidator.m */; };
+		00A254CA1476D706004F63E3 /* PositiveNumberValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C91476D704004F63E3 /* PositiveNumberValidator.m */; };
 		00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD5136C6CAE008A5C4C /* UIKit.framework */; };
 		00A36BD8136C6CAE008A5C4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD7136C6CAE008A5C4C /* Foundation.framework */; };
 		00A36BDA136C6CAE008A5C4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */; };
@@ -674,6 +679,16 @@
 		00A14BB1138FEBE600663C7F /* FormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPopulator.m; sourceTree = "<group>"; };
 		00A14BB3138FF53400663C7F /* GenericFieldBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableViewController.h; sourceTree = "<group>"; };
 		00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableViewController.m; sourceTree = "<group>"; };
+		00A254BC1476BB64004F63E3 /* NumberFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldValidator.h; sourceTree = "<group>"; };
+		00A254BD1476BB64004F63E3 /* NumberFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldValidator.m; sourceTree = "<group>"; };
+		00A254BF1476BDD2004F63E3 /* PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentFieldValidator.h; sourceTree = "<group>"; };
+		00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentFieldValidator.m; sourceTree = "<group>"; };
+		00A254C21476CBEB004F63E3 /* PositiveAmountValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositiveAmountValidator.h; sourceTree = "<group>"; };
+		00A254C31476CBEC004F63E3 /* PositiveAmountValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositiveAmountValidator.m; sourceTree = "<group>"; };
+		00A254C51476D137004F63E3 /* GrowthRateFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowthRateFieldValidator.h; sourceTree = "<group>"; };
+		00A254C61476D137004F63E3 /* GrowthRateFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowthRateFieldValidator.m; sourceTree = "<group>"; };
+		00A254C81476D703004F63E3 /* PositiveNumberValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositiveNumberValidator.h; sourceTree = "<group>"; };
+		00A254C91476D704004F63E3 /* PositiveNumberValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositiveNumberValidator.m; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -941,6 +956,14 @@
 				0023797C143FBC78006650E3 /* InputFormPopulator.m */,
 				0023798E14409B46006650E3 /* InputCreationHelper.h */,
 				0023798F14409B46006650E3 /* InputCreationHelper.m */,
+				00A254BF1476BDD2004F63E3 /* PercentFieldValidator.h */,
+				00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */,
+				00A254C21476CBEB004F63E3 /* PositiveAmountValidator.h */,
+				00A254C31476CBEC004F63E3 /* PositiveAmountValidator.m */,
+				00A254C51476D137004F63E3 /* GrowthRateFieldValidator.h */,
+				00A254C61476D137004F63E3 /* GrowthRateFieldValidator.m */,
+				00A254C81476D703004F63E3 /* PositiveNumberValidator.h */,
+				00A254C91476D704004F63E3 /* PositiveNumberValidator.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1380,6 +1403,8 @@
 		004A59AE13A07F70009FEF25 /* Number Field */ = {
 			isa = PBXGroup;
 			children = (
+				00A254BC1476BB64004F63E3 /* NumberFieldValidator.h */,
+				00A254BD1476BB64004F63E3 /* NumberFieldValidator.m */,
 				00F420A1137DD45500980A88 /* NumberFieldEditInfo.h */,
 				00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */,
 				003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */,
@@ -2391,6 +2416,11 @@
 				005DAEF314609A1100D87907 /* LoanInterestItemizedTaxAmt.m in Sources */,
 				005DAEF614609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m in Sources */,
 				002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */,
+				00A254BE1476BB65004F63E3 /* NumberFieldValidator.m in Sources */,
+				00A254C11476BDD2004F63E3 /* PercentFieldValidator.m in Sources */,
+				00A254C41476CBEC004F63E3 /* PositiveAmountValidator.m in Sources */,
+				00A254C71476D138004F63E3 /* GrowthRateFieldValidator.m in Sources */,
+				00A254CA1476D706004F63E3 /* PositiveNumberValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

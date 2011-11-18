@@ -19,6 +19,7 @@
 @class RepeatFrequencyFieldEditInfo;
 @class MultiScenarioSimDate;
 @class MultiScenarioSimEndDate;
+@class NumberFieldValidator;
 
 @interface InputFormPopulator : FormPopulator {
     @private
@@ -35,10 +36,12 @@
 -(void)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label;
 
 -(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
-	andValLabel:(NSString*)label andPrompt:(NSString*)prompt;
+	andValLabel:(NSString*)label andPrompt:(NSString*)prompt
+	andValidator:(NumberFieldValidator*)validator;
 -(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
 	andValLabel:(NSString*)label andPrompt:(NSString*)prompt 
-		andObjectForDelete:(NSManagedObject*)objForDelete;
+		andObjectForDelete:(NSManagedObject*)objForDelete
+		andValidator:(NumberFieldValidator*)validator;
 	
 -(void)populateCurrencyField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder;
@@ -49,6 +52,8 @@
 -(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
 	withValueTitle:(NSString*)valueTitle;
 -(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
+	withLabel:(NSString*)valueLabel;
+- (void)populateMultiScenarioInterestRate:(MultiScenarioGrowthRate*)intRate
 	withLabel:(NSString*)valueLabel;
 	
 -(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(NSManagedObject*)parentObj 

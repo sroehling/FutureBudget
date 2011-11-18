@@ -19,6 +19,7 @@
 #import "DefaultScenario.h"
 #import "ItemizedTaxAmtCreator.h"
 #import "FinishedAddingItemizedTaxAmtListener.h"
+#import "PercentFieldValidator.h"
 
 @implementation ItemizedTableViewAddItemTableViewFactory
 
@@ -57,7 +58,8 @@
 	
 	[formPopulator nextSection];
 	[formPopulator populateMultiScenFixedValField:itemization.multiScenarioApplicablePercent andValLabel:self.itemizedTaxAmtsInfo.amtPrompt 
-		andPrompt:self.itemizedTaxAmtsInfo.amtPrompt];
+		andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
+		andValidator:[[[PercentFieldValidator alloc] init] autorelease]];
 	
     GenericFieldBasedTableAddViewController *controller = 
 		[[[GenericFieldBasedTableAddViewController alloc]

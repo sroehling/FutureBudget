@@ -45,6 +45,11 @@
 #import "MultiScenarioSimDate.h"
 #import "MultiScenarioSimEndDate.h"
 
+#import "PercentFieldValidator.h"
+#import "GrowthRateFieldValidator.h"
+#import "PositiveAmountValidator.h"
+#import "InterestRate.h"
+
 @implementation InputFormPopulator
 
 @synthesize inputScenario;
@@ -110,6 +115,7 @@
 -(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
 	andValLabel:(NSString*)label andPrompt:(NSString*)prompt 
 		andObjectForDelete:(NSManagedObject*)objForDelete
+		andValidator:(NumberFieldValidator*)validator
 {
 	assert(inputVal != nil);
 	assert([StringValidation nonEmptyString:label]);
@@ -122,7 +128,8 @@
 			andScenario:self.inputScenario  andInputVal:inputVal] autorelease];
    NumberFieldEditInfo *fieldEditInfo = 
 		[[[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo
-			andNumberFormatter:[NumberHelper theHelper].decimalFormatter] autorelease];
+			andNumberFormatter:[NumberHelper theHelper].decimalFormatter
+			andValidator:validator] autorelease];
 	fieldEditInfo.objectForDelete = objForDelete;
 	assert(self.currentSection != nil);
 	
@@ -133,9 +140,10 @@
 
 -(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
 	andValLabel:(NSString*)label andPrompt:(NSString*)prompt
+	andValidator:(NumberFieldValidator*)validator
 {
 	[self populateMultiScenFixedValField:inputVal andValLabel:label
-	 andPrompt:prompt andObjectForDelete:nil];
+	 andPrompt:prompt andObjectForDelete:nil andValidator:validator];
 }
 
 
@@ -154,7 +162,8 @@
 			[NumberFieldEditInfo createForObject:parentObj andKey:valKey 
 			andLabel:label
 			andPlaceholder:placeholder
-			andNumberFormatter:[NumberHelper theHelper].currencyFormatter];
+			andNumberFormatter:[NumberHelper theHelper].currencyFormatter
+			andValidator:[[[PositiveAmountValidator alloc] init] autorelease]];
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:currencyFieldEditInfo];
 	
@@ -171,7 +180,8 @@
 	NumberFieldEditInfo *percentFieldEditInfo = 
 			[NumberFieldEditInfo createForObject:parentObj 
 				andKey:valKey andLabel:label andPlaceholder:placeholder
-			andNumberFormatter:[NumberHelper theHelper].percentFormatter];
+			andNumberFormatter:[NumberHelper theHelper].percentFormatter
+			andValidator:[[[PercentFieldValidator alloc] init] autorelease]];
 
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:percentFieldEditInfo];
@@ -214,6 +224,7 @@
 	
 	VariableValueRuntimeInfo *grRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator: [[[GrowthRateFieldValidator alloc] init] autorelease]
 		andValueTitle:@"INPUT_INFLATION_RATE_VALUE_TITLE"
 		andInlineValueTitleKey:@"INPUT_INFLATION_RATE_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
@@ -237,6 +248,52 @@
 		 andValRuntimeInfo:grRuntimeInfo 
 		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate]];
  
+}
+
+- (void)populateMultiScenarioInterestRate:(MultiScenarioGrowthRate*)intRate
+	withLabel:(NSString*)valueLabel
+{
+	assert([StringValidation nonEmptyString:valueLabel]);
+	assert(intRate != nil);
+
+
+	SharedEntityVariableValueListMgr *sharedInterestRatesMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithEntity:INTEREST_RATE_ENTITY_NAME] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_INTEREST_RATE_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE")];
+
+	
+	VariableValueRuntimeInfo *interestRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueTitle:@"SHARED_INTEREST_RATE_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_INTEREST_RATE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_INTEREST_RATE_PERIOD") 
+		andListMgr:sharedInterestRatesMgr
+		andSingleValueSubtitleKey:@"SHARED_INTEREST_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andValuePromptKey:@"SHARED_INTEREST_RATE_VALUE_PROMPT"
+		andValueTypeInline:@"Inline type TBD"
+		andValueTypeTitle:valueLabel
+		andValueName:@"Name TBD"
+		andTableSubtitle:tableSubtitle] autorelease];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+         createForScenario:self.inputScenario andObject:intRate 
+			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
+			andLabel:valueLabel 
+		 andValRuntimeInfo:interestRuntimeInfo 
+		 andDefaultFixedVal:intRate.defaultFixedGrowthRate]];
+
+
 }
 
 -(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(NSManagedObject*)parentObj andFreqKey:(NSString*)freqKey

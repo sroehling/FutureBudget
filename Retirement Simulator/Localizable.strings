@@ -344,3 +344,10 @@
 "RESULTS_NET_WORTH_PLOT_X_AXIS_TITLE" = "Year";
 
 
+"NUMBER_VALIDATION_POSITIVE_PERCENT_MSG" = "Enter a percent greater or equal to 0";
+"NUMBER_VALIDATION_POSITIVE_AMOUNT_MSG" = "Enter an amount greater or equal to 0";
+"NUMBER_VALIDATION_GROWTH_RATE_MSG" = "Enter a yearly percent growth rate. This can be a positive value, or a negative value greater than -100";
+"NUMBER_VALIDATION_POSITIVE_NUMBER_MSG" = "Enter a number greater or equal to 0";
+"NUMBER_VALIDATION_VALIDATION_ERROR_POPUP_TITLE" = "Entry Error";
+"NUMBER_VALIDATION_VALIDATION_NOT_A_NUMBER_MSG" = "Enter a number";
+"NUMBER_VALIDATION_POPUP_CANCEL_BUTTON_TITLE" = "Ok";

@@ -85,7 +85,7 @@
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:self.variableValue
 			andKey:@"startingValue" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_FIELD_LABEL") 
 			andPlaceholder:varValStartingValPlaceholder    
-			andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
+			andNumberFormatter:self.varValRuntimeInfo.valueFormatter andValidator:self.varValRuntimeInfo.valueValidator]];
 	
 	
 	NSArray *valueChanges = [CollectionHelper setToSortedArray:

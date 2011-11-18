@@ -27,7 +27,7 @@
 #import "ManagedObjectFieldInfo.h"
 
 #import "SelectableObjectTableViewControllerFactory.h"
-
+#import "PositiveNumberValidator.h"
 #import "InputFormPopulator.h"
 
 @implementation WhatIfFormInfoCreator
@@ -242,7 +242,8 @@
 		{
 			[formPopulator populateMultiScenFixedValField:acct.withdrawalPriority 
 				andValLabel:acct.name
-				andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")];
+				andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")
+				andValidator:[[[PositiveNumberValidator alloc] init] autorelease]];
 		}
 	}
 	
@@ -498,7 +499,7 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:loan.interestRate withLabel:loan.name];
+			[formPopulator populateMultiScenarioInterestRate:loan.interestRate withLabel:loan.name];
 		}
 	}
 

@@ -13,23 +13,28 @@
 
 @class NumberFieldCell;
 @class FieldInfo;
+@class NumberFieldValidator;
 
 @interface NumberFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
 @private  
     NSNumberFormatter *numberFormatter;
 	NSManagedObject *objectForDelete;
+	NumberFieldValidator *validator;
 
 }
 
-@property (nonatomic, retain) NSNumberFormatter *numberFormatter;
 
 + (NumberFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                                andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
-					 andNumberFormatter:(NSNumberFormatter*)numFormatter;
+                        andNumberFormatter:(NSNumberFormatter*)numFormatter
+						andValidator:(NumberFieldValidator*)theValidator;
 					 
 - (id) initWithFieldInfo:(FieldInfo *)theFieldInfo 
-      andNumberFormatter:(NSNumberFormatter*)numFormatter;
+      andNumberFormatter:(NSNumberFormatter*)numFormatter
+	  andValidator:(NumberFieldValidator*)theValidator;
 	  
 @property(nonatomic,retain) NSManagedObject *objectForDelete;
+@property (nonatomic, retain) NSNumberFormatter *numberFormatter;
+@property(nonatomic,retain)NumberFieldValidator *validator;
 
 @end

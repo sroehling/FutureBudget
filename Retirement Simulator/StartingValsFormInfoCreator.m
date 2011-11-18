@@ -22,6 +22,8 @@
 #import "SimDateRuntimeInfo.h"
 #import "SimDateFieldEditInfo.h"
 #import "Cash.h"
+#import "PercentFieldValidator.h"
+#import "PositiveAmountValidator.h"
 
 @implementation StartingValsFormInfoCreator
 
@@ -69,17 +71,20 @@
 	for (Account *account in accounts)
 	{
 		NumberFieldEditInfo *acctBalanceFieldEditInfo = 
-			[NumberFieldEditInfo createForObject:account andKey:ACCOUNT_STARTING_BALANCE_KEY andLabel:account.name andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER") andNumberFormatter:[NumberHelper theHelper].currencyFormatter];
+			[NumberFieldEditInfo createForObject:account andKey:ACCOUNT_STARTING_BALANCE_KEY andLabel:account.name andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER") andNumberFormatter:[NumberHelper theHelper].currencyFormatter andValidator:[[[PositiveAmountValidator alloc] init] autorelease]];
 		[sectionInfo addFieldEditInfo:acctBalanceFieldEditInfo];
 	}
 	
 	// TODO - Switch over to use populateCurrencyField from InputFormPopulator
 	Cash *theCash = [SharedAppValues singleton].cash;
+	
+	NumberFieldValidator *amountValidator = [[[PositiveAmountValidator alloc] init] autorelease];
 	NumberFieldEditInfo *cashBalanceFieldEditInfo = 
 			[NumberFieldEditInfo createForObject:theCash andKey:CASH_STARTING_BALANCE_KEY 
 			andLabel:LOCALIZED_STR(@"CASH_LABEL") 
 			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER") 
-			andNumberFormatter:[NumberHelper theHelper].currencyFormatter];
+			andNumberFormatter:[NumberHelper theHelper].currencyFormatter
+			andValidator:amountValidator];
 	[sectionInfo addFieldEditInfo:cashBalanceFieldEditInfo];
 
 	sectionInfo = [formPopulator nextSection];
@@ -87,12 +92,13 @@
 	sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE");
 
 	// TODO - Switch to use populatePercentField from InputFormPopulator
+	NumberFieldValidator *percentValidator = [[[PercentFieldValidator alloc] init] autorelease];
 	NumberFieldEditInfo *deficitInterestFieldEditInfo = 
 			[NumberFieldEditInfo createForObject:[SharedAppValues singleton].deficitInterestRate 
 				andKey:FIXED_VALUE_VALUE_KEY 
 			andLabel:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_LABEL") 
 			andPlaceholder:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_PLACEHOLDER") 
-			andNumberFormatter:[NumberHelper theHelper].percentFormatter];
+			andNumberFormatter:[NumberHelper theHelper].percentFormatter andValidator:percentValidator];
 	[sectionInfo addFieldEditInfo:deficitInterestFieldEditInfo];
 
 	

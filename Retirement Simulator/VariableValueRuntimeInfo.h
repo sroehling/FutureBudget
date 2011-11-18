@@ -14,10 +14,12 @@
 @class LoanInput;
 @class Account;
 @class MultiScenarioAmount;
+@class NumberFieldValidator;
 
 @interface VariableValueRuntimeInfo : NSObject {
 	@private
 		NSNumberFormatter *valueFormatter;
+		NumberFieldValidator *valueValidator;
 		NSString *valueTitleKey;
 		NSString *inlineValueTitleKey;
 		NSString *valueVerb;
@@ -33,6 +35,7 @@
 }
 
 @property(nonatomic,retain) NSNumberFormatter *valueFormatter;
+@property(nonatomic,retain) NumberFieldValidator *valueValidator;
 @property(nonatomic,retain) NSString *valueTitleKey;
 @property(nonatomic,retain) NSString *valueVerb;
 @property(nonatomic,retain) NSString *periodDesc;
@@ -48,18 +51,19 @@
 
 
 - (id) initWithFormatter:(NSNumberFormatter*)valFormatter
+			andValueValidator:(NumberFieldValidator*)valValidator
 		   andValueTitle:(NSString*)title 
-  andInlineValueTitleKey:(NSString*)theInlineValueTitleKey
+		andInlineValueTitleKey:(NSString*)theInlineValueTitleKey
 			andValueVerb:(NSString*)verb
 		   andPeriodDesc:(NSString*)thePeriodDesc 
 			  andListMgr:(id<VariableValueListMgr>)theListMgr
-andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
-andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
+		andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
+		andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
 	   andValuePromptKey:(NSString*)theValPromptKey
-	  andValueTypeInline:(NSString*)theValueTypeInline
+	   andValueTypeInline:(NSString*)theValueTypeInline
 	   andValueTypeTitle:(NSString*)theValueTypeTitle
-			andValueName:(NSString*)theValueName
-			andTableSubtitle:(NSString*)theTableSubtitle;
+	   andValueName:(NSString*)theValueName
+	   andTableSubtitle:(NSString*)theTableSubtitle;
 	
 - (NSString *)inlinePeriodDesc;
 

@@ -75,7 +75,7 @@
     [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:newVariableValue 
              andKey:@"startingValue" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_FIELD_LABEL")
 			 andPlaceholder:varValStartingValPlaceholder
-			 andNumberFormatter:self.varValRuntimeInfo.valueFormatter]];
+			 andNumberFormatter:self.varValRuntimeInfo.valueFormatter andValidator:varValRuntimeInfo.valueValidator]];
     
     GenericFieldBasedTableAddViewController *controller = 
         [[[GenericFieldBasedTableAddViewController alloc]

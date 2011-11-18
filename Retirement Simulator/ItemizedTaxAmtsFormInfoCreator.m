@@ -37,6 +37,7 @@
 
 #import "LoanInput.h"
 #import "LoanInterestItemizedTaxAmt.h"
+#import "PercentFieldValidator.h"
 
 @implementation ItemizedTaxAmtsFormInfoCreator
 
@@ -78,6 +79,8 @@
 	ItemizedTaxAmtFieldPopulator *fieldPopulator = 
 		[[[ItemizedTaxAmtFieldPopulator alloc] initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts] autorelease];
 		
+	PercentFieldValidator *percentValidator = [[PercentFieldValidator alloc] init];
+		
 	if([fieldPopulator.itemizedIncomes count] > 0)
 	{
 		[formPopulator nextSection];
@@ -88,7 +91,8 @@
 				itemizedIncome.multiScenarioApplicablePercent 
 				andValLabel:itemizedIncome.income.name 
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
-				andObjectForDelete:itemizedIncome];
+				andObjectForDelete:itemizedIncome
+				andValidator:percentValidator];
 		}
 	}
 	
@@ -102,7 +106,8 @@
 				itemizedExpense.multiScenarioApplicablePercent 
 				andValLabel:itemizedExpense.expense.name 
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
-				andObjectForDelete:itemizedExpense];
+				andObjectForDelete:itemizedExpense
+				andValidator:percentValidator];
 		}
 	}
 	
@@ -116,7 +121,8 @@
 				itemizedSavings.multiScenarioApplicablePercent 
 				andValLabel:itemizedSavings.account.name 
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
-				andObjectForDelete:itemizedSavings];
+				andObjectForDelete:itemizedSavings
+				andValidator:percentValidator];
 		}
 	}
 	
@@ -130,7 +136,8 @@
 				itemizedAccountContrib.multiScenarioApplicablePercent 
 				andValLabel:itemizedAccountContrib.account.name 
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt 
-				andObjectForDelete:itemizedAccountContrib];
+				andObjectForDelete:itemizedAccountContrib
+				andValidator:percentValidator];
 		}
 		
 	}
@@ -145,7 +152,8 @@
 				itemizedAccountWithdrawal.multiScenarioApplicablePercent 
 				andValLabel:itemizedAccountWithdrawal.account.name 
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
-				andObjectForDelete:itemizedAccountWithdrawal];
+				andObjectForDelete:itemizedAccountWithdrawal
+				andValidator:percentValidator];
 		}
 		
 	}
@@ -161,7 +169,8 @@
 				itemizedAssetGain.multiScenarioApplicablePercent 
 				andValLabel:itemizedAssetGain.asset.name 
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
-				andObjectForDelete:itemizedAssetGain];
+				andObjectForDelete:itemizedAssetGain
+				andValidator:percentValidator];
 		}
 		
 	}
@@ -177,10 +186,13 @@
 				itemizedLoanInterest.multiScenarioApplicablePercent 
 				andValLabel:itemizedLoanInterest.loan.name 
 				andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
-				andObjectForDelete:itemizedLoanInterest];
+				andObjectForDelete:itemizedLoanInterest
+				andValidator:percentValidator];
 		}
 		
 	}
+	
+	[percentValidator release];
 
 
 	return formPopulator.formInfo;
