@@ -31,4 +31,18 @@ NSString * const MILESTONE_DATE_ENTITY_NAME = @"MilestoneDate";
 	[visitor visitMilestoneDate:self];
 }
 
+-(BOOL)supportsDeletion
+{
+	// Only allow deletion if there are no scenario input values referring to
+	// to this milestone date.
+	if([self.scenarioValInputValues count] <= 0)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
 @end

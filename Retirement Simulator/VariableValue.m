@@ -114,5 +114,19 @@ NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
 	return FALSE;
 }
 
+-(BOOL)supportsDeletion
+{
+	// Only allow deletion if there are no scenario input values referring to
+	// to this value.
+	if([self.scenarioValInputValues count] <= 0)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
 
 @end
