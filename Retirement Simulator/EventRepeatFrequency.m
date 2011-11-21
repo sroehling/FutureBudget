@@ -22,8 +22,9 @@ NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
 // object may result in an orphan.
 
 
-// Inverse Relationship
+// Inverse Relationships
 @dynamic sharedAppValsRepeatOnceFreq;
+@dynamic sharedAppValsRepeatMonthlyFreq;
 
 
 

@@ -33,8 +33,9 @@ typedef enum
 @property (nonatomic, retain) NSNumber * period;
 @property (nonatomic, retain) NSNumber * periodMultiplier;
 
-// Inverse relationship
+// Inverse relationships
 @property (nonatomic, retain) SharedAppValues * sharedAppValsRepeatOnceFreq;
+@property (nonatomic, retain) SharedAppValues * sharedAppValsRepeatMonthlyFreq;
 
 
 

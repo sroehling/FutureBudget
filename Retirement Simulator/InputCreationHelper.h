@@ -44,6 +44,7 @@
 - (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal;
 
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyOnce;
+- (MultiScenarioInputValue*)multiScenarioRepeatFrequencyMonthly;
 
 - (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday;
 - (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault;

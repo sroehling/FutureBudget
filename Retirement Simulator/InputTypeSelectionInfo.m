@@ -78,7 +78,7 @@
 	newInput.startDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
     newInput.endDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
    	
-	newInput.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	newInput.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyMonthly];
     
 }
 
@@ -207,7 +207,9 @@
 	newInput.extraPmtAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
 	newInput.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	newInput.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	// TBD - extraPmtFrequency doesn't 
+	// have any UI input - Should this change
+	newInput.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyMonthly];
 	
 	[[DataModelController theDataModelController] saveContext];
 		

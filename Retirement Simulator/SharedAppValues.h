@@ -34,7 +34,10 @@ extern NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY;
 @property (nonatomic, retain) NeverEndDate * sharedNeverEndDate;
 @property (nonatomic, retain) DefaultScenario *defaultScenario;
 @property (nonatomic,retain) Scenario *currentInputScenario;
+
 @property(nonatomic,retain) EventRepeatFrequency *repeatOnceFreq;
+@property(nonatomic,retain) EventRepeatFrequency *repeatMonthlyFreq;
+
 @property(nonatomic,retain) NSDate *simStartDate;
 @property(nonatomic,retain) SimDate *simEndDate;
 @property(nonatomic,retain) FixedDate *defaultFixedSimEndDate;

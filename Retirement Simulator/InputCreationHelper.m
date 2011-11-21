@@ -146,6 +146,16 @@
 
 }
 
+- (MultiScenarioInputValue*)multiScenarioRepeatFrequencyMonthly
+{
+	EventRepeatFrequency *repeatMonthly = self.sharedAppVals.repeatMonthlyFreq;
+	assert(repeatMonthly != nil);
+	MultiScenarioInputValue *msRepeatFreq = [self multiScenInputValue];
+	[msRepeatFreq setDefaultValue:repeatMonthly];
+	return msRepeatFreq;
+}
+
+
 - (MultiScenarioInputValue*)multiScenFixedDateWithDefault:(NSDate*)defaultDate
 {
 	assert(defaultDate != nil);

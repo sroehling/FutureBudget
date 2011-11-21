@@ -33,6 +33,7 @@ NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"default
 @dynamic defaultScenario;
 @dynamic currentInputScenario;
 @dynamic repeatOnceFreq;
+@dynamic repeatMonthlyFreq;
 @dynamic simStartDate;
 @dynamic simEndDate;
 @dynamic defaultFixedSimEndDate;
@@ -67,7 +68,7 @@ static SharedAppValues *theSharedAppVals;
 			andPeriod:kEventPeriodWeek andMultiplier:1];
 	[EventRepeatFrequency createInDataModel:dataModelInterface 
 			andPeriod:kEventPeriodWeek andMultiplier:2];
-	[EventRepeatFrequency createInDataModel:dataModelInterface 
+	EventRepeatFrequency *repeatMonthly = [EventRepeatFrequency createInDataModel:dataModelInterface 
 			andPeriod:kEventPeriodMonth andMultiplier:1];
 	[EventRepeatFrequency createInDataModel:dataModelInterface 
 			andPeriod:kEventPeriodMonth andMultiplier:3];
@@ -87,6 +88,7 @@ static SharedAppValues *theSharedAppVals;
 	sharedVals.currentInputScenario = defaultScenario;
 	
 	sharedVals.repeatOnceFreq = repeatOnce;
+	sharedVals.repeatMonthlyFreq = repeatMonthly;
 	
 	sharedVals.simStartDate = [[[NSDate alloc] init] autorelease];
 	
