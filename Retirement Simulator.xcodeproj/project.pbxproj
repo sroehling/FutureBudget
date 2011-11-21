@@ -283,6 +283,9 @@
 		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
 		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
 		00F420A9137DDBD000980A88 /* ManagedObjectFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */; };
+		00FF191E147AB940000787B5 /* DefaultInflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF191D147AB940000787B5 /* DefaultInflationRate.m */; };
+		00FF1922147AC762000787B5 /* StaticNameFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1921147AC762000787B5 /* StaticNameFieldCell.m */; };
+		00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -841,6 +844,12 @@
 		00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldEditInfo.m; sourceTree = "<group>"; };
 		00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectFieldInfo.h; sourceTree = "<group>"; };
 		00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectFieldInfo.m; sourceTree = "<group>"; };
+		00FF191C147AB940000787B5 /* DefaultInflationRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultInflationRate.h; sourceTree = "<group>"; };
+		00FF191D147AB940000787B5 /* DefaultInflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultInflationRate.m; sourceTree = "<group>"; };
+		00FF1920147AC762000787B5 /* StaticNameFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNameFieldCell.h; sourceTree = "<group>"; };
+		00FF1921147AC762000787B5 /* StaticNameFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNameFieldCell.m; sourceTree = "<group>"; };
+		00FF1923147AC8D8000787B5 /* StaticNameFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNameFieldEditInfo.h; sourceTree = "<group>"; };
+		00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNameFieldEditInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1301,6 +1310,8 @@
 				00637A811385D509001E02F1 /* FixedValue.m */,
 				00637A891386D999001E02F1 /* InflationRate.h */,
 				00637A8A1386D99A001E02F1 /* InflationRate.m */,
+				00FF191C147AB940000787B5 /* DefaultInflationRate.h */,
+				00FF191D147AB940000787B5 /* DefaultInflationRate.m */,
 				0025775D13B2341E00D15232 /* DateSensitiveValueVisitor.h */,
 				0010A58713D0B1DB0096A20F /* InterestRate.h */,
 				0010A58813D0B1DC0096A20F /* InterestRate.m */,
@@ -1593,6 +1604,10 @@
 				0055A899141851E300EFB95C /* NameFieldCell.m */,
 				0055A89B1418551B00EFB95C /* NameFieldEditInfo.h */,
 				0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */,
+				00FF1920147AC762000787B5 /* StaticNameFieldCell.h */,
+				00FF1921147AC762000787B5 /* StaticNameFieldCell.m */,
+				00FF1923147AC8D8000787B5 /* StaticNameFieldEditInfo.h */,
+				00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */,
 			);
 			name = "Name Field";
 			sourceTree = "<group>";
@@ -2421,6 +2436,9 @@
 				00A254C41476CBEC004F63E3 /* PositiveAmountValidator.m in Sources */,
 				00A254C71476D138004F63E3 /* GrowthRateFieldValidator.m in Sources */,
 				00A254CA1476D706004F63E3 /* PositiveNumberValidator.m in Sources */,
+				00FF191E147AB940000787B5 /* DefaultInflationRate.m in Sources */,
+				00FF1922147AC762000787B5 /* StaticNameFieldCell.m in Sources */,
+				00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

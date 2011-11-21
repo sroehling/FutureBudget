@@ -72,7 +72,7 @@
 	newInput.cashFlowEnabled = [inputCreationHelper 
 		multiScenBoolValWithDefault:TRUE];
 	
-	newInput.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.amountGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
 	newInput.amount = [inputCreationHelper multiScenAmountWithDefault:0.0];
     
 	newInput.startDate = [inputCreationHelper multiScenSimDateWithDefaultToday];

@@ -40,6 +40,7 @@
 
 - (MultiScenarioAmount*)multiScenAmountWithDefault:(double)defaultVal;
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal;
+- (MultiScenarioGrowthRate*)multiScenDefaultGrowthRate;
 
 - (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal;
 

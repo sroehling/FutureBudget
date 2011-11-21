@@ -48,6 +48,11 @@
     [self didChangeValueForKey:@"scenarioValInputValues" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
 
+- (BOOL)supportsDeletion
+{
+	return TRUE;
+}
+
 
 
 @end

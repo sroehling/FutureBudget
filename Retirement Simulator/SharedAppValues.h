@@ -19,6 +19,7 @@
 @protocol DataModelInterface;
 @class RelativeEndDate;
 @class FixedValue;
+@class DefaultInflationRate;
 
 extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
 extern NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY;
@@ -43,7 +44,9 @@ extern NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY;
 @property(nonatomic,retain) FixedDate *defaultFixedSimEndDate;
 @property(nonatomic,retain) RelativeEndDate *defaultFixedRelativeEndDate;
 @property(nonatomic,retain) Cash *cash;
+
 @property(nonatomic,retain) FixedValue *deficitInterestRate;
+@property (nonatomic, retain) DefaultInflationRate * defaultInflationRate;
 
 
 -(NSDate*)beginningOfSimStartDate;

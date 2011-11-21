@@ -102,5 +102,17 @@ NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
 	[dsvVisitor visitVariableValue:self]; 
 }
 
+- (NSString*)label
+{
+	// By default, the label is the VariableValue's name. This can be overriden, 
+	// for example for default values which have a fixed label.
+	return self.name;
+}
+
+- (BOOL)nameIsStaticLabel
+{
+	return FALSE;
+}
+
 
 @end

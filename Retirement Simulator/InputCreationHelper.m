@@ -10,6 +10,7 @@
 
 #import "MultiScenarioInputValue.h"
 #import "FixedValue.h"
+#import "DefaultInflationRate.h"
 #import "BoolInputValue.h"
 #import "SharedAppValues.h"
 #import "EventRepeatFrequency.h"
@@ -123,6 +124,25 @@
 			
 	return msGrowthRate;
 }
+
+- (MultiScenarioGrowthRate*)multiScenDefaultGrowthRate
+{
+	MultiScenarioGrowthRate *msGrowthRate = 
+		[self.dataModel createDataModelObject:MULTI_SCEN_GROWTH_RATE_ENTITY_NAME];
+			
+	DefaultInflationRate *defaultRate = self.sharedAppVals.defaultInflationRate;
+	assert(defaultRate != nil);
+			
+    msGrowthRate.defaultFixedGrowthRate = [self multiScenFixedValWithDefault:0.0];
+
+	MultiScenarioInputValue *msInputVal = [self multiScenInputValue];
+	[msInputVal setDefaultValue:defaultRate];
+	msGrowthRate.growthRate = msInputVal;
+	
+			
+	return msGrowthRate;
+}
+
 
 - (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal
 {

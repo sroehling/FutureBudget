@@ -72,7 +72,7 @@
 
 - (NSString*)textLabel
 {
-    return self.variableVal.name;
+    return self.variableVal.label;
 }
 
 - (UIViewController*)fieldEditController
@@ -124,7 +124,7 @@
 
 -(BOOL)supportsDelete
 {
-	return TRUE;
+	return [self.variableVal supportsDeletion];
 }
 
 -(void)deleteObject

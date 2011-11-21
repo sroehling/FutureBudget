@@ -28,4 +28,7 @@ extern NSString * const VARIABLE_VALUE_ENTITY_NAME;
 
 - (void)addValueChangesObject:(DateSensitiveValueChange *)value;
 
+- (NSString*)label;
+- (BOOL)nameIsStaticLabel;
+
 @end
