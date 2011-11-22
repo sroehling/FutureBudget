@@ -102,11 +102,10 @@
     // Amount section
     
     SectionInfo *sectionInfo  = [formPopulator nextSection];
-	
-	
 	[self.formPopulator populateMultiScenBoolField:cashFlow.cashFlowEnabled withLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL")];
 
-    sectionInfo.title = 
+     sectionInfo  = [formPopulator nextSection];
+	sectionInfo.title = 
 		LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_SECTION_TITLE");
 	
 	[self.formPopulator populateMultiScenarioAmount:cashFlow.amount 
@@ -327,8 +326,6 @@
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE");
 	
 	
-	[self.formPopulator populateMultiScenBoolField:asset.assetEnabled 
-			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
 	
 	[self.formPopulator populateMultiScenarioAmount:asset.cost 
 		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")];
@@ -344,6 +341,9 @@
  
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE");
+
+	[self.formPopulator populateMultiScenBoolField:asset.assetEnabled 
+			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
  
  
 	[self.formPopulator populateMultiScenSimDate:asset.purchaseDate 
