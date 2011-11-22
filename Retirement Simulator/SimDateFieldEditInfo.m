@@ -23,6 +23,7 @@
 #import "SharedAppValues.h"
 #import "Scenario.h"
 #import "MultiScenarioFixedDateFieldInfo.h"
+#import "SimDateSubtitleFormatter.h"
 #import "FixedDate.h"
 #import "MultiScenarioInputValue.h"
 #import "SingleScenarioRelativeEndDateFieldInfo.h"
@@ -34,7 +35,7 @@
 @synthesize dateCell;
 @synthesize varDateRuntimeInfo;
 @synthesize defaultRelEndDateFieldInfo;
-
+@synthesize subtitleFormatter;
 
 - (void)configureDateCell
 {
@@ -45,7 +46,7 @@
         self.dateCell.valueDescription.textColor = [ColorHelper blueTableTextColor];
         self.dateCell.valueDescription.text = [self detailTextLabel];
 		SimDate *theDate = (SimDate*)[self.fieldInfo getFieldValue];
-		self.dateCell.valueSubtitle.text = [theDate dateLabel];
+		self.dateCell.valueSubtitle.text = [self.subtitleFormatter formatSimDate:theDate];
     }
     else
     {
@@ -74,6 +75,8 @@
 		
 		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
 		showEndDates = doShowEndDates;
+		
+		self.subtitleFormatter = [[[SimDateSubtitleFormatter alloc]initWithSimDateRuntimeInfo:self.varDateRuntimeInfo] autorelease];
 		
 		if(showEndDates)
 		{
@@ -188,7 +191,7 @@
 {
     assert([self.fieldInfo fieldIsInitializedInParentObject]);
 	
-	SimDateValueFormatter *valFormatter = [[[SimDateValueFormatter alloc] init] autorelease];
+	SimDateValueFormatter *valFormatter = [[[SimDateValueFormatter alloc] initWithSimDateRuntimeInfo:self.varDateRuntimeInfo] autorelease];
     SimDate *simDate = [self.fieldInfo getFieldValue];
 	// TODO - need to pass start date to val formatter, so that RelativeEndDatescan display an actual
 	// end date, as opposed to just a label like "1 occurrence".
@@ -238,6 +241,7 @@
 	[defaultValFieldInfo release];
 	[dateCell release];
 	[defaultRelEndDateFieldInfo release];
+	[subtitleFormatter release];
 }
 
 

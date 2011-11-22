@@ -21,6 +21,10 @@
 @synthesize tableHeader;
 @synthesize tableSubHeader;
 @synthesize supportsNeverEndDate;
+@synthesize neverEndDateSectionTitle;
+@synthesize neverEndDateSectionSubtitle;
+@synthesize neverEndDateFieldCaption;
+@synthesize neverEndDateFieldSubtitle;
 
 - (id)initWithTableTitle:(NSString*)theTitle andHeader:(NSString*)theHeader
 			andSubHeader:(NSString*)theSubHeader andSupportsNeverEndDate:(bool)doesSupportNeverEndDate
@@ -32,6 +36,11 @@
 		self.tableTitle = theTitle;
 		self.tableSubHeader = theSubHeader;
 		self.supportsNeverEndDate = doesSupportNeverEndDate;
+		
+		self.neverEndDateSectionTitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE");
+		self.neverEndDateSectionSubtitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE");
+		self.neverEndDateFieldCaption = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL");
+		self.neverEndDateFieldSubtitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE");
 	}
 	return self;
 }
@@ -48,6 +57,10 @@
 	[tableTitle  release];
 	[tableHeader release];
 	[tableSubHeader release];
+	[neverEndDateSectionTitle release];
+	[neverEndDateSectionSubtitle release];
+	[neverEndDateFieldCaption release];
+	[neverEndDateFieldSubtitle release];
 }
 
 

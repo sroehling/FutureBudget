@@ -21,10 +21,6 @@ NSString * const MILESTONE_DATE_ENTITY_NAME = @"MilestoneDate";
 			[withFormat stringFromDate:self.date], self.name];
 }
 
-- (NSString *)dateLabel
-{
-	return self.name;
-}
 
 -(void)acceptVisitor:(id<SimDateVisitor>)visitor
 {

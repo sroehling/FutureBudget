@@ -286,6 +286,7 @@
 		00FF191E147AB940000787B5 /* DefaultInflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF191D147AB940000787B5 /* DefaultInflationRate.m */; };
 		00FF1922147AC762000787B5 /* StaticNameFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1921147AC762000787B5 /* StaticNameFieldCell.m */; };
 		00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */; };
+		00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -850,6 +851,8 @@
 		00FF1921147AC762000787B5 /* StaticNameFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNameFieldCell.m; sourceTree = "<group>"; };
 		00FF1923147AC8D8000787B5 /* StaticNameFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNameFieldEditInfo.h; sourceTree = "<group>"; };
 		00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNameFieldEditInfo.m; sourceTree = "<group>"; };
+		00FF1926147C0BEF000787B5 /* SimDateSubtitleFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateSubtitleFormatter.h; sourceTree = "<group>"; };
+		00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateSubtitleFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1283,6 +1286,8 @@
 				0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */,
 				000FABF113BB8B30008AEEDF /* SimDateValueFormatter.h */,
 				000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */,
+				00FF1926147C0BEF000787B5 /* SimDateSubtitleFormatter.h */,
+				00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */,
 				005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */,
 				005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */,
 				00E6CC6913F04F52005EEC64 /* RelativeDatePickerViewController.h */,
@@ -2439,6 +2444,7 @@
 				00FF191E147AB940000787B5 /* DefaultInflationRate.m in Sources */,
 				00FF1922147AC762000787B5 /* StaticNameFieldCell.m in Sources */,
 				00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */,
+				00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -138,10 +138,13 @@
         assert(repeatFreq != nil);
         if([repeatFreq  eventRepeatsMoreThanOnce])
         {
-		
 			[self.formPopulator populateMultiScenSimEndDate:cashFlow.endDate 
 				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TITLE")];
+				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TITLE")
+				andNeverEndFieldTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")
+				andNeverEndFieldSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE") 
+				andNeverEndSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE")];
 					
         }
         
@@ -194,6 +197,26 @@
 		[self.formPopulator populateRepeatFrequency:account
 		andFreqKey:ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
+ 
+	   // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
+    // than "Once", such that an end date is needed. TBD - Should the end date in this case default to 
+    // "Plan end date".
+	if([repeatFrequencyInfo.fieldInfo fieldIsInitializedInParentObject])	
+    {
+        EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)[repeatFrequencyInfo.fieldInfo getFieldValue];
+        assert(repeatFreq != nil);
+        if([repeatFreq  eventRepeatsMoreThanOnce])
+        {
+			[self.formPopulator populateMultiScenSimEndDate:account.contribEndDate 
+				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
+				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TITLE")
+				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE")
+				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE") 
+				andNeverEndSectionSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_SUBTITLE")];
+        }
+        
+    }
 		
 		
 	sectionInfo = [formPopulator nextSection];
@@ -219,21 +242,6 @@
 	
 
     
-    // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
-    // than "Once", such that an end date is needed. TBD - Should the end date in this case default to 
-    // "Plan end date".
-	if([repeatFrequencyInfo.fieldInfo fieldIsInitializedInParentObject])	
-    {
-        EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)[repeatFrequencyInfo.fieldInfo getFieldValue];
-        assert(repeatFreq != nil);
-        if([repeatFreq  eventRepeatsMoreThanOnce])
-        {
-			[self.formPopulator populateMultiScenSimEndDate:account.contribEndDate 
-				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TITLE")];
-        }
-        
-    }
 
 }
 
@@ -352,7 +360,11 @@
 
 	[self.formPopulator populateMultiScenSimEndDate:asset.saleDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_FIELD_LABEL") 
-		andTitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_TITLE")];
+		andTitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_TITLE")
+				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_FIELD_TITLE") 
+				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_SECTION_TITLE") 
+				andNeverEndSectionSubtitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_SECTION_SUBTITLE")];
 
 }
 

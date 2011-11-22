@@ -1,8 +1,8 @@
 //
-//  SimDateValueFormatter.h
+//  SimDateSubtitleFormatter.h
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 6/29/11.
+//  Created by Steve Roehling on 11/22/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,7 +13,8 @@
 @class SimDate;
 @class SimDateRuntimeInfo;
 
-@interface SimDateValueFormatter : NSObject <SimDateVisitor> {
+
+@interface SimDateSubtitleFormatter : NSObject <SimDateVisitor> {
     @private
 		NSString *formattedVal;
 		SimDateRuntimeInfo *simDateRuntimeInfo;

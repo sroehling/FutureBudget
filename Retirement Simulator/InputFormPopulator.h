@@ -64,7 +64,12 @@
 	
 -(void)populateMultiScenSimDate:(MultiScenarioSimDate*)multiScenSimDate 
 	andLabel:(NSString*)label andTitle:(NSString*)title;
+
 -(void)populateMultiScenSimEndDate:(MultiScenarioSimEndDate*)multiScenSimEndDate 
-	andLabel:(NSString*)label andTitle:(NSString*)title;
-	
+	andLabel:(NSString*)label andTitle:(NSString*)title 
+	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
+	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
+	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
+	andNeverEndSectionSubtitle:(NSString*)neverEndSectionSubtitle;
+		
 @end

@@ -363,11 +363,19 @@
 }
 
 -(void)populateMultiScenSimEndDate:(MultiScenarioSimEndDate*)multiScenSimEndDate 
-	andLabel:(NSString*)label andTitle:(NSString*)title
+	andLabel:(NSString*)label andTitle:(NSString*)title 
+	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
+	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
+	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
+	andNeverEndSectionSubtitle:(NSString*)neverEndSectionSubtitle
 {
 	assert(multiScenSimEndDate != nil);
 	assert([StringValidation nonEmptyString:label]);
 	assert([StringValidation nonEmptyString:title]);
+	assert([StringValidation nonEmptyString:neverEndFieldTitle]);
+	assert([StringValidation nonEmptyString:neverEndFieldSubTitle]);
+	assert([StringValidation nonEmptyString:neverEndSectionTitle]);
+	assert([StringValidation nonEmptyString:neverEndSectionSubtitle]);
 	
 	NSString *tableHeader= @"Table Header TBD";
 	NSString *tableSubHeader = @"Table sub header TBD";
@@ -377,6 +385,10 @@
 		[[[SimDateRuntimeInfo alloc] initWithTableTitle:title 
 			andHeader:tableHeader andSubHeader:tableSubHeader 
 			andSupportsNeverEndDate:doSupportNeverEndDates] autorelease];
+	simDateInfo.neverEndDateFieldSubtitle = neverEndFieldSubTitle;
+	simDateInfo.neverEndDateFieldCaption = neverEndFieldTitle;
+	simDateInfo.neverEndDateSectionTitle = neverEndSectionTitle;
+	simDateInfo.neverEndDateSectionSubtitle = neverEndSectionSubtitle;
 			
 	SimDateFieldEditInfo *simDateFieldEditInfo = 
 		[SimDateFieldEditInfo createForMultiScenarioVal:self.inputScenario 

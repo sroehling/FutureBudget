@@ -85,12 +85,13 @@
 		{
 			sectionInfo = [formPopulator nextSection];
 	
-			sectionInfo.title = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE");
-			sectionInfo.subTitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE");
+			sectionInfo.title = self.varDateRuntimeInfo.neverEndDateSectionTitle;
+			sectionInfo.subTitle = self.varDateRuntimeInfo.neverEndDateSectionSubtitle;
 			NeverEndDate *neverEndDate = [SharedAppValues singleton].sharedNeverEndDate;
+			assert(neverEndDate != nil);
 			StaticFieldEditInfo *neverEndingFieldEditInfo = 
 				[[[StaticFieldEditInfo alloc] initWithManagedObj:neverEndDate 
-				andCaption:@"" andContent:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")] autorelease];
+				andCaption:@"" andContent:self.varDateRuntimeInfo.neverEndDateFieldCaption] autorelease];
 			[sectionInfo addFieldEditInfo:neverEndingFieldEditInfo];
 		}
 		

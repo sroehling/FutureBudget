@@ -144,11 +144,6 @@ NSString * const RELATIVE_END_DATE_ENTITY_NAME = @"RelativeEndDate";
 	return [self relativeDateDescription];
 }
 
-- (NSString *)dateLabel
-{
-	return @""; // no label
-}
-
 
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor
 {

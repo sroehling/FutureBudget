@@ -27,11 +27,6 @@ NSString * const FIXED_DATE_ENTITY_NAME = @"FixedDate";
 	return [withFormat stringFromDate:self.date];
 }
 
-- (NSString *)dateLabel
-{
-	return @""; // no label
-}
-
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor
 {
 	[visitor visitFixedDate:self];

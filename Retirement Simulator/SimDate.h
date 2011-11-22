@@ -28,7 +28,6 @@ extern NSString * const SIM_DATE_DATE_KEY;
 
 
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat;
-- (NSString *)dateLabel;
 
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor;
 - (NSDate*)endDateWithStartDate:(NSDate*)startDate;

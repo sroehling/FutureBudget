@@ -29,13 +29,6 @@ NSString * const NEVER_END_PSEUDO_END_DATE = @"2500-12-31";
 	return LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_INLINE_LABEL");
 }
 
-- (NSString *)dateLabel
-{
-	return LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE");
-	
-}
-
-
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor
 {
 	[visitor visitNeverEndDate:self];

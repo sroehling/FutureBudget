@@ -18,12 +18,20 @@
 		NSString *tableHeader;
 		NSString *tableSubHeader;
 		bool supportsNeverEndDate;
+		NSString *neverEndDateSectionTitle;
+		NSString *neverEndDateSectionSubtitle;
+		NSString *neverEndDateFieldCaption;
+		NSString *neverEndDateFieldSubtitle;
 }
 
 @property(nonatomic,retain) NSString *tableTitle;
 @property(nonatomic,retain) NSString *tableHeader;
 @property(nonatomic,retain) NSString *tableSubHeader;
 @property bool supportsNeverEndDate;
+@property(nonatomic,retain) NSString *neverEndDateSectionTitle;
+@property(nonatomic,retain) NSString *neverEndDateSectionSubtitle;
+@property(nonatomic,retain) NSString *neverEndDateFieldCaption;
+@property(nonatomic,retain) NSString *neverEndDateFieldSubtitle;
 
 - (id)initWithTableTitle:(NSString*)theTitle andHeader:(NSString*)theHeader
 			andSubHeader:(NSString*)theSubHeader andSupportsNeverEndDate:(bool)doesSupportNeverEndDate;

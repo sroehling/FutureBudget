@@ -17,12 +17,14 @@
 @class FixedDate;
 @class FieldInfo;
 @class MultiScenarioInputValue;
+@class SimDateSubtitleFormatter;
 
 @interface SimDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private
         FieldInfo *defaultValFieldInfo;
 		FieldInfo *defaultRelEndDateFieldInfo;
 		ValueSubtitleTableCell *dateCell;
+		SimDateSubtitleFormatter *subtitleFormatter;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
 		bool showEndDates;
 }
@@ -31,6 +33,7 @@
 @property(nonatomic,retain) FieldInfo *defaultRelEndDateFieldInfo;
 @property(nonatomic,retain) ValueSubtitleTableCell *dateCell;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
+@property(nonatomic,retain) SimDateSubtitleFormatter *subtitleFormatter;
 
 + (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultFixedDate:(FixedDate*)defaultFixedDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
 	andShowEndDates:(bool)doShowEndDates
