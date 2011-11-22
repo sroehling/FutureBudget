@@ -184,7 +184,7 @@
 		
 	newInput.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
 	
-	newInput.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.loanCostGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
 		
 	newInput.origDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
 
@@ -264,8 +264,8 @@
 	
 	newInput.exemptionAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
 	newInput.stdDeductionAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
-	newInput.exemptionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	newInput.stdDeductionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.exemptionGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
+	newInput.stdDeductionGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
 	
 	newInput.itemizedAdjustments = [self.dataModelInterface 
 		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
