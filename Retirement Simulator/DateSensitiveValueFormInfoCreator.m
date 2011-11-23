@@ -61,7 +61,6 @@
 	{
 		tableHeader.header.text = [NSString 
 								   stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_TABLE_TITLE_FORMAT"),
-								   self.varValRuntimeInfo.valueTypeTitle,
 								   LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey),
 								   self.varValRuntimeInfo.valueName];
 		
@@ -70,7 +69,6 @@
 	{
 		tableHeader.header.text = [NSString 
 								   stringWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_TABLE_TITLE_FORMAT_UNDEFINED_NAME"),
-								   self.varValRuntimeInfo.valueTypeTitle,
 								   LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
 	}
 
@@ -81,8 +79,6 @@
 
     assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
-	
-	
 	
     sectionInfo.title = [[[NSString alloc]
 			initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_SINGLE_VALUE_TITLE_FORMAT"),

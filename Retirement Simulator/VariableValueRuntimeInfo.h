@@ -29,7 +29,6 @@
 		NSString *variableValSubtitleKey;
 		NSString *valuePromptKey;
 		NSString *valueTypeTitle;
-		NSString *valueTypeInline;
 		NSString *valueName;
 		NSString *tableSubtitle;
 }
@@ -45,7 +44,6 @@
 @property(nonatomic,retain) NSString *inlineValueTitleKey;
 @property(nonatomic,retain) NSString *valuePromptKey;
 @property(nonatomic,retain) NSString *valueTypeTitle;
-@property(nonatomic,retain) NSString *valueTypeInline;
 @property(nonatomic,retain) NSString *valueName;
 @property(nonatomic,retain) NSString *tableSubtitle;
 
@@ -60,7 +58,6 @@
 		andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
 		andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
 	   andValuePromptKey:(NSString*)theValPromptKey
-	   andValueTypeInline:(NSString*)theValueTypeInline
 	   andValueTypeTitle:(NSString*)theValueTypeTitle
 	   andValueName:(NSString*)theValueName
 	   andTableSubtitle:(NSString*)theTableSubtitle;
@@ -76,6 +73,6 @@
 	andVariableValListMgr:(id<VariableValueListMgr>)listMgr;
 	
 +(VariableValueRuntimeInfo*)createForMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
-	withValueTitle:(NSString*)valueTitle;	
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName;	
 
 @end

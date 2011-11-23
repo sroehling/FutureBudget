@@ -28,7 +28,7 @@
 
 - (void) configureValueCell
 {
-	self.valueCell.caption.text = [self textLabel];
+	self.valueCell.caption.text = self.varValRuntimeInfo.valueTypeTitle;
     if([self.fieldInfo fieldIsInitializedInParentObject])
     {
         self.valueCell.valueDescription.textColor = [ColorHelper blueTableTextColor];
@@ -111,7 +111,8 @@
 }
 
 + (DateSensitiveValueFieldEditInfo*)createForObject:
-			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
+			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label 
+			andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
 				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
 {
     assert(obj != nil);
@@ -129,9 +130,10 @@
 		   andFieldPlaceholder:dsvValuePlaceholder] autorelease];
 		   
     
+	
+	
     ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj andFieldKey:defaultFixedValKey andFieldLabel:label
 				andFieldPlaceholder:dsvValuePlaceholder] autorelease];
-    NSLog(@"Default value for date sensitive field: %@",[defaultFixedValFieldInfo description]);
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
 
     DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]                                                       

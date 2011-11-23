@@ -38,7 +38,8 @@
 {
 	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
 		createForMultiScenarioAmount:cashFlow.amount 
-		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")
+		andValueName:cashFlow.name];
 	
 
 	DateSensitiveValue *amount = (DateSensitiveValue*)
@@ -110,7 +111,7 @@
 
 	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
 		createForMultiScenarioAmount:loan.loanCost 
-		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL") andValueName:loan.name];
 	DateSensitiveValue *amount = (DateSensitiveValue*)
 			[loan.loanCost.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
@@ -127,7 +128,7 @@
 {
 	VariableValueRuntimeInfo *varValRuntimeInfo = 
 		[VariableValueRuntimeInfo createForMultiScenarioAmount:asset.cost 
-		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL") andValueName:asset.name];
 	DateSensitiveValue *amount = (DateSensitiveValue*)
 			[asset.cost.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];

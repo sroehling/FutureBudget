@@ -109,10 +109,12 @@
 		LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_SECTION_TITLE");
 	
 	[self.formPopulator populateMultiScenarioAmount:cashFlow.amount 
-		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")
+		andValueName:cashFlow.name];
 	
 	[self.formPopulator populateMultiScenarioGrowthRate:cashFlow.amountGrowthRate 
-		withLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL")];
+		withLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL") 
+		andValueName:cashFlow.name];
 
     // Occurences section
 
@@ -191,10 +193,12 @@
 	[self.formPopulator populateMultiScenBoolField:account.contribEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL")];
 		
-	[self.formPopulator populateMultiScenarioAmount:account.contribAmount withValueTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL")];
+	[self.formPopulator populateMultiScenarioAmount:account.contribAmount withValueTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL")
+		andValueName:account.name];
 	  
 	[self.formPopulator populateMultiScenarioGrowthRate:account.contribGrowthRate 
-		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL")];
+		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL")
+		andValueName:input.name];
 		
 	[self.formPopulator populateMultiScenSimDate:account.contribStartDate 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL")  
@@ -237,7 +241,8 @@
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE");
 	
 	[self.formPopulator populateMultiScenarioGrowthRate:account.interestRate 
-		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")];
+		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")
+		andValueName:account.name];
 
 
 	sectionInfo = [formPopulator nextSection];
@@ -278,9 +283,11 @@
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
 
 	[self.formPopulator populateMultiScenarioAmount:loan.loanCost 
-		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")
+		andValueName:loan.name];
 
-	[self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")];
+	[self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")
+		andValueName:loan.name];
 	  
 	
 	[self.formPopulator populateMultiScenSimDate:loan.origDate 
@@ -304,7 +311,8 @@
 	
 	
 	[self.formPopulator populateMultiScenarioInterestRate:loan.interestRate 
-		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") ];
+		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") 
+		andValueName:loan.name];
 	
 
 	sectionInfo = [formPopulator nextSection];
@@ -315,9 +323,11 @@
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL")];
 	
 	[self.formPopulator populateMultiScenarioAmount:loan.extraPmtAmt 
-		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL")
+		andValueName:loan.name];
 	  
-	[self.formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL")];  
+	[self.formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL")
+			andValueName:loan.name];  
 
 		
 	sectionInfo = [formPopulator nextSection];
@@ -353,7 +363,8 @@
 	
 	
 	[self.formPopulator populateMultiScenarioAmount:asset.cost 
-		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")
+		andValueName:asset.name];
 	
 
 	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
@@ -361,7 +372,8 @@
 		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
 
 	[self.formPopulator populateMultiScenarioGrowthRate:asset.apprecRate 
-		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")];
+		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")
+			andValueName:asset.name];
  
  
 	sectionInfo = [formPopulator nextSection];
@@ -424,9 +436,11 @@
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_TITLE");
 	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_SUBTITLE");
 	[self.formPopulator populateMultiScenarioAmount:tax.exemptionAmt 
-		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_AMOUNT_TITLE")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_AMOUNT_TITLE")
+		andValueName:tax.name];
 	[self.formPopulator populateMultiScenarioGrowthRate:tax.exemptionGrowthRate 
-		withLabel:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_GROWTH_RATE_LABEL")];
+		withLabel:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_GROWTH_RATE_LABEL")
+			andValueName:tax.name];
 
 
 	sectionInfo = [formPopulator nextSection];
@@ -434,10 +448,12 @@
 	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_SUBTITLE");
 
 	[self.formPopulator populateMultiScenarioAmount:tax.stdDeductionAmt 
-		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_TITLE")];
+		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_TITLE")
+		andValueName:tax.name];
 
 	[self.formPopulator populateMultiScenarioGrowthRate:tax.stdDeductionGrowthRate  
-		withLabel:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL")];
+		withLabel:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL")
+		andValueName:tax.name];
 	
 	sectionInfo = [formPopulator nextSection];
 	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =

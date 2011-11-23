@@ -36,7 +36,6 @@
 @synthesize variableValSubtitleKey;
 @synthesize valuePromptKey;
 @synthesize valueTypeTitle;
-@synthesize valueTypeInline;
 @synthesize valueName;
 @synthesize tableSubtitle;
 
@@ -50,7 +49,6 @@
 		andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
 		andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
 	   andValuePromptKey:(NSString*)theValPromptKey
-	   andValueTypeInline:(NSString*)theValueTypeInline
 	   andValueTypeTitle:(NSString*)theValueTypeTitle
 	   andValueName:(NSString*)theValueName
 	   andTableSubtitle:(NSString*)theTableSubtitle
@@ -72,7 +70,6 @@
 		self.variableValSubtitleKey = theVarValSubtitleKey;
 		self.valuePromptKey = theValPromptKey;
 		self.valueTypeTitle = theValueTypeTitle;
-		self.valueTypeInline = theValueTypeInline;
 		self.valueName = theValueName;
 		self.tableSubtitle = theTableSubtitle;
 	}
@@ -93,7 +90,6 @@
 	[variableValSubtitleKey release];
 	[valuePromptKey release];
 	[valueTypeTitle release];
-	[valueTypeInline release];
 	[valueName release];
 	[tableSubtitle release];
 }
@@ -138,7 +134,6 @@
 		andSingleValueSubtitleKey:@"SHARED_PERCENTAGE_SINGLE_VALUE_SECTION_SUBTITLE"
 		andVariableValueSubtitleKey:@"SHARED_PERCENTAGE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
 		andValuePromptKey:@"SHARED_PERCENTAGE_VALUE_PROMPT"
-		andValueTypeInline:[theInput inlineInputType]
 		andValueTypeTitle:[theInput inputTypeTitle]
 		andValueName:theInput.name
 		andTableSubtitle:tableSubtitle] autorelease];
@@ -171,7 +166,6 @@
 		andSingleValueSubtitleKey:@"SHARED_INTEREST_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
 		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
 		andValuePromptKey:@"SHARED_INTEREST_RATE_VALUE_PROMPT"
-		andValueTypeInline:[theInput inlineInputType]
 		andValueTypeTitle:[theInput inputTypeTitle]
 		andValueName:theInput.name
 		andTableSubtitle:tableSubtitle] autorelease];
@@ -208,7 +202,6 @@
 		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
 		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
 		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
-		andValueTypeInline:[theInput inlineInputType]
 		andValueTypeTitle:[theInput inputTypeTitle]
 		andValueName:theInput.name
 		andTableSubtitle:tableSubtitle] autorelease];
@@ -235,7 +228,6 @@
 		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
 		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
 		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
-		  andValueTypeInline:[theInput inlineInputType]
 		  andValueTypeTitle:[theInput inputTypeTitle]
 		  andValueName:theInput.name
 		  andTableSubtitle:tableSubtitle]
@@ -248,7 +240,7 @@
 
 
 +(VariableValueRuntimeInfo*)createForMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
-	withValueTitle:(NSString*)valueTitle
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
 {
 	assert(theAmount != nil);
 	assert([StringValidation nonEmptyString:valueTitle]);
@@ -256,27 +248,25 @@
 	MultiScenarioAmountVariableValueListMgr *variableValueMgr = 
 		[[[MultiScenarioAmountVariableValueListMgr alloc] initWithMultiScenarioAmount:theAmount] autorelease];
 		
-	NSString *inlineType = @"TBD Type";
 		
 	NSString *theTableSubtitle = [NSString 
 	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
 	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
-	 inlineType,
+	 @"",
 	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
 						
 	VariableValueRuntimeInfo *amountRuntimeInfo = 
 		[[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].currencyFormatter 
 		andValueValidator: [[[PositiveAmountValidator alloc] init] autorelease]
-		andValueTitle:valueTitle 
+		andValueTitle:@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE" 
 		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
 		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableValueMgr
 		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
 		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
 		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
-		  andValueTypeInline:inlineType
 		  andValueTypeTitle:valueTitle
-		  andValueName:@"Name TBD"
+		  andValueName:valueName
 		  andTableSubtitle:theTableSubtitle]
 		 autorelease];
 		 

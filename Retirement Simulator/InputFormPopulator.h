@@ -49,12 +49,15 @@
 -(void)populatePercentField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder;
 	
+	
 -(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
-	withValueTitle:(NSString*)valueTitle;
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName;
 -(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
-	withLabel:(NSString*)valueLabel;
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName;
 - (void)populateMultiScenarioInterestRate:(MultiScenarioGrowthRate*)intRate
-	withLabel:(NSString*)valueLabel;
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName;	
 	
 -(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(NSManagedObject*)parentObj 
 		andFreqKey:(NSString*)freqKey andLabel:(NSString*)label;

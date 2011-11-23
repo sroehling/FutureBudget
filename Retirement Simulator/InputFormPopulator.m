@@ -188,27 +188,28 @@
 }
 
 -(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
-	withValueTitle:(NSString*)valueTitle
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
 {
 	assert(theAmount != nil);
 	
 	
 	VariableValueRuntimeInfo *amountRuntimeInfo = [VariableValueRuntimeInfo 
-		createForMultiScenarioAmount:theAmount withValueTitle:valueTitle];
+		createForMultiScenarioAmount:theAmount withValueTitle:valueTitle andValueName:valueName];
 		
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
 	  createForScenario:self.inputScenario andObject:theAmount 
 		andKey:MULTI_SCEN_AMOUNT_AMOUNT_KEY 
-	  andLabel:valueTitle
+	  andLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE")
 	  andValRuntimeInfo:amountRuntimeInfo
 	  andDefaultFixedVal:theAmount.defaultFixedAmount]];
 }
 
 
 -(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
-	withLabel:(NSString*)valueLabel
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
 {
 
 	assert([StringValidation nonEmptyString:valueLabel]);
@@ -233,9 +234,8 @@
 		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
 		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
 		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
-		andValueTypeInline:@"inline type TBD"
 		andValueTypeTitle:valueLabel
-		andValueName:@"Name TBD"
+		andValueName:valueName
 		andTableSubtitle:tableSubtitle] autorelease];
 
 
@@ -244,14 +244,15 @@
         [DateSensitiveValueFieldEditInfo 
          createForScenario:self.inputScenario andObject:growthRate 
 			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
-			andLabel:valueLabel 
+			andLabel:LOCALIZED_STR(@"INPUT_INFLATION_RATE_VALUE_TITLE")  
 		 andValRuntimeInfo:grRuntimeInfo 
 		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate]];
  
 }
 
 - (void)populateMultiScenarioInterestRate:(MultiScenarioGrowthRate*)intRate
-	withLabel:(NSString*)valueLabel
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
 {
 	assert([StringValidation nonEmptyString:valueLabel]);
 	assert(intRate != nil);
@@ -279,9 +280,8 @@
 		andSingleValueSubtitleKey:@"SHARED_INTEREST_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
 		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
 		andValuePromptKey:@"SHARED_INTEREST_RATE_VALUE_PROMPT"
-		andValueTypeInline:@"Inline type TBD"
 		andValueTypeTitle:valueLabel
-		andValueName:@"Name TBD"
+		andValueName:valueName
 		andTableSubtitle:tableSubtitle] autorelease];
 		
 	assert(self.currentSection != nil);
@@ -289,7 +289,7 @@
         [DateSensitiveValueFieldEditInfo 
          createForScenario:self.inputScenario andObject:intRate 
 			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
-			andLabel:valueLabel 
+			andLabel:LOCALIZED_STR(@"SHARED_INTEREST_RATE_VALUE_TITLE") 
 		 andValRuntimeInfo:interestRuntimeInfo 
 		 andDefaultFixedVal:intRate.defaultFixedGrowthRate]];
 

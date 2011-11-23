@@ -290,7 +290,8 @@
 		for(IncomeInput *income in inputs)
 		{
 			[formPopulator populateMultiScenarioAmount:income.amount 
-				withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")];
+				withValueTitle:income.name
+				andValueName:income.name];
 		}
 	}
 	
@@ -304,7 +305,8 @@
 		for(ExpenseInput *expense in inputs)
 		{   
 			[formPopulator populateMultiScenarioAmount:expense.amount 
-				withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")];
+				withValueTitle:expense.name
+				andValueName:expense.name];
  		}
 	}
 	
@@ -317,7 +319,9 @@
 	
 		for(Account *acct in inputs)
 		{
-			[formPopulator populateMultiScenarioAmount:acct.contribAmount withValueTitle:acct.name];
+			[formPopulator populateMultiScenarioAmount:acct.contribAmount 
+				withValueTitle:acct.name
+				andValueName:acct.name];
 		}
 	}
 	
@@ -330,7 +334,9 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[formPopulator populateMultiScenarioAmount:loan.loanCost withValueTitle:loan.name]; 
+			[formPopulator populateMultiScenarioAmount:loan.loanCost 
+				withValueTitle:loan.name
+				andValueName:loan.name]; 
 		}
 	}
 
@@ -343,7 +349,9 @@
 
 		for(LoanInput *loan in inputs)
 		{		
-			[formPopulator populateMultiScenarioAmount:loan.extraPmtAmt withValueTitle:loan.name];
+			[formPopulator populateMultiScenarioAmount:loan.extraPmtAmt 
+				withValueTitle:loan.name
+				andValueName:loan.name];
 		}
 	}
 
@@ -357,7 +365,9 @@
 		
 		for(AssetInput *asset in inputs)
 		{
-			[formPopulator populateMultiScenarioAmount:asset.cost withValueTitle:asset.name];
+			[formPopulator populateMultiScenarioAmount:asset.cost 
+				withValueTitle:asset.name
+				andValueName:asset.name];
 		}
 	}
 	
@@ -388,7 +398,9 @@
 	
 		for(Account *acct in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:acct.interestRate withLabel:acct.name];
+			[formPopulator populateMultiScenarioGrowthRate:acct.interestRate 
+				withLabel:acct.name
+				andValueName:acct.name];
 		}
 	}
 	
@@ -402,7 +414,9 @@
 		
 		for(AssetInput *asset in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:asset.apprecRate withLabel:asset.name]; 
+			[formPopulator populateMultiScenarioGrowthRate:asset.apprecRate 
+				withLabel:asset.name
+				andValueName:asset.name]; 
 		}
 	}
 	
@@ -431,7 +445,9 @@
 
 		for(IncomeInput *income in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:income.amountGrowthRate withLabel:income.name];
+			[formPopulator populateMultiScenarioGrowthRate:income.amountGrowthRate 
+				withLabel:income.name
+				andValueName:income.name];
 		}
 	}
 	
@@ -445,7 +461,9 @@
 
 		for(ExpenseInput *expense in inputs)
 		{    
-			[formPopulator populateMultiScenarioGrowthRate:expense.amountGrowthRate withLabel:expense.name];
+			[formPopulator populateMultiScenarioGrowthRate:expense.amountGrowthRate 
+				withLabel:expense.name
+				andValueName:expense.name];
 		}
 	}
 	
@@ -459,7 +477,8 @@
 		for(Account *acct in inputs)
 		{
 			[formPopulator populateMultiScenarioGrowthRate:acct.contribGrowthRate 
-				withLabel:acct.name];
+				withLabel:acct.name 
+				andValueName:acct.name];
 		}
 	}
 	
@@ -472,7 +491,9 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate withLabel:loan.name];
+			[formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate 
+				withLabel:loan.name
+				andValueName:loan.name];
 		}
 	}
 
@@ -485,7 +506,9 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate withLabel:loan.name];
+			[formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate 
+				withLabel:loan.name
+				andValueName:loan.name];
 		}
 	}
 
@@ -499,7 +522,9 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[formPopulator populateMultiScenarioInterestRate:loan.interestRate withLabel:loan.name];
+			[formPopulator populateMultiScenarioInterestRate:loan.interestRate 
+				withLabel:loan.name 
+				andValueName:loan.name];
 		}
 	}
 
