@@ -50,7 +50,8 @@
 "INPUT_ACCOUNT_DEFERRED_WITHDRAWALS_DISABLED" = "No";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAWALS_FORM_TITLE" = "Deferred Withdrawals";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TITLE" = "Deferred Withdrawal";
-"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_SUBHEADER_FORMAT" = "This first withdraw from %@ %@ can occur on this date.";
+"INPUT_ACCOUNT__DEFERRED_WITHDRAW_DATE_TABLE_HEADER" = "Deferred Account Withdrawal";
+"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TABLE_SUBHEADER_FORMAT" = "The first withdrawal from the account %@ can occur on this date. Select and/or edit one of dates below to set the first withdrawal date.";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_SUBHEADER_FORMAT_NO_NAME" = "This first withdraw from %@ can occur on this date.";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_FIELD_LABEL" = "Defer Withdrawals Until";
 "INPUT_ACCOUNT_WITHDRAWAL_DEFER_DATE_SUBTITLE_FORMAT" = "Defer withdrawals until %@";
@@ -62,6 +63,14 @@
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE" = "Contribute through the end of simulation";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE" = "Contribute Forever";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_SUBTITLE" = "Select to continue account contributions through the end of simulation";
+"INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE" = "Start Date";
+"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER" = "Contribution Start Date";
+
+"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT" = "The first contribution to the %@ %@ occurs on this date. Select and/or edit one of dates below to set the contribution start date.";
+
+"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_TITLE" = "End Date";
+"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_HEADER" = "Contribution End Date";
+"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_SUBHEADER_FORMAT" = "Enter and/or select a date after which no more contributons to account '%@' will occur.";
 
 
 "INPUT_TYPE_SAVINGS_ACCOUNT_INLINE" = "savings account";
@@ -110,13 +119,13 @@
 "INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT" = "Enter an Amount";
 "INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT" = "Select a single %@, to be used for every %@ occurrence. Or, select a variable %@, which can change over time.";
 "INPUT_CASH_FLOW_REPEAT_FREQUENCY_PLACEHOLDER" = "Enter a Frequency";
-
-"INPUT_CASH_FLOW_END_DATE_TITLE" = "End Date";
+"INPUT_CASH_FLOW_END_DATE_TABLE_TITLE" = "End Date";
+"INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT" = "%@ End Date";
+"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT" = "After this date, no more occurences of the %@ %@ will occur. To set the end date, select and/or edit one of the dates below.";
 "INPUT_CASH_FLOW_START_DATE_TITLE" = "Start Date";
-"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT" = "This first occurence of the %@ %@ occurs on this date.";
-"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT" = "After this date, no more occurences of the %@ %@ will occur";
-"INPUT_CASH_FLOW_START_DATE_SUBHEADER_FORMAT_NO_NAME" = "This first occurence of the %@ occurs on this date.";
-"INPUT_CASH_FLOW_END_DATE_SUBHEADER_FORMAT_NO_NAME" = "After this date, no more occurences of the %@ will occur";
+"INPUT_CASH_FLOW_START_DATE_TABLE_HEADER_FORMAT" = "%@ Start Date";
+
+"INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT" = "This first occurence of the %@ %@ occurs on this date. Select and/or edit one of dates below to set the start date.";
 
 "INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE" = "Occurences";
 "INPUT_CASHFLOW_START_FIELD_LABEL" = "Start";
@@ -136,7 +145,8 @@
 "INPUT_LOAN_EXTRA_PMT_SECTION_TITLE" = "Extra Payments";
 "INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL" = "Payment Amount";
 "INPUT_LOAN_ORIG_DATE_FIELD_LABEL" = "Origination Date";
-"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT" = "This %@ '%@' originates on this date.";
+"INPUT_LOAN_ORIG_DATE_TABLE_HEADER" = "Loan Origination Date";
+"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT" = "The loan %@ originated (or is expected to originate) on this date. To set the origination date, select and/or edit one of the dates below.";
 "INPUT_LOAN_ORIG_DATE_DATE_SUBHEADER_FORMAT_NO_NAME" = "This %@ originates on this date.";
 "INPUT_LOAN_DOWN_PMT_SECTION_TITLE" = "Down Payment";
 "INPUT_LOAN_DOWN_PMT_ENABLED_LABEL" = "Make a Down Payment?";
@@ -164,14 +174,16 @@
 "INPUT_ASSET_INLINE_INPUT_TYPE" = "asset";
 "INPUT_ASSET_PURCHASE_DATE_FIELD_LABEL" = "Purchase Date";
 "INPUT_ASSET_PURCHASE_DATE_TITLE" = "Purchase Date";
-"INPUT_ASSET_PURCHASE_DATE_SUBHEADER_FORMAT" = "Date the %@ %@ was (or is expected to be) purchased";
-"INPUT_ASSET_PURCHASE_DATE_SUBHEADER_FORMAT_NO_NAME" = "This is the date the %@ was (or is expected to be) purchased";
+"INPUT_ASSET_PURCHASE_DATE_TABLE_HEADER" = "Asset Purchase Date";
+"INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT" = "This is the date the asset %@ was (or is expected to be) purchased. To set the purchase date, select and/or edit one of the dates below.";
 "INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE" = "Purchase and Sale";
 "INPUT_ASSET_INPUT_LIST_FORMAT" = "Asset purchased for %@";
 "INPUT_ASSET_NEVER_SELL_FIELD_TITLE" = "Never Sell";
 "INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE" = "Own asset through the end of simulation";
 "INPUT_ASSET_NEVER_SELL_SECTION_TITLE" = "Never Sell";
 "INPUT_ASSET_NEVER_SELL_SECTION_SUBTITLE" = "Select to own the asset indefinitely after purchasing it";
+"INPUT_ASSET_SELL_DATE_TABLE_TITLE" = "Asset Sale Date";
+"INPUT_ASSET_SELL_DATE_TABLE_SUBTITLE_FORMAT" = "Enter and/or select a date the asset %@ will be sold.";
 
 "INPUT_TAX_TITLE" = "Tax";
 "INPUT_TAX_INLINE_INPUT_TYPE" = "tax";

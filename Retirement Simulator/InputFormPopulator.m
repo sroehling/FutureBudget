@@ -336,13 +336,14 @@
 
 -(void)populateMultiScenSimDate:(MultiScenarioSimDate*)multiScenSimDate 
 	andLabel:(NSString*)label andTitle:(NSString*)title
+	andTableHeader:(NSString*)tableHeader andTableSubHeader:(NSString*)tableSubHeader
 {
 	assert(multiScenSimDate != nil);
 	assert([StringValidation nonEmptyString:label]);
 	assert([StringValidation nonEmptyString:title]);
+	assert([StringValidation nonEmptyString:tableHeader]);
+	assert([StringValidation nonEmptyString:tableSubHeader]);
 	
-	NSString *tableHeader= @"Table Header TBD";
-	NSString *tableSubHeader = @"Table sub header TBD";
 	BOOL supportEndDates = FALSE;
 
  	SimDateRuntimeInfo *simDateInfo = 
@@ -364,6 +365,7 @@
 
 -(void)populateMultiScenSimEndDate:(MultiScenarioSimEndDate*)multiScenSimEndDate 
 	andLabel:(NSString*)label andTitle:(NSString*)title 
+	andTableHeader:(NSString*)tableHeader andTableSubHeader:(NSString*)tableSubHeader
 	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
 	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
 	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
@@ -372,13 +374,13 @@
 	assert(multiScenSimEndDate != nil);
 	assert([StringValidation nonEmptyString:label]);
 	assert([StringValidation nonEmptyString:title]);
+	assert([StringValidation nonEmptyString:tableHeader]);
+	assert([StringValidation nonEmptyString:tableSubHeader]);
 	assert([StringValidation nonEmptyString:neverEndFieldTitle]);
 	assert([StringValidation nonEmptyString:neverEndFieldSubTitle]);
 	assert([StringValidation nonEmptyString:neverEndSectionTitle]);
 	assert([StringValidation nonEmptyString:neverEndSectionSubtitle]);
 	
-	NSString *tableHeader= @"Table Header TBD";
-	NSString *tableSubHeader = @"Table sub header TBD";
 	BOOL doSupportNeverEndDates = TRUE;
 
  	SimDateRuntimeInfo *simDateInfo = 

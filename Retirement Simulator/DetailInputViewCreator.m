@@ -24,6 +24,7 @@
 #import "EventRepeatFrequency.h"
 #import "VariableValueRuntimeInfo.h"
 #import "SectionInfo.h"
+#import "StringValidation.h"
 #import "FormInfo.h"
 #import "FormPopulator.h"
 #import "SharedEntityVariableValueListMgr.h"
@@ -93,7 +94,6 @@
 }
 
 
-
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
 
@@ -121,7 +121,10 @@
 
 	[self.formPopulator populateMultiScenSimDate:cashFlow.startDate 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
-		andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TITLE")];
+		andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TITLE")
+		andTableHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_HEADER_FORMAT"),[cashFlow inputTypeTitle]] 
+		andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT"),
+			[cashFlow inlineInputType],cashFlow.name]];
 
 	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
 		[self.formPopulator populateRepeatFrequency:cashFlow
@@ -140,7 +143,11 @@
         {
 			[self.formPopulator populateMultiScenSimEndDate:cashFlow.endDate 
 				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TITLE")
+				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_TITLE")
+				andTableHeader:[NSString 
+					stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT"),
+						[cashFlow inputTypeTitle]]
+				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT"),[cashFlow inlineInputType],cashFlow.name]
 				andNeverEndFieldTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")
 				andNeverEndFieldSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE")
 				andNeverEndSectionTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE") 
@@ -191,7 +198,11 @@
 		
 	[self.formPopulator populateMultiScenSimDate:account.contribStartDate 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL")  
-		andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TITLE")];	
+		andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE")
+		andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER") 
+		andTableSubHeader:[NSString stringWithFormat:
+			LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT"),
+			[account inlineInputType],account.name]];	
 
 	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
 		[self.formPopulator populateRepeatFrequency:account
@@ -209,7 +220,10 @@
         {
 			[self.formPopulator populateMultiScenSimEndDate:account.contribEndDate 
 				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TITLE")
+				andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_TITLE")
+				andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_HEADER")
+				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_SUBHEADER_FORMAT"),account.name]
+
 				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE")
 				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE")
 				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE") 
@@ -271,7 +285,10 @@
 	
 	[self.formPopulator populateMultiScenSimDate:loan.origDate 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL") 
-		andTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL")];
+		andTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL")
+		andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_TABLE_HEADER") 
+		andTableSubHeader:[NSString stringWithFormat:
+			LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT"),loan.name]];
 	
 	[self.formPopulator populateMultiScenarioDuration:loan.loanDuration 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_DURATION_LABEL") 
@@ -356,11 +373,17 @@
  
 	[self.formPopulator populateMultiScenSimDate:asset.purchaseDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_FIELD_LABEL") 
-		andTitle:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TITLE")];
+		andTitle:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TITLE")
+		andTableHeader:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_HEADER")
+		 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT"),asset.name]];
+		
 
 	[self.formPopulator populateMultiScenSimEndDate:asset.saleDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_TITLE")
+			andTableHeader:LOCALIZED_STR(@"INPUT_ASSET_SELL_DATE_TABLE_TITLE")
+			andTableSubHeader:[NSString stringWithFormat:
+				LOCALIZED_STR(@"INPUT_ASSET_SELL_DATE_TABLE_SUBTITLE_FORMAT"),asset.name]
 				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_FIELD_TITLE") 
 				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE")
 				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_SECTION_TITLE") 
