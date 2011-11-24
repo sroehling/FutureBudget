@@ -370,6 +370,9 @@
 	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
 	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
 	andNeverEndSectionSubtitle:(NSString*)neverEndSectionSubtitle
+	andRelEndDateSectionTitle:(NSString*)relEndDateSectionTitle
+	andRelEndDateSectionSubtitle:(NSString*)relEndDateSectionSubtitle
+	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel
 {
 	assert(multiScenSimEndDate != nil);
 	assert([StringValidation nonEmptyString:label]);
@@ -380,6 +383,9 @@
 	assert([StringValidation nonEmptyString:neverEndFieldSubTitle]);
 	assert([StringValidation nonEmptyString:neverEndSectionTitle]);
 	assert([StringValidation nonEmptyString:neverEndSectionSubtitle]);
+	assert([StringValidation nonEmptyString:relEndDateSectionTitle]);
+	assert([StringValidation nonEmptyString:relEndDateSectionSubtitle]);
+	assert([StringValidation nonEmptyString:relEndDateFieldLabel]);
 	
 	BOOL doSupportNeverEndDates = TRUE;
 
@@ -391,6 +397,9 @@
 	simDateInfo.neverEndDateFieldCaption = neverEndFieldTitle;
 	simDateInfo.neverEndDateSectionTitle = neverEndSectionTitle;
 	simDateInfo.neverEndDateSectionSubtitle = neverEndSectionSubtitle;
+	simDateInfo.relEndDateSectionTitle = relEndDateSectionTitle;
+	simDateInfo.relEndDateSectionSubtitle = relEndDateSectionSubtitle;
+	simDateInfo.relEndDateFieldLabel = relEndDateFieldLabel;
 			
 	SimDateFieldEditInfo *simDateFieldEditInfo = 
 		[SimDateFieldEditInfo createForMultiScenarioVal:self.inputScenario 

@@ -13,18 +13,22 @@
 
 @class FieldInfo;
 @class ValueSubtitleTableCell;
+@class SimDateRuntimeInfo;
 
 @interface RelativeEndDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> 
 {
     FieldInfo *relEndDateFieldInfo;
 	ValueSubtitleTableCell *relEndDateCell;
+	SimDateRuntimeInfo *simDateRuntimeInfo;
 }
 
 @property(nonatomic,retain) FieldInfo *relEndDateFieldInfo;
 @property(nonatomic,retain) ValueSubtitleTableCell *relEndDateCell;
+@property(nonatomic,retain) SimDateRuntimeInfo *simDateRuntimeInfo;
 
 
-- (id)initWithRelativeEndDateFieldInfo:(FieldInfo*)theRelEndDateFieldInfo;
+- (id)initWithRelativeEndDateFieldInfo:(FieldInfo*)theRelEndDateFieldInfo
+	andSimDateRuntimeInfo:(SimDateRuntimeInfo*)theRuntimeInfo;
 
 
 @end

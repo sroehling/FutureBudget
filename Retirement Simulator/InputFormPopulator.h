@@ -75,6 +75,9 @@
 	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
 	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
 	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
-	andNeverEndSectionSubtitle:(NSString*)neverEndSectionSubtitle;
+	andNeverEndSectionSubtitle:(NSString*)neverEndSectionSubtitle
+	andRelEndDateSectionTitle:(NSString*)relEndDateSectionTitle
+	andRelEndDateSectionSubtitle:(NSString*)relEndDateSectionSubtitle
+	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel;
 		
 @end

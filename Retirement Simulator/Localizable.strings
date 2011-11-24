@@ -185,6 +185,9 @@
 "INPUT_ASSET_NEVER_SELL_SECTION_SUBTITLE" = "Select to own the asset indefinitely after purchasing it";
 "INPUT_ASSET_SELL_DATE_TABLE_TITLE" = "Asset Sale Date";
 "INPUT_ASSET_SELL_DATE_TABLE_SUBTITLE_FORMAT" = "Enter and/or select a date the asset %@ will be sold.";
+"INPUT_ASSET_SALE_REL_END_DATE_SECTION_TITLE" = "Sell After Purchase Date";
+"INPUT_ASSET_SALE_REL_END_DATE_SECTION_SUBTITLE" = "Sell the asset a given number of years, months, and/or days after its purchase";
+"INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL" = "After Purchase Date";
 
 "INPUT_TAX_TITLE" = "Tax";
 "INPUT_TAX_INLINE_INPUT_TYPE" = "tax";
@@ -354,7 +357,7 @@
 "STARTUP_VALUE_DEFICIT_LABEL" = "Interest on Deficit";
 "STARTUP_VALUE_DEFICIT_PLACEHOLDER" = "Enter a Rate";
 
-"RELATIVE_END_DATE_LABEL" = "After Start Date";
+"RELATIVE_END_DATE_FIELD_LABEL" = "After Start Date";
 "RELATIVE_END_DATE_DESCRIPTION_SINGLE_WEEK_LABEL" = "Week";
 "RELATIVE_END_DATE_DESCRIPTION_SINGLE_MONTH_LABEL" = "Month";
 "RELATIVE_END_DATE_DESCRIPTION_SINGLE_YEAR_LABEL" = "Year";

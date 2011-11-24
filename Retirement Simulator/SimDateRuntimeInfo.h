@@ -22,6 +22,9 @@
 		NSString *neverEndDateSectionSubtitle;
 		NSString *neverEndDateFieldCaption;
 		NSString *neverEndDateFieldSubtitle;
+		NSString *relEndDateSectionTitle;
+		NSString *relEndDateSectionSubtitle;
+		NSString *relEndDateFieldLabel;
 }
 
 @property(nonatomic,retain) NSString *tableTitle;
@@ -32,6 +35,9 @@
 @property(nonatomic,retain) NSString *neverEndDateSectionSubtitle;
 @property(nonatomic,retain) NSString *neverEndDateFieldCaption;
 @property(nonatomic,retain) NSString *neverEndDateFieldSubtitle;
+@property(nonatomic,retain) NSString *relEndDateSectionTitle;
+@property(nonatomic,retain) NSString *relEndDateSectionSubtitle;
+@property(nonatomic,retain) NSString *relEndDateFieldLabel;
 
 - (id)initWithTableTitle:(NSString*)theTitle andHeader:(NSString*)theHeader
 			andSubHeader:(NSString*)theSubHeader andSupportsNeverEndDate:(bool)doesSupportNeverEndDate;

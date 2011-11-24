@@ -12,19 +12,24 @@
 #import "RelativeDatePickerViewController.h"
 #import "DateHelper.h"
 #import "LocalizationHelper.h"
+#import "SimDateRuntimeInfo.h"
 
 @implementation RelativeEndDateFieldEditInfo
 
 @synthesize relEndDateFieldInfo;
 @synthesize relEndDateCell;
+@synthesize simDateRuntimeInfo;
 
 - (id)initWithRelativeEndDateFieldInfo:(FieldInfo*)theRelEndDateFieldInfo
+	andSimDateRuntimeInfo:(SimDateRuntimeInfo*)theRuntimeInfo
 {
     self = [super init];
     if(self)
     {
 		assert(theRelEndDateFieldInfo != nil);
         self.relEndDateFieldInfo = theRelEndDateFieldInfo;
+		assert(theRuntimeInfo != nil);
+		self.simDateRuntimeInfo = theRuntimeInfo;
 		
 		self.relEndDateCell = 
 		[[[ValueSubtitleTableCell alloc] initWithFrame:CGRectZero] autorelease];
@@ -48,6 +53,7 @@
     [super dealloc];
 	[relEndDateFieldInfo release];
 	[relEndDateCell release];
+	[simDateRuntimeInfo release];
 }
 
 - (void)configureRelEndDateCell
@@ -71,7 +77,7 @@
 
 - (NSString*)textLabel
 {
-    return LOCALIZED_STR(@"RELATIVE_END_DATE_LABEL");
+    return self.simDateRuntimeInfo.relEndDateFieldLabel;
 }
 
 - (UIViewController*)fieldEditController

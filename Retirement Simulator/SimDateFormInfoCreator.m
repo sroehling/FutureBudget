@@ -97,11 +97,11 @@
 		
 		sectionInfo = [formPopulator nextSection];
 	
-		sectionInfo.title = LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE");
-		sectionInfo.subTitle = LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE");
+		sectionInfo.title = self.varDateRuntimeInfo.relEndDateSectionTitle;
+		sectionInfo.subTitle = self.varDateRuntimeInfo.relEndDateSectionSubtitle;
 		RelativeEndDateFieldEditInfo *relEndDateFieldEditInfo =
 			[[[RelativeEndDateFieldEditInfo alloc] 
-			initWithRelativeEndDateFieldInfo:self.defaultRelEndDateFieldInfo] autorelease];
+			initWithRelativeEndDateFieldInfo:self.defaultRelEndDateFieldInfo andSimDateRuntimeInfo:self.varDateRuntimeInfo] autorelease];
 		[sectionInfo addFieldEditInfo:relEndDateFieldEditInfo];
 			
 	}	
