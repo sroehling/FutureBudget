@@ -73,152 +73,171 @@
 		[[ItemizedTaxAmtFieldPopulator alloc] 
 			initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts];
 
-	NSArray *inputs = [existingItemizations incomesNotAlreadyItemized];
-	if([inputs count] > 0)
+	if(self.itemizedTaxAmtsInfo.itemizeIncomes)
 	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_INCOMES");
-		for(IncomeInput *income in inputs)
+		NSArray *inputs = [existingItemizations incomesNotAlreadyItemized];
+		if([inputs count] > 0)
 		{
-			id<ItemizedTaxAmtCreator> incomeTaxAmtCreator = 
-				[[[ItemizedIncomeTaxAmtCreator alloc] initWithIncome:income ] autorelease]; 
-			id<GenericTableViewFactory> itemizedAddViewFactory = 
-				[[[ItemizedTableViewAddItemTableViewFactory alloc] 
-					initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
-					andItemizedTaxAmtCreator:incomeTaxAmtCreator] autorelease];
-			StaticNavFieldEditInfo *itemizedIncomeSelectionFieldEditInfo =
-				[[[StaticNavFieldEditInfo alloc] initWithCaption:income.name andSubtitle:nil andContentDescription:nil 
-				andSubViewFactory:itemizedAddViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:itemizedIncomeSelectionFieldEditInfo];
+			sectionInfo = [formPopulator nextSection];
+			sectionInfo.title = LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_INCOMES");
+			for(IncomeInput *income in inputs)
+			{
+				id<ItemizedTaxAmtCreator> incomeTaxAmtCreator = 
+					[[[ItemizedIncomeTaxAmtCreator alloc] initWithIncome:income ] autorelease]; 
+				id<GenericTableViewFactory> itemizedAddViewFactory = 
+					[[[ItemizedTableViewAddItemTableViewFactory alloc] 
+						initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
+						andItemizedTaxAmtCreator:incomeTaxAmtCreator] autorelease];
+				StaticNavFieldEditInfo *itemizedIncomeSelectionFieldEditInfo =
+					[[[StaticNavFieldEditInfo alloc] initWithCaption:income.name andSubtitle:nil andContentDescription:nil 
+					andSubViewFactory:itemizedAddViewFactory] autorelease];
+				[sectionInfo addFieldEditInfo:itemizedIncomeSelectionFieldEditInfo];
+			}
 		}
 	}
 	
 	
-	
-	inputs = [existingItemizations expensesNotAlreadyItemized];
-	if([inputs count] > 0)
+	if(self.itemizedTaxAmtsInfo.itemizeExpenses)
 	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_EXPENSES");
-		for(ExpenseInput *expense in inputs)
+		NSArray *inputs = [existingItemizations expensesNotAlreadyItemized];
+		if([inputs count] > 0)
 		{
-			id<ItemizedTaxAmtCreator> expenseTaxAmtCreator = 
-				[[[ItemizedExpenseTaxAmtCreator alloc] initWithExpense:expense ] autorelease]; 
-			id<GenericTableViewFactory> itemizedAddViewFactory = 
-				[[[ItemizedTableViewAddItemTableViewFactory alloc] 
-					initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
-					andItemizedTaxAmtCreator:expenseTaxAmtCreator] autorelease];
-			StaticNavFieldEditInfo *itemizedExpenseSelectionFieldEditInfo =
-				[[[StaticNavFieldEditInfo alloc] initWithCaption:expense.name andSubtitle:nil andContentDescription:nil 
-				andSubViewFactory:itemizedAddViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:itemizedExpenseSelectionFieldEditInfo];
+			sectionInfo = [formPopulator nextSection];
+			sectionInfo.title = LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_EXPENSES");
+			for(ExpenseInput *expense in inputs)
+			{
+				id<ItemizedTaxAmtCreator> expenseTaxAmtCreator = 
+					[[[ItemizedExpenseTaxAmtCreator alloc] initWithExpense:expense ] autorelease]; 
+				id<GenericTableViewFactory> itemizedAddViewFactory = 
+					[[[ItemizedTableViewAddItemTableViewFactory alloc] 
+						initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
+						andItemizedTaxAmtCreator:expenseTaxAmtCreator] autorelease];
+				StaticNavFieldEditInfo *itemizedExpenseSelectionFieldEditInfo =
+					[[[StaticNavFieldEditInfo alloc] initWithCaption:expense.name andSubtitle:nil andContentDescription:nil 
+					andSubViewFactory:itemizedAddViewFactory] autorelease];
+				[sectionInfo addFieldEditInfo:itemizedExpenseSelectionFieldEditInfo];
+			}
 		}
 	}
 
-	
-	inputs = [existingItemizations acctInterestNotAlreadyItemized];
-	if([inputs count] > 0)
+	if(self.itemizedTaxAmtsInfo.itemizeAccountInterest)
 	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ACCOUNT_INTEREST_SECTION_TITLE");
-		for(Account *acct in inputs)
+		NSArray *inputs = [existingItemizations acctInterestNotAlreadyItemized];
+		if([inputs count] > 0)
 		{
-			id<ItemizedTaxAmtCreator> savingsTaxAmtCreator = 
-				[[[ItemizedAccountTaxAmtCreator alloc] initWithAcct:acct ] autorelease]; 
-			id<GenericTableViewFactory> itemizedAddViewFactory = 
-				[[[ItemizedTableViewAddItemTableViewFactory alloc] 
-					initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
-					andItemizedTaxAmtCreator:savingsTaxAmtCreator] autorelease];
-			StaticNavFieldEditInfo *itemizedSavingsSelectionFieldEditInfo =
-				[[[StaticNavFieldEditInfo alloc] initWithCaption:acct.name 
-				andSubtitle:nil andContentDescription:nil 
-				andSubViewFactory:itemizedAddViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:itemizedSavingsSelectionFieldEditInfo];
-		}
-	}
-
-
-	inputs = [existingItemizations acctContribsNotAlreadyItemized];
-	if([inputs count] > 0)
-	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ACCOUNT_CONTRIBUTIONS_SECTION_TITLE");
-		for(Account *acct in inputs)
-		{
-			id<ItemizedTaxAmtCreator> contribTaxAmtCreator = 
-				[[[ItemizedAccountContribTaxAmtCreator alloc] initWithAccount:acct ] autorelease]; 
-			id<GenericTableViewFactory> itemizedAddViewFactory = 
-				[[[ItemizedTableViewAddItemTableViewFactory alloc] 
-					initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
-					andItemizedTaxAmtCreator:contribTaxAmtCreator] autorelease];
-			StaticNavFieldEditInfo *itemizedContribSelectionFieldEditInfo =
-				[[[StaticNavFieldEditInfo alloc] initWithCaption:acct.name 
+			sectionInfo = [formPopulator nextSection];
+			sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ACCOUNT_INTEREST_SECTION_TITLE");
+			for(Account *acct in inputs)
+			{
+				id<ItemizedTaxAmtCreator> savingsTaxAmtCreator = 
+					[[[ItemizedAccountTaxAmtCreator alloc] initWithAcct:acct ] autorelease]; 
+				id<GenericTableViewFactory> itemizedAddViewFactory = 
+					[[[ItemizedTableViewAddItemTableViewFactory alloc] 
+						initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
+						andItemizedTaxAmtCreator:savingsTaxAmtCreator] autorelease];
+				StaticNavFieldEditInfo *itemizedSavingsSelectionFieldEditInfo =
+					[[[StaticNavFieldEditInfo alloc] initWithCaption:acct.name 
 					andSubtitle:nil andContentDescription:nil 
-				andSubViewFactory:itemizedAddViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:itemizedContribSelectionFieldEditInfo];
+					andSubViewFactory:itemizedAddViewFactory] autorelease];
+				[sectionInfo addFieldEditInfo:itemizedSavingsSelectionFieldEditInfo];
+			}
 		}
 	}
 
-	inputs = [existingItemizations acctWithdrawalsNotAlreadyItemized];
-	if([inputs count] > 0)
+
+	if(self.itemizedTaxAmtsInfo.itemizeAccountContribs)
 	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
-		for(Account *acct in inputs)
+		NSArray *inputs = [existingItemizations acctContribsNotAlreadyItemized];
+		if([inputs count] > 0)
 		{
-			id<ItemizedTaxAmtCreator> withdrawalTaxAmtCreator = 
-				[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] initWithAccount:acct ] autorelease]; 
-			id<GenericTableViewFactory> itemizedAddViewFactory = 
-				[[[ItemizedTableViewAddItemTableViewFactory alloc] 
-					initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
-					andItemizedTaxAmtCreator:withdrawalTaxAmtCreator] autorelease];
-			StaticNavFieldEditInfo *itemizedWithdrawalSelectionFieldEditInfo =
-				[[[StaticNavFieldEditInfo alloc] initWithCaption:acct.name 
-					andSubtitle:nil andContentDescription:nil 
-				andSubViewFactory:itemizedAddViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:itemizedWithdrawalSelectionFieldEditInfo];
+			sectionInfo = [formPopulator nextSection];
+			sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ACCOUNT_CONTRIBUTIONS_SECTION_TITLE");
+			for(Account *acct in inputs)
+			{
+				id<ItemizedTaxAmtCreator> contribTaxAmtCreator = 
+					[[[ItemizedAccountContribTaxAmtCreator alloc] initWithAccount:acct ] autorelease]; 
+				id<GenericTableViewFactory> itemizedAddViewFactory = 
+					[[[ItemizedTableViewAddItemTableViewFactory alloc] 
+						initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
+						andItemizedTaxAmtCreator:contribTaxAmtCreator] autorelease];
+				StaticNavFieldEditInfo *itemizedContribSelectionFieldEditInfo =
+					[[[StaticNavFieldEditInfo alloc] initWithCaption:acct.name 
+						andSubtitle:nil andContentDescription:nil 
+					andSubViewFactory:itemizedAddViewFactory] autorelease];
+				[sectionInfo addFieldEditInfo:itemizedContribSelectionFieldEditInfo];
+			}
 		}
 	}
 
-	inputs = [existingItemizations assetGainsNotAlreadyItemized];
-	if([inputs count] > 0)
+	if(self.itemizedTaxAmtsInfo.itemizeAccountWithdrawals)
 	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ASSET_GAIN_SECTION_TITLE");
-		for(AssetInput *asset in inputs)
+		NSArray *inputs = [existingItemizations acctWithdrawalsNotAlreadyItemized];
+		if([inputs count] > 0)
 		{
-			id<ItemizedTaxAmtCreator> assetGainTaxAmtCreator = 
-				[[[ItemizedAssetGainTaxAmtCreator alloc] initWithAsset:asset ] autorelease]; 
-			id<GenericTableViewFactory> itemizedAddViewFactory = 
-				[[[ItemizedTableViewAddItemTableViewFactory alloc] 
-					initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
-					andItemizedTaxAmtCreator:assetGainTaxAmtCreator] autorelease];
-			StaticNavFieldEditInfo *assetGainSelectionFieldEditInfo =
-				[[[StaticNavFieldEditInfo alloc] initWithCaption:asset.name 
-					andSubtitle:nil andContentDescription:nil 
-				andSubViewFactory:itemizedAddViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:assetGainSelectionFieldEditInfo];
+			sectionInfo = [formPopulator nextSection];
+			sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
+			for(Account *acct in inputs)
+			{
+				id<ItemizedTaxAmtCreator> withdrawalTaxAmtCreator = 
+					[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] initWithAccount:acct ] autorelease]; 
+				id<GenericTableViewFactory> itemizedAddViewFactory = 
+					[[[ItemizedTableViewAddItemTableViewFactory alloc] 
+						initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
+						andItemizedTaxAmtCreator:withdrawalTaxAmtCreator] autorelease];
+				StaticNavFieldEditInfo *itemizedWithdrawalSelectionFieldEditInfo =
+					[[[StaticNavFieldEditInfo alloc] initWithCaption:acct.name 
+						andSubtitle:nil andContentDescription:nil 
+					andSubViewFactory:itemizedAddViewFactory] autorelease];
+				[sectionInfo addFieldEditInfo:itemizedWithdrawalSelectionFieldEditInfo];
+			}
 		}
 	}
 
-	inputs = [existingItemizations loanInterestNotAlreadyItemized];
-	if([inputs count] > 0)
+	if(self.itemizedTaxAmtsInfo.itemizeAssetGains)
 	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_LOAN_INTEREST_SECTION_TITLE");
-		for(LoanInput *loan in inputs)
+		NSArray *inputs = [existingItemizations assetGainsNotAlreadyItemized];
+		if([inputs count] > 0)
 		{
-			id<ItemizedTaxAmtCreator> loanInterestTaxAmtCreator = 
-				[[[ItemizedLoanInterestTaxAmtCreator alloc] initWithLoan:loan ] autorelease]; 
-			id<GenericTableViewFactory> itemizedAddViewFactory = 
-				[[[ItemizedTableViewAddItemTableViewFactory alloc] 
-					initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
-					andItemizedTaxAmtCreator:loanInterestTaxAmtCreator] autorelease];
-			StaticNavFieldEditInfo *loanInterestSelectionFieldEditInfo =
-				[[[StaticNavFieldEditInfo alloc] initWithCaption:loan.name 
-					andSubtitle:nil andContentDescription:nil 
-				andSubViewFactory:itemizedAddViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:loanInterestSelectionFieldEditInfo];
+			sectionInfo = [formPopulator nextSection];
+			sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_ASSET_GAIN_SECTION_TITLE");
+			for(AssetInput *asset in inputs)
+			{
+				id<ItemizedTaxAmtCreator> assetGainTaxAmtCreator = 
+					[[[ItemizedAssetGainTaxAmtCreator alloc] initWithAsset:asset ] autorelease]; 
+				id<GenericTableViewFactory> itemizedAddViewFactory = 
+					[[[ItemizedTableViewAddItemTableViewFactory alloc] 
+						initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
+						andItemizedTaxAmtCreator:assetGainTaxAmtCreator] autorelease];
+				StaticNavFieldEditInfo *assetGainSelectionFieldEditInfo =
+					[[[StaticNavFieldEditInfo alloc] initWithCaption:asset.name 
+						andSubtitle:nil andContentDescription:nil 
+					andSubViewFactory:itemizedAddViewFactory] autorelease];
+				[sectionInfo addFieldEditInfo:assetGainSelectionFieldEditInfo];
+			}
+		}
+	}
+
+	if(self.itemizedTaxAmtsInfo.itemizeLoanInterest)
+	{
+		NSArray *inputs = [existingItemizations loanInterestNotAlreadyItemized];
+		if([inputs count] > 0)
+		{
+			sectionInfo = [formPopulator nextSection];
+			sectionInfo.title = LOCALIZED_STR(@"ITEMIZED_TAX_LOAN_INTEREST_SECTION_TITLE");
+			for(LoanInput *loan in inputs)
+			{
+				id<ItemizedTaxAmtCreator> loanInterestTaxAmtCreator = 
+					[[[ItemizedLoanInterestTaxAmtCreator alloc] initWithLoan:loan ] autorelease]; 
+				id<GenericTableViewFactory> itemizedAddViewFactory = 
+					[[[ItemizedTableViewAddItemTableViewFactory alloc] 
+						initWithItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo 
+						andItemizedTaxAmtCreator:loanInterestTaxAmtCreator] autorelease];
+				StaticNavFieldEditInfo *loanInterestSelectionFieldEditInfo =
+					[[[StaticNavFieldEditInfo alloc] initWithCaption:loan.name 
+						andSubtitle:nil andContentDescription:nil 
+					andSubViewFactory:itemizedAddViewFactory] autorelease];
+				[sectionInfo addFieldEditInfo:loanInterestSelectionFieldEditInfo];
+			}
 		}
 	}
 

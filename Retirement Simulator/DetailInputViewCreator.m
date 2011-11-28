@@ -431,7 +431,14 @@
 		initWithItemizedTaxAmts:tax.itemizedIncomeSources 
 		andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE")
 		andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT")
-		andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE")] autorelease];
+		andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE")
+		andItemizeIncomes:TRUE 
+		andItemizeExpenses:FALSE 
+		andItemizeAccountContribs:FALSE 
+		andItemizeAccountWithdrawals:TRUE 
+		andItemizeAccountInterest:TRUE 
+		andItemizeAssetGains:TRUE 
+		andItemizeLoanInterest:FALSE] autorelease];
 	ItemizedTaxAmtsFormInfoCreator *itemizedTaxSourceFormCreator = 
 		[[[ItemizedTaxAmtsFormInfoCreator alloc] 
 			initWithItemizedTaxAmtsInfo:taxSourceInfo andIsForNewObject:self.isForNewObject] autorelease];
