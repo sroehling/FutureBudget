@@ -11,6 +11,18 @@
 
 #import "IncomeItemizedTaxAmt.h"
 #import "ExpenseItemizedTaxAmt.h"
+#import "AccountWithdrawalItemizedTaxAmt.h"
+#import "AccountContribItemizedTaxAmt.h"
+#import "AccountInterestItemizedTaxAmt.h"
+#import "AssetGainItemizedTaxAmt.h"
+#import "LoanInterestItemizedTaxAmt.h"
+
+#import "DataModelController.h"
+#import "IncomeInput.h"
+#import "ExpenseInput.h"
+#import "Account.h"
+#import "AssetInput.h"
+#import "LoanInput.h"
 
 @implementation ItemizedTaxAmtFieldPopulator
 
@@ -93,6 +105,113 @@
 	assert(itemizedTaxAmt != nil);
 	[self.itemizedLoans addObject:itemizedTaxAmt];
 }
+
+
+- (NSArray*)incomesNotAlreadyItemized
+{
+	NSArray *allIncomes = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:INCOME_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedIncomes = [NSMutableArray arrayWithArray:allIncomes];	
+		
+	for(IncomeItemizedTaxAmt *itemizedIncome in self.itemizedIncomes)
+	{
+		[unItemizedIncomes removeObject:itemizedIncome.income];
+	}
+	
+	return unItemizedIncomes;
+}
+
+
+- (NSArray*)expensesNotAlreadyItemized
+{
+	NSArray *allExpenses = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:EXPENSE_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];;
+	NSMutableArray *unItemizedExpenses = [NSMutableArray arrayWithArray:allExpenses];	
+		
+	for(ExpenseItemizedTaxAmt *itemizedExpense in self.itemizedExpenses)
+	{
+		[unItemizedExpenses removeObject:itemizedExpense.expense];
+	}
+	
+	return unItemizedExpenses;
+}
+
+- (NSArray*)acctWithdrawalsNotAlreadyItemized
+{
+	NSArray *allAccounts = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
+		
+	for(AccountWithdrawalItemizedTaxAmt *itemizedWithdrawal in self.itemizedAccountWithdrawals)
+	{
+		[unItemizedAccounts removeObject:itemizedWithdrawal.account];
+	}
+	
+	return unItemizedAccounts;
+}
+
+
+- (NSArray*)acctContribsNotAlreadyItemized
+{
+	NSArray *allAccounts = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
+		
+	for(AccountContribItemizedTaxAmt *itemizedContrib in self.itemizedAccountContribs)
+	{
+		[unItemizedAccounts removeObject:itemizedContrib.account];
+	}
+	
+	return unItemizedAccounts;
+}
+
+- (NSArray*)acctInterestNotAlreadyItemized
+{
+	NSArray *allAccounts = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
+		
+	for(AccountInterestItemizedTaxAmt *itemizedInt in self.itemizedAccountInterest)
+	{
+		[unItemizedAccounts removeObject:itemizedInt.account];
+	}
+	
+	return unItemizedAccounts;
+}
+
+
+- (NSArray*)assetGainsNotAlreadyItemized
+{
+	NSArray *allAssets = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:ASSET_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedAssets = [NSMutableArray arrayWithArray:allAssets];	
+		
+	for(AssetGainItemizedTaxAmt *itemizedAsset in self.itemizedAssets)
+	{
+		[unItemizedAssets removeObject:itemizedAsset.asset];
+	}
+	
+	return unItemizedAssets;
+}
+
+
+- (NSArray*)loanInterestNotAlreadyItemized
+{
+	NSArray *allLoans = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:LOAN_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedLoans = [NSMutableArray arrayWithArray:allLoans];	
+		
+	for(LoanInterestItemizedTaxAmt *itemizedLoan in self.itemizedLoans)
+	{
+		[unItemizedLoans removeObject:itemizedLoan.loan];
+	}
+	
+	return unItemizedLoans;
+}
+
+
+
+
 
 -(void)dealloc
 {

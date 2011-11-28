@@ -13,6 +13,9 @@
 #import "SectionInfo.h"
 #import "StaticNavFieldEditInfo.h"
 #import "ItemizedTableViewAddItemTableViewFactory.h"
+#import "ItemizedTaxAmtFieldPopulator.h"
+#import "ItemizedTaxAmts.h"
+#import "ItemizedTaxAmtsInfo.h"
 
 #import "IncomeInput.h"
 #import "ItemizedIncomeTaxAmtCreator.h"
@@ -65,9 +68,12 @@
 	
 	// TODO - Need to support enabling/disabling of linking to different types of amounts,
 	// and finish iterating through these different types to fully support linking.
+	
+	ItemizedTaxAmtFieldPopulator *existingItemizations =
+		[[ItemizedTaxAmtFieldPopulator alloc] 
+			initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts];
 
-	NSArray *inputs = [[DataModelController theDataModelController]
-			fetchSortedObjectsWithEntityName:INCOME_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSArray *inputs = [existingItemizations incomesNotAlreadyItemized];
 	if([inputs count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -87,8 +93,9 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController]
-			fetchSortedObjectsWithEntityName:EXPENSE_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	
+	
+	inputs = [existingItemizations expensesNotAlreadyItemized];
 	if([inputs count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -109,8 +116,7 @@
 	}
 
 	
-	inputs = [[DataModelController theDataModelController]
-			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	inputs = [existingItemizations acctInterestNotAlreadyItemized];
 	if([inputs count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -132,8 +138,7 @@
 	}
 
 
-	inputs = [[DataModelController theDataModelController]
-			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	inputs = [existingItemizations acctContribsNotAlreadyItemized];
 	if([inputs count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -154,8 +159,7 @@
 		}
 	}
 
-	inputs = [[DataModelController theDataModelController]
-			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	inputs = [existingItemizations acctWithdrawalsNotAlreadyItemized];
 	if([inputs count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -176,8 +180,7 @@
 		}
 	}
 
-	inputs = [[DataModelController theDataModelController]
-			fetchSortedObjectsWithEntityName:ASSET_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	inputs = [existingItemizations assetGainsNotAlreadyItemized];
 	if([inputs count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -198,8 +201,7 @@
 		}
 	}
 
-	inputs = [[DataModelController theDataModelController]
-			fetchSortedObjectsWithEntityName:LOAN_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	inputs = [existingItemizations loanInterestNotAlreadyItemized];
 	if([inputs count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];

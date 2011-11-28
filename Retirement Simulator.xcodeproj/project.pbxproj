@@ -983,27 +983,13 @@
 		0023798D144097C2006650E3 /* Creating Itemizations */ = {
 			isa = PBXGroup;
 			children = (
+				003085D11483EEA100837D02 /* Itemized Tax Amt Creators */,
 				00237974143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.h */,
 				00237975143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.m */,
 				00237977143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.h */,
 				00237978143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.m */,
 				0023799614412BBC006650E3 /* FinishedAddingItemizedTaxAmtListener.h */,
 				0023799714412BBD006650E3 /* FinishedAddingItemizedTaxAmtListener.m */,
-				002379921440A11A006650E3 /* ItemizedTaxAmtCreator.h */,
-				006D3A58145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.h */,
-				006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */,
-				006D3A5C145F006A004AF798 /* ItemizedAccountTaxAmtCreator.h */,
-				006D3A5D145F006A004AF798 /* ItemizedAccountTaxAmtCreator.m */,
-				006D3A5F145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.h */,
-				006D3A60145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.m */,
-				006D3A65145F4A3B004AF798 /* ItemizedAccountContribTaxAmtCreator.h */,
-				006D3A66145F4A3C004AF798 /* ItemizedAccountContribTaxAmtCreator.m */,
-				006D3A6E145F6000004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.h */,
-				006D3A6F145F6001004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m */,
-				005DAEEE1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.h */,
-				005DAEEF1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.m */,
-				005DAEF414609AC500D87907 /* ItemizedLoanInterestTaxAmtCreator.h */,
-				005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */,
 			);
 			name = "Creating Itemizations";
 			sourceTree = "<group>";
@@ -1115,6 +1101,28 @@
 				0095E96713B69C66000555AC /* TestCoreDataObjects.m */,
 			);
 			name = "Test Helper Code";
+			sourceTree = "<group>";
+		};
+		003085D11483EEA100837D02 /* Itemized Tax Amt Creators */ = {
+			isa = PBXGroup;
+			children = (
+				002379921440A11A006650E3 /* ItemizedTaxAmtCreator.h */,
+				006D3A58145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.h */,
+				006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */,
+				006D3A5C145F006A004AF798 /* ItemizedAccountTaxAmtCreator.h */,
+				006D3A5D145F006A004AF798 /* ItemizedAccountTaxAmtCreator.m */,
+				006D3A5F145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.h */,
+				006D3A60145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.m */,
+				006D3A65145F4A3B004AF798 /* ItemizedAccountContribTaxAmtCreator.h */,
+				006D3A66145F4A3C004AF798 /* ItemizedAccountContribTaxAmtCreator.m */,
+				006D3A6E145F6000004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.h */,
+				006D3A6F145F6001004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m */,
+				005DAEEE1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.h */,
+				005DAEEF1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.m */,
+				005DAEF414609AC500D87907 /* ItemizedLoanInterestTaxAmtCreator.h */,
+				005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */,
+			);
+			name = "Itemized Tax Amt Creators";
 			sourceTree = "<group>";
 		};
 		0036DE2113BE1AF90043F3A5 /* Input Values */ = {

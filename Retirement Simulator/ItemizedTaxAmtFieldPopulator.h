@@ -38,4 +38,12 @@
 
 -(id)initWithItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts;
 
+- (NSArray*)incomesNotAlreadyItemized;
+- (NSArray*)expensesNotAlreadyItemized;
+- (NSArray*)acctWithdrawalsNotAlreadyItemized;
+- (NSArray*)acctContribsNotAlreadyItemized;
+- (NSArray*)acctInterestNotAlreadyItemized;
+- (NSArray*)assetGainsNotAlreadyItemized;
+- (NSArray*)loanInterestNotAlreadyItemized;
+
 @end
