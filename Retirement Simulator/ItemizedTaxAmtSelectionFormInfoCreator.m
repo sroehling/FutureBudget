@@ -70,8 +70,8 @@
 	// and finish iterating through these different types to fully support linking.
 	
 	ItemizedTaxAmtFieldPopulator *existingItemizations =
-		[[ItemizedTaxAmtFieldPopulator alloc] 
-			initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts];
+		[[[ItemizedTaxAmtFieldPopulator alloc] 
+			initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts] autorelease];
 
 	if(self.itemizedTaxAmtsInfo.itemizeIncomes)
 	{
@@ -240,8 +240,6 @@
 			}
 		}
 	}
-
-
 
 	return formPopulator.formInfo;
 	

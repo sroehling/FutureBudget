@@ -198,6 +198,10 @@
 "INPUT_TAX_ADJUSTMENT_SECTION_SUBTITLE" = "Specify adjustments to the total taxable amount (gross income), including eligible expenses, account contributions, or loan interest. The result after subtracting these adjustement is typically called an adjusted gross income (AGI).";
 "INPUT_TAX_DEDUCTION_SECTION_TITLE" = "Deductions";
 "INPUT_TAX_DEDUCTION_SECTION_SUBTITLE" = "Specify a standard deduction and/or itemized deductions, of which the greater of the two is subtracted from the adjusted gross income. Itemized deductions include eligible expenses, account interest, and loan interest";
+"INPUT_TAX_CREDITS_SECTION_TITLE" = "Tax Credits";
+"INPUT_TAX_CREDITS_SECTION_SUBTITLE" = "Itemize credits to reduce the taxable amount, after adjustements, deductions, and excemptions have already been applied.";
+
+
 "INPUT_TAX_STD_DEDUCTION_TITLE" = "Standard Deduction";
 "INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL" = "Standard Deduction Growth";
 
@@ -209,6 +213,20 @@
 "INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE" = "Tax Source";
 "INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT" = "Percentage Taxed";
 "INPUT_TAX_ITEMIZED_SOURCES_SELECTION_TITLE" = "Taxable Incomes";
+"INPUT_TAX_ITEMIZED_DEDUCTIONS_SELECTION_TITLE" = "Deductions";
+"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE" = "Itemized Deductions";
+"INPUT_TAX_ITEMIZED_DEDUCTION_ITEM_TITLE" = "Deduction";
+"INPUT_TAX_ITEMIZED_DEDUCTIONS_AMOUNT_PROMPT" = "Percentage Deducted";
+"INPUT_TAX_ITEMIZED_ADJUSTMENTS_SELECTION_TITLE" = "Adjustments";
+"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE" = "Itemized Adjustments";
+"INPUT_TAX_ITEMIZED_ADJUSTMENT_ITEM_TITLE" = "Tax Credit";
+"INPUT_TAX_ITEMIZED_ADJUSTMENTS_AMOUNT_PROMPT" = "Percentage Adjusted";
+"INPUT_TAX_ITEMIZED_CREDITS_SELECTION_TITLE" = "Credits";
+"INPUT_TAX_ITEMIZED_CREDITS_TITLE" = "Itemized Credits";
+"INPUT_TAX_ITEMIZED_CREDIT_ITEM_TITLE" = "Credit";
+"INPUT_TAX_ITEMIZED_CREDITS_AMOUNT_PROMPT" = "Percentage Credit";
+
+
 
 "TAX_BRACKET_FORM_TITLE" = "Tax Brackets";
 "TAX_BRACKET_ENTRY_FORM_TITLE" = "Tax Bracket";
