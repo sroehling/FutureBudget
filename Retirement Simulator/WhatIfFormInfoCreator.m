@@ -398,7 +398,7 @@
 	
 		for(Account *acct in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:acct.interestRate 
+			[formPopulator populateMultiScenarioInvestmentReturnRate:acct.interestRate 
 				withLabel:acct.name
 				andValueName:acct.name];
 		}
@@ -414,7 +414,7 @@
 		
 		for(AssetInput *asset in inputs)
 		{
-			[formPopulator populateMultiScenarioGrowthRate:asset.apprecRate 
+			[formPopulator populateMultiScenarioApprecRate:asset.apprecRate 
 				withLabel:asset.name
 				andValueName:asset.name]; 
 		}

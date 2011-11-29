@@ -77,6 +77,31 @@
 "INPUT_TYPE_SAVINGS_ACCOUNT_TITLE" = "Savings Account";
 
 
+"SHARED_ROI_VALUE_TITLE" = "Interest/Return Rate";
+"SHARED_ROI_INLINE_VALUE_TITLE" = "return rate";
+"SHARED_ROI_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed return over time.";
+"SHARED_ROI_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
+"SHARED_ROI_VALUE_PROMPT" = "Enter a rate";
+"SHARED_ROI_PERIOD" = "every year";
+"SHARED_ROI_ACTION_VERB" = "grow investment";
+"SHARED_ROI_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Return/interest rates which can change over time.";
+"DEFAULT_ROI_LOW_RISK_LABEL" = "Low Risk Investment";
+"DEFAULT_ROI_MEDIUM_RISK_LABEL" = "Medium Risk Investment";
+"DEFAULT_ROI_AGGRESSIVE_LABEL" = "Aggressive Investment";
+"DEFAULT_ROI_SAVINGS_INTEREST_LABEL" = "Savings Interest";
+
+
+"SHARED_APPREC_RATE_VALUE_TITLE" = "Appreciation Rate";
+"SHARED_APPREC_RATE_INLINE_VALUE_TITLE" = "appreciation rate";
+"SHARED_APPREC_RATE_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed appreciation over time.";
+"SHARED_APPREC_RATE_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
+"SHARED_APPREC_RATE_VALUE_PROMPT" = "Enter a rate";
+"SHARED_APPREC_RATE_PERIOD" = "every year";
+"SHARED_APPREC_RATE_ACTION_VERB" = "appreciate in value";
+"SHARED_APPREC_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Appreciation/depreciation rates which can change over time.";
+
+
+
 "SHARED_INTEREST_RATE_VALUE_TITLE" = "Interest Rate";
 "SHARED_INTEREST_RATE_INLINE_VALUE_TITLE" = "interest rate";
 "SHARED_INTEREST_RATE_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed interest rate over time.";

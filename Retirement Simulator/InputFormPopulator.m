@@ -49,6 +49,8 @@
 #import "GrowthRateFieldValidator.h"
 #import "PositiveAmountValidator.h"
 #import "InterestRate.h"
+#import "InvestmentReturnRate.h"
+#import "AssetApprecRate.h"
 
 @implementation InputFormPopulator
 
@@ -249,6 +251,101 @@
 		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate]];
  
 }
+
+- (void)populateMultiScenarioInvestmentReturnRate:(MultiScenarioGrowthRate*)roiRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	assert([StringValidation nonEmptyString:valueLabel]);
+	assert(roiRate != nil);
+
+
+	SharedEntityVariableValueListMgr *sharedROIMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithEntity:INVESTMENT_RETURN_RATE_ENTITY_NAME] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_ROI_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_ROI_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_ROI_INLINE_VALUE_TITLE")];
+
+	
+	VariableValueRuntimeInfo *roiRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueTitle:@"SHARED_ROI_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_ROI_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_ROI_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_ROI_PERIOD") 
+		andListMgr:sharedROIMgr
+		andSingleValueSubtitleKey:@"SHARED_ROI_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"SHARED_ROI_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andValuePromptKey:@"SHARED_ROI_VALUE_PROMPT"
+		andValueTypeTitle:valueLabel
+		andValueName:valueName
+		andTableSubtitle:tableSubtitle] autorelease];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+         createForScenario:self.inputScenario andObject:roiRate 
+			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
+			andLabel:LOCALIZED_STR(@"SHARED_ROI_VALUE_TITLE") 
+		 andValRuntimeInfo:roiRuntimeInfo 
+		 andDefaultFixedVal:roiRate.defaultFixedGrowthRate]];
+
+
+}
+
+
+- (void)populateMultiScenarioApprecRate:(MultiScenarioGrowthRate*)apprecRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	assert([StringValidation nonEmptyString:valueLabel]);
+	assert(apprecRate != nil);
+
+
+	SharedEntityVariableValueListMgr *sharedApprecMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithEntity:ASSET_APPREC_RATE_ENTITY_NAME] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_APPREC_RATE_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_APPREC_RATE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_APPREC_RATE_INLINE_VALUE_TITLE")];
+
+	
+	VariableValueRuntimeInfo *apprecRateRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueTitle:@"SHARED_APPREC_RATE_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_APPREC_RATE_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_APPREC_RATE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_APPREC_RATE_PERIOD") 
+		andListMgr:sharedApprecMgr
+		andSingleValueSubtitleKey:@"SHARED_APPREC_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"SHARED_APPREC_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andValuePromptKey:@"SHARED_APPREC_RATE_VALUE_PROMPT"
+		andValueTypeTitle:valueLabel
+		andValueName:valueName
+		andTableSubtitle:tableSubtitle] autorelease];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+         createForScenario:self.inputScenario andObject:apprecRate 
+			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
+			andLabel:LOCALIZED_STR(@"SHARED_APPREC_RATE_VALUE_TITLE") 
+		 andValRuntimeInfo:apprecRateRuntimeInfo 
+		 andDefaultFixedVal:apprecRate.defaultFixedGrowthRate]];
+
+
+}
+
+
 
 - (void)populateMultiScenarioInterestRate:(MultiScenarioGrowthRate*)intRate
 	withLabel:(NSString*)valueLabel 

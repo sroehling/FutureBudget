@@ -55,6 +55,8 @@
 		0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */; };
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
+		003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D41485531F00837D02 /* InvestmentReturnRate.m */; };
+		003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D714855EBA00837D02 /* AssetApprecRate.m */; };
 		0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1513BE19F20043F3A5 /* Scenario.m */; };
 		0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1913BE1A370043F3A5 /* UserScenario.m */; };
 		0036DE1D13BE1A690043F3A5 /* DefaultScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */; };
@@ -283,7 +285,6 @@
 		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
 		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
 		00F420A9137DDBD000980A88 /* ManagedObjectFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */; };
-		00FF191E147AB940000787B5 /* DefaultInflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF191D147AB940000787B5 /* DefaultInflationRate.m */; };
 		00FF1922147AC762000787B5 /* StaticNameFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1921147AC762000787B5 /* StaticNameFieldCell.m */; };
 		00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */; };
 		00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */; };
@@ -400,6 +401,10 @@
 		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
+		003085D31485531F00837D02 /* InvestmentReturnRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestmentReturnRate.h; sourceTree = "<group>"; };
+		003085D41485531F00837D02 /* InvestmentReturnRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestmentReturnRate.m; sourceTree = "<group>"; };
+		003085D614855EB900837D02 /* AssetApprecRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetApprecRate.h; sourceTree = "<group>"; };
+		003085D714855EBA00837D02 /* AssetApprecRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetApprecRate.m; sourceTree = "<group>"; };
 		0036DE1413BE19F20043F3A5 /* Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scenario.h; sourceTree = "<group>"; };
 		0036DE1513BE19F20043F3A5 /* Scenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scenario.m; sourceTree = "<group>"; };
 		0036DE1813BE1A370043F3A5 /* UserScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenario.h; sourceTree = "<group>"; };
@@ -845,8 +850,6 @@
 		00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldEditInfo.m; sourceTree = "<group>"; };
 		00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectFieldInfo.h; sourceTree = "<group>"; };
 		00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectFieldInfo.m; sourceTree = "<group>"; };
-		00FF191C147AB940000787B5 /* DefaultInflationRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultInflationRate.h; sourceTree = "<group>"; };
-		00FF191D147AB940000787B5 /* DefaultInflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultInflationRate.m; sourceTree = "<group>"; };
 		00FF1920147AC762000787B5 /* StaticNameFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNameFieldCell.h; sourceTree = "<group>"; };
 		00FF1921147AC762000787B5 /* StaticNameFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNameFieldCell.m; sourceTree = "<group>"; };
 		00FF1923147AC8D8000787B5 /* StaticNameFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNameFieldEditInfo.h; sourceTree = "<group>"; };
@@ -1323,13 +1326,15 @@
 				00637A811385D509001E02F1 /* FixedValue.m */,
 				00637A891386D999001E02F1 /* InflationRate.h */,
 				00637A8A1386D99A001E02F1 /* InflationRate.m */,
-				00FF191C147AB940000787B5 /* DefaultInflationRate.h */,
-				00FF191D147AB940000787B5 /* DefaultInflationRate.m */,
 				0025775D13B2341E00D15232 /* DateSensitiveValueVisitor.h */,
 				0010A58713D0B1DB0096A20F /* InterestRate.h */,
 				0010A58813D0B1DC0096A20F /* InterestRate.m */,
 				0023796D143F80F3006650E3 /* MultiScenarioVariableValue.h */,
 				0023796E143F80F3006650E3 /* MultiScenarioVariableValue.m */,
+				003085D31485531F00837D02 /* InvestmentReturnRate.h */,
+				003085D41485531F00837D02 /* InvestmentReturnRate.m */,
+				003085D614855EB900837D02 /* AssetApprecRate.h */,
+				003085D714855EBA00837D02 /* AssetApprecRate.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -2449,10 +2454,11 @@
 				00A254C41476CBEC004F63E3 /* PositiveAmountValidator.m in Sources */,
 				00A254C71476D138004F63E3 /* GrowthRateFieldValidator.m in Sources */,
 				00A254CA1476D706004F63E3 /* PositiveNumberValidator.m in Sources */,
-				00FF191E147AB940000787B5 /* DefaultInflationRate.m in Sources */,
 				00FF1922147AC762000787B5 /* StaticNameFieldCell.m in Sources */,
 				00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */,
 				00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */,
+				003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */,
+				003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

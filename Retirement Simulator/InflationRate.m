@@ -11,5 +11,7 @@
 NSString * const INFLATION_RATE_ENTITY_NAME = @"InflationRate";
 
 @implementation InflationRate
+@dynamic sharedAppValsDefaultInflationRate;
+
 
 @end

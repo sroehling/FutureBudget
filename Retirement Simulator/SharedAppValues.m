@@ -16,7 +16,8 @@
 #import "RelativeEndDate.h"
 #import "Cash.h"
 #import "FixedValue.h"
-#import "DefaultInflationRate.h"
+#import "InflationRate.h"
+#import "InvestmentReturnRate.h"
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
@@ -28,6 +29,10 @@ NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"default
 #define DEFAULT_SIM_END_DATE_OFFSET_YEARS 50
 #define DEFAULT_DEFICIT_INTEREST_RATE 0.0
 #define DEFAULT_INFLATION_RATE 3.0
+#define DEFAULT_ROI_LOW 5.0
+#define DEFAULT_ROI_MEDIUM 7.5
+#define DEFAULT_ROI_AGGRESSIVE 10.0
+#define DEFAULT_ROI_SAVINGS 1.0
 
 @implementation SharedAppValues
 
@@ -60,6 +65,18 @@ static SharedAppValues *theSharedAppVals;
 	assert(theAppVals != nil);
 	[theAppVals retain];
 	theSharedAppVals = theAppVals;
+}
+
+
++(void)createDefaultInvestmentReturn:(double)yearlyReturn withLabelStringFileKey:(NSString*)labelKey
+	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
+{
+	InvestmentReturnRate *returnRate = (InvestmentReturnRate*)
+		[dataModelInterface createDataModelObject:INVESTMENT_RETURN_RATE_ENTITY_NAME];
+	returnRate.isDefault = [NSNumber numberWithBool:FALSE];
+	returnRate.staticNameStringFileKey = labelKey;
+	returnRate.name = @"N/A";
+	returnRate.startingValue = [NSNumber numberWithDouble:yearlyReturn];
 }
 
 +(SharedAppValues*)createWithDataModelInterface:(id<DataModelInterface>)dataModelInterface
@@ -113,10 +130,25 @@ static SharedAppValues *theSharedAppVals;
 	theCash.startingBalance = [NSNumber numberWithDouble:0.0];
 	sharedVals.cash = theCash;
 	
-	sharedVals.defaultInflationRate = (DefaultInflationRate*)
-		[dataModelInterface createDataModelObject:DEFAULT_INFLATION_RATE_ENTITY_NAME];
+	sharedVals.defaultInflationRate = (InflationRate*)
+		[dataModelInterface createDataModelObject:INFLATION_RATE_ENTITY_NAME];
 	sharedVals.defaultInflationRate.startingValue = [NSNumber numberWithDouble:DEFAULT_INFLATION_RATE];
-	sharedVals.defaultInflationRate.name = @"N/A";
+	sharedVals.defaultInflationRate.isDefault = [NSNumber numberWithBool:TRUE];
+	sharedVals.defaultInflationRate.staticNameStringFileKey = @"DEFAULT_INFLATION_RATE_LABEL";
+	sharedVals.defaultInflationRate.name = @"N/A";	
+	
+	[SharedAppValues createDefaultInvestmentReturn:DEFAULT_ROI_LOW 
+		withLabelStringFileKey:@"DEFAULT_ROI_LOW_RISK_LABEL" 
+		usingDataModelInterface:dataModelInterface];
+	[SharedAppValues createDefaultInvestmentReturn:DEFAULT_ROI_MEDIUM
+		withLabelStringFileKey:@"DEFAULT_ROI_MEDIUM_RISK_LABEL" 
+		usingDataModelInterface:dataModelInterface];
+	[SharedAppValues createDefaultInvestmentReturn:DEFAULT_ROI_AGGRESSIVE
+		withLabelStringFileKey:@"DEFAULT_ROI_AGGRESSIVE_LABEL" 
+		usingDataModelInterface:dataModelInterface];
+	[SharedAppValues createDefaultInvestmentReturn:DEFAULT_ROI_SAVINGS 
+		withLabelStringFileKey:@"DEFAULT_ROI_SAVINGS_INTEREST_LABEL" 
+		usingDataModelInterface:dataModelInterface];
 		
 	
 	FixedValue *theDeficitInterestRate = (FixedValue*)[dataModelInterface createDataModelObject:FIXED_VALUE_ENTITY_NAME];

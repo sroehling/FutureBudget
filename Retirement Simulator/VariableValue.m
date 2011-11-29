@@ -11,6 +11,7 @@
 #import "VariableValueRuntimeInfo.h"
 #import "NumberHelper.h"
 #import "DateSensitiveValueVisitor.h"
+#import "LocalizationHelper.h"
 
 
 NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
@@ -19,6 +20,9 @@ NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
 @dynamic name;
 @dynamic startingValue;
 @dynamic valueChanges;
+@dynamic isDefault;
+@dynamic staticNameStringFileKey;
+
 
 // Inverse relationship
 @dynamic multiScenAmountVariableAmounts;
@@ -106,19 +110,37 @@ NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
 {
 	// By default, the label is the VariableValue's name. This can be overriden, 
 	// for example for default values which have a fixed label.
-	return self.name;
+	if([self nameIsStaticLabel])
+	{
+		return LOCALIZED_STR(self.staticNameStringFileKey);
+	}
+	else
+	{
+		return self.name;
+	}
 }
 
 - (BOOL)nameIsStaticLabel
 {
-	return FALSE;
+	if((self.staticNameStringFileKey != nil) && ([self.staticNameStringFileKey length] > 0))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
 
 -(BOOL)supportsDeletion
 {
 	// Only allow deletion if there are no scenario input values referring to
 	// to this value.
-	if([self.scenarioValInputValues count] <= 0)
+	if([self.isDefault boolValue])
+	{
+		return FALSE;
+	}
+	else if([self.scenarioValInputValues count] <= 0)
 	{
 		return TRUE;
 	}

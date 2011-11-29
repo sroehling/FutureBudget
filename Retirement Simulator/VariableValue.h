@@ -22,6 +22,10 @@ extern NSString * const VARIABLE_VALUE_ENTITY_NAME;
 @property (nonatomic, retain) NSNumber * startingValue;
 @property (nonatomic, retain) NSSet* valueChanges;
 
+@property (nonatomic, retain) NSNumber * isDefault;
+@property (nonatomic, retain) NSString * staticNameStringFileKey;
+
+
 // Inverse relationship
 @property (nonatomic, retain) MultiScenarioAmount * multiScenAmountVariableAmounts;
 

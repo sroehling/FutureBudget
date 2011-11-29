@@ -12,8 +12,12 @@
 
 extern NSString * const INFLATION_RATE_ENTITY_NAME;
 
+@class SharedAppValues;
+
 @interface InflationRate : VariableValue {
 @private
 }
+
+@property(nonatomic,retain) SharedAppValues *sharedAppValsDefaultInflationRate;
 
 @end

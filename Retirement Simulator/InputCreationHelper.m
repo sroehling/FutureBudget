@@ -10,8 +10,8 @@
 
 #import "MultiScenarioInputValue.h"
 #import "FixedValue.h"
-#import "DefaultInflationRate.h"
 #import "BoolInputValue.h"
+#import "InflationRate.h"
 #import "SharedAppValues.h"
 #import "EventRepeatFrequency.h"
 #import "FixedDate.h"
@@ -130,7 +130,7 @@
 	MultiScenarioGrowthRate *msGrowthRate = 
 		[self.dataModel createDataModelObject:MULTI_SCEN_GROWTH_RATE_ENTITY_NAME];
 			
-	DefaultInflationRate *defaultRate = self.sharedAppVals.defaultInflationRate;
+	InflationRate *defaultRate = self.sharedAppVals.defaultInflationRate;
 	assert(defaultRate != nil);
 			
     msGrowthRate.defaultFixedGrowthRate = [self multiScenFixedValWithDefault:0.0];

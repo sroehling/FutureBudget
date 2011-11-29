@@ -246,7 +246,7 @@
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE");
 	
-	[self.formPopulator populateMultiScenarioGrowthRate:account.interestRate 
+	[self.formPopulator populateMultiScenarioInvestmentReturnRate:account.interestRate 
 		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")
 		andValueName:account.name];
 
@@ -377,7 +377,7 @@
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
 		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
 
-	[self.formPopulator populateMultiScenarioGrowthRate:asset.apprecRate 
+	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRate 
 		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")
 			andValueName:asset.name];
  

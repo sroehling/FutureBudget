@@ -52,12 +52,19 @@
 	
 -(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
 	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName;
+	
 -(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
 - (void)populateMultiScenarioInterestRate:(MultiScenarioGrowthRate*)intRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;	
+- (void)populateMultiScenarioInvestmentReturnRate:(MultiScenarioGrowthRate*)roiRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName;
+- (void)populateMultiScenarioApprecRate:(MultiScenarioGrowthRate*)apprecRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName;
 	
 -(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(NSManagedObject*)parentObj 
 		andFreqKey:(NSString*)freqKey andLabel:(NSString*)label;
