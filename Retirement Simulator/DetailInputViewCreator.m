@@ -101,10 +101,11 @@
 	
     // Amount section
     
-    SectionInfo *sectionInfo  = [formPopulator nextSection];
-	[self.formPopulator populateMultiScenBoolField:cashFlow.cashFlowEnabled withLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL")];
+	[formPopulator nextSection];
+	[self.formPopulator populateMultiScenBoolField:cashFlow.cashFlowEnabled 
+		withLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL")];
 
-     sectionInfo  = [formPopulator nextSection];
+	SectionInfo *sectionInfo   = [formPopulator nextSection];
 	sectionInfo.title = 
 		LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_SECTION_TITLE");
 	

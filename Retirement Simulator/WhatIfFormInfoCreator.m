@@ -527,6 +527,8 @@
 				andValueName:loan.name];
 		}
 	}
+	
+	// TODO - Add growth rates for TaxInput std deduction and exemption
 
 
 	return formPopulator.formInfo;
@@ -549,6 +551,7 @@
 	// needed.
 	// Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 	
+	// TODO - Put Tax exemption amounts, standard deductions, enabled/disabled here
 
 
 	return formPopulator.formInfo;

@@ -24,12 +24,7 @@ extern NSString * const INPUT_ASSET_STARTING_VALUE_KEY;
 }
 @property (nonatomic, retain) NSNumber * startingValue;
 @property (nonatomic, retain) MultiScenarioSimDate * purchaseDate;
-
 @property (nonatomic, retain) MultiScenarioSimEndDate * saleDate;
-
-// TODO - For all MultiScenarioAmount,MultiScenarioGrowthRate references, need to make them 
-// required in the data model.
-
 @property (nonatomic, retain) MultiScenarioAmount * cost;
 @property (nonatomic, retain) MultiScenarioGrowthRate * apprecRate;
 @property (nonatomic, retain) MultiScenarioInputValue * assetEnabled;

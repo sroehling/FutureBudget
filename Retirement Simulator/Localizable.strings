@@ -328,13 +328,21 @@
 "WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE" = "What If";
 "WHAT_IF_ENABLED_FORM_TITLE" = "Enabled Inputs";
 "WHAT_IF_INPUT_CHANGES_SECTION_TITLE" = "Change Inputs";
+"WHAT_IF_ACCOUNT_CONTRIB_FREQUENCY" = "Contribution Frequency";
+"WHAT_IF_FREQUENCY_CASH_FLOW" = "Income and Expense Frequency";
+"WHAT_IF_ACCOUNT_DEFERRED_WITHDRAWALS" = "Deferred Withdrawals";
 "WHAT_IF_ENABLED_SUBTITLE" = "Enable or disable expenses, asset purchases, savings contributions, etc.";
 "WHAT_IF_ENABLED_ACCOUNT_CONTRIBS" = "Account Contributions";
 "WHAT_IF_ENABLED_LOAN" = "Loans";
+"WHAT_IF_ENABLED_LOAN_DOWN_PMT" = "Loan Down Payment";
 "WHAT_IF_ENABLED_LOAN_EXTRA_PMT" = "Extra Loan Payments";
+"WHAT_IF_LOAN_DOWN_PMT_PERCENT" = "Down Payment Percent";
+"WHAT_IF_LOAN_DURATION" = "Loan Duration";
 "WHAT_IF_ENABLED_EXPENSE" = "Expenses";
+"WHAT_IF_ENABLED_CASH_FLOW" = "Enabled Expenses or Incomes";
 "WHAT_IF_ENABLED_INCOME" = "Incomes";
-"WHAT_IF_ENABLED_ASSET" = "Asset Purchases";
+"WHAT_IF_ENABLED_ASSET" = "Enabled Asset Purchases";
+"WHAT_IF_ENABLED_TAX" = "Enabled Taxes";
 "WHAT_IF_WITHDRAWALS_FORM_TITLE" = "Withdrawals";
 "WHAT_IF_WITHDRAWALS_SUBTITLE" = "Change the priority of account withdrawals, or change deferred withdrawal dates.";
 "WHAT_IF_WITHDRAWAL_PRIORITY_SECTION_TITLE" = "Withdrawal Priorities";
@@ -343,10 +351,13 @@
 "WHAT_IF_AMOUNTS_SUBTITLE" = "Change the amounts for income, expenses, asset purchases, loan costs, account contributions or extra loan payments.";
 "WHAT_IF_AMOUNTS_INCOME" = "Income Amount";
 "WHAT_IF_AMOUNTS_EXPENSE" = "Expense Amounts";
+"WHAT_IF_AMOUNTS_CASH_FLOW" = "Income or Expense Amounts";
 "WHAT_IF_AMOUNTS_ACCOUNT_CONTRIBS" = "Account Contributions";
 "WHAT_IF_AMOUNTS_LOAN_COST" = "Loan Amounts Borrowed";
 "WHAT_IF_AMOUNTS_LOAN_EXTRA_PMT" = "Loan Extra Payments";
 "WHAT_IF_AMOUNTS_ASSET_COST" = "Asset Costs";
+"WHAT_IF_AMOUNTS_TAX_EXEMPTION" = "Tax Exemption";
+"WHAT_IF_AMOUNTS_TAX_STD_DEDUCTION" = "Tax Standard Deduction";
 "WHAT_IF_INVESTMENT_RETURN_FORM_TITLE" = "Returns";
 "WHAT_IF_INVESTMENT_RETURN_FIELD_CAPTION" = "Return on Investments";
 "WHAT_IF_INVESTMENT_RETURN_SUBTITLE" = "Change the expected appreciation or depreciation of assets, the interest rates on accounts, or the expected rate of return on investments.";
@@ -357,10 +368,13 @@
 "WHAT_IF_GROWTH_RATE_FORM_TITLE" = "Growth Rates";
 "WHAT_IF_GROWTH_RATE_INCOME" = "Incomes";
 "WHAT_IF_GROWTH_RATE_EXPENSE" = "Expenses";
+"WHAT_IF_GROWTH_RATE_CASH_FLOW" = "Income and Expense Growth";
 "WHAT_IF_GROWTH_RATE_ACCOUNT_CONTRIBS" = "Account Contributions";
 "WHAT_IF_GROWTH_RATE_LOAN_EXTRA_PMT" = "Loan Extra Payments";
 "WHAT_IF_GROWTH_RATE_LOAN_COST" = "Loan Cost (Amount Borrowed)";
 "WHAT_IF_GROWTH_RATE_LOAN_INTEREST" = "Loan Interest Rate";
+"WHAT_IF_GROWTH_RATE_TAX_EXEMPTION" = "Tax Exemption Growth";
+"WHAT_IF_GROWTH_RATE_TAX_STD_DEDUCTION" = "Tax Deduction Growth";
 "WHAT_IF_TAXES_FIELD_CAPTION" = "Taxes";
 "WHAT_IF_TAXES_SUBTITLE" = "Change the tax deductability of expenses, contributions, or withdrawals.";
 "WHAT_IF_TAXES_FORM_TITLE" = "Taxes";
@@ -368,6 +382,14 @@
 "WHAT_IF_SCENARIO_SECTION_SUBTITLE" = "Changes to inputs are saved under the current scenario, so the 'what if' impact of these changes can be seen in the results.";
 "WHAT_IF_SCENARIO_SUBTITLE" = "Create a new scenario, or change the current scenario.";
 "WHAT_IF_SCENARIO_FORM_TITLE" = "Current Scenario";
+"WHAT_IF_END_DATE_ACCOUNT_CONTRIB" = "End to Account Contributions";
+"WHAT_IF_END_DATE_ASSET_SALE" = "Asset Sale Date";
+"WHAT_IF_END_DATE_CASH_FLOW" = "Income or Expense End";
+"WHAT_IF_START_DATE_CONTRIB" = "Start of Account Contributions";
+"WHAT_IF_START_DATE_DEFERRED_WITHDRAWAL" = "Deferred Withdrawal Date";
+"WHAT_IF_START_DATE_ASSET_PURCHASE" = "Asset Purchase Date";
+"WHAT_IF_START_DATE_CASH_FLOW"= "Income or Expense Start";
+"WHAT_IF_START_DATE_LOAN_ORIG" = "Loan Origination";
 
 
 "SCENARIO_LIST_VIEW_TITLE" = "Scenarios";

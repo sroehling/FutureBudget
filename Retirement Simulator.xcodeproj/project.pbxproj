@@ -57,6 +57,7 @@
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
 		003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D41485531F00837D02 /* InvestmentReturnRate.m */; };
 		003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D714855EBA00837D02 /* AssetApprecRate.m */; };
+		003085DB148599A200837D02 /* ScenarioInputValBacktracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */; };
 		0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1513BE19F20043F3A5 /* Scenario.m */; };
 		0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1913BE1A370043F3A5 /* UserScenario.m */; };
 		0036DE1D13BE1A690043F3A5 /* DefaultScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */; };
@@ -405,6 +406,8 @@
 		003085D41485531F00837D02 /* InvestmentReturnRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestmentReturnRate.m; sourceTree = "<group>"; };
 		003085D614855EB900837D02 /* AssetApprecRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetApprecRate.h; sourceTree = "<group>"; };
 		003085D714855EBA00837D02 /* AssetApprecRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetApprecRate.m; sourceTree = "<group>"; };
+		003085D9148599A100837D02 /* ScenarioInputValBacktracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioInputValBacktracer.h; sourceTree = "<group>"; };
+		003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioInputValBacktracer.m; sourceTree = "<group>"; };
 		0036DE1413BE19F20043F3A5 /* Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scenario.h; sourceTree = "<group>"; };
 		0036DE1513BE19F20043F3A5 /* Scenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scenario.m; sourceTree = "<group>"; };
 		0036DE1813BE1A370043F3A5 /* UserScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenario.h; sourceTree = "<group>"; };
@@ -1155,6 +1158,8 @@
 				0009481413C37288008F129B /* ScenarioListObjectAdder.m */,
 				0009481613C375F3008F129B /* UserScenarioFieldEditInfo.h */,
 				0009481713C375F4008F129B /* UserScenarioFieldEditInfo.m */,
+				003085D9148599A100837D02 /* ScenarioInputValBacktracer.h */,
+				003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */,
 			);
 			name = "Scenario List";
 			sourceTree = "<group>";
@@ -2459,6 +2464,7 @@
 				00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */,
 				003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */,
 				003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */,
+				003085DB148599A200837D02 /* ScenarioInputValBacktracer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
