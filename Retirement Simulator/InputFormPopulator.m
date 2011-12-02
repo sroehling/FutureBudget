@@ -51,6 +51,8 @@
 #import "InterestRate.h"
 #import "InvestmentReturnRate.h"
 #import "AssetApprecRate.h"
+#import "LoanDownPmtPercent.h"
+#import "LoanInput.h"
 
 @implementation InputFormPopulator
 
@@ -274,7 +276,7 @@
 	
 	VariableValueRuntimeInfo *roiRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
-		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueValidator:[[[GrowthRateFieldValidator alloc] init] autorelease]
 		andValueTitle:@"SHARED_ROI_VALUE_TITLE"
 		andInlineValueTitleKey:@"SHARED_ROI_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"SHARED_ROI_ACTION_VERB")
@@ -321,7 +323,7 @@
 	
 	VariableValueRuntimeInfo *apprecRateRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
-		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueValidator:[[[GrowthRateFieldValidator alloc] init] autorelease]
 		andValueTitle:@"SHARED_APPREC_RATE_VALUE_TITLE"
 		andInlineValueTitleKey:@"SHARED_APPREC_RATE_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"SHARED_APPREC_RATE_ACTION_VERB")
@@ -390,6 +392,47 @@
 			andLabel:LOCALIZED_STR(@"SHARED_INTEREST_RATE_VALUE_TITLE") 
 		 andValRuntimeInfo:interestRuntimeInfo 
 		 andDefaultFixedVal:intRate.defaultFixedGrowthRate]];
+
+
+}
+
+-(void)populateLoanDownPmtPercent:(LoanInput*)loan withValueLabel:(NSString*)valueLabel
+	andValueName:(NSString*)valueName
+{
+
+	SharedEntityVariableValueListMgr *sharedDownPmtMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithEntity:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME] autorelease];
+
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_INLINE_VALUE_TITLE")];
+
+
+	VariableValueRuntimeInfo *downPmtVarValRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueTitle:@"SHARED_LOAN_DOWN_PMT_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_LOAN_DOWN_PMT_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_PERIOD") 
+		andListMgr:sharedDownPmtMgr
+		andSingleValueSubtitleKey:@"SHARED_LOAN_DOWN_PMT_SINGLE_VALUE_SECTION_SUBTITLE"
+		andVariableValueSubtitleKey:@"SHARED_LOAN_DOWN_PMT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andValuePromptKey:@"SHARED_LOAN_DOWN_PMT_VALUE_PROMPT"
+		andValueTypeTitle:valueLabel
+		andValueName:valueName
+		andTableSubtitle:tableSubtitle] autorelease];
+	
+		
+    [self.currentSection addFieldEditInfo:
+	 [DateSensitiveValueFieldEditInfo 
+	  createForScenario:self.inputScenario andObject:loan 
+		andKey:INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY 
+	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") 
+	  andValRuntimeInfo:downPmtVarValRuntimeInfo
+	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed]];
 
 
 }

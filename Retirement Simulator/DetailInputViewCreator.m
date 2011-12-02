@@ -280,11 +280,8 @@
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_LOAN_TITLE");
 	[self.formPopulator populateInputNameField:loan];
 	
-	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].currentInputScenario;
-
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_COST_SECTION_TITLE");
-	
 	
 	[self.formPopulator populateMultiScenBoolField:loan.loanEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
@@ -293,7 +290,8 @@
 		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")
 		andValueName:loan.name];
 
-	[self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")
+	[self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate 
+		withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")
 		andValueName:loan.name];
 	  
 	
@@ -344,15 +342,7 @@
 	[self.formPopulator populateMultiScenBoolField:loan.downPmtEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_ENABLED_LABEL")];
 	
-	
-	VariableValueRuntimeInfo *downPmtVarValRuntimeInfo = [VariableValueRuntimeInfo createForSharedPercentageRate:loan andSharedValEntityName:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME];
-    [sectionInfo addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:currentScenario andObject:loan 
-		andKey:INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") 
-	  andValRuntimeInfo:downPmtVarValRuntimeInfo
-	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed]];
+	[self.formPopulator populateLoanDownPmtPercent:loan withValueLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") andValueName:loan.name];
 		
 
 

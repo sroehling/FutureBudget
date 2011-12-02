@@ -67,8 +67,6 @@
 
 + (VariableValueRuntimeInfo*)createForSharedInflationRate:(Input*)theInput;
 + (VariableValueRuntimeInfo*)createForSharedInterestRate:(Input*)theInput;
-+ (VariableValueRuntimeInfo*)createForSharedPercentageRate:(Input*)theInput
-	andSharedValEntityName:(NSString*)entityName;
 + (VariableValueRuntimeInfo*)createForVariableAmount:(Input*)theInput 
 	andVariableValListMgr:(id<VariableValueListMgr>)listMgr;
 	

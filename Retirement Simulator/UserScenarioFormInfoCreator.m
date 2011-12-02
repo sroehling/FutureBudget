@@ -135,15 +135,8 @@
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_LOAN_DOWN_PMT_PERCENT");
 		for(LoanInput *loan in inputBacktrace.loanDownPmtPercent)
 		{
-			VariableValueRuntimeInfo *downPmtVarValRuntimeInfo = [VariableValueRuntimeInfo 
-				createForSharedPercentageRate:loan andSharedValEntityName:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME];
-			[sectionInfo addFieldEditInfo:
-			 [DateSensitiveValueFieldEditInfo 
-			  createForScenario:formPopulator.inputScenario andObject:loan 
-				andKey:INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY 
-			  andLabel:loan.name
-			  andValRuntimeInfo:downPmtVarValRuntimeInfo
-			  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed]];
+			[formPopulator populateLoanDownPmtPercent:loan 
+				withValueLabel:loan.name andValueName:loan.name];
 		}
 	}
 

@@ -116,14 +116,14 @@
 "SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Interest rates which can change over time.";
 
 
-"SHARED_PERCENTAGE_VALUE_TITLE" = "Percent";
-"SHARED_PERCENTAGE_INLINE_VALUE_TITLE" = "percent";
-"SHARED_PERCENTAGE_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed percentage over time.";
-"SHARED_PERCENTAGE_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
-"SHARED_PERCENTAGE_VALUE_PROMPT" = "Enter a percent";
-"SHARED_PERCENTAGE_PERIOD" = "every year";
-"SHARED_PERCENTAGE_ACTION_VERB" = "accrue interest";
-"SHARED_PERCENTAGE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Percentage rates which can change over time.";
+"SHARED_LOAN_DOWN_PMT_VALUE_TITLE" = "Down Payment";
+"SHARED_LOAN_DOWN_PMT_INLINE_VALUE_TITLE" = "down payment";
+"SHARED_LOAN_DOWN_PMT_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed down payment.";
+"SHARED_LOAN_DOWN_PMT_TABLE_SUBTITLE_FORMAT" = "Enter a fixed %@ percentage, or select one of the common %@ percentages.";
+"SHARED_LOAN_DOWN_PMT_VALUE_PROMPT" = "Enter a rate";
+"SHARED_LOAN_DOWN_PMT_PERIOD" = "at start of loan";
+"SHARED_LOAN_DOWN_PMT_ACTION_VERB" = "make payment";
+"SHARED_LOAN_DOWN_PMT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Common down payment percentages which can be selected for different loans and/or scenarios.";
 
 
 
