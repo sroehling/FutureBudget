@@ -17,7 +17,10 @@
 #import "Cash.h"
 #import "FixedValue.h"
 #import "InflationRate.h"
+#import "InterestRate.h"
 #import "InvestmentReturnRate.h"
+#import "StringValidation.h"
+#import "LoanDownPmtPercent.h"
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
@@ -33,6 +36,10 @@ NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"default
 #define DEFAULT_ROI_MEDIUM 7.5
 #define DEFAULT_ROI_AGGRESSIVE 10.0
 #define DEFAULT_ROI_SAVINGS 1.0
+
+#define DEFAULT_LOAN_DOWN_PMT_NOTHING_DOWN 0.0
+#define DEFAULT_LOAN_DOWN_PMT_10PERC_DOWN 10.0
+#define DEFAULT_LOAN_DOWN_PMT_20PERC_DOWN 20.0
 
 @implementation SharedAppValues
 
@@ -67,17 +74,39 @@ static SharedAppValues *theSharedAppVals;
 	theSharedAppVals = theAppVals;
 }
 
++(void)createDefaultVariableValue:(double)startingVal withLabelStringFileKey:(NSString*)labelKey
+	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface andEntityName:(NSString*)entityName
+{
+	assert([StringValidation nonEmptyString:entityName]);
+	assert([StringValidation nonEmptyString:labelKey]);
+	assert(dataModelInterface != nil);
+
+	VariableValue *defaultVal = (VariableValue*)[dataModelInterface createDataModelObject:entityName];
+	assert(defaultVal != nil);
+	defaultVal.isDefault = [NSNumber numberWithBool:FALSE];
+	defaultVal.staticNameStringFileKey = labelKey;
+	defaultVal.name = @"N/A";
+	defaultVal.startingValue = [NSNumber numberWithDouble:startingVal];
+	
+}
 
 +(void)createDefaultInvestmentReturn:(double)yearlyReturn withLabelStringFileKey:(NSString*)labelKey
 	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
 {
-	InvestmentReturnRate *returnRate = (InvestmentReturnRate*)
-		[dataModelInterface createDataModelObject:INVESTMENT_RETURN_RATE_ENTITY_NAME];
-	returnRate.isDefault = [NSNumber numberWithBool:FALSE];
-	returnRate.staticNameStringFileKey = labelKey;
-	returnRate.name = @"N/A";
-	returnRate.startingValue = [NSNumber numberWithDouble:yearlyReturn];
+	return [SharedAppValues createDefaultVariableValue:yearlyReturn 
+		withLabelStringFileKey:labelKey 
+		usingDataModelInterface:dataModelInterface andEntityName:INVESTMENT_RETURN_RATE_ENTITY_NAME];
 }
+
++(void)createDefaultLoanDownPmt:(double)downPmtPercent withLabelStringFileKey:(NSString*)labelKey
+	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
+{
+	return [SharedAppValues createDefaultVariableValue:downPmtPercent 
+		withLabelStringFileKey:labelKey 
+		usingDataModelInterface:dataModelInterface andEntityName:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME];
+	
+}
+
 
 +(SharedAppValues*)createWithDataModelInterface:(id<DataModelInterface>)dataModelInterface
 {
@@ -150,6 +179,15 @@ static SharedAppValues *theSharedAppVals;
 		withLabelStringFileKey:@"DEFAULT_ROI_SAVINGS_INTEREST_LABEL" 
 		usingDataModelInterface:dataModelInterface];
 		
+	[SharedAppValues createDefaultLoanDownPmt:DEFAULT_LOAN_DOWN_PMT_NOTHING_DOWN 
+		withLabelStringFileKey:@"DEFAULT_LOAN_DOWN_PMT_NOTHING_DOWN" 
+		usingDataModelInterface:dataModelInterface];
+	[SharedAppValues createDefaultLoanDownPmt:DEFAULT_LOAN_DOWN_PMT_10PERC_DOWN 
+		withLabelStringFileKey:@"DEFAULT_LOAN_DOWN_PMT_10PERC_DOWN" 
+		usingDataModelInterface:dataModelInterface];
+	[SharedAppValues createDefaultLoanDownPmt:DEFAULT_LOAN_DOWN_PMT_20PERC_DOWN 
+		withLabelStringFileKey:@"DEFAULT_LOAN_DOWN_PMT_20PERC_DOWN" 
+		usingDataModelInterface:dataModelInterface];
 	
 	FixedValue *theDeficitInterestRate = (FixedValue*)[dataModelInterface createDataModelObject:FIXED_VALUE_ENTITY_NAME];
 	theDeficitInterestRate.value = [NSNumber numberWithDouble:DEFAULT_DEFICIT_INTEREST_RATE];

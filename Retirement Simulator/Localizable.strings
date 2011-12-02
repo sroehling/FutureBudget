@@ -89,6 +89,10 @@
 "DEFAULT_ROI_MEDIUM_RISK_LABEL" = "Medium Risk Investment";
 "DEFAULT_ROI_AGGRESSIVE_LABEL" = "Aggressive Investment";
 "DEFAULT_ROI_SAVINGS_INTEREST_LABEL" = "Savings Interest";
+"DEFAULT_LOAN_DOWN_PMT_NOTHING_DOWN" = "Nothing Down";
+"DEFAULT_LOAN_DOWN_PMT_10PERC_DOWN" = "10 Percent Down";
+"DEFAULT_LOAN_DOWN_PMT_20PERC_DOWN" = "20 Percent Down";
+
 
 
 "SHARED_APPREC_RATE_VALUE_TITLE" = "Appreciation Rate";
