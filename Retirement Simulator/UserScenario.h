@@ -17,5 +17,7 @@ extern NSString * const USER_SCENARIO_NAME_KEY;
 @private
 }
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * notes;
+
 
 @end

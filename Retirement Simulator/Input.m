@@ -12,6 +12,7 @@ NSString * const INPUT_NAME_KEY = @"name";
 
 @implementation Input
 @dynamic name;
+@dynamic notes;
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

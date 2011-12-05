@@ -20,6 +20,8 @@ extern NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY;
 @private
 }
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * notes;
+
 @property (nonatomic, retain) NSNumber * startingValue;
 @property (nonatomic, retain) NSSet* valueChanges;
 

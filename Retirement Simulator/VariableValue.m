@@ -19,6 +19,7 @@ NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY = @"displayOrder";
 
 @implementation VariableValue
 @dynamic name;
+@dynamic notes;
 @dynamic startingValue;
 @dynamic valueChanges;
 @dynamic isDefault;

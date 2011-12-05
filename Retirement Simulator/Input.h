@@ -17,6 +17,8 @@ extern NSString * const INPUT_NAME_KEY;
 @private
 }
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * notes;
+
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor;
 

@@ -13,6 +13,8 @@ NSString * const USER_SCENARIO_NAME_KEY = @"name";
 
 @implementation UserScenario
 @dynamic name;
+@dynamic notes;
+
 
 - (NSString *)scenarioName
 {
