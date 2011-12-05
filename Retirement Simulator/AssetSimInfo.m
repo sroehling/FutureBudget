@@ -113,7 +113,7 @@
 	double gain = saleValue-purchaseCost;
 	assert(gain >= 0.0); // TODO - losses not handled yet
 	
-	[self.sumGainsLosses incrementSum:gain onDay:processingParams.dayIndex];
+	[self.sumGainsLosses adjustSum:gain onDay:processingParams.dayIndex];
 	
 	[processingParams.workingBalanceMgr incrementCashBalance:saleValue 
 			asOfDate:processingParams.currentDate];

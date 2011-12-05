@@ -117,7 +117,7 @@
 	assert(interestDayIndex >= 0);
 	assert(interestDayIndex < MAX_DAYS_IN_YEAR);
 
-	[self.accruedInterest incrementSum:interestAmount onDay:interestDayIndex];
+	[self.accruedInterest adjustSum:interestAmount onDay:interestDayIndex];
 	
 	
 	currentBalance = newBalance;

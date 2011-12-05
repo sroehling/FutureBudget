@@ -117,7 +117,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	
 	NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
 		vsEarlierDate:self.balanceStartDate];
-	[self.contribs incrementSum:amount onDay:daysSinceStartDate];
+	[self.contribs adjustSum:amount onDay:daysSinceStartDate];
 }
 
 
@@ -156,7 +156,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	
 	NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
 		vsEarlierDate:self.balanceStartDate];
-	[self.withdrawals incrementSum:decrementAmount onDay:daysSinceStartDate];
+	[self.withdrawals adjustSum:decrementAmount onDay:daysSinceStartDate];
 	
 	return decrementAmount;
 
@@ -178,7 +178,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	
 		NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
 			vsEarlierDate:self.balanceStartDate];
-		[self.withdrawals incrementSum:remainingBalance onDay:daysSinceStartDate];
+		[self.withdrawals adjustSum:remainingBalance onDay:daysSinceStartDate];
 
 		return remainingBalance;
 	}

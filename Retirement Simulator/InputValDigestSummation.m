@@ -29,9 +29,8 @@
 	return self;
 }
 
--(void)incrementSum:(double)amount onDay:(NSInteger)dayIndex
+-(void)adjustSum:(double)amount onDay:(NSInteger)dayIndex
 {
-	assert(amount >= 0.0);
 	assert(dayIndex >= 0);
 	assert(dayIndex < MAX_DAYS_IN_YEAR);
 	currentSum[dayIndex] = currentSum[dayIndex] + amount;

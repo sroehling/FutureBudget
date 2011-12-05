@@ -16,7 +16,7 @@
 
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
-	[self.cashFlowSummation incrementSum:self.amount onDay:processingParams.dayIndex];
+	[self.cashFlowSummation adjustSum:self.amount onDay:processingParams.dayIndex];
 	[processingParams.workingBalanceMgr incrementCashBalance:self.amount 
 			asOfDate:processingParams.currentDate];
 }
