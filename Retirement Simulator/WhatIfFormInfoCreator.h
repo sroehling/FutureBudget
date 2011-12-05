@@ -18,6 +18,7 @@
 @interface WhatIfInvestmentReturnFormInfoCreator : NSObject <FormInfoCreator> {} @end
 @interface WhatIfGrowthRateFormInfoCreator : NSObject <FormInfoCreator> {} @end
 @interface WhatIfTaxesFormInfoCreator : NSObject <FormInfoCreator> {} @end
+@interface WhatIfDatesFormInfoCreator : NSObject <FormInfoCreator> {} @end
 
 // TODO - Need to include a "what if" screen for manipulating the tax related inputs
 // This can be done after 

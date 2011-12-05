@@ -108,6 +108,15 @@
 			andContentDescription:nil  
 			andSubFormInfoCreator:whatIfFormInfoCreator] autorelease];
 	[sectionInfo addFieldEditInfo:whatIfFieldEditInfo];
+	
+	whatIfFormInfoCreator = [[[WhatIfDatesFormInfoCreator alloc] init] autorelease];
+	whatIfFieldEditInfo = [[[StaticNavFieldEditInfo alloc] 
+			initWithCaption:LOCALIZED_STR(@"WHAT_IF_DATES_FIELD_CAPTION")  
+			andSubtitle:LOCALIZED_STR(@"WHAT_IF_DATES_SUBTITLE") 
+			andContentDescription:nil  
+			andSubFormInfoCreator:whatIfFormInfoCreator] autorelease];
+	[sectionInfo addFieldEditInfo:whatIfFieldEditInfo];
+
 
 	whatIfFormInfoCreator = [[[WhatIfTaxesFormInfoCreator alloc] init] autorelease];
 	whatIfFieldEditInfo = [[[StaticNavFieldEditInfo alloc] 
@@ -552,6 +561,244 @@
 	// Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
 	
 	// TODO - Put Tax exemption amounts, standard deductions, enabled/disabled here
+
+
+	return formPopulator.formInfo;
+	
+}
+
+@end
+
+
+
+@implementation WhatIfDatesFormInfoCreator
+
+
+- (FormInfo*)createFormInfo:(UIViewController*)parentController
+{
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
+    
+    formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_FORM_TITLE");
+	
+	SectionInfo *sectionInfo;
+		
+	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_INCOME_START");
+
+		for(IncomeInput *income in inputs)
+		{
+			[formPopulator populateMultiScenSimDate:income.startDate 
+				andLabel:income.name 
+				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TITLE")
+				andTableHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_HEADER_FORMAT"),[income inputTypeTitle]] 
+				andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT"),
+					[income inlineInputType],income.name]];
+		}
+	}
+	
+	inputs = [[DataModelController theDataModelController] 
+				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_EXPENSE_START");
+
+		for(ExpenseInput *expense in inputs)
+		{    
+			[formPopulator populateMultiScenSimDate:expense.startDate 
+				andLabel:expense.name 
+				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TITLE")
+				andTableHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_HEADER_FORMAT"),[expense inputTypeTitle]] 
+				andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT"),
+					[expense inlineInputType],expense.name]];
+		}
+	}
+	
+	inputs = [[DataModelController theDataModelController] 
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_ACCOUNT_CONTRIB_START");
+	
+		for(Account *acct in inputs)
+		{
+			[formPopulator populateMultiScenSimDate:acct.contribStartDate 
+				andLabel:acct.name 
+				andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE")
+				andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER") 
+				andTableSubHeader:[NSString stringWithFormat:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT"),
+					[acct inlineInputType],acct.name]];	
+		}
+	}
+
+	
+	inputs = [[DataModelController theDataModelController] 
+			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_LOAN_ORIG");
+
+		for(LoanInput *loan in inputs)
+		{
+			[formPopulator populateMultiScenSimDate:loan.origDate 
+				andLabel:loan.name 
+				andTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL")
+				andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_TABLE_HEADER") 
+				andTableSubHeader:[NSString stringWithFormat:
+					LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT"),loan.name]];
+		}
+	}
+
+	
+	
+	inputs = [[DataModelController theDataModelController] 
+		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_ASSET_PURCHASE");
+		
+		for(AssetInput *asset in inputs)
+		{
+			[formPopulator populateMultiScenSimDate:asset.purchaseDate 
+				andLabel:asset.name 
+				andTitle:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TITLE")
+				andTableHeader:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_HEADER")
+				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT"),asset.name]];
+		}
+	}
+
+
+
+	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_INCOME_END");
+
+		for(IncomeInput *income in inputs)
+		{
+			[formPopulator populateMultiScenSimEndDate:income.endDate 
+				andLabel:income.name 
+				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_TITLE")
+				andTableHeader:[NSString 
+					stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT"),
+						[income inputTypeTitle]]
+				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT"),[income inlineInputType],income.name]
+				andNeverEndFieldTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")
+				andNeverEndFieldSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE") 
+				andNeverEndSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE")
+				andRelEndDateSectionTitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE") 
+				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE")
+				andRelEndDateFieldLabel:LOCALIZED_STR(@"RELATIVE_END_DATE_FIELD_LABEL")];
+		}
+	}
+	
+	inputs = [[DataModelController theDataModelController] 
+				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_EXPENSE_END");
+
+		for(ExpenseInput *expense in inputs)
+		{    
+			[formPopulator populateMultiScenSimEndDate:expense.endDate 
+				andLabel:expense.name 
+				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_TITLE")
+				andTableHeader:[NSString 
+					stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT"),
+						[expense inputTypeTitle]]
+				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT"),[expense inlineInputType],expense.name]
+				andNeverEndFieldTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")
+				andNeverEndFieldSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE") 
+				andNeverEndSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE")
+				andRelEndDateSectionTitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE") 
+				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE")
+				andRelEndDateFieldLabel:LOCALIZED_STR(@"RELATIVE_END_DATE_FIELD_LABEL")];
+		}
+	}
+
+	inputs = [[DataModelController theDataModelController] 
+		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_ASSET_SALE");
+		
+		for(AssetInput *asset in inputs)
+		{
+			[formPopulator populateMultiScenSimEndDate:asset.saleDate 
+				andLabel:asset.name 
+				andTitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_TITLE")
+					andTableHeader:LOCALIZED_STR(@"INPUT_ASSET_SELL_DATE_TABLE_TITLE")
+					andTableSubHeader:[NSString stringWithFormat:
+						LOCALIZED_STR(@"INPUT_ASSET_SELL_DATE_TABLE_SUBTITLE_FORMAT"),asset.name]
+						andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_FIELD_TITLE") 
+						andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE")
+						andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_SECTION_TITLE") 
+						andNeverEndSectionSubtitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_SECTION_SUBTITLE")
+						andRelEndDateSectionTitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_SECTION_TITLE")
+						andRelEndDateSectionSubtitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_SECTION_SUBTITLE")
+						andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL")
+						];
+		}
+	}
+
+	inputs = [[DataModelController theDataModelController] 
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_ACCOUNT_CONTRIB_END");
+	
+		for(Account *acct in inputs)
+		{
+			[formPopulator populateMultiScenSimEndDate:acct.contribEndDate 
+				andLabel:acct.name
+				andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_TITLE")
+				andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_HEADER")
+				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_SUBHEADER_FORMAT"),acct.name]
+
+				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE")
+				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE") 
+				andNeverEndSectionSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_SUBTITLE")
+				andRelEndDateSectionTitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE") 
+				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE")
+				andRelEndDateFieldLabel:LOCALIZED_STR(@"RELATIVE_END_DATE_FIELD_LABEL")];
+		}
+	}
+
+
+	inputs = [[DataModelController theDataModelController] 
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_ACCOUNT_DEFERRED_WITHDRAWAL");
+	
+		for(Account *acct in inputs)
+		{
+			[formPopulator populateMultiScenSimDate:acct.deferredWithdrawalDate 
+				andLabel:acct.name
+				andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TITLE")
+				andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT__DEFERRED_WITHDRAW_DATE_TABLE_HEADER")
+				 andTableSubHeader:[NSString stringWithFormat:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TABLE_SUBHEADER_FORMAT"),
+					acct.name]];
+		}
+	}
 
 
 	return formPopulator.formInfo;

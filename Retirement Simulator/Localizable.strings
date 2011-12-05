@@ -386,6 +386,24 @@
 "WHAT_IF_SCENARIO_SECTION_SUBTITLE" = "Changes to inputs are saved under the current scenario, so the 'what if' impact of these changes can be seen in the results.";
 "WHAT_IF_SCENARIO_SUBTITLE" = "Create a new scenario, or change the current scenario.";
 "WHAT_IF_SCENARIO_FORM_TITLE" = "Current Scenario";
+
+
+"WHAT_IF_DATES_FORM_TITLE" = "Dates";
+"WHAT_IF_DATES_SUBTITLE" = "Change start or end dates for incomes and expenses, change loan origination dates, or change asset purchase and sale dates.";
+"WHAT_IF_DATES_FIELD_CAPTION" = "Dates";
+"WHAT_IF_DATES_INCOME_START" = "Income Start";
+"WHAT_IF_DATES_EXPENSE_START" = "Expense Start";
+"WHAT_IF_DATES_ASSET_PURCHASE" = "Asset Purchase Date";
+"WHAT_IF_DATES_INCOME_END" = "Income End";
+"WHAT_IF_DATES_EXPENSE_END" = "Expense End";
+"WHAT_IF_DATES_ASSET_SALE" = "Asset Sale";
+"WHAT_IF_DATES_LOAN_ORIG" = "Loan Origination Date";
+"WHAT_IF_ACCOUNT_CONTRIB_START" = "Account Contributions Start";
+"WHAT_IF_ACCOUNT_CONTRIB_END" = "Account Contributions Stop";
+"WHAT_IF_ACCOUNT_DEFERRED_WITHDRAWAL" = "Defer Account Withdrawals";
+
+
+
 "WHAT_IF_END_DATE_ACCOUNT_CONTRIB" = "End to Account Contributions";
 "WHAT_IF_END_DATE_ASSET_SALE" = "Asset Sale Date";
 "WHAT_IF_END_DATE_CASH_FLOW" = "Income or Expense End";
