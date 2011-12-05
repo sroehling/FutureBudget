@@ -8,6 +8,7 @@
 
 #import "SharedEntityVariableValueListMgr.h"
 #import "DataModelController.h"
+#import "VariableValue.h"
 
 
 @implementation SharedEntityVariableValueListMgr
@@ -41,7 +42,7 @@
 - (NSArray*)variableValues
 {
 	NSArray *variableValues = [[DataModelController theDataModelController]
-		fetchSortedObjectsWithEntityName:self.entityName sortKey:@"name"];
+		fetchSortedObjectsWithEntityName:self.entityName sortKey:VARIABLE_VALUE_DISPLAY_ORDER_KEY];
 	return variableValues;
 }
 

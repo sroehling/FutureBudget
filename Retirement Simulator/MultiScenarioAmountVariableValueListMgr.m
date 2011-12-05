@@ -48,7 +48,7 @@
 
 - (NSArray*)variableValues
 {
-	return [CollectionHelper setToSortedArray:self.amount.variableAmounts withKey:@"name"];	
+	return [CollectionHelper setToSortedArray:self.amount.variableAmounts withKey:VARIABLE_VALUE_DISPLAY_ORDER_KEY];	
 }
 
 - (VariableValue*)createNewValue

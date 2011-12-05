@@ -15,6 +15,7 @@
 
 
 NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
+NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY = @"displayOrder";
 
 @implementation VariableValue
 @dynamic name;
@@ -22,7 +23,7 @@ NSString * const VARIABLE_VALUE_ENTITY_NAME = @"VariableValue";
 @dynamic valueChanges;
 @dynamic isDefault;
 @dynamic staticNameStringFileKey;
-
+@dynamic displayOrder;
 
 // Inverse relationship
 @dynamic multiScenAmountVariableAmounts;

@@ -14,6 +14,7 @@
 @class MultiScenarioAmount;
 
 extern NSString * const VARIABLE_VALUE_ENTITY_NAME;
+extern NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY;
 
 @interface VariableValue : DateSensitiveValue {
 @private
@@ -24,6 +25,7 @@ extern NSString * const VARIABLE_VALUE_ENTITY_NAME;
 
 @property (nonatomic, retain) NSNumber * isDefault;
 @property (nonatomic, retain) NSString * staticNameStringFileKey;
+@property (nonatomic, retain) NSNumber * displayOrder;
 
 
 // Inverse relationship
