@@ -20,13 +20,24 @@
 	assert(principalAmt >= 0.0);
 	assert(theRate >= 0.0);
 	
-	double rateMultiplier = pow(1.0 + theRate,numPayments); // (1+r)^n
-	double periodicPayment =  principalAmt * 
-		(
-			(theRate * rateMultiplier)
-							/
-			 (rateMultiplier - 1.0)
-		);
+	double periodicPayment;
+	
+	if(theRate > 0.0)
+	{
+		double rateMultiplier = pow(1.0 + theRate,numPayments); // (1+r)^n
+		periodicPayment =  principalAmt * 
+			(
+				(theRate * rateMultiplier)
+								/
+				 (rateMultiplier - 1.0)
+			);
+	}
+	else
+	{
+		// If the interest rate is 0%, the payment is simply the principal 
+		// amount divided by the number of payments.
+		periodicPayment = principalAmt / numPayments;
+	}
 	assert(periodicPayment >= 0.0);
 	return periodicPayment;
 }
