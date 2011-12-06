@@ -32,22 +32,21 @@
 
         self.decimalFormatter = [[[NSNumberFormatter alloc]init] autorelease];
         [self.decimalFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-  		[self.decimalFormatter setMaximumSignificantDigits:3];
-		self.decimalFormatter.usesSignificantDigits = TRUE;
  		[self.decimalFormatter setMinimumFractionDigits:0];
+		[self.decimalFormatter setMaximumFractionDigits:3];
      
         self.currencyFormatter = [[[NSNumberFormatter alloc]init] autorelease];
         [self.currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 		[self.currencyFormatter setMinimumFractionDigits:0];
+		[self.currencyFormatter setMaximumFractionDigits:2];
 
         self.percentFormatter = [[[NSNumberFormatter alloc]init] autorelease];
 		// Using the multiplier of 100 allows people to enter values like 5 to mean 5%
 		// rather than having to enter .05.
 		
         [self.percentFormatter setNumberStyle:NSNumberFormatterPercentStyle];
-		[self.percentFormatter setMaximumSignificantDigits:3];
-		self.percentFormatter.usesSignificantDigits = TRUE;
 		[self.percentFormatter setMinimumFractionDigits:0];
+		[self.percentFormatter setMaximumFractionDigits:3];
 
         
         

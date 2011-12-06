@@ -97,9 +97,9 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 {
     // For editing purposes, update the cell to have a plain decimal number
     NSNumber *value = (NSNumber*)[self.fieldEditInfo.fieldInfo getFieldValue];
-    self.textField.text = 
-        [[NumberHelper theHelper].decimalFormatter stringFromNumber:value];
-
+	NSString *formattedValue =  [[NumberHelper theHelper].decimalFormatter stringFromNumber:value];
+	assert(formattedValue != nil);
+    self.textField.text = formattedValue;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -163,6 +163,7 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 - (void)dealloc {
 	[label release];
 	[textField release];
+// TBD - Is this a circular reference with the fieldEditInfo, and if so, does it need to be handled differently?
     [fieldEditInfo release];
 	[super dealloc];
 }
