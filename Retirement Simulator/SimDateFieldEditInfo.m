@@ -133,8 +133,7 @@
 	}
     
     SimDateFieldEditInfo *fieldEditInfo = [[[SimDateFieldEditInfo alloc] 
-											initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo andShowEndDates:doShowEndDates
-											andDefaultRelEndDateFieldInfo:nil] autorelease];
+											initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo andShowEndDates:doShowEndDates andDefaultRelEndDateFieldInfo:defaultRelEndDateFieldInfo] autorelease];
 	
     
     return fieldEditInfo;
