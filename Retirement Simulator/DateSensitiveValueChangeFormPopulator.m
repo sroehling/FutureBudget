@@ -40,10 +40,14 @@
 	SectionInfo *sectionInfo = [self nextSection];
 	
 	SimDateRuntimeInfo *varDateInfo = [SimDateRuntimeInfo createForDateSensitiveValue:valRuntimeInfo andVariableValue:varValue];
+	
+	SimDateFieldEditInfo *simDateFieldEditInfo = [SimDateFieldEditInfo createForObject:dsValueChange 
+		andKey:@"startDate" andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
+		andDefaultFixedDate:dsValueChange.defaultFixedStartDate 
+			andVarDateRuntimeInfo:varDateInfo andShowEndDates:FALSE
+		andDefaultRelEndDateKey:nil];
 		
-	[sectionInfo addFieldEditInfo:[SimDateFieldEditInfo createForObject:dsValueChange andKey:@"startDate" andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
-	andDefaultFixedDate:dsValueChange.defaultFixedStartDate andVarDateRuntimeInfo:varDateInfo andShowEndDates:FALSE
-		andDefaultRelEndDateKey:nil]];
+	[sectionInfo addFieldEditInfo:simDateFieldEditInfo];
 
 	NSString *newValueLabel = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),
 							   LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];

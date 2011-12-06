@@ -149,9 +149,7 @@ static SharedAppValues *theSharedAppVals;
 	sharedVals.simStartDate = [[[NSDate alloc] init] autorelease];
 	
 	RelativeEndDate *theSimEndDate = [dataModelInterface createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
-	theSimEndDate.years = [NSNumber numberWithInt:DEFAULT_SIM_END_DATE_OFFSET_YEARS];
-	theSimEndDate.months = [NSNumber numberWithInt:0];
-	theSimEndDate.weeks = [NSNumber numberWithInt:0];
+	theSimEndDate.monthsOffset = [NSNumber numberWithInt:DEFAULT_SIM_END_DATE_OFFSET_YEARS*12];
 	sharedVals.simEndDate = theSimEndDate;
 	sharedVals.defaultFixedRelativeEndDate = theSimEndDate;
 

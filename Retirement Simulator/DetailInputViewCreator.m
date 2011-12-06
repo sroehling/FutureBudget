@@ -16,7 +16,6 @@
 #import "ManagedObjectFieldInfo.h"
 #import "NumberFieldEditInfo.h"
 #import "DateFieldEditInfo.h"
-#import "SimDateFieldEditInfo.h"
 #import "RepeatFrequencyFieldEditInfo.h"
 #import "DateSensitiveValueFieldEditInfo.h"
 #import "GenericFieldBasedTableEditViewController.h"

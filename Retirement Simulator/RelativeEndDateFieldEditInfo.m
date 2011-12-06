@@ -9,10 +9,10 @@
 #import "RelativeEndDateFieldEditInfo.h"
 #import "RelativeEndDate.h"
 #import "ValueSubtitleTableCell.h"
-#import "RelativeDatePickerViewController.h"
 #import "DateHelper.h"
 #import "LocalizationHelper.h"
 #import "SimDateRuntimeInfo.h"
+#import "DurationFieldEditViewController.h"
 
 @implementation RelativeEndDateFieldEditInfo
 
@@ -82,8 +82,9 @@
 
 - (UIViewController*)fieldEditController
 {
-    return [[[RelativeDatePickerViewController alloc] 
-		initWithRelativeEndDateFieldInfo:self.relEndDateFieldInfo] autorelease];
+    DurationFieldEditViewController *durationController = 
+        [[[DurationFieldEditViewController alloc] initWithDurationFieldInfo:self.relEndDateFieldInfo] autorelease];
+    return durationController;
 }
 
 - (BOOL)hasFieldEditController

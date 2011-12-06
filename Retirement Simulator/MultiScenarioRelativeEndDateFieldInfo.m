@@ -10,7 +10,6 @@
 #import "MultiScenarioInputValue.h"
 #import "DataModelController.h"
 #import "RelativeEndDate.h"
-#import "RelativeEndDateInfo.h"
 
 
 @implementation MultiScenarioRelativeEndDateFieldInfo
@@ -51,7 +50,7 @@
 		[self.inputVal findInputValueForScenarioOrDefault:self.currentScen];
 	assert(theRelEndDate != nil); // value must be set for current scenario or default
 	
-	return [theRelEndDate relEndDateInfo];
+	return theRelEndDate.monthsOffset;
 }
 
 - (NSManagedObject*)managedObject
@@ -74,20 +73,19 @@
 
 - (void)setFieldValue:(NSObject*)newValue
 {
-	assert([newValue isKindOfClass:[RelativeEndDateInfo class]]);
-	RelativeEndDateInfo *newRelEndDateInfo = (RelativeEndDateInfo*)newValue;
+	assert([newValue isKindOfClass:[NSNumber class]]);
 	RelativeEndDate *existingRelEndDate = (RelativeEndDate*)
 		[self.inputVal findInputValueForScenario:self.currentScen];
 	if(existingRelEndDate != nil)
 	{
-		[existingRelEndDate setWithRelEndDateInfo:newRelEndDateInfo];
+		existingRelEndDate.monthsOffset = (NSNumber *)newValue;
 	}
 	else
 	{
 		RelativeEndDate *newRelEndDate = (RelativeEndDate*)
 			[[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
-		[newRelEndDate setWithRelEndDateInfo:newRelEndDateInfo];
-
+		newRelEndDate.monthsOffset = (NSNumber *)newValue;
+		
 		[self.inputVal setValueForScenario:self.currentScen andInputValue:newRelEndDate];
 	}
 }

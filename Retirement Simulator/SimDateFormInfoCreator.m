@@ -103,7 +103,6 @@
 			[[[RelativeEndDateFieldEditInfo alloc] 
 			initWithRelativeEndDateFieldInfo:self.defaultRelEndDateFieldInfo andSimDateRuntimeInfo:self.varDateRuntimeInfo] autorelease];
 		[sectionInfo addFieldEditInfo:relEndDateFieldEditInfo];
-			
 	}	
 	
     sectionInfo = [formPopulator nextSection];

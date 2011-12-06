@@ -201,9 +201,7 @@
 	MultiScenarioInputValue *msFixedRelEndDate = [self multiScenInputValue];
 	
 	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[self.dataModel createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
-	fixedRelEndDate.years = [NSNumber numberWithInt:0];
-	fixedRelEndDate.months = [NSNumber numberWithInt:0];
-	fixedRelEndDate.weeks = [NSNumber numberWithInt:0];
+	fixedRelEndDate.monthsOffset = [NSNumber numberWithInt:0];
 	[msFixedRelEndDate setDefaultValue:fixedRelEndDate];
 	return msFixedRelEndDate;
 }

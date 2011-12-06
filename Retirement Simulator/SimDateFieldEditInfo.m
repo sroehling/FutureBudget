@@ -117,23 +117,24 @@
 	MultiScenarioInputValueFieldInfo *fieldInfo = [[[MultiScenarioInputValueFieldInfo alloc]
 													initWithScenario:scenario andManagedObject:obj andFieldKey:key 
 													andFieldLabel:label andFieldPlaceholder:variableDatePlaceholder] autorelease];
-	
-    
+
+
 	MultiScenarioFixedDateFieldInfo *defaultValFieldInfo = 
 		[[[MultiScenarioFixedDateFieldInfo alloc] initWithFieldLabel:label andFieldPlaceholder:variableDatePlaceholder andScenario:scenario andInputVal:defaultVal] autorelease];	
-		
+
 	MultiScenarioRelativeEndDateFieldInfo *defaultRelEndDateFieldInfo = nil;	
 	if(doShowEndDates)
 	{
 		assert(defaultRelEndDate != nil);
 		defaultRelEndDateFieldInfo = 
-			[[[MultiScenarioRelativeEndDateFieldInfo alloc] initWithFieldLabel:label andFieldPlaceholder:variableDatePlaceholder andScenario:scenario andInputVal:defaultRelEndDate] autorelease];	
+			[[[MultiScenarioRelativeEndDateFieldInfo alloc] initWithFieldLabel:label 
+				andFieldPlaceholder:variableDatePlaceholder andScenario:scenario andInputVal:defaultRelEndDate] autorelease];	
 		
 	}
     
     SimDateFieldEditInfo *fieldEditInfo = [[[SimDateFieldEditInfo alloc] 
 											initWithFieldInfo:fieldInfo andDefaultValFieldInfo:defaultValFieldInfo andVarDateRuntimeInfo:theVarDateRuntimeInfo andShowEndDates:doShowEndDates
-											andDefaultRelEndDateFieldInfo:defaultRelEndDateFieldInfo] autorelease];
+											andDefaultRelEndDateFieldInfo:nil] autorelease];
 	
     
     return fieldEditInfo;
@@ -143,7 +144,7 @@
 
 + (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultFixedDate:(FixedDate*)defaultFixedDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
 	andShowEndDates:(bool)doShowEndDates
-	andDefaultRelEndDateKey:(NSString*)theDefaultRelEndDateKey
+	andDefaultRelEndDateKey:(NSString*)defaultRelEndDateKey
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
@@ -168,11 +169,13 @@
 	ManagedObjectFieldInfo *defaultRelEndDateFieldInfo = nil;
 	if(doShowEndDates)
 	{
-		assert([StringValidation nonEmptyString:theDefaultRelEndDateKey]);
+		
+		assert([StringValidation nonEmptyString:defaultRelEndDateKey]);
 		defaultRelEndDateFieldInfo = [[[SingleScenarioRelativeEndDateFieldInfo alloc] 
                                           initWithManagedObject:obj 
-                        andFieldKey:theDefaultRelEndDateKey andFieldLabel:label
+                        andFieldKey:defaultRelEndDateKey andFieldLabel:label
 						andFieldPlaceholder:variableDatePlaceholder] autorelease];
+		
 	}
 
     
