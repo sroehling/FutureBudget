@@ -10,17 +10,22 @@
 
 @class WorkingBalance;
 @class BalanceAdjustment;
+@class Input;
 
 
 
 @interface WorkingBalanceCltn : NSObject {
     @private
 		NSMutableArray *workingBalList;
+		NSMutableDictionary *inputWorkingBalMap;
 		bool needsSorting;
 		
 }
 
+- (void)addBalance:(WorkingBalance*)workingBal forInput:(Input*)theInput;
 - (void)addBalance:(WorkingBalance*)workingBal;
+- (WorkingBalance*)getWorkingBalanceForInput:(Input*)theInput;
+
 - (void)carryBalancesForward:(NSDate*)newDate;
 - (void)advanceBalancesToDate:(NSDate*)newDate;
 - (void) resetCurrentBalances;
@@ -29,6 +34,7 @@
 - (void)sortByWithdrawalOrder;
 
 @property(nonatomic,retain) NSMutableArray *workingBalList;
+@property(nonatomic,retain) NSMutableDictionary *inputWorkingBalMap;
 
 
 @end

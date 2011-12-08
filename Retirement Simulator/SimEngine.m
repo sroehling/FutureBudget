@@ -145,7 +145,7 @@
 		}
 		
 		
-		[self.simParams.workingBalanceMgr.fundingSources addBalance:acctSimInfo.acctBal];
+		[self.simParams.workingBalanceMgr.fundingSources addBalance:acctSimInfo.acctBal forInput:acct];
 	} // for each savings account
 	
 	
@@ -181,7 +181,7 @@
 				[self.eventCreators addObject:extraPmtCreator];
 			}
 
-			[self.simParams.workingBalanceMgr.loanBalances addBalance:loanInfo.loanBalance];
+			[self.simParams.workingBalanceMgr.loanBalances addBalance:loanInfo.loanBalance forInput:loan];
 
 
 		}
@@ -219,7 +219,7 @@
 					[self.eventCreators addObject:assetSaleCreator];
 				}
 			
-				[self.simParams.workingBalanceMgr.assetValues addBalance:assetInfo.assetValue];
+				[self.simParams.workingBalanceMgr.assetValues addBalance:assetInfo.assetValue forInput:asset];
 			} // If asset owned for at least one day
 		} // If asset is enabled
 	}

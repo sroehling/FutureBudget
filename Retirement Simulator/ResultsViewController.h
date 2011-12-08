@@ -7,19 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CorePlot-CocoaTouch.h"
 
-@interface ResultsViewController : UIViewController <CPTPlotDataSource> {
+
+@class ResultsViewInfo;
+
+@interface ResultsViewController : UIViewController{
 	@private
-		CPTXYGraph *graph;
-		
-		NSMutableArray *dataForPlot;
-		NSInteger resultMinYear;
-		NSInteger resultMaxYear;
-		double resultMinVal;
-		double resultMaxVal;
+		ResultsViewInfo *viewInfo;
 }
 
-@property(nonatomic,retain) NSMutableArray *dataForPlot;
+@property(nonatomic,retain) ResultsViewInfo *viewInfo;;
+
+-(id)initWithResultsViewInfo:(ResultsViewInfo*)theViewInfo;
 
 @end

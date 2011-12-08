@@ -19,6 +19,7 @@
 #import "LocalizationHelper.h"
 #import "ManagedObjectFieldInfo.h"
 #import "StartingValsFormInfoCreator.h"
+#import "ResultsListFormInfoCreator.h"
 
 @implementation Retirement_SimulatorAppDelegate
 
@@ -65,9 +66,12 @@
 	startingValsNavController.title = LOCALIZED_STR(@"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE");
 	startingValsNavController.tabBarItem.image = [UIImage imageNamed:@"clock.png"];
 
-	
-	ResultsViewController *resultsController = [[[ResultsViewController alloc] init] autorelease];
-	UINavigationController *resultsNavController = [[[UINavigationController alloc] initWithRootViewController:resultsController] autorelease];
+	ResultsListFormInfoCreator *resultsListFormInfoCreator = 
+		[[[ResultsListFormInfoCreator alloc] init] autorelease];
+	UIViewController *resultsController = [[[GenericFieldBasedTableEditViewController alloc]
+		initWithFormInfoCreator:resultsListFormInfoCreator] autorelease];
+	UINavigationController *resultsNavController = [[[UINavigationController alloc] 
+		initWithRootViewController:resultsController] autorelease];
 	resultsNavController.title = LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
 	resultsNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
 	
