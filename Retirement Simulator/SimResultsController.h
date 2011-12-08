@@ -14,12 +14,16 @@
 		NSMutableArray *endOfYearResults;
 		NSInteger resultMinYear;
 		NSInteger resultMaxYear;
+		
+		NSSet *assetsSimulated;
     
 }
 
 @property(nonatomic,retain) NSMutableArray *endOfYearResults;
 @property NSInteger resultMinYear;
 @property NSInteger resultMaxYear;
+
+@property(nonatomic,retain) NSSet *assetsSimulated;
 
 - (void) runSimulatorForResults;
 

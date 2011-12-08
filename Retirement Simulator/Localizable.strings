@@ -451,7 +451,9 @@
 "RESULTS_SUMMARY_SECTION_TITLE" = "Summary";
 "RESULTS_SUMMARY_NET_WORTH_TITLE" = "Net Worth";
 "RESULTS_SUMMARY_NET_WORTH_SUBTITLE" = "Plot total assets and account balances minus debts.";
-
+"RESULTS_ASSET_SECTION_TITLE" = "Asset Values";
+"RESULTS_ASSET_ALL_ASSET_TITLE" = "All Assets";
+"RESULTS_ASSET_ALL_ASSET_SUBTITLE" = "Plot the total value of all purchased assets";
 
 "NUMBER_VALIDATION_POSITIVE_PERCENT_MSG" = "Enter a percent greater or equal to 0";
 "NUMBER_VALIDATION_POSITIVE_AMOUNT_MSG" = "Enter an amount greater or equal to 0";

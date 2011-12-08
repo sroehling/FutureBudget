@@ -13,11 +13,14 @@
 @interface InputSimInfoCltn : NSObject {
     @private
 		NSMutableDictionary *inputSimInfoMap;
+		NSMutableSet *inputsSimulated;
 }
 
 @property(nonatomic,retain) NSMutableDictionary *inputSimInfoMap;
+@property(nonatomic,retain) NSMutableSet *inputsSimulated;
 
 -(id)getSimInfo:(Input*)theInput;
 -(void)addSimInfo:(Input*)theInput withSimInfo:(id)simInfo;
+-(NSArray*)simInfos;
 
 @end

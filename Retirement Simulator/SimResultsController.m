@@ -10,6 +10,8 @@
 #import "SimEngine.h"
 #import "EndOfYearDigestResult.h"
 #import "FiscalYearDigest.h"
+#import "SimParams.h"
+#import "InputSimInfoCltn.h"
 
 
 @implementation SimResultsController
@@ -17,6 +19,7 @@
 @synthesize endOfYearResults;
 @synthesize resultMaxYear;
 @synthesize resultMinYear;
+@synthesize assetsSimulated;
 
 - (void) runSimulatorForResults
 {
@@ -41,6 +44,8 @@
 	assert(maxYear >= minYear);
 	self.resultMaxYear = maxYear;
 	self.resultMinYear = minYear;
+	
+	self.assetsSimulated = simEngine.simParams.assetInfo.inputsSimulated;
     
 
     
@@ -53,6 +58,7 @@
 {
 	[super dealloc];
 	[endOfYearResults release];
+	[assetsSimulated release];
 }
 
 

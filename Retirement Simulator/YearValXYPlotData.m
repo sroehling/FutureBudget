@@ -30,6 +30,8 @@
 
 -(void)addPlotDataPointForYear:(NSInteger)year andYVal:(double)yVal
 {
+	assert(year >= 1900);
+
 	self.minYVal = MIN(self.minYVal,yVal);
 	self.maxYVal = MAX(self.maxYVal,yVal);
 

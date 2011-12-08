@@ -1,8 +1,8 @@
 //
-//  NetWorthXYPlotDataGenerator.h
+//  AllAssetValueXYPlotDataGenerator.h
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 12/7/11.
+//  Created by Steve Roehling on 12/8/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 #import "YearValXYPlotDataGenerator.h"
 
-@interface NetWorthXYPlotDataGenerator : NSObject <YearValXYPlotDataGenerator> {
+@interface AllAssetValueXYPlotDataGenerator : NSObject <YearValXYPlotDataGenerator> {
     
 }
 

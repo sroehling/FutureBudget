@@ -28,6 +28,10 @@
 #import "TaxInputCalcs.h"
 #import "SimParams.h"
 
+#import "AssetInput.h"
+#import "InputSimInfoCltn.h"
+#import "EndOfYearInputResults.h"
+
 @implementation FiscalYearDigest
 
 @synthesize simParams;
@@ -54,6 +58,21 @@
 	return self;
 }
 
+-(void)processEndOfYearInputResults:(EndOfYearDigestResult*)results
+{
+
+	NSArray *assetSimInfos = [self.simParams.assetInfo simInfos];
+	double sumAssetVal = 0.0;
+	for(AssetSimInfo *assetSimInfo in assetSimInfos)
+	{
+		double assetVal = [assetSimInfo.assetValue currentBalance];
+		[results.assetValues setResultForInput:assetSimInfo.asset andValue:assetVal];
+		sumAssetVal += assetVal;
+	}
+	results.sumAssetVals = sumAssetVal;
+
+}
+	
 
 
 - (EndOfYearDigestResult*)processDigest
@@ -129,6 +148,7 @@
 
 
 	endOfYearResults.totalEndOfYearBalance = [self.simParams.workingBalanceMgr totalCurrentNetBalance];
+	[self processEndOfYearInputResults:endOfYearResults];
 	[endOfYearResults logResults];
 
 	return endOfYearResults;

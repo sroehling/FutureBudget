@@ -238,6 +238,9 @@
 		00BC35C5140C5C0900D79F78 /* EstimatedTaxPaymentSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35C4140C5C0800D79F78 /* EstimatedTaxPaymentSimEvent.m */; };
 		00BC35C8140D42DD00D79F78 /* SimEventList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35C7140D42DD00D79F78 /* SimEventList.m */; };
 		00BC35CB140DA3B600D79F78 /* EventListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35CA140DA3B600D79F78 /* EventListTest.m */; };
+		00CB5E561491282F00C4654A /* EndOfYearInputResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E551491282F00C4654A /* EndOfYearInputResults.m */; };
+		00CB5E5B1491337900C4654A /* AssetValueXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */; };
+		00CB5E5E149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */; };
 		00D8D263148DD3D300B0314D /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D266148DD3F700B0314D /* SingleScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D265148DD3F600B0314D /* SingleScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D269148DE12800B0314D /* RelativeEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D268148DE12700B0314D /* RelativeEndDateFieldEditInfo.m */; };
@@ -769,6 +772,12 @@
 		00BC35C7140D42DD00D79F78 /* SimEventList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimEventList.m; sourceTree = "<group>"; };
 		00BC35C9140DA3B400D79F78 /* EventListTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListTest.h; sourceTree = "<group>"; };
 		00BC35CA140DA3B600D79F78 /* EventListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListTest.m; sourceTree = "<group>"; };
+		00CB5E541491282F00C4654A /* EndOfYearInputResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndOfYearInputResults.h; sourceTree = "<group>"; };
+		00CB5E551491282F00C4654A /* EndOfYearInputResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearInputResults.m; sourceTree = "<group>"; };
+		00CB5E591491337900C4654A /* AssetValueXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetValueXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetValueXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E5C149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAssetValueXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAssetValueXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00D8D261148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
 		00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioRelativeEndDateFieldInfo.m; sourceTree = "<group>"; };
 		00D8D264148DD3F500B0314D /* SingleScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
@@ -1567,6 +1576,7 @@
 			isa = PBXGroup;
 			children = (
 				00D8D27E1490076D00B0314D /* Year Val XY Results Plot */,
+				00CB5E581491331500C4654A /* Results Data Generators */,
 				00D8D26B148FCC3F00B0314D /* ResultsListFormInfoCreator.h */,
 				00D8D26C148FCC3F00B0314D /* ResultsListFormInfoCreator.m */,
 				004F5D711373191600E0C4A3 /* ResultsViewController.h */,
@@ -2056,11 +2066,26 @@
 			name = "Sim Events";
 			sourceTree = "<group>";
 		};
+		00CB5E581491331500C4654A /* Results Data Generators */ = {
+			isa = PBXGroup;
+			children = (
+				00D8D28214900A2100B0314D /* NetWorthXYPlotDataGenerator.h */,
+				00D8D28314900A2200B0314D /* NetWorthXYPlotDataGenerator.m */,
+				00CB5E591491337900C4654A /* AssetValueXYPlotDataGenerator.h */,
+				00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */,
+				00CB5E5C149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.h */,
+				00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */,
+			);
+			name = "Results Data Generators";
+			sourceTree = "<group>";
+		};
 		00D8D26A148EFDA300B0314D /* Digest Results */ = {
 			isa = PBXGroup;
 			children = (
 				00160CA81406B363001D472F /* EndOfYearDigestResult.h */,
 				00160CA91406B365001D472F /* EndOfYearDigestResult.m */,
+				00CB5E541491282F00C4654A /* EndOfYearInputResults.h */,
+				00CB5E551491282F00C4654A /* EndOfYearInputResults.m */,
 			);
 			name = "Digest Results";
 			sourceTree = "<group>";
@@ -2075,8 +2100,6 @@
 				00D8D27D1490076000B0314D /* YearValXYPlotDataGenerator.h */,
 				00D8D27F149007A200B0314D /* YearValXYPlotData.h */,
 				00D8D280149007A200B0314D /* YearValXYPlotData.m */,
-				00D8D28214900A2100B0314D /* NetWorthXYPlotDataGenerator.h */,
-				00D8D28314900A2200B0314D /* NetWorthXYPlotDataGenerator.m */,
 			);
 			name = "Year Val XY Results Plot";
 			sourceTree = "<group>";
@@ -2519,6 +2542,9 @@
 				00D8D27C1490061000B0314D /* YearValXYPlotResultsViewFactory.m in Sources */,
 				00D8D281149007A300B0314D /* YearValXYPlotData.m in Sources */,
 				00D8D28414900A2400B0314D /* NetWorthXYPlotDataGenerator.m in Sources */,
+				00CB5E561491282F00C4654A /* EndOfYearInputResults.m in Sources */,
+				00CB5E5B1491337900C4654A /* AssetValueXYPlotDataGenerator.m in Sources */,
+				00CB5E5E149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

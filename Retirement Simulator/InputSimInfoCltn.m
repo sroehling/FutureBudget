@@ -13,6 +13,7 @@
 @implementation InputSimInfoCltn
 
 @synthesize inputSimInfoMap;
+@synthesize inputsSimulated;
 
 -(id)init
 {
@@ -20,6 +21,7 @@
 	if(self)
 	{
 		self.inputSimInfoMap = [[[NSMutableDictionary alloc] init] autorelease];
+		self.inputsSimulated = [[[NSMutableSet alloc] init] autorelease];
 	}
 	return self;
 }
@@ -44,16 +46,24 @@
 	assert(simInfo != nil);
 	assert([self findSimInfo:theInput] == nil); // duplicates not allowed
 	
+	[self.inputsSimulated addObject:theInput];
+	
 	// TODO - Need to definitively verify insertion and retrieval of 
 	// objects into the dictionary. An ID stored with the input is
 	// likely needed.
 	[self.inputSimInfoMap setObject:simInfo forKey:[theInput objectID]];
 }
 
+-(NSArray*)simInfos
+{
+	return [self.inputSimInfoMap allValues];
+}
+
 -(void)dealloc
 {
 	[super dealloc];
 	[inputSimInfoMap release];
+	[inputsSimulated release];
 }
 
 @end
