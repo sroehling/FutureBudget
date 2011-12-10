@@ -31,6 +31,15 @@
 #import "AssetInput.h"
 #import "InputSimInfoCltn.h"
 #import "EndOfYearInputResults.h"
+#import "LoanSimInfo.h"
+#import "LoanInput.h"
+#import "AccountSimInfo.h"
+#import "Account.h"
+#import "IncomeSimInfo.h"
+#import "IncomeInput.h"
+#import "InputValDigestSummation.h"
+#import "ExpenseSimInfo.h"
+#import "ExpenseInput.h"
 
 @implementation FiscalYearDigest
 
@@ -70,6 +79,47 @@
 		sumAssetVal += assetVal;
 	}
 	results.sumAssetVals = sumAssetVal;
+	
+	NSArray *loanSimInfos = [self.simParams.loanInfo simInfos];
+	double sumLoanBal = 0.0;
+	for(LoanSimInfo *loanSimInfo in loanSimInfos)
+	{
+		double loanBal = [loanSimInfo.loanBalance currentBalance];
+		[results.loanBalances setResultForInput:loanSimInfo.loan andValue:loanBal];
+		sumLoanBal += loanBal;
+	}
+	results.sumLoanBal = sumLoanBal;
+	
+	NSArray *acctSimInfos = [self.simParams.acctInfo simInfos];
+	double sumAcctBal = 0.0;
+	for(AccountSimInfo *acctSimInfo in acctSimInfos)
+	{
+		double acctBal = [acctSimInfo.acctBal currentBalance];
+		[results.acctBalances setResultForInput:acctSimInfo.account andValue:acctBal];
+		sumAcctBal += acctBal;
+	}
+	results.sumAcctBal = sumAcctBal;
+	
+	NSArray *incomeSimInfos = [self.simParams.incomeInfo simInfos];
+	double sumIncome = 0.0;
+	for(IncomeSimInfo *incomeSimInfo  in incomeSimInfos)
+	{
+		double incomeAmt = [incomeSimInfo.digestSum yearlyTotal];
+		[results.incomes setResultForInput:incomeSimInfo.income andValue:incomeAmt];
+		sumIncome += incomeAmt;
+	}
+	results.sumIncomes = sumIncome;
+
+	NSArray *expenseSimInfos = [self.simParams.expenseInfo simInfos];
+	double sumExpense = 0.0;
+	for(ExpenseSimInfo *expenseSimInfo  in expenseSimInfos)
+	{
+		double expenseAmt = [expenseSimInfo.digestSum yearlyTotal];
+		[results.expenses setResultForInput:expenseSimInfo.expense andValue:expenseAmt];
+		sumIncome += expenseAmt;
+	}
+	results.sumExpense = sumExpense;
+
 
 }
 	
@@ -144,12 +194,16 @@
 	[self.simParams.taxInputCalcs updateEffectiveTaxRates:beginningOfNextYear];
 	
 	// Reset all the digest sums used to tally up taxable incomes, expenses, interest, etc.
-	[self.simParams.digestSums resetSums];
 
 
 	endOfYearResults.totalEndOfYearBalance = [self.simParams.workingBalanceMgr totalCurrentNetBalance];
 	[self processEndOfYearInputResults:endOfYearResults];
 	[endOfYearResults logResults];
+
+	// Reset the digest sums after processing end of year results, since
+	// these digest sums are used copied out to the results.
+	[self.simParams.digestSums resetSums];
+
 
 	return endOfYearResults;
 }

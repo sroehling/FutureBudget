@@ -20,6 +20,10 @@
 @synthesize resultMaxYear;
 @synthesize resultMinYear;
 @synthesize assetsSimulated;
+@synthesize loansSimulated;
+@synthesize acctsSimulated;
+@synthesize incomesSimulated;
+@synthesize expensesSimulated;
 
 - (void) runSimulatorForResults
 {
@@ -46,6 +50,10 @@
 	self.resultMinYear = minYear;
 	
 	self.assetsSimulated = simEngine.simParams.assetInfo.inputsSimulated;
+	self.loansSimulated = simEngine.simParams.loanInfo.inputsSimulated;
+	self.acctsSimulated = simEngine.simParams.acctInfo.inputsSimulated;
+	self.incomesSimulated = simEngine.simParams.incomeInfo.inputsSimulated;
+	self.expensesSimulated = simEngine.simParams.expenseInfo.inputsSimulated;
     
 
     
@@ -59,6 +67,10 @@
 	[super dealloc];
 	[endOfYearResults release];
 	[assetsSimulated release];
+	[loansSimulated release];
+	[acctsSimulated release];
+	[incomesSimulated release];
+	[expensesSimulated release];
 }
 
 

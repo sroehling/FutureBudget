@@ -16,6 +16,10 @@
 		NSInteger resultMaxYear;
 		
 		NSSet *assetsSimulated;
+		NSSet *loansSimulated;
+		NSSet *acctsSimulated;
+		NSSet *incomesSimulated;
+		NSSet *expensesSimulated;
     
 }
 
@@ -24,6 +28,10 @@
 @property NSInteger resultMaxYear;
 
 @property(nonatomic,retain) NSSet *assetsSimulated;
+@property(nonatomic,retain) NSSet *loansSimulated;
+@property(nonatomic,retain) NSSet *acctsSimulated;
+@property(nonatomic,retain) NSSet *incomesSimulated;
+@property(nonatomic,retain) NSSet *expensesSimulated;
 
 - (void) runSimulatorForResults;
 

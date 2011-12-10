@@ -17,6 +17,14 @@
 @synthesize totalEndOfYearBalance;
 @synthesize assetValues;
 @synthesize sumAssetVals;
+@synthesize loanBalances;
+@synthesize sumLoanBal;
+@synthesize acctBalances;
+@synthesize sumAcctBal;
+@synthesize incomes;
+@synthesize sumIncomes;
+@synthesize expenses;
+@synthesize sumExpense;
 
 -(id)initWithEndDate:(NSDate *)endOfYearDate
 {
@@ -29,6 +37,18 @@
 		
 		self.assetValues = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumAssetVals = 0.0;
+		
+		self.loanBalances = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumLoanBal = 0.0;
+		
+		self.acctBalances = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumAcctBal = 0.0;
+		
+		self.incomes = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumIncomes = 0.0;
+		
+		self.expenses = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumExpense = 0.0;
 	}
 	return self;
 
@@ -54,6 +74,10 @@
 {
 	[super dealloc];
 	[assetValues release];
+	[loanBalances release];
+	[acctBalances release];
+	[incomes release];
+	[expenses release];
 }
 
 @end

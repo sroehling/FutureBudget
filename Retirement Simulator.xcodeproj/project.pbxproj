@@ -241,6 +241,14 @@
 		00CB5E561491282F00C4654A /* EndOfYearInputResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E551491282F00C4654A /* EndOfYearInputResults.m */; };
 		00CB5E5B1491337900C4654A /* AssetValueXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */; };
 		00CB5E5E149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */; };
+		00CB5E611491622D00C4654A /* AllLoanBalanceXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E601491622D00C4654A /* AllLoanBalanceXYPlotDataGenerator.m */; };
+		00CB5E641491628D00C4654A /* LoanBalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E631491628D00C4654A /* LoanBalXYPlotDataGenerator.m */; };
+		00CB5E6714926F1700C4654A /* AllAcctBalanceXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E6614926F1500C4654A /* AllAcctBalanceXYPlotDataGenerator.m */; };
+		00CB5E6A14926F4300C4654A /* AcctBalanceXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E6914926F4200C4654A /* AcctBalanceXYPlotDataGenerator.m */; };
+		00CB5E6D14927DDC00C4654A /* AllIncomeXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E6C14927DD900C4654A /* AllIncomeXYPlotDataGenerator.m */; };
+		00CB5E7014927E7700C4654A /* IncomeXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E6F14927E6500C4654A /* IncomeXYPlotDataGenerator.m */; };
+		00CB5E731492AF2400C4654A /* AllExpenseXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */; };
+		00CB5E761492AF4300C4654A /* ExpenseXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */; };
 		00D8D263148DD3D300B0314D /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D266148DD3F700B0314D /* SingleScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D265148DD3F600B0314D /* SingleScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D269148DE12800B0314D /* RelativeEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D268148DE12700B0314D /* RelativeEndDateFieldEditInfo.m */; };
@@ -778,6 +786,22 @@
 		00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetValueXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00CB5E5C149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAssetValueXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAssetValueXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E5F1491622C00C4654A /* AllLoanBalanceXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllLoanBalanceXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E601491622D00C4654A /* AllLoanBalanceXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllLoanBalanceXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E621491628C00C4654A /* LoanBalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanBalXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E631491628D00C4654A /* LoanBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanBalXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E6514926F1300C4654A /* AllAcctBalanceXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctBalanceXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E6614926F1500C4654A /* AllAcctBalanceXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctBalanceXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E6814926F4100C4654A /* AcctBalanceXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctBalanceXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E6914926F4200C4654A /* AcctBalanceXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctBalanceXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E6B14927DD600C4654A /* AllIncomeXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllIncomeXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E6C14927DD900C4654A /* AllIncomeXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllIncomeXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E6E14927E6300C4654A /* IncomeXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E6F14927E6500C4654A /* IncomeXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E711492AF1A00C4654A /* AllExpenseXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllExpenseXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E741492AF3C00C4654A /* ExpenseXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00D8D261148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
 		00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioRelativeEndDateFieldInfo.m; sourceTree = "<group>"; };
 		00D8D264148DD3F500B0314D /* SingleScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
@@ -2075,6 +2099,22 @@
 				00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */,
 				00CB5E5C149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.h */,
 				00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */,
+				00CB5E5F1491622C00C4654A /* AllLoanBalanceXYPlotDataGenerator.h */,
+				00CB5E601491622D00C4654A /* AllLoanBalanceXYPlotDataGenerator.m */,
+				00CB5E621491628C00C4654A /* LoanBalXYPlotDataGenerator.h */,
+				00CB5E631491628D00C4654A /* LoanBalXYPlotDataGenerator.m */,
+				00CB5E6514926F1300C4654A /* AllAcctBalanceXYPlotDataGenerator.h */,
+				00CB5E6614926F1500C4654A /* AllAcctBalanceXYPlotDataGenerator.m */,
+				00CB5E6814926F4100C4654A /* AcctBalanceXYPlotDataGenerator.h */,
+				00CB5E6914926F4200C4654A /* AcctBalanceXYPlotDataGenerator.m */,
+				00CB5E6B14927DD600C4654A /* AllIncomeXYPlotDataGenerator.h */,
+				00CB5E6C14927DD900C4654A /* AllIncomeXYPlotDataGenerator.m */,
+				00CB5E6E14927E6300C4654A /* IncomeXYPlotDataGenerator.h */,
+				00CB5E6F14927E6500C4654A /* IncomeXYPlotDataGenerator.m */,
+				00CB5E711492AF1A00C4654A /* AllExpenseXYPlotDataGenerator.h */,
+				00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */,
+				00CB5E741492AF3C00C4654A /* ExpenseXYPlotDataGenerator.h */,
+				00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */,
 			);
 			name = "Results Data Generators";
 			sourceTree = "<group>";
@@ -2545,6 +2585,14 @@
 				00CB5E561491282F00C4654A /* EndOfYearInputResults.m in Sources */,
 				00CB5E5B1491337900C4654A /* AssetValueXYPlotDataGenerator.m in Sources */,
 				00CB5E5E149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m in Sources */,
+				00CB5E611491622D00C4654A /* AllLoanBalanceXYPlotDataGenerator.m in Sources */,
+				00CB5E641491628D00C4654A /* LoanBalXYPlotDataGenerator.m in Sources */,
+				00CB5E6714926F1700C4654A /* AllAcctBalanceXYPlotDataGenerator.m in Sources */,
+				00CB5E6A14926F4300C4654A /* AcctBalanceXYPlotDataGenerator.m in Sources */,
+				00CB5E6D14927DDC00C4654A /* AllIncomeXYPlotDataGenerator.m in Sources */,
+				00CB5E7014927E7700C4654A /* IncomeXYPlotDataGenerator.m in Sources */,
+				00CB5E731492AF2400C4654A /* AllExpenseXYPlotDataGenerator.m in Sources */,
+				00CB5E761492AF4300C4654A /* ExpenseXYPlotDataGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
