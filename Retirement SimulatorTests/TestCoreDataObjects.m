@@ -156,9 +156,7 @@
 {
 	MultiScenarioInputValue *msFixedRelEndDate =[self createTestMultiScenInputVal];
 	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[self.coreData createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
-	fixedRelEndDate.years = [NSNumber numberWithInt:0];
-	fixedRelEndDate.months = [NSNumber numberWithInt:0];
-	fixedRelEndDate.weeks = [NSNumber numberWithInt:0];
+	fixedRelEndDate.monthsOffset = [NSNumber numberWithInt:0];
 	[msFixedRelEndDate setValueForScenario:self.testScenario andInputValue:fixedRelEndDate];
 	return msFixedRelEndDate;
 }
