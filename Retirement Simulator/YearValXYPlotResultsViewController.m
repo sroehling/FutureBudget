@@ -79,128 +79,134 @@
 	
 	[super viewWillAppear:animated];
 
-    // This is called before the results view is presented. We use this as
-    // an opportunity to update the results. 
-    //
-    // This should suffice for an initial/prototypical implementation.
-    // However, if the number of inputs to process becomes large, then
-    // we will likely need to process the inputs and run the simulator engine
-    // in the background instead.
 	NSLog(@"ResultsViewController: viewWillAppear");
-	
- 	[self.viewInfo.simResultsController runSimulatorForResults];	
-	self.currentData = 
-		[self.plotDataGenerator generatePlotDataFromSimResults:self.viewInfo.simResultsController];
-	assert(self.currentData != nil);
-	double resultMinVal = self.currentData.minYVal;
-	double resultMaxVal = self.currentData.maxYVal;
+	[self.viewInfo.simResultsController runSimulatorForResults];	
 
 	
-	
-	// Create graph from theme
-    graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
-	CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
-    [graph applyTheme:theme];
-	CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
-    hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
-    hostingView.hostedGraph = graph;
-	
-	// Pad the plot as a whole
-    graph.paddingLeft = 5.0;
-	graph.paddingTop = 5.0;
-	graph.paddingRight = 5.0;
-	graph.paddingBottom = 5.0;
-    
-	
-	// Pad around the plot area freme to give room for the x and y axis and labels.
-	graph.plotAreaFrame.paddingTop = 10.0;
-	graph.plotAreaFrame.paddingBottom = 60.0;
-	graph.plotAreaFrame.paddingLeft = 80.0;
-	graph.plotAreaFrame.paddingRight = 20.0;
-	graph.plotAreaFrame.cornerRadius = 5.0;
-	
-	NSInteger resultMinYear = self.viewInfo.simResultsController.resultMinYear;
-	NSInteger resultMaxYear = self.viewInfo.simResultsController.resultMaxYear;
+	if([self.plotDataGenerator resultsDefinedInSimResults:
+			self.viewInfo.simResultsController])
+	{
+		self.currentData = 
+			[self.plotDataGenerator generatePlotDataFromSimResults:self.viewInfo.simResultsController];
+		assert(self.currentData != nil);
+		double resultMinVal = self.currentData.minYVal;
+		double resultMaxVal = self.currentData.maxYVal;
 
-    // Setup plot space
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
-    plotSpace.allowsUserInteraction = NO;
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinYear) 
-		length:CPTDecimalFromFloat(resultMaxYear-resultMinYear)];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinVal) 
-		length:CPTDecimalFromFloat(resultMaxVal-resultMinVal)];
+		
+		
+		// Create graph from theme
+		graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+		CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
+		[graph applyTheme:theme];
+		CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
+		hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
+		hostingView.hostedGraph = graph;
+		
+		// Pad the plot as a whole
+		graph.paddingLeft = 5.0;
+		graph.paddingTop = 5.0;
+		graph.paddingRight = 5.0;
+		graph.paddingBottom = 5.0;
+		
+		
+		// Pad around the plot area freme to give room for the x and y axis and labels.
+		graph.plotAreaFrame.paddingTop = 10.0;
+		graph.plotAreaFrame.paddingBottom = 60.0;
+		graph.plotAreaFrame.paddingLeft = 80.0;
+		graph.plotAreaFrame.paddingRight = 20.0;
+		graph.plotAreaFrame.cornerRadius = 5.0;
+		
+		NSInteger resultMinYear = self.viewInfo.simResultsController.resultMinYear;
+		NSInteger resultMaxYear = self.viewInfo.simResultsController.resultMaxYear;
 
-    // Axes
-	CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
-    CPTXYAxis *x = axisSet.xAxis;
-	x.title = LOCALIZED_STR(@"RESULTS_YEAR_X_AXIS_TITLE");
-    x.majorIntervalLength = CPTDecimalFromString(@"5");
-    x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(resultMinVal);
-    x.minorTicksPerInterval = 5;
-	NSNumberFormatter *yearFormatter = [[[NSNumberFormatter alloc]init] autorelease];
-	[yearFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-	[yearFormatter setMinimumFractionDigits:0];
-	[yearFormatter setGroupingSeparator:@""]; // don't show "," separatar for thousands
-	x.labelFormatter = yearFormatter;
-	x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
-	x.labelExclusionRanges = [NSArray arrayWithObjects:
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(0) 
-			length:CPTDecimalFromInt(resultMinYear+1)], 
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(resultMaxYear+1) 
-			length:CPTDecimalFromInt(1000)], 
-		nil];;
+		// Setup plot space
+		CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+		plotSpace.allowsUserInteraction = NO;
+		plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinYear) 
+			length:CPTDecimalFromFloat(resultMaxYear-resultMinYear)];
+		plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinVal) 
+			length:CPTDecimalFromFloat(resultMaxVal-resultMinVal)];
 
-   
-    CPTXYAxis *y = axisSet.yAxis;
-	y.title = [self.plotDataGenerator dataLabel];
-	y.titleOffset = 50;
-    y.majorIntervalLength = CPTDecimalFromString(@"10000");
-    y.minorTicksPerInterval = 5;
-	NSNumberFormatter *netWorthFormatter = [[[NSNumberFormatter alloc]init] autorelease];
-	[netWorthFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-	netWorthFormatter.positiveSuffix = @"K";
-	netWorthFormatter.negativeSuffix = @"K)";
-	netWorthFormatter.multiplier = [NSNumber numberWithFloat:.001];
-	[netWorthFormatter setMinimumFractionDigits:0];
-	y.labelFormatter = netWorthFormatter;
-    y.orthogonalCoordinateDecimal = CPTDecimalFromInt(resultMinYear);
-	y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
-	double excludeRange = 1000000000.0;
-	y.labelExclusionRanges = [NSArray arrayWithObjects:
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMinVal-excludeRange) 
-			length:CPTDecimalFromFloat(excludeRange + 1 )], 
-		[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMaxVal+100000) 
-			length:CPTDecimalFromFloat(excludeRange)], 
-		nil];
+		// Axes
+		CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
+		CPTXYAxis *x = axisSet.xAxis;
+		x.title = LOCALIZED_STR(@"RESULTS_YEAR_X_AXIS_TITLE");
+		x.majorIntervalLength = CPTDecimalFromString(@"5");
+		x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(resultMinVal);
+		x.minorTicksPerInterval = 5;
+		NSNumberFormatter *yearFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+		[yearFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+		[yearFormatter setMinimumFractionDigits:0];
+		[yearFormatter setGroupingSeparator:@""]; // don't show "," separatar for thousands
+		x.labelFormatter = yearFormatter;
+		x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+		x.labelExclusionRanges = [NSArray arrayWithObjects:
+			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(0) 
+				length:CPTDecimalFromInt(resultMinYear+1)], 
+			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(resultMaxYear+1) 
+				length:CPTDecimalFromInt(1000)], 
+			nil];;
 
-    // Create a green plot area
-	CPTScatterPlot *dataSourceLinePlot = [[[CPTScatterPlot alloc] init] autorelease];
-    CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
-    lineStyle.lineWidth = 1.f;
-    lineStyle.lineColor = [CPTColor greenColor];
-    dataSourceLinePlot.dataLineStyle = lineStyle;
-    dataSourceLinePlot.identifier = @"Green Plot";
-    dataSourceLinePlot.dataSource = self;
+	   
+		CPTXYAxis *y = axisSet.yAxis;
+		y.title = [self.plotDataGenerator dataLabel];
+		y.titleOffset = 50;
+		y.majorIntervalLength = CPTDecimalFromString(@"10000");
+		y.minorTicksPerInterval = 5;
+		NSNumberFormatter *netWorthFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+		[netWorthFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+		netWorthFormatter.positiveSuffix = @"K";
+		netWorthFormatter.negativeSuffix = @"K)";
+		netWorthFormatter.multiplier = [NSNumber numberWithFloat:.001];
+		[netWorthFormatter setMinimumFractionDigits:0];
+		y.labelFormatter = netWorthFormatter;
+		y.orthogonalCoordinateDecimal = CPTDecimalFromInt(resultMinYear);
+		y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+		double excludeRange = 1000000000.0;
+		y.labelExclusionRanges = [NSArray arrayWithObjects:
+			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMinVal-excludeRange) 
+				length:CPTDecimalFromFloat(excludeRange + 1 )], 
+			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMaxVal+100000) 
+				length:CPTDecimalFromFloat(excludeRange)], 
+			nil];
 
-   // Put an area gradient under the plot above
-    CPTColor *areaColor = [CPTColor colorWithComponentRed:0.3 green:1.0 blue:0.3 alpha:0.8];
-    CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
-    areaGradient.angle = -90.0f;
-    CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient];
-    dataSourceLinePlot.areaFill = areaGradientFill;
-    dataSourceLinePlot.areaBaseValue = CPTDecimalFromString(@"1.75");
+		// Create a green plot area
+		CPTScatterPlot *dataSourceLinePlot = [[[CPTScatterPlot alloc] init] autorelease];
+		CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
+		lineStyle.lineWidth = 1.f;
+		lineStyle.lineColor = [CPTColor greenColor];
+		dataSourceLinePlot.dataLineStyle = lineStyle;
+		dataSourceLinePlot.identifier = @"Green Plot";
+		dataSourceLinePlot.dataSource = self;
 
-	// Animate in the new plot, as an example
-	dataSourceLinePlot.opacity = 0.0f;
-    [graph addPlot:dataSourceLinePlot];
-	
-	CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-	fadeInAnimation.duration = 1.0f;
-	fadeInAnimation.removedOnCompletion = NO;
-	fadeInAnimation.fillMode = kCAFillModeForwards;
-	fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
-	[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];	
-	
+	   // Put an area gradient under the plot above
+		CPTColor *areaColor = [CPTColor colorWithComponentRed:0.3 green:1.0 blue:0.3 alpha:0.8];
+		CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
+		areaGradient.angle = -90.0f;
+		CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient];
+		dataSourceLinePlot.areaFill = areaGradientFill;
+		dataSourceLinePlot.areaBaseValue = CPTDecimalFromString(@"1.75");
+
+		// Animate in the new plot, as an example
+		dataSourceLinePlot.opacity = 0.0f;
+		[graph addPlot:dataSourceLinePlot];
+		
+		CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+		fadeInAnimation.duration = 1.0f;
+		fadeInAnimation.removedOnCompletion = NO;
+		fadeInAnimation.fillMode = kCAFillModeForwards;
+		fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
+		[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];	
+	} // if results defined for the plot data
+	else
+	{
+		// If there's no results defined for the data, then
+		// we pop the view controller back to the main results
+		// list. This can happen if the user disables or deletes
+		// inputs which generate the plot data while the current
+		// results view is showing that plot data.
+		[self.navigationController popViewControllerAnimated:FALSE];
+	}
 }
 
 

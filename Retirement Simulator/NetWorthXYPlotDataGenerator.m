@@ -31,6 +31,11 @@
 	return plotData;
 }
 
+-(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+{
+	return TRUE;
+}
+
 -(NSString*)dataLabel
 {
 	return LOCALIZED_STR(@"RESULTS_NET_WORTH_DATA_LABEL");

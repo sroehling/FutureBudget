@@ -58,6 +58,12 @@
 		assetInput.name];
 }
 
+-(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+{
+	return [simResults.assetsSimulated containsObject:self.assetInput];
+}
+
+
 -(void)dealloc
 {
 	[super dealloc];

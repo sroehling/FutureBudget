@@ -36,6 +36,10 @@
 	return LOCALIZED_STR(@"RESULTS_LOAN_ALL_BALANCES_DATA_LABEL");
 }
 
+-(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+{
+	return TRUE;
+}
 
 
 @end

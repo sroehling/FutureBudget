@@ -36,6 +36,11 @@
 	return LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_BALANCE_DATA_LABEL");
 }
 
+-(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+{
+	return TRUE;
+}
+
 
 
 

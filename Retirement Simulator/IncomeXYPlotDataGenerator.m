@@ -59,6 +59,10 @@
 		income.name];
 }
 
+-(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+{
+	return [simResults.incomesSimulated containsObject:self.income];
+}
 
 -(void)dealloc
 {

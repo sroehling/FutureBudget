@@ -37,4 +37,9 @@
 }
 
 
+-(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+{
+	return TRUE;
+}
+
 @end

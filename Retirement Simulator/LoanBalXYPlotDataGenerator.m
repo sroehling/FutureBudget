@@ -59,6 +59,10 @@
 		loan.name];
 }
 
+-(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+{
+	return [simResults.loansSimulated containsObject:self.loan];
+}
 
 
 
