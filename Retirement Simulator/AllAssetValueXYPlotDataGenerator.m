@@ -12,6 +12,7 @@
 #import "YearValXYPlotData.h"
 #import "SimResultsController.h"
 #import "EndOfYearDigestResult.h"
+#import "LocalizationHelper.h"
 
 @implementation AllAssetValueXYPlotDataGenerator
 
@@ -29,5 +30,11 @@
 
 	return plotData;
 }
+
+-(NSString*)dataLabel
+{
+	return LOCALIZED_STR(@"RESULTS_ASSETS_ALL_ASSET_DATA_LABEL");
+}
+
 
 @end

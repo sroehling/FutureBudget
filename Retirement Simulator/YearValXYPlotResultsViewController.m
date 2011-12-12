@@ -133,7 +133,7 @@
     // Axes
 	CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
     CPTXYAxis *x = axisSet.xAxis;
-	x.title = LOCALIZED_STR(@"RESULTS_NET_WORTH_PLOT_X_AXIS_TITLE");
+	x.title = LOCALIZED_STR(@"RESULTS_YEAR_X_AXIS_TITLE");
     x.majorIntervalLength = CPTDecimalFromString(@"5");
     x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(resultMinVal);
     x.minorTicksPerInterval = 5;
@@ -152,7 +152,7 @@
 
    
     CPTXYAxis *y = axisSet.yAxis;
-	y.title = LOCALIZED_STR(@"RESULTS_NET_WORTH_PLOT_Y_AXIS_TITLE");
+	y.title = [self.plotDataGenerator dataLabel];
 	y.titleOffset = 50;
     y.majorIntervalLength = CPTDecimalFromString(@"10000");
     y.minorTicksPerInterval = 5;

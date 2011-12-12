@@ -11,6 +11,7 @@
 #import "YearValXYPlotDataGenerator.h"
 #import "YearValXYPlotData.h"
 #import "SimResultsController.h"
+#import "LocalizationHelper.h"
 #import "EndOfYearDigestResult.h"
 
 @implementation NetWorthXYPlotDataGenerator
@@ -28,6 +29,11 @@
 	}
 
 	return plotData;
+}
+
+-(NSString*)dataLabel
+{
+	return LOCALIZED_STR(@"RESULTS_NET_WORTH_DATA_LABEL");
 }
 
 @end

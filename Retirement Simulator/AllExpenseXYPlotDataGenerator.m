@@ -12,6 +12,7 @@
 #import "YearValXYPlotData.h"
 #import "SimResultsController.h"
 #import "EndOfYearDigestResult.h"
+#import "LocalizationHelper.h"
 
 @implementation AllExpenseXYPlotDataGenerator
 
@@ -30,6 +31,10 @@
 	return plotData;
 }
 
+-(NSString*)dataLabel
+{
+	return LOCALIZED_STR(@"RESULTS_EXPENSES_ALL_DATA_LABEL");
+}
 
 
 @end

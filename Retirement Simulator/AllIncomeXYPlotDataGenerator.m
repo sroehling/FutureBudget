@@ -12,7 +12,7 @@
 #import "YearValXYPlotData.h"
 #import "SimResultsController.h"
 #import "EndOfYearDigestResult.h"
-
+#import "LocalizationHelper.h"
 
 @implementation AllIncomeXYPlotDataGenerator
 
@@ -29,6 +29,11 @@
 	}
 
 	return plotData;
+}
+
+-(NSString*)dataLabel
+{
+	return LOCALIZED_STR(@"RESULTS_INCOME_ALL_DATA_LABEL");
 }
 
 

@@ -14,5 +14,6 @@
 @protocol YearValXYPlotDataGenerator <NSObject>
 
 -(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults;
+-(NSString*)dataLabel;
 
 @end

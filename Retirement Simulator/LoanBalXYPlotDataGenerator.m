@@ -14,6 +14,7 @@
 #import "EndOfYearDigestResult.h"
 #import "EndOfYearInputResults.h"
 #import "LoanInput.h"
+#import "LocalizationHelper.h"
 
 @implementation LoanBalXYPlotDataGenerator
 
@@ -51,6 +52,13 @@
 
 	return plotData;
 }
+
+-(NSString*)dataLabel
+{
+	return [NSString stringWithFormat: LOCALIZED_STR(@"RESULTS_LOAN_BALANCE_DATA_LABEL_FORMAT"),
+		loan.name];
+}
+
 
 
 

@@ -12,6 +12,7 @@
 #import "YearValXYPlotData.h"
 #import "SimResultsController.h"
 #import "EndOfYearDigestResult.h"
+#import "LocalizationHelper.h"
 
 @implementation AllLoanBalanceXYPlotDataGenerator
 
@@ -29,6 +30,12 @@
 
 	return plotData;
 }
+
+-(NSString*)dataLabel
+{
+	return LOCALIZED_STR(@"RESULTS_LOAN_ALL_BALANCES_DATA_LABEL");
+}
+
 
 
 @end

@@ -446,24 +446,34 @@
 "RELATIVE_END_DATE_SIM_DATE_FIELD_TITLE_FORMAT" = "After %@";
 
 "RESULTS_NAV_CONTROLLER_BUTTON_TITLE" = "Results";
-"RESULTS_NET_WORTH_PLOT_Y_AXIS_TITLE" = "Estimated Net Worth";
-"RESULTS_NET_WORTH_PLOT_X_AXIS_TITLE" = "Year";
+"RESULTS_NET_WORTH_DATA_LABEL" = "Net Worth";
+"RESULTS_YEAR_X_AXIS_TITLE" = "Year";
 "RESULTS_SUMMARY_SECTION_TITLE" = "Summary";
 "RESULTS_SUMMARY_NET_WORTH_TITLE" = "Net Worth";
 "RESULTS_SUMMARY_NET_WORTH_SUBTITLE" = "Plot total assets and account balances minus debts.";
 "RESULTS_ASSET_SECTION_TITLE" = "Asset Values";
 "RESULTS_ASSET_ALL_ASSET_TITLE" = "All Assets";
+"RESULTS_ASSETS_ALL_ASSET_DATA_LABEL" = "All Asset Values";
+"RESULTS_ASSET_DATA_LABEL_FORMAT" = "Asset Value - %@";
 "RESULTS_ASSET_ALL_ASSET_SUBTITLE" = "Plot the total value of all purchased assets";
+"RESULTS_LOAN_ALL_BALANCES_DATA_LABEL" = "All Loan Balances";
+"RESULTS_LOAN_BALANCE_DATA_LABEL_FORMAT" = "Loan Balance - %@";
 "RESULTS_LOAN_SECTION_TITLE" = "Loan Balances";
 "RESULTS_LOAN_ALL_LOAN_TITLE" = "All Loans";
 "RESULTS_LOAN_ALL_LOAN_SUBTITLE" = "Plot the outstanding balances of all loans";
 "RESULTS_ACCT_SECTION_TITLE" = "Account Balances";
+"RESULTS_ACCT_ALL_ACCT_BALANCE_DATA_LABEL" = "All Account Balances";
+"RESULTS_ACCT_BALANCE_DATA_LABEL_FORMAT" = "Account Balance - %@";
 "RESULTS_ACCT_ALL_ACCT_TITLE" = "All Accounts";
 "RESULTS_ACCT_ALL_ACCT_SUBTITLE" = "Plot the outstanding balances for all accounts";
 "RESULTS_INCOME_SECTION_TITLE" = "Incomes";
+"RESULTS_INCOME_ALL_DATA_LABEL" = "All Incomes";
+"RESULTS_INCOME_DATA_LABEL_FORMAT" = "Income - %@";
 "RESULTS_INCOME_ALL_INCOME_TITLE" = "All Incomes";
 "RESULTS_INCOME_ALL_INCOME_SUBTITLE" = "Plot yearly gross income from all sources";
 "RESULTS_EXPENSE_SECTION_TITLE" = "Expenses";
+"RESULTS_EXPENSES_ALL_DATA_LABEL" = "All Expenses";
+"RESULTS_EXPENSES_DATA_LABEL_FORMAT" = "Expense - %@";
 "RESULTS_EXPENSE_ALL_EXPENSE_TITLE" = "All Expenses";
 "RESULTS_EXPENSE_ALL_EXPENSE_SUBTITLE" = "Plot yearly total expenses";
 

@@ -13,7 +13,7 @@
 #import "SimResultsController.h"
 #import "EndOfYearDigestResult.h"
 #import "EndOfYearInputResults.h"
-
+#import "LocalizationHelper.h"
 #import "IncomeInput.h"
 
 @implementation IncomeXYPlotDataGenerator
@@ -51,6 +51,12 @@
 	}
 
 	return plotData;
+}
+
+-(NSString*)dataLabel
+{
+	return [NSString stringWithFormat: LOCALIZED_STR(@"RESULTS_INCOME_DATA_LABEL_FORMAT"),
+		income.name];
 }
 
 

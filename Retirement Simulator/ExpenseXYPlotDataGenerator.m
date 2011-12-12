@@ -13,7 +13,7 @@
 #import "SimResultsController.h"
 #import "EndOfYearDigestResult.h"
 #import "EndOfYearInputResults.h"
-
+#import "LocalizationHelper.h"
 #import "ExpenseInput.h"
 
 @implementation ExpenseXYPlotDataGenerator
@@ -51,6 +51,12 @@
 	}
 
 	return plotData;
+}
+
+-(NSString*)dataLabel
+{
+	return [NSString stringWithFormat: LOCALIZED_STR(@"RESULTS_EXPENSES_DATA_LABEL_FORMAT"),
+		expense.name];
 }
 
 

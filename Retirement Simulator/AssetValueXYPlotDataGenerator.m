@@ -13,7 +13,7 @@
 #import "SimResultsController.h"
 #import "EndOfYearDigestResult.h"
 #import "EndOfYearInputResults.h"
-
+#import "LocalizationHelper.h"
 #import "AssetInput.h"
 
 @implementation AssetValueXYPlotDataGenerator
@@ -50,6 +50,12 @@
 	}
 
 	return plotData;
+}
+
+-(NSString*)dataLabel
+{
+	return [NSString stringWithFormat: LOCALIZED_STR(@"RESULTS_ASSET_DATA_LABEL_FORMAT"),
+		assetInput.name];
 }
 
 -(void)dealloc

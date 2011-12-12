@@ -14,6 +14,7 @@
 #import "EndOfYearDigestResult.h"
 #import "EndOfYearInputResults.h"
 #import "Account.h"
+#import "LocalizationHelper.h"
 
 @implementation AcctBalanceXYPlotDataGenerator
 
@@ -50,6 +51,12 @@
 	}
 
 	return plotData;
+}
+
+-(NSString*)dataLabel
+{
+	return [NSString stringWithFormat: LOCALIZED_STR(@"RESULTS_ACCT_BALANCE_DATA_LABEL_FORMAT"),
+		account.name];
 }
 
 

@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "YearValXYPlotDataGenerator.h"
+
 @class AssetInput;
 
-@interface AssetValueXYPlotDataGenerator : NSObject {
+@interface AssetValueXYPlotDataGenerator : NSObject <YearValXYPlotDataGenerator> {
     @private
 		AssetInput *assetInput;
 }
