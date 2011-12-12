@@ -116,7 +116,7 @@
 	{
 		double expenseAmt = [expenseSimInfo.digestSum yearlyTotal];
 		[results.expenses setResultForInput:expenseSimInfo.expense andValue:expenseAmt];
-		sumIncome += expenseAmt;
+		sumExpense += expenseAmt;
 	}
 	results.sumExpense = sumExpense;
 
