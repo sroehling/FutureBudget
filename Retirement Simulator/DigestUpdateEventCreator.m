@@ -13,13 +13,19 @@
 @implementation DigestUpdateEventCreator
 
 
-- (id) init
+- (id) initWithSimStartDate:(NSDate*)simStart
 {
-	self = [super initWithStartingMonth:12 andStartingDay:31];
+	self = [super initWithStartingMonth:12 andStartingDay:31 andSimStartDate:simStart];
 	if(self)
 	{
 	}
 	return self;
+}
+
+-(id)init
+{
+	assert(0);
+	return nil;
 }
 
 - (SimEvent*)createSimEventOnDate:(NSDate *)eventDate

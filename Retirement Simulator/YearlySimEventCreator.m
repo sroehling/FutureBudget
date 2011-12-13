@@ -15,19 +15,22 @@
 @implementation YearlySimEventCreator
 
 @synthesize yearlyEventRepeater;
+@synthesize simStartDate;
 
 - (void)dealloc
 {
 	[super dealloc];
 	[yearlyEventRepeater release];
+	[simStartDate release];
 }
 
 - (id) initWithStartingMonth:(NSInteger)monthNum andStartingDay:(NSInteger)dayNum
+	andSimStartDate:(NSDate*)simStart
 {
 	self = [super init];
 	if(self)
 	{
-		NSDate *simStartDate = [SharedAppValues singleton].simStartDate;
+		self.simStartDate = simStart;
 		NSDate *startDate = [DateHelper sameYearDifferentDay:simStartDate 
 			andMonth:monthNum andDay:dayNum];
 		NSDateComponents *repeatYearly = [[[NSDateComponents alloc] init] autorelease];
@@ -58,8 +61,7 @@
 
 - (SimEvent*)nextSimEvent
 {
-    NSDate *nextDate = [self.yearlyEventRepeater nextDateOnOrAfterDate:
-		[[SharedAppValues singleton] beginningOfSimStartDate]];
+    NSDate *nextDate = [self.yearlyEventRepeater nextDateOnOrAfterDate:self.simStartDate];
     if(nextDate !=nil)
     {
         return [self createSimEventOnDate:nextDate];

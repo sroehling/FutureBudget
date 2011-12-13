@@ -16,10 +16,18 @@
 #import <UIKit/UIKit.h>
 //#import "application_headers" as required
 
+@class DataModelController;
+@class SharedAppValues;
+
 
 @interface TestSimEngine : SenTestCase {
-    
+    @private
+		DataModelController *coreData;
+		SharedAppValues *testAppVals;
 }
+
+@property(nonatomic,retain) DataModelController *coreData;
+@property(nonatomic,retain) SharedAppValues *testAppVals;
 
 
 - (void)testSimEngine;              // simple standalone test

@@ -14,6 +14,8 @@
 #import "SimDate.h"
 #import "SharedAppValues.h"
 #import "WorkingBalanceMgr.h"
+#import "Cash.h"
+#import "FixedValue.h"
 #import "DateHelper.h"
 
 @implementation SimParams
@@ -35,18 +37,18 @@
 
 @synthesize taxInputCalcs;
 
-- (id)initWithStartDate:(NSDate*)startDate andScenario:(Scenario*)scenario
+-(id)initWithStartDate:(NSDate*)simStart andDigestStartDate:(NSDate*)digestStart
+	andSimEndDate:(NSDate*)simEnd andScenario:(Scenario*)scen andCashBal:(double)cashBal
+	andDeficitRate:(FixedValue*)deficitRate
 {
 	self = [super init];
 	if(self)
 	{
-		assert(startDate != nil);
-		self.simStartDate = startDate;
-		self.digestStartDate = [DateHelper beginningOfYear:startDate];
-		self.simEndDate = [[SharedAppValues singleton].simEndDate endDateWithStartDate:self.simStartDate];
+		self.simStartDate = simStart;
+		self.digestStartDate = digestStart;
+		self.simEndDate = simEnd;
 		
-		assert(scenario != nil);
-		self.simScenario = scenario;
+		self.simScenario = scen;
 		
 		self.incomeInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 		self.expenseInfo = [[[InputSimInfoCltn alloc] init] autorelease];
@@ -59,11 +61,27 @@
 		
 		self.taxInputCalcs = [[[TaxInputCalcs alloc] init] autorelease];
 			
-		self.workingBalanceMgr = [[[WorkingBalanceMgr alloc] initWithStartDate:self.digestStartDate] autorelease];
+		self.workingBalanceMgr = [[[WorkingBalanceMgr alloc] initWithStartDate:self.digestStartDate
+			andCashBal:cashBal andDeficitInterestRate:deficitRate] autorelease];
 
 	}
 	return self;
 }
+
+-(id)initWithSharedAppVals:(SharedAppValues*)sharedAppVals
+{
+	NSDate *simStart = [sharedAppVals beginningOfSimStartDate];
+	NSDate *simEnd = [sharedAppVals.simEndDate endDateWithStartDate:simStart];
+	NSDate *digestStart = [DateHelper beginningOfYear:simStart];
+	Scenario *simScen = sharedAppVals.currentInputScenario;
+	double cashBal = [sharedAppVals.cash.startingBalance doubleValue];
+	FixedValue *deficitRate = sharedAppVals.deficitInterestRate;
+	
+	return [self initWithStartDate:simStart andDigestStartDate:digestStart 
+		andSimEndDate:simEnd andScenario:simScen andCashBal:cashBal andDeficitRate:deficitRate];
+
+}
+
 
 - (id) init
 {

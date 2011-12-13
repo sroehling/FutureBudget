@@ -18,18 +18,12 @@
 @synthesize tieBreakPriority;
 
 - (id) initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate *)theEventDate
-	andSimStartDate:(NSDate*)startDate
 {
     self = [super init];
     if (self != nil) {
 		assert(eventCreator != nil);
 		assert(theEventDate != nil);
-		
-		// All events must occur on or after the simulatino start date. This is because
-		// accounts, cash, etc. have "starting balance" (as of the simulation start date), 
-		// such that events only need to be processed after the start date.
-		assert([DateHelper dateIsEqualOrLater:theEventDate otherDate:startDate]);
-		
+				
         self.eventDate = theEventDate;
         self.originatingEventCreator = eventCreator;
 		
@@ -37,12 +31,6 @@
     }
     return self;
 
-}
-
-- (id) initWithEventCreator:(id<SimEventCreator>)eventCreator andEventDate:(NSDate*)theEventDate 
-{
-	return [self initWithEventCreator:eventCreator andEventDate:theEventDate
-		andSimStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
 }
 
 - (id) init 

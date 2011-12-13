@@ -16,10 +16,12 @@
     @private
 		ExpenseInput *expense;
 		InputValDigestSummation *digestSum;
+		SimParams *simParams;
 }
 
 @property(nonatomic,retain) ExpenseInput *expense;
 @property(nonatomic,retain) InputValDigestSummation *digestSum;
+@property(nonatomic,retain) SimParams *simParams;
 
 -(id)initWithExpense:(ExpenseInput*)theExpense andSimParams:(SimParams*)theSimParams;
 

@@ -18,6 +18,7 @@
 #import "InterestBearingWorkingBalance.h"
 #import "WorkingBalanceCltn.h"
 
+
 @implementation WorkingBalanceMgr
 
 @synthesize fundingSources;
@@ -27,6 +28,7 @@
 @synthesize accruedEstimatedTaxes;
 @synthesize nextEstimatedTaxPayment;
 @synthesize assetValues;
+
 
 - (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
 	andDeficitBalance:(InterestBearingWorkingBalance*)deficitBal
@@ -57,13 +59,20 @@
 
 }
 
-- (id)initWithStartDate:(NSDate*)startDate
+- (id)initWithStartDate:(NSDate*)startDate andCashBal:(double)startingCashBal 
+		andDeficitInterestRate:(FixedValue*)deficitRate
 {
-		CashWorkingBalance *cashBal = [[[CashWorkingBalance alloc] init] autorelease];
+
+		assert(startingCashBal >= 0.0);
+		
+
+		CashWorkingBalance *cashBal = [[[CashWorkingBalance alloc] 
+				initWithStartingBalance:startingCashBal 
+				andStartDate:startDate] autorelease];
 		
 		InterestBearingWorkingBalance *deficitBal = [[[InterestBearingWorkingBalance alloc] 
 			initWithStartingBalance:0.0 
-			andInterestRate:[SharedAppValues singleton].deficitInterestRate 
+			andInterestRate:deficitRate 
 				andWorkingBalanceName:LOCALIZED_STR(@"DEFICIT_LABEL") 
 				andStartDate:startDate andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 				

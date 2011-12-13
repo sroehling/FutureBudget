@@ -17,13 +17,15 @@
 
 @synthesize expense;
 @synthesize digestSum;
-
+@synthesize simParams;
 
 -(id)initWithExpense:(ExpenseInput*)theExpense andSimParams:(SimParams*)theSimParams
 {
 	self = [super init];
 	if(self)
 	{
+		self.simParams = theSimParams;
+	
 		assert(theExpense!= nil);
 		self.expense = theExpense;
 
@@ -44,6 +46,7 @@
 	[super dealloc];
 	[expense release];
 	[digestSum release];
+	[simParams release];
 }
 
 

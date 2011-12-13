@@ -20,21 +20,7 @@
 
 @implementation CashWorkingBalance
 
-- (id) init
-{
-	Cash *theCash = [SharedAppValues singleton].cash;
-	assert(theCash != nil);
-	double startingCashBalance = [theCash.startingBalance doubleValue];
-	
-	NSDate *startDate = [DateHelper beginningOfDay:[SharedAppValues singleton].simStartDate];
-	
-	self = [super initWithStartingBalance:startingCashBalance andStartDate:startDate 
-		andWithdrawPriority:CASH_WITHDRAW_PRIORITY];
-	if(self)
-	{
-	}
-	return self;
-}
+
 
 - (id) initWithStartingBalance:(double)theStartBalance
 		andStartDate:(NSDate *)theStartDate
@@ -42,6 +28,12 @@
 	self = [super initWithStartingBalance:theStartBalance 
 		andStartDate:theStartDate andWithdrawPriority:CASH_WITHDRAW_PRIORITY];
 	return self;
+}
+
+-(id)init
+{
+	assert(0);
+	return nil;
 }
 
 

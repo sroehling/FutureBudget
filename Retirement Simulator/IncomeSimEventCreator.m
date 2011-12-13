@@ -10,6 +10,7 @@
 #import "IncomeInput.h"
 #import "IncomeSimEvent.h"
 #import "IncomeSimInfo.h"
+#import "SimParams.h"
 
 
 @implementation IncomeSimEventCreator
@@ -29,7 +30,8 @@
 
 - (id)initWithIncomeSimInfo:(IncomeSimInfo*)theIncomeSimInfo
 {
-	self = [super initWithCashFlow:theIncomeSimInfo.income];
+	self = [super initWithCashFlow:theIncomeSimInfo.income 
+		andSimStartDate:theIncomeSimInfo.simParams.simStartDate];
 	if(self)
 	{
 		assert(theIncomeSimInfo != nil);

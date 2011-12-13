@@ -10,8 +10,6 @@
 
 #import "DataModelInterface.h"
 
-@class SharedAppValues;
-
 @interface DataModelController : NSObject <DataModelInterface> {
 }
 

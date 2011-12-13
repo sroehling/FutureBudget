@@ -12,7 +12,8 @@
 #import "FiscalYearDigest.h"
 #import "SimParams.h"
 #import "InputSimInfoCltn.h"
-
+#import "DataModelController.h"
+#import "SharedAppValues.h"
 
 @implementation SimResultsController
 
@@ -25,12 +26,15 @@
 @synthesize incomesSimulated;
 @synthesize expensesSimulated;
 
+@synthesize dataModelController;
+@synthesize sharedAppVals;
+
 - (void) runSimulatorForResults
 {
      
     NSLog(@"Starting simulation run...");
     
-    SimEngine *simEngine = [[SimEngine alloc] init ];
+    SimEngine *simEngine = [[SimEngine alloc] initWithDataModelController:self.dataModelController andSharedAppValues:self.sharedAppVals ];
            
     [simEngine runSim];
 	
@@ -62,6 +66,18 @@
     [simEngine release];
 }
 
+-(id)init
+{
+	self = [super init];
+	if(self)
+	{
+		// Default to run the simulation on the data in database file.
+		self.dataModelController = [DataModelController theDataModelController];
+		self.sharedAppVals = [SharedAppValues singleton];
+	}
+	return self;
+}
+
 -(void)dealloc
 {
 	[super dealloc];
@@ -71,6 +87,9 @@
 	[acctsSimulated release];
 	[incomesSimulated release];
 	[expensesSimulated release];
+	
+	[dataModelController release];
+	[sharedAppVals release];
 }
 
 

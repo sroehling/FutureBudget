@@ -15,6 +15,8 @@
 @class WorkingBalanceAdjustment;
 
 @class WorkingBalanceCltn;
+@class Cash;
+@class FixedValue;
 
 
 @interface WorkingBalanceMgr : NSObject {
@@ -40,7 +42,8 @@
 @property(nonatomic,retain) CashWorkingBalance *accruedEstimatedTaxes;
 @property(nonatomic,retain) CashWorkingBalance *nextEstimatedTaxPayment;
 
-- (id)initWithStartDate:(NSDate*)startDate;
+- (id)initWithStartDate:(NSDate*)startDate andCashBal:(double)startingCashBal 
+		andDeficitInterestRate:(FixedValue*)deficitRate;
 - (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
 	andDeficitBalance:(InterestBearingWorkingBalance*)deficitBal
 	andStartDate:(NSDate*)startDate;

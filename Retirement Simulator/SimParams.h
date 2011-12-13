@@ -13,6 +13,8 @@
 @class InputValDigestSummations;
 @class TaxInputCalcs;
 @class WorkingBalanceMgr;
+@class SharedAppValues;
+@class FixedValue;
 
 @interface SimParams : NSObject {
 	@private
@@ -54,7 +56,10 @@
 @property(nonatomic,retain) TaxInputCalcs *taxInputCalcs;
 @property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
 
-- (id)initWithStartDate:(NSDate*)startDate andScenario:(Scenario*)scenario;
+-(id)initWithStartDate:(NSDate*)simStart andDigestStartDate:(NSDate*)digestStart
+	andSimEndDate:(NSDate*)simEnd andScenario:(Scenario*)scen andCashBal:(double)cashBal
+	andDeficitRate:(FixedValue*)deficitRate;
+-(id)initWithSharedAppVals:(SharedAppValues*)sharedAppVals;
 
 
 @end

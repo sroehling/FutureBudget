@@ -15,11 +15,15 @@
 @interface YearlySimEventCreator :  NSObject <SimEventCreator> {
     @private
 		EventRepeater *yearlyEventRepeater;
+		NSDate *simStartDate;
 }
 
 @property(nonatomic,retain) EventRepeater *yearlyEventRepeater;
+@property(nonatomic,retain) NSDate *simStartDate;
+
 - (SimEvent*)createSimEventOnDate:(NSDate*)eventDate;
 
-- (id) initWithStartingMonth:(NSInteger)monthNum andStartingDay:(NSInteger)dayNum;
+- (id) initWithStartingMonth:(NSInteger)monthNum andStartingDay:(NSInteger)dayNum
+	andSimStartDate:(NSDate*)simStart;
 
 @end

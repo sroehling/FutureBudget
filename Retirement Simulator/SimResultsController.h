@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class DataModelController;
+@class SharedAppValues;
 
 @interface SimResultsController : NSObject {
 	@private
@@ -20,6 +22,9 @@
 		NSSet *acctsSimulated;
 		NSSet *incomesSimulated;
 		NSSet *expensesSimulated;
+		
+		DataModelController *dataModelController;
+		SharedAppValues *sharedAppVals;
     
 }
 
@@ -32,6 +37,9 @@
 @property(nonatomic,retain) NSSet *acctsSimulated;
 @property(nonatomic,retain) NSSet *incomesSimulated;
 @property(nonatomic,retain) NSSet *expensesSimulated;
+
+@property(nonatomic,retain) DataModelController *dataModelController;
+@property(nonatomic,retain) SharedAppValues *sharedAppVals;
 
 - (void) runSimulatorForResults;
 

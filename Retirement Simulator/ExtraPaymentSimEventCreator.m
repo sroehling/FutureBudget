@@ -12,6 +12,7 @@
 #import "LoanSimInfo.h"
 #import "SharedAppValues.h"
 #import "LoanPaymentSimEvent.h"
+#import "SimParams.h"
 
 
 @implementation ExtraPaymentSimEventCreator
@@ -39,7 +40,8 @@
 - (SimEvent*)nextSimEvent
 {
     assert(eventRepeater!=nil);
-    NSDate *nextPmtDate = [eventRepeater nextDateOnOrAfterDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
+	;
+    NSDate *nextPmtDate = [eventRepeater nextDateOnOrAfterDate:self.loanInfo.simParams.simStartDate];
     if(nextPmtDate !=nil)
 	{
 		double extraPayment = [self.loanInfo extraPmtAmountAsOfDate:nextPmtDate];

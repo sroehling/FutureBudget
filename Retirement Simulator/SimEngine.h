@@ -12,6 +12,8 @@
 @class WorkingBalanceMgr;
 @class SimEventList;
 @class SimParams;
+@class DataModelController;
+@class SharedAppValues;
 
 
 
@@ -29,17 +31,25 @@
     FiscalYearDigest *digest;
     NSMutableArray *eventCreators;
 	
+	DataModelController *dataModelController;
+	SharedAppValues *sharedAppVals;
+	
 	SimParams *simParams;
 
     
 }
 
+- (id)initWithDataModelController:(DataModelController*)theDataModelController
+	andSharedAppValues:(SharedAppValues*)theSharedAppVals;
+	
 - (void)runSim;
 
 @property (nonatomic, retain) NSMutableArray *eventCreators;
 @property(nonatomic,retain) FiscalYearDigest *digest;
 @property(nonatomic,retain) SimEventList *eventList;
 @property(nonatomic,retain) SimParams *simParams;
+@property(nonatomic,retain) DataModelController *dataModelController;
+@property(nonatomic,retain) SharedAppValues *sharedAppVals;
 
 
 

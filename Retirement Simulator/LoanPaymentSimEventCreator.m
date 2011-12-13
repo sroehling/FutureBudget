@@ -26,6 +26,7 @@
 #import "FixedValue.h"
 #import "SimInputHelper.h"
 #import "LoanSimInfo.h"
+#import "SimParams.h"
 
 @implementation LoanPaymentSimEventCreator
 
@@ -59,7 +60,8 @@
 - (SimEvent*)nextSimEvent
 {
     assert(eventRepeater!=nil);
-    NSDate *nextPmtDate = [eventRepeater nextDateOnOrAfterDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
+	
+    NSDate *nextPmtDate = [eventRepeater nextDateOnOrAfterDate:self.loanInfo.simParams.simStartDate];
     if(nextPmtDate !=nil)
 	{
 		LoanPaymentSimEvent *pmtEvent = [[[LoanPaymentSimEvent alloc]initWithEventCreator:self 

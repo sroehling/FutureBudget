@@ -31,14 +31,17 @@
 @synthesize varRateCalc;
 @synthesize varAmountCalc;
 @synthesize eventRepeater;
+@synthesize simStartDate;
 
-- (id)initWithCashFlow:(CashFlowInput*)theCashFlow
+- (id)initWithCashFlow:(CashFlowInput*)theCashFlow andSimStartDate:(NSDate*)simStart
 {
     self = [super init];
     if(self)
     {
         assert(theCashFlow != nil);
         self.cashFlow = theCashFlow;
+		
+		self.simStartDate = simStart;
 	
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
@@ -48,7 +51,7 @@
 		
 		self.varRateCalc = [calcCreator 
 							createForDateSensitiveValue:amountGrowthRate 
-							andStartDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
+							andStartDate:simStart];
 							
 		DateSensitiveValue *amount = (DateSensitiveValue*)[self.cashFlow.amount.amount 
 				getValueForCurrentOrDefaultScenario];					
@@ -95,7 +98,7 @@
 - (SimEvent*)nextSimEvent
 {
     assert(eventRepeater!=nil);
-    NSDate *nextDate = [eventRepeater nextDateOnOrAfterDate:[[SharedAppValues singleton] beginningOfSimStartDate]];
+    NSDate *nextDate = [eventRepeater nextDateOnOrAfterDate:self.simStartDate];
     if(nextDate !=nil)
     {
 		
@@ -119,6 +122,7 @@
 	[eventRepeater release];
 	[varRateCalc release];
 	[varAmountCalc release];
+	[simStartDate release];
 }
 
 

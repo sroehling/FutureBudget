@@ -18,12 +18,15 @@
 
 @synthesize digestSum;
 @synthesize income;
+@synthesize simParams;
 
 -(id)initWithIncome:(IncomeInput*)theIncome andSimParams:(SimParams*)theSimParams
 {
 	self = [super init];
 	if(self)
 	{
+		self.simParams = theSimParams;
+	
 		assert(theIncome!= nil);
 		self.income = theIncome;
 
@@ -44,6 +47,7 @@
 	[super dealloc];
 	[income release];
 	[digestSum release];
+	[simParams release];
 }
 
 @end

@@ -120,9 +120,9 @@
 	LoanInput *theLoan  = [self createTestLoanWithLoanCost:100 
 		andDuration:12 andInterestRate:10 andDownPmtPercent:0 andExtraPmtAmt:0];
 		
-	SimParams *simParams = [[[SimParams alloc] 
-		initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] 
-		andScenario:self.testAppVals.defaultScenario] autorelease];
+		
+	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"] andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"] 
+		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 andDeficitRate:self.testAppVals.deficitInterestRate] autorelease];	
 	LoanSimInfo *loanInfo = [[[LoanSimInfo alloc] initWithLoan:theLoan andSimParams:simParams] autorelease];
 	
 	

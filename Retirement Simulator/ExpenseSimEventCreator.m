@@ -10,7 +10,7 @@
 #import "ExpenseSimEvent.h"
 #import "ExpenseInput.h"
 #import "ExpenseSimInfo.h"
-
+#import "SimParams.h"
 #import "SimEvent.h"
 
 @implementation ExpenseSimEventCreator
@@ -27,7 +27,8 @@
 
 - (id)initWithExpenseInfo:(ExpenseSimInfo*)theExpenseInfo
 {
-	self = [super initWithCashFlow:theExpenseInfo.expense];
+	self = [super initWithCashFlow:theExpenseInfo.expense 
+		andSimStartDate:theExpenseInfo.simParams.simStartDate];
 	if(self)
 	{
 		assert(theExpenseInfo != nil);

@@ -14,4 +14,6 @@
 @interface DigestUpdateEventCreator : YearlySimEventCreator {
 }
 
+- (id) initWithSimStartDate:(NSDate*)simStart;
+
 @end

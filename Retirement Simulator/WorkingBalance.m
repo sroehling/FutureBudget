@@ -33,7 +33,6 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	if(self)
 	{
 		self.balanceStartDate = theStartDate;
-		//[DateHelper beginningOfDay:[SharedAppValues singleton].simStartDate];
 		startingBalance = theStartBalance;
 		
 		[self resetCurrentBalance];

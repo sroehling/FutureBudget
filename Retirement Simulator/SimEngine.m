@@ -59,6 +59,8 @@
 
 #import "AccountSimInfo.h"
 
+#import "DataModelController.h"
+
 
 @implementation SimEngine
 
@@ -66,14 +68,27 @@
 @synthesize digest;
 @synthesize eventList;
 @synthesize simParams;
+@synthesize dataModelController;
+@synthesize sharedAppVals;
 
-
-
--(id)init {    
+- (id)initWithDataModelController:(DataModelController*)theDataModelController
+	andSharedAppValues:(SharedAppValues*)theSharedAppVals
+{
     if((self =[super init]))
-    {        
+    {
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
+		
+		assert(theSharedAppVals != nil);
+		self.sharedAppVals = theSharedAppVals;
     }    
     return self;
+
+}
+
+-(id)init {    
+	assert(0); // must init with data model controller
+	return nil;
 }
 
 
@@ -83,15 +98,16 @@
     [eventList release];
 	[simParams release];
 	[digest release];
+	[dataModelController release];
 }
 
 
 - (void) populateEventCreators
 {
 	self.eventCreators =[[[NSMutableArray alloc] init] autorelease];
-	[self.eventCreators addObject:[[[DigestUpdateEventCreator alloc] init] autorelease]];
+	[self.eventCreators addObject:[[[DigestUpdateEventCreator alloc] initWithSimStartDate:self.simParams.simStartDate] autorelease]];
 
-	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	NSSet *inputs = [self.dataModelController fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	for(IncomeInput *income in inputs)
 	{
 		assert(income!=nil);
@@ -109,7 +125,7 @@
 	}
 
 	
-	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
+	inputs = [self.dataModelController fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
     for(ExpenseInput *expense in inputs)
     {    
 		assert(expense != nil);
@@ -126,7 +142,7 @@
     }
 
 		
-	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
+	inputs = [self.dataModelController fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	for(Account *acct in inputs)
 	{
 	
@@ -140,7 +156,7 @@
 		{
 			AccountContribSimEventCreator *savingsEventCreator = 
 				[[[AccountContribSimEventCreator alloc]
-					initWithWorkingBalance:acctSimInfo.acctBal andAcct:acct] autorelease];
+					initWithWorkingBalance:acctSimInfo.acctBal andAcct:acct andSimStartDate:self.simParams.simStartDate] autorelease];
 			[self.eventCreators addObject:savingsEventCreator];
 		}
 		
@@ -149,7 +165,7 @@
 	} // for each savings account
 	
 	
-	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
+	inputs = [self.dataModelController fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	for(LoanInput *loan in inputs)
 	{
 		if([SimInputHelper multiScenBoolVal:loan.loanEnabled
@@ -188,8 +204,7 @@
 		
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
-		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
+	inputs = [self.dataModelController fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
 	for(AssetInput *asset in inputs)
 	{
 		if([SimInputHelper multiScenBoolVal:asset.assetEnabled
@@ -224,8 +239,7 @@
 		} // If asset is enabled
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
-		fetchObjectsForEntityName:TAX_INPUT_ENTITY_NAME];
+	inputs = [self.dataModelController fetchObjectsForEntityName:TAX_INPUT_ENTITY_NAME];
 	for(TaxInput *tax in inputs)
 	{
 		if([SimInputHelper multiScenBoolVal:tax.taxEnabled
@@ -238,18 +252,18 @@
 	}
 	
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
-		initWithStartingMonth:3 andStartingDay:31] autorelease]];
+		initWithStartingMonth:3 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
-		initWithStartingMonth:5 andStartingDay:31] autorelease]];
+		initWithStartingMonth:5 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
-		initWithStartingMonth:8 andStartingDay:31] autorelease]];
+		initWithStartingMonth:8 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
-		initWithStartingMonth:12 andStartingDay:31] autorelease]];
+		initWithStartingMonth:12 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];
 
-	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:4 andStartingDay:15] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:6 andStartingDay:15] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:9 andStartingDay:15] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:1 andStartingDay:15] autorelease]];
+	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:4 andStartingDay:15 andSimStartDate:self.simParams.simStartDate] autorelease]];
+	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:6 andStartingDay:15 andSimStartDate:self.simParams.simStartDate] autorelease]];
+	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:9 andStartingDay:15 andSimStartDate:self.simParams.simStartDate] autorelease]];
+	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:1 andStartingDay:15 andSimStartDate:self.simParams.simStartDate] autorelease]];
 }
 
 
@@ -258,10 +272,11 @@
     // Reset the event list
 	self.eventList = [[[SimEventList alloc] init] autorelease];
 	
-	NSDate *simStartDate = [[SharedAppValues singleton] beginningOfSimStartDate];
+
+	
+	NSDate *simStartDate = [self.sharedAppVals beginningOfSimStartDate];
 	self.simParams = [[[SimParams alloc] 
-			initWithStartDate:simStartDate 
-			andScenario:[SharedAppValues singleton].defaultScenario] autorelease];
+			initWithSharedAppVals:self.sharedAppVals] autorelease];
 
 		
 	[self populateEventCreators];
@@ -338,6 +353,10 @@
 		stringFromDate:self.simParams.simEndDate]);
     
 	SimEvent* nextEventToProcess = [self.eventList nextEvent];
+	
+	assert([DateHelper dateIsEqualOrLater:[nextEventToProcess eventDate] 
+		otherDate:self.simParams.simStartDate]);
+	
     while ((nextEventToProcess != nil) &&
 		[self eventEarlierOrSameTimeAsSimEnd:nextEventToProcess]) 
     {

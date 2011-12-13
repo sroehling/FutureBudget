@@ -31,7 +31,7 @@
 {
 	assert(eventDate != nil);
 	TestSimEvent *theEvent = [[TestSimEvent alloc]initWithEventCreator:self.eventCreator  
-		andEventDate:eventDate andSimStartDate:[DateHelper dateFromStr:@"2010-01-01"]];
+		andEventDate:eventDate];
 	theEvent.eventLabel = lbl;
 	theEvent.tieBreakPriority = priority;
 	[eventList addEvent:theEvent];
