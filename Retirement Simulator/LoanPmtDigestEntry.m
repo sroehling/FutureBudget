@@ -9,6 +9,7 @@
 #import "LoanPmtDigestEntry.h"
 #import "InterestBearingWorkingBalance.h"
 #import "DigestEntryProcessingParams.h"
+#import "WorkingBalanceMgr.h"
 
 @implementation LoanPmtDigestEntry
 
@@ -37,9 +38,11 @@
 
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
-	[self.loanBalance decrementAvailableBalance:self.paymentAmt 
+	double balancePaid = [self.loanBalance decrementAvailableBalance:self.paymentAmt 
 		asOfDate:processingParams.currentDate];
-
+		
+	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:balancePaid 
+		asOfDate:processingParams.currentDate];
 }
 
 

@@ -408,11 +408,11 @@
 	// The down payment should come out of cash funds
 	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
 	expected = [[[NSMutableArray alloc]init]autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:640.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:640.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:640.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:640.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:640.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:530.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:410.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:290.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:280.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:280.0] autorelease]];
 	
 	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances"];
 
