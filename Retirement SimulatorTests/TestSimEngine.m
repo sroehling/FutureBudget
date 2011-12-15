@@ -51,6 +51,10 @@
 #import "CashBalXYPlotDataGenerator.h"
 
 #import "DeficitBalXYPlotDataGenerator.h"
+#import "MultiScenarioAmount.h"
+#import "MultiScenarioInputValue.h"
+#import "FixedValue.h"
+#import "UserScenario.h"
 
 @implementation TestSimEngine
 
@@ -166,6 +170,55 @@
     NSLog(@"... Done testing sim engine");
     
      
+}
+
+-(void)testExpenseWithScenario
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    	
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	UserScenario *userScen = [self.coreData insertObject:USER_SCENARIO_ENTITY_NAME];
+	userScen.name = @"Alternate Scenario";
+	
+
+	[expense01.amount.amount setValueForScenario:userScen 
+		andInputValue:[self.inputCreationHelper fixedValueForValue:300.0]];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	ExpenseXYPlotDataGenerator *expenseData = [[[ExpenseXYPlotDataGenerator alloc] initWithExpense:expense01] autorelease];
+	
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:100.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:100.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:100.0] autorelease]];
+	
+	[self checkPlotData:expenseData withSimResults:simResults andExpectedVals:expected andLabel:@"expense01"];
+
+	self.testAppVals.currentInputScenario = userScen;
+	[simResults runSimulatorForResults];
+
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:300.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:300.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:300.0] autorelease]];
+	
+	[self checkPlotData:expenseData withSimResults:simResults andExpectedVals:expected 
+		andLabel:@"expense01 (alternate scenario)"];
+
 }
 
 
