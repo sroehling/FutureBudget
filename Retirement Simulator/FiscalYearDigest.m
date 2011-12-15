@@ -119,6 +119,8 @@
 		sumExpense += expenseAmt;
 	}
 	results.sumExpense = sumExpense;
+	
+	results.cashBal = [self.simParams.workingBalanceMgr.cashWorkingBalance currentBalance];
 
 
 }

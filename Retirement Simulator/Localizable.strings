@@ -477,6 +477,9 @@
 "RESULTS_EXPENSE_ALL_EXPENSE_TITLE" = "All Expenses";
 "RESULTS_EXPENSE_ALL_EXPENSE_SUBTITLE" = "Plot yearly total expenses";
 
+"RESULTS_CASH_BALANCE_DATA_LABEL" = "Cash";
+"RESULTS_CASH_BALANCE_TITLE" = "Cash";
+"RESULTS_CASH_BALANCE_SUBTITLE" = "Cash on hand at the end of each year";
 
 
 "NUMBER_VALIDATION_POSITIVE_PERCENT_MSG" = "Enter a percent greater or equal to 0";

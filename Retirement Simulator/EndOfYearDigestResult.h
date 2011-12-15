@@ -29,6 +29,8 @@
 		
 		EndOfYearInputResults *expenses;
 		double sumExpense;
+		
+		double cashBal;
 }
 
 @property(nonatomic,retain) NSDate *endDate;
@@ -48,6 +50,8 @@
 
 @property(nonatomic,retain) EndOfYearInputResults *expenses;
 @property double sumExpense;
+
+@property double cashBal;
 
 
 -(id)initWithEndDate:(NSDate*)endOfYearDate;

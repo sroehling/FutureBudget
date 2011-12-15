@@ -32,6 +32,8 @@
 #import "ExpenseXYPlotDataGenerator.h"
 #import "ExpenseInput.h"
 
+#import "CashBalXYPlotDataGenerator.h"
+
 
 @implementation ResultsListFormInfoCreator
 
@@ -94,6 +96,21 @@
 				andContentDescription:nil
 				andSubViewFactory:allAssetsViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allAssetsFieldEditInfo];
+		
+		ResultsViewInfo *cashBalViewInfo = [[[ResultsViewInfo alloc]
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")] autorelease];
+		ResultsViewFactory *cashBalViewFactory =
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:cashBalViewInfo
+				andPlotDataGenerator:[[[CashBalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *cashBalFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:cashBalViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:cashBalFieldEditInfo];
+		
 		
 		for(AssetInput *asset in self.simResultsController.assetsSimulated)
 		{

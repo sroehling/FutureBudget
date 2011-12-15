@@ -25,6 +25,7 @@
 @synthesize sumIncomes;
 @synthesize expenses;
 @synthesize sumExpense;
+@synthesize cashBal;
 
 -(id)initWithEndDate:(NSDate *)endOfYearDate
 {
@@ -49,6 +50,8 @@
 		
 		self.expenses = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumExpense = 0.0;
+		
+		self.cashBal = 0.0;
 	}
 	return self;
 
