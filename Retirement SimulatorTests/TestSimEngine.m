@@ -50,6 +50,8 @@
 #import "Cash.h"
 #import "CashBalXYPlotDataGenerator.h"
 
+#import "DeficitBalXYPlotDataGenerator.h"
+
 @implementation TestSimEngine
 
 @synthesize coreData;
@@ -434,6 +436,53 @@
 	
 	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances"];
 
+}
+
+-(void)testDeficit
+{
+
+	[self resetCoredData];
+
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:600.0];
+	
+	self.testAppVals.deficitInterestRate = [inputCreationHelper fixedValueForValue:0.0];
+
+
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:400.0];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+
+
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:200.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances"];
+
+	DeficitBalXYPlotDataGenerator *deficitData= [[[DeficitBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:200.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:600.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1000.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1400.0] autorelease]];
+
+	[self checkPlotData:deficitData withSimResults:simResults andExpectedVals:expected andLabel:@"deficit balances"];
+
+	
 }
 
 @end

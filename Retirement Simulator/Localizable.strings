@@ -481,6 +481,10 @@
 "RESULTS_CASH_BALANCE_TITLE" = "Cash";
 "RESULTS_CASH_BALANCE_SUBTITLE" = "Cash on hand at the end of each year";
 
+"RESULTS_DEFICIT_BALANCE_DATA_LABEL" = "Deficit";
+"RESULTS_DEFICIT_BALANCE_TITLE" = "Deficit";
+"RESULTS_DEFICIT_BALANCE_SUBTITLE" = "Deficit at end of each year";
+
 
 "NUMBER_VALIDATION_POSITIVE_PERCENT_MSG" = "Enter a percent greater or equal to 0";
 "NUMBER_VALIDATION_POSITIVE_AMOUNT_MSG" = "Enter an amount greater or equal to 0";

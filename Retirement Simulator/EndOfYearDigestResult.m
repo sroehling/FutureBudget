@@ -26,6 +26,7 @@
 @synthesize expenses;
 @synthesize sumExpense;
 @synthesize cashBal;
+@synthesize deficitBal;
 
 -(id)initWithEndDate:(NSDate *)endOfYearDate
 {
@@ -52,6 +53,8 @@
 		self.sumExpense = 0.0;
 		
 		self.cashBal = 0.0;
+		
+		self.deficitBal = 0.0;
 	}
 	return self;
 

@@ -33,6 +33,7 @@
 #import "ExpenseInput.h"
 
 #import "CashBalXYPlotDataGenerator.h"
+#import "DeficitBalXYPlotDataGenerator.h"
 
 
 @implementation ResultsListFormInfoCreator
@@ -147,6 +148,20 @@
 				andContentDescription:nil
 				andSubViewFactory:allLoanViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allLoanFieldEditInfo];
+		
+		ResultsViewInfo *deficitBalViewInfo = [[[ResultsViewInfo alloc] 
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")] autorelease];
+		ResultsViewFactory *deficitBalViewFactory = 
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:deficitBalViewInfo
+				andPlotDataGenerator:[[[DeficitBalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *deficitBalFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:deficitBalViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:deficitBalFieldEditInfo];
 		
 		for(LoanInput *loan in self.simResultsController.loansSimulated)
 		{

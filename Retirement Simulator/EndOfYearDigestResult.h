@@ -31,6 +31,8 @@
 		double sumExpense;
 		
 		double cashBal;
+		
+		double deficitBal;
 }
 
 @property(nonatomic,retain) NSDate *endDate;
@@ -52,6 +54,8 @@
 @property double sumExpense;
 
 @property double cashBal;
+
+@property double deficitBal;
 
 
 -(id)initWithEndDate:(NSDate*)endOfYearDate;
