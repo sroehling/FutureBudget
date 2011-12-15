@@ -18,19 +18,19 @@
 
 @class DataModelController;
 @class SharedAppValues;
+@class InputCreationHelper;
 
 
 @interface TestSimEngine : SenTestCase {
     @private
 		DataModelController *coreData;
 		SharedAppValues *testAppVals;
+		InputCreationHelper *inputCreationHelper;
 }
 
 @property(nonatomic,retain) DataModelController *coreData;
 @property(nonatomic,retain) SharedAppValues *testAppVals;
-
-
-- (void)testSimEngine;              // simple standalone test
+@property(nonatomic,retain) InputCreationHelper *inputCreationHelper;
 
 
 @end

@@ -41,6 +41,9 @@
 @property(nonatomic,retain) DataModelController *dataModelController;
 @property(nonatomic,retain) SharedAppValues *sharedAppVals;
 
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andSharedAppValues:(SharedAppValues *)theSharedAppVals;
+
 - (void) runSimulatorForResults;
 
 @end

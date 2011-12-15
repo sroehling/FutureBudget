@@ -66,16 +66,24 @@
     [simEngine release];
 }
 
--(id)init
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andSharedAppValues:(SharedAppValues *)theSharedAppVals
 {
 	self = [super init];
 	if(self)
 	{
 		// Default to run the simulation on the data in database file.
-		self.dataModelController = [DataModelController theDataModelController];
-		self.sharedAppVals = [SharedAppValues singleton];
+		self.dataModelController = theDataModelController;
+		self.sharedAppVals = theSharedAppVals;
 	}
 	return self;
+
+}
+
+-(id)init
+{
+	return [self initWithDataModelController:[DataModelController theDataModelController] 
+			andSharedAppValues:[SharedAppValues singleton]];
 }
 
 -(void)dealloc

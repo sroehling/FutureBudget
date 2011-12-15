@@ -22,4 +22,6 @@
 
 -(void)addPlotDataPointForYear:(NSInteger)year andYVal:(double)yVal;
 
+-(double)getYValforYear:(NSInteger)year;
+
 @end

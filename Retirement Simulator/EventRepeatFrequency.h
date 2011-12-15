@@ -36,6 +36,7 @@ typedef enum
 // Inverse relationships
 @property (nonatomic, retain) SharedAppValues * sharedAppValsRepeatOnceFreq;
 @property (nonatomic, retain) SharedAppValues * sharedAppValsRepeatMonthlyFreq;
+@property(nonatomic,retain) SharedAppValues *sharedAppValsRepeatYearlyFreq;
 
 
 

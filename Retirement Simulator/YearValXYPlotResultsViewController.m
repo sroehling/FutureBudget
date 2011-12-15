@@ -23,6 +23,7 @@
 #import "ResultsViewInfo.h"
 #import "YearValXYPlotData.h"
 #import "YearValXYPlotDataGenerator.h"
+#import "YearValPlotDataVal.h"
 
 
 @implementation YearValXYPlotResultsViewController
@@ -225,8 +226,16 @@
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index 
 {
-    NSNumber *num = [[currentData.plotData objectAtIndex:index] valueForKey:(fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y")];
-    return num;
+	YearValPlotDataVal *plotDataVal = [currentData.plotData objectAtIndex:index];
+	assert(plotDataVal !=nil);
+	if(fieldEnum == CPTScatterPlotFieldX)
+	{
+		return plotDataVal.year;
+	}
+	else
+	{
+		return plotDataVal.val;
+	}
 }
 
 

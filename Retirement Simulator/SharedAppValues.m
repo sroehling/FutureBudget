@@ -55,6 +55,7 @@ NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"default
 @dynamic cash;
 @dynamic deficitInterestRate;
 @dynamic defaultInflationRate;
+@dynamic repeatYearlyFreq;
 
 
 static SharedAppValues *theSharedAppVals;  
@@ -130,7 +131,7 @@ static SharedAppValues *theSharedAppVals;
 			andPeriod:kEventPeriodMonth andMultiplier:3];
 	[EventRepeatFrequency createInDataModel:dataModelInterface 
 			andPeriod:kEventPeriodMonth andMultiplier:6];
-	[EventRepeatFrequency createInDataModel:dataModelInterface 
+	EventRepeatFrequency *repeatYearly = [EventRepeatFrequency createInDataModel:dataModelInterface 
 			andPeriod:kEventPeriodYear andMultiplier:1];        
 
 	SharedAppValues *sharedVals = [dataModelInterface createDataModelObject:SHARED_APP_VALUES_ENTITY_NAME];
@@ -145,6 +146,7 @@ static SharedAppValues *theSharedAppVals;
 	
 	sharedVals.repeatOnceFreq = repeatOnce;
 	sharedVals.repeatMonthlyFreq = repeatMonthly;
+	sharedVals.repeatYearlyFreq = repeatYearly;
 	
 	sharedVals.simStartDate = [[[NSDate alloc] init] autorelease];
 	

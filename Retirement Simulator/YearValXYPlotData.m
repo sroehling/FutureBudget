@@ -7,7 +7,7 @@
 //
 
 #import "YearValXYPlotData.h"
-
+#import "YearValPlotDataVal.h"
 
 @implementation YearValXYPlotData
 
@@ -34,11 +34,23 @@
 
 	self.minYVal = MIN(self.minYVal,yVal);
 	self.maxYVal = MAX(self.maxYVal,yVal);
-
-	NSNumber *x = [NSNumber numberWithInteger:year];
-	NSNumber *y = [NSNumber numberWithDouble:yVal];
 	
-	[self.plotData addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+	[self.plotData addObject:[[[YearValPlotDataVal alloc] initWithYear:year andVal:yVal]autorelease]];
+}
+
+-(double)getYValforYear:(NSInteger)year
+{
+	for(YearValPlotDataVal *yearVal in self.plotData)
+	{
+		
+		NSInteger currYear = [yearVal.year integerValue];
+		if(currYear == year)
+		{
+			double yVal = [yearVal.val doubleValue];
+			return yVal;
+		}
+	}
+	assert(0); // should not get here
 }
 
 -(void)dealloc

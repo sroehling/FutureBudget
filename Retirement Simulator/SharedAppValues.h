@@ -38,6 +38,7 @@ extern NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY;
 
 @property(nonatomic,retain) EventRepeatFrequency *repeatOnceFreq;
 @property(nonatomic,retain) EventRepeatFrequency *repeatMonthlyFreq;
+@property(nonatomic,retain) EventRepeatFrequency *repeatYearlyFreq;
 
 @property(nonatomic,retain) NSDate *simStartDate;
 @property(nonatomic,retain) SimDate *simEndDate;

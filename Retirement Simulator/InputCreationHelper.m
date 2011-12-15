@@ -175,6 +175,15 @@
 	return msRepeatFreq;
 }
 
+- (MultiScenarioInputValue*)multiScenarioRepeatFrequencyYearly
+{
+	EventRepeatFrequency *repeatYearly = self.sharedAppVals.repeatYearlyFreq;
+	assert(repeatYearly != nil);
+	MultiScenarioInputValue *msRepeatFreq = [self multiScenInputValue];
+	[msRepeatFreq setDefaultValue:repeatYearly];
+	return msRepeatFreq;
+}
+
 
 - (MultiScenarioInputValue*)multiScenFixedDateWithDefault:(NSDate*)defaultDate
 {
@@ -241,6 +250,19 @@
     msSimEndDate.defaultFixedSimDate = [self multiScenFixedDateWithDefaultToday];
 	msSimEndDate.defaultFixedRelativeEndDate = [self multiScenRelEndDateWithImmediateDefault];
 	msSimEndDate.simDate = [self multiScenNeverEndDate];
+	return msSimEndDate;
+}
+
+- (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefault:(NSDate*)defaultDate
+{
+	assert(defaultDate != nil);	
+
+	MultiScenarioSimEndDate *msSimEndDate = 
+		[self.dataModel createDataModelObject:MULTI_SCEN_SIM_END_DATE_ENTITY_NAME];
+		
+    msSimEndDate.defaultFixedSimDate = [self multiScenFixedDateWithDefault:defaultDate];
+	msSimEndDate.defaultFixedRelativeEndDate = [self multiScenRelEndDateWithImmediateDefault];
+	msSimEndDate.simDate = [self multiScenInputValueWithDefaultFixedVal:msSimEndDate.defaultFixedSimDate];
 	return msSimEndDate;
 }
 

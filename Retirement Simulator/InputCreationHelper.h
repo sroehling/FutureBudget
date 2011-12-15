@@ -46,10 +46,13 @@
 
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyOnce;
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyMonthly;
+- (MultiScenarioInputValue*)multiScenarioRepeatFrequencyYearly;
 
 - (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday;
 - (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault;
+
 - (MultiScenarioInputValue*)multiScenNeverEndDate;
+- (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefault:(NSDate*)defaultDate;
 
 - (MultiScenarioSimDate*)multiScenSimDateWithDefaultToday;
 - (MultiScenarioSimDate*)multiScenSimDateWithDefault:(NSDate*)defaultDate;

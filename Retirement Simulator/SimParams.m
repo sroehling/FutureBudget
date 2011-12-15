@@ -71,7 +71,12 @@
 -(id)initWithSharedAppVals:(SharedAppValues*)sharedAppVals
 {
 	NSDate *simStart = [sharedAppVals beginningOfSimStartDate];
-	NSDate *simEnd = [sharedAppVals.simEndDate endDateWithStartDate:simStart];
+	
+	// Since the granularity of simulation results is 1 year, we round the end date to the 
+	// beginning of the next year, ensuring that the last year is complete.
+	NSDate *unroundedSimEnd = [sharedAppVals.simEndDate endDateWithStartDate:simStart];
+	NSDate *simEnd = [DateHelper beginningOfNextYear:unroundedSimEnd];
+	
 	NSDate *digestStart = [DateHelper beginningOfYear:simStart];
 	Scenario *simScen = sharedAppVals.currentInputScenario;
 	double cashBal = [sharedAppVals.cash.startingBalance doubleValue];
