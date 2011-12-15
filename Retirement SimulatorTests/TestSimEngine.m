@@ -38,6 +38,17 @@
 #import "AssetValueXYPlotDataGenerator.h"
 #import "AllAssetValueXYPlotDataGenerator.h"
 
+#import "LoanInput.h"
+#import "LoanBalXYPlotDataGenerator.h"
+#import "AllLoanBalanceXYPlotDataGenerator.h"
+
+#import "AcctBalanceXYPlotDataGenerator.h"
+#import "AllAcctBalanceXYPlotDataGenerator.h"
+#import "Account.h"
+#import "SavingsAccount.h"
+
+#import "Cash.h"
+
 @implementation TestSimEngine
 
 @synthesize coreData;
@@ -239,5 +250,114 @@
 
 }
 
+
+-(void)testLoan
+{
+	[self resetCoredData];
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelInterface:self.coreData] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+
+	LoanInput *loan02 = (LoanInput*)[loanCreator createInput];
+	loan02.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
+	loan02.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
+	loan02.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan02.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:250.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:130.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:10.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01"];
+
+
+	AllLoanBalanceXYPlotDataGenerator *allLoansData = [[[AllLoanBalanceXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:750.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:390.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:30.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0] autorelease]];	
+	
+	[self checkPlotData:allLoansData withSimResults:simResults andExpectedVals:expected andLabel:@"all loans"];
+	
+}
+
+
+-(void)testAccount
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	// acct02 is identical to acct01, but is used to verify that summing up the account balances works properly.
+
+	SavingsAccount *acct02 = (SavingsAccount*)[acctCreator createInput];
+	acct02.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct02.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
+	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct02.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctBalanceXYPlotDataGenerator *acctData = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1200.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1300.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1300.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1300.0] autorelease]];
+	
+	[self checkPlotData:acctData withSimResults:simResults andExpectedVals:expected andLabel:@"acct01"];
+	
+	AllAcctBalanceXYPlotDataGenerator *allAcctData = [[[AllAcctBalanceXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:2200.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:2400.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:2600.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:2600.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:2600.0] autorelease]];
+	
+	[self checkPlotData:allAcctData withSimResults:simResults andExpectedVals:expected andLabel:@"all accounts"];
+
+	
+}
 
 @end
