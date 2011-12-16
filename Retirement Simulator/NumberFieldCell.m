@@ -95,9 +95,18 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 
 - (void)textFieldDidBeginEditing:(UITextField *)theTextField
 {
+	// editableNumberFormatter is the same as decimalNumberFormatter in NumberHelper, except
+	// that the grouping separator is set to the empty string. Having comma separator appear
+	// while editing numbers sometimes caused difficulty with editing.
+	NSNumberFormatter *editableNumberFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+	[editableNumberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+	[editableNumberFormatter setMinimumFractionDigits:0];
+	[editableNumberFormatter setMaximumFractionDigits:3];
+	[editableNumberFormatter setGroupingSeparator:@""];
+	
     // For editing purposes, update the cell to have a plain decimal number
     NSNumber *value = (NSNumber*)[self.fieldEditInfo.fieldInfo getFieldValue];
-	NSString *formattedValue =  [[NumberHelper theHelper].decimalFormatter stringFromNumber:value];
+	NSString *formattedValue =  [editableNumberFormatter stringFromNumber:value];
 	assert(formattedValue != nil);
     self.textField.text = formattedValue;
 }
