@@ -267,6 +267,18 @@
 	[self checkPlotData:allIncome withSimResults:simResults andExpectedVals:expected andLabel:@"all incomes"];
 	
 	
+	// The down payment should come out of cash funds
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:300.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:600.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:900.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1200.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1500.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances"];
+	
+	
     
     NSLog(@"... Done testing sim engine");
     
