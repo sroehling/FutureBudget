@@ -25,6 +25,8 @@
 		
 		DataModelController *dataModelController;
 		SharedAppValues *sharedAppVals;
+		
+		BOOL resultsOutOfDate;
     
 }
 
@@ -44,6 +46,10 @@
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
 	andSharedAppValues:(SharedAppValues *)theSharedAppVals;
 
++(void)initFromDatabase;
++(SimResultsController*)theSimResultsController;
+
 - (void) runSimulatorForResults;
+- (void) runSimulatorIfResultsOutOfDate;
 
 @end

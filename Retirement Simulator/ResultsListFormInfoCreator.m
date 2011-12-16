@@ -45,7 +45,7 @@
 	self = [super init];
 	if(self)
 	{
-		self.simResultsController = [[[SimResultsController alloc] init] autorelease];
+		self.simResultsController = [SimResultsController theSimResultsController];
 	}
 	return self;
 }
@@ -53,7 +53,7 @@
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
 
-	[self.simResultsController runSimulatorForResults];
+	[self.simResultsController runSimulatorIfResultsOutOfDate];
 
     FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
     

@@ -29,6 +29,9 @@
 @synthesize dataModelController;
 @synthesize sharedAppVals;
 
+static SimResultsController *theSimResultsControllerSingleton; 
+
+
 - (void) runSimulatorForResults
 {
      
@@ -64,7 +67,26 @@
      NSLog(@"... Done running simulation");
     
     [simEngine release];
+	resultsOutOfDate = FALSE;
 }
+
+- (void) runSimulatorIfResultsOutOfDate
+{
+	if(resultsOutOfDate)
+	{
+		[self runSimulatorForResults];
+	}
+	resultsOutOfDate = FALSE;
+}
+
+
+
+- (void)managedObjectsSaved
+{
+    NSLog(@"SimResultsController - Managed Objects Changed - marking results out of date");
+	resultsOutOfDate = TRUE;
+}
+
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
 	andSharedAppValues:(SharedAppValues *)theSharedAppVals
@@ -75,6 +97,14 @@
 		// Default to run the simulation on the data in database file.
 		self.dataModelController = theDataModelController;
 		self.sharedAppVals = theSharedAppVals;
+		
+		
+		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+		assert(dnc != nil);
+		[dnc addObserver:self selector:@selector(managedObjectsSaved) name:NSManagedObjectContextObjectsDidChangeNotification 
+              object:self.dataModelController.managedObjectContext];
+		resultsOutOfDate = TRUE;
+
 	}
 	return self;
 
@@ -86,9 +116,36 @@
 			andSharedAppValues:[SharedAppValues singleton]];
 }
 
++(void)initSingleton:(SimResultsController*)theSimResultsCtrl
+{
+	assert(theSimResultsCtrl != nil);
+	assert(theSimResultsControllerSingleton == nil);
+	[theSimResultsCtrl retain];
+	theSimResultsControllerSingleton = theSimResultsCtrl;
+}
+
++(SimResultsController*)theSimResultsController
+{
+	assert(theSimResultsControllerSingleton != nil);
+	return theSimResultsControllerSingleton;
+}
+
++(void)initFromDatabase
+{
+	[SimResultsController initSingleton:[[[SimResultsController alloc] init] autorelease]];
+}
+
+
 -(void)dealloc
 {
 	[super dealloc];
+	
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	assert(dnc != nil);
+    [dnc removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification 
+		object:self.dataModelController.managedObjectContext];
+	
+	
 	[endOfYearResults release];
 	[assetsSimulated release];
 	[loansSimulated release];

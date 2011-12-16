@@ -20,6 +20,7 @@
 #import "ManagedObjectFieldInfo.h"
 #import "StartingValsFormInfoCreator.h"
 #import "ResultsListFormInfoCreator.h"
+#import "SimResultsController.h"
 
 @implementation Retirement_SimulatorAppDelegate
 
@@ -37,6 +38,7 @@
     [NSFetchedResultsController deleteCacheWithName:nil];
     
 	[SharedAppValues initFromDatabase];
+	[SimResultsController initFromDatabase];
     
 	InputListFormInfoCreator *inputFormInfoCreator = 
 		[[[InputListFormInfoCreator alloc] init] autorelease];

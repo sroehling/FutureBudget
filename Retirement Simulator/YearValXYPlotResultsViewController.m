@@ -81,7 +81,7 @@
 	[super viewWillAppear:animated];
 
 	NSLog(@"ResultsViewController: viewWillAppear");
-	[self.viewInfo.simResultsController runSimulatorForResults];	
+	[self.viewInfo.simResultsController runSimulatorIfResultsOutOfDate];	
 
 	
 	if([self.plotDataGenerator resultsDefinedInSimResults:

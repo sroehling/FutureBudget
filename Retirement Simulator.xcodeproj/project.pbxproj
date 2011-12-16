@@ -1616,8 +1616,6 @@
 				004F5D721373191600E0C4A3 /* ResultsViewController.m */,
 				00D8D26E148FD41000B0314D /* ResultsViewFactory.h */,
 				00D8D26F148FD41100B0314D /* ResultsViewFactory.m */,
-				00D8D271148FE34100B0314D /* SimResultsController.h */,
-				00D8D272148FE34300B0314D /* SimResultsController.m */,
 				00D8D274148FF65500B0314D /* ResultsViewInfo.h */,
 				00D8D275148FF65700B0314D /* ResultsViewInfo.m */,
 			);
@@ -1642,6 +1640,8 @@
 		004F5D7713732CA300E0C4A3 /* Simulator Engine */ = {
 			isa = PBXGroup;
 			children = (
+				00D8D271148FE34100B0314D /* SimResultsController.h */,
+				00D8D272148FE34300B0314D /* SimResultsController.m */,
 				004F5D7E13733BC100E0C4A3 /* SimEngine.h */,
 				004F5D7F13733BC100E0C4A3 /* SimEngine.m */,
 			);
