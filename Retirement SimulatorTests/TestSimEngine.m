@@ -420,6 +420,68 @@
 }
 
 
+-(void)testLoanWithExtraPayments
+{
+
+	[self resetCoredData];
+	
+		self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelInterface:self.coreData] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	loan01.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.extraPmtAmt = [inputCreationHelper multiScenAmountWithDefault:10.0];
+	loan01.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	// TBD - extraPmtFrequency doesn't 
+	// have any UI input - Should this change
+	loan01.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyMonthly];
+	
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:390.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:30.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01"];
+	
+	// The extra payment should come out of cash funds
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:670.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:310.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:280.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:280.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:280.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances"];
+
+
+}
+
+
+
 -(void)testAccount
 {
 	[self resetCoredData];
