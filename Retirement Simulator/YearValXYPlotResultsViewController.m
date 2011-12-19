@@ -152,17 +152,33 @@
 		CPTXYAxis *y = axisSet.yAxis;
 		y.title = [self.plotDataGenerator dataLabel];
 		y.titleOffset = 50;
-		y.majorIntervalLength = CPTDecimalFromString(@"10000");
 		y.minorTicksPerInterval = 5;
-		NSNumberFormatter *netWorthFormatter = [[[NSNumberFormatter alloc]init] autorelease];
-		[netWorthFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-		netWorthFormatter.positiveSuffix = @"K";
-		netWorthFormatter.negativeSuffix = @"K)";
-		netWorthFormatter.multiplier = [NSNumber numberWithFloat:.001];
-		[netWorthFormatter setMinimumFractionDigits:0];
-		y.labelFormatter = netWorthFormatter;
+		
+		
+		// Depending on the maximum value in the results, scale the y axis  to either show values
+		// denominated in millions or thousands. 
+		NSNumberFormatter *yAxisFormatter = [[[NSNumberFormatter alloc]init] autorelease];
+		[yAxisFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+		if(resultMaxVal >= 1000000)
+		{
+			y.majorIntervalLength = CPTDecimalFromString(@"250000");
+			yAxisFormatter.positiveSuffix = @"M";
+			yAxisFormatter.negativeSuffix = @"M)";
+			yAxisFormatter.multiplier = [NSNumber numberWithFloat:.000001];
+			[yAxisFormatter setMinimumFractionDigits:0];
+		}
+		else
+		{
+			y.majorIntervalLength = CPTDecimalFromString(@"10000");
+			yAxisFormatter.positiveSuffix = @"K";
+			yAxisFormatter.negativeSuffix = @"K)";
+			yAxisFormatter.multiplier = [NSNumber numberWithFloat:.001];
+			[yAxisFormatter setMinimumFractionDigits:0];
+		}
+		y.labelFormatter = yAxisFormatter;
 		y.orthogonalCoordinateDecimal = CPTDecimalFromInt(resultMinYear);
 		y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+		
 		double excludeRange = 1000000000.0;
 		y.labelExclusionRanges = [NSArray arrayWithObjects:
 			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMinVal-excludeRange) 
