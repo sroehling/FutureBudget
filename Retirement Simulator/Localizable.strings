@@ -461,11 +461,19 @@
 "RESULTS_LOAN_SECTION_TITLE" = "Loan Balances";
 "RESULTS_LOAN_ALL_LOAN_TITLE" = "All Loans";
 "RESULTS_LOAN_ALL_LOAN_SUBTITLE" = "Plot the outstanding balances of all loans";
+
 "RESULTS_ACCT_SECTION_TITLE" = "Account Balances";
 "RESULTS_ACCT_ALL_ACCT_BALANCE_DATA_LABEL" = "All Account Balances";
 "RESULTS_ACCT_BALANCE_DATA_LABEL_FORMAT" = "Account Balance - %@";
 "RESULTS_ACCT_ALL_ACCT_TITLE" = "All Accounts";
 "RESULTS_ACCT_ALL_ACCT_SUBTITLE" = "Plot the outstanding balances for all accounts";
+
+"RESULTS_ACCT_CONTRIB_SECTION_TITLE" = "Account Contributions";
+"RESULTS_ACCT_ALL_ACCT_CONTRIB_DATA_LABEL" = "All Account Contributions";
+"RESULTS_ACCT_CONTRIB_DATA_LABEL_FORMAT" = "Account Contributions - %@";
+"RESULTS_ACCT_ALL_ACCT_CONTRIB_SUBTITLE" = "Yearly contributions to all accounts";
+
+
 "RESULTS_INCOME_SECTION_TITLE" = "Incomes";
 "RESULTS_INCOME_ALL_DATA_LABEL" = "All Incomes";
 "RESULTS_INCOME_DATA_LABEL_FORMAT" = "Income - %@";

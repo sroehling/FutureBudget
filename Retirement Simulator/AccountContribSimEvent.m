@@ -14,11 +14,12 @@
 #import "FiscalYearDigest.h"
 #import "AccountContribDigestEntry.h"
 #import "FiscalYearDigestEntries.h"
+#import "AccountSimInfo.h"
 
 
 @implementation AccountContribSimEvent
 
-@synthesize acctBalance;
+@synthesize acctSimInfo;
 @synthesize contributionAmount;
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
@@ -27,13 +28,13 @@
 				stringFromNumber:[NSNumber numberWithDouble:self.contributionAmount]];
     
     NSLog(@"Doing savings contribution event: %@ %@ %@",
-          self.acctBalance.workingBalanceName,
+          self.acctSimInfo.account.name,
           [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
 		  currencyAmount);
 		  
 	AccountContribDigestEntry *acctContrib = 
 		[[[AccountContribDigestEntry alloc] 
-		initWithWorkingBalance:self.acctBalance 
+		initWithWorkingBalance:self.acctSimInfo.acctBal 
 		andContribAmount:self.contributionAmount] autorelease];
 	[digest.digestEntries addDigestEntry:acctContrib onDate:self.eventDate];
 }
@@ -42,7 +43,7 @@
 - (void) dealloc
 {
 	[super dealloc];
-	[acctBalance release];
+	[acctSimInfo release];
 }
 
 @end

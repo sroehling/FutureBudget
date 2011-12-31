@@ -22,6 +22,9 @@
 		00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA11402EBC9001D472F /* WorkingBalanceTest.m */; };
 		00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA91406B365001D472F /* EndOfYearDigestResult.m */; };
 		00160CAD1406C9AD001D472F /* FiscalYearDigestEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */; };
+		001E5C2614A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */; };
+		001E5C2A14A240F7008A672E /* AcctContribXYPlotGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */; };
+		001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2C14A24219008A672E /* AcctResultGenerator.m */; };
 		00237957143E4F5D006650E3 /* TaxBracketEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237956143E4F5D006650E3 /* TaxBracketEntry.m */; };
 		0023795A143E4FA4006650E3 /* MultiScenarioGrowthRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237959143E4FA4006650E3 /* MultiScenarioGrowthRate.m */; };
 		0023795D143E5009006650E3 /* TaxBracket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023795C143E5009006650E3 /* TaxBracket.m */; };
@@ -352,6 +355,12 @@
 		00160CA91406B365001D472F /* EndOfYearDigestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearDigestResult.m; sourceTree = "<group>"; };
 		00160CAB1406C9A5001D472F /* FiscalYearDigestEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestEntries.h; sourceTree = "<group>"; };
 		00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestEntries.m; sourceTree = "<group>"; };
+		001E5C2414A240D4008A672E /* AllAcctContribXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctContribXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctContribXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		001E5C2814A240F6008A672E /* AcctContribXYPlotGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctContribXYPlotGenerator.h; sourceTree = "<group>"; };
+		001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctContribXYPlotGenerator.m; sourceTree = "<group>"; };
+		001E5C2B14A24219008A672E /* AcctResultGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctResultGenerator.h; sourceTree = "<group>"; };
+		001E5C2C14A24219008A672E /* AcctResultGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctResultGenerator.m; sourceTree = "<group>"; };
 		00237955143E4F5D006650E3 /* TaxBracketEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntry.h; sourceTree = "<group>"; };
 		00237956143E4F5D006650E3 /* TaxBracketEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketEntry.m; sourceTree = "<group>"; };
 		00237958143E4FA4006650E3 /* MultiScenarioGrowthRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioGrowthRate.h; sourceTree = "<group>"; };
@@ -1004,6 +1013,23 @@
 				0052E2071459B03300FEC4E2 /* TaxInputCalcs.m */,
 			);
 			name = Taxes;
+			sourceTree = "<group>";
+		};
+		001E5C2E14A24279008A672E /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				001E5C2B14A24219008A672E /* AcctResultGenerator.h */,
+				001E5C2C14A24219008A672E /* AcctResultGenerator.m */,
+				001E5C2414A240D4008A672E /* AllAcctContribXYPlotDataGenerator.h */,
+				001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */,
+				001E5C2814A240F6008A672E /* AcctContribXYPlotGenerator.h */,
+				001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */,
+				00CB5E6514926F1300C4654A /* AllAcctBalanceXYPlotDataGenerator.h */,
+				00CB5E6614926F1500C4654A /* AllAcctBalanceXYPlotDataGenerator.m */,
+				00CB5E6814926F4100C4654A /* AcctBalanceXYPlotDataGenerator.h */,
+				00CB5E6914926F4200C4654A /* AcctBalanceXYPlotDataGenerator.m */,
+			);
+			name = Accounts;
 			sourceTree = "<group>";
 		};
 		00237954143E4EED006650E3 /* Taxes */ = {
@@ -2102,6 +2128,7 @@
 		00CB5E581491331500C4654A /* Results Data Generators */ = {
 			isa = PBXGroup;
 			children = (
+				001E5C2E14A24279008A672E /* Accounts */,
 				00D8D28214900A2100B0314D /* NetWorthXYPlotDataGenerator.h */,
 				00D8D28314900A2200B0314D /* NetWorthXYPlotDataGenerator.m */,
 				00CB5E591491337900C4654A /* AssetValueXYPlotDataGenerator.h */,
@@ -2112,10 +2139,6 @@
 				00CB5E601491622D00C4654A /* AllLoanBalanceXYPlotDataGenerator.m */,
 				00CB5E621491628C00C4654A /* LoanBalXYPlotDataGenerator.h */,
 				00CB5E631491628D00C4654A /* LoanBalXYPlotDataGenerator.m */,
-				00CB5E6514926F1300C4654A /* AllAcctBalanceXYPlotDataGenerator.h */,
-				00CB5E6614926F1500C4654A /* AllAcctBalanceXYPlotDataGenerator.m */,
-				00CB5E6814926F4100C4654A /* AcctBalanceXYPlotDataGenerator.h */,
-				00CB5E6914926F4200C4654A /* AcctBalanceXYPlotDataGenerator.m */,
 				00CB5E6B14927DD600C4654A /* AllIncomeXYPlotDataGenerator.h */,
 				00CB5E6C14927DD900C4654A /* AllIncomeXYPlotDataGenerator.m */,
 				00CB5E6E14927E6300C4654A /* IncomeXYPlotDataGenerator.h */,
@@ -2611,6 +2634,9 @@
 				00AF85FA1499314200AE734B /* YearValPlotDataVal.m in Sources */,
 				00AF85FE149A6C5700AE734B /* CashBalXYPlotDataGenerator.m in Sources */,
 				00AF8601149A81DA00AE734B /* DeficitBalXYPlotDataGenerator.m in Sources */,
+				001E5C2614A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m in Sources */,
+				001E5C2A14A240F7008A672E /* AcctContribXYPlotGenerator.m in Sources */,
+				001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

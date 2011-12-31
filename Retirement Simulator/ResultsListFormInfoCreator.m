@@ -34,7 +34,8 @@
 
 #import "CashBalXYPlotDataGenerator.h"
 #import "DeficitBalXYPlotDataGenerator.h"
-
+#import "AllAcctContribXYPlotDataGenerator.h"
+#import "AcctContribXYPlotGenerator.h"
 
 @implementation ResultsListFormInfoCreator
 
@@ -218,6 +219,45 @@
 			[sectionInfo addFieldEditInfo:acctFieldEditInfo];
 		}
 	}
+	
+	
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"RESULTS_ACCT_CONTRIB_SECTION_TITLE");
+	if(true)
+	{
+		ResultsViewInfo *allAcctContribViewInfo = [[[ResultsViewInfo alloc] 
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
+		ResultsViewFactory *allAcctContribViewFactory = 
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAcctContribViewInfo
+				andPlotDataGenerator:[[[AllAcctContribXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *allAcctContribFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_CONTRIB_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:allAcctContribViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:allAcctContribFieldEditInfo];
+		
+		for(Account *acct in self.simResultsController.acctsSimulated)
+		{
+			ResultsViewInfo *acctContribViewInfo = [[[ResultsViewInfo alloc] 
+				initWithSimResultsController:self.simResultsController 
+				andViewTitle:acct.name] autorelease];
+			ResultsViewFactory *acctContribViewFactory = 
+				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:acctContribViewInfo
+					andPlotDataGenerator:[[[AcctContribXYPlotGenerator alloc]
+					initWithAccount:acct]autorelease]] autorelease];
+			StaticNavFieldEditInfo *acctContribFieldEditInfo = 
+				[[[StaticNavFieldEditInfo alloc] 
+					initWithCaption:acct.name
+					andSubtitle:@"" 
+					andContentDescription:nil
+					andSubViewFactory:acctContribViewFactory] autorelease];
+			[sectionInfo addFieldEditInfo:acctContribFieldEditInfo];
+		}
+	}
+
 	
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"RESULTS_INCOME_SECTION_TITLE");

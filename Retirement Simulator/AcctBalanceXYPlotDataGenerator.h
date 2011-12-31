@@ -9,16 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "YearValXYPlotDataGenerator.h"
+#import "AcctResultGenerator.h"
 
 @class Account;
 
-@interface AcctBalanceXYPlotDataGenerator : NSObject <YearValXYPlotDataGenerator> {
-    @private
-		Account *account;
+@interface AcctBalanceXYPlotDataGenerator : AcctResultGenerator <YearValXYPlotDataGenerator> {
 }
-
-@property(nonatomic,retain) Account *account;
-
--(id)initWithAccount:(Account*)theAccount;
 
 @end

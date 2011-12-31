@@ -15,25 +15,24 @@
 @class EventRepeater;
 @class VariableRateCalculator;
 @class InterestBearingWorkingBalance;
+@class AccountSimInfo;
 
 @interface AccountContribSimEventCreator : NSObject <SimEventCreator> {
     @private
-        InterestBearingWorkingBalance *acctWorkingBalance;
-		Account *account;
+		AccountSimInfo *acctSimInfo;
+		
         EventRepeater *eventRepeater;
 		VariableRateCalculator *varRateCalc;
 		id<ValueAsOfCalculator> varAmountCalc;
-		NSDate *simStartDate;
 }
 
-- (id)initWithWorkingBalance:(InterestBearingWorkingBalance*)theWorkingBalance
-	andAcct:(Account*)theAcct andSimStartDate:(NSDate*)simStart;
+- (id)initWithAcctSimInfo:(AccountSimInfo*)theAcctSimInfo;
+	
+@property(nonatomic,retain) AccountSimInfo *acctSimInfo;
 
-@property(nonatomic,retain) InterestBearingWorkingBalance *acctWorkingBalance;
-@property(nonatomic,retain) Account *account;
 @property(nonatomic,retain) EventRepeater *eventRepeater;
 @property(nonatomic,retain) VariableRateCalculator *varRateCalc;
 @property(nonatomic,retain) id<ValueAsOfCalculator> varAmountCalc;
-@property(nonatomic,retain) NSDate *simStartDate;
+
 
 @end

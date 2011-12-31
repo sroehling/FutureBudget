@@ -18,9 +18,10 @@
 @implementation AccountSimInfo
 	
 @synthesize account;
-@synthesize acctBal;	
+@synthesize acctBal;
+@synthesize simParams;	
 	
--(id)initWithAcct:(Account*)theAcct andSimParams:(SimParams *)simParams
+-(id)initWithAcct:(Account*)theAcct andSimParams:(SimParams *)theSimParams
 {
 	self = [super init];
 	if(self)
@@ -28,8 +29,12 @@
 		assert(theAcct != nil);
 		self.account = theAcct;
 		
+		assert(theSimParams != nil);
+		self.simParams =theSimParams;
+		
 		self.acctBal = [[[InterestBearingWorkingBalance alloc] initWithAcct:theAcct 
 				andSimParams:simParams] autorelease];
+				
 		// TBD - Is this the best place to populate the SimParam's digestSums for the 
 		// savings acct? Should it instead be done inside the WorkingBalance?
 		[simParams.digestSums addDigestSum:self.acctBal.contribs];

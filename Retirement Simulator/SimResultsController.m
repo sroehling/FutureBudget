@@ -138,12 +138,14 @@ static SimResultsController *theSimResultsControllerSingleton;
 
 -(void)dealloc
 {
-	[super dealloc];
-	
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	assert(dnc != nil);
     [dnc removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification 
 		object:self.dataModelController.managedObjectContext];
+
+
+	[super dealloc];
+	
 	
 	
 	[endOfYearResults release];

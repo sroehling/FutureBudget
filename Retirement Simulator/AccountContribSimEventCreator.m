@@ -23,42 +23,38 @@
 #import "MultiScenarioGrowthRate.h"
 #import "MultiScenarioSimDate.h"
 #import "MultiScenarioSimEndDate.h"
+#import "AccountSimInfo.h"
+#import "SimParams.h"
 
 
 @implementation AccountContribSimEventCreator
 
-@synthesize acctWorkingBalance;
+@synthesize acctSimInfo;
 @synthesize varRateCalc;
 @synthesize varAmountCalc;
-@synthesize account;
-@synthesize eventRepeater;
-@synthesize simStartDate;
 
-- (id)initWithWorkingBalance:(InterestBearingWorkingBalance*)theWorkingBalance
-	andAcct:(Account*)theAcct andSimStartDate:(NSDate*)simStart
+@synthesize eventRepeater;
+
+
+- (id)initWithAcctSimInfo:(AccountSimInfo*)theAcctSimInfo
 {
 	self = [super init];
 	if(self)
 	{
-		self.acctWorkingBalance = theWorkingBalance;
+		self.acctSimInfo = theAcctSimInfo;
 	
-		self.account = theAcct;
-		assert(theAcct != nil);
-
-		self.simStartDate = simStart;
-
 		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
 		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
 
 		DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)[
-			account.contribGrowthRate.growthRate
+			self.acctSimInfo.account.contribGrowthRate.growthRate
 			getValueForCurrentOrDefaultScenario];
 		
 		self.varRateCalc = [calcCreator 
 							createForDateSensitiveValue:amountGrowthRate 
-							andStartDate:simStart];
+							andStartDate:self.acctSimInfo.simParams.simStartDate];
 							
-		DateSensitiveValue *amount = (DateSensitiveValue*)[account.contribAmount.amount 
+		DateSensitiveValue *amount = (DateSensitiveValue*)[self.acctSimInfo.account.contribAmount.amount 
 				getValueForCurrentOrDefaultScenario];					
 		ValueAsOfCalculatorCreator *varAmountCalcCreator = 
 			[[[ValueAsOfCalculatorCreator alloc] init] autorelease];
@@ -66,17 +62,18 @@
 
 	}
 	return self;
+
 }
 
 
 - (void)resetSimEventCreation
 {
 
-	SimDate *startDate = (SimDate*)[self.account.contribStartDate.simDate 
+	SimDate *startDate = (SimDate*)[self.acctSimInfo.account.contribStartDate.simDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedStartDate = startDate.date;
 			
-	SimDate *endDate = (SimDate*)[self.account.contribEndDate.simDate 
+	SimDate *endDate = (SimDate*)[self.acctSimInfo.account.contribEndDate.simDate 
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
 	
@@ -85,7 +82,7 @@
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedEndDate]);
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
-		[account.contribRepeatFrequency getValueForCurrentOrDefaultScenario];
+		[self.acctSimInfo.account.contribRepeatFrequency getValueForCurrentOrDefaultScenario];
 	// TODO - Need to pass in an end date to the event repeat frequency
     self.eventRepeater = [[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
@@ -97,7 +94,7 @@
 {
     assert(eventRepeater!=nil);
 	
-    NSDate *nextDate = [eventRepeater nextDateOnOrAfterDate:self.simStartDate];
+    NSDate *nextDate = [eventRepeater nextDateOnOrAfterDate:self.acctSimInfo.simParams.simStartDate];
     if(nextDate !=nil)
     {
 		
@@ -107,7 +104,7 @@
 		
 		AccountContribSimEvent *contribEvent = [[[AccountContribSimEvent alloc]initWithEventCreator:self 
 			andEventDate:nextDate ] autorelease];
-		contribEvent.acctBalance = self.acctWorkingBalance;
+		contribEvent.acctSimInfo = self.acctSimInfo;
 		contribEvent.contributionAmount = growthAdjustedContributionAmount;
 
 		return contribEvent;
@@ -123,12 +120,11 @@
 - (void)dealloc {
     // release owned objects here
     [super dealloc]; // pretty important.
-	[acctWorkingBalance release];
 	[eventRepeater release];
 	[varRateCalc release];
 	[varAmountCalc release];
-	[account release];
-	[simStartDate release];
+	[acctSimInfo release];
+
 }
 
 @end

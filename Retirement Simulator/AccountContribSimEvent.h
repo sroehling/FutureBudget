@@ -10,15 +10,15 @@
 
 #import "SimEvent.h"
 
-@class InterestBearingWorkingBalance;
+@class AccountSimInfo;
 
 @interface AccountContribSimEvent : SimEvent {
     @private
-		InterestBearingWorkingBalance *acctBalance;
+		AccountSimInfo *acctSimInfo;
 		double contributionAmount;
 }
 
-@property(nonatomic,retain) InterestBearingWorkingBalance *acctBalance;
+@property(nonatomic,retain) AccountSimInfo *acctSimInfo;
 @property double contributionAmount;
 
 @end

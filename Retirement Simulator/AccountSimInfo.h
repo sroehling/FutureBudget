@@ -16,11 +16,13 @@
     @private
 		Account *account;
 		InterestBearingWorkingBalance *acctBal;
+		SimParams *simParams;
 }
 
 @property(nonatomic,retain) Account *account;
 @property(nonatomic,retain) InterestBearingWorkingBalance *acctBal;
+@property(nonatomic,retain) SimParams *simParams;
 
--(id)initWithAcct:(Account*)theAcct andSimParams:(SimParams *)simParams;
+-(id)initWithAcct:(Account*)theAcct andSimParams:(SimParams *)theSimParams;
 
 @end

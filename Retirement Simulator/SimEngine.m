@@ -156,7 +156,7 @@
 		{
 			AccountContribSimEventCreator *savingsEventCreator = 
 				[[[AccountContribSimEventCreator alloc]
-					initWithWorkingBalance:acctSimInfo.acctBal andAcct:acct andSimStartDate:self.simParams.simStartDate] autorelease];
+					initWithAcctSimInfo:acctSimInfo]autorelease];
 			[self.eventCreators addObject:savingsEventCreator];
 		}
 		

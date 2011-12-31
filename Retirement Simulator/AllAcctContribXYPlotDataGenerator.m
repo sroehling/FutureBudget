@@ -1,24 +1,20 @@
 //
-//  AcctBalanceXYPlotDataGenerator.m
+//  AllAcctContribXYPlotDataGenerator.m
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 12/9/11.
+//  Created by Steve Roehling on 12/21/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AcctBalanceXYPlotDataGenerator.h"
+#import "AllAcctContribXYPlotDataGenerator.h"
 
 #import "YearValXYPlotDataGenerator.h"
 #import "YearValXYPlotData.h"
 #import "SimResultsController.h"
 #import "EndOfYearDigestResult.h"
-#import "EndOfYearInputResults.h"
-#import "Account.h"
 #import "LocalizationHelper.h"
 
-@implementation AcctBalanceXYPlotDataGenerator
-
-
+@implementation AllAcctContribXYPlotDataGenerator
 
 -(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults
 {
@@ -27,9 +23,9 @@
 	for(EndOfYearDigestResult *eoyResult in simResults.endOfYearResults)
 	{
 		NSInteger resultYear = [eoyResult yearNumber];
-		double acctBal = [eoyResult.acctBalances getResultForInput:self.account];
+		double acctContribs = eoyResult.sumAcctContrib;
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:acctBal];
+		[plotData addPlotDataPointForYear:resultYear andYVal:acctContribs];
 	}
 
 	return plotData;
@@ -37,13 +33,14 @@
 
 -(NSString*)dataLabel
 {
-	return [NSString stringWithFormat: LOCALIZED_STR(@"RESULTS_ACCT_BALANCE_DATA_LABEL_FORMAT"),
-		self.account.name];
+	return LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_CONTRIB_DATA_LABEL");
 }
 
 -(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
 {
-	return [simResults.acctsSimulated containsObject:self.account];
+	return TRUE;
 }
+
+
 
 @end
