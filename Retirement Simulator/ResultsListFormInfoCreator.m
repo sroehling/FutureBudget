@@ -36,6 +36,8 @@
 #import "DeficitBalXYPlotDataGenerator.h"
 #import "AllAcctContribXYPlotDataGenerator.h"
 #import "AcctContribXYPlotGenerator.h"
+#import "AcctWithdrawalXYPlotDataGenerator.h"
+#import "AllAcctWithdrawalXYPlotDataGenerator.h"
 
 @implementation ResultsListFormInfoCreator
 
@@ -257,6 +259,46 @@
 			[sectionInfo addFieldEditInfo:acctContribFieldEditInfo];
 		}
 	}
+
+
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"RESULTS_ACCT_WITHDRAW_SECTION_TITLE");
+	if(true)
+	{
+		ResultsViewInfo *allAcctWithdrawViewInfo = [[[ResultsViewInfo alloc] 
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
+		ResultsViewFactory *allAcctWithdrawViewFactory = 
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAcctWithdrawViewInfo
+				andPlotDataGenerator:[[[AllAcctWithdrawalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *allAcctWithdrawFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_WITHDRAW_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:allAcctWithdrawViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:allAcctWithdrawFieldEditInfo];
+		
+		for(Account *acct in self.simResultsController.acctsSimulated)
+		{
+			ResultsViewInfo *acctWithdrawViewInfo = [[[ResultsViewInfo alloc] 
+				initWithSimResultsController:self.simResultsController 
+				andViewTitle:acct.name] autorelease];
+			ResultsViewFactory *acctWithdrawViewFactory = 
+				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:acctWithdrawViewInfo
+					andPlotDataGenerator:[[[AcctWithdrawalXYPlotDataGenerator alloc]
+					initWithAccount:acct]autorelease]] autorelease];
+			StaticNavFieldEditInfo *acctWithdrawFieldEditInfo = 
+				[[[StaticNavFieldEditInfo alloc] 
+					initWithCaption:acct.name
+					andSubtitle:@"" 
+					andContentDescription:nil
+					andSubViewFactory:acctWithdrawViewFactory] autorelease];
+			[sectionInfo addFieldEditInfo:acctWithdrawFieldEditInfo];
+		}
+	}
+
+
 
 	
 	sectionInfo = [formPopulator nextSection];

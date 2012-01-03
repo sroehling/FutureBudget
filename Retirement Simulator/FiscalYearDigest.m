@@ -93,6 +93,7 @@
 	NSArray *acctSimInfos = [self.simParams.acctInfo simInfos];
 	double sumAcctBal = 0.0;
 	double sumAcctContrib = 0.0;
+	double sumAcctWithdrawal = 0.0;
 	for(AccountSimInfo *acctSimInfo in acctSimInfos)
 	{
 		double acctBal = [acctSimInfo.acctBal currentBalance];
@@ -102,9 +103,14 @@
 		double acctContrib = [acctSimInfo.acctBal.contribs yearlyTotal];
 		[results.acctContribs setResultForInput:acctSimInfo.account andValue:acctContrib];
 		sumAcctContrib += acctContrib;
+		
+		double acctWithdrawal = [acctSimInfo.acctBal.withdrawals yearlyTotal];
+		[results.acctWithdrawals setResultForInput:acctSimInfo.account andValue:acctWithdrawal];
+		sumAcctWithdrawal += acctWithdrawal;
 	}
 	results.sumAcctBal = sumAcctBal;
 	results.sumAcctContrib = sumAcctContrib;
+	results.sumAcctWithdrawal = sumAcctWithdrawal;
 	
 	NSArray *incomeSimInfos = [self.simParams.incomeInfo simInfos];
 	double sumIncome = 0.0;

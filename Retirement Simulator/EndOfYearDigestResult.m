@@ -29,6 +29,8 @@
 @synthesize deficitBal;
 @synthesize acctContribs;
 @synthesize sumAcctContrib;
+@synthesize acctWithdrawals;
+@synthesize sumAcctWithdrawal;
 
 -(id)initWithEndDate:(NSDate *)endOfYearDate
 {
@@ -50,6 +52,9 @@
 
 		self.acctContribs = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumAcctContrib = 0.0;
+		
+		self.acctWithdrawals = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumAcctWithdrawal = 0.0;
 
 		self.incomes = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumIncomes = 0.0;
@@ -89,6 +94,8 @@
 	[acctBalances release];
 	[incomes release];
 	[expenses release];
+	[acctWithdrawals release];
+	[acctContribs release];
 }
 
 @end

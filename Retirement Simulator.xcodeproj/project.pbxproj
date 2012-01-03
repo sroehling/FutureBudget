@@ -178,6 +178,8 @@
 		008AA415141AC5B100FF2A52 /* buttonhelp-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA411141AC5B100FF2A52 /* buttonhelp-2.png */; };
 		008AA416141AC5B100FF2A52 /* buttonadd.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA412141AC5B100FF2A52 /* buttonadd.png */; };
 		008AA417141AC5B100FF2A52 /* buttonadd-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA413141AC5B100FF2A52 /* buttonadd-2.png */; };
+		008DD4B114B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */; };
+		008DD4B514B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */; };
 		0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */; };
 		0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96713B69C66000555AC /* TestCoreDataObjects.m */; };
 		0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96D13B8E93A000555AC /* EventRepeaterTest.m */; };
@@ -672,6 +674,10 @@
 		008AA411141AC5B100FF2A52 /* buttonhelp-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonhelp-2.png"; sourceTree = "<group>"; };
 		008AA412141AC5B100FF2A52 /* buttonadd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonadd.png; sourceTree = "<group>"; };
 		008AA413141AC5B100FF2A52 /* buttonadd-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonadd-2.png"; sourceTree = "<group>"; };
+		008DD4AF14B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		008DD4B314B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		0095E95F13B69A3B000555AC /* VariableValueCalculatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueCalculatorTest.h; sourceTree = "<group>"; };
 		0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueCalculatorTest.m; sourceTree = "<group>"; };
 		0095E96613B69C66000555AC /* TestCoreDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCoreDataObjects.h; sourceTree = "<group>"; };
@@ -1028,6 +1034,10 @@
 				00CB5E6614926F1500C4654A /* AllAcctBalanceXYPlotDataGenerator.m */,
 				00CB5E6814926F4100C4654A /* AcctBalanceXYPlotDataGenerator.h */,
 				00CB5E6914926F4200C4654A /* AcctBalanceXYPlotDataGenerator.m */,
+				008DD4AF14B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.h */,
+				008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */,
+				008DD4B314B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.h */,
+				008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -2637,6 +2647,8 @@
 				001E5C2614A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m in Sources */,
 				001E5C2A14A240F7008A672E /* AcctContribXYPlotGenerator.m in Sources */,
 				001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */,
+				008DD4B114B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m in Sources */,
+				008DD4B514B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

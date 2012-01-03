@@ -474,6 +474,14 @@
 "RESULTS_ACCT_ALL_ACCT_CONTRIB_SUBTITLE" = "Yearly contributions to all accounts";
 
 
+"RESULTS_ACCT_WITHDRAW_SECTION_TITLE" = "Account Withdrawals";
+"RESULTS_ACCT_ALL_ACCT_WITHDRAW_DATA_LABEL" = "All Account Withdrawals";
+"RESULTS_ACCT_WITHDRAW_DATA_LABEL_FORMAT" = "Account Withdrawals - %@";
+"RESULTS_ACCT_ALL_ACCT_WITHDRAW_SUBTITLE" = "Yearly withdrawals from all accounts";
+
+
+
+
 "RESULTS_INCOME_SECTION_TITLE" = "Incomes";
 "RESULTS_INCOME_ALL_DATA_LABEL" = "All Incomes";
 "RESULTS_INCOME_DATA_LABEL_FORMAT" = "Income - %@";
