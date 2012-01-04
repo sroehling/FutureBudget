@@ -17,6 +17,7 @@
 @class MultiScenarioAmount;
 @class MultiScenarioGrowthRate;
 @class MultiScenarioSimDate;
+@class MultiScenarioSimEndDate;
 
 extern NSString * const LOAN_INPUT_ENTITY_NAME;
 
@@ -41,6 +42,7 @@ extern NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY;
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioDownPmtPercentFixed;
 
 @property (nonatomic, retain) MultiScenarioSimDate * origDate;
+@property(nonatomic,retain) MultiScenarioSimEndDate *earlyPayoffDate;
 
 @property (nonatomic, retain) MultiScenarioAmount * loanCost;
 @property (nonatomic, retain) MultiScenarioGrowthRate *loanCostGrowthRate;

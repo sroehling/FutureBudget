@@ -379,6 +379,49 @@
 	
 }
 
+
+-(void)testLoanWithEarlyPayoff
+{
+	[self resetCoredData];
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelInterface:self.coreData] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:600.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:60];	
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
+			[DateHelper dateFromStr:@"2015-01-15"]];
+
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] 
+		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:490.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:370.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:250.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01"];
+
+	
+}
+
+
+
 -(void)testLoanWithDownPayment
 {
 

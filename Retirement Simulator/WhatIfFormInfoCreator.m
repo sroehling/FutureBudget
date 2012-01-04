@@ -657,6 +657,31 @@
 	}
 
 	
+	inputs = [[DataModelController theDataModelController] 
+			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_LOAN_PAYOFF");
+
+		for(LoanInput *loan in inputs)
+		{
+			[formPopulator populateMultiScenSimEndDate:loan.earlyPayoffDate 
+			andLabel:loan.name 
+			andTitle:LOCALIZED_STR(@"INPUT_LOAN_EARLY_PAYOFF_TITLE")
+			andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_EARLY_PAYOFF_TABLE_TITLE")
+			andTableSubHeader:[NSString stringWithFormat:
+				LOCALIZED_STR(@"INPUT_LOAN_EARLY_PAYOFF_TABLE_SUBTITLE_FORMAT"),loan.name]
+				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_LOAN_NEVER_PAYOFF_FIELD_TITLE") 
+				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_LOAN_NEVER_PAYOFF_FIELD_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_LOAN_NEVER_PAYOFF_SECTION_TITLE") 
+				andNeverEndSectionSubtitle:LOCALIZED_STR(@"INPUT_LOAN_NEVER_PAYOFF_SECTION_SUBTITLE")
+				andRelEndDateSectionTitle:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_TITLE")
+				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_SUBTITLE")
+				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
+				];
+		}
+	}
 	
 	inputs = [[DataModelController theDataModelController] 
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];

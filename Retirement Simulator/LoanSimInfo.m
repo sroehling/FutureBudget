@@ -21,6 +21,7 @@
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioGrowthRate.h"
 #import "MultiScenarioSimDate.h"
+#import "MultiScenarioSimEndDate.h"
 #import "DigestEntryProcessingParams.h"
 #import "InputValDigestSummations.h"
 
@@ -30,6 +31,7 @@
 @synthesize loanBalance;
 @synthesize extraPmtGrowthCalc;
 @synthesize simParams;
+
 
 - (EventRepeater*)createLoanEventRepeater
 {
@@ -146,6 +148,33 @@
 }
 
 
+-(bool)earlyPayoffAfterOrigination
+{
+	if([DateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:[self loanOrigDate]])
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+- (bool)earlyPayoffAfterSimStart
+{
+	if([DateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:self.simParams.simStartDate])
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+
+
 - (double)startingBalanceAfterDownPayment
 {
 	double loanOrig = [self loanOrigAmount];
@@ -166,6 +195,7 @@
 		
 		assert(theParams != nil);
 		self.simParams = theParams;
+		
 		
 		
 		// The working balance is setup with a "starting date for interest" (interestStartDate). This
@@ -215,6 +245,14 @@
 	return self;
 }
 
+-(NSDate*)earlyPayoffDate
+{
+	assert(self.loan.earlyPayoffDate != nil);
+	return [SimInputHelper 
+			multiScenEndDate:self.loan.earlyPayoffDate.simDate 
+			withStartDate:self.loan.origDate.simDate 
+			andScenario:self.simParams.simScenario];
+}
 
 
 -(NSDate*)loanOrigDate

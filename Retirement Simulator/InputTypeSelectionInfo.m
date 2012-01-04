@@ -211,6 +211,9 @@
 	// have any UI input - Should this change
 	newInput.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyMonthly];
 	
+	
+	newInput.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+	
 	[[DataModelController theDataModelController] saveContext];
 		
 	return newInput;

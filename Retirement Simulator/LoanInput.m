@@ -12,6 +12,7 @@
 #import "InputVisitor.h"
 #import "VariableValue.h"
 #import "LoanInterestItemizedTaxAmt.h"
+#import "MultiScenarioSimEndDate.h"
 
 NSString * const LOAN_INPUT_ENTITY_NAME = @"LoanInput";
 
@@ -45,6 +46,8 @@ NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY = @"multiScenarioDow
 @dynamic extraPmtFrequency;
 
 @dynamic extraPmtGrowthRate;
+
+@dynamic earlyPayoffDate;
 
 // Inverse Relationship
 @dynamic loanInterestItemizedTaxAmts;

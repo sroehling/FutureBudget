@@ -17,6 +17,7 @@ extern NSString * const MULTI_SCEN_SIM_END_DATE_SIM_DATE_KEY;
 @class Account;
 @class AssetInput;
 @class CashFlowInput;
+@class LoanInput;
 
 @interface MultiScenarioSimEndDate : NSManagedObject {
 @private
@@ -36,6 +37,7 @@ extern NSString * const MULTI_SCEN_SIM_END_DATE_SIM_DATE_KEY;
 @property (nonatomic, retain) Account * accountContribEndDate;
 @property (nonatomic, retain) AssetInput * assetSaleDate;
 @property (nonatomic, retain) CashFlowInput * cashFlowEndDate;
+@property(nonatomic,retain) LoanInput *loanEarlyPayoffDate;
 
 
 @end

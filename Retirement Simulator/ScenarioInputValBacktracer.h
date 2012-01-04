@@ -55,6 +55,7 @@
 		NSMutableSet *accountContribEndDate;
 		NSMutableSet *assetSaleDate;
 		NSMutableSet *cashFlowEndDate;
+		NSMutableSet *loanEarlyPayoff;
 
 
 		// MultiScenarioSimDate inverse relationships
@@ -109,6 +110,7 @@
 @property(nonatomic,retain) NSMutableSet *accountContribEndDate;
 @property(nonatomic,retain) NSMutableSet *assetSaleDate;
 @property(nonatomic,retain) NSMutableSet *cashFlowEndDate;
+@property(nonatomic,retain) NSMutableSet *loanEarlyPayoff;
 
 // MultiScenarioSimDate inverse relationships
 @property(nonatomic,retain) NSMutableSet *accountContribStartDate;

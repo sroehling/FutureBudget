@@ -218,6 +218,20 @@
 "INPUT_ASSET_SALE_REL_END_DATE_SECTION_SUBTITLE" = "Sell the asset a given number of years, months, and/or days after its purchase";
 "INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL" = "After Purchase Date";
 
+
+"INPUT_LOAN_EARLY_PAYOFF_FIELD_LABEL" = "Early Payoff Date";
+"INPUT_LOAN_EARLY_PAYOFF_TITLE" = "Early Payoff Date";
+"INPUT_LOAN_EARLY_PAYOFF_TABLE_TITLE" = "Loan Early Payoff";
+"INPUT_LOAN_EARLY_PAYOFF_TABLE_SUBTITLE_FORMAT" = "Enter and/or select a date a lump-sum early payoff of %@ will occur";
+"INPUT_LOAN_NEVER_PAYOFF_FIELD_TITLE" = "No Early Payoff";
+"INPUT_LOAN_NEVER_PAYOFF_FIELD_SUBTITLE" = "Don't payoff the loan early.";
+"INPUT_LOAN_NEVER_PAYOFF_SECTION_TITLE" = "No Early Payoff";
+"INPUT_LOAN_NEVER_PAYOFF_SECTION_SUBTITLE" = "Select to disable an early (lump sum) payoff of the loan.";
+"INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_TITLE" = "Payoff After Origination Date";
+"INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_SUBTITLE" = "Payoff the loan a given number of years, months and/or days after its origination";
+"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL" = "After Origination";
+
+
 "INPUT_TAX_TITLE" = "Tax";
 "INPUT_TAX_INLINE_INPUT_TYPE" = "tax";
 "INPUT_TAX_ENABLED_FIELD_LABEL" = "Enable Tax?";
@@ -398,6 +412,7 @@
 "WHAT_IF_DATES_EXPENSE_END" = "Expense End";
 "WHAT_IF_DATES_ASSET_SALE" = "Asset Sale";
 "WHAT_IF_DATES_LOAN_ORIG" = "Loan Origination Date";
+"WHAT_IF_DATES_LOAN_PAYOFF" = "Early Loan Payoff";
 "WHAT_IF_ACCOUNT_CONTRIB_START" = "Account Contributions Start";
 "WHAT_IF_ACCOUNT_CONTRIB_END" = "Account Contributions Stop";
 "WHAT_IF_ACCOUNT_DEFERRED_WITHDRAWAL" = "Defer Account Withdrawals";

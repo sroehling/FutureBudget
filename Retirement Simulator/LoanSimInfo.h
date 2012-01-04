@@ -20,6 +20,7 @@
 		SimParams *simParams;
 		InterestBearingWorkingBalance *loanBalance;
 		VariableRateCalculator *extraPmtGrowthCalc;
+
 }
 
 -(id)initWithLoan:(LoanInput*)theLoan andSimParams:(SimParams*)theParams;
@@ -31,8 +32,13 @@
 @property(nonatomic,retain) VariableRateCalculator *extraPmtGrowthCalc;
 @property(nonatomic,retain) SimParams *simParams;
 
+
 -(double)downPaymentAmount;
 -(NSDate*)loanOrigDate;
+-(NSDate*)earlyPayoffDate;
+-(bool)earlyPayoffAfterOrigination;
+- (bool)earlyPayoffAfterSimStart;
+
 - (double)loanOrigAmount;
 
 - (EventRepeater*)createLoanPmtRepeater;

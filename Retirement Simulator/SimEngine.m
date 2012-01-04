@@ -32,6 +32,7 @@
 #import "EstimatedTaxPaymentSimEventCreator.h"
 #import "SimParams.h"
 #import "LoanPaymentSimEventCreator.h"
+#import "LoanEarlyPayoffSimEventCreator.h"
 #import "SimEventList.h"
 #import "DefaultScenario.h"
 
@@ -196,6 +197,11 @@
 					initWithLoanInfo:loanInfo] autorelease];
 				[self.eventCreators addObject:extraPmtCreator];
 			}
+			
+			
+			LoanEarlyPayoffSimEventCreator *earlyPayoffSimEventCreator = 
+				[[[LoanEarlyPayoffSimEventCreator alloc] initWithLoanInfo:loanInfo] autorelease];
+			[self.eventCreators addObject:earlyPayoffSimEventCreator];
 
 			[self.simParams.workingBalanceMgr.loanBalances addBalance:loanInfo.loanBalance forInput:loan];
 

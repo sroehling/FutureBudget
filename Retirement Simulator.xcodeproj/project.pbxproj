@@ -180,6 +180,9 @@
 		008AA417141AC5B100FF2A52 /* buttonadd-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA413141AC5B100FF2A52 /* buttonadd-2.png */; };
 		008DD4B114B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */; };
 		008DD4B514B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */; };
+		008DD4B814B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B714B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m */; };
+		008DD4BB14B3AB24000AAEA5 /* LoanEarlyPayoffSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4BA14B3AB23000AAEA5 /* LoanEarlyPayoffSimEvent.m */; };
+		008DD4BE14B3AD37000AAEA5 /* LoanEarlyPayoffDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4BD14B3AD36000AAEA5 /* LoanEarlyPayoffDigestEntry.m */; };
 		0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */; };
 		0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96713B69C66000555AC /* TestCoreDataObjects.m */; };
 		0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96D13B8E93A000555AC /* EventRepeaterTest.m */; };
@@ -678,6 +681,12 @@
 		008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		008DD4B314B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		008DD4B614B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanEarlyPayoffSimEventCreator.h; sourceTree = "<group>"; };
+		008DD4B714B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanEarlyPayoffSimEventCreator.m; sourceTree = "<group>"; };
+		008DD4B914B3AB22000AAEA5 /* LoanEarlyPayoffSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanEarlyPayoffSimEvent.h; sourceTree = "<group>"; };
+		008DD4BA14B3AB23000AAEA5 /* LoanEarlyPayoffSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanEarlyPayoffSimEvent.m; sourceTree = "<group>"; };
+		008DD4BC14B3AD35000AAEA5 /* LoanEarlyPayoffDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanEarlyPayoffDigestEntry.h; sourceTree = "<group>"; };
+		008DD4BD14B3AD36000AAEA5 /* LoanEarlyPayoffDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanEarlyPayoffDigestEntry.m; sourceTree = "<group>"; };
 		0095E95F13B69A3B000555AC /* VariableValueCalculatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueCalculatorTest.h; sourceTree = "<group>"; };
 		0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueCalculatorTest.m; sourceTree = "<group>"; };
 		0095E96613B69C66000555AC /* TestCoreDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCoreDataObjects.h; sourceTree = "<group>"; };
@@ -2250,6 +2259,12 @@
 				0099A164145784CC00E35AF9 /* LoanDownPmtSimEvent.m */,
 				00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */,
 				00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */,
+				008DD4B614B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.h */,
+				008DD4B714B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m */,
+				008DD4B914B3AB22000AAEA5 /* LoanEarlyPayoffSimEvent.h */,
+				008DD4BA14B3AB23000AAEA5 /* LoanEarlyPayoffSimEvent.m */,
+				008DD4BC14B3AD35000AAEA5 /* LoanEarlyPayoffDigestEntry.h */,
+				008DD4BD14B3AD36000AAEA5 /* LoanEarlyPayoffDigestEntry.m */,
 			);
 			name = Loan;
 			sourceTree = "<group>";
@@ -2649,6 +2664,9 @@
 				001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */,
 				008DD4B114B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m in Sources */,
 				008DD4B514B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m in Sources */,
+				008DD4B814B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m in Sources */,
+				008DD4BB14B3AB24000AAEA5 /* LoanEarlyPayoffSimEvent.m in Sources */,
+				008DD4BE14B3AD37000AAEA5 /* LoanEarlyPayoffDigestEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
