@@ -183,6 +183,10 @@
 		008DD4B814B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B714B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m */; };
 		008DD4BB14B3AB24000AAEA5 /* LoanEarlyPayoffSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4BA14B3AB23000AAEA5 /* LoanEarlyPayoffSimEvent.m */; };
 		008DD4BE14B3AD37000AAEA5 /* LoanEarlyPayoffDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4BD14B3AD36000AAEA5 /* LoanEarlyPayoffDigestEntry.m */; };
+		008DD4C114B4DF45000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4C014B4DF44000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m */; };
+		008DD4C414B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4C314B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m */; };
+		008DD4C714B53F06000AAEA5 /* MultipleSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4C614B53F05000AAEA5 /* MultipleSelectionTableViewController.m */; };
+		008DD4CA14B5413C000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4C914B5413B000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m */; };
 		0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */; };
 		0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96713B69C66000555AC /* TestCoreDataObjects.m */; };
 		0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96D13B8E93A000555AC /* EventRepeaterTest.m */; };
@@ -687,6 +691,14 @@
 		008DD4BA14B3AB23000AAEA5 /* LoanEarlyPayoffSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanEarlyPayoffSimEvent.m; sourceTree = "<group>"; };
 		008DD4BC14B3AD35000AAEA5 /* LoanEarlyPayoffDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanEarlyPayoffDigestEntry.h; sourceTree = "<group>"; };
 		008DD4BD14B3AD36000AAEA5 /* LoanEarlyPayoffDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanEarlyPayoffDigestEntry.m; sourceTree = "<group>"; };
+		008DD4BF14B4DF44000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedAccountWithdrawalsTableViewFactory.h; sourceTree = "<group>"; };
+		008DD4C014B4DF44000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedAccountWithdrawalsTableViewFactory.m; sourceTree = "<group>"; };
+		008DD4C214B4FF19000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedWithdrawalExpenseFormInfoCreator.h; sourceTree = "<group>"; };
+		008DD4C314B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedWithdrawalExpenseFormInfoCreator.m; sourceTree = "<group>"; };
+		008DD4C514B53F04000AAEA5 /* MultipleSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectionTableViewController.h; sourceTree = "<group>"; };
+		008DD4C614B53F05000AAEA5 /* MultipleSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectionTableViewController.m; sourceTree = "<group>"; };
+		008DD4C814B5413A000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedWithdrawalExpenseFieldEditInfo.h; sourceTree = "<group>"; };
+		008DD4C914B5413B000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedWithdrawalExpenseFieldEditInfo.m; sourceTree = "<group>"; };
 		0095E95F13B69A3B000555AC /* VariableValueCalculatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueCalculatorTest.h; sourceTree = "<group>"; };
 		0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueCalculatorTest.m; sourceTree = "<group>"; };
 		0095E96613B69C66000555AC /* TestCoreDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCoreDataObjects.h; sourceTree = "<group>"; };
@@ -1522,6 +1534,8 @@
 				00E7D054143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.h */,
 				00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */,
 				0049DC7E13A572B900B27046 /* FinishedAddingObjectListener.h */,
+				008DD4C514B53F04000AAEA5 /* MultipleSelectionTableViewController.h */,
+				008DD4C614B53F05000AAEA5 /* MultipleSelectionTableViewController.m */,
 			);
 			name = "Generic Table Views";
 			sourceTree = "<group>";
@@ -1891,6 +1905,12 @@
 			children = (
 				00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */,
 				00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */,
+				008DD4BF14B4DF44000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.h */,
+				008DD4C014B4DF44000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m */,
+				008DD4C214B4FF19000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.h */,
+				008DD4C314B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m */,
+				008DD4C814B5413A000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.h */,
+				008DD4C914B5413B000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m */,
 			);
 			name = "Input Detail";
 			sourceTree = "<group>";
@@ -2667,6 +2687,10 @@
 				008DD4B814B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m in Sources */,
 				008DD4BB14B3AB24000AAEA5 /* LoanEarlyPayoffSimEvent.m in Sources */,
 				008DD4BE14B3AD37000AAEA5 /* LoanEarlyPayoffDigestEntry.m in Sources */,
+				008DD4C114B4DF45000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m in Sources */,
+				008DD4C414B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m in Sources */,
+				008DD4C714B53F06000AAEA5 /* MultipleSelectionTableViewController.m in Sources */,
+				008DD4CA14B5413C000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

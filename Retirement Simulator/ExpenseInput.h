@@ -20,6 +20,7 @@ extern NSString * const EXPENSE_INPUT_ENTITY_NAME;
 
 // Inverse Relationship
 @property (nonatomic, retain) NSSet* expenseItemizedTaxAmts;
+@property (nonatomic, retain) NSSet* accountLimitedWithdrawals;
 
 
 @end

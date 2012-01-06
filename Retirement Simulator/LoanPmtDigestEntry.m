@@ -38,7 +38,7 @@
 
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
-	double balancePaid = [self.loanBalance decrementAvailableBalance:self.paymentAmt 
+	double balancePaid = [self.loanBalance decrementAvailableBalanceForNonExpense:self.paymentAmt 
 		asOfDate:processingParams.currentDate];
 		
 	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:balancePaid 

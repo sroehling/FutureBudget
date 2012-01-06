@@ -17,6 +17,7 @@
 @class WorkingBalanceCltn;
 @class Cash;
 @class FixedValue;
+@class ExpenseInput;
 
 
 @interface WorkingBalanceMgr : NSObject {
@@ -60,6 +61,8 @@
 
 - (void) incrementCashBalance:(double)incomeAmount asOfDate:(NSDate*)newDate;
 - (double) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate;
+- (double) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate
+	forExpense:(ExpenseInput*)expense;
 - (double) decrementAvailableCashBalance:(double)expenseAmount asOfDate:(NSDate*)newDate;
 
 - (void)logCurrentBalances;

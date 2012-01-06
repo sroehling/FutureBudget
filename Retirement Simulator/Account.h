@@ -19,6 +19,7 @@ extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY;
 @class MultiScenarioAmount;
 @class MultiScenarioSimDate;
 @class MultiScenarioSimEndDate;
+@class ExpenseInput;
 
 @interface Account : Input {
 @private
@@ -43,10 +44,19 @@ extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY;
 
 @property(nonatomic,retain) MultiScenarioInputValue *withdrawalPriority;
 
+// If there are expenses in limitWithdrawalExpenses, then only expenses in the
+// set can cause a withdrawal to occur. This is needed to support targeted
+// savings accounts, such as for health care, education, etc.
+@property (nonatomic, retain) NSSet* limitWithdrawalExpenses;
+- (void)addLimitWithdrawalExpensesObject:(ExpenseInput *)value;
+- (void)removeLimitWithdrawalExpensesObject:(ExpenseInput *)value;
+
 // Inverse Relationships
 @property (nonatomic, retain) NSSet* accountWithdrawalItemizedTaxAmt;
 @property (nonatomic, retain) NSSet* accountInterestItemizedTaxAmt;
 @property (nonatomic, retain) NSSet* accountContribItemizedTaxAmt;
+
+
 
 
 

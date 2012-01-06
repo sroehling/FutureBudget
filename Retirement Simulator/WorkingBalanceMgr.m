@@ -126,6 +126,7 @@
 
 
 - (double) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate
+	forExpense:(ExpenseInput*)expense
 {
 	double remainingBalanceToDecrement = expenseAmount;
 	double totalDecremented = 0.0;
@@ -134,8 +135,18 @@
 		
 	for(WorkingBalance *workingBal in self.fundingSources.workingBalList)
 	{
-		double amountDecremented = [workingBal decrementAvailableBalance:remainingBalanceToDecrement 
+		double amountDecremented;
+		if(expense != nil)
+		{
+			amountDecremented = [workingBal decrementAvailableBalanceForExpense:expense 
+				andAmount:remainingBalanceToDecrement 
 				asOfDate:newDate];
+		}
+		else
+		{
+			amountDecremented = [workingBal decrementAvailableBalanceForNonExpense:remainingBalanceToDecrement 
+				asOfDate:newDate];
+		}
 		assert(amountDecremented <= remainingBalanceToDecrement);
 		totalDecremented += amountDecremented;
 		remainingBalanceToDecrement -= amountDecremented;
@@ -156,6 +167,11 @@
 
 }
 
+- (double) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate
+{
+	return [self decrementBalanceFromFundingList:expenseAmount asOfDate:newDate forExpense:nil];
+}
+
 - (double)totalCurrentNetBalance
 {
 	double totalBal = [self.fundingSources totalBalances] + [self.assetValues totalBalances] - [self.loanBalances totalBalances] - [self.deficitBalance currentBalance];
@@ -167,7 +183,7 @@
 	// Reduce the deficit first
 	assert(incomeAmount >= 0.0);
 	double deficitReduction = [self.deficitBalance 
-		decrementAvailableBalance:incomeAmount asOfDate:newDate];
+		decrementAvailableBalanceForNonExpense:incomeAmount asOfDate:newDate];
 
 	assert(deficitReduction <= incomeAmount);
 	
@@ -190,7 +206,7 @@
 	else
 	{
 		double decrementAmount = [self.cashWorkingBalance 
-			decrementAvailableBalance:expenseAmount asOfDate:newDate];
+			decrementAvailableBalanceForNonExpense:expenseAmount asOfDate:newDate];
 		return decrementAmount;
 	}
 }
@@ -204,7 +220,7 @@
 {
 	[self.accruedEstimatedTaxes advanceCurrentBalanceToDate:theDate];
 	double accruedBalance = self.accruedEstimatedTaxes.currentBalance;
-	[self.accruedEstimatedTaxes decrementAvailableBalance:accruedBalance asOfDate:theDate];
+	[self.accruedEstimatedTaxes decrementAvailableBalanceForNonExpense:accruedBalance asOfDate:theDate];
 	[self.nextEstimatedTaxPayment incrementBalance:accruedBalance asOfDate:theDate];
 }
 
@@ -213,7 +229,7 @@
 	[self.nextEstimatedTaxPayment advanceCurrentBalanceToDate:theDate];
 	double paymentAmount = self.nextEstimatedTaxPayment.currentBalance;
 	assert(paymentAmount >= 0.0);
-	[self.nextEstimatedTaxPayment decrementAvailableBalance:paymentAmount asOfDate:theDate];
+	[self.nextEstimatedTaxPayment decrementAvailableBalanceForNonExpense:paymentAmount asOfDate:theDate];
 	return paymentAmount;
 }
 

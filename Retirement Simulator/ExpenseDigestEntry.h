@@ -11,8 +11,15 @@
 #import "CashFlowDigestEntry.h"
 #import "DigestEntry.h"
 
+@class ExpenseSimInfo;
+
 @interface ExpenseDigestEntry : CashFlowDigestEntry <DigestEntry> {
-    
+    @private
+		ExpenseSimInfo *expenseInfo;
 }
+
+- (id)initWithExpenseInfo:(ExpenseSimInfo*)theExpenseInfo andAmount:(double)theAmount;
+
+@property(nonatomic,retain) ExpenseSimInfo *expenseInfo;
 
 @end

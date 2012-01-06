@@ -46,16 +46,9 @@
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
-	NSString *currencyAmount = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.expenseAmount]];
-	
-    NSLog(@"Doing expense event: %@ %@",
-          [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		  currencyAmount);
-		  
 	ExpenseDigestEntry *expenseEntry =
-		[[[ExpenseDigestEntry alloc] initWithAmount:self.expenseAmount 
-			andCashFlowSummation:self.expenseInfo.digestSum] autorelease];
+		[[[ExpenseDigestEntry alloc] initWithExpenseInfo:self.expenseInfo 
+			andAmount:self.expenseAmount] autorelease];
 		  
 	[digest.digestEntries addDigestEntry:expenseEntry onDate:self.eventDate];
 }

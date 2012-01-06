@@ -15,8 +15,11 @@ NSString * const EXPENSE_INPUT_ENTITY_NAME = @"ExpenseInput";
 
 @implementation ExpenseInput
 
+
+
 // Inverse Relationship
 @dynamic expenseItemizedTaxAmts;
+@dynamic accountLimitedWithdrawals;
 
 - (void)addExpenseItemizedTaxAmtsObject:(ExpenseItemizedTaxAmt *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
@@ -46,6 +49,33 @@ NSString * const EXPENSE_INPUT_ENTITY_NAME = @"ExpenseInput";
     [self didChangeValueForKey:@"expenseItemizedTaxAmts" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
 
+- (void)addAccountLimitedWithdrawalsObject:(Account *)value {    
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    [self willChangeValueForKey:@"accountLimitedWithdrawals" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    [[self primitiveValueForKey:@"accountLimitedWithdrawals"] addObject:value];
+    [self didChangeValueForKey:@"accountLimitedWithdrawals" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    [changedObjects release];
+}
+
+- (void)removeAccountLimitedWithdrawalsObject:(Account *)value {
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    [self willChangeValueForKey:@"accountLimitedWithdrawals" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    [[self primitiveValueForKey:@"accountLimitedWithdrawals"] removeObject:value];
+    [self didChangeValueForKey:@"accountLimitedWithdrawals" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    [changedObjects release];
+}
+
+- (void)addAccountLimitedWithdrawals:(NSSet *)value {    
+    [self willChangeValueForKey:@"accountLimitedWithdrawals" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+    [[self primitiveValueForKey:@"accountLimitedWithdrawals"] unionSet:value];
+    [self didChangeValueForKey:@"accountLimitedWithdrawals" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+}
+
+- (void)removeAccountLimitedWithdrawals:(NSSet *)value {
+    [self willChangeValueForKey:@"accountLimitedWithdrawals" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+    [[self primitiveValueForKey:@"accountLimitedWithdrawals"] minusSet:value];
+    [self didChangeValueForKey:@"accountLimitedWithdrawals" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+}
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

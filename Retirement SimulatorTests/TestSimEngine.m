@@ -607,6 +607,187 @@
 
 }
 
+-(void)testAccountWithLimitedWithdrawalsSimple
+{
+	[self resetCoredData];
+	
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	expense01.name = @"expense01";
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.withdrawalPriority = [inputCreationHelper multiScenFixedValWithDefault:1.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	[acct01 addLimitWithdrawalExpensesObject:expense01];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	// Withdrawals for expense01 should be permitted from acct01
+	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:900.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:800.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:700.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:600.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:500.0] autorelease]];
+	
+	[self checkPlotData:acctData01 withSimResults:simResults andExpectedVals:expected andLabel:@"acct01"];	
+	
+}
+
+
+-(void)testAccountWithLimitedWithdrawalsNonExpense
+{
+	[self resetCoredData];
+	
+	// This tests that non-expenses which require funding will 
+	
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	expense01.name = @"expense01";
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	AssetInputTypeSelectionInfo *assetCreator = 
+		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.name = @"Asset01";
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-15"]];	
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-15"]];
+	
+	
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.withdrawalPriority = [inputCreationHelper multiScenFixedValWithDefault:1.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	[acct01 addLimitWithdrawalExpensesObject:expense01];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	// Withdrawals for expense01 should be permitted from acct01
+	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:900.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:800.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:700.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:600.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:500.0] autorelease]];
+	
+	[self checkPlotData:acctData01 withSimResults:simResults andExpectedVals:expected andLabel:@"acct01"];	
+	
+}
+
+
+-(void)testAccountWithLimitedWithdrawals
+{
+	[self resetCoredData];
+	
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	expense01.name = @"expense01";
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	ExpenseInput *expense02 = (ExpenseInput*)[expenseCreator createInput];
+	expense02.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
+	expense02.name = @"expense02";
+	expense02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense02.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense02.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.withdrawalPriority = [inputCreationHelper multiScenFixedValWithDefault:1.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	[acct01 addLimitWithdrawalExpensesObject:expense01];
+
+	// acct02 is identical to acct01, but is used to verify that summing up the account balances works properly.
+
+	SavingsAccount *acct02 = (SavingsAccount*)[acctCreator createInput];
+	acct02.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct02.withdrawalPriority = [inputCreationHelper multiScenFixedValWithDefault:2.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	// Withdrawals for expense01 should be permitted from acct01
+	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:900.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:800.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:700.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:600.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:500.0] autorelease]];
+	
+	[self checkPlotData:acctData01 withSimResults:simResults andExpectedVals:expected andLabel:@"acct01"];
+
+
+	// Withdrawals for expense02 should come from the 2nd account, since the first is limited for expense01
+	AcctBalanceXYPlotDataGenerator *acctData02 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct02] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:800.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:600.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:400.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:200.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0] autorelease]];
+	
+	[self checkPlotData:acctData02 withSimResults:simResults andExpectedVals:expected andLabel:@"acct02"];
+	
+	
+
+}
 
 
 -(void)testAccountContrib

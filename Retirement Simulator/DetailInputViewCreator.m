@@ -56,6 +56,7 @@
 #import "TaxBracketFormInfoCreator.h"
 #import "PositiveNumberValidator.h"
 #import "InputFormPopulator.h"
+#import "LimitedAccountWithdrawalsTableViewFactory.h"
 
 @implementation DetailInputViewCreator
 
@@ -265,8 +266,22 @@
 			andIsNewAccount:self.isForNewObject] autorelease];
 	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
 	
+	
+	LimitedAccountWithdrawalsTableViewFactory *withdrawalTableViewFactory = 
+		[[[LimitedAccountWithdrawalsTableViewFactory alloc] initWithAccount:account] autorelease];
+	
+	
+	NSString *fieldDescription = ([account.limitWithdrawalExpenses count] > 0)?
+		LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_LIMITED"):
+		LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_NO_LIMIT");
+	StaticNavFieldEditInfo *limitWithdrawalsFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_LABEL")
+				andSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_SUBTITLE") 
+				andContentDescription:fieldDescription
+				andSubViewFactory:withdrawalTableViewFactory] autorelease];
+	[sectionInfo addFieldEditInfo:limitWithdrawalsFieldEditInfo];		
 
-    
 
 }
 

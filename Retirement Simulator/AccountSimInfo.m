@@ -42,6 +42,9 @@
 		[simParams.digestSums addDigestSum:self.acctBal.accruedInterest];
 
 				
+		// Initialize the optional parameters of the working balance to setup
+		// a deferred withdrawal date (if any) and list of expenses to limit the
+		// withdrawal to.		
 		if([SimInputHelper multiScenBoolVal:theAcct.deferredWithdrawalsEnabled
 			andScenario:simParams.simScenario])
 		{
@@ -51,6 +54,7 @@
 			assert(deferWithdrawalsDate != nil);
 			self.acctBal.deferWithdrawalsUntil = deferWithdrawalsDate;
 		}
+		self.acctBal.limitWithdrawalsToExpense = self.account.limitWithdrawalExpenses;
 
 
 	}

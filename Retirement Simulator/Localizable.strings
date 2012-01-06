@@ -65,6 +65,13 @@
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_SUBTITLE" = "Select to continue account contributions through the end of simulation";
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE" = "Start Date";
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER" = "Contribution Start Date";
+"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_LABEL" = "Limit Withdrawals?";
+"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_SUBTITLE" = "Limit withdrawals to specific expenses";
+"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_NO_LIMIT" = "No Limits";
+"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_LIMITED" = "Limited";
+"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SELECTION_FORM_TITLE" = "Limit Withdrawals";
+"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_TITLE" = "Eligible Expenses";
+"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_SUBTITLE" = "Select one or more expenses which are eligible for withdrawal from this account. Or, leave all the expenses unselected to allow any expense to be funded using a withdrawal from this account";
 
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT" = "The first contribution to the %@ %@ occurs on this date. Select and/or edit one of dates below to set the contribution start date.";
 

@@ -35,5 +35,7 @@
 @optional
 - (BOOL)supportsDelete;
 - (void)deleteObject;
+- (void)updateSelection:(BOOL)isSelected;
+- (BOOL)isSelected;
 
 @end

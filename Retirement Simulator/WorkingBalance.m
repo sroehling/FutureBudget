@@ -11,6 +11,7 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "InputValDigestSummation.h"
+#import "ExpenseInput.h"
 
 
 NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
@@ -25,6 +26,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 @synthesize deferWithdrawalsUntil;
 @synthesize contribs;
 @synthesize withdrawals;
+@synthesize limitWithdrawalsToExpense;
 
 - (id) initWithStartingBalance:(double)theStartBalance 
 	andStartDate:(NSDate*)theStartDate andWithdrawPriority:(double)theWithdrawPriority
@@ -64,6 +66,9 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 {
 	[super dealloc];
 	[balanceStartDate release];
+	[currentBalanceDate release];
+	[deferWithdrawalsUntil release];
+	[limitWithdrawalsToExpense release];
 	[contribs release];
 	[withdrawals release];
 }
@@ -120,7 +125,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 }
 
 
-- (double) decrementAvailableBalance:(double)amount asOfDate:(NSDate*)newDate
+- (double) decrementAvailableBalanceImpl:(double)amount asOfDate:(NSDate*)newDate
 {
 	[self advanceCurrentBalanceToDate:newDate];
 	
@@ -161,6 +166,47 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 
 }
 
+- (double) decrementAvailableBalanceForExpense:(ExpenseInput*)expense 
+	andAmount:(double)amount asOfDate:(NSDate*)newDate
+{
+	assert(expense != nil);
+	if(self.limitWithdrawalsToExpense != nil)
+	{
+		if([self.limitWithdrawalsToExpense count] == 0)
+		{
+			return [self decrementAvailableBalanceImpl:amount asOfDate:newDate];
+		}
+		else if ([self.limitWithdrawalsToExpense containsObject:expense])
+		{
+			return [self decrementAvailableBalanceImpl:amount asOfDate:newDate];
+		}
+		else
+		{
+			return 0.0;
+		}
+	}
+	else
+	{
+		return [self decrementAvailableBalanceImpl:amount 
+				asOfDate:newDate];
+;
+	}
+}
+
+-(double)decrementAvailableBalanceForNonExpense:(double)amount 
+	asOfDate:(NSDate *)newDate
+{
+	if((self.limitWithdrawalsToExpense != nil) &&
+		([self.limitWithdrawalsToExpense count] > 0))
+	{
+		return 0.0;
+	}
+	else
+	{
+		return [self decrementAvailableBalanceImpl:amount asOfDate:newDate];
+	}
+}
+
 - (double)zeroOutBalanceAsOfDate:(NSDate*)newDate
 {
 	// First advance the date, ensuring that any interest/adjustement leading up 
@@ -171,7 +217,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	{
 		double remainingBalance = [self currentBalance];
 	
-		[self decrementAvailableBalance:remainingBalance asOfDate:newDate];
+		[self decrementAvailableBalanceImpl:remainingBalance asOfDate:newDate];
 	
 		currentBalance = 0.0;
 	

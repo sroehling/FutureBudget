@@ -112,7 +112,7 @@
 	double paymentAmount = [loanInfo monthlyPayment];
 	
 	NSLog(@"Balance before pmt: %0.2f",[loanInfo.loanBalance currentBalance]);
-	[loanInfo.loanBalance decrementAvailableBalance:paymentAmount asOfDate:pmtDate];
+	[loanInfo.loanBalance decrementAvailableBalanceForNonExpense:paymentAmount asOfDate:pmtDate];
 	NSLog(@"Balance after pmt: %0.2f",[loanInfo.loanBalance currentBalance]);
 
 }
