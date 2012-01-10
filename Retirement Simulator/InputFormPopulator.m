@@ -53,6 +53,7 @@
 #import "AssetApprecRate.h"
 #import "LoanDownPmtPercent.h"
 #import "LoanInput.h"
+#import "VariableValueFieldEditInfo.h"
 
 @implementation InputFormPopulator
 
@@ -211,15 +212,11 @@
 	  andDefaultFixedVal:theAmount.defaultFixedAmount]];
 }
 
-
--(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
-	withLabel:(NSString*)valueLabel 
+-(VariableValueRuntimeInfo*)inflationRateRuntimInfoWithValueLabel:(NSString*)valueLabel
 	andValueName:(NSString*)valueName
 {
-
 	assert([StringValidation nonEmptyString:valueLabel]);
-	assert(growthRate != nil);
-	
+
 	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
 	
@@ -242,9 +239,25 @@
 		andValueTypeTitle:valueLabel
 		andValueName:valueName
 		andTableSubtitle:tableSubtitle] autorelease];
+		
+	return grRuntimeInfo;
 
+}
+
+
+-(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+
+	assert([StringValidation nonEmptyString:valueLabel]);
+	assert(growthRate != nil);
+		
+	VariableValueRuntimeInfo *grRuntimeInfo = [self inflationRateRuntimInfoWithValueLabel:valueLabel 
+		andValueName:valueName];
 
 	assert(self.currentSection != nil);
+	
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
          createForScenario:self.inputScenario andObject:growthRate 
@@ -254,6 +267,27 @@
 		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate]];
  
 }
+
+
+-(void)populateSingleScenarioVariableValue:(VariableValue*)growthRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	assert(growthRate != nil);
+		
+	VariableValueRuntimeInfo *grRuntimeInfo = [self inflationRateRuntimInfoWithValueLabel:valueLabel 
+		andValueName:valueName];
+		
+	VariableValueFieldEditInfo *vvFieldInfo = [[[VariableValueFieldEditInfo alloc]
+		initWithVariableValue:growthRate
+				andVarValRuntimeInfo:grRuntimeInfo] autorelease];
+        // Create the row information for the given milestone date.
+	[self.currentSection addFieldEditInfo:vvFieldInfo];
+
+		
+
+}
+
 
 - (void)populateMultiScenarioInvestmentReturnRate:(MultiScenarioGrowthRate*)roiRate
 	withLabel:(NSString*)valueLabel 

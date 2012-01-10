@@ -26,12 +26,15 @@
 #import "PositiveAmountValidator.h"
 #import "BoolFieldEditInfo.h"
 #import "ManagedObjectFieldInfo.h"
+#import "VariableValueFieldEditInfo.h"
+#import "InputFormPopulator.h"
+#import "InflationRate.h"
 
 @implementation StartingValsFormInfoCreator
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] init] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_VIEW_TITLE");
 	
@@ -116,7 +119,12 @@
 		[[[BoolFieldEditInfo alloc] initWithFieldInfo:adjustForInflationFieldInfo] autorelease];
 	[sectionInfo addFieldEditInfo:adjustForInflationFieldEditInfo];
 
+
+	[formPopulator populateSingleScenarioVariableValue:[SharedAppValues singleton].defaultInflationRate 
+		withLabel:LOCALIZED_STR(@"DEFAULT_INFLATION_RATE_GROWTH_RATE_FIELD_LABEL") 
+		andValueName:LOCALIZED_STR(@"DEFAULT_INFLATION_RATE_LABEL")];
 	
+
 	return formPopulator.formInfo;
 	
 }

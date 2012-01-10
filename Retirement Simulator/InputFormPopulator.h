@@ -21,6 +21,7 @@
 @class MultiScenarioSimEndDate;
 @class NumberFieldValidator;
 @class LoanInput;
+@class VariableValue;
 
 @interface InputFormPopulator : FormPopulator {
     @private
@@ -57,6 +58,10 @@
 -(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
+-(void)populateSingleScenarioVariableValue:(VariableValue*)growthRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName;
+	
 - (void)populateMultiScenarioInterestRate:(MultiScenarioGrowthRate*)intRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;	
