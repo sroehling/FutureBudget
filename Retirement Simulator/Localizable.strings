@@ -463,7 +463,8 @@
 "STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE" = "If expenses are greater than income and account balances are zero, a deficit will be calculated with an interest on the balance";
 "STARTUP_VALUE_DEFICIT_LABEL" = "Interest on Deficit";
 "STARTUP_VALUE_DEFICIT_PLACEHOLDER" = "Enter a Rate";
-"STARTUP_VALUE_ADJUST_FOR_INFLATION_FIELD_LABEL" = "Adjust Results to Start Date";
+"STARTUP_VALUE_ADJUST_FOR_INFLATION_FIELD_LABEL" = "Adjust Results?";
+"STARTUP_VALUE_ADJUST_FOR_INFLATION_SUBTITLE" = "Based upon default inflation, adjust results to start date.";
 "STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_TITLE" = "Inflation Adjustment";
 "STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_SUBTITLE" = "Based upon the default inflation rate, results can also be adjusted back to the simulation start date or displayed as unadjusted future/inflated values. The default inflation rate is also used for new inputs.";
 

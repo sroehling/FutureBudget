@@ -14,6 +14,7 @@ extern NSString * const BOOL_FIELD_CELL_ENTITY_NAME;
 
 @interface BoolFieldCell : UITableViewCell  {
 	UILabel *label;
+	UILabel *valueSubtitle;
 	UISwitch *boolSwitch;
 	FieldInfo *boolFieldInfo;
 
@@ -21,7 +22,9 @@ extern NSString * const BOOL_FIELD_CELL_ENTITY_NAME;
 
 @property(nonatomic,retain) UILabel *label;
 @property(nonatomic,retain) UISwitch *boolSwitch;
+@property(nonatomic,retain) UILabel *valueSubtitle;
 @property (nonatomic,retain) FieldInfo *boolFieldInfo;
 
+- (CGFloat)cellHeight;
 
 @end

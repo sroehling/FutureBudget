@@ -116,7 +116,8 @@
 			andFieldLabel:LOCALIZED_STR(@"STARTUP_VALUE_ADJUST_FOR_INFLATION_FIELD_LABEL") 
 			andFieldPlaceholder:@"N/A"] autorelease];
 	BoolFieldEditInfo *adjustForInflationFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:adjustForInflationFieldInfo] autorelease];
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:adjustForInflationFieldInfo
+			andSubtitle:LOCALIZED_STR(@"STARTUP_VALUE_ADJUST_FOR_INFLATION_SUBTITLE")] autorelease];
 	[sectionInfo addFieldEditInfo:adjustForInflationFieldEditInfo];
 
 
