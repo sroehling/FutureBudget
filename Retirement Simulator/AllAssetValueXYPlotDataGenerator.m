@@ -25,7 +25,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double assetVals = eoyResult.sumAssetVals;
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:assetVals];
+		[plotData addPlotDataPointForYear:resultYear andYVal:assetVals
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

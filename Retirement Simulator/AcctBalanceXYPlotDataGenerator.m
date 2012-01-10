@@ -29,7 +29,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double acctBal = [eoyResult.acctBalances getResultForInput:self.account];
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:acctBal];
+		[plotData addPlotDataPointForYear:resultYear andYVal:acctBal
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

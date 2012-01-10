@@ -46,7 +46,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double assetValue = [eoyResult.assetValues getResultForInput:self.assetInput];
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:assetValue];
+		[plotData addPlotDataPointForYear:resultYear andYVal:assetValue
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

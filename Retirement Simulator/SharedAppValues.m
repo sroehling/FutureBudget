@@ -28,6 +28,7 @@ NSString * const SHARED_APP_VALUES_SIM_START_DATE_KEY = @"simStartDate";
 NSString * const SHARED_APP_VALUES_SIM_END_DATE_KEY = @"simEndDate";
 NSString * const SHARED_APP_VALUES_DEFAULT_FIXED_SIM_END_DATE_KEY = @"defaultFixedSimEndDate";
 NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"defaultFixedRelativeEndDate";
+NSString * const SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY = @"adjustResultsForSimStartDate";
 
 #define DEFAULT_SIM_END_DATE_OFFSET_YEARS 50
 #define DEFAULT_DEFICIT_INTEREST_RATE 0.0
@@ -56,6 +57,7 @@ NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"default
 @dynamic deficitInterestRate;
 @dynamic defaultInflationRate;
 @dynamic repeatYearlyFreq;
+@dynamic adjustResultsForSimStartDate;
 
 
 static SharedAppValues *theSharedAppVals;  
@@ -171,6 +173,8 @@ static SharedAppValues *theSharedAppVals;
 	sharedVals.defaultInflationRate.isDefault = [NSNumber numberWithBool:TRUE];
 	sharedVals.defaultInflationRate.staticNameStringFileKey = @"DEFAULT_INFLATION_RATE_LABEL";
 	sharedVals.defaultInflationRate.name = @"N/A";	
+	
+	sharedVals.adjustResultsForSimStartDate = [NSNumber numberWithBool:TRUE];
 	
 	[SharedAppValues createDefaultInvestmentReturn:DEFAULT_ROI_SAVINGS 
 		withLabelStringFileKey:@"DEFAULT_ROI_SAVINGS_INTEREST_LABEL" 

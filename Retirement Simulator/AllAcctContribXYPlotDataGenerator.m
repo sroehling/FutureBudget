@@ -25,7 +25,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double acctContribs = eoyResult.sumAcctContrib;
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:acctContribs];
+		[plotData addPlotDataPointForYear:resultYear andYVal:acctContribs
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

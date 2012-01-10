@@ -12,16 +12,24 @@
 @implementation YearValPlotDataVal
 
 @synthesize year;
-@synthesize val;
+@synthesize unadjustedVal;
+@synthesize inflationAdjustedVal;
+@synthesize simStartValueAdjustmentMultiplier;
 
 -(id)initWithYear:(NSInteger)theYear andVal:(double)theVal
+	andSimStartValueAdjustmentMultiplier:(double)theSimStartValMult
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theYear >= 1900);
 		self.year = [NSNumber numberWithInteger:theYear];
-		self.val = [NSNumber numberWithDouble:theVal];
+		self.unadjustedVal = [NSNumber numberWithDouble:theVal];
+		
+		assert(theSimStartValMult > 0.0);
+		self.simStartValueAdjustmentMultiplier = theSimStartValMult;
+		
+		self.inflationAdjustedVal = [NSNumber numberWithDouble:(theVal * theSimStartValMult)];
 	}
 	return self;
 }
@@ -36,7 +44,8 @@
 {
 	[super dealloc];
 	[year release];
-	[val release];
+	[unadjustedVal release];
+	[inflationAdjustedVal release];
 }
 
 @end

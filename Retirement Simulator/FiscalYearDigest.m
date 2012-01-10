@@ -39,6 +39,9 @@
 #import "IncomeInput.h"
 #import "InputValDigestSummation.h"
 #import "ExpenseSimInfo.h"
+#import "DateSensitiveValueVariableRateCalculatorCreator.h"
+#import "InflationRate.h"
+#import "VariableRateCalculator.h"
 #import "ExpenseInput.h"
 
 @implementation FiscalYearDigest
@@ -47,6 +50,7 @@
 @synthesize digestEntries;
 @synthesize savedEndOfYearResults;
 @synthesize currentYearDigestStartDate;
+@synthesize adjustValueForInflationCalculator;
 
 
 -(id)initWithSimParams:(SimParams*)theSimParams
@@ -62,7 +66,13 @@
 		self.savedEndOfYearResults = [[[NSMutableArray alloc] init] autorelease];
 		
 		self.currentYearDigestStartDate = self.simParams.digestStartDate;
-
+		
+		// Calculate a multiplier which can be used to adjust values back to the start date of simulation.
+		DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
+		   [[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
+		self.adjustValueForInflationCalculator = [calcCreator 
+							createForDateSensitiveValue:self.simParams.inflationRate
+							andStartDate:self.simParams.simStartDate];
 	}
 	return self;
 }
@@ -134,6 +144,15 @@
 	
 	results.cashBal = [self.simParams.workingBalanceMgr.cashWorkingBalance currentBalance];
 	results.deficitBal = [self.simParams.workingBalanceMgr.deficitBalance currentBalance];
+	
+	assert(results.endDate != nil);
+	assert([DateHelper dateIsEqualOrLater:results.endDate otherDate:self.simParams.simStartDate]);
+	
+	
+	double futureValueMultiplier = [self.adjustValueForInflationCalculator  
+		valueMultiplierBetweenStartDate:self.simParams.simStartDate andEndDate:results.endDate];
+	assert(futureValueMultiplier > 0.0);
+	results.simStartDateValueMultiplier = 1.0/futureValueMultiplier; 
 
 
 }
@@ -287,6 +306,7 @@
 	[currentYearDigestStartDate release];
 	[savedEndOfYearResults release];
 	[simParams release];
+	[adjustValueForInflationCalculator release];
 }
 
 @end

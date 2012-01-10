@@ -26,7 +26,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double deficitBal = eoyResult.deficitBal;
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:deficitBal];
+		[plotData addPlotDataPointForYear:resultYear andYVal:deficitBal
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

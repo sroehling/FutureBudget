@@ -16,9 +16,6 @@
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
-	NSLog(@"Estimated tax accrual: %@ %@",
-		[[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		[self.eventDate description]);
 	[digest.digestEntries markEndDateForEstimatedTaxAccrual:self.eventDate];
 }
 

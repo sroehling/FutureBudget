@@ -25,7 +25,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double cashBal = eoyResult.cashBal;
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:cashBal];
+		[plotData addPlotDataPointForYear:resultYear andYVal:cashBal
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

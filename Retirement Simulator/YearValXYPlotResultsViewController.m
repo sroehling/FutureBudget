@@ -23,6 +23,7 @@
 #import "ResultsViewInfo.h"
 #import "YearValXYPlotData.h"
 #import "YearValXYPlotDataGenerator.h"
+#import "SharedAppValues.h"
 #import "YearValPlotDataVal.h"
 
 
@@ -250,7 +251,14 @@
 	}
 	else
 	{
-		return plotDataVal.val;
+		if([[SharedAppValues singleton].adjustResultsForSimStartDate boolValue])
+		{
+			return plotDataVal.inflationAdjustedVal;
+		}
+		else
+		{
+			return plotDataVal.unadjustedVal;
+		}
 	}
 }
 

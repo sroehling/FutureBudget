@@ -28,7 +28,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double acctWithdrawal = [eoyResult.acctWithdrawals getResultForInput:self.account];
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:acctWithdrawal];
+		[plotData addPlotDataPointForYear:resultYear andYVal:acctWithdrawal
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

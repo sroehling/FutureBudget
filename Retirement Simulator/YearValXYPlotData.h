@@ -20,8 +20,10 @@
 @property double minYVal;
 @property double maxYVal;
 
--(void)addPlotDataPointForYear:(NSInteger)year andYVal:(double)yVal;
+-(double)getUnadjustedYValforYear:(NSInteger)year;
+-(double)getAdjustedYValforYear:(NSInteger)year;
 
--(double)getYValforYear:(NSInteger)year;
+-(void)addPlotDataPointForYear:(NSInteger)year andYVal:(double)yVal 
+		andSimStartValueMultiplier:(double)simStartAdjustmentMultiplier;
 
 @end

@@ -31,6 +31,7 @@
 @synthesize sumAcctContrib;
 @synthesize acctWithdrawals;
 @synthesize sumAcctWithdrawal;
+@synthesize simStartDateValueMultiplier;
 
 -(id)initWithEndDate:(NSDate *)endOfYearDate
 {

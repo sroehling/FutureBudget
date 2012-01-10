@@ -27,7 +27,7 @@ extern NSString * const SHARED_APP_VALUES_SIM_START_DATE_KEY;
 extern NSString * const SHARED_APP_VALUES_SIM_END_DATE_KEY;
 extern NSString * const SHARED_APP_VALUES_DEFAULT_FIXED_SIM_END_DATE_KEY;
 extern NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY;
-
+extern NSString * const SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY;
 
 @interface SharedAppValues : NSManagedObject {
 @private
@@ -48,6 +48,7 @@ extern NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY;
 
 @property(nonatomic,retain) FixedValue *deficitInterestRate;
 @property (nonatomic, retain) InflationRate * defaultInflationRate;
+@property (nonatomic, retain) NSNumber * adjustResultsForSimStartDate;
 
 
 -(NSDate*)beginningOfSimStartDate;

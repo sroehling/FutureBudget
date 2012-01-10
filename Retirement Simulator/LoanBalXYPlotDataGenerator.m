@@ -47,7 +47,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double loanBal = [eoyResult.loanBalances getResultForInput:self.loan];
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:loanBal];
+		[plotData addPlotDataPointForYear:resultYear andYVal:loanBal
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

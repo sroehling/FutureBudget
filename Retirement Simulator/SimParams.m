@@ -16,6 +16,7 @@
 #import "WorkingBalanceMgr.h"
 #import "Cash.h"
 #import "FixedValue.h"
+#import "InflationRate.h"
 #import "DateHelper.h"
 
 @implementation SimParams
@@ -34,12 +35,13 @@
 
 @synthesize digestSums;
 @synthesize workingBalanceMgr;
+@synthesize inflationRate;
 
 @synthesize taxInputCalcs;
 
 -(id)initWithStartDate:(NSDate*)simStart andDigestStartDate:(NSDate*)digestStart
 	andSimEndDate:(NSDate*)simEnd andScenario:(Scenario*)scen andCashBal:(double)cashBal
-	andDeficitRate:(FixedValue*)deficitRate
+	andDeficitRate:(FixedValue*)deficitRate andInflationRate:(InflationRate*)theInflationRate
 {
 	self = [super init];
 	if(self)
@@ -60,6 +62,9 @@
 		self.digestSums = [[[InputValDigestSummations alloc] init] autorelease];
 		
 		self.taxInputCalcs = [[[TaxInputCalcs alloc] init] autorelease];
+		
+		assert(theInflationRate != nil);
+		self.inflationRate = theInflationRate;
 			
 		self.workingBalanceMgr = [[[WorkingBalanceMgr alloc] initWithStartDate:self.digestStartDate
 			andCashBal:cashBal andDeficitInterestRate:deficitRate] autorelease];
@@ -83,7 +88,8 @@
 	FixedValue *deficitRate = sharedAppVals.deficitInterestRate;
 	
 	return [self initWithStartDate:simStart andDigestStartDate:digestStart 
-		andSimEndDate:simEnd andScenario:simScen andCashBal:cashBal andDeficitRate:deficitRate];
+		andSimEndDate:simEnd andScenario:simScen andCashBal:cashBal andDeficitRate:deficitRate
+		andInflationRate:sharedAppVals.defaultInflationRate];
 
 }
 
@@ -115,6 +121,7 @@
 	[taxInputCalcs release];
 	
 	[workingBalanceMgr release];
+	[inflationRate release];
 }
 
 @end

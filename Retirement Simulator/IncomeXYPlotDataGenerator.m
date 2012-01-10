@@ -47,7 +47,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double yearlyIncome = [eoyResult.incomes getResultForInput:self.income];
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:yearlyIncome];
+		[plotData addPlotDataPointForYear:resultYear andYVal:yearlyIncome
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

@@ -25,7 +25,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double yearEndNestEggSize = [eoyResult totalEndOfYearBalance];
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:yearEndNestEggSize];
+		[plotData addPlotDataPointForYear:resultYear andYVal:yearEndNestEggSize
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

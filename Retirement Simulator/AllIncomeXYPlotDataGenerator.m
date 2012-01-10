@@ -25,7 +25,8 @@
 		NSInteger resultYear = [eoyResult yearNumber];
 		double incomes = eoyResult.sumIncomes;
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:incomes];
+		[plotData addPlotDataPointForYear:resultYear andYVal:incomes
+			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
 	return plotData;

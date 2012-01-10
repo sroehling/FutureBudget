@@ -24,6 +24,8 @@
 #import "Cash.h"
 #import "PercentFieldValidator.h"
 #import "PositiveAmountValidator.h"
+#import "BoolFieldEditInfo.h"
+#import "ManagedObjectFieldInfo.h"
 
 @implementation StartingValsFormInfoCreator
 
@@ -100,6 +102,19 @@
 			andPlaceholder:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_PLACEHOLDER") 
 			andNumberFormatter:[NumberHelper theHelper].percentFormatter andValidator:percentValidator];
 	[sectionInfo addFieldEditInfo:deficitInterestFieldEditInfo];
+	
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_TITLE");
+	sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_SUBTITLE");
+	
+	ManagedObjectFieldInfo *adjustForInflationFieldInfo = [[[ManagedObjectFieldInfo alloc] 
+			initWithManagedObject:[SharedAppValues singleton] 
+			andFieldKey:SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY 
+			andFieldLabel:LOCALIZED_STR(@"STARTUP_VALUE_ADJUST_FOR_INFLATION_FIELD_LABEL") 
+			andFieldPlaceholder:@"N/A"] autorelease];
+	BoolFieldEditInfo *adjustForInflationFieldEditInfo = 
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:adjustForInflationFieldInfo] autorelease];
+	[sectionInfo addFieldEditInfo:adjustForInflationFieldEditInfo];
 
 	
 	return formPopulator.formInfo;

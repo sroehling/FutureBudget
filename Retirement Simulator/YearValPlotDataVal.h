@@ -12,12 +12,17 @@
 @interface YearValPlotDataVal : NSObject {
     @private
 		NSNumber *year;
-		NSNumber *val;
+		NSNumber *unadjustedVal;
+		NSNumber *inflationAdjustedVal;
+		double simStartValueAdjustmentMultiplier;
 }
 
 @property(nonatomic,retain) NSNumber *year;
-@property(nonatomic,retain) NSNumber *val;
+@property(nonatomic,retain) NSNumber *unadjustedVal;
+@property(nonatomic,retain) NSNumber *inflationAdjustedVal;
+@property double simStartValueAdjustmentMultiplier;
 
--(id)initWithYear:(NSInteger)theYear andVal:(double)theVal;
+-(id)initWithYear:(NSInteger)theYear andVal:(double)theVal
+	andSimStartValueAdjustmentMultiplier:(double)theSimStartValMult;
 
 @end

@@ -39,6 +39,10 @@
 		double cashBal;
 		
 		double deficitBal;
+		
+		// This multiplier will take the unadjusted results, given 
+		// in "future dollars" and adjust it back to the "current dollars".
+		double simStartDateValueMultiplier;
 }
 
 @property(nonatomic,retain) NSDate *endDate;
@@ -69,6 +73,7 @@
 
 @property double deficitBal;
 
+@property double simStartDateValueMultiplier;
 
 -(id)initWithEndDate:(NSDate*)endOfYearDate;
 
