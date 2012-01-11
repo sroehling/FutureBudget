@@ -110,7 +110,7 @@
 			andFieldPlaceholder:@"n/a" andScenario:self.inputScenario 
 		andInputVal:boolVal] autorelease];
 	BoolFieldEditInfo *boolFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:boolFieldInfo] autorelease];
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:boolFieldInfo andSubtitle:nil] autorelease];
 		
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:boolFieldEditInfo];
