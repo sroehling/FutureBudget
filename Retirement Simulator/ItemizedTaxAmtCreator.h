@@ -14,5 +14,6 @@
 @protocol ItemizedTaxAmtCreator <NSObject>
 
 - (ItemizedTaxAmt*)createItemizedTaxAmt;
+- (NSString*)itemLabel;
 
 @end

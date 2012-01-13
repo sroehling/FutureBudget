@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ItemizedTaxAmtCreator.h"
 
 @class LoanInput;
 
-@interface ItemizedLoanInterestTaxAmtCreator : NSObject {
+@interface ItemizedLoanInterestTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
     @private
 		LoanInput *loan;
 }

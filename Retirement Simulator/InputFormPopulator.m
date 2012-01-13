@@ -85,6 +85,13 @@
 }
 
 
+-(id)init
+{
+	assert(0);
+	return nil;
+}
+
+
 - (void)populateInputNameField:(Input*)theInput
 {
    [self nextSection];

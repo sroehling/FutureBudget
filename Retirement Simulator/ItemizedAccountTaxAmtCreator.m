@@ -44,6 +44,11 @@
 	return itemizedTaxAmt;
 }
 
+-(NSString*)itemLabel
+{
+	return self.account.name;
+}
+
 
 -(void)dealloc
 {

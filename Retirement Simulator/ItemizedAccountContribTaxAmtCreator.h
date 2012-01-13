@@ -10,7 +10,9 @@
 
 @class Account;
 
-@interface ItemizedAccountContribTaxAmtCreator : NSObject {
+#import "ItemizedTaxAmtCreator.h"
+
+@interface ItemizedAccountContribTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
     @private
 		Account *account;
 }

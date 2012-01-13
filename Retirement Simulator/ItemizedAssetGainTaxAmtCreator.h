@@ -10,7 +10,9 @@
 
 @class AssetInput;
 
-@interface ItemizedAssetGainTaxAmtCreator : NSObject {
+#import "ItemizedTaxAmtCreator.h"
+
+@interface ItemizedAssetGainTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
     @private
 		AssetInput *asset;
 }

@@ -10,6 +10,7 @@
 #import "ExpenseItemizedTaxAmt.h"
 #import "DataModelController.h"
 #import "InputCreationHelper.h"
+#import "ExpenseInput.h"
 
 
 @implementation ItemizedExpenseTaxAmtCreator
@@ -43,6 +44,11 @@
 	itemizedTaxAmt.expense  = self.expense;
 	return itemizedTaxAmt;
 
+}
+
+-(NSString*)itemLabel
+{
+	return self.expense.name;
 }
 
 

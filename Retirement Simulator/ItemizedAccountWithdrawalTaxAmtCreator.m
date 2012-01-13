@@ -46,6 +46,11 @@
 
 }
 
+-(NSString*)itemLabel
+{
+	return self.account.name;
+}
+
 -(void)dealloc
 {
 	[super dealloc];

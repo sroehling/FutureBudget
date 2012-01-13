@@ -27,5 +27,6 @@ extern NSString * const ITEMIZED_TAX_AMTS_ENTITY_NAME;
 
 
 - (void)addItemizedAmtsObject:(ItemizedTaxAmt *)value;
+- (void)removeItemizedAmtsObject:(ItemizedTaxAmt *)value;
 
 @end

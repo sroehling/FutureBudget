@@ -9,6 +9,7 @@
 #import "ItemizedLoanInterestTaxAmtCreator.h"
 #import "InputCreationHelper.h"
 #import "DataModelController.h"
+#import "LoanInput.h"
 #import "LoanInterestItemizedTaxAmt.h"
 
 
@@ -44,6 +45,11 @@
 	return itemizedTaxAmt;
 }
 
+
+-(NSString*)itemLabel
+{
+	return self.loan.name;
+}
 
 -(void)dealloc
 {

@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ItemizedTaxAmtCreator.h"
+
 @class Account;
 
-@interface ItemizedAccountWithdrawalTaxAmtCreator : NSObject {
+@interface ItemizedAccountWithdrawalTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
     @private
 		Account *account;
 }

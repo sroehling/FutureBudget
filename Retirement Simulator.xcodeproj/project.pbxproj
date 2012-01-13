@@ -25,6 +25,9 @@
 		001E5C2614A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */; };
 		001E5C2A14A240F7008A672E /* AcctContribXYPlotGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */; };
 		001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2C14A24219008A672E /* AcctResultGenerator.m */; };
+		00210FA714BE5C6600E1D394 /* ItemizedTaxAmtFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */; };
+		00210FAB14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FAA14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m */; };
+		00210FAE14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FAD14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m */; };
 		00237957143E4F5D006650E3 /* TaxBracketEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237956143E4F5D006650E3 /* TaxBracketEntry.m */; };
 		0023795A143E4FA4006650E3 /* MultiScenarioGrowthRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237959143E4FA4006650E3 /* MultiScenarioGrowthRate.m */; };
 		0023795D143E5009006650E3 /* TaxBracket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023795C143E5009006650E3 /* TaxBracket.m */; };
@@ -33,15 +36,10 @@
 		00237969143E5EB0006650E3 /* TaxInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237968143E5EAF006650E3 /* TaxInput.m */; };
 		0023796C143F7423006650E3 /* MultiScenarioAmountVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023796B143F7423006650E3 /* MultiScenarioAmountVariableValueListMgr.m */; };
 		0023796F143F80F3006650E3 /* MultiScenarioVariableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023796E143F80F3006650E3 /* MultiScenarioVariableValue.m */; };
-		00237976143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237975143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.m */; };
-		00237979143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237978143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.m */; };
 		0023797D143FBC78006650E3 /* InputFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023797C143FBC78006650E3 /* InputFormPopulator.m */; };
-		00237980143FC152006650E3 /* ItemizedTaxAmtsFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023797F143FC151006650E3 /* ItemizedTaxAmtsFormInfoCreator.m */; };
 		00237983143FC400006650E3 /* ItemizedTaxAmtsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237982143FC3FF006650E3 /* ItemizedTaxAmtsInfo.m */; };
-		00237986143FFF3D006650E3 /* ItemizedTaxAmtObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237985143FFF3C006650E3 /* ItemizedTaxAmtObjectAdder.m */; };
 		0023798914409665006650E3 /* IncomeItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023798814409662006650E3 /* IncomeItemizedTaxAmt.m */; };
 		0023799014409B47006650E3 /* InputCreationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023798F14409B46006650E3 /* InputCreationHelper.m */; };
-		0023799814412BBE006650E3 /* FinishedAddingItemizedTaxAmtListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023799714412BBD006650E3 /* FinishedAddingItemizedTaxAmtListener.m */; };
 		0023799D14413D49006650E3 /* ItemizedTaxAmtFieldPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023799C14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.m */; };
 		00254FF2144E62F2000AB7B3 /* MultiScenarioSimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */; };
 		00254FF5144F22C3000AB7B3 /* MultiScenarioSimEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */; };
@@ -370,6 +368,12 @@
 		001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctContribXYPlotGenerator.m; sourceTree = "<group>"; };
 		001E5C2B14A24219008A672E /* AcctResultGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctResultGenerator.h; sourceTree = "<group>"; };
 		001E5C2C14A24219008A672E /* AcctResultGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctResultGenerator.m; sourceTree = "<group>"; };
+		00210FA514BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtFieldEditInfo.h; sourceTree = "<group>"; };
+		00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtFieldEditInfo.m; sourceTree = "<group>"; };
+		00210FA914BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtsSelectionFormInfoCreator.h; sourceTree = "<group>"; };
+		00210FAA14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtsSelectionFormInfoCreator.m; sourceTree = "<group>"; };
+		00210FAC14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectionTableViewControllerFactory.h; sourceTree = "<group>"; };
+		00210FAD14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectionTableViewControllerFactory.m; sourceTree = "<group>"; };
 		00237955143E4F5D006650E3 /* TaxBracketEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntry.h; sourceTree = "<group>"; };
 		00237956143E4F5D006650E3 /* TaxBracketEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketEntry.m; sourceTree = "<group>"; };
 		00237958143E4FA4006650E3 /* MultiScenarioGrowthRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioGrowthRate.h; sourceTree = "<group>"; };
@@ -386,25 +390,15 @@
 		0023796B143F7423006650E3 /* MultiScenarioAmountVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioAmountVariableValueListMgr.m; sourceTree = "<group>"; };
 		0023796D143F80F3006650E3 /* MultiScenarioVariableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioVariableValue.h; sourceTree = "<group>"; };
 		0023796E143F80F3006650E3 /* MultiScenarioVariableValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioVariableValue.m; sourceTree = "<group>"; };
-		00237974143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtSelectionFormInfoCreator.h; sourceTree = "<group>"; };
-		00237975143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtSelectionFormInfoCreator.m; sourceTree = "<group>"; };
-		00237977143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTableViewAddItemTableViewFactory.h; sourceTree = "<group>"; };
-		00237978143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTableViewAddItemTableViewFactory.m; sourceTree = "<group>"; };
 		0023797B143FBC78006650E3 /* InputFormPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputFormPopulator.h; sourceTree = "<group>"; };
 		0023797C143FBC78006650E3 /* InputFormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputFormPopulator.m; sourceTree = "<group>"; };
-		0023797E143FC151006650E3 /* ItemizedTaxAmtsFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtsFormInfoCreator.h; sourceTree = "<group>"; };
-		0023797F143FC151006650E3 /* ItemizedTaxAmtsFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtsFormInfoCreator.m; sourceTree = "<group>"; };
 		00237981143FC3FE006650E3 /* ItemizedTaxAmtsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtsInfo.h; sourceTree = "<group>"; };
 		00237982143FC3FF006650E3 /* ItemizedTaxAmtsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtsInfo.m; sourceTree = "<group>"; };
-		00237984143FFF3B006650E3 /* ItemizedTaxAmtObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtObjectAdder.h; sourceTree = "<group>"; };
-		00237985143FFF3C006650E3 /* ItemizedTaxAmtObjectAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtObjectAdder.m; sourceTree = "<group>"; };
 		0023798714409660006650E3 /* IncomeItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeItemizedTaxAmt.h; sourceTree = "<group>"; };
 		0023798814409662006650E3 /* IncomeItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeItemizedTaxAmt.m; sourceTree = "<group>"; };
 		0023798E14409B46006650E3 /* InputCreationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputCreationHelper.h; sourceTree = "<group>"; };
 		0023798F14409B46006650E3 /* InputCreationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputCreationHelper.m; sourceTree = "<group>"; };
 		002379921440A11A006650E3 /* ItemizedTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtCreator.h; sourceTree = "<group>"; };
-		0023799614412BBC006650E3 /* FinishedAddingItemizedTaxAmtListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishedAddingItemizedTaxAmtListener.h; sourceTree = "<group>"; };
-		0023799714412BBD006650E3 /* FinishedAddingItemizedTaxAmtListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishedAddingItemizedTaxAmtListener.m; sourceTree = "<group>"; };
 		0023799A14413978006650E3 /* ItemizedTaxAmtVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtVisitor.h; sourceTree = "<group>"; };
 		0023799B14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtFieldPopulator.h; sourceTree = "<group>"; };
 		0023799C14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtFieldPopulator.m; sourceTree = "<group>"; };
@@ -1108,12 +1102,6 @@
 			isa = PBXGroup;
 			children = (
 				003085D11483EEA100837D02 /* Itemized Tax Amt Creators */,
-				00237974143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.h */,
-				00237975143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.m */,
-				00237977143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.h */,
-				00237978143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.m */,
-				0023799614412BBC006650E3 /* FinishedAddingItemizedTaxAmtListener.h */,
-				0023799714412BBD006650E3 /* FinishedAddingItemizedTaxAmtListener.m */,
 			);
 			name = "Creating Itemizations";
 			sourceTree = "<group>";
@@ -1121,12 +1109,12 @@
 		002379951440ABDC006650E3 /* Itemizations List */ = {
 			isa = PBXGroup;
 			children = (
-				0023797E143FC151006650E3 /* ItemizedTaxAmtsFormInfoCreator.h */,
-				0023797F143FC151006650E3 /* ItemizedTaxAmtsFormInfoCreator.m */,
-				00237984143FFF3B006650E3 /* ItemizedTaxAmtObjectAdder.h */,
-				00237985143FFF3C006650E3 /* ItemizedTaxAmtObjectAdder.m */,
 				0023799B14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.h */,
 				0023799C14413D48006650E3 /* ItemizedTaxAmtFieldPopulator.m */,
+				00210FA514BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.h */,
+				00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */,
+				00210FA914BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.h */,
+				00210FAA14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m */,
 			);
 			name = "Itemizations List";
 			sourceTree = "<group>";
@@ -1536,6 +1524,8 @@
 				0049DC7E13A572B900B27046 /* FinishedAddingObjectListener.h */,
 				008DD4C514B53F04000AAEA5 /* MultipleSelectionTableViewController.h */,
 				008DD4C614B53F05000AAEA5 /* MultipleSelectionTableViewController.m */,
+				00210FAC14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.h */,
+				00210FAD14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m */,
 			);
 			name = "Generic Table Views";
 			sourceTree = "<group>";
@@ -2594,15 +2584,10 @@
 				00237969143E5EB0006650E3 /* TaxInput.m in Sources */,
 				0023796C143F7423006650E3 /* MultiScenarioAmountVariableValueListMgr.m in Sources */,
 				0023796F143F80F3006650E3 /* MultiScenarioVariableValue.m in Sources */,
-				00237976143FA15E006650E3 /* ItemizedTaxAmtSelectionFormInfoCreator.m in Sources */,
-				00237979143FA78B006650E3 /* ItemizedTableViewAddItemTableViewFactory.m in Sources */,
 				0023797D143FBC78006650E3 /* InputFormPopulator.m in Sources */,
-				00237980143FC152006650E3 /* ItemizedTaxAmtsFormInfoCreator.m in Sources */,
 				00237983143FC400006650E3 /* ItemizedTaxAmtsInfo.m in Sources */,
-				00237986143FFF3D006650E3 /* ItemizedTaxAmtObjectAdder.m in Sources */,
 				0023798914409665006650E3 /* IncomeItemizedTaxAmt.m in Sources */,
 				0023799014409B47006650E3 /* InputCreationHelper.m in Sources */,
-				0023799814412BBE006650E3 /* FinishedAddingItemizedTaxAmtListener.m in Sources */,
 				0023799D14413D49006650E3 /* ItemizedTaxAmtFieldPopulator.m in Sources */,
 				00AA79BB1441E8AF00FED301 /* TaxBracketFormInfoCreator.m in Sources */,
 				00AA79BE1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m in Sources */,
@@ -2691,6 +2676,9 @@
 				008DD4C414B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m in Sources */,
 				008DD4C714B53F06000AAEA5 /* MultipleSelectionTableViewController.m in Sources */,
 				008DD4CA14B5413C000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m in Sources */,
+				00210FA714BE5C6600E1D394 /* ItemizedTaxAmtFieldEditInfo.m in Sources */,
+				00210FAB14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m in Sources */,
+				00210FAE14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

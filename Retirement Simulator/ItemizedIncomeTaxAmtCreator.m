@@ -45,6 +45,12 @@
 
 }
 
+-(NSString*)itemLabel
+{
+	return self.income.name;
+}
+
+
 -(void)dealloc
 {
 	[super dealloc];

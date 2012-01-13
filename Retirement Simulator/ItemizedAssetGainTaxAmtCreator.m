@@ -45,6 +45,11 @@
 }
 
 
+-(NSString*)itemLabel
+{
+	return self.asset.name;
+}
+
 -(void)dealloc
 {
 	[super dealloc];

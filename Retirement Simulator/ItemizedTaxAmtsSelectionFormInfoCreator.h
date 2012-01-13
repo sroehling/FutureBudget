@@ -1,9 +1,9 @@
 //
-//  ItemizedTaxAmtsFormInfoCreator.h
+//  ItemizedTaxAmtsSelectionFormInfoCreator.h
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 10/7/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Steve Roehling on 1/11/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -12,7 +12,7 @@
 
 @class ItemizedTaxAmtsInfo;
 
-@interface ItemizedTaxAmtsFormInfoCreator : NSObject <FormInfoCreator>  {
+@interface ItemizedTaxAmtsSelectionFormInfoCreator : NSObject <FormInfoCreator> {
     @private
 		ItemizedTaxAmtsInfo *itemizedTaxAmtsInfo;
 		BOOL isForNewObject;
