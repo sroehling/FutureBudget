@@ -43,6 +43,8 @@
 #import "InflationRate.h"
 #import "VariableRateCalculator.h"
 #import "ExpenseInput.h"
+#import "TaxInputCalc.h"
+#import "TaxInput.h"
 
 @implementation FiscalYearDigest
 
@@ -147,6 +149,18 @@
 	
 	assert(results.endDate != nil);
 	assert([DateHelper dateIsEqualOrLater:results.endDate otherDate:self.simParams.simStartDate]);
+	
+	NSArray *taxInputCalcs = self.simParams.taxInputCalcs.taxInputCalcs;
+	assert(taxInputCalcs != nil);
+	double sumTaxesPaid = 0.0;
+	for(TaxInputCalc *taxInputCalc in taxInputCalcs)
+	{
+		double taxesPaid = [taxInputCalc.taxesPaid yearlyTotal];
+		[results.taxesPaid setResultForInput:taxInputCalc.taxInput andValue:taxesPaid];
+		sumTaxesPaid += taxesPaid;
+	}
+	results.sumTaxesPaid = sumTaxesPaid;
+	
 	
 	
 	double futureValueMultiplier = [self.adjustValueForInflationCalculator  

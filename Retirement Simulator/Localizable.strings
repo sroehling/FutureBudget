@@ -550,6 +550,12 @@
 "RESULTS_DEFICIT_BALANCE_TITLE" = "Deficit";
 "RESULTS_DEFICIT_BALANCE_SUBTITLE" = "Deficit at end of each year";
 
+"RESULTS_TAXES_SECTION_TITLE" = "Taxes";
+"RESULTS_TAXES_ALL_TAXES_PAID_DATA_LABEL" = "All Taxes";
+"RESULTS_TAXES_ALL_TAXES_TITLE" = "All Taxes";
+"RESULTS_TAXES_ALL_TAXES_SUBTITLE" = "Plot all taxes paid";
+"RESULTS_TAXES_PAID_DATA_LABEL_FORMAT" = "Taxes - %@";
+
 
 "NUMBER_VALIDATION_POSITIVE_PERCENT_MSG" = "Enter a percent greater or equal to 0";
 "NUMBER_VALIDATION_POSITIVE_AMOUNT_MSG" = "Enter an amount greater or equal to 0";

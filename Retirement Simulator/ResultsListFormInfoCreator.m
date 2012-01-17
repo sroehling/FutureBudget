@@ -38,6 +38,9 @@
 #import "AcctContribXYPlotGenerator.h"
 #import "AcctWithdrawalXYPlotDataGenerator.h"
 #import "AllAcctWithdrawalXYPlotDataGenerator.h"
+#import "AllTaxesPaidXYPlotDataGenerator.h"
+#import "TaxesPaidXYPlotDataGenerator.h"
+#import "TaxInput.h"
 
 @implementation ResultsListFormInfoCreator
 
@@ -372,6 +375,43 @@
 					andContentDescription:nil
 					andSubViewFactory:expenseViewFactory] autorelease];
 			[sectionInfo addFieldEditInfo:expenseFieldEditInfo];
+		}
+	}
+
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"RESULTS_TAXES_SECTION_TITLE");
+	if(true)
+	{
+		ResultsViewInfo *allTaxesViewInfo = [[[ResultsViewInfo alloc] 
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_TAXES_ALL_TAXES_TITLE")] autorelease];
+		ResultsViewFactory *allTaxesViewFactory = 
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allTaxesViewInfo
+				andPlotDataGenerator:[[[AllTaxesPaidXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *allTaxesFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_TAXES_ALL_TAXES_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_TAXES_ALL_TAXES_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:allTaxesViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:allTaxesFieldEditInfo];
+		
+		for(TaxInput *tax in self.simResultsController.taxesSimulated)
+		{
+			ResultsViewInfo *taxViewInfo = [[[ResultsViewInfo alloc] 
+				initWithSimResultsController:self.simResultsController 
+				andViewTitle:tax.name] autorelease];
+			ResultsViewFactory *taxViewFactory = 
+				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:taxViewInfo
+					andPlotDataGenerator:[[[TaxesPaidXYPlotDataGenerator alloc]
+					initWithTax:tax]autorelease]] autorelease];
+			StaticNavFieldEditInfo *taxFieldEditInfo = 
+				[[[StaticNavFieldEditInfo alloc] 
+					initWithCaption:tax.name
+					andSubtitle:@"" 
+					andContentDescription:nil
+					andSubViewFactory:taxViewFactory] autorelease];
+			[sectionInfo addFieldEditInfo:taxFieldEditInfo];
 		}
 	}
 

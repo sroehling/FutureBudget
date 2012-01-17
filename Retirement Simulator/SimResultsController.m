@@ -13,6 +13,7 @@
 #import "SimParams.h"
 #import "InputSimInfoCltn.h"
 #import "DataModelController.h"
+#import "TaxInputCalcs.h"
 #import "SharedAppValues.h"
 
 @implementation SimResultsController
@@ -28,6 +29,7 @@
 
 @synthesize dataModelController;
 @synthesize sharedAppVals;
+@synthesize taxesSimulated;
 
 static SimResultsController *theSimResultsControllerSingleton; 
 
@@ -61,6 +63,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 	self.acctsSimulated = simEngine.simParams.acctInfo.inputsSimulated;
 	self.incomesSimulated = simEngine.simParams.incomeInfo.inputsSimulated;
 	self.expensesSimulated = simEngine.simParams.expenseInfo.inputsSimulated;
+	self.taxesSimulated = [simEngine.simParams.taxInputCalcs taxesSimulated];
     
 
     
@@ -154,6 +157,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 	[acctsSimulated release];
 	[incomesSimulated release];
 	[expensesSimulated release];
+	[taxesSimulated release];
 	
 	[dataModelController release];
 	[sharedAppVals release];

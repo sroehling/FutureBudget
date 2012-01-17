@@ -18,6 +18,8 @@
 #import "DigestEntryProcessingParams.h"
 #import "WorkingBalanceMgr.h"
 #import "SimInputHelper.h"
+#import "InputValDigestSummation.h"
+#import "InputValDigestSummations.h"
 
 @implementation TaxInputCalc
 
@@ -31,6 +33,7 @@
 @synthesize effectiveTaxRate;
 @synthesize taxBracketCalc;
 @synthesize simParams;
+@synthesize taxesPaid;
 
 
 -(id)initWithTaxInput:(TaxInput*)theTaxInput andSimParams:(SimParams*)theSimParams
@@ -58,6 +61,10 @@
 			
 		self.taxBracketCalc = [[[TaxBracketCalc alloc] initWithTaxBracket:theTaxInput.taxBracket] autorelease];
 		self.effectiveTaxRate = 0.0;
+		
+		self.taxesPaid = [[[InputValDigestSummation alloc] init] autorelease];
+		[theSimParams.digestSums addDigestSum:self.taxesPaid];
+
 	}
 	return self;
 }
@@ -109,6 +116,7 @@
 	{
 		[processingParams.workingBalanceMgr decrementBalanceFromFundingList:dailyTaxDue 
 			asOfDate:processingParams.currentDate];
+		[self.taxesPaid adjustSum:dailyTaxDue onDay:processingParams.dayIndex];
 
 	}
 }
@@ -125,6 +133,8 @@
 	[creditCalcEntries release];
 	
 	[taxBracketCalc release];
+	
+	[taxesPaid release];
 }
 
 @end

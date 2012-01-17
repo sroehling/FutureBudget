@@ -13,6 +13,7 @@
 @implementation TaxInputCalcs
 
 @synthesize taxInputCalcs;
+@synthesize taxesSimulated;
 
 -(id)init
 {
@@ -20,6 +21,7 @@
 	if(self)
 	{
 		self.taxInputCalcs = [[[NSMutableArray alloc] init] autorelease];
+		self.taxesSimulated = [[[NSMutableSet alloc] init] autorelease];
 	}
 	return self;
 }
@@ -28,6 +30,8 @@
 {
 	assert(theTaxInputCalc != nil);
 	[self.taxInputCalcs addObject:theTaxInputCalc];
+	assert(theTaxInputCalc.taxInput != nil);
+	[self.taxesSimulated addObject:theTaxInputCalc.taxInput];
 }
 
 -(void)updateEffectiveTaxRates:(NSDate*)currentDate
@@ -51,6 +55,7 @@
 {
 	[super dealloc];
 	[taxInputCalcs release];
+	[taxesSimulated release];
 }
 
 @end

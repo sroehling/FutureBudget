@@ -245,21 +245,25 @@
 {
 	YearValPlotDataVal *plotDataVal = [currentData.plotData objectAtIndex:index];
 	assert(plotDataVal !=nil);
+	NSNumber *plotResult;
 	if(fieldEnum == CPTScatterPlotFieldX)
 	{
-		return plotDataVal.year;
+		plotResult = plotDataVal.year;
 	}
 	else
 	{
 		if([[SharedAppValues singleton].adjustResultsForSimStartDate boolValue])
 		{
-			return plotDataVal.inflationAdjustedVal;
+			plotResult = plotDataVal.inflationAdjustedVal;
 		}
 		else
 		{
-			return plotDataVal.unadjustedVal;
+			plotResult = plotDataVal.unadjustedVal;
 		}
 	}
+	assert(plotResult != nil);
+//	NSLog(@"Plot result: %0.2f",[plotResult doubleValue]);
+	return plotResult;
 }
 
 

@@ -13,6 +13,7 @@
 @class SimParams;
 @class TaxBracketCalc;
 @class DigestEntryProcessingParams;
+@class InputValDigestSummation;
 
 @interface TaxInputCalc : NSObject {
     @private
@@ -24,6 +25,9 @@
 		ItemizedTaxCalcEntries *creditCalcEntries;
 
 		SimParams *simParams;
+		
+		InputValDigestSummation *taxesPaid;
+
 
 		TaxBracketCalc *taxBracketCalc;
 		double effectiveTaxRate;
@@ -37,6 +41,7 @@
 @property(nonatomic,retain) ItemizedTaxCalcEntries *adjustmentCalcEntries;
 @property(nonatomic,retain) ItemizedTaxCalcEntries *deductionCalcEntries;
 @property(nonatomic,retain) ItemizedTaxCalcEntries *creditCalcEntries;
+@property(nonatomic,retain) InputValDigestSummation *taxesPaid;
 
 -(id)initWithTaxInput:(TaxInput*)theTaxInput andSimParams:(SimParams*)theSimParams;
 -(void)updateEffectiveTaxRate:(NSDate*)currentDate;

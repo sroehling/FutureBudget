@@ -36,6 +36,9 @@
 		EndOfYearInputResults *expenses;
 		double sumExpense;
 		
+		EndOfYearInputResults *taxesPaid;
+		double sumTaxesPaid;
+		
 		double cashBal;
 		
 		double deficitBal;
@@ -68,6 +71,9 @@
 
 @property(nonatomic,retain) EndOfYearInputResults *expenses;
 @property double sumExpense;
+
+@property(nonatomic,retain) EndOfYearInputResults *taxesPaid;
+@property double sumTaxesPaid;
 
 @property double cashBal;
 

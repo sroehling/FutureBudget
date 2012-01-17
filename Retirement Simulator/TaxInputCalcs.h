@@ -14,13 +14,16 @@
 @interface TaxInputCalcs : NSObject {
     @private
 		NSMutableArray *taxInputCalcs;
+		NSMutableSet *taxesSimulated;
 }
 
 @property(nonatomic,retain) NSMutableArray *taxInputCalcs;
+@property(nonatomic,retain) NSMutableSet *taxesSimulated;
 
 -(void)addTaxInputCalc:(TaxInputCalc*)theTaxInputCalc;
 
 -(void)updateEffectiveTaxRates:(NSDate*)currentDate;
 -(void)processDailyTaxPmts:(DigestEntryProcessingParams*)processingParams;
+
 
 @end

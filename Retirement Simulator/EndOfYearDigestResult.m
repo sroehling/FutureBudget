@@ -32,6 +32,8 @@
 @synthesize acctWithdrawals;
 @synthesize sumAcctWithdrawal;
 @synthesize simStartDateValueMultiplier;
+@synthesize taxesPaid;
+@synthesize sumTaxesPaid;
 
 -(id)initWithEndDate:(NSDate *)endOfYearDate
 {
@@ -62,6 +64,9 @@
 		
 		self.expenses = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumExpense = 0.0;
+		
+		self.taxesPaid = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumTaxesPaid = 0.0;
 		
 		self.cashBal = 0.0;
 		
@@ -97,6 +102,7 @@
 	[expenses release];
 	[acctWithdrawals release];
 	[acctContribs release];
+	[taxesPaid release];
 }
 
 @end

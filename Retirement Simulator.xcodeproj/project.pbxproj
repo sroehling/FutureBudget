@@ -145,6 +145,8 @@
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
 		006572DE1434FBA70062C00C /* StaticNavFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */; };
+		006B087114C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */; };
+		006B087414C5E7810042FE8E /* TaxesPaidXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */; };
 		006D3A5A145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */; };
 		006D3A5E145F006A004AF798 /* ItemizedAccountTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A5D145F006A004AF798 /* ItemizedAccountTaxAmtCreator.m */; };
 		006D3A61145F0484004AF798 /* ItemizedIncomeTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A60145F0483004AF798 /* ItemizedIncomeTaxAmtCreator.m */; };
@@ -616,6 +618,10 @@
 		006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatIfFormInfoCreator.m; sourceTree = "<group>"; };
 		006572DC1434FBA70062C00C /* StaticNavFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNavFieldEditInfo.h; sourceTree = "<group>"; };
 		006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNavFieldEditInfo.m; sourceTree = "<group>"; };
+		006B086F14C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTaxesPaidXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTaxesPaidXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		006B087214C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxesPaidXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxesPaidXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		006D3A58145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedExpenseTaxAmtCreator.h; sourceTree = "<group>"; };
 		006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedExpenseTaxAmtCreator.m; sourceTree = "<group>"; };
 		006D3A5C145F006A004AF798 /* ItemizedAccountTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountTaxAmtCreator.h; sourceTree = "<group>"; };
@@ -1657,8 +1663,8 @@
 		004F5D701373188900E0C4A3 /* Results View */ = {
 			isa = PBXGroup;
 			children = (
-				00D8D27E1490076D00B0314D /* Year Val XY Results Plot */,
 				00CB5E581491331500C4654A /* Results Data Generators */,
+				00D8D27E1490076D00B0314D /* Year Val XY Results Plot */,
 				00D8D26B148FCC3F00B0314D /* ResultsListFormInfoCreator.h */,
 				00D8D26C148FCC3F00B0314D /* ResultsListFormInfoCreator.m */,
 				004F5D711373191600E0C4A3 /* ResultsViewController.h */,
@@ -1797,6 +1803,17 @@
 				006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */,
 			);
 			name = "Static Navigational Field";
+			sourceTree = "<group>";
+		};
+		006B086D14C5E5CB0042FE8E /* Taxes */ = {
+			isa = PBXGroup;
+			children = (
+				006B086F14C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.h */,
+				006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */,
+				006B087214C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.h */,
+				006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */,
+			);
+			name = Taxes;
 			sourceTree = "<group>";
 		};
 		0086C08F142956AF00148785 /* Setup */ = {
@@ -2157,6 +2174,7 @@
 		00CB5E581491331500C4654A /* Results Data Generators */ = {
 			isa = PBXGroup;
 			children = (
+				006B086D14C5E5CB0042FE8E /* Taxes */,
 				001E5C2E14A24279008A672E /* Accounts */,
 				00D8D28214900A2100B0314D /* NetWorthXYPlotDataGenerator.h */,
 				00D8D28314900A2200B0314D /* NetWorthXYPlotDataGenerator.m */,
@@ -2679,6 +2697,8 @@
 				00210FA714BE5C6600E1D394 /* ItemizedTaxAmtFieldEditInfo.m in Sources */,
 				00210FAB14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m in Sources */,
 				00210FAE14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m in Sources */,
+				006B087114C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m in Sources */,
+				006B087414C5E7810042FE8E /* TaxesPaidXYPlotDataGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

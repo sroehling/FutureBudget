@@ -22,6 +22,7 @@
 		NSSet *acctsSimulated;
 		NSSet *incomesSimulated;
 		NSSet *expensesSimulated;
+		NSSet *taxesSimulated;
 		
 		DataModelController *dataModelController;
 		SharedAppValues *sharedAppVals;
@@ -39,6 +40,7 @@
 @property(nonatomic,retain) NSSet *acctsSimulated;
 @property(nonatomic,retain) NSSet *incomesSimulated;
 @property(nonatomic,retain) NSSet *expensesSimulated;
+@property(nonatomic,retain) NSSet *taxesSimulated;
 
 @property(nonatomic,retain) DataModelController *dataModelController;
 @property(nonatomic,retain) SharedAppValues *sharedAppVals;
