@@ -85,7 +85,9 @@
 	assert(adjustments >= 0.0);
 	double adjustedGrossIncome = MAX(0.0,grossIncome - adjustments);
 	
-	double exemptions = [SimInputHelper multiScenRateAdjustedAmount:self.taxInput.exemptionAmt andMultiScenRate:self.taxInput.exemptionGrowthRate asOfDate:currentDate sinceDate:self.simParams.simStartDate forScenario:self.simParams.simScenario];
+	double exemptions = [SimInputHelper multiScenRateAdjustedAmount:self.taxInput.exemptionAmt 
+		andMultiScenRate:self.taxInput.exemptionGrowthRate asOfDate:currentDate 
+		sinceDate:self.simParams.simStartDate forScenario:self.simParams.simScenario];
 	assert(exemptions >= 0.0);
 	
 	double itemizedDeductions = [self.deductionCalcEntries calcTotalYearlyItemizedAmt];
@@ -103,7 +105,8 @@
 	
 	// TBD - What do we do with the credit amount, if it exceeds the tax due?
 	
-	self.effectiveTaxRate = [self.taxBracketCalc calcEffectiveTaxRate:taxableIncome withCredits:credits];
+	self.effectiveTaxRate = [self.taxBracketCalc calcEffectiveTaxRateForGrossIncome:grossIncome 
+		andTaxableIncome:taxableIncome withCredits:credits];
 }
 
 -(void)processDailyTaxPmt:(DigestEntryProcessingParams*)processingParams

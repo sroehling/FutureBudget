@@ -34,10 +34,12 @@
 	return nil;
 }
 
--(double)calcEffectiveTaxRate:(double)taxableIncome withCredits:(double)creditAmount
+-(double)calcEffectiveTaxRateForGrossIncome:(double)grossIncome 
+	andTaxableIncome:(double)taxableIncome withCredits:(double)creditAmount
 {
 	// TODO - We definitely need a unit test of this method
 	assert(taxableIncome >= 0.0);
+	assert(taxableIncome <= grossIncome);
 	assert(creditAmount >= 0.0);
 	
 	
@@ -74,7 +76,7 @@
 				}
 				else
 				{
-					return (totalTax - creditAmount)/taxableIncome;
+					return (totalTax - creditAmount)/grossIncome;
 				}
 
 			}
@@ -93,7 +95,7 @@
 		}
 		else
 		{
-			return (totalTax - creditAmount)/taxableIncome;
+			return (totalTax - creditAmount)/grossIncome;
 		}
 		
 	}
