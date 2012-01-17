@@ -44,6 +44,8 @@
 		self.itemizedTaxAmtCreator = theItemizedTaxAmtCreator;
 		
 		self.itemizedTaxAmt = theItemizedTaxAmt;
+		assert((self.itemizedTaxAmt == nil) || 
+			[self.itemizedTaxAmts.itemizedAmts containsObject:self.itemizedTaxAmt]);
 		
 		self.itemizedTaxAmtsInfo = theItemizedTaxAmtsInfo;
 		
@@ -81,7 +83,14 @@
 
 - (UIViewController*)fieldEditController
 {
-	assert(self.itemizedTaxAmt != nil);
+	if(self.itemizedTaxAmt == nil)
+	{
+		// If self.itemizedTaxAmt is already initialized, then we create it, but
+		// keep it initially disabled.
+		self.itemizedTaxAmt = [self.itemizedTaxAmtCreator createItemizedTaxAmt];
+		self.itemizedTaxAmt.isEnabled = [NSNumber numberWithBool:FALSE];
+		[self.itemizedTaxAmts addItemizedAmtsObject:self.itemizedTaxAmt];
+	}
 	
 	InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isForNewObject] autorelease];
 	formPopulator.formInfo.title = self.itemizedTaxAmtsInfo.itemTitle;
@@ -102,14 +111,7 @@
 
 - (BOOL)hasFieldEditController
 {
-	if(self.itemizedTaxAmt != nil)
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return TRUE;
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -147,14 +149,7 @@
 	cell.staticName.textAlignment = UITextAlignmentLeft;
 	
 	cell.accessoryType = UITableViewCellAccessoryNone;
-	if([self hasFieldEditController])
-	{
-		cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-	else
-	{
-		cell.editingAccessoryType = UITableViewCellAccessoryNone;
-	}
+	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
 	return cell;
     
@@ -164,16 +159,12 @@
 {
 	if(self.itemizedTaxAmt != nil)
 	{
-		if([self.itemizedTaxAmts.itemizedAmts containsObject:self.itemizedTaxAmt])
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
+		return [self.itemizedTaxAmt.isEnabled boolValue];
 	}
-	return FALSE;
+	else
+	{
+		return FALSE;
+	}
 }
 
 - (void)updateSelection:(BOOL)isSelected
@@ -183,11 +174,13 @@
 	{
 		if(self.itemizedTaxAmt != nil)
 		{
+			self.itemizedTaxAmt.isEnabled = [NSNumber numberWithBool:TRUE];
 			[self.itemizedTaxAmts addItemizedAmtsObject:self.itemizedTaxAmt];
 		}
 		else
 		{
 			self.itemizedTaxAmt = [self.itemizedTaxAmtCreator createItemizedTaxAmt];
+			self.itemizedTaxAmt.isEnabled = [NSNumber numberWithBool:TRUE];
 			[self.itemizedTaxAmts addItemizedAmtsObject:self.itemizedTaxAmt];
 		}
 	}
@@ -195,13 +188,7 @@
 	{
 		assert(self.itemizedTaxAmt != nil);
 		assert([self.itemizedTaxAmts.itemizedAmts containsObject:self.itemizedTaxAmt]);
-		[self.itemizedTaxAmts removeItemizedAmtsObject:self.itemizedTaxAmt];
-		[[DataModelController theDataModelController] deleteObject:self.itemizedTaxAmt];
-		self.itemizedTaxAmt = nil;
-		
-		// TODO - Need to preserve the ItemizedTaxAmt, since it may have a percentage
-		// that has been set, and we don't want to delete this each and every time an
-		// itemized tax amount is selected or deselected.
+		self.itemizedTaxAmt.isEnabled = [NSNumber numberWithBool:FALSE];
 	}
 	[[DataModelController theDataModelController] saveContext];
 

@@ -9,6 +9,7 @@
 #import "ItemizedTaxCalcEntries.h"
 #import "SimParams.h"
 #import "ItemizedTaxAmts.h"
+#import "ItemizedTaxAmt.h"
 #import "ItemizedTaxCalcPopulator.h"
 #import "ItemizedTaxCalcEntry.h"
 #import "DateHelper.h"
@@ -30,13 +31,18 @@
 		for(ItemizedTaxAmt *itemizedTaxAmt in itemizedTaxAmts.itemizedAmts)
 		{
 			assert(itemizedTaxAmt != nil);
+			if([itemizedTaxAmt.isEnabled boolValue])
+			{
+				// Only populate the tax calculation if the itemizedTaxAmt is enabled. If could be marked
+				// as disabled if it was initially created and enabled, but then subsequently disabled 
+				// in the check-list used to setup itemizations.
 			
-			ItemizedTaxCalcEntry *taxCalcEntry = 
-				[taxCalcPopulator populateItemizedTaxCalc:itemizedTaxAmt fromSimParams:simParams];
-			assert(taxCalcEntry != nil);
+				ItemizedTaxCalcEntry *taxCalcEntry = 
+					[taxCalcPopulator populateItemizedTaxCalc:itemizedTaxAmt fromSimParams:simParams];
+				assert(taxCalcEntry != nil);
 			
-			[self.calcEntries addObject:taxCalcEntry];
-			
+				[self.calcEntries addObject:taxCalcEntry];
+			}
 		}
 			
 	}

@@ -20,6 +20,7 @@
 }
 @property (nonatomic, retain) MultiScenarioInputValue * multiScenarioApplicablePercent;
 @property (nonatomic, retain) ItemizedTaxAmts * itemizedTaxAmts;
+@property (nonatomic, retain) NSNumber * isEnabled;
 
 -(void)acceptVisitor:(id<ItemizedTaxAmtVisitor>)visitor;
 
