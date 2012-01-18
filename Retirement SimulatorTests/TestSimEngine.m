@@ -1203,7 +1203,7 @@
 	[secondTax.taxBracket addTaxBracketEntriesObject:secondTaxEntry];
 	
 	IncomeItemizedTaxAmt *itemizedIncome02 = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
-	itemizedIncome02.income = income01;
+	itemizedIncome02.income = income02;
 	itemizedIncome02.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
 	[secondTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome02];
 	
@@ -1225,11 +1225,11 @@
 	
 	AllTaxesPaidXYPlotDataGenerator *allTaxData = [[[AllTaxesPaidXYPlotDataGenerator alloc] init] autorelease];
 	expected = [[[NSMutableArray alloc]init]autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:75.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:75.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:75.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:75.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:75.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	
 	[self checkPlotData:allTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"all taxes" withAdjustedVals:FALSE];
 	
@@ -1383,6 +1383,71 @@
     
      
 }
+
+
+- (void)testPartialTax {
+        
+ 	[self resetCoredData];
+   
+    NSLog(@"Starting sim engine test ...");
+	
+	// In this test, the yearly income is $200, but only 50% of it is taxed at a 25% tax rate
+    	
+	IncomeInputTypeSelectionInfo *incomeCreator = 
+		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+
+	TaxInputTypeSelectionInfo *taxCreator = 
+		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	IncomeItemizedTaxAmt *itemizedIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedIncome.income = income01;
+	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:50.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
+
+	
+	TaxInput *secondTax = (TaxInput*)[taxCreator createInput];
+	
+	TaxBracketEntry *secondTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	secondTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	secondTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[secondTax.taxBracket addTaxBracketEntriesObject:secondTaxEntry];
+	
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+		
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"flatTax" withAdjustedVals:FALSE];
+	
+    
+    NSLog(@"... Done testing sim engine");
+    
+     
+}
+
 
 
 
