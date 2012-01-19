@@ -34,7 +34,7 @@
         initialFormInfo.title = @"Dummy";
 
         self.formInfo = initialFormInfo;
-		
+				
 		enteringEditMode = FALSE;
 		enteringEditModeEditing = FALSE;
     }
@@ -67,6 +67,28 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+// This purpose of this overridden method is to shrink the font size displayed in the title from
+// the standard of 20 to 17. This allows more of the title to be shown, and also shows
+// the title in a more comparable proportion with the other fonts in the table view.
+- (void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    if (!titleView) {
+        titleView = [[UILabel alloc] initWithFrame:CGRectZero];
+        titleView.backgroundColor = [UIColor clearColor];
+        titleView.font = [UIFont boldSystemFontOfSize:17.0];
+        titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+
+        titleView.textColor = [UIColor whiteColor]; // Change to desired color
+
+        self.navigationItem.titleView = titleView;
+        [titleView release];
+    }
+    titleView.text = title;
+    [titleView sizeToFit];
+}
+
 
 #pragma mark -
 #pragma mark View Lifecycle
@@ -81,6 +103,13 @@
     }
     
     self.tableView.allowsSelectionDuringEditing = TRUE;
+	
+	// Change the background of the table view to be a textured image, rather than 
+	// the default.
+	self.tableView.backgroundColor = [UIColor clearColor];
+	self.tableView.backgroundView = [[[UIImageView alloc] 
+			initWithImage:[UIImage imageNamed:@"textureOldPaperSmall.png"]] autorelease];
+	
 	
 	
 

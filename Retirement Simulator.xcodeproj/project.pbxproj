@@ -134,6 +134,7 @@
 		005DAEF01460675500D87907 /* ItemizedAssetGainTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEF1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.m */; };
 		005DAEF314609A1100D87907 /* LoanInterestItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */; };
 		005DAEF614609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */; };
+		005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */; };
 		0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505713EA1900002E38FA /* RelativeEndDate.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
@@ -596,6 +597,7 @@
 		005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanInterestItemizedTaxAmt.m; sourceTree = "<group>"; };
 		005DAEF414609AC500D87907 /* ItemizedLoanInterestTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedLoanInterestTaxAmtCreator.h; sourceTree = "<group>"; };
 		005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanInterestTaxAmtCreator.m; sourceTree = "<group>"; };
+		005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textureOldPaperSmall.png; sourceTree = "<group>"; };
 		0063505613EA1900002E38FA /* RelativeEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDate.h; sourceTree = "<group>"; };
 		0063505713EA1900002E38FA /* RelativeEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDate.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
@@ -1619,6 +1621,7 @@
 		004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */ = {
 			isa = PBXGroup;
 			children = (
+				005EF47C14C88232001F3D36 /* Resources */,
 				0055A8961417DB6B00EFB95C /* Helper */,
 				0049DC6D13A287A000B27046 /* Base Classes */,
 				0087924413AC505B00CA9DA7 /* Table Headers */,
@@ -1772,6 +1775,14 @@
 				0099A1671457ACCD00E35AF9 /* Expense */,
 			);
 			name = "Simulator Inputs";
+			sourceTree = "<group>";
+		};
+		005EF47C14C88232001F3D36 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		006572CF14338DCE0062C00C /* Deferred Withdrawals */ = {
@@ -2389,6 +2400,7 @@
 				00EC455D141B165A00D65D17 /* scales.png in Resources */,
 				00EC455F141B169E00D65D17 /* piggy.png in Resources */,
 				00EC4561141B183D00D65D17 /* clock.png in Resources */,
+				005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
