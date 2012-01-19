@@ -71,6 +71,8 @@
 #import "InflationRate.h"
 #import "UserScenario.h"
 
+#import "NetWorthXYPlotDataGenerator.h"
+
 @implementation TestSimEngine
 
 @synthesize coreData;
@@ -1464,6 +1466,115 @@
      
 }
 
+
+- (void)testItemizedDeductionNoTax {
+        
+ 	[self resetCoredData];
+   
+    NSLog(@"Starting sim engine test ...");
+ 
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+   	
+		
+	// In this test, there is both an income and expense of $100. In the first run of the simulator, the 
+	// deduction is not applied, so the tax should be $25/year. After adding the deduction, the taxes
+	// paid should go to zero. We also test the impact on net worth, whereby without the deduction,
+	// the net worth goes down by $25.00 each year, but stays the same with the deduction.
+	IncomeInputTypeSelectionInfo *incomeCreator = 
+		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-01"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+
+	TaxInputTypeSelectionInfo *taxCreator = 
+		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	flatTax.stdDeductionAmt = [self.inputCreationHelper multiScenAmountWithDefault:0.0];
+	flatTax.stdDeductionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	IncomeItemizedTaxAmt *itemizedIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedIncome.income = income01;
+	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
+	
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
+		andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"itemized deduction - no tax (w/out deduction)" withAdjustedVals:FALSE];
+	
+	
+	NetWorthXYPlotDataGenerator *netWorthData = [[[NetWorthXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:975.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:950.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:925.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:900.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:875.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"itemized deduction - no tax (w/out deduction)" withAdjustedVals:FALSE];
+
+	ExpenseItemizedTaxAmt *itemizedExpenseDeduction = [self.coreData insertObject:EXPENSE_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedExpenseDeduction.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	itemizedExpenseDeduction.expense = expense01;
+	[flatTax.itemizedDeductions addItemizedAmtsObject:itemizedExpenseDeduction];
+	
+	// Rerun the simulator. This time the decution of $100/year is applicable.
+	[simResults runSimulatorForResults];
+	
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"itemized deduction - no tax" withAdjustedVals:FALSE];	
+	
+	
+	// Since no tax is being paid, the net worth should remain at 1000
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"itemized deduction - no tax (w/out deduction)" withAdjustedVals:FALSE];
+	
+    NSLog(@"... Done testing sim engine");
+    
+     
+}
 
 - (void)testPartialTax {
         
