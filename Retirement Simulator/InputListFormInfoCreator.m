@@ -14,7 +14,6 @@
 #import "SectionInfo.h"
 #import "LoanInput.h"
 #import "InputListObjectAdder.h"
-#import "TableHeaderWithDisclosure.h"
 #import "SharedAppValues.h"
 #import "IncomeInput.h"
 #import "ExpenseInput.h"
@@ -23,7 +22,6 @@
 #import "Account.h"
 #import "AssetInput.h"
 #import "TaxInput.h"
-#import "SelectScenarioTableHeaderButtonDelegate.h"
 
 @implementation InputListFormInfoCreator
 
@@ -33,18 +31,6 @@
     
     formPopulator.formInfo.title = @"Inputs";
 	formPopulator.formInfo.objectAdder = [[[InputListObjectAdder alloc] init] autorelease];
-	
-	
-	SelectScenarioTableHeaderButtonDelegate *scenarioListDisclosureDelegate = 
-		[[[SelectScenarioTableHeaderButtonDelegate alloc] initWithParentController:parentController] autorelease];
-	
-	TableHeaderWithDisclosure *tableHeader = 
-		[[[TableHeaderWithDisclosure alloc] initWithFrame:CGRectZero andDisclosureButtonDelegate:scenarioListDisclosureDelegate] autorelease];
-	tableHeader.header.text = [NSString 
-		stringWithFormat:LOCALIZED_STR(@"INPUT_LIST_TABLE_HEADER_FORMAT"),
-		[SharedAppValues singleton].currentInputScenario.scenarioName];
-	[tableHeader resizeForChildren];
-	formPopulator.formInfo.headerView = tableHeader;
 	
 	SectionInfo *sectionInfo;
 	

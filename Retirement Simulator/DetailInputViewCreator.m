@@ -58,6 +58,10 @@
 #import "LimitedAccountWithdrawalsTableViewFactory.h"
 #import "MultipleSelectionTableViewControllerFactory.h"
 #import "ItemizedTaxAmtsSelectionFormInfoCreator.h"
+#import "TableHeaderWithDisclosure.h"
+#import "SelectScenarioTableHeaderButtonDelegate.h"
+#import "SharedAppValues.h"
+#import "Scenario.h"
 
 @implementation DetailInputViewCreator
 
@@ -87,6 +91,20 @@
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
     self.formPopulator = [[[InputFormPopulator alloc] initForNewObject:self.isForNewObject] autorelease];
+	
+	if(!self.isForNewObject)
+	{
+		SelectScenarioTableHeaderButtonDelegate *scenarioListDisclosureDelegate = 
+			[[[SelectScenarioTableHeaderButtonDelegate alloc] initWithParentController:parentController] autorelease];
+		TableHeaderWithDisclosure *tableHeader = 
+			[[[TableHeaderWithDisclosure alloc] initWithFrame:CGRectZero 
+				andDisclosureButtonDelegate:scenarioListDisclosureDelegate] autorelease];
+		tableHeader.header.text = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"INPUT_CURRENT_SCENARIO_TABLE_HEADER_FORMAT"),
+			[SharedAppValues singleton].currentInputScenario.scenarioName];
+		[tableHeader resizeForChildren];
+		formPopulator.formInfo.headerView = tableHeader;
+	}
     
     [self.input acceptInputVisitor:self];
     

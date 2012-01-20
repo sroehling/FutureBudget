@@ -36,6 +36,8 @@ static CGFloat kLabelSpace = 4.0;
         self.header.highlightedTextColor = [UIColor whiteColor];
         self.header.font = [UIFont boldSystemFontOfSize:12];       
 		[self addSubview:self.header];
+		
+		self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
 
 		self.disclosureButtonDelegate = delegate;
 		
