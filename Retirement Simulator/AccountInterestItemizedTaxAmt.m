@@ -22,5 +22,18 @@ NSString * const ACCOUNT_INTEREST_ITEMIZED_TAX_AMT_ENTITY_NAME = @"AccountIntere
 	[visitor visitAccountInterestItemizedTaxAmt:self];
 }
 
+-(BOOL)itemIsEnabledForScenario:(Scenario*)theScenario
+{
+	assert(theScenario != nil);
+	assert(self.account != nil);
+	if([self.isEnabled boolValue])
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
 
 @end

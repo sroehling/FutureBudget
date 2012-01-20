@@ -11,6 +11,7 @@
 
 @class MultiScenarioInputValue;
 @class ItemizedTaxAmts;
+@class Scenario;
 
 @protocol ItemizedTaxAmtVisitor;
 
@@ -23,5 +24,7 @@
 @property (nonatomic, retain) NSNumber * isEnabled;
 
 -(void)acceptVisitor:(id<ItemizedTaxAmtVisitor>)visitor;
+
+-(BOOL)itemIsEnabledForScenario:(Scenario*)theScenario;
 
 @end

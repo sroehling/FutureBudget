@@ -31,7 +31,7 @@
 		for(ItemizedTaxAmt *itemizedTaxAmt in itemizedTaxAmts.itemizedAmts)
 		{
 			assert(itemizedTaxAmt != nil);
-			if([itemizedTaxAmt.isEnabled boolValue])
+			if([itemizedTaxAmt itemIsEnabledForScenario:simParams.simScenario])
 			{
 				// Only populate the tax calculation if the itemizedTaxAmt is enabled. If could be marked
 				// as disabled if it was initially created and enabled, but then subsequently disabled 

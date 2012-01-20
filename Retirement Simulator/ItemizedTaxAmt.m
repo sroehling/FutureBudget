@@ -21,4 +21,10 @@
 	assert(0); // must be overriden
 }
 
+-(BOOL)itemIsEnabledForScenario:(Scenario*)theScenario
+{
+	assert(0); // must be overridden
+	return FALSE;
+}
+
 @end

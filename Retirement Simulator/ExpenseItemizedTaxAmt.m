@@ -9,6 +9,7 @@
 #import "ExpenseItemizedTaxAmt.h"
 #import "ExpenseInput.h"
 #import "ItemizedTaxAmtVisitor.h"
+#import "SimInputHelper.h"
 
 NSString * const EXPENSE_ITEMIZED_TAX_AMT_ENTITY_NAME = @"ExpenseItemizedTaxAmt";
 
@@ -21,5 +22,19 @@ NSString * const EXPENSE_ITEMIZED_TAX_AMT_ENTITY_NAME = @"ExpenseItemizedTaxAmt"
 	[visitor visitExpenseItemizedTaxAmt:self];
 }
 
+-(BOOL)itemIsEnabledForScenario:(Scenario*)theScenario
+{
+	assert(theScenario != nil);
+	assert(self.expense != nil);
+	if([self.isEnabled boolValue])
+	{
+		return [SimInputHelper multiScenBoolVal:self.expense.cashFlowEnabled
+				andScenario:theScenario];
+	}
+	else
+	{
+		return FALSE;
+	}
+}
 
 @end
