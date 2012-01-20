@@ -151,6 +151,21 @@
 #pragma mark -
 #pragma mark Table view data source methods
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+    id<FieldEditInfo> fieldEditInfoForRow = [self.formInfo fieldEditInfoIndexPath:indexPath];
+    
+    // Deselect the row.
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if([fieldEditInfoForRow hasFieldEditController])
+    {
+        UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
+        assert(viewControllerForRow != nil);
+        [self.navigationController pushViewController:viewControllerForRow animated:YES];       
+    }
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

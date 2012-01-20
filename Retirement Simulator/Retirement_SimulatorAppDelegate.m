@@ -59,7 +59,7 @@
 //		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
 	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
 		[[[WhatIfFormInfoCreator alloc] init] autorelease];
-	UIViewController *whatIfController = [[[GenericFieldBasedTableEditViewController alloc]
+	UIViewController *whatIfController = [[[GenericFieldBasedTableViewController alloc]
 		initWithFormInfoCreator:whatIfFormInfoCreator] autorelease];
 	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
 	whatIfNavController.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
@@ -78,7 +78,7 @@
 
 	ResultsListFormInfoCreator *resultsListFormInfoCreator = 
 		[[[ResultsListFormInfoCreator alloc] init] autorelease];
-	UIViewController *resultsController = [[[GenericFieldBasedTableEditViewController alloc]
+	UIViewController *resultsController = [[[GenericFieldBasedTableViewController alloc]
 		initWithFormInfoCreator:resultsListFormInfoCreator] autorelease];
 	UINavigationController *resultsNavController = [[[UINavigationController alloc] 
 		initWithRootViewController:resultsController] autorelease];
