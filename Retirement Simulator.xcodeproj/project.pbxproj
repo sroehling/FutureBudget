@@ -135,6 +135,7 @@
 		005DAEF314609A1100D87907 /* LoanInterestItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */; };
 		005DAEF614609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */; };
 		005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */; };
+		005EF48214C9C575001F3D36 /* AlertViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF48114C9C575001F3D36 /* AlertViewHelper.m */; };
 		0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505713EA1900002E38FA /* RelativeEndDate.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
@@ -598,6 +599,8 @@
 		005DAEF414609AC500D87907 /* ItemizedLoanInterestTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedLoanInterestTaxAmtCreator.h; sourceTree = "<group>"; };
 		005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanInterestTaxAmtCreator.m; sourceTree = "<group>"; };
 		005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textureOldPaperSmall.png; sourceTree = "<group>"; };
+		005EF48014C9C575001F3D36 /* AlertViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewHelper.h; sourceTree = "<group>"; };
+		005EF48114C9C575001F3D36 /* AlertViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewHelper.m; sourceTree = "<group>"; };
 		0063505613EA1900002E38FA /* RelativeEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDate.h; sourceTree = "<group>"; };
 		0063505713EA1900002E38FA /* RelativeEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDate.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
@@ -1297,6 +1300,8 @@
 				0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */,
 				0025774E13AFDE2800D15232 /* StringLookupTable.h */,
 				0025774F13AFDE2800D15232 /* StringLookupTable.m */,
+				005EF48014C9C575001F3D36 /* AlertViewHelper.h */,
+				005EF48114C9C575001F3D36 /* AlertViewHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -2711,6 +2716,7 @@
 				00210FAE14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m in Sources */,
 				006B087114C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m in Sources */,
 				006B087414C5E7810042FE8E /* TaxesPaidXYPlotDataGenerator.m in Sources */,
+				005EF48214C9C575001F3D36 /* AlertViewHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

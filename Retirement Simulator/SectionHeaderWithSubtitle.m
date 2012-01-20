@@ -7,6 +7,7 @@
 //
 
 #import "SectionHeaderWithSubtitle.h"
+#import "AlertViewHelper.h"
 
 #define CUSTOM_SECTION_VIEW_LEFT_LABEL_OFFSET 15.0
 #define CUSTOM_SECTION_VIEW_RIGHT_LABEL_OFFSET 10.0
@@ -194,8 +195,8 @@
 	UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@""
 	message:self.subtitle
 	delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	[AlertViewHelper leftAlignAlertViewText:av];
 	[av show];
-
 }
 
 -(void)layoutSubviews
