@@ -96,11 +96,11 @@
 	formPopulator.formInfo.title = self.itemizedTaxAmtsInfo.itemTitle;
 	
 	[formPopulator nextSection];
-	[formPopulator populateMultiScenFixedValField:self.itemizedTaxAmt.multiScenarioApplicablePercent 
-		andValLabel:self.itemizedTaxAmtsInfo.amtPrompt 
-		andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
-		andValidator:[[[PercentFieldValidator alloc] init] autorelease]];
 	
+	[formPopulator populateMultiScenPercentField:self.itemizedTaxAmt.multiScenarioApplicablePercent 
+	     andValLabel:self.itemizedTaxAmtsInfo.amtPrompt andPrompt:self.itemizedTaxAmtsInfo.amtPrompt
+		 andAllowGreaterThan100Percent:FALSE];
+		
 	StaticFormInfoCreator *formInfoCreator = 
 		[[[StaticFormInfoCreator alloc] initWithFormInfo:formPopulator.formInfo] autorelease];
 	GenericFieldBasedTableEditViewController *controller = 

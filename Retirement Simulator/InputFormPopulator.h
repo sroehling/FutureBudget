@@ -50,6 +50,9 @@
 	
 -(void)populatePercentField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder;
+-(void)populateMultiScenPercentField:(MultiScenarioInputValue*)inputVal
+	andValLabel:(NSString*)label andPrompt:(NSString*)prompt 
+	andAllowGreaterThan100Percent:(BOOL)allowGreaterThan100;
 	
 	
 -(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 

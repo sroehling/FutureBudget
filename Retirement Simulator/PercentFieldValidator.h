@@ -11,7 +11,6 @@
 #import "NumberFieldValidator.h"
 
 @interface PercentFieldValidator : NumberFieldValidator {
-    
 }
 
 @end

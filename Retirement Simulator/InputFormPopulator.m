@@ -54,6 +54,7 @@
 #import "LoanDownPmtPercent.h"
 #import "LoanInput.h"
 #import "VariableValueFieldEditInfo.h"
+#import "UpTo100PercentFieldValidator.h"
 
 @implementation InputFormPopulator
 
@@ -160,6 +161,40 @@
 }
 
 
+-(void)populateMultiScenPercentField:(MultiScenarioInputValue*)inputVal
+	andValLabel:(NSString*)label andPrompt:(NSString*)prompt andAllowGreaterThan100Percent:(BOOL)allowGreaterThan100
+{
+	assert(inputVal != nil);
+	assert([StringValidation nonEmptyString:label]);
+	assert([StringValidation nonEmptyString:prompt]);
+	
+	MultiScenarioFixedValueFieldInfo *fieldInfo =
+		[[[MultiScenarioFixedValueFieldInfo alloc] 
+			initWithFieldLabel:label 
+			andFieldPlaceholder:prompt
+			andScenario:self.inputScenario  andInputVal:inputVal] autorelease];
+			
+	NumberFieldValidator *percentValidator;		
+	if(allowGreaterThan100)
+	{
+		percentValidator = [[[PercentFieldValidator alloc] init] autorelease];
+	}
+	else
+	{
+		percentValidator = [[[UpTo100PercentFieldValidator alloc] init] autorelease];
+	}
+			
+   NumberFieldEditInfo *fieldEditInfo = 
+		[[[NumberFieldEditInfo alloc] initWithFieldInfo:fieldInfo
+			andNumberFormatter:[NumberHelper theHelper].percentFormatter
+			andValidator:percentValidator] autorelease];
+	
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:fieldEditInfo];
+
+}
+
+
 
 
 
@@ -199,6 +234,7 @@
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:percentFieldEditInfo];
 }
+
 
 -(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
 	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
