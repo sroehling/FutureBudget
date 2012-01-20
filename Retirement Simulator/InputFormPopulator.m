@@ -98,9 +98,14 @@
    [self nextSection];
    assert(theInput!=nil);
 	
-	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:theInput andFieldKey:INPUT_NAME_KEY andFieldLabel:LOCALIZED_STR(@"INPUT_NAME_FIELD_LABEL")
-	 andFieldPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")] autorelease];
-	 NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
+		initWithManagedObject:theInput 
+		andFieldKey:INPUT_NAME_KEY 
+		andFieldLabel:LOCALIZED_STR(@"INPUT_NAME_FIELD_LABEL")
+		andFieldPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")] autorelease];
+		
+	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] 
+		initWithFieldInfo:fieldInfo] autorelease];
 	
     [self.currentSection addFieldEditInfo:fieldEditInfo];
 

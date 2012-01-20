@@ -11,6 +11,8 @@
 
 NSString * const NAME_FIELD_CELL_IDENTIFIER = @"NameFieldCell";
 
+#define MAX_NAME_LENGTH 32
+
 @implementation NameFieldCell
 
 @synthesize textField;
@@ -33,6 +35,13 @@ NSString * const NAME_FIELD_CELL_IDENTIFIER = @"NameFieldCell";
 		
 	}    
 	return self;
+}
+
+- (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range 
+	replacementString:(NSString *)string 
+{
+    NSUInteger newLength = [theTextField.text length] + [string length] - range.length;
+    return (newLength > MAX_NAME_LENGTH) ? NO : YES;
 }
 
 
