@@ -49,7 +49,7 @@
     assert(self.parentViewController != nil);
     NSLog(@"Add Variable Value");
     
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:self.parentViewController] autorelease];
 	
     formPopulator.formInfo.title = [[[NSString alloc] initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
 									 LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];

@@ -54,7 +54,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-	FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+	FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = [NSString 
 		stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_VIEW_TITLE_FORMAT"),

@@ -61,7 +61,7 @@
 
 	[self.simResultsController runSimulatorIfResultsOutOfDate];
 
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
 	

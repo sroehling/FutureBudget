@@ -90,7 +90,8 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    self.formPopulator = [[[InputFormPopulator alloc] initForNewObject:self.isForNewObject] autorelease];
+    self.formPopulator = [[[InputFormPopulator alloc] initForNewObject:self.isForNewObject 
+			andParentController:parentController] autorelease];
 	
 	if(!self.isForNewObject)
 	{

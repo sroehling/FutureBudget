@@ -34,7 +34,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
 	
@@ -138,7 +138,8 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
+		andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_ENABLED_FORM_TITLE");
 	
@@ -234,7 +235,8 @@
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
 	BOOL isNewObject = FALSE;
-    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isNewObject] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isNewObject
+		andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWALS_FORM_TITLE");
 	
@@ -284,7 +286,8 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
+		andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_AMOUNTS_FORM_TITLE");
 	
@@ -392,7 +395,8 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
+		andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_INVESTMENT_RETURN_FORM_TITLE");
 	
@@ -440,7 +444,8 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
+		andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_FORM_TITLE");
 	
@@ -551,7 +556,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_TAXES_FORM_TITLE");
 	
@@ -576,7 +581,8 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
+		andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_FORM_TITLE");
 	

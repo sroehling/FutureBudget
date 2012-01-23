@@ -9,22 +9,31 @@
 #import "FormPopulator.h"
 #import "SectionInfo.h"
 #import "FormInfo.h"
+#import "SectionHeaderWithSubtitle.h"
 
 
 @implementation FormPopulator
 
 @synthesize currentSection;
+@synthesize parentController;
 
 @synthesize formInfo;
 
-- (id) init
+- (id) initWithParentController:(UIViewController*)theParentController
 {
     self = [super init];
     if(self)
     {
         self.formInfo = [[[FormInfo alloc] init] autorelease];
+		self.parentController = theParentController;
     }
     return self;
+}
+
+- (id)init
+{
+	assert(0);
+	return nil;
 }
 
 - (void) dealloc
@@ -38,6 +47,7 @@
 {
     SectionInfo *nextSection = [[[SectionInfo alloc]init] autorelease];
 	self.currentSection = nextSection;
+	nextSection.sectionHeader.parentController = self.parentController;
     [formInfo addSection:nextSection];
     return nextSection;
 }

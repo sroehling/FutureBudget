@@ -10,6 +10,7 @@
 #import "FormInfo.h"
 #import "FieldEditInfo.h"
 #import "SectionInfo.h"
+#import "UIHelper.h"
 
 @implementation GenericFieldBasedTableViewController
 
@@ -75,16 +76,9 @@
     [super setTitle:title];
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
     if (!titleView) {
-        titleView = [[UILabel alloc] initWithFrame:CGRectZero];
-        titleView.backgroundColor = [UIColor clearColor];
-        titleView.font = [UIFont boldSystemFontOfSize:17.0];
-        titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-
-        titleView.textColor = [UIColor whiteColor]; // Change to desired color
-
+		titleView = [UIHelper titleForNavBar];
         self.navigationItem.titleView = titleView;
-        [titleView release];
-    }
+     }
     titleView.text = title;
     [titleView sizeToFit];
 }

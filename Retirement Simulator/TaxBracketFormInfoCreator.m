@@ -38,7 +38,8 @@
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {	
     InputFormPopulator *formPopulator = 
-		[[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
+		[[[InputFormPopulator alloc] initForNewObject:FALSE
+			andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"TAX_BRACKET_FORM_TITLE");
 	

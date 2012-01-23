@@ -137,6 +137,9 @@
 		005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */; };
 		005EF48214C9C575001F3D36 /* AlertViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF48114C9C575001F3D36 /* AlertViewHelper.m */; };
 		005EF4DF14C9DB84001F3D36 /* UpTo100PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */; };
+		005EF4E314CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */; };
+		005EF4E614CA220B001F3D36 /* HelpInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4E514CA220B001F3D36 /* HelpInfoView.m */; };
+		005EF4E914CA652F001F3D36 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4E814CA652E001F3D36 /* UIHelper.m */; };
 		0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505713EA1900002E38FA /* RelativeEndDate.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
@@ -604,6 +607,12 @@
 		005EF48114C9C575001F3D36 /* AlertViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewHelper.m; sourceTree = "<group>"; };
 		005EF4DD14C9DB83001F3D36 /* UpTo100PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpTo100PercentFieldValidator.h; sourceTree = "<group>"; };
 		005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpTo100PercentFieldValidator.m; sourceTree = "<group>"; };
+		005EF4E114CA1EC1001F3D36 /* HelpInfoViewFlipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpInfoViewFlipViewController.h; sourceTree = "<group>"; };
+		005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpInfoViewFlipViewController.m; sourceTree = "<group>"; };
+		005EF4E414CA220A001F3D36 /* HelpInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpInfoView.h; sourceTree = "<group>"; };
+		005EF4E514CA220B001F3D36 /* HelpInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpInfoView.m; sourceTree = "<group>"; };
+		005EF4E714CA652C001F3D36 /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
+		005EF4E814CA652E001F3D36 /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
 		0063505613EA1900002E38FA /* RelativeEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDate.h; sourceTree = "<group>"; };
 		0063505713EA1900002E38FA /* RelativeEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDate.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
@@ -1307,6 +1316,8 @@
 				0025774F13AFDE2800D15232 /* StringLookupTable.m */,
 				005EF48014C9C575001F3D36 /* AlertViewHelper.h */,
 				005EF48114C9C575001F3D36 /* AlertViewHelper.m */,
+				005EF4E714CA652C001F3D36 /* UIHelper.h */,
+				005EF4E814CA652E001F3D36 /* UIHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1631,6 +1642,7 @@
 		004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */ = {
 			isa = PBXGroup;
 			children = (
+				005EF4E014CA1E63001F3D36 /* Help Flip View */,
 				005EF47C14C88232001F3D36 /* Resources */,
 				0055A8961417DB6B00EFB95C /* Helper */,
 				0049DC6D13A287A000B27046 /* Base Classes */,
@@ -1793,6 +1805,17 @@
 				005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		005EF4E014CA1E63001F3D36 /* Help Flip View */ = {
+			isa = PBXGroup;
+			children = (
+				005EF4E414CA220A001F3D36 /* HelpInfoView.h */,
+				005EF4E514CA220B001F3D36 /* HelpInfoView.m */,
+				005EF4E114CA1EC1001F3D36 /* HelpInfoViewFlipViewController.h */,
+				005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */,
+			);
+			name = "Help Flip View";
 			sourceTree = "<group>";
 		};
 		006572CF14338DCE0062C00C /* Deferred Withdrawals */ = {
@@ -2723,6 +2746,9 @@
 				006B087414C5E7810042FE8E /* TaxesPaidXYPlotDataGenerator.m in Sources */,
 				005EF48214C9C575001F3D36 /* AlertViewHelper.m in Sources */,
 				005EF4DF14C9DB84001F3D36 /* UpTo100PercentFieldValidator.m in Sources */,
+				005EF4E314CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m in Sources */,
+				005EF4E614CA220B001F3D36 /* HelpInfoView.m in Sources */,
+				005EF4E914CA652F001F3D36 /* UIHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

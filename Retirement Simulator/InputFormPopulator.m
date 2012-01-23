@@ -60,9 +60,9 @@
 
 @synthesize inputScenario;
 
--(id)initWithScenario:(Scenario*)theInputScenario
+-(id)initWithScenario:(Scenario*)theInputScenario andParentController:(UIViewController*)parentController
 {
-	self = [super init];
+	self = [super initWithParentController:parentController];
 	if(self)
 	{
 		assert(theInputScenario != nil);
@@ -71,7 +71,7 @@
 	return self;
 }
 
--(id)initForNewObject:(BOOL)isNewObject
+-(id)initForNewObject:(BOOL)isNewObject andParentController:(UIViewController*)parentController
 {
 	Scenario *theInputScenario;
 	if(isNewObject)
@@ -82,7 +82,7 @@
 	{
 		theInputScenario = [SharedAppValues singleton].currentInputScenario;
 	}
-	return [self initWithScenario:theInputScenario];
+	return [self initWithScenario:theInputScenario andParentController:parentController];
 }
 
 

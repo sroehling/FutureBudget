@@ -61,7 +61,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-   FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+   FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
     
 	VariableHeightTableHeader *tableHeader = 
 	[[[VariableHeightTableHeader alloc] initWithFrame:CGRectZero] autorelease];

@@ -27,7 +27,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = @"Inputs";
 	formPopulator.formInfo.objectAdder = [[[InputListObjectAdder alloc] init] autorelease];

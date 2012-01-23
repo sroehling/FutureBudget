@@ -81,7 +81,8 @@
 {
 	
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] 
-		initForNewObject:self.isForNewObject] autorelease];
+		initForNewObject:self.isForNewObject
+			andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = self.itemizedTaxAmtsInfo.title;
 

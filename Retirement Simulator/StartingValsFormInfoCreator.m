@@ -34,7 +34,8 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE] autorelease];
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
+		andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_VIEW_TITLE");
 	

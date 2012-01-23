@@ -39,7 +39,8 @@
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] 
-		initForNewObject:self.isNewAccount] autorelease];
+		initForNewObject:self.isNewAccount
+		andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAWALS_FORM_TITLE");
 	

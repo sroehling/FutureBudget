@@ -92,7 +92,8 @@
 		[self.itemizedTaxAmts addItemizedAmtsObject:self.itemizedTaxAmt];
 	}
 	
-	InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isForNewObject] autorelease];
+	InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isForNewObject
+		andParentController:nil] autorelease];
 	formPopulator.formInfo.title = self.itemizedTaxAmtsInfo.itemTitle;
 	
 	[formPopulator nextSection];

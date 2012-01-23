@@ -30,8 +30,8 @@
 
 @property(nonatomic,retain) Scenario *inputScenario;
 
--(id)initWithScenario:(Scenario*)theInputScenario;
--(id)initForNewObject:(BOOL)isNewObject;
+-(id)initWithScenario:(Scenario*)theInputScenario andParentController:(UIViewController*)parentController;
+-(id)initForNewObject:(BOOL)isNewObject andParentController:(UIViewController*)parentController;
 
 - (void)populateInputNameField:(Input*)theInput;
 

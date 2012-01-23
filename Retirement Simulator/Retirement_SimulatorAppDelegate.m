@@ -21,6 +21,7 @@
 #import "StartingValsFormInfoCreator.h"
 #import "ResultsListFormInfoCreator.h"
 #import "SimResultsController.h"
+#import "ColorHelper.h"
 
 @implementation Retirement_SimulatorAppDelegate
 
@@ -41,7 +42,7 @@
 	[SimResultsController initFromDatabase];
 	
 	// navBarController is the color used in the navigation bar for all the tabbed views.
-	UIColor *navBarController = [UIColor blackColor];
+	UIColor *navBarControllerColor = [ColorHelper navBarTintColor];
     
 	InputListFormInfoCreator *inputFormInfoCreator = 
 		[[[InputListFormInfoCreator alloc] init] autorelease];
@@ -50,7 +51,7 @@
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
 	inputNavController.title = LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
 	inputNavController.tabBarItem.image = [UIImage imageNamed:@"piggy.png"];
-	inputNavController.navigationBar.tintColor = navBarController;
+	inputNavController.navigationBar.tintColor = navBarControllerColor;
 
 
 
@@ -64,7 +65,7 @@
 	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
 	whatIfNavController.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
 	whatIfNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
-	whatIfNavController.navigationBar.tintColor = navBarController;
+	whatIfNavController.navigationBar.tintColor = navBarControllerColor;
 	
 	StartingValsFormInfoCreator *startingValsFormInfoCreator = 
 		[[[StartingValsFormInfoCreator alloc] init] autorelease];
@@ -74,7 +75,7 @@
 		[[[UINavigationController alloc] initWithRootViewController:startingValsController] autorelease];
 	startingValsNavController.title = LOCALIZED_STR(@"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE");
 	startingValsNavController.tabBarItem.image = [UIImage imageNamed:@"clock.png"];
-	startingValsNavController.navigationBar.tintColor = navBarController;
+	startingValsNavController.navigationBar.tintColor = navBarControllerColor;
 
 	ResultsListFormInfoCreator *resultsListFormInfoCreator = 
 		[[[ResultsListFormInfoCreator alloc] init] autorelease];
@@ -84,7 +85,7 @@
 		initWithRootViewController:resultsController] autorelease];
 	resultsNavController.title = LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
 	resultsNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
-	resultsNavController.navigationBar.tintColor = navBarController;
+	resultsNavController.navigationBar.tintColor = navBarControllerColor;
 	
 	UIViewController *moreViewController = [[[UIViewController alloc] init] autorelease];
 	UINavigationController *moreNavController = [[[UINavigationController alloc] initWithRootViewController:moreViewController] autorelease];
@@ -92,7 +93,7 @@
 //	moreNavController.tabBarItem.image =
 	moreNavController.tabBarItem = [[[UITabBarItem alloc] 
 		initWithTabBarSystemItem:UITabBarSystemItemMore tag:0] autorelease];
-	moreNavController.navigationBar.tintColor = navBarController;
+	moreNavController.navigationBar.tintColor = navBarControllerColor;
 
 //	moreNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
 	

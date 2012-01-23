@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SectionHeaderAddButtonDelegate.h"
+#import "HelpInfoView.h"
 
-@interface SectionHeaderWithSubtitle : UIView {
+@interface SectionHeaderWithSubtitle : UIView <HelpInfoViewDelegate> {
     @private
 		UILabel *headerLabel;
 		NSString *subtitle;
@@ -18,6 +19,7 @@
 		
 		UIButton *addButton;
 		id<SectionHeaderAddButtonDelegate> addButtonDelegate;
+		UIViewController *parentController;
 }
 
 @property(nonatomic,retain) UILabel *headerLabel;
@@ -25,8 +27,10 @@
 @property(nonatomic,retain) UIButton *infoButton;
 @property(nonatomic,retain) UIButton *addButton;
 @property(nonatomic,retain) id<SectionHeaderAddButtonDelegate> addButtonDelegate;
+@property(nonatomic,assign) UIViewController *parentController;
 
 -(void)sizeForTableWidth:(CGFloat)tableWidth andEditMode:(BOOL)editing;
 -(CGFloat)headerHeight;
+
 
 @end

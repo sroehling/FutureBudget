@@ -23,7 +23,7 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] init] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"SCENARIO_LIST_VIEW_TITLE");
 	formPopulator.formInfo.objectAdder = [[[ScenarioListObjectAdder alloc] init] autorelease];

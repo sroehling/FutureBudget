@@ -21,4 +21,9 @@
     return [UIColor lightGrayColor];
 }
 
++ (UIColor*)navBarTintColor
+{
+	return [UIColor blackColor];
+}
+
 @end

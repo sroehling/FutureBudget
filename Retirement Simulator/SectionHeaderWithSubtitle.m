@@ -8,6 +8,8 @@
 
 #import "SectionHeaderWithSubtitle.h"
 #import "AlertViewHelper.h"
+#import "HelpInfoViewFlipViewController.h"
+#import "StringValidation.h"
 
 #define CUSTOM_SECTION_VIEW_LEFT_LABEL_OFFSET 15.0
 #define CUSTOM_SECTION_VIEW_RIGHT_LABEL_OFFSET 10.0
@@ -28,6 +30,7 @@
 @synthesize infoButton;
 @synthesize addButton;
 @synthesize addButtonDelegate;
+@synthesize parentController;
 
 - (UIImage*)stretchableButtonImage:(NSString*)imageFileName
 {
@@ -67,13 +70,10 @@
         self.headerLabel.highlightedTextColor = [UIColor whiteColor];
         self.headerLabel.font = [UIFont boldSystemFontOfSize:14];	
 	   
-	
 		self.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
 		self.backgroundColor = [UIColor clearColor];
 		[self addSubview:self.headerLabel];
 		
-		
-
 		self.infoButton = [self createImageButton:@"buttonhelp"];
 		[infoButton addTarget:self action:@selector(showInfoPopup) 
                      forControlEvents:UIControlEventTouchUpInside];
@@ -87,9 +87,6 @@
 		self.addButton.hidden = TRUE;
 
 		self.addButtonDelegate = nil;
-
-
-
     }
     return self;
 }
@@ -192,11 +189,38 @@
 
 -(void)showInfoPopup
 {
-	UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@""
-	message:self.subtitle
-	delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-	[AlertViewHelper leftAlignAlertViewText:av];
-	[av show];
+	// parent controller must be set if the info popup is 
+	// used.
+	assert(self.parentController != nil);
+	
+	HelpInfoViewFlipViewController *helpInfoViewController = [[[HelpInfoViewFlipViewController alloc] 
+		initWithHelpInfoDoneDelegate:self] autorelease];
+	[parentController presentModalViewController:helpInfoViewController animated:TRUE];
+}
+
+// The following 3 methods are delegates for the help
+// info popup.
+
+-(void)helpInfoViewDone
+{
+	assert(self.parentController != nil);
+    [self.parentController dismissModalViewControllerAnimated:YES];
+
+}
+
+-(NSString*)helpInfoHTML
+{
+	assert(self.subtitle != nil);
+	return self.subtitle;
+}
+
+-(NSString*)helpTitle
+{
+	// Header label must be set when using the info popup, since
+	// it is used as the title for the popup/flip view.
+	assert([StringValidation nonEmptyString:self.headerLabel.text]);
+
+	return self.headerLabel.text;
 }
 
 -(void)layoutSubviews

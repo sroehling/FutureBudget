@@ -53,7 +53,8 @@
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
 	InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] 
-			initWithScenario:self.userScen] autorelease];
+			initWithScenario:self.userScen
+			andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"SCENARIO_DETAIL_VIEW_TITLE");
 	
