@@ -22,6 +22,7 @@
 #import "ResultsListFormInfoCreator.h"
 #import "SimResultsController.h"
 #import "ColorHelper.h"
+#import "MoreFormInfoCreator.h"
 
 @implementation Retirement_SimulatorAppDelegate
 
@@ -87,16 +88,16 @@
 	resultsNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
 	resultsNavController.navigationBar.tintColor = navBarControllerColor;
 	
-	UIViewController *moreViewController = [[[UIViewController alloc] init] autorelease];
+	
+	MoreFormInfoCreator *moreFormInfoCreator = 
+		[[[MoreFormInfoCreator alloc] init] autorelease];
+	UIViewController *moreViewController = [[[GenericFieldBasedTableViewController alloc]
+		initWithFormInfoCreator:moreFormInfoCreator] autorelease];
 	UINavigationController *moreNavController = [[[UINavigationController alloc] initWithRootViewController:moreViewController] autorelease];
-	moreNavController.title = @"More";
-//	moreNavController.tabBarItem.image =
+	moreNavController.title = LOCALIZED_STR(@"MORE_VIEW_TITLE");
 	moreNavController.tabBarItem = [[[UITabBarItem alloc] 
 		initWithTabBarSystemItem:UITabBarSystemItemMore tag:0] autorelease];
-	moreNavController.navigationBar.tintColor = navBarControllerColor;
-
-//	moreNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
-	
+	moreNavController.navigationBar.tintColor = navBarControllerColor;	
 	
 	
 	self.tabBarController.viewControllers =

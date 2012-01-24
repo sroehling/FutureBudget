@@ -177,7 +177,6 @@
 		0086C0BA142D310800148785 /* AssetSaleSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B9142D310400148785 /* AssetSaleSimEvent.m */; };
 		0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */; };
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
-		0087923D13ABAFC500CA9DA7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0087923C13ABAFC500CA9DA7 /* Localizable.strings */; };
 		0087924013ABB47100CA9DA7 /* LocalizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */; };
 		0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */; };
 		008AA414141AC5B100FF2A52 /* buttonhelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA410141AC5B100FF2A52 /* buttonhelp.png */; };
@@ -270,6 +269,13 @@
 		00CB5E7014927E7700C4654A /* IncomeXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E6F14927E6500C4654A /* IncomeXYPlotDataGenerator.m */; };
 		00CB5E731492AF2400C4654A /* AllExpenseXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */; };
 		00CB5E761492AF4300C4654A /* ExpenseXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */; };
+		00D6845514CDC99700E3AC9F /* MoreFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */; };
+		00D6845914CDD03600E3AC9F /* HelpViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6845814CDD03600E3AC9F /* HelpViewFactory.m */; };
+		00D6845C14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6845B14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m */; };
+		00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */; };
+		00D6846914CE002F00E3AC9F /* HelpPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */; };
+		00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00D6846C14CE004800E3AC9F /* Localizable.strings */; };
+		00D6846F14CE051C00E3AC9F /* recipeOneTimeExpense.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D6846E14CE051C00E3AC9F /* recipeOneTimeExpense.html */; };
 		00D8D263148DD3D300B0314D /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D266148DD3F700B0314D /* SingleScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D265148DD3F600B0314D /* SingleScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D269148DE12800B0314D /* RelativeEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D268148DE12700B0314D /* RelativeEndDateFieldEditInfo.m */; };
@@ -689,7 +695,6 @@
 		0087923413AA466A00CA9DA7 /* VariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923513AA47D300CA9DA7 /* SharedEntityVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedEntityVariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedEntityVariableValueListMgr.m; sourceTree = "<group>"; };
-		0087923C13ABAFC500CA9DA7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		0087923E13ABB47100CA9DA7 /* LocalizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationHelper.h; sourceTree = "<group>"; };
 		0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationHelper.m; sourceTree = "<group>"; };
 		0087924513AC507E00CA9DA7 /* VariableHeightTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableHeightTableHeader.h; sourceTree = "<group>"; };
@@ -864,6 +869,18 @@
 		00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00CB5E741492AF3C00C4654A /* ExpenseXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00D6845314CDC99700E3AC9F /* MoreFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreFormInfoCreator.h; sourceTree = "<group>"; };
+		00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreFormInfoCreator.m; sourceTree = "<group>"; };
+		00D6845714CDD03600E3AC9F /* HelpViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewFactory.h; sourceTree = "<group>"; };
+		00D6845814CDD03600E3AC9F /* HelpViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewFactory.m; sourceTree = "<group>"; };
+		00D6845A14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpRecipesFormInfoCreator.h; sourceTree = "<group>"; };
+		00D6845B14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpRecipesFormInfoCreator.m; sourceTree = "<group>"; };
+		00D6845D14CDEF4100E3AC9F /* HelpPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageViewController.h; sourceTree = "<group>"; };
+		00D6846014CDEFD300E3AC9F /* HelpPageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageInfo.h; sourceTree = "<group>"; };
+		00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageInfo.m; sourceTree = "<group>"; };
+		00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpPageViewController.m; sourceTree = "<group>"; };
+		00D6846C14CE004800E3AC9F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		00D6846E14CE051C00E3AC9F /* recipeOneTimeExpense.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = recipeOneTimeExpense.html; sourceTree = "<group>"; };
 		00D8D261148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
 		00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioRelativeEndDateFieldInfo.m; sourceTree = "<group>"; };
 		00D8D264148DD3F500B0314D /* SingleScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
@@ -1642,6 +1659,7 @@
 		004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */ = {
 			isa = PBXGroup;
 			children = (
+				00D6845614CDD01F00E3AC9F /* Help Pages */,
 				005EF4E014CA1E63001F3D36 /* Help Flip View */,
 				005EF47C14C88232001F3D36 /* Resources */,
 				0055A8961417DB6B00EFB95C /* Helper */,
@@ -2107,6 +2125,7 @@
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004A59A713A02F67009FEF25 /* Simulator */,
 				004F5D701373188900E0C4A3 /* Results View */,
+				00D6845114CDC96A00E3AC9F /* More View */,
 				004F5D6E1373170C00E0C4A3 /* Application */,
 				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
 			);
@@ -2116,7 +2135,7 @@
 		00A36BDC136C6CAE008A5C4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0087923C13ABAFC500CA9DA7 /* Localizable.strings */,
+				00D6846C14CE004800E3AC9F /* Localizable.strings */,
 				00A36BDD136C6CAE008A5C4C /* Retirement Simulator-Info.plist */,
 				00A36BDE136C6CAE008A5C4C /* InfoPlist.strings */,
 				00A36BE1136C6CAE008A5C4C /* Retirement Simulator-Prefix.pch */,
@@ -2244,6 +2263,39 @@
 				00AF8600149A81D200AE734B /* DeficitBalXYPlotDataGenerator.m */,
 			);
 			name = "Results Data Generators";
+			sourceTree = "<group>";
+		};
+		00D6845114CDC96A00E3AC9F /* More View */ = {
+			isa = PBXGroup;
+			children = (
+				00D6846D14CE04D000E3AC9F /* Help Pages */,
+				00D6845314CDC99700E3AC9F /* MoreFormInfoCreator.h */,
+				00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */,
+				00D6845A14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.h */,
+				00D6845B14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m */,
+			);
+			name = "More View";
+			sourceTree = "<group>";
+		};
+		00D6845614CDD01F00E3AC9F /* Help Pages */ = {
+			isa = PBXGroup;
+			children = (
+				00D6845714CDD03600E3AC9F /* HelpViewFactory.h */,
+				00D6845814CDD03600E3AC9F /* HelpViewFactory.m */,
+				00D6845D14CDEF4100E3AC9F /* HelpPageViewController.h */,
+				00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */,
+				00D6846014CDEFD300E3AC9F /* HelpPageInfo.h */,
+				00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */,
+			);
+			name = "Help Pages";
+			sourceTree = "<group>";
+		};
+		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
+			isa = PBXGroup;
+			children = (
+				00D6846E14CE051C00E3AC9F /* recipeOneTimeExpense.html */,
+			);
+			name = "Help Pages";
 			sourceTree = "<group>";
 		};
 		00D8D26A148EFDA300B0314D /* Digest Results */ = {
@@ -2424,7 +2476,7 @@
 				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
 				004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */,
-				0087923D13ABAFC500CA9DA7 /* Localizable.strings in Resources */,
+				00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */,
 				008AA414141AC5B100FF2A52 /* buttonhelp.png in Resources */,
 				008AA415141AC5B100FF2A52 /* buttonhelp-2.png in Resources */,
 				008AA416141AC5B100FF2A52 /* buttonadd.png in Resources */,
@@ -2434,6 +2486,7 @@
 				00EC455F141B169E00D65D17 /* piggy.png in Resources */,
 				00EC4561141B183D00D65D17 /* clock.png in Resources */,
 				005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */,
+				00D6846F14CE051C00E3AC9F /* recipeOneTimeExpense.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2749,6 +2802,11 @@
 				005EF4E314CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m in Sources */,
 				005EF4E614CA220B001F3D36 /* HelpInfoView.m in Sources */,
 				005EF4E914CA652F001F3D36 /* UIHelper.m in Sources */,
+				00D6845514CDC99700E3AC9F /* MoreFormInfoCreator.m in Sources */,
+				00D6845914CDD03600E3AC9F /* HelpViewFactory.m in Sources */,
+				00D6845C14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m in Sources */,
+				00D6846914CE002F00E3AC9F /* HelpPageViewController.m in Sources */,
+				00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -524,14 +524,10 @@
 "RESULTS_ACCT_CONTRIB_DATA_LABEL_FORMAT" = "Account Contributions - %@";
 "RESULTS_ACCT_ALL_ACCT_CONTRIB_SUBTITLE" = "Yearly contributions to all accounts";
 
-
 "RESULTS_ACCT_WITHDRAW_SECTION_TITLE" = "Account Withdrawals";
 "RESULTS_ACCT_ALL_ACCT_WITHDRAW_DATA_LABEL" = "All Account Withdrawals";
 "RESULTS_ACCT_WITHDRAW_DATA_LABEL_FORMAT" = "Account Withdrawals - %@";
 "RESULTS_ACCT_ALL_ACCT_WITHDRAW_SUBTITLE" = "Yearly withdrawals from all accounts";
-
-
-
 
 "RESULTS_INCOME_SECTION_TITLE" = "Incomes";
 "RESULTS_INCOME_ALL_DATA_LABEL" = "All Incomes";
@@ -558,6 +554,12 @@
 "RESULTS_TAXES_ALL_TAXES_SUBTITLE" = "Plot all taxes paid";
 "RESULTS_TAXES_PAID_DATA_LABEL_FORMAT" = "Taxes - %@";
 
+"MORE_VIEW_TITLE" = "More";
+"MORE_HELP_SECTION_TITLE" = "Help";
+"MORE_RECIPES_TITLE" = "Recipes";
+"MORE_RECIPES_SUBTITLE" = "Step by step instructions for setting up common scenarios";
+"HELP_RECIPES_EXPENSES_SECTION_TITLE" = "Expenses";
+"HELP_RECIPES_EXPENSES_ONE_TIME_EXPENSE_TITLE" = "One Time Expense";
 
 "NUMBER_VALIDATION_POSITIVE_PERCENT_MSG" = "Enter a percent greater or equal to 0";
 "NUMBER_VALIDATION_UPTO100_PERCENT_MSG" = "Enter a percent between 0 and 100";
