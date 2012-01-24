@@ -275,7 +275,7 @@
 		00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */; };
 		00D6846914CE002F00E3AC9F /* HelpPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */; };
 		00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00D6846C14CE004800E3AC9F /* Localizable.strings */; };
-		00D6846F14CE051C00E3AC9F /* recipeOneTimeExpense.html in Resources */ = {isa = PBXBuildFile; fileRef = 00D6846E14CE051C00E3AC9F /* recipeOneTimeExpense.html */; };
+		00D6848A14CF62C300E3AC9F /* recipeOneTimeExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 00D6848914CF62C300E3AC9F /* recipeOneTimeExpense.md */; };
 		00D8D263148DD3D300B0314D /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D266148DD3F700B0314D /* SingleScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D265148DD3F600B0314D /* SingleScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D269148DE12800B0314D /* RelativeEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D268148DE12700B0314D /* RelativeEndDateFieldEditInfo.m */; };
@@ -334,6 +334,20 @@
 		00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */; };
 		00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		00D6848814CF625400E3AC9F /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}${INPUT_FILE_BASE}.html",
+			);
+			script = "mkdir -p ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}$; \"${INPUT_FILE_DIR}/Markdown.pl\" --html4tags \"${INPUT_FILE_PATH}\" > ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}${INPUT_FILE_BASE}.html";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */ = {
@@ -880,7 +894,8 @@
 		00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageInfo.m; sourceTree = "<group>"; };
 		00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpPageViewController.m; sourceTree = "<group>"; };
 		00D6846C14CE004800E3AC9F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		00D6846E14CE051C00E3AC9F /* recipeOneTimeExpense.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = recipeOneTimeExpense.html; sourceTree = "<group>"; };
+		00D6848714CF622F00E3AC9F /* Markdown.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = Markdown.pl; sourceTree = "<group>"; };
+		00D6848914CF62C300E3AC9F /* recipeOneTimeExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeOneTimeExpense.md; sourceTree = "<group>"; };
 		00D8D261148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
 		00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioRelativeEndDateFieldInfo.m; sourceTree = "<group>"; };
 		00D8D264148DD3F500B0314D /* SingleScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
@@ -2117,6 +2132,7 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				00D6848614CF61FB00E3AC9F /* 3rdParty */,
 				008AA408141ABB0600FF2A52 /* Icons */,
 				003AD12D138AC83000CB3CB5 /* Helper */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
@@ -2293,9 +2309,17 @@
 		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
 			isa = PBXGroup;
 			children = (
-				00D6846E14CE051C00E3AC9F /* recipeOneTimeExpense.html */,
+				00D6848914CF62C300E3AC9F /* recipeOneTimeExpense.md */,
 			);
 			name = "Help Pages";
+			sourceTree = "<group>";
+		};
+		00D6848614CF61FB00E3AC9F /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				00D6848714CF622F00E3AC9F /* Markdown.pl */,
+			);
+			name = 3rdParty;
 			sourceTree = "<group>";
 		};
 		00D8D26A148EFDA300B0314D /* Digest Results */ = {
@@ -2418,6 +2442,7 @@
 				00A36BCF136C6CAE008A5C4C /* Resources */,
 			);
 			buildRules = (
+				00D6848814CF625400E3AC9F /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -2486,7 +2511,7 @@
 				00EC455F141B169E00D65D17 /* piggy.png in Resources */,
 				00EC4561141B183D00D65D17 /* clock.png in Resources */,
 				005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */,
-				00D6846F14CE051C00E3AC9F /* recipeOneTimeExpense.html in Resources */,
+				00D6848A14CF62C300E3AC9F /* recipeOneTimeExpense.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
