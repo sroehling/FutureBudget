@@ -24,6 +24,7 @@
 {
     [super viewDidLoad];
     
+	// TODO replace with system cancel button (or localize the cancel string)
     UIBarButtonItem *cancelButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
     self.navigationItem.leftBarButtonItem = cancelButtonItem;
 

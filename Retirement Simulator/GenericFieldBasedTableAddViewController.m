@@ -114,6 +114,7 @@
 {
     [super viewDidLoad];
     
+	// TODO - Replace titles below with localized strings
     UIBarButtonItem *cancelButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
     self.navigationItem.leftBarButtonItem = cancelButtonItem;
     

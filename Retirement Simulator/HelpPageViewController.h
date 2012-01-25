@@ -13,10 +13,12 @@
 @interface HelpPageViewController : UIViewController {
     @private
 		HelpPageInfo *helpPageInfo;
+		UIWebView *helpPage;
 }
 
 -(id)initWithHelpPageInfo:(HelpPageInfo*)theHelpPageInfo;
 
 @property(nonatomic,retain) HelpPageInfo *helpPageInfo;
+@property(nonatomic,retain) UIWebView *helpPage;
 
 @end
