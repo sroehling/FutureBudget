@@ -9,7 +9,10 @@
 #import "FormPopulator.h"
 #import "SectionInfo.h"
 #import "FormInfo.h"
+#import "StringValidation.h"
 #import "SectionHeaderWithSubtitle.h"
+#import "FormInfoCreator.h"
+#import "StaticNavFieldEditInfo.h"
 
 
 @implementation FormPopulator
@@ -52,10 +55,35 @@
     return nextSection;
 }
 
+- (SectionInfo*)nextSectionWithTitle:(NSString*)sectionTitle
+{
+	assert([StringValidation nonEmptyString:sectionTitle]);
+	SectionInfo *nextSection = [self nextSection];
+	nextSection.title = sectionTitle;
+	return nextSection;
+}
+
 - (void)nextCustomSection:(SectionInfo*)customSection
 {
 	self.currentSection = customSection;
     [formInfo addSection:customSection];
+}
+
+-(void)populateStaticNavFieldWithFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andFieldCaption:(NSString*)caption andSubTitle:(NSString*)subTitle
+{
+	assert([StringValidation nonEmptyString:caption]);
+	assert(formInfoCreator != nil);
+		
+	StaticNavFieldEditInfo *staticNavFieldEditInfo = 
+		[[[StaticNavFieldEditInfo alloc] 
+			initWithCaption:caption
+			andSubtitle:subTitle 
+			andContentDescription:nil
+			andSubFormInfoCreator:formInfoCreator] autorelease];
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:staticNavFieldEditInfo];
+
 }
 
 

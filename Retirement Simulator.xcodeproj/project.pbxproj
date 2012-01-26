@@ -179,6 +179,8 @@
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
 		0087924013ABB47100CA9DA7 /* LocalizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */; };
 		0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */; };
+		00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */; };
+		00899D8414D1DDA100CBFE6F /* HelpPageFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */; };
 		008AA414141AC5B100FF2A52 /* buttonhelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA410141AC5B100FF2A52 /* buttonhelp.png */; };
 		008AA415141AC5B100FF2A52 /* buttonhelp-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA411141AC5B100FF2A52 /* buttonhelp-2.png */; };
 		008AA416141AC5B100FF2A52 /* buttonadd.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA412141AC5B100FF2A52 /* buttonadd.png */; };
@@ -714,6 +716,9 @@
 		0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationHelper.m; sourceTree = "<group>"; };
 		0087924513AC507E00CA9DA7 /* VariableHeightTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableHeightTableHeader.h; sourceTree = "<group>"; };
 		0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableHeightTableHeader.m; sourceTree = "<group>"; };
+		00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gettingStarted.md; sourceTree = "<group>"; };
+		00899D8214D1DDA100CBFE6F /* HelpPageFormPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageFormPopulator.h; sourceTree = "<group>"; };
+		00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageFormPopulator.m; sourceTree = "<group>"; };
 		008AA410141AC5B100FF2A52 /* buttonhelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonhelp.png; sourceTree = "<group>"; };
 		008AA411141AC5B100FF2A52 /* buttonhelp-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonhelp-2.png"; sourceTree = "<group>"; };
 		008AA412141AC5B100FF2A52 /* buttonadd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonadd.png; sourceTree = "<group>"; };
@@ -2304,6 +2309,8 @@
 				00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */,
 				00D6846014CDEFD300E3AC9F /* HelpPageInfo.h */,
 				00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */,
+				00899D8214D1DDA100CBFE6F /* HelpPageFormPopulator.h */,
+				00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */,
 			);
 			name = "Help Pages";
 			sourceTree = "<group>";
@@ -2313,6 +2320,7 @@
 			children = (
 				00D6848914CF62C300E3AC9F /* recipeOneTimeExpense.md */,
 				00D6848B14CF7DEA00E3AC9F /* recipeNewCar.md */,
+				00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */,
 			);
 			name = "Help Pages";
 			sourceTree = "<group>";
@@ -2516,6 +2524,7 @@
 				005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */,
 				00D6848A14CF62C300E3AC9F /* recipeOneTimeExpense.md in Resources */,
 				00D6848C14CF7DEA00E3AC9F /* recipeNewCar.md in Resources */,
+				00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2836,6 +2845,7 @@
 				00D6845C14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m in Sources */,
 				00D6846914CE002F00E3AC9F /* HelpPageViewController.m in Sources */,
 				00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */,
+				00899D8414D1DDA100CBFE6F /* HelpPageFormPopulator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 
 @class FormInfo;
 @class SectionInfo;
+@protocol FormInfoCreator;
 
 @interface FormPopulator : NSObject {
     @private
@@ -24,11 +25,15 @@
 
 // Advance to the next section, allocating a default SectionInfo Object
 - (SectionInfo*) nextSection;
+- (SectionInfo*)nextSectionWithTitle:(NSString*)sectionTitle;
 
 // Advance to the next section, using a custom 
 // SectionInfo object (derived from SectionInfo)
 - (void)nextCustomSection:(SectionInfo*)customSection;
 
 - (id) initWithParentController:(UIViewController*)theParentController;
+
+-(void)populateStaticNavFieldWithFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andFieldCaption:(NSString*)caption andSubTitle:(NSString*)subTitle;
 
 @end

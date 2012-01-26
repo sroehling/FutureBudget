@@ -8,18 +8,19 @@
 
 #import "HelpRecipesFormInfoCreator.h"
 
-#import "FormPopulator.h"
 #import "LocalizationHelper.h"
 #import "SectionInfo.h"
 #import "StaticNavFieldEditInfo.h"
 #import "HelpViewFactory.h"
 #import "HelpPageInfo.h"
+#import "HelpPageFormPopulator.h"
 
 @implementation HelpRecipesFormInfoCreator
 
+
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] 
+    HelpPageFormPopulator *formPopulator = [[[HelpPageFormPopulator alloc] 
 		initWithParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"MORE_RECIPES_TITLE");
@@ -27,17 +28,9 @@
 
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"HELP_RECIPES_EXPENSES_SECTION_TITLE");
+	
+	[formPopulator populateHelpPageWithTitle:LOCALIZED_STR(@"HELP_RECIPES_EXPENSES_ONE_TIME_EXPENSE_TITLE") andPageRef:@"recipeOneTimeExpense"];
 
-	HelpPageInfo *helpPageInfo = [[[HelpPageInfo alloc] initWithParentController:parentController andHelpPageHTML:@"recipeOneTimeExpense"] autorelease];
-	HelpViewFactory *helpViewFactory = [[[HelpViewFactory alloc] 
-		initWithHelpPageInfo:helpPageInfo] autorelease];
-	StaticNavFieldEditInfo *helpRecipeFieldEditInfo = 
-		[[[StaticNavFieldEditInfo alloc] 
-			initWithCaption:LOCALIZED_STR(@"HELP_RECIPES_EXPENSES_ONE_TIME_EXPENSE_TITLE")
-			andSubtitle:nil 
-			andContentDescription:nil
-			andSubViewFactory:helpViewFactory] autorelease];
-	[sectionInfo addFieldEditInfo:helpRecipeFieldEditInfo];
 
 	return formPopulator.formInfo;
 	
