@@ -9,18 +9,24 @@
 #import <UIKit/UIKit.h>
 
 @class NumberFieldEditInfo;
+@class FieldInfo;
+@class NumberFieldValidator;
 
 extern NSString * const NUMBER_FIELD_CELL_ENTITY_NAME;
 
 @interface NumberFieldCell : UITableViewCell <UITextFieldDelegate> {
 	UILabel *label;
 	UITextField *textField;
-    NumberFieldEditInfo *fieldEditInfo;
+	FieldInfo *fieldInfo;
+	NumberFieldValidator *validator;
+	NSNumberFormatter *numFormatter;
+
 }
 
 @property (nonatomic, retain) UILabel *label;
 @property (nonatomic, retain) UITextField *textField;
-@property (nonatomic,retain) NumberFieldEditInfo *fieldEditInfo;
-
+@property (nonatomic,retain) FieldInfo *fieldInfo;
+@property (nonatomic,retain) NumberFieldValidator *validator;
+@property (nonatomic,retain) NSNumberFormatter *numFormatter;
 
 @end

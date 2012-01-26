@@ -253,9 +253,8 @@
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:self.inputScenario andObject:theAmount 
-		andKey:MULTI_SCEN_AMOUNT_AMOUNT_KEY 
-	  andLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE")
+	  createForScenario:self.inputScenario andMultiScenFixedVal:theAmount.amount
+		andLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE")
 	  andValRuntimeInfo:amountRuntimeInfo
 	  andDefaultFixedVal:theAmount.defaultFixedAmount]];
 }
@@ -308,8 +307,7 @@
 	
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForScenario:self.inputScenario andObject:growthRate 
-			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
+         createForScenario:self.inputScenario andMultiScenFixedVal:growthRate.growthRate
 			andLabel:LOCALIZED_STR(@"INPUT_INFLATION_RATE_VALUE_TITLE")  
 		 andValRuntimeInfo:grRuntimeInfo 
 		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate]];
@@ -374,8 +372,7 @@
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForScenario:self.inputScenario andObject:roiRate 
-			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
+         createForScenario:self.inputScenario andMultiScenFixedVal:roiRate.growthRate 
 			andLabel:LOCALIZED_STR(@"SHARED_ROI_VALUE_TITLE") 
 		 andValRuntimeInfo:roiRuntimeInfo 
 		 andDefaultFixedVal:roiRate.defaultFixedGrowthRate]];
@@ -421,8 +418,7 @@
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForScenario:self.inputScenario andObject:apprecRate 
-			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
+         createForScenario:self.inputScenario andMultiScenFixedVal:apprecRate.growthRate 
 			andLabel:LOCALIZED_STR(@"SHARED_APPREC_RATE_VALUE_TITLE") 
 		 andValRuntimeInfo:apprecRateRuntimeInfo 
 		 andDefaultFixedVal:apprecRate.defaultFixedGrowthRate]];
@@ -469,8 +465,7 @@
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForScenario:self.inputScenario andObject:intRate 
-			andKey:MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY 
+         createForScenario:self.inputScenario andMultiScenFixedVal:intRate.growthRate
 			andLabel:LOCALIZED_STR(@"SHARED_INTEREST_RATE_VALUE_TITLE") 
 		 andValRuntimeInfo:interestRuntimeInfo 
 		 andDefaultFixedVal:intRate.defaultFixedGrowthRate]];
@@ -510,8 +505,7 @@
 		
     [self.currentSection addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:self.inputScenario andObject:loan 
-		andKey:INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY 
+	  createForScenario:self.inputScenario andMultiScenFixedVal:loan.multiScenarioDownPmtPercent
 	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") 
 	  andValRuntimeInfo:downPmtVarValRuntimeInfo
 	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed]];
@@ -519,16 +513,14 @@
 
 }
 
--(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(NSManagedObject*)parentObj andFreqKey:(NSString*)freqKey
+-(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(MultiScenarioInputValue*)repeatFreq
 	andLabel:(NSString*)label
 {
-	assert(parentObj != nil);
-	assert([StringValidation nonEmptyString:freqKey]);
+	assert(repeatFreq != nil);
 	assert([StringValidation nonEmptyString:label]);
 	
     RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo 
-		createForScenario:self.inputScenario andObject:parentObj 
-		andKey:freqKey andLabel:label];
+		createForScenario:self.inputScenario andRepeatFreq:repeatFreq andLabel:label];
 		
 	assert(self.currentSection != nil);
     [self.currentSection addFieldEditInfo:repeatFrequencyInfo];
@@ -576,7 +568,7 @@
 			
 	SimDateFieldEditInfo *simDateFieldEditInfo = 
 		[SimDateFieldEditInfo createForMultiScenarioVal:self.inputScenario 
-			andObject:multiScenSimDate andKey:MULTI_SCEN_SIM_DATE_SIM_DATE_KEY 
+			andSimDate:multiScenSimDate.simDate 
 			andLabel:label 
 			andDefaultValue:multiScenSimDate.defaultFixedSimDate 
 			andVarDateRuntimeInfo:simDateInfo andShowEndDates:supportEndDates
@@ -624,9 +616,10 @@
 	simDateInfo.relEndDateSectionSubtitle = relEndDateSectionSubtitle;
 	simDateInfo.relEndDateFieldLabel = relEndDateFieldLabel;
 			
+			
 	SimDateFieldEditInfo *simDateFieldEditInfo = 
 		[SimDateFieldEditInfo createForMultiScenarioVal:self.inputScenario 
-			andObject:multiScenSimEndDate andKey:MULTI_SCEN_SIM_END_DATE_SIM_DATE_KEY 
+			andSimDate:multiScenSimEndDate.simDate
 			andLabel:label 
 			andDefaultValue:multiScenSimEndDate.defaultFixedSimDate 
 			andVarDateRuntimeInfo:simDateInfo andShowEndDates:doSupportNeverEndDates

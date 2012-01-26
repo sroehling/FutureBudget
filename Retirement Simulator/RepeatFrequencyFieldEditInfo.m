@@ -27,17 +27,16 @@
 }
 
 + (RepeatFrequencyFieldEditInfo*)createForScenario:(Scenario*)theScenario 
-	andObject:(NSManagedObject*)obj andKey:(NSString*)key
+	andRepeatFreq:(MultiScenarioInputValue*)repeatFreq
                              andLabel:(NSString*)label
 {
-    assert(obj != nil);
-    assert([StringValidation nonEmptyString:key]);
+	assert(repeatFreq != nil);
     assert([StringValidation nonEmptyString:label]);
 	
 	NSString *freqPlaceholder = LOCALIZED_STR(@"INPUT_CASH_FLOW_REPEAT_FREQUENCY_PLACEHOLDER");
     
  	MultiScenarioInputValueFieldInfo *fieldInfo = [[[MultiScenarioInputValueFieldInfo alloc]
-			initWithScenario:theScenario andManagedObject:obj andFieldKey:key 
+			initWithScenario:theScenario andMultiScenarioInputVal:repeatFreq
 			andFieldLabel:label andFieldPlaceholder:freqPlaceholder] autorelease];
 
 

@@ -10,7 +10,6 @@
 #import <CoreData/CoreData.h>
 
 extern NSString * const MULTI_SCEN_GROWTH_RATE_ENTITY_NAME;
-extern NSString * const MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY;
 
 @class MultiScenarioInputValue;
 

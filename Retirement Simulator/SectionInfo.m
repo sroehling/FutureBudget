@@ -8,6 +8,7 @@
 
 #import "SectionInfo.h"
 #import "SectionHeaderWithSubtitle.h"
+#import "FixedValue.h"
 
 @implementation SectionInfo
 
@@ -62,11 +63,13 @@
     NSInteger objectRow = 0;
     for(id<FieldEditInfo> feInfo in fieldEditInfo)
     {
-        if(object == feInfo.managedObject)
-        {
-            return objectRow;
+		NSManagedObject *feObject = feInfo.managedObject;
+		assert(feObject != nil);
+		if(object == feObject)
+		{
+           return objectRow;
         }
-        objectRow++;
+		objectRow++;
     }
     
     return -1;

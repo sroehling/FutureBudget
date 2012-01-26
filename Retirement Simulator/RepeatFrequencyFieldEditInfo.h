@@ -13,6 +13,7 @@
 
 @class FormFieldWithSubtitleTableCell;
 @class Scenario;
+@class MultiScenarioInputValue;
 
 @interface RepeatFrequencyFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private
@@ -23,8 +24,9 @@
 
 + (RepeatFrequencyFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key
                                         andLabel:(NSString*)label;
+
 + (RepeatFrequencyFieldEditInfo*)createForScenario:(Scenario*)theScenario 
-	andObject:(NSManagedObject*)obj andKey:(NSString*)key
+	andRepeatFreq:(MultiScenarioInputValue*)repeatFreq
                              andLabel:(NSString*)label;
-							 
+
 @end

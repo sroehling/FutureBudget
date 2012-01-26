@@ -18,6 +18,7 @@
 @class FieldInfo;
 @class MultiScenarioInputValue;
 @class SimDateSubtitleFormatter;
+@class MultiScenarioInputValue;
 
 @interface SimDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private
@@ -40,7 +41,7 @@
 	andDefaultRelEndDateKey:(NSString*)theDefaultRelEndDateKey;
 			  
 + (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario 
-	andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label
+	andSimDate:(MultiScenarioInputValue*)multiScenSimDate andLabel:(NSString*)label
 	andDefaultValue:(MultiScenarioInputValue*)defaultVal 
 	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
 	andShowEndDates:(bool)doShowEndDates

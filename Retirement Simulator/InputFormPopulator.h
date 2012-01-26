@@ -78,8 +78,8 @@
 	withValueLabel:(NSString*)valueLabel
 	andValueName:(NSString*)valueName;
 	
--(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(NSManagedObject*)parentObj 
-		andFreqKey:(NSString*)freqKey andLabel:(NSString*)label;
+-(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(MultiScenarioInputValue*)repeatFreq
+	andLabel:(NSString*)label;
 		
 -(void)populateMultiScenarioDuration:(MultiScenarioInputValue*)duration 
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder;

@@ -169,6 +169,25 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     
+	if(!editing)
+	{
+		if([self.assignedField fieldIsInitializedInParentObject])
+		{
+			// The code below originates from uses of this class with a 
+			// DateSensitiveValueFormInfoCreator. 
+			// 
+			// See the lengthly comment in DateSensitiveValueFormInfoCreator 
+			// for a comprehensive discussion why this code is necessary.
+			id<FieldEditInfo> feInfo = [self.formInfo fieldEditInfoIndexPath:self.currentValueIndex];
+			assert(feInfo != nil);
+			NSManagedObject *newValue = [feInfo managedObject];
+			assert(newValue != nil);
+			[self.assignedField setFieldValue:newValue]; 
+
+			[self updateCurrentValue:newValue];      
+		}    
+	}
+	
     [super setEditing:editing animated:animated];
     
 	[self.navigationItem setHidesBackButton:editing animated:NO];

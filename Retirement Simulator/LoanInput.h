@@ -22,8 +22,6 @@
 extern NSString * const LOAN_INPUT_ENTITY_NAME;
 
 extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
-extern NSString * const INPUT_LOAN_MULTI_SCEN_DOWN_PMT_PERCENT_KEY;
-
 
 @interface LoanInput : Input {
 @private

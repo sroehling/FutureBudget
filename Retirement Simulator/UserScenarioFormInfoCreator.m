@@ -89,8 +89,8 @@
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_ACCOUNT_CONTRIB_FREQUENCY");
 		for(Account *acct in inputBacktrace.accountContribRepeatFrequency)
 		{
-			[formPopulator populateRepeatFrequency:acct
-				andFreqKey:ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY andLabel:acct.name]; 
+			[formPopulator populateRepeatFrequency:acct.contribRepeatFrequency
+				andLabel:acct.name]; 
 		}
 	}
 	
@@ -205,9 +205,8 @@
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_FREQUENCY_CASH_FLOW");
 		for(CashFlowInput *cashFlow in inputBacktrace.cashFlowRepeatFrequency)
 		{
-			[formPopulator populateRepeatFrequency:cashFlow
-			andFreqKey:CASH_FLOW_INPUT_EVENT_REPEAT_FREQUENCY_KEY 
-			andLabel:cashFlow.name];
+			[formPopulator populateRepeatFrequency:cashFlow.eventRepeatFrequency
+				andLabel:cashFlow.name];
 		}
 	}
 

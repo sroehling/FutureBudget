@@ -60,7 +60,7 @@
 	
 }
 
-- (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo andDefaultValFieldInfo:
+- (id) initWithFieldInfo:(FieldInfo*)theFieldInfo andDefaultValFieldInfo:
         (FieldInfo*)theDefaultFieldInfo 
 		andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
 		andShowEndDates:(bool)doShowEndDates
@@ -99,15 +99,12 @@
 
 // TODO - Add support for fixed relative end date
 + (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario 
-	andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label
+	andSimDate:(MultiScenarioInputValue*)multiScenSimDate andLabel:(NSString*)label
 	andDefaultValue:(MultiScenarioInputValue*)defaultVal 
 	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
 	andShowEndDates:(bool)doShowEndDates
 	andDefaultRelEndDate:(MultiScenarioInputValue*)defaultRelEndDate
 {
-    assert(obj != nil);
-	assert(defaultVal != nil);
-    assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
     
 	
@@ -115,8 +112,7 @@
 	
 	
 	MultiScenarioInputValueFieldInfo *fieldInfo = [[[MultiScenarioInputValueFieldInfo alloc]
-													initWithScenario:scenario andManagedObject:obj andFieldKey:key 
-													andFieldLabel:label andFieldPlaceholder:variableDatePlaceholder] autorelease];
+		initWithScenario:scenario andMultiScenarioInputVal:multiScenSimDate andFieldLabel:label andFieldPlaceholder:variableDatePlaceholder] autorelease];
 
 
 	MultiScenarioFixedDateFieldInfo *defaultValFieldInfo = 

@@ -10,8 +10,6 @@
 #import <CoreData/CoreData.h>
 
 extern NSString * const MULTI_SCEN_AMOUNT_ENTITY_NAME;
-extern NSString * const MULTI_SCEN_AMOUNT_AMOUNT_KEY;
-
 
 @class MultiScenarioInputValue, VariableValue;
 

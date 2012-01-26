@@ -11,8 +11,6 @@
 
 extern NSString * const MULTI_SCEN_SIM_DATE_ENTITY_NAME;
 
-extern NSString * const MULTI_SCEN_SIM_DATE_SIM_DATE_KEY;
-
 @class MultiScenarioInputValue;
 
 @class Account;

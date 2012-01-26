@@ -14,7 +14,6 @@
 
 @class ValueSubtitleTableCell;
 @class Scenario;
-@class ManagedObjectFieldInfo;
 @class MultiScenarioInputValue;
 @class FieldInfo;
 
@@ -28,9 +27,9 @@
 
 @property(nonatomic,retain) VariableValueRuntimeInfo *varValRuntimeInfo;
 
-- (id)initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
-    andDefaultFixedValFieldInfo:(FieldInfo*)theDefaultFieldInfo
-      andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo;
+- (id)initWithFieldInfo:(FieldInfo *)theFieldInfo 
+	andDefaultFixedValFieldInfo:(FieldInfo*)theDefaultFieldInfo
+      andValRuntimeInfo:(VariableValueRuntimeInfo *)theVarValRuntimeInfo;
 
 @property(nonatomic,retain) FieldInfo *defaultFixedValFieldInfo;
 @property(nonatomic,retain) ValueSubtitleTableCell *valueCell;
@@ -39,9 +38,9 @@
 			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
 				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
 
-+ (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario andObject:
-			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label 
-			andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
++ (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario 
+	andMultiScenFixedVal:(MultiScenarioInputValue*)multiScenFixedVal
+	andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
 				andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal;
 
 @end

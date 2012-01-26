@@ -12,7 +12,6 @@
 
 
 NSString * const MULTI_SCEN_AMOUNT_ENTITY_NAME = @"MultiScenarioAmount";
-NSString * const MULTI_SCEN_AMOUNT_AMOUNT_KEY = @"amount";
 
 @implementation MultiScenarioAmount
 @dynamic amount;

@@ -17,8 +17,6 @@
 NSString * const ACCOUNT_STARTING_BALANCE_KEY = @"startingBalance";
 NSString * const ACCOUNT_ENTITY_NAME = @"Account";
 
-NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY = @"contribRepeatFrequency";
-
 @implementation Account
 
 @dynamic startingBalance;

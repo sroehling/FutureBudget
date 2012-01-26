@@ -109,7 +109,11 @@
     if (cell == nil) {
 		cell = [[[NumberFieldCell alloc] init] autorelease];
     }    
-    cell.fieldEditInfo = self;
+	// TODO - Bundle up fieldInfo, validator and numFormatter
+	// into a NumberFieldInfo class.
+    cell.fieldInfo = self.fieldInfo;
+	cell.validator = self.validator;
+	cell.numFormatter = self.numberFormatter;
     cell.label.text = [self textLabel];
     
     // Only try to initialize the text in the field if the field's

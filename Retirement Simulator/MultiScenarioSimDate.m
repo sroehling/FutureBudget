@@ -10,7 +10,6 @@
 #import "MultiScenarioInputValue.h"
 
 NSString * const MULTI_SCEN_SIM_DATE_ENTITY_NAME = @"MultiScenarioSimDate";
-NSString * const MULTI_SCEN_SIM_DATE_SIM_DATE_KEY = @"simDate";
 
 @implementation MultiScenarioSimDate
 @dynamic simDate;

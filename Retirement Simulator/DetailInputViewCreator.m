@@ -150,9 +150,8 @@
 			[cashFlow inlineInputType],cashFlow.name]];
 
 	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
-		[self.formPopulator populateRepeatFrequency:cashFlow
-		andFreqKey:CASH_FLOW_INPUT_EVENT_REPEAT_FREQUENCY_KEY 
-		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
+		[self.formPopulator populateRepeatFrequency:cashFlow.eventRepeatFrequency
+			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
 
     
     // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
@@ -233,9 +232,8 @@
 			[account inlineInputType],account.name]];	
 
 	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
-		[self.formPopulator populateRepeatFrequency:account
-		andFreqKey:ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY 
-		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
+		[self.formPopulator populateRepeatFrequency:account.contribRepeatFrequency
+			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
  
 	   // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
     // than "Once", such that an end date is needed. TBD - Should the end date in this case default to 

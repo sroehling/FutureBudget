@@ -18,8 +18,6 @@
 @class MultiScenarioSimEndDate;
 
 
-extern NSString * const CASH_FLOW_INPUT_EVENT_REPEAT_FREQUENCY_KEY;
-
 @interface CashFlowInput : Input {
 @private
 }

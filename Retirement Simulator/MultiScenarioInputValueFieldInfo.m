@@ -15,45 +15,33 @@
 @implementation MultiScenarioInputValueFieldInfo
 
 @synthesize currentScenario;
+@synthesize multiScenInputVal;
 
 
--(id)initWithScenario:(Scenario*)theScenario
-	 andManagedObject:(NSManagedObject*)theManagedObject
-		  andFieldKey:(NSString*)theFieldKey
-		andFieldLabel:(NSString*)theFieldLabel
-  andFieldPlaceholder:(NSString*)thePlaceholder
+
+-(id)initWithScenario:(Scenario*)theScenario 
+	andMultiScenarioInputVal:(MultiScenarioInputValue*)theMultiScenInputVal
+	andFieldLabel:(NSString*)theFieldLabel
+			andFieldPlaceholder:(NSString*)thePlaceholder
 {
-	self = [super initWithManagedObject:theManagedObject andFieldKey:theFieldKey andFieldLabel:theFieldLabel andFieldPlaceholder:thePlaceholder];
+	self = [super initWithFieldLabel:theFieldLabel andFieldPlaceholder:thePlaceholder];
 	if(self)
 	{
 		assert(theScenario != nil);
 		self.currentScenario = theScenario;
-	}
-	return self;
-}
-
-
-
-- (MultiScenarioInputValue*)inputValue
-{
-	MultiScenarioInputValue *inputValue;
-	if(![super fieldIsInitializedInParentObject])
-	{
-		inputValue = (MultiScenarioInputValue*)[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-		[super setFieldValue:inputValue];
-	}
-	else
-	{
-		inputValue = (MultiScenarioInputValue*)[super getFieldValue];
+		
+		assert(theMultiScenInputVal != nil);
+		self.multiScenInputVal = theMultiScenInputVal;
 		
 	}
-	return inputValue;
+	return self;	
 }
+
+
 
 - (id)getFieldValue
 {
-	MultiScenarioInputValue *theMultiScenInputValue = [self inputValue];
-	InputValue *inputVal = [theMultiScenInputValue findInputValueForScenarioOrDefault:self.currentScenario];
+	InputValue *inputVal = [self.multiScenInputVal findInputValueForScenarioOrDefault:self.currentScenario];
 	assert(inputVal != nil);
 	return inputVal;
 
@@ -62,35 +50,34 @@
 - (void)setFieldValue:(NSObject*)newValue
 {
 	assert([newValue isKindOfClass:[InputValue class]]);
-	[self.inputValue
+	[self.multiScenInputVal
 		setValueForScenario:self.currentScenario andInputValue:(InputValue*)newValue];
 }
 
 - (BOOL)fieldIsInitializedInParentObject
 {
-	if(![super fieldIsInitializedInParentObject])
+
+	InputValue *inputVal = [self.multiScenInputVal findInputValueForScenarioOrDefault:self.currentScenario];
+	if(inputVal != nil)
 	{
-		return FALSE;
+		return TRUE;
 	}
 	else
 	{
-		MultiScenarioInputValue *theMultiScenInputValue = [self inputValue];
-		InputValue *inputVal = [theMultiScenInputValue findInputValueForScenarioOrDefault:self.currentScenario];
-		if(inputVal != nil)
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
+		return FALSE;
 	}
+}
+
+-(NSManagedObject*)managedObject
+{
+	return [self getFieldValue];
 }
 
 - (void)dealloc
 {
 	[super dealloc];
 	[currentScenario release];
+	[multiScenInputVal release];
 }
 
 @end

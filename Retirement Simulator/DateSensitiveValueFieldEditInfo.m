@@ -48,8 +48,8 @@
 	
 }
 
-- (id)initWithFieldInfo:(ManagedObjectFieldInfo *)theFieldInfo 
-	andDefaultFixedValFieldInfo:(ManagedObjectFieldInfo*)theDefaultFieldInfo
+- (id)initWithFieldInfo:(FieldInfo *)theFieldInfo 
+	andDefaultFixedValFieldInfo:(FieldInfo*)theDefaultFieldInfo
       andValRuntimeInfo:(VariableValueRuntimeInfo *)theVarValRuntimeInfo
 {
     self = [super initWithFieldInfo:theFieldInfo];
@@ -80,13 +80,13 @@
     assert(0); // should not be called
 }
 
-+ (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario andObject:
-			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
++ (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario 
+	andMultiScenFixedVal:(MultiScenarioInputValue*)multiScenFixedVal
+	andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
 				andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal;
 {
-    assert(obj != nil);
-    assert([StringValidation nonEmptyString:key]);
     assert([StringValidation nonEmptyString:label]);
+	assert(multiScenFixedVal != nil);
     assert(varValRuntimeInfo != nil);
     
 	NSString *dsvValuePlaceholder = 
@@ -95,15 +95,16 @@
 
 	
 	MultiScenarioInputValueFieldInfo *fieldInfo = [[[MultiScenarioInputValueFieldInfo alloc]
-			initWithScenario:theScenario andManagedObject:obj andFieldKey:key 
+			initWithScenario:theScenario andMultiScenarioInputVal:multiScenFixedVal 
 			andFieldLabel:label andFieldPlaceholder:dsvValuePlaceholder] autorelease];
+			
 	   
     MultiScenarioFixedValueFieldInfo *defaultFixedValFieldInfo =
 		[[[MultiScenarioFixedValueFieldInfo alloc]initWithFieldLabel:label 
 		andFieldPlaceholder:dsvValuePlaceholder andScenario:theScenario andInputVal:defaultFixedVal]autorelease];
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
 
-    DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]                                                       
+    DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]
          initWithFieldInfo:fieldInfo andDefaultFixedValFieldInfo:defaultFixedValFieldInfo
           andValRuntimeInfo:varValRuntimeInfo] autorelease];
      
@@ -156,7 +157,7 @@
     [[[DateSensitiveValueFormInfoCreator alloc] initWithVariableValueFieldInfo:self.fieldInfo 
         andDefaultValFieldInfo:self.defaultFixedValFieldInfo 
 		andVarValRuntimeInfo:self.varValRuntimeInfo] autorelease];
-    
+    	
     SelectableObjectTableEditViewController *dsValueController = 
             [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:dsvFormInfoCreator 
                   andAssignedField:self.fieldInfo] autorelease];

@@ -11,6 +11,7 @@
 #import "NumberHelper.h"
 #import "TableCellHelper.h"
 #import "NumberFieldValidator.h"
+#import "FieldInfo.h"
 #import "LocalizationHelper.h"
 
 NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
@@ -18,8 +19,9 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 @implementation NumberFieldCell
 
 @synthesize label, textField;
-@synthesize fieldEditInfo;
-
+@synthesize fieldInfo;
+@synthesize validator;
+@synthesize numFormatter;
 
 - (id) initWithFrame:(CGRect)frame
 {
@@ -67,9 +69,16 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 
 // TextFieldDelegate methods
 
+- (NSString*)formattedNumber
+{
+	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:[self.fieldInfo getFieldValue] andFormatter:self.numFormatter];
+    return [self.numFormatter stringFromNumber:displayVal];
+ 
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)theTextField
 {
-    assert(self.fieldEditInfo != nil);
+    assert(self.fieldInfo != nil);
     // Done with editing - commit the value if it's changed
 	
     
@@ -77,15 +86,12 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
                           numberFromString:theTextField.text];
     if(theValue != nil)
     {
-        [self.fieldEditInfo.fieldInfo setFieldValue:theValue];       
+        [self.fieldInfo setFieldValue:theValue];       
     }
-	
-		// TODO - Add custom validation code here.
-
     
     // Restore the text in the field to the format as specified
     // by the FieldEditInfo
-    self.textField.text = [self.fieldEditInfo detailTextLabel];
+    self.textField.text = [self formattedNumber];
     
     // Done with editing - commit the value if it's changed
     
@@ -105,7 +111,7 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 	[editableNumberFormatter setGroupingSeparator:@""];
 	
     // For editing purposes, update the cell to have a plain decimal number
-    NSNumber *value = (NSNumber*)[self.fieldEditInfo.fieldInfo getFieldValue];
+    NSNumber *value = (NSNumber*)[self.fieldInfo getFieldValue];
 	NSString *formattedValue =  [editableNumberFormatter stringFromNumber:value];
 	assert(formattedValue != nil);
     self.textField.text = formattedValue;
@@ -133,9 +139,9 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 			if(theNumber ==  nil)
 			{
 				NSString *errorMsg = LOCALIZED_STR(@"NUMBER_VALIDATION_VALIDATION_NOT_A_NUMBER_MSG");
-				if(self.fieldEditInfo.validator != nil)
+				if(self.validator != nil)
 				{
-					errorMsg = LOCALIZED_STR(self.fieldEditInfo.validator.validationFailedMsg);
+					errorMsg = LOCALIZED_STR(self.validator.validationFailedMsg);
 				}
 				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:LOCALIZED_STR(@"NUMBER_VALIDATION_VALIDATION_ERROR_POPUP_TITLE")
 					message:errorMsg delegate:self 
@@ -145,17 +151,17 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 				return NO;			
 			}
 			
-			if(self.fieldEditInfo.validator != nil)
+			if(self.validator != nil)
 			{
-				if([self.fieldEditInfo.validator validateNumber:theNumber])
+				if([self.validator validateNumber:theNumber])
 				{
 					return YES;
 				}
 				else
 				{
-					assert(self.fieldEditInfo.validator.validationFailedMsg != nil);
+					assert(self.validator.validationFailedMsg != nil);
 					UIAlertView *av = [[[UIAlertView alloc] initWithTitle:LOCALIZED_STR(@"NUMBER_VALIDATION_VALIDATION_ERROR_POPUP_TITLE")
-					message:self.fieldEditInfo.validator.validationFailedMsg delegate:self 
+					message:self.validator.validationFailedMsg delegate:self 
 					cancelButtonTitle:LOCALIZED_STR(@"NUMBER_VALIDATION_POPUP_CANCEL_BUTTON_TITLE") 
 					otherButtonTitles:nil] autorelease];
 					[av show];
@@ -172,8 +178,11 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 - (void)dealloc {
 	[label release];
 	[textField release];
-// TBD - Is this a circular reference with the fieldEditInfo, and if so, does it need to be handled differently?
-    [fieldEditInfo release];
+	
+    [fieldInfo release];
+	[validator release];
+	[numFormatter release];
+
 	[super dealloc];
 }
 

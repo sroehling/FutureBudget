@@ -8,24 +8,27 @@
 
 #import <Foundation/Foundation.h>
 #import "ManagedObjectFieldInfo.h"
+#import "FieldInfo.h"
 
 @class Scenario;
+@class MultiScenarioInputValue;
 
-@interface MultiScenarioInputValueFieldInfo : ManagedObjectFieldInfo {
+@interface MultiScenarioInputValueFieldInfo : FieldInfo {
     @private
 		Scenario *currentScenario;
+		MultiScenarioInputValue *multiScenInputVal;
 }
 
--(id)initWithScenario:(Scenario*)theScenario
-	 andManagedObject:(NSManagedObject*)theManagedObject
-		  andFieldKey:(NSString*)theFieldKey
-		andFieldLabel:(NSString*)theFieldLabel
-  andFieldPlaceholder:(NSString*)thePlaceholder;
+-(id)initWithScenario:(Scenario*)theScenario 
+	andMultiScenarioInputVal:(MultiScenarioInputValue*)theMultiScenInputVal
+	andFieldLabel:(NSString*)theFieldLabel
+			andFieldPlaceholder:(NSString*)thePlaceholder;
 
 - (id)getFieldValue;
 - (void)setFieldValue:(NSObject*)newValue;
 - (BOOL)fieldIsInitializedInParentObject;
 
 @property(nonatomic,retain) Scenario *currentScenario;
+@property(nonatomic,retain) MultiScenarioInputValue *multiScenInputVal;
 
 @end

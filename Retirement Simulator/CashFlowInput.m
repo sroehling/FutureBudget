@@ -12,9 +12,6 @@
 #import "VariableValue.h"
 
 
-NSString * const CASH_FLOW_INPUT_EVENT_REPEAT_FREQUENCY_KEY = @"eventRepeatFrequency";
-
-
 @implementation CashFlowInput
 
 @dynamic startDate;

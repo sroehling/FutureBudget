@@ -12,7 +12,6 @@
 
 extern NSString * const ACCOUNT_STARTING_BALANCE_KEY;
 extern NSString * const ACCOUNT_ENTITY_NAME;
-extern NSString * const ACCOUNT_MULTI_SCEN_CONTRIB_REPEAT_FREQUENCY_KEY;
 
 @class MultiScenarioInputValue;
 @class MultiScenarioGrowthRate;

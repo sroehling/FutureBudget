@@ -11,9 +11,6 @@
 
 NSString * const MULTI_SCEN_GROWTH_RATE_ENTITY_NAME = @"MultiScenarioGrowthRate";
 
-
-NSString * const MULTI_SCEN_GROWTH_RATE_GROWTH_RATE_KEY = @"growthRate";
-
 @implementation MultiScenarioGrowthRate
 @dynamic growthRate;
 @dynamic defaultFixedGrowthRate;

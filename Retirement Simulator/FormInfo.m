@@ -94,6 +94,7 @@
         }
         sectionNum++;
     }
+	NSLog(@"Could not find path for: %@",[object description]);
     assert(0); // should not get here - object must be found
     return nil;
 }
