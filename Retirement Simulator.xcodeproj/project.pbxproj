@@ -56,6 +56,10 @@
 		0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */; };
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
+		002FAE9C14D3111E00AE2B41 /* milestoneDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9B14D3111E00AE2B41 /* milestoneDate.md */; };
+		002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9D14D3194800AE2B41 /* startingValue.md */; };
+		002FAEA014D32B3F00AE2B41 /* scenario.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9F14D32B3F00AE2B41 /* scenario.md */; };
+		002FAEA214D32C7800AE2B41 /* recipeCuttingExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEA114D32C7800AE2B41 /* recipeCuttingExpense.md */; };
 		003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D41485531F00837D02 /* InvestmentReturnRate.m */; };
 		003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D714855EBA00837D02 /* AssetApprecRate.m */; };
 		003085DB148599A200837D02 /* ScenarioInputValBacktracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */; };
@@ -491,6 +495,10 @@
 		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
+		002FAE9B14D3111E00AE2B41 /* milestoneDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = milestoneDate.md; sourceTree = "<group>"; };
+		002FAE9D14D3194800AE2B41 /* startingValue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = startingValue.md; sourceTree = "<group>"; };
+		002FAE9F14D32B3F00AE2B41 /* scenario.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario.md; sourceTree = "<group>"; };
+		002FAEA114D32C7800AE2B41 /* recipeCuttingExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeCuttingExpense.md; sourceTree = "<group>"; };
 		003085D31485531F00837D02 /* InvestmentReturnRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestmentReturnRate.h; sourceTree = "<group>"; };
 		003085D41485531F00837D02 /* InvestmentReturnRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestmentReturnRate.m; sourceTree = "<group>"; };
 		003085D614855EB900837D02 /* AssetApprecRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetApprecRate.h; sourceTree = "<group>"; };
@@ -1331,6 +1339,32 @@
 			name = "Test Helper Code";
 			sourceTree = "<group>";
 		};
+		002FAE9814D3101900AE2B41 /* Help Pages */ = {
+			isa = PBXGroup;
+			children = (
+				00D6845A14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.h */,
+				00D6845B14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m */,
+				00899DC314D21D3500CBFE6F /* Income and Expense */,
+				00899DB614D20C0D00CBFE6F /* Retirement */,
+				00899DAD14D207D500CBFE6F /* Investments */,
+				00899DA614D1FF9900CBFE6F /* Housing */,
+				00899DA514D1FF6600CBFE6F /* Health Care */,
+				00899DA414D1FF2C00CBFE6F /* Education */,
+				00899DA314D1FF0F00CBFE6F /* Auto */,
+			);
+			name = "Help Pages";
+			sourceTree = "<group>";
+		};
+		002FAE9A14D3105900AE2B41 /* Key Features */ = {
+			isa = PBXGroup;
+			children = (
+				002FAE9B14D3111E00AE2B41 /* milestoneDate.md */,
+				002FAE9D14D3194800AE2B41 /* startingValue.md */,
+				002FAE9F14D32B3F00AE2B41 /* scenario.md */,
+			);
+			name = "Key Features";
+			sourceTree = "<group>";
+		};
 		003085D11483EEA100837D02 /* Itemized Tax Amt Creators */ = {
 			isa = PBXGroup;
 			children = (
@@ -2143,6 +2177,7 @@
 				00899DC614D21D9900CBFE6F /* recipeWedding.md */,
 				00899DCA14D21E0200CBFE6F /* recipeMonthlyExpense.md */,
 				00899DCC14D21E2000CBFE6F /* recipeWindfall.md */,
+				002FAEA114D32C7800AE2B41 /* recipeCuttingExpense.md */,
 			);
 			name = "Income and Expense";
 			sourceTree = "<group>";
@@ -2423,8 +2458,6 @@
 				00D6846D14CE04D000E3AC9F /* Help Pages */,
 				00D6845314CDC99700E3AC9F /* MoreFormInfoCreator.h */,
 				00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */,
-				00D6845A14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.h */,
-				00D6845B14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m */,
 			);
 			name = "More View";
 			sourceTree = "<group>";
@@ -2447,13 +2480,8 @@
 		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
 			isa = PBXGroup;
 			children = (
-				00899DC314D21D3500CBFE6F /* Income and Expense */,
-				00899DB614D20C0D00CBFE6F /* Retirement */,
-				00899DAD14D207D500CBFE6F /* Investments */,
-				00899DA614D1FF9900CBFE6F /* Housing */,
-				00899DA514D1FF6600CBFE6F /* Health Care */,
-				00899DA414D1FF2C00CBFE6F /* Education */,
-				00899DA314D1FF0F00CBFE6F /* Auto */,
+				002FAE9A14D3105900AE2B41 /* Key Features */,
+				002FAE9814D3101900AE2B41 /* Help Pages */,
 				00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */,
 			);
 			name = "Help Pages";
@@ -2685,6 +2713,10 @@
 				00899DC714D21D9A00CBFE6F /* recipeWedding.md in Resources */,
 				00899DCB14D21E0300CBFE6F /* recipeMonthlyExpense.md in Resources */,
 				00899DCD14D21E2000CBFE6F /* recipeWindfall.md in Resources */,
+				002FAE9C14D3111E00AE2B41 /* milestoneDate.md in Resources */,
+				002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */,
+				002FAEA014D32B3F00AE2B41 /* scenario.md in Resources */,
+				002FAEA214D32C7800AE2B41 /* recipeCuttingExpense.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,6 +34,8 @@
 		LOCALIZED_STR(@"HELP_RECIPE_WINDFALL") andPageRef:@"recipeWindfall"];
 	[formPopulator populateHelpPageWithTitle:
 		LOCALIZED_STR(@"HELP_RECIPE_WEDDING") andPageRef:@"recipeWedding"];
+	[formPopulator populateHelpPageWithTitle:
+		LOCALIZED_STR(@"HELP_RECIPE_CUT_EXPENSE") andPageRef:@"recipeCuttingExpense"];
 			
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"HELP_RECIPES_HOUSING_SECTION_TITLE")];
 	[formPopulator populateHelpPageWithTitle:

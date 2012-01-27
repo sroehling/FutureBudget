@@ -59,8 +59,8 @@
 "INPUT_ACCOUNT_WITHDRAWAL_DEFER_DATE_SUBTITLE_FORMAT" = "Defer withdrawals until %@";
 "INPUT_ACCOUNT_INTEREST_SECTION_TITLE" = "Interest";
 "INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL" = "Interest/Return Rate";
-"INPUT_ACCOUNT_STARTING_BALANCE_LABEL" = "Starting Balance";
-"INPUT_ACCOUNT_INPUT_LIST_DETAIL_FORMAT" = "Starting balance of %@, %@";
+"INPUT_ACCOUNT_STARTING_BALANCE_LABEL" = "Current Balance";
+"INPUT_ACCOUNT_INPUT_LIST_DETAIL_FORMAT" = "Current balance of %@, %@";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE" = "Contribute Forever";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE" = "Contribute through the end of simulation";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE" = "Contribute Forever";
@@ -176,7 +176,7 @@
 "INPUT_LOAN_INLINE_TITLE" = "loan";
 "INPUT_LOAN_ENABLED_FIELD_LABEL" = "Origination Enabled?";
 "INPUT_LOAN_INTEREST_SECTION_TITLE" = "Interest";
-"INPUT_LOAN_STARTING_BALANCE_LABEL" = "Starting Balance";
+"INPUT_LOAN_STARTING_BALANCE_LABEL" = "Outstanding Balance";
 "INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER" = "Enter a balance";
 "INPUT_LOAN_COST_SECTION_TITLE" = "Loan Origination";
 "INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL" = "Make Extra Payments?";
@@ -203,7 +203,7 @@
 "INPUT_ASSET_VALUE_SECTION_TITLE" = "Value";
 "INPUT_ASSET_ENABLED_FIELD_LABEL" = "Purchase Enabled?";
 "INPUT_ASSET_COST_FIELD_LABEL" = "Cost";
-"INPUT_ASSET_STARTING_VALUE_LABEL" = "Starting (Current) Value";
+"INPUT_ASSET_STARTING_VALUE_LABEL" = "Current Value";
 "INPUT_ASSET_STARTING_VALUE_PLACEHOLDER" = "Enter a value";
 "INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL" = "Appreciation/Depreciation Rate";
 "INPUT_ASSET_SALE_DATE_FIELD_LABEL" = "Sale Date";
@@ -472,12 +472,12 @@
 
 "STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE" = "Startup";
 "STARTUP_VALUES_VIEW_TITLE" = "Startup";
-"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE" = "Starting Balances";
+"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE" = "Current Balances";
 "STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE" = "Enter balances as of the start date";
 "STARTUP_VALS_START_DATE_LABEL" = "Start Date";
 "STARTUP_VALS_START_DATE_PLACEHOLDER" = "Enter a date";
 "STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Time Frame";
-"STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "These are dates the simulation will start and stop. Update this start date in conjunction with changes to the starting balances.";
+"STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "These are dates the simulation will start and stop. Update this start date in conjunction with changes to the current balances.";
 
 "SIM_END_DATE_TABLE_TITLE" = "End Date";
 "SIM_END_DATE_TABLE_HEADER" = "Simulation End Date";
@@ -592,6 +592,7 @@
 "HELP_RECIPE_WINDFALL" = "Windfall Income";
 "HELP_RECIPE_WEDDING" = "Pay for a Wedding";
 "HELP_RECIPE_MONTHLY_EXPENSE" = "Monthly Expenses";
+"HELP_RECIPE_CUT_EXPENSE" = "Cut Expenses";
 "HELP_RECIPE_EMPLOYMENT_INCOME" = "Employment Income";
 "HELP_GETTING_STARTED" = "Getting Started";
 
