@@ -8,7 +8,7 @@
 
 #import "MoreFormInfoCreator.h"
 
-#import "FormPopulator.h"
+#import "HelpPageFormPopulator.h"
 #import "LocalizationHelper.h"
 #import "SectionInfo.h"
 #import "StaticNavFieldEditInfo.h"
@@ -20,19 +20,22 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] 
+    HelpPageFormPopulator *formPopulator = [[[HelpPageFormPopulator alloc] 
 		initWithParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"MORE_VIEW_TITLE");
 	
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"MORE_HELP_SECTION_TITLE")];
 
+	[formPopulator populateHelpPageWithTitle:
+		LOCALIZED_STR(@"HELP_GETTING_STARTED") 
+		andPageRef:@"gettingStarted"];
+
 	[formPopulator populateStaticNavFieldWithFormInfoCreator:
 		[[[HelpRecipesFormInfoCreator alloc] init] autorelease] 
 		andFieldCaption:LOCALIZED_STR(@"MORE_RECIPES_TITLE") 
 		andSubTitle:LOCALIZED_STR(@"MORE_RECIPES_SUBTITLE")];
 
-	
 
 	return formPopulator.formInfo;
 	

@@ -181,6 +181,33 @@
 		0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */; };
 		00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */; };
 		00899D8414D1DDA100CBFE6F /* HelpPageFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */; };
+		00899D8614D1E8A200CBFE6F /* recipeHSA.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D8514D1E8A200CBFE6F /* recipeHSA.md */; };
+		00899D8814D1E9CF00CBFE6F /* recipeHealthInflation.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D8714D1E9CF00CBFE6F /* recipeHealthInflation.md */; };
+		00899D8A14D1EA4100CBFE6F /* recipeMedicalExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D8914D1EA4100CBFE6F /* recipeMedicalExpense.md */; };
+		00899D8C14D1ECA400CBFE6F /* recipeCollegeSavings.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D8B14D1ECA300CBFE6F /* recipeCollegeSavings.md */; };
+		00899D9014D1ED6600CBFE6F /* recipeStudentLoan.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D8F14D1ED6500CBFE6F /* recipeStudentLoan.md */; };
+		00899D9414D1EE3300CBFE6F /* recipeBackToSchool.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D9314D1EE3300CBFE6F /* recipeBackToSchool.md */; };
+		00899D9A14D1EF5400CBFE6F /* recipeCollegeInflation.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D9914D1EF5300CBFE6F /* recipeCollegeInflation.md */; };
+		00899D9C14D1F02800CBFE6F /* recipeCollegeExpenses.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D9B14D1F02700CBFE6F /* recipeCollegeExpenses.md */; };
+		00899D9E14D1F51000CBFE6F /* recipeExistingVehicle.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D9D14D1F50F00CBFE6F /* recipeExistingVehicle.md */; };
+		00899DA014D1F61300CBFE6F /* recipeLeaseCar.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D9F14D1F61200CBFE6F /* recipeLeaseCar.md */; };
+		00899DA214D1FEC500CBFE6F /* recipeExistingHouse.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DA114D1FEC400CBFE6F /* recipeExistingHouse.md */; };
+		00899DA814D2008600CBFE6F /* recipeNewHouse.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DA714D2008600CBFE6F /* recipeNewHouse.md */; };
+		00899DAC14D2013500CBFE6F /* recipeVacationHouse.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DAB14D2013400CBFE6F /* recipeVacationHouse.md */; };
+		00899DAF14D2080E00CBFE6F /* recipeInvestment401K.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DAE14D2080E00CBFE6F /* recipeInvestment401K.md */; };
+		00899DB114D2083000CBFE6F /* recipeInvestmentRothIRA.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DB014D2083000CBFE6F /* recipeInvestmentRothIRA.md */; };
+		00899DB314D2084E00CBFE6F /* recipeRegularSavings.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DB214D2084E00CBFE6F /* recipeRegularSavings.md */; };
+		00899DB514D2086500CBFE6F /* recipeInvestmentBrokerage.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DB414D2086400CBFE6F /* recipeInvestmentBrokerage.md */; };
+		00899DB814D20C2200CBFE6F /* recipeSemiRetirement.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DB714D20C2200CBFE6F /* recipeSemiRetirement.md */; };
+		00899DBA14D20C5500CBFE6F /* recipePensionIncome.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DB914D20C5500CBFE6F /* recipePensionIncome.md */; };
+		00899DBC14D20C8200CBFE6F /* recipeInvestConservative.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DBB14D20C8200CBFE6F /* recipeInvestConservative.md */; };
+		00899DBE14D20C9800CBFE6F /* recipeSocialSecurityIncome.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DBD14D20C9800CBFE6F /* recipeSocialSecurityIncome.md */; };
+		00899DC014D20CBE00CBFE6F /* recipeDownsizeHouse.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DBF14D20CBE00CBFE6F /* recipeDownsizeHouse.md */; };
+		00899DC214D20CDC00CBFE6F /* recipeChangeRetirementExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DC114D20CDC00CBFE6F /* recipeChangeRetirementExpense.md */; };
+		00899DC514D21D8B00CBFE6F /* recipeEmploymentIncome.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DC414D21D8B00CBFE6F /* recipeEmploymentIncome.md */; };
+		00899DC714D21D9A00CBFE6F /* recipeWedding.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DC614D21D9900CBFE6F /* recipeWedding.md */; };
+		00899DCB14D21E0300CBFE6F /* recipeMonthlyExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DCA14D21E0200CBFE6F /* recipeMonthlyExpense.md */; };
+		00899DCD14D21E2000CBFE6F /* recipeWindfall.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DCC14D21E2000CBFE6F /* recipeWindfall.md */; };
 		008AA414141AC5B100FF2A52 /* buttonhelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA410141AC5B100FF2A52 /* buttonhelp.png */; };
 		008AA415141AC5B100FF2A52 /* buttonhelp-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA411141AC5B100FF2A52 /* buttonhelp-2.png */; };
 		008AA416141AC5B100FF2A52 /* buttonadd.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA412141AC5B100FF2A52 /* buttonadd.png */; };
@@ -277,7 +304,6 @@
 		00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */; };
 		00D6846914CE002F00E3AC9F /* HelpPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */; };
 		00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00D6846C14CE004800E3AC9F /* Localizable.strings */; };
-		00D6848A14CF62C300E3AC9F /* recipeOneTimeExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 00D6848914CF62C300E3AC9F /* recipeOneTimeExpense.md */; };
 		00D6848C14CF7DEA00E3AC9F /* recipeNewCar.md in Resources */ = {isa = PBXBuildFile; fileRef = 00D6848B14CF7DEA00E3AC9F /* recipeNewCar.md */; };
 		00D8D263148DD3D300B0314D /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */; };
 		00D8D266148DD3F700B0314D /* SingleScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D265148DD3F600B0314D /* SingleScenarioRelativeEndDateFieldInfo.m */; };
@@ -719,6 +745,33 @@
 		00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gettingStarted.md; sourceTree = "<group>"; };
 		00899D8214D1DDA100CBFE6F /* HelpPageFormPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageFormPopulator.h; sourceTree = "<group>"; };
 		00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageFormPopulator.m; sourceTree = "<group>"; };
+		00899D8514D1E8A200CBFE6F /* recipeHSA.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeHSA.md; sourceTree = "<group>"; };
+		00899D8714D1E9CF00CBFE6F /* recipeHealthInflation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeHealthInflation.md; sourceTree = "<group>"; };
+		00899D8914D1EA4100CBFE6F /* recipeMedicalExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeMedicalExpense.md; sourceTree = "<group>"; };
+		00899D8B14D1ECA300CBFE6F /* recipeCollegeSavings.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeCollegeSavings.md; sourceTree = "<group>"; };
+		00899D8F14D1ED6500CBFE6F /* recipeStudentLoan.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeStudentLoan.md; sourceTree = "<group>"; };
+		00899D9314D1EE3300CBFE6F /* recipeBackToSchool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeBackToSchool.md; sourceTree = "<group>"; };
+		00899D9914D1EF5300CBFE6F /* recipeCollegeInflation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeCollegeInflation.md; sourceTree = "<group>"; };
+		00899D9B14D1F02700CBFE6F /* recipeCollegeExpenses.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeCollegeExpenses.md; sourceTree = "<group>"; };
+		00899D9D14D1F50F00CBFE6F /* recipeExistingVehicle.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeExistingVehicle.md; sourceTree = "<group>"; };
+		00899D9F14D1F61200CBFE6F /* recipeLeaseCar.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeLeaseCar.md; sourceTree = "<group>"; };
+		00899DA114D1FEC400CBFE6F /* recipeExistingHouse.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeExistingHouse.md; sourceTree = "<group>"; };
+		00899DA714D2008600CBFE6F /* recipeNewHouse.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeNewHouse.md; sourceTree = "<group>"; };
+		00899DAB14D2013400CBFE6F /* recipeVacationHouse.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeVacationHouse.md; sourceTree = "<group>"; };
+		00899DAE14D2080E00CBFE6F /* recipeInvestment401K.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeInvestment401K.md; sourceTree = "<group>"; };
+		00899DB014D2083000CBFE6F /* recipeInvestmentRothIRA.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeInvestmentRothIRA.md; sourceTree = "<group>"; };
+		00899DB214D2084E00CBFE6F /* recipeRegularSavings.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeRegularSavings.md; sourceTree = "<group>"; };
+		00899DB414D2086400CBFE6F /* recipeInvestmentBrokerage.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeInvestmentBrokerage.md; sourceTree = "<group>"; };
+		00899DB714D20C2200CBFE6F /* recipeSemiRetirement.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeSemiRetirement.md; sourceTree = "<group>"; };
+		00899DB914D20C5500CBFE6F /* recipePensionIncome.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipePensionIncome.md; sourceTree = "<group>"; };
+		00899DBB14D20C8200CBFE6F /* recipeInvestConservative.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeInvestConservative.md; sourceTree = "<group>"; };
+		00899DBD14D20C9800CBFE6F /* recipeSocialSecurityIncome.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeSocialSecurityIncome.md; sourceTree = "<group>"; };
+		00899DBF14D20CBE00CBFE6F /* recipeDownsizeHouse.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeDownsizeHouse.md; sourceTree = "<group>"; };
+		00899DC114D20CDC00CBFE6F /* recipeChangeRetirementExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeChangeRetirementExpense.md; sourceTree = "<group>"; };
+		00899DC414D21D8B00CBFE6F /* recipeEmploymentIncome.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeEmploymentIncome.md; sourceTree = "<group>"; };
+		00899DC614D21D9900CBFE6F /* recipeWedding.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeWedding.md; sourceTree = "<group>"; };
+		00899DCA14D21E0200CBFE6F /* recipeMonthlyExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeMonthlyExpense.md; sourceTree = "<group>"; };
+		00899DCC14D21E2000CBFE6F /* recipeWindfall.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeWindfall.md; sourceTree = "<group>"; };
 		008AA410141AC5B100FF2A52 /* buttonhelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonhelp.png; sourceTree = "<group>"; };
 		008AA411141AC5B100FF2A52 /* buttonhelp-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonhelp-2.png"; sourceTree = "<group>"; };
 		008AA412141AC5B100FF2A52 /* buttonadd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonadd.png; sourceTree = "<group>"; };
@@ -901,7 +954,6 @@
 		00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpPageViewController.m; sourceTree = "<group>"; };
 		00D6846C14CE004800E3AC9F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		00D6848714CF622F00E3AC9F /* Markdown.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = Markdown.pl; sourceTree = "<group>"; };
-		00D6848914CF62C300E3AC9F /* recipeOneTimeExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeOneTimeExpense.md; sourceTree = "<group>"; };
 		00D6848B14CF7DEA00E3AC9F /* recipeNewCar.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeNewCar.md; sourceTree = "<group>"; };
 		00D8D261148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioRelativeEndDateFieldInfo.h; sourceTree = "<group>"; };
 		00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioRelativeEndDateFieldInfo.m; sourceTree = "<group>"; };
@@ -2018,6 +2070,83 @@
 			name = "Table Headers";
 			sourceTree = "<group>";
 		};
+		00899DA314D1FF0F00CBFE6F /* Auto */ = {
+			isa = PBXGroup;
+			children = (
+				00D6848B14CF7DEA00E3AC9F /* recipeNewCar.md */,
+				00899D9D14D1F50F00CBFE6F /* recipeExistingVehicle.md */,
+				00899D9F14D1F61200CBFE6F /* recipeLeaseCar.md */,
+			);
+			name = Auto;
+			sourceTree = "<group>";
+		};
+		00899DA414D1FF2C00CBFE6F /* Education */ = {
+			isa = PBXGroup;
+			children = (
+				00899D8B14D1ECA300CBFE6F /* recipeCollegeSavings.md */,
+				00899D8F14D1ED6500CBFE6F /* recipeStudentLoan.md */,
+				00899D9314D1EE3300CBFE6F /* recipeBackToSchool.md */,
+				00899D9914D1EF5300CBFE6F /* recipeCollegeInflation.md */,
+				00899D9B14D1F02700CBFE6F /* recipeCollegeExpenses.md */,
+			);
+			name = Education;
+			sourceTree = "<group>";
+		};
+		00899DA514D1FF6600CBFE6F /* Health Care */ = {
+			isa = PBXGroup;
+			children = (
+				00899D8514D1E8A200CBFE6F /* recipeHSA.md */,
+				00899D8714D1E9CF00CBFE6F /* recipeHealthInflation.md */,
+				00899D8914D1EA4100CBFE6F /* recipeMedicalExpense.md */,
+			);
+			name = "Health Care";
+			sourceTree = "<group>";
+		};
+		00899DA614D1FF9900CBFE6F /* Housing */ = {
+			isa = PBXGroup;
+			children = (
+				00899DA114D1FEC400CBFE6F /* recipeExistingHouse.md */,
+				00899DA714D2008600CBFE6F /* recipeNewHouse.md */,
+				00899DAB14D2013400CBFE6F /* recipeVacationHouse.md */,
+			);
+			name = Housing;
+			sourceTree = "<group>";
+		};
+		00899DAD14D207D500CBFE6F /* Investments */ = {
+			isa = PBXGroup;
+			children = (
+				00899DAE14D2080E00CBFE6F /* recipeInvestment401K.md */,
+				00899DB014D2083000CBFE6F /* recipeInvestmentRothIRA.md */,
+				00899DB214D2084E00CBFE6F /* recipeRegularSavings.md */,
+				00899DB414D2086400CBFE6F /* recipeInvestmentBrokerage.md */,
+			);
+			name = Investments;
+			sourceTree = "<group>";
+		};
+		00899DB614D20C0D00CBFE6F /* Retirement */ = {
+			isa = PBXGroup;
+			children = (
+				00899DB714D20C2200CBFE6F /* recipeSemiRetirement.md */,
+				00899DB914D20C5500CBFE6F /* recipePensionIncome.md */,
+				00899DBB14D20C8200CBFE6F /* recipeInvestConservative.md */,
+				00899DBD14D20C9800CBFE6F /* recipeSocialSecurityIncome.md */,
+				00899DBF14D20CBE00CBFE6F /* recipeDownsizeHouse.md */,
+				00899DC114D20CDC00CBFE6F /* recipeChangeRetirementExpense.md */,
+			);
+			name = Retirement;
+			sourceTree = "<group>";
+		};
+		00899DC314D21D3500CBFE6F /* Income and Expense */ = {
+			isa = PBXGroup;
+			children = (
+				00899DC414D21D8B00CBFE6F /* recipeEmploymentIncome.md */,
+				00899DC614D21D9900CBFE6F /* recipeWedding.md */,
+				00899DCA14D21E0200CBFE6F /* recipeMonthlyExpense.md */,
+				00899DCC14D21E2000CBFE6F /* recipeWindfall.md */,
+			);
+			name = "Income and Expense";
+			sourceTree = "<group>";
+		};
 		008AA408141ABB0600FF2A52 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2318,8 +2447,13 @@
 		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
 			isa = PBXGroup;
 			children = (
-				00D6848914CF62C300E3AC9F /* recipeOneTimeExpense.md */,
-				00D6848B14CF7DEA00E3AC9F /* recipeNewCar.md */,
+				00899DC314D21D3500CBFE6F /* Income and Expense */,
+				00899DB614D20C0D00CBFE6F /* Retirement */,
+				00899DAD14D207D500CBFE6F /* Investments */,
+				00899DA614D1FF9900CBFE6F /* Housing */,
+				00899DA514D1FF6600CBFE6F /* Health Care */,
+				00899DA414D1FF2C00CBFE6F /* Education */,
+				00899DA314D1FF0F00CBFE6F /* Auto */,
 				00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */,
 			);
 			name = "Help Pages";
@@ -2522,9 +2656,35 @@
 				00EC455F141B169E00D65D17 /* piggy.png in Resources */,
 				00EC4561141B183D00D65D17 /* clock.png in Resources */,
 				005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */,
-				00D6848A14CF62C300E3AC9F /* recipeOneTimeExpense.md in Resources */,
 				00D6848C14CF7DEA00E3AC9F /* recipeNewCar.md in Resources */,
 				00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */,
+				00899D8614D1E8A200CBFE6F /* recipeHSA.md in Resources */,
+				00899D8814D1E9CF00CBFE6F /* recipeHealthInflation.md in Resources */,
+				00899D8A14D1EA4100CBFE6F /* recipeMedicalExpense.md in Resources */,
+				00899D8C14D1ECA400CBFE6F /* recipeCollegeSavings.md in Resources */,
+				00899D9014D1ED6600CBFE6F /* recipeStudentLoan.md in Resources */,
+				00899D9414D1EE3300CBFE6F /* recipeBackToSchool.md in Resources */,
+				00899D9A14D1EF5400CBFE6F /* recipeCollegeInflation.md in Resources */,
+				00899D9C14D1F02800CBFE6F /* recipeCollegeExpenses.md in Resources */,
+				00899D9E14D1F51000CBFE6F /* recipeExistingVehicle.md in Resources */,
+				00899DA014D1F61300CBFE6F /* recipeLeaseCar.md in Resources */,
+				00899DA214D1FEC500CBFE6F /* recipeExistingHouse.md in Resources */,
+				00899DA814D2008600CBFE6F /* recipeNewHouse.md in Resources */,
+				00899DAC14D2013500CBFE6F /* recipeVacationHouse.md in Resources */,
+				00899DAF14D2080E00CBFE6F /* recipeInvestment401K.md in Resources */,
+				00899DB114D2083000CBFE6F /* recipeInvestmentRothIRA.md in Resources */,
+				00899DB314D2084E00CBFE6F /* recipeRegularSavings.md in Resources */,
+				00899DB514D2086500CBFE6F /* recipeInvestmentBrokerage.md in Resources */,
+				00899DB814D20C2200CBFE6F /* recipeSemiRetirement.md in Resources */,
+				00899DBA14D20C5500CBFE6F /* recipePensionIncome.md in Resources */,
+				00899DBC14D20C8200CBFE6F /* recipeInvestConservative.md in Resources */,
+				00899DBE14D20C9800CBFE6F /* recipeSocialSecurityIncome.md in Resources */,
+				00899DC014D20CBE00CBFE6F /* recipeDownsizeHouse.md in Resources */,
+				00899DC214D20CDC00CBFE6F /* recipeChangeRetirementExpense.md in Resources */,
+				00899DC514D21D8B00CBFE6F /* recipeEmploymentIncome.md in Resources */,
+				00899DC714D21D9A00CBFE6F /* recipeWedding.md in Resources */,
+				00899DCB14D21E0300CBFE6F /* recipeMonthlyExpense.md in Resources */,
+				00899DCD14D21E2000CBFE6F /* recipeWindfall.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

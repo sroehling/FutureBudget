@@ -1,3 +1,3 @@
 ## Purchase a New Car
 
-[One Time Expense](/recipeOneTimeExpense/)
+[One Time Expense](recipeOneTimeExpense.html)
