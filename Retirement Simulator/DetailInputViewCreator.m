@@ -400,41 +400,27 @@
 - (void)visitAsset:(AssetInput*)asset
 {
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ASSET_TITLE");
+	
 	[self.formPopulator populateInputNameField:asset];
 	
-	SectionInfo *sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE");
+	[formPopulator nextSection];
 	
-	
-	
-	[self.formPopulator populateMultiScenarioAmount:asset.cost 
-		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")
-		andValueName:asset.name];
-	
-
-	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
-		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
-		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
-
-	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRate 
-		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")
-			andValueName:asset.name];
- 
- 
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE");
-
 	[self.formPopulator populateMultiScenBoolField:asset.assetEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
- 
+	
+	[formPopulator nextSectionWithTitle:
+		LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE")]; 
  
 	[self.formPopulator populateMultiScenSimDate:asset.purchaseDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TITLE")
 		andTableHeader:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_HEADER")
 		 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT"),asset.name]];
+		 
+	[self.formPopulator populateMultiScenarioAmount:asset.cost 
+		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")
+		andValueName:asset.name];
 		
-
 	[self.formPopulator populateMultiScenSimEndDate:asset.saleDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_DATE_TITLE")
@@ -449,6 +435,23 @@
 				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_SECTION_SUBTITLE")
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL")
 				];
+
+	
+	[formPopulator nextSectionWithTitle:
+			LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")];	
+	
+	
+	
+
+	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
+		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
+		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
+
+	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRate 
+		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")
+			andValueName:asset.name];
+ 
+ 
 
 }
 

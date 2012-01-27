@@ -29,6 +29,7 @@
 #import "VariableValueFieldEditInfo.h"
 #import "InputFormPopulator.h"
 #import "InflationRate.h"
+#import "AssetInput.h"
 
 @implementation StartingValsFormInfoCreator
 
@@ -67,18 +68,35 @@
 	[sectionInfo addFieldEditInfo:endDateFieldEditInfo];
 
 	
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE");
 	
 	NSArray *accounts = [[DataModelController theDataModelController]
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME 
 			sortKey:INPUT_NAME_KEY];
-	for (Account *account in accounts)
+	if([accounts count] > 0)
 	{
-		NumberFieldEditInfo *acctBalanceFieldEditInfo = 
-			[NumberFieldEditInfo createForObject:account andKey:ACCOUNT_STARTING_BALANCE_KEY andLabel:account.name andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER") andNumberFormatter:[NumberHelper theHelper].currencyFormatter andValidator:[[[PositiveAmountValidator alloc] init] autorelease]];
-		[sectionInfo addFieldEditInfo:acctBalanceFieldEditInfo];
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE");
+		sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE");
+		for (Account *account in accounts)
+		{
+			NumberFieldEditInfo *acctBalanceFieldEditInfo = 
+				[NumberFieldEditInfo createForObject:account andKey:ACCOUNT_STARTING_BALANCE_KEY andLabel:account.name andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER") andNumberFormatter:[NumberHelper theHelper].currencyFormatter andValidator:[[[PositiveAmountValidator alloc] init] autorelease]];
+			[sectionInfo addFieldEditInfo:acctBalanceFieldEditInfo];
+		}
+	}
+	
+	NSArray *assets = [[DataModelController theDataModelController]
+			fetchSortedObjectsWithEntityName:ASSET_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	if([assets count] > 0)
+	{
+		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_CURRENT_ASSET_VALUES")];
+		for(AssetInput *asset in assets)
+		{
+			[formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
+				andLabel:asset.name
+				andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
+		}
+
 	}
 	
 	// TODO - Switch over to use populateCurrencyField from InputFormPopulator

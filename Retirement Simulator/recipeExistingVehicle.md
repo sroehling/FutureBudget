@@ -10,7 +10,7 @@ loan input is also required.
 
 	* Set the __Purchase Date__ to the date you acquired the vehicle.
 	
-	* Set the __Cost__ to the price originally paid for the vehicle.
+	* Set the __Purchase Cost__ to the price originally paid for the vehicle.
 	
 	* Set the __Current Value__ to an estimate of the vehicle's current "used vehicle" value. 
 	  This value is used as a starting value in the simulation and represents depreciation 

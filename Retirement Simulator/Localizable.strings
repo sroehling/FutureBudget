@@ -202,7 +202,7 @@
 "INPUT_ASSET_TITLE" = "Asset";
 "INPUT_ASSET_VALUE_SECTION_TITLE" = "Value";
 "INPUT_ASSET_ENABLED_FIELD_LABEL" = "Purchase Enabled?";
-"INPUT_ASSET_COST_FIELD_LABEL" = "Cost";
+"INPUT_ASSET_COST_FIELD_LABEL" = "Purchase Cost";
 "INPUT_ASSET_STARTING_VALUE_LABEL" = "Current Value";
 "INPUT_ASSET_STARTING_VALUE_PLACEHOLDER" = "Enter a value";
 "INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL" = "Appreciation/Depreciation Rate";
@@ -478,6 +478,7 @@
 "STARTUP_VALS_START_DATE_PLACEHOLDER" = "Enter a date";
 "STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Time Frame";
 "STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "These are dates the simulation will start and stop. Update this start date in conjunction with changes to the current balances.";
+"STARTUP_VALUES_CURRENT_ASSET_VALUES" = "Current Asset Values";
 
 "SIM_END_DATE_TABLE_TITLE" = "End Date";
 "SIM_END_DATE_TABLE_HEADER" = "Simulation End Date";
