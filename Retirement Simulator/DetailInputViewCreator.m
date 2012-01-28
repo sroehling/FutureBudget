@@ -310,13 +310,23 @@
 - (void) visitLoan:(LoanInput*)loan
 {
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_LOAN_TITLE");
-	[self.formPopulator populateInputNameField:loan];
 	
-	SectionInfo *sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_COST_SECTION_TITLE");
+	[self.formPopulator populateInputNameField:loan];
+
+	[formPopulator nextSection];
 	
 	[self.formPopulator populateMultiScenBoolField:loan.loanEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
+
+
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_SECTION_TITLE")];
+	
+	[self.formPopulator populateMultiScenSimDate:loan.origDate 
+		andLabel:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL") 
+		andTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL")
+		andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_TABLE_HEADER") 
+		andTableSubHeader:[NSString stringWithFormat:
+			LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT"),loan.name]];
 
 	[self.formPopulator populateMultiScenarioAmount:loan.loanCost 
 		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")
@@ -325,19 +335,40 @@
 	[self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate 
 		withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")
 		andValueName:loan.name];
+
+	[self.formPopulator populateMultiScenarioInterestRate:loan.interestRate 
+		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") 
+		andValueName:loan.name];
 	  
 	
-	[self.formPopulator populateMultiScenSimDate:loan.origDate 
-		andLabel:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL") 
-		andTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL")
-		andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_TABLE_HEADER") 
-		andTableSubHeader:[NSString stringWithFormat:
-			LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT"),loan.name]];
 	
 	[self.formPopulator populateMultiScenarioDuration:loan.loanDuration 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_DURATION_LABEL") 
 		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_DURATION_PLACEHOLDER") ];
 		
+			 
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_SECTION_TITLE")];
+
+
+	[self.formPopulator populateMultiScenBoolField:loan.downPmtEnabled 
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_ENABLED_LABEL")];
+	
+	[self.formPopulator populateLoanDownPmtPercent:loan withValueLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") andValueName:loan.name];
+
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_SECTION_TITLE")];
+
+	[self.formPopulator populateMultiScenBoolField:loan.extraPmtEnabled 
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL")];
+	
+	[self.formPopulator populateMultiScenarioAmount:loan.extraPmtAmt 
+		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL")
+		andValueName:loan.name];
+	  
+	[self.formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL")
+			andValueName:loan.name];  
+
+		
+	[formPopulator nextSection];
 	[self.formPopulator populateMultiScenSimEndDate:loan.earlyPayoffDate 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_EARLY_PAYOFF_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_LOAN_EARLY_PAYOFF_TITLE")
@@ -352,46 +383,11 @@
 				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_SUBTITLE")
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
 				];
-
-
 	
+	[formPopulator nextSection];
 	[self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL") 
 		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
-			 
-	sectionInfo = [formPopulator nextSection]; 
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_INTEREST_SECTION_TITLE");
-	
-	
-	[self.formPopulator populateMultiScenarioInterestRate:loan.interestRate 
-		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") 
-		andValueName:loan.name];
-	
-
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_SECTION_TITLE");
-
-
-	[self.formPopulator populateMultiScenBoolField:loan.extraPmtEnabled 
-			withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL")];
-	
-	[self.formPopulator populateMultiScenarioAmount:loan.extraPmtAmt 
-		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL")
-		andValueName:loan.name];
-	  
-	[self.formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL")
-			andValueName:loan.name];  
-
-		
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_SECTION_TITLE");
-
-
-	[self.formPopulator populateMultiScenBoolField:loan.downPmtEnabled 
-			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_ENABLED_LABEL")];
-	
-	[self.formPopulator populateLoanDownPmtPercent:loan withValueLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") andValueName:loan.name];
-		
 
 
 
@@ -438,10 +434,7 @@
 
 	
 	[formPopulator nextSectionWithTitle:
-			LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")];	
-	
-	
-	
+			LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")];
 
 	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 

@@ -175,10 +175,9 @@
 "INPUT_LOAN_TITLE" = "Loan";
 "INPUT_LOAN_INLINE_TITLE" = "loan";
 "INPUT_LOAN_ENABLED_FIELD_LABEL" = "Origination Enabled?";
-"INPUT_LOAN_INTEREST_SECTION_TITLE" = "Interest";
 "INPUT_LOAN_STARTING_BALANCE_LABEL" = "Outstanding Balance";
 "INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER" = "Enter a balance";
-"INPUT_LOAN_COST_SECTION_TITLE" = "Loan Origination";
+"INPUT_LOAN_ORIG_SECTION_TITLE" = "Origination";
 "INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL" = "Make Extra Payments?";
 "INPUT_LOAN_EXTRA_PMT_SECTION_TITLE" = "Extra Payments";
 "INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL" = "Payment Amount";
@@ -479,6 +478,7 @@
 "STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Time Frame";
 "STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "These are dates the simulation will start and stop. Update this start date in conjunction with changes to the current balances.";
 "STARTUP_VALUES_CURRENT_ASSET_VALUES" = "Current Asset Values";
+"STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE" = "Outstanding Loan Balances";
 
 "SIM_END_DATE_TABLE_TITLE" = "End Date";
 "SIM_END_DATE_TABLE_HEADER" = "Simulation End Date";

@@ -30,6 +30,7 @@
 #import "InputFormPopulator.h"
 #import "InflationRate.h"
 #import "AssetInput.h"
+#import "LoanInput.h"
 
 @implementation StartingValsFormInfoCreator
 
@@ -97,6 +98,22 @@
 				andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
 		}
 
+	}
+	
+	NSArray *loans = [[DataModelController theDataModelController] 
+			fetchSortedObjectsWithEntityName:LOAN_INPUT_ENTITY_NAME
+			sortKey:INPUT_NAME_KEY];
+	if([loans count]  > 0)
+	{
+		[formPopulator nextSectionWithTitle:
+			LOCALIZED_STR(@"STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE")];
+
+		for(LoanInput *loan in loans)
+		{
+			[formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY 
+				andLabel:loan.name
+				andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
+		}
 	}
 	
 	// TODO - Switch over to use populateCurrencyField from InputFormPopulator
