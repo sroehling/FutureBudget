@@ -37,9 +37,9 @@
 		   andCaption:LOCALIZED_STR(@"SCENARIO_LIST_DEFAULT_SCENARIO_CAPTION") andContent:@""] autorelease];
 	[sectionInfo addFieldEditInfo:defaultScenarioFieldEditInfo];
 	
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_SUBTITLE");
+	sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_TITLE") 
+		andHelpFile:@"scenariosAlternate"];
 	
 	NSArray *userScenarios = [[DataModelController theDataModelController]
 			fetchSortedObjectsWithEntityName:USER_SCENARIO_ENTITY_NAME 

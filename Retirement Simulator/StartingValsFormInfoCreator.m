@@ -41,9 +41,9 @@
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_VIEW_TITLE");
 	
-	SectionInfo *sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_START_DATE_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_START_DATE_SECTION_SUBTITLE");
+	SectionInfo *sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_START_DATE_SECTION_TITLE")
+		andHelpFile:@"simTimeFrame"];
 	
 	DateFieldEditInfo *simStartDateInfo = 
 		[DateFieldEditInfo createForObject:[SharedAppValues singleton] 
@@ -75,9 +75,8 @@
 			sortKey:INPUT_NAME_KEY];
 	if([accounts count] > 0)
 	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE");
-		sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE");
+		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE")
+			andHelpFile:@"currentBalances"];
 		for (Account *account in accounts)
 		{
 			NumberFieldEditInfo *acctBalanceFieldEditInfo = 
@@ -128,9 +127,9 @@
 			andValidator:amountValidator];
 	[sectionInfo addFieldEditInfo:cashBalanceFieldEditInfo];
 
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_DEFICITS_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE");
+	sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_DEFICITS_SECTION_TITLE")
+		andHelpFile:@"deficit"];
 
 	// TODO - Switch to use populatePercentField from InputFormPopulator
 	NumberFieldValidator *percentValidator = [[[PercentFieldValidator alloc] init] autorelease];
@@ -142,9 +141,9 @@
 			andNumberFormatter:[NumberHelper theHelper].percentFormatter andValidator:percentValidator];
 	[sectionInfo addFieldEditInfo:deficitInterestFieldEditInfo];
 	
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_SUBTITLE");
+	sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_TITLE") 
+		andHelpFile:@"inflationAdjustment"];
 	
 	ManagedObjectFieldInfo *adjustForInflationFieldInfo = [[[ManagedObjectFieldInfo alloc] 
 			initWithManagedObject:[SharedAppValues singleton] 

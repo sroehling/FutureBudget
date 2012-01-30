@@ -1,0 +1,1 @@
+Sell the asset a given number of years, months, and/or days after its purchase.

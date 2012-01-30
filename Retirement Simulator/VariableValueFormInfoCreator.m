@@ -83,13 +83,10 @@
 	}
 	
 	
-	sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = [NSString 
+	sectionInfo = [formPopulator nextSectionWithTitle:[NSString 
 	  stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_SECTION_TITLE_FORMAT"),
-	       LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
-	sectionInfo.subTitle = [NSString 
-							stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_SECTION_SUBTITLE_FORMAT"),
-							LOCALIZED_STR(self.varValRuntimeInfo.inlineValueTitleKey)];
+	       LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)]
+		   andHelpFile:@"variableValueStartDate"];
 							
 	NSString *varValStartingValPlaceholder = 
 	[NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_VALUE_PLACEHOLDER_FORMAT"),
@@ -105,15 +102,9 @@
 						  self.variableValue.valueChanges withKey:@"startDate"];
 	DateSensitiveValueChangeSectionInfo *vcSectionInfo = 
 		[[[DateSensitiveValueChangeSectionInfo alloc] 
-		  initWithVariableValRuntimeInfo:self.varValRuntimeInfo andParentVariableValue:self.variableValue] autorelease];
+		  initWithVariableValRuntimeInfo:self.varValRuntimeInfo 
+		  andParentVariableValue:self.variableValue andParentController:parentController] autorelease];
 		  
-    vcSectionInfo.title =  [NSString stringWithFormat:
-		LOCALIZED_STR(@"VARIABLE_VALUE_VALUE_CHANGES_SECTION_TITLE_FORMAT"),
-		LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
-	vcSectionInfo.subTitle =[NSString stringWithFormat:
-			LOCALIZED_STR(@"VARIABLE_VALUE_VALUE_CHANGES_SECTION_SUBTITLE_FORMAT"),
-			LOCALIZED_STR(self.varValRuntimeInfo.inlineValueTitleKey)];
-    vcSectionInfo.parentViewController = parentController;
 	[formPopulator nextCustomSection:vcSectionInfo];		
     for (DateSensitiveValueChange *valueChange in valueChanges)
     {

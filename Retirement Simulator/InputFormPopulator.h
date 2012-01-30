@@ -94,9 +94,9 @@
 	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
 	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
 	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
-	andNeverEndSectionSubtitle:(NSString*)neverEndSectionSubtitle
+	andNeverEndHelpInfo:(NSString*)neverEndHelpFile
 	andRelEndDateSectionTitle:(NSString*)relEndDateSectionTitle
-	andRelEndDateSectionSubtitle:(NSString*)relEndDateSectionSubtitle
+	andRelEndDateHelpFile:(NSString*)relEndDateHelpFile
 	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel;
 		
 @end

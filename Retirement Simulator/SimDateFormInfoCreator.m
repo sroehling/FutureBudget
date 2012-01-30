@@ -83,10 +83,9 @@
 	
 		if(self.varDateRuntimeInfo.supportsNeverEndDate)
 		{
-			sectionInfo = [formPopulator nextSection];
-	
-			sectionInfo.title = self.varDateRuntimeInfo.neverEndDateSectionTitle;
-			sectionInfo.subTitle = self.varDateRuntimeInfo.neverEndDateSectionSubtitle;
+			sectionInfo = [formPopulator nextSectionWithTitle:self.varDateRuntimeInfo.neverEndDateSectionTitle 
+				andHelpFile:self.varDateRuntimeInfo.neverEndDateHelpFile];
+
 			NeverEndDate *neverEndDate = [SharedAppValues singleton].sharedNeverEndDate;
 			assert(neverEndDate != nil);
 			StaticFieldEditInfo *neverEndingFieldEditInfo = 
@@ -95,28 +94,27 @@
 			[sectionInfo addFieldEditInfo:neverEndingFieldEditInfo];
 		}
 		
-		sectionInfo = [formPopulator nextSection];
-	
-		sectionInfo.title = self.varDateRuntimeInfo.relEndDateSectionTitle;
-		sectionInfo.subTitle = self.varDateRuntimeInfo.relEndDateSectionSubtitle;
+		sectionInfo = [formPopulator nextSectionWithTitle:self.varDateRuntimeInfo.relEndDateSectionTitle 
+				andHelpFile:self.varDateRuntimeInfo.relEndDateHelpFile];
+
+
 		RelativeEndDateFieldEditInfo *relEndDateFieldEditInfo =
 			[[[RelativeEndDateFieldEditInfo alloc] 
 			initWithRelativeEndDateFieldInfo:self.defaultRelEndDateFieldInfo andSimDateRuntimeInfo:self.varDateRuntimeInfo] autorelease];
 		[sectionInfo addFieldEditInfo:relEndDateFieldEditInfo];
 	}	
 	
-    sectionInfo = [formPopulator nextSection];
-	
-    sectionInfo.title = LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SUBTITLE");
-	
+    sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SECTION_TITLE")
+			andHelpFile:@"fixedDate"];
+		
 	DateFieldEditInfo *fixedDateFieldEditInfo = 
 		[[[DateFieldEditInfo alloc] initWithFieldInfo:self.fixedDateFieldInfo] autorelease];
 	[sectionInfo addFieldEditInfo:fixedDateFieldEditInfo];
-    MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];
 	
-    mdSectionInfo.title =  LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_DATE_SECTION_TITLE");
-	mdSectionInfo.subTitle = LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_DATE_SUBTITLE");
+    MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] initWithRuntimeInfo:self.varDateRuntimeInfo
+		andParentController:parentController] autorelease];
+	
+	
     mdSectionInfo.parentViewController = parentController;
     sectionInfo = mdSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];
@@ -125,9 +123,12 @@
           fetchSortedObjectsWithEntityName:MILESTONE_DATE_ENTITY_NAME sortKey:@"name"];
     for (MilestoneDate *milestoneDate in milestoneDates)
     {
+	
+		MilestoneDateFieldEditInfo *mdFieldEditInfo  = [[[MilestoneDateFieldEditInfo alloc]
+			initWithMilestoneDate:milestoneDate andVarDateRuntimeInfo:self.varDateRuntimeInfo
+			andParentController:parentController] autorelease];
         // Create the row information for the given milestone date.
-        [sectionInfo addFieldEditInfo:[MilestoneDateFieldEditInfo createForMilestoneDate:milestoneDate
-									   andVarDateRuntimeInfo:self.varDateRuntimeInfo]];
+        [sectionInfo addFieldEditInfo:mdFieldEditInfo];
     }
     return formPopulator.formInfo;
 }

@@ -26,6 +26,8 @@
 // Advance to the next section, allocating a default SectionInfo Object
 - (SectionInfo*) nextSection;
 - (SectionInfo*)nextSectionWithTitle:(NSString*)sectionTitle;
+- (SectionInfo*)nextSectionWithTitle:(NSString *)sectionTitle 
+		andHelpFile:(NSString*)helpInfoFile;
 
 // Advance to the next section, using a custom 
 // SectionInfo object (derived from SectionInfo)

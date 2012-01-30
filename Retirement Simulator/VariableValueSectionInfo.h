@@ -16,7 +16,8 @@
             VariableValueRuntimeInfo *varValRuntimeInfo;
 }
 
-- (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValRuntimeInfo;
+- (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
+	andParentViewController:(UIViewController*)theParentController;
 
 @property(nonatomic,retain) VariableValueRuntimeInfo *varValRuntimeInfo;
 

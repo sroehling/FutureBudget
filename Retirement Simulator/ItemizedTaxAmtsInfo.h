@@ -16,7 +16,7 @@
 		NSString *amtPrompt;
 		NSString *itemTitle;
 		NSString *itemSectionTitleFormat;
-		NSString *itemSectionSubtitleFormat;
+		NSString *itemHelpInfoFile;
 		
 		ItemizedTaxAmts *itemizedTaxAmts;
 		
@@ -34,7 +34,7 @@
 @property(nonatomic,retain) NSString *amtPrompt;
 @property(nonatomic,retain) NSString *itemTitle;
 @property(nonatomic,retain) NSString *itemSectionTitleFormat;
-@property(nonatomic,retain) NSString *itemSectionSubtitleFormat;
+@property(nonatomic,retain) NSString *itemHelpInfoFile;
 
 @property(nonatomic,retain) ItemizedTaxAmts *itemizedTaxAmts;
 
@@ -50,7 +50,7 @@
 	andTitle:(NSString*)theTitle andAmtPrompt:(NSString *)theAmtPrompt
 	andItemTitle:(NSString*)theItemTitle
 	andItemSectionTitleFormat:(NSString*)theItemSectionTitleFormat
-	andItemSectionSubtitleFormat:(NSString*)theItemSectionSubtitleFormat
+	andItemHelpInfoFile:(NSString*)theItemHelpFile
 	andItemizeIncomes:(BOOL)doItemizeIncomes
 	andItemizeExpenses:(BOOL)doItemizeExpenses
 	andItemizeAccountContribs:(BOOL)doItemizeAcctContribs

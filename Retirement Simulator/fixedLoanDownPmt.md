@@ -1,0 +1,1 @@
+Fixed down payment.

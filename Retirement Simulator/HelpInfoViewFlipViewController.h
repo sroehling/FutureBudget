@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol HelpInfoViewControllerDelegate;
-@protocol HelpInfoViewDelegate;
+@class HelpFlipViewInfo;
 
 @class HelpInfoView;
 
@@ -18,14 +18,15 @@
 	@private
 		id<HelpInfoViewControllerDelegate> delegate;
 		HelpInfoView *helpInfoView;
-		id<HelpInfoViewDelegate> helpDoneDelegate;
+		HelpFlipViewInfo *helpFlipViewInfo;
 
 }
 
-@property(nonatomic,assign) id<HelpInfoViewDelegate> helpDoneDelegate;
+- (id)initWithHelpFlipViewInfo:(HelpFlipViewInfo*)theHelpFlipViewInfo;
+
+@property(nonatomic,retain) HelpFlipViewInfo *helpFlipViewInfo;
 @property(nonatomic,retain) HelpInfoView *helpInfoView;
 
-- (id)initWithHelpInfoDoneDelegate:(id<HelpInfoViewDelegate>)helpInfoDoneDel;
 
 @end
 

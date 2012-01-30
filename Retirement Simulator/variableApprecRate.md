@@ -1,0 +1,1 @@
+Appreciation/depreciation rates which can change over time.

@@ -78,13 +78,11 @@
 	formPopulator.formInfo.headerView = tableHeader;
 
     assert(parentController != nil);
-    SectionInfo *sectionInfo = [formPopulator nextSection];
-	
-    sectionInfo.title = [[[NSString alloc]
+    SectionInfo *sectionInfo = [formPopulator nextSectionWithTitle:[[[NSString alloc]
 			initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_SINGLE_VALUE_TITLE_FORMAT"),
-			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
-	sectionInfo.subTitle = LOCALIZED_STR(self.varValRuntimeInfo.singleValSubtitleKey);
-    
+			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease]
+			andHelpFile:self.varValRuntimeInfo.singleValHelpInfoFile];
+	    
 	
 	/*
 		The comments below pertain to the use of defaultValFieldInfo and editing/selecting of values in 
@@ -138,14 +136,8 @@
 	[sectionInfo addFieldEditInfo:valueFieldEditInfo];
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
-					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo ] autorelease];
-    vvSectionInfo.title =  [[[NSString alloc]
-							 initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
-			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
-	vvSectionInfo.subTitle =LOCALIZED_STR(self.varValRuntimeInfo.variableValSubtitleKey);
-    vvSectionInfo.parentViewController = parentController;
-    sectionInfo = vvSectionInfo;
-    [formPopulator nextCustomSection:sectionInfo];
+					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo andParentViewController:parentController] autorelease];
+    [formPopulator nextCustomSection:vvSectionInfo];
     
 	
     NSArray *variableValues = [self.varValRuntimeInfo.listMgr variableValues];
@@ -154,7 +146,7 @@
         VariableValueFieldEditInfo *vvFieldInfo = [[[VariableValueFieldEditInfo alloc]initWithVariableValue:varValue
 				andVarValRuntimeInfo:self.varValRuntimeInfo] autorelease];
         // Create the row information for the given milestone date.
-        [sectionInfo addFieldEditInfo:vvFieldInfo];
+        [vvSectionInfo addFieldEditInfo:vvFieldInfo];
     }
     return formPopulator.formInfo;
 }

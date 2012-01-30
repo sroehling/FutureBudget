@@ -63,6 +63,15 @@
 	return nextSection;
 }
 
+- (SectionInfo*)nextSectionWithTitle:(NSString *)sectionTitle 
+		andHelpFile:(NSString*)helpInfoFile
+{
+	assert([StringValidation nonEmptyString:helpInfoFile]);
+	SectionInfo *nextSection = [self nextSectionWithTitle:sectionTitle];
+	nextSection.helpInfoHTMLFile = helpInfoFile;
+	return nextSection;
+}
+
 - (void)nextCustomSection:(SectionInfo*)customSection
 {
 	self.currentSection = customSection;

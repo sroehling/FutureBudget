@@ -280,8 +280,8 @@
 		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
 		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 
 		andListMgr:sharedInflationRatesMgr
-		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andSingleValHelpInfoFile:@"fixedInflation"
+		andVariableValHelpInfoFile:@"variableInflation"
 		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
 		andValueTypeTitle:valueLabel
 		andValueName:valueName
@@ -362,8 +362,8 @@
 		andValueVerb:LOCALIZED_STR(@"SHARED_ROI_ACTION_VERB")
 		andPeriodDesc:LOCALIZED_STR(@"SHARED_ROI_PERIOD") 
 		andListMgr:sharedROIMgr
-		andSingleValueSubtitleKey:@"SHARED_ROI_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"SHARED_ROI_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andSingleValHelpInfoFile:@"fixedReturn"
+		andVariableValHelpInfoFile:@"variableReturn"
 		andValuePromptKey:@"SHARED_ROI_VALUE_PROMPT"
 		andValueTypeTitle:valueLabel
 		andValueName:valueName
@@ -408,8 +408,8 @@
 		andValueVerb:LOCALIZED_STR(@"SHARED_APPREC_RATE_ACTION_VERB")
 		andPeriodDesc:LOCALIZED_STR(@"SHARED_APPREC_RATE_PERIOD") 
 		andListMgr:sharedApprecMgr
-		andSingleValueSubtitleKey:@"SHARED_APPREC_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"SHARED_APPREC_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andSingleValHelpInfoFile:@"fixedApprec"
+		andVariableValHelpInfoFile:@"variableApprecRate"
 		andValuePromptKey:@"SHARED_APPREC_RATE_VALUE_PROMPT"
 		andValueTypeTitle:valueLabel
 		andValueName:valueName
@@ -455,8 +455,8 @@
 		andValueVerb:LOCALIZED_STR(@"SHARED_INTEREST_RATE_ACTION_VERB")
 		andPeriodDesc:LOCALIZED_STR(@"SHARED_INTEREST_RATE_PERIOD") 
 		andListMgr:sharedInterestRatesMgr
-		andSingleValueSubtitleKey:@"SHARED_INTEREST_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andSingleValHelpInfoFile:@"fixedInterest"
+		andVariableValHelpInfoFile:@"variableInterest"
 		andValuePromptKey:@"SHARED_INTEREST_RATE_VALUE_PROMPT"
 		andValueTypeTitle:valueLabel
 		andValueName:valueName
@@ -495,8 +495,8 @@
 		andValueVerb:LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_ACTION_VERB")
 		andPeriodDesc:LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_PERIOD") 
 		andListMgr:sharedDownPmtMgr
-		andSingleValueSubtitleKey:@"SHARED_LOAN_DOWN_PMT_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"SHARED_LOAN_DOWN_PMT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andSingleValHelpInfoFile:@"fixedLoanDownPmt"
+		andVariableValHelpInfoFile:@"variableLoanDownPmt"
 		andValuePromptKey:@"SHARED_LOAN_DOWN_PMT_VALUE_PROMPT"
 		andValueTypeTitle:valueLabel
 		andValueName:valueName
@@ -584,9 +584,9 @@
 	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
 	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
 	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
-	andNeverEndSectionSubtitle:(NSString*)neverEndSectionSubtitle
+	andNeverEndHelpInfo:(NSString*)neverEndHelpFile
 	andRelEndDateSectionTitle:(NSString*)relEndDateSectionTitle
-	andRelEndDateSectionSubtitle:(NSString*)relEndDateSectionSubtitle
+	andRelEndDateHelpFile:(NSString*)relEndDateHelpFile
 	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel
 {
 	assert(multiScenSimEndDate != nil);
@@ -597,9 +597,9 @@
 	assert([StringValidation nonEmptyString:neverEndFieldTitle]);
 	assert([StringValidation nonEmptyString:neverEndFieldSubTitle]);
 	assert([StringValidation nonEmptyString:neverEndSectionTitle]);
-	assert([StringValidation nonEmptyString:neverEndSectionSubtitle]);
+	assert([StringValidation nonEmptyString:neverEndHelpFile]);
 	assert([StringValidation nonEmptyString:relEndDateSectionTitle]);
-	assert([StringValidation nonEmptyString:relEndDateSectionSubtitle]);
+	assert([StringValidation nonEmptyString:relEndDateHelpFile]);
 	assert([StringValidation nonEmptyString:relEndDateFieldLabel]);
 	
 	BOOL doSupportNeverEndDates = TRUE;
@@ -611,9 +611,9 @@
 	simDateInfo.neverEndDateFieldSubtitle = neverEndFieldSubTitle;
 	simDateInfo.neverEndDateFieldCaption = neverEndFieldTitle;
 	simDateInfo.neverEndDateSectionTitle = neverEndSectionTitle;
-	simDateInfo.neverEndDateSectionSubtitle = neverEndSectionSubtitle;
+	simDateInfo.neverEndDateHelpFile = neverEndHelpFile;
 	simDateInfo.relEndDateSectionTitle = relEndDateSectionTitle;
-	simDateInfo.relEndDateSectionSubtitle = relEndDateSectionSubtitle;
+	simDateInfo.relEndDateHelpFile = relEndDateHelpFile;
 	simDateInfo.relEndDateFieldLabel = relEndDateFieldLabel;
 			
 			

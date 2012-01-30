@@ -19,6 +19,7 @@
 
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
--(id)initWithRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo;
+-(id)initWithRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
+	andParentController:(UIViewController*)theParentController;
 
 @end

@@ -172,10 +172,10 @@
 				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT"),[cashFlow inlineInputType],cashFlow.name]
 				andNeverEndFieldTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")
 				andNeverEndFieldSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE")
-				andNeverEndSectionTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE") 
-				andNeverEndSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE")
+				andNeverEndHelpInfo:@"neverEndDate"
 				andRelEndDateSectionTitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE") 
-				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE")
+				andRelEndDateHelpFile:@"relEndDate"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"RELATIVE_END_DATE_FIELD_LABEL")];
 					
         }
@@ -253,9 +253,9 @@
 				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE")
 				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE")
 				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE") 
-				andNeverEndSectionSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_SUBTITLE")
-				andRelEndDateSectionTitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE") 
-				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE")
+				andNeverEndHelpInfo:@"neverEndDateContrib"
+				andRelEndDateSectionTitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE")
+				andRelEndDateHelpFile:@"relEndDateContrib"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"RELATIVE_END_DATE_FIELD_LABEL")];
         }
         
@@ -378,9 +378,9 @@
 				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_LOAN_NEVER_PAYOFF_FIELD_TITLE") 
 				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_LOAN_NEVER_PAYOFF_FIELD_SUBTITLE")
 				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_LOAN_NEVER_PAYOFF_SECTION_TITLE") 
-				andNeverEndSectionSubtitle:LOCALIZED_STR(@"INPUT_LOAN_NEVER_PAYOFF_SECTION_SUBTITLE")
+				andNeverEndHelpInfo:@"neverEndDatePayoff"
 				andRelEndDateSectionTitle:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_TITLE")
-				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_SUBTITLE")
+				andRelEndDateHelpFile:@"relEndDatePayoff"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
 				];
 	
@@ -426,9 +426,9 @@
 				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_FIELD_TITLE") 
 				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE")
 				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_SECTION_TITLE") 
-				andNeverEndSectionSubtitle:LOCALIZED_STR(@"INPUT_ASSET_NEVER_SELL_SECTION_SUBTITLE")
+				andNeverEndHelpInfo:@"neverEndDateSell"
 				andRelEndDateSectionTitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_SECTION_TITLE")
-				andRelEndDateSectionSubtitle:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_SECTION_SUBTITLE")
+				andRelEndDateHelpFile:@"relEndDateSell"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL")
 				];
 
@@ -464,9 +464,9 @@
 
 	// Tax Sources Section
 
-	SectionInfo *sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_SUBTITLE");
+	SectionInfo *sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE")
+		andHelpFile:@"taxIncomeSources"];
 	
 	if(true)
 	{
@@ -476,7 +476,7 @@
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE")
 			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_TITLE_FORMAT")
-			andItemSectionSubtitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_SUBTITLE_FORMAT") 		
+			andItemHelpInfoFile:@"taxSource"		
 			andItemizeIncomes:TRUE andItemizeExpenses:FALSE 
 			andItemizeAccountContribs:FALSE andItemizeAccountWithdrawals:TRUE andItemizeAccountInterest:TRUE 
 			andItemizeAssetGains:TRUE 
@@ -498,9 +498,9 @@
 
 	// Adjustments Section
 
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_SUBTITLE");
+	sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_TITLE")
+		andHelpFile:@"taxAdjustments"];
 	
 	if(true)
 	{
@@ -510,7 +510,7 @@
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_ITEM_TITLE")
 			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_TITLE_FORMAT")
-			andItemSectionSubtitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_SUBTITLE_FORMAT") 		
+			andItemHelpInfoFile:@"taxAdjustment" 		
 			andItemizeIncomes:FALSE andItemizeExpenses:TRUE 
 			andItemizeAccountContribs:TRUE andItemizeAccountWithdrawals:FALSE andItemizeAccountInterest:FALSE 
 			andItemizeAssetGains:FALSE 
@@ -532,9 +532,9 @@
 
 	// Exemptions Section
 
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_SUBTITLE");
+	sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_TITLE")
+		andHelpFile:@"taxExemptions"];
 	
 	[self.formPopulator populateMultiScenarioAmount:tax.exemptionAmt 
 		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_AMOUNT_TITLE")
@@ -547,9 +547,9 @@
 
 	// Deductions Section
 
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_SUBTITLE");
+	sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_TITLE")
+		andHelpFile:@"taxDeductions"];
 
 	[self.formPopulator populateMultiScenarioAmount:tax.stdDeductionAmt 
 		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_TITLE")
@@ -564,7 +564,7 @@
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_ITEM_TITLE")
 			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_TITLE_FORMAT")
-			andItemSectionSubtitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_SUBTITLE_FORMAT") 		
+			andItemHelpInfoFile:@"taxDeduction"  		
 			andItemizeIncomes:FALSE andItemizeExpenses:TRUE 
 			andItemizeAccountContribs:TRUE andItemizeAccountWithdrawals:FALSE andItemizeAccountInterest:FALSE 
 			andItemizeAssetGains:FALSE 
@@ -590,9 +590,9 @@
 
 	// Tax Credits Section
 		
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"INPUT_TAX_CREDITS_SECTION_TITLE");
-	sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_TAX_CREDITS_SECTION_SUBTITLE");
+	sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_CREDITS_SECTION_TITLE")
+		andHelpFile:@"taxCredits"];
 		
 	if(true)
 	{
@@ -602,7 +602,7 @@
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_ITEM_TITLE")
 			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_TITLE_FORMAT")
-			andItemSectionSubtitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_SUBTITLE_FORMAT") 		
+			andItemHelpInfoFile:@"taxCredit" 	
 			andItemizeIncomes:FALSE andItemizeExpenses:TRUE 
 			andItemizeAccountContribs:TRUE andItemizeAccountWithdrawals:FALSE andItemizeAccountInterest:FALSE 
 			andItemizeAssetGains:FALSE 

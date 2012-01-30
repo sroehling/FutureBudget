@@ -42,9 +42,9 @@
 			fetchSortedObjectsWithEntityName:EXPENSE_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
-		SectionInfo *sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_TITLE");
-		sectionInfo.subTitle = LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_SUBTITLE");
+		SectionInfo *sectionInfo = [formPopulator 
+			nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_TITLE")
+			andHelpFile:@"limitedWithdrawal"];
 		for(ExpenseInput *expense in inputs)
 		{ 
 		  

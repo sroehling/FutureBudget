@@ -31,9 +31,9 @@
 @synthesize valueVerb;
 @synthesize periodDesc;
 @synthesize listMgr;
-@synthesize singleValSubtitleKey;
+@synthesize singleValHelpInfoFile;
 @synthesize inlineValueTitleKey;
-@synthesize variableValSubtitleKey;
+@synthesize variableValHelpInfoFile;
 @synthesize valuePromptKey;
 @synthesize valueTypeTitle;
 @synthesize valueName;
@@ -46,8 +46,8 @@
 			andValueVerb:(NSString*)verb
 		   andPeriodDesc:(NSString*)thePeriodDesc 
 			  andListMgr:(id<VariableValueListMgr>)theListMgr
-		andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
-		andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
+		andSingleValHelpInfoFile:(NSString*)theSingleValHelpInfoFile 
+		andVariableValHelpInfoFile:(NSString*)theHelpInfoFile
 	   andValuePromptKey:(NSString*)theValPromptKey
 	   andValueTypeTitle:(NSString*)theValueTypeTitle
 	   andValueName:(NSString*)theValueName
@@ -57,17 +57,23 @@
 	if(self)
 	{
 		assert(valFormatter != nil);
-		assert(title != nil);
-		assert([title length] > 0);
+		assert([StringValidation nonEmptyString:title]);
+		assert([StringValidation nonEmptyString:theSingleValHelpInfoFile]);
+		assert([StringValidation nonEmptyString:theHelpInfoFile]);
+		assert([StringValidation nonEmptyString:theValueName]);
+		assert([StringValidation nonEmptyString:theValPromptKey]);
+		assert([StringValidation nonEmptyString:theValueName]);
+		
+		
 		self.valueFormatter = valFormatter;
 		self.valueValidator = valValidator;
 		self.valueTitleKey = title;
 		self.valueVerb = verb;
 		self.periodDesc = thePeriodDesc;
 		self.listMgr = theListMgr;
-		self.singleValSubtitleKey = theSingleValSubtitleKey;
+		self.singleValHelpInfoFile = theSingleValHelpInfoFile;
 		self.inlineValueTitleKey = theInlineValueTitleKey;
-		self.variableValSubtitleKey = theVarValSubtitleKey;
+		self.variableValHelpInfoFile = theHelpInfoFile;
 		self.valuePromptKey = theValPromptKey;
 		self.valueTypeTitle = theValueTypeTitle;
 		self.valueName = theValueName;
@@ -85,9 +91,9 @@
 	[valueVerb release];
 	[periodDesc release];
 	[listMgr release];
-	[singleValSubtitleKey release];
+	[singleValHelpInfoFile release];
 	[inlineValueTitleKey release];
-	[variableValSubtitleKey release];
+	[variableValHelpInfoFile release];
 	[valuePromptKey release];
 	[valueTypeTitle release];
 	[valueName release];
@@ -128,8 +134,8 @@
 		andValueVerb:LOCALIZED_STR(@"SHARED_INTEREST_RATE_ACTION_VERB")
 		andPeriodDesc:LOCALIZED_STR(@"SHARED_INTEREST_RATE_PERIOD") 
 		andListMgr:sharedInterestRatesMgr
-		andSingleValueSubtitleKey:@"SHARED_INTEREST_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andSingleValHelpInfoFile:@"fixedInterest"
+		andVariableValHelpInfoFile:@"variableInterest"
 		andValuePromptKey:@"SHARED_INTEREST_RATE_VALUE_PROMPT"
 		andValueTypeTitle:[theInput inputTypeTitle]
 		andValueName:theInput.name
@@ -164,8 +170,8 @@
 		andValueVerb:LOCALIZED_STR(@"INPUT_INFLATION_RATE_ACTION_VERB")
 		andPeriodDesc:LOCALIZED_STR(@"INPUT_INFLATION_RATE_PERIOD") 
 		andListMgr:sharedInflationRatesMgr
-		andSingleValueSubtitleKey:@"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE"
+		andSingleValHelpInfoFile:@"fixedInflation"
+		andVariableValHelpInfoFile:@"variableInflation"
 		andValuePromptKey:@"INPUT_INFLATION_RATE_VALUE_PROMPT"
 		andValueTypeTitle:[theInput inputTypeTitle]
 		andValueName:theInput.name
@@ -190,8 +196,8 @@
 		andValueTitle:@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE" 
 		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
 		andValueVerb:@"" andPeriodDesc:@"" andListMgr:listMgr
-		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
+		andSingleValHelpInfoFile:@"fixedAmount"
+		andVariableValHelpInfoFile:@"variableAmount"
 		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
 		  andValueTypeTitle:[theInput inputTypeTitle]
 		  andValueName:theInput.name
@@ -227,8 +233,8 @@
 		andValueTitle:@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE" 
 		andInlineValueTitleKey:@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"
 		andValueVerb:@"" andPeriodDesc:@"" andListMgr:variableValueMgr
-		andSingleValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE"
-		andVariableValueSubtitleKey:@"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT"
+		andSingleValHelpInfoFile:@"fixedAmount"
+		andVariableValHelpInfoFile:@"variableAmount"
 		andValuePromptKey:@"INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT"
 		  andValueTypeTitle:valueTitle
 		  andValueName:valueName

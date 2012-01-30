@@ -20,17 +20,17 @@
         MilestoneDate *milestoneDate;
 		ValueSubtitleTableCell *milestoneCell;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
+		UIViewController *parentController;
 }
 
-+ (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate*)theMilestoneDate
-	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)varDateRuntimeInfo;
 
-
-- (id)initWithMilestoneDate:(MilestoneDate*)theMilestoneDate
-	  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)varDateRuntimeInfo;
+- (id)initWithMilestoneDate:(MilestoneDate*)theMilestoneDate 
+	  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
+	  andParentController:(UIViewController *)theParentController;
 
 @property(nonatomic,retain) MilestoneDate *milestoneDate;
 @property(nonatomic,retain) ValueSubtitleTableCell *milestoneCell;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
+@property(nonatomic,assign) UIViewController *parentController;
 
 @end

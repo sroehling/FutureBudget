@@ -22,11 +22,11 @@
 @synthesize tableSubHeader;
 @synthesize supportsNeverEndDate;
 @synthesize neverEndDateSectionTitle;
-@synthesize neverEndDateSectionSubtitle;
+@synthesize neverEndDateHelpFile;
 @synthesize neverEndDateFieldCaption;
 @synthesize neverEndDateFieldSubtitle;
 @synthesize relEndDateSectionTitle;
-@synthesize relEndDateSectionSubtitle;
+@synthesize relEndDateHelpFile;
 @synthesize relEndDateFieldLabel;
 
 - (id)initWithTableTitle:(NSString*)theTitle andHeader:(NSString*)theHeader
@@ -41,11 +41,11 @@
 		self.supportsNeverEndDate = doesSupportNeverEndDate;
 		
 		self.neverEndDateSectionTitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE");
-		self.neverEndDateSectionSubtitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE");
+		self.neverEndDateHelpFile = @"neverEndDate";
 		self.neverEndDateFieldCaption = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL");
 		self.neverEndDateFieldSubtitle = LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE");
 		self.relEndDateSectionTitle = LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE");
-		self.relEndDateSectionSubtitle = LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_SUBTITLE");
+		self.relEndDateHelpFile = @"relEndDate";
 		self.relEndDateFieldLabel = LOCALIZED_STR(@"RELATIVE_END_DATE_FIELD_LABEL");
 	}
 	return self;
@@ -64,11 +64,11 @@
 	[tableHeader release];
 	[tableSubHeader release];
 	[neverEndDateSectionTitle release];
-	[neverEndDateSectionSubtitle release];
+	[neverEndDateHelpFile release];
 	[neverEndDateFieldCaption release];
 	[neverEndDateFieldSubtitle release];
 	[relEndDateSectionTitle release];
-	[relEndDateSectionSubtitle release];
+	[relEndDateHelpFile release];
 	[relEndDateFieldLabel release];
 }
 

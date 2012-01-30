@@ -11,6 +11,8 @@
 #import "DataModelController.h"
 #import "DateSensitiveValueChangeFormPopulator.h"
 #import "FixedDate.h"
+#import "LocalizationHelper.h"
+#import "VariableValueRuntimeInfo.h"
 
 @implementation DateSensitiveValueChangeSectionInfo
 
@@ -18,9 +20,11 @@
 @synthesize variableVal;
 
 - (id) initWithVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo
-	andParentVariableValue:(VariableValue*)varValue
+	andParentVariableValue:(VariableValue*)varValue 
+	andParentController:(UIViewController *)theParentController
 {
-	self = [super init];
+	self = [super initWithHelpInfo:@"variableValueChange" 
+				andParentController:theParentController];
 	if(self)
 	{
 		assert(valRuntimeInfo != nil);
@@ -28,6 +32,11 @@
 		
 		assert(varValue != nil);
 		self.variableVal = varValue;
+		
+		self.title =  [NSString stringWithFormat:
+			LOCALIZED_STR(@"VARIABLE_VALUE_VALUE_CHANGES_SECTION_TITLE_FORMAT"),
+			LOCALIZED_STR(self.variableValRuntimeInfo.valueTitleKey)];
+
 	}
 	return self;
 }
@@ -58,7 +67,8 @@
     valueChange.defaultFixedStartDate = fixedStartDate;
 
 	
-    DateSensitiveValueChangeFormPopulator *formPopulator = [[[DateSensitiveValueChangeFormPopulator alloc] init] autorelease];
+    DateSensitiveValueChangeFormPopulator *formPopulator = [[[DateSensitiveValueChangeFormPopulator alloc] 
+		initWithParentController:self.parentViewController] autorelease];
 	
 	
     UIViewController *controller =  [formPopulator addViewControllerForValueChange:valueChange andVariableValRuntimeInfo:self.variableValRuntimeInfo andParentVariableValue:self.variableVal];

@@ -13,8 +13,8 @@
 @implementation SectionInfo
 
 @synthesize title;
-@synthesize subTitle;
 @synthesize sectionHeader;
+@synthesize helpInfoHTMLFile;
 
 - (id) init
 {
@@ -29,6 +29,26 @@
     return self;
 }
 
+- (id) initWithHelpInfo:(NSString*)helpInfoFile andParentController:(UIViewController*)theParentController
+{
+	self = [super init];
+	if(self)
+	{
+       fieldEditInfo = [[NSMutableArray alloc] init];
+		
+		self.sectionHeader = [[[SectionHeaderWithSubtitle alloc] initWithFrame:CGRectZero] autorelease];
+        self.title = @"";
+
+
+		self.helpInfoHTMLFile = helpInfoFile;
+		self.sectionHeader.parentController = theParentController;
+		self.sectionHeader.helpInfoHTMLFile = helpInfoHTMLFile;
+		
+		
+	}
+	return self;
+}
+
 - (void) addFieldEditInfo:(id<FieldEditInfo>)feInfo
 {
     assert(feInfo != nil);
@@ -41,6 +61,7 @@
     [fieldEditInfo release];
     [title release];
 	[sectionHeader release];
+	[helpInfoHTMLFile release];
     
 }
 
@@ -107,7 +128,7 @@
 -(void)configureSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing
 {
 	self.sectionHeader.headerLabel.text = self.title;
-	self.sectionHeader.subtitle = self.subTitle;
+	self.sectionHeader.helpInfoHTMLFile = self.helpInfoHTMLFile;
 	[self.sectionHeader sizeForTableWidth:tableWidth andEditMode:editing];
 
 }

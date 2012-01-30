@@ -60,6 +60,22 @@
 		002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9D14D3194800AE2B41 /* startingValue.md */; };
 		002FAEA014D32B3F00AE2B41 /* scenario.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9F14D32B3F00AE2B41 /* scenario.md */; };
 		002FAEA214D32C7800AE2B41 /* recipeCuttingExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEA114D32C7800AE2B41 /* recipeCuttingExpense.md */; };
+		002FAEA514D386E800AE2B41 /* HelpFlipViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FAEA414D386E800AE2B41 /* HelpFlipViewInfo.m */; };
+		002FAEA914D38F4600AE2B41 /* currentBalances.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEA814D38F4600AE2B41 /* currentBalances.md */; };
+		002FAEAB14D4413C00AE2B41 /* taxIncomeSources.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEAA14D4413C00AE2B41 /* taxIncomeSources.md */; };
+		002FAEAD14D4434C00AE2B41 /* taxAdjustments.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEAC14D4434C00AE2B41 /* taxAdjustments.md */; };
+		002FAEAF14D4441400AE2B41 /* taxExemptions.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEAE14D4441400AE2B41 /* taxExemptions.md */; };
+		002FAEB314D444BE00AE2B41 /* taxDeductions.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEB214D444BD00AE2B41 /* taxDeductions.md */; };
+		002FAEB514D4459600AE2B41 /* taxCredits.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEB414D4459600AE2B41 /* taxCredits.md */; };
+		002FAEB714D4495200AE2B41 /* scenariosAlternate.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEB614D4495100AE2B41 /* scenariosAlternate.md */; };
+		002FAEB914D45B7E00AE2B41 /* simTimeFrame.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEB814D45B7D00AE2B41 /* simTimeFrame.md */; };
+		002FAEBB14D45CEB00AE2B41 /* deficit.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEBA14D45CEA00AE2B41 /* deficit.md */; };
+		002FAEBD14D45D7E00AE2B41 /* inflationAdjustment.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */; };
+		002FAEC114D466F700AE2B41 /* limitedWithdrawal.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC014D466F500AE2B41 /* limitedWithdrawal.md */; };
+		002FAEC314D4784500AE2B41 /* taxSource.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC214D4784300AE2B41 /* taxSource.md */; };
+		002FAEC514D478AF00AE2B41 /* taxAdjustment.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC414D478AD00AE2B41 /* taxAdjustment.md */; };
+		002FAEC714D4790200AE2B41 /* taxDeduction.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC614D478FF00AE2B41 /* taxDeduction.md */; };
+		002FAEC914D4797000AE2B41 /* taxCredit.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC814D4796E00AE2B41 /* taxCredit.md */; };
 		003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D41485531F00837D02 /* InvestmentReturnRate.m */; };
 		003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D714855EBA00837D02 /* AssetApprecRate.m */; };
 		003085DB148599A200837D02 /* ScenarioInputValBacktracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */; };
@@ -320,6 +336,29 @@
 		00D8D27C1490061000B0314D /* YearValXYPlotResultsViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D27B1490060E00B0314D /* YearValXYPlotResultsViewFactory.m */; };
 		00D8D281149007A300B0314D /* YearValXYPlotData.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D280149007A200B0314D /* YearValXYPlotData.m */; };
 		00D8D28414900A2400B0314D /* NetWorthXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D28314900A2200B0314D /* NetWorthXYPlotDataGenerator.m */; };
+		00DC49CA14D6F363006BDF61 /* variableInterest.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49C914D6F363006BDF61 /* variableInterest.md */; };
+		00DC49CD14D6F624006BDF61 /* variableInflation.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49CC14D6F624006BDF61 /* variableInflation.md */; };
+		00DC49CF14D6F747006BDF61 /* variableAmount.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49CE14D6F747006BDF61 /* variableAmount.md */; };
+		00DC49D114D6F892006BDF61 /* variableReturn.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49D014D6F892006BDF61 /* variableReturn.md */; };
+		00DC49D314D6F908006BDF61 /* variableApprecRate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49D214D6F908006BDF61 /* variableApprecRate.md */; };
+		00DC49D514D6FA41006BDF61 /* variableLoanDownPmt.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49D414D6FA41006BDF61 /* variableLoanDownPmt.md */; };
+		00DC49D914D6FE39006BDF61 /* fixedInterest.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49D814D6FE39006BDF61 /* fixedInterest.md */; };
+		00DC49DB14D6FEFD006BDF61 /* fixedInflation.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49DA14D6FEFC006BDF61 /* fixedInflation.md */; };
+		00DC49DD14D6FF76006BDF61 /* fixedAmount.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49DC14D6FF76006BDF61 /* fixedAmount.md */; };
+		00DC49DF14D7007B006BDF61 /* fixedReturn.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49DE14D7007B006BDF61 /* fixedReturn.md */; };
+		00DC49E114D7026B006BDF61 /* fixedApprec.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49E014D7026B006BDF61 /* fixedApprec.md */; };
+		00DC49E314D70696006BDF61 /* fixedLoanDownPmt.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49E214D70695006BDF61 /* fixedLoanDownPmt.md */; };
+		00DC49E614D71495006BDF61 /* neverEndDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49E514D71495006BDF61 /* neverEndDate.md */; };
+		00DC49E814D714A2006BDF61 /* relEndDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49E714D714A1006BDF61 /* relEndDate.md */; };
+		00DC49EA14D71B5D006BDF61 /* neverEndDateContrib.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49E914D71B5D006BDF61 /* neverEndDateContrib.md */; };
+		00DC49EC14D71B6E006BDF61 /* relEndDateContrib.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49EB14D71B6D006BDF61 /* relEndDateContrib.md */; };
+		00DC49EE14D71D08006BDF61 /* neverEndDatePayoff.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49ED14D71D08006BDF61 /* neverEndDatePayoff.md */; };
+		00DC49F014D71D57006BDF61 /* relEndDatePayoff.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49EF14D71D56006BDF61 /* relEndDatePayoff.md */; };
+		00DC49F214D71E90006BDF61 /* neverEndDateSell.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F114D71E8F006BDF61 /* neverEndDateSell.md */; };
+		00DC49F414D71EA0006BDF61 /* relEndDateSell.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F314D71E9F006BDF61 /* relEndDateSell.md */; };
+		00DC49F614D72188006BDF61 /* fixedDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F514D72187006BDF61 /* fixedDate.md */; };
+		00DC49F814D73EBA006BDF61 /* variableValueStartDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */; };
+		00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F914D73F40006BDF61 /* variableValueChange.md */; };
 		00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */; };
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
@@ -499,6 +538,23 @@
 		002FAE9D14D3194800AE2B41 /* startingValue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = startingValue.md; sourceTree = "<group>"; };
 		002FAE9F14D32B3F00AE2B41 /* scenario.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario.md; sourceTree = "<group>"; };
 		002FAEA114D32C7800AE2B41 /* recipeCuttingExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeCuttingExpense.md; sourceTree = "<group>"; };
+		002FAEA314D386E700AE2B41 /* HelpFlipViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFlipViewInfo.h; sourceTree = "<group>"; };
+		002FAEA414D386E800AE2B41 /* HelpFlipViewInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFlipViewInfo.m; sourceTree = "<group>"; };
+		002FAEA814D38F4600AE2B41 /* currentBalances.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentBalances.md; sourceTree = "<group>"; };
+		002FAEAA14D4413C00AE2B41 /* taxIncomeSources.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxIncomeSources.md; sourceTree = "<group>"; };
+		002FAEAC14D4434C00AE2B41 /* taxAdjustments.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxAdjustments.md; sourceTree = "<group>"; };
+		002FAEAE14D4441400AE2B41 /* taxExemptions.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxExemptions.md; sourceTree = "<group>"; };
+		002FAEB214D444BD00AE2B41 /* taxDeductions.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxDeductions.md; sourceTree = "<group>"; };
+		002FAEB414D4459600AE2B41 /* taxCredits.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxCredits.md; sourceTree = "<group>"; };
+		002FAEB614D4495100AE2B41 /* scenariosAlternate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenariosAlternate.md; sourceTree = "<group>"; };
+		002FAEB814D45B7D00AE2B41 /* simTimeFrame.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = simTimeFrame.md; sourceTree = "<group>"; };
+		002FAEBA14D45CEA00AE2B41 /* deficit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deficit.md; sourceTree = "<group>"; };
+		002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inflationAdjustment.md; sourceTree = "<group>"; };
+		002FAEC014D466F500AE2B41 /* limitedWithdrawal.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = limitedWithdrawal.md; sourceTree = "<group>"; };
+		002FAEC214D4784300AE2B41 /* taxSource.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxSource.md; sourceTree = "<group>"; };
+		002FAEC414D478AD00AE2B41 /* taxAdjustment.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxAdjustment.md; sourceTree = "<group>"; };
+		002FAEC614D478FF00AE2B41 /* taxDeduction.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxDeduction.md; sourceTree = "<group>"; };
+		002FAEC814D4796E00AE2B41 /* taxCredit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxCredit.md; sourceTree = "<group>"; };
 		003085D31485531F00837D02 /* InvestmentReturnRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestmentReturnRate.h; sourceTree = "<group>"; };
 		003085D41485531F00837D02 /* InvestmentReturnRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestmentReturnRate.m; sourceTree = "<group>"; };
 		003085D614855EB900837D02 /* AssetApprecRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetApprecRate.h; sourceTree = "<group>"; };
@@ -986,6 +1042,29 @@
 		00D8D280149007A200B0314D /* YearValXYPlotData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearValXYPlotData.m; sourceTree = "<group>"; };
 		00D8D28214900A2100B0314D /* NetWorthXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorthXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		00D8D28314900A2200B0314D /* NetWorthXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorthXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00DC49C914D6F363006BDF61 /* variableInterest.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableInterest.md; sourceTree = "<group>"; };
+		00DC49CC14D6F624006BDF61 /* variableInflation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableInflation.md; sourceTree = "<group>"; };
+		00DC49CE14D6F747006BDF61 /* variableAmount.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableAmount.md; sourceTree = "<group>"; };
+		00DC49D014D6F892006BDF61 /* variableReturn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableReturn.md; sourceTree = "<group>"; };
+		00DC49D214D6F908006BDF61 /* variableApprecRate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableApprecRate.md; sourceTree = "<group>"; };
+		00DC49D414D6FA41006BDF61 /* variableLoanDownPmt.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableLoanDownPmt.md; sourceTree = "<group>"; };
+		00DC49D814D6FE39006BDF61 /* fixedInterest.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedInterest.md; sourceTree = "<group>"; };
+		00DC49DA14D6FEFC006BDF61 /* fixedInflation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedInflation.md; sourceTree = "<group>"; };
+		00DC49DC14D6FF76006BDF61 /* fixedAmount.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedAmount.md; sourceTree = "<group>"; };
+		00DC49DE14D7007B006BDF61 /* fixedReturn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedReturn.md; sourceTree = "<group>"; };
+		00DC49E014D7026B006BDF61 /* fixedApprec.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedApprec.md; sourceTree = "<group>"; };
+		00DC49E214D70695006BDF61 /* fixedLoanDownPmt.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedLoanDownPmt.md; sourceTree = "<group>"; };
+		00DC49E514D71495006BDF61 /* neverEndDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neverEndDate.md; sourceTree = "<group>"; };
+		00DC49E714D714A1006BDF61 /* relEndDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relEndDate.md; sourceTree = "<group>"; };
+		00DC49E914D71B5D006BDF61 /* neverEndDateContrib.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neverEndDateContrib.md; sourceTree = "<group>"; };
+		00DC49EB14D71B6D006BDF61 /* relEndDateContrib.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relEndDateContrib.md; sourceTree = "<group>"; };
+		00DC49ED14D71D08006BDF61 /* neverEndDatePayoff.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neverEndDatePayoff.md; sourceTree = "<group>"; };
+		00DC49EF14D71D56006BDF61 /* relEndDatePayoff.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relEndDatePayoff.md; sourceTree = "<group>"; };
+		00DC49F114D71E8F006BDF61 /* neverEndDateSell.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neverEndDateSell.md; sourceTree = "<group>"; };
+		00DC49F314D71E9F006BDF61 /* relEndDateSell.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relEndDateSell.md; sourceTree = "<group>"; };
+		00DC49F514D72187006BDF61 /* fixedDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedDate.md; sourceTree = "<group>"; };
+		00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueStartDate.md; sourceTree = "<group>"; };
+		00DC49F914D73F40006BDF61 /* variableValueChange.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueChange.md; sourceTree = "<group>"; };
 		00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestTest.h; sourceTree = "<group>"; };
 		00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestTest.m; sourceTree = "<group>"; };
 		00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigest.h; sourceTree = "<group>"; };
@@ -1358,11 +1437,34 @@
 		002FAE9A14D3105900AE2B41 /* Key Features */ = {
 			isa = PBXGroup;
 			children = (
-				002FAE9B14D3111E00AE2B41 /* milestoneDate.md */,
 				002FAE9D14D3194800AE2B41 /* startingValue.md */,
 				002FAE9F14D32B3F00AE2B41 /* scenario.md */,
 			);
 			name = "Key Features";
+			sourceTree = "<group>";
+		};
+		002FAEA614D38F0A00AE2B41 /* Context Help */ = {
+			isa = PBXGroup;
+			children = (
+				00DC49E414D71453006BDF61 /* Simulation Dates */,
+				00DC49D714D6FDDD006BDF61 /* Taxes */,
+				00DC49D614D6FDBB006BDF61 /* Variable Values */,
+				002FAEA714D38F1F00AE2B41 /* Startup Tab */,
+				002FAEB614D4495100AE2B41 /* scenariosAlternate.md */,
+				002FAEB814D45B7D00AE2B41 /* simTimeFrame.md */,
+				002FAEBA14D45CEA00AE2B41 /* deficit.md */,
+				002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */,
+				002FAEC014D466F500AE2B41 /* limitedWithdrawal.md */,
+			);
+			name = "Context Help";
+			sourceTree = "<group>";
+		};
+		002FAEA714D38F1F00AE2B41 /* Startup Tab */ = {
+			isa = PBXGroup;
+			children = (
+				002FAEA814D38F4600AE2B41 /* currentBalances.md */,
+			);
+			name = "Startup Tab";
 			sourceTree = "<group>";
 		};
 		003085D11483EEA100837D02 /* Itemized Tax Amt Creators */ = {
@@ -1940,6 +2042,8 @@
 				005EF4E514CA220B001F3D36 /* HelpInfoView.m */,
 				005EF4E114CA1EC1001F3D36 /* HelpInfoViewFlipViewController.h */,
 				005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */,
+				002FAEA314D386E700AE2B41 /* HelpFlipViewInfo.h */,
+				002FAEA414D386E800AE2B41 /* HelpFlipViewInfo.m */,
 			);
 			name = "Help Flip View";
 			sourceTree = "<group>";
@@ -2480,6 +2584,7 @@
 		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
 			isa = PBXGroup;
 			children = (
+				002FAEA614D38F0A00AE2B41 /* Context Help */,
 				002FAE9A14D3105900AE2B41 /* Key Features */,
 				002FAE9814D3101900AE2B41 /* Help Pages */,
 				00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */,
@@ -2535,6 +2640,60 @@
 				0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */,
 			);
 			name = Scenario;
+			sourceTree = "<group>";
+		};
+		00DC49D614D6FDBB006BDF61 /* Variable Values */ = {
+			isa = PBXGroup;
+			children = (
+				00DC49C914D6F363006BDF61 /* variableInterest.md */,
+				00DC49CC14D6F624006BDF61 /* variableInflation.md */,
+				00DC49CE14D6F747006BDF61 /* variableAmount.md */,
+				00DC49D014D6F892006BDF61 /* variableReturn.md */,
+				00DC49D214D6F908006BDF61 /* variableApprecRate.md */,
+				00DC49D414D6FA41006BDF61 /* variableLoanDownPmt.md */,
+				00DC49D814D6FE39006BDF61 /* fixedInterest.md */,
+				00DC49DA14D6FEFC006BDF61 /* fixedInflation.md */,
+				00DC49DC14D6FF76006BDF61 /* fixedAmount.md */,
+				00DC49DE14D7007B006BDF61 /* fixedReturn.md */,
+				00DC49E014D7026B006BDF61 /* fixedApprec.md */,
+				00DC49E214D70695006BDF61 /* fixedLoanDownPmt.md */,
+				00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */,
+				00DC49F914D73F40006BDF61 /* variableValueChange.md */,
+			);
+			name = "Variable Values";
+			sourceTree = "<group>";
+		};
+		00DC49D714D6FDDD006BDF61 /* Taxes */ = {
+			isa = PBXGroup;
+			children = (
+				002FAEC214D4784300AE2B41 /* taxSource.md */,
+				002FAEC414D478AD00AE2B41 /* taxAdjustment.md */,
+				002FAEC614D478FF00AE2B41 /* taxDeduction.md */,
+				002FAEC814D4796E00AE2B41 /* taxCredit.md */,
+				002FAEAA14D4413C00AE2B41 /* taxIncomeSources.md */,
+				002FAEAC14D4434C00AE2B41 /* taxAdjustments.md */,
+				002FAEAE14D4441400AE2B41 /* taxExemptions.md */,
+				002FAEB214D444BD00AE2B41 /* taxDeductions.md */,
+				002FAEB414D4459600AE2B41 /* taxCredits.md */,
+			);
+			name = Taxes;
+			sourceTree = "<group>";
+		};
+		00DC49E414D71453006BDF61 /* Simulation Dates */ = {
+			isa = PBXGroup;
+			children = (
+				002FAE9B14D3111E00AE2B41 /* milestoneDate.md */,
+				00DC49E514D71495006BDF61 /* neverEndDate.md */,
+				00DC49E714D714A1006BDF61 /* relEndDate.md */,
+				00DC49E914D71B5D006BDF61 /* neverEndDateContrib.md */,
+				00DC49EB14D71B6D006BDF61 /* relEndDateContrib.md */,
+				00DC49ED14D71D08006BDF61 /* neverEndDatePayoff.md */,
+				00DC49EF14D71D56006BDF61 /* relEndDatePayoff.md */,
+				00DC49F114D71E8F006BDF61 /* neverEndDateSell.md */,
+				00DC49F314D71E9F006BDF61 /* relEndDateSell.md */,
+				00DC49F514D72187006BDF61 /* fixedDate.md */,
+			);
+			name = "Simulation Dates";
 			sourceTree = "<group>";
 		};
 		00EC458214214B4700D65D17 /* Cash Flow */ = {
@@ -2717,6 +2876,44 @@
 				002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */,
 				002FAEA014D32B3F00AE2B41 /* scenario.md in Resources */,
 				002FAEA214D32C7800AE2B41 /* recipeCuttingExpense.md in Resources */,
+				002FAEA914D38F4600AE2B41 /* currentBalances.md in Resources */,
+				002FAEAB14D4413C00AE2B41 /* taxIncomeSources.md in Resources */,
+				002FAEAD14D4434C00AE2B41 /* taxAdjustments.md in Resources */,
+				002FAEAF14D4441400AE2B41 /* taxExemptions.md in Resources */,
+				002FAEB314D444BE00AE2B41 /* taxDeductions.md in Resources */,
+				002FAEB514D4459600AE2B41 /* taxCredits.md in Resources */,
+				002FAEB714D4495200AE2B41 /* scenariosAlternate.md in Resources */,
+				002FAEB914D45B7E00AE2B41 /* simTimeFrame.md in Resources */,
+				002FAEBB14D45CEB00AE2B41 /* deficit.md in Resources */,
+				002FAEBD14D45D7E00AE2B41 /* inflationAdjustment.md in Resources */,
+				002FAEC114D466F700AE2B41 /* limitedWithdrawal.md in Resources */,
+				002FAEC314D4784500AE2B41 /* taxSource.md in Resources */,
+				002FAEC514D478AF00AE2B41 /* taxAdjustment.md in Resources */,
+				002FAEC714D4790200AE2B41 /* taxDeduction.md in Resources */,
+				002FAEC914D4797000AE2B41 /* taxCredit.md in Resources */,
+				00DC49CA14D6F363006BDF61 /* variableInterest.md in Resources */,
+				00DC49CD14D6F624006BDF61 /* variableInflation.md in Resources */,
+				00DC49CF14D6F747006BDF61 /* variableAmount.md in Resources */,
+				00DC49D114D6F892006BDF61 /* variableReturn.md in Resources */,
+				00DC49D314D6F908006BDF61 /* variableApprecRate.md in Resources */,
+				00DC49D514D6FA41006BDF61 /* variableLoanDownPmt.md in Resources */,
+				00DC49D914D6FE39006BDF61 /* fixedInterest.md in Resources */,
+				00DC49DB14D6FEFD006BDF61 /* fixedInflation.md in Resources */,
+				00DC49DD14D6FF76006BDF61 /* fixedAmount.md in Resources */,
+				00DC49DF14D7007B006BDF61 /* fixedReturn.md in Resources */,
+				00DC49E114D7026B006BDF61 /* fixedApprec.md in Resources */,
+				00DC49E314D70696006BDF61 /* fixedLoanDownPmt.md in Resources */,
+				00DC49E614D71495006BDF61 /* neverEndDate.md in Resources */,
+				00DC49E814D714A2006BDF61 /* relEndDate.md in Resources */,
+				00DC49EA14D71B5D006BDF61 /* neverEndDateContrib.md in Resources */,
+				00DC49EC14D71B6E006BDF61 /* relEndDateContrib.md in Resources */,
+				00DC49EE14D71D08006BDF61 /* neverEndDatePayoff.md in Resources */,
+				00DC49F014D71D57006BDF61 /* relEndDatePayoff.md in Resources */,
+				00DC49F214D71E90006BDF61 /* neverEndDateSell.md in Resources */,
+				00DC49F414D71EA0006BDF61 /* relEndDateSell.md in Resources */,
+				00DC49F614D72188006BDF61 /* fixedDate.md in Resources */,
+				00DC49F814D73EBA006BDF61 /* variableValueStartDate.md in Resources */,
+				00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3038,6 +3235,7 @@
 				00D6846914CE002F00E3AC9F /* HelpPageViewController.m in Sources */,
 				00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */,
 				00899D8414D1DDA100CBFE6F /* HelpPageFormPopulator.m in Sources */,
+				002FAEA514D386E800AE2B41 /* HelpFlipViewInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

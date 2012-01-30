@@ -15,6 +15,19 @@
 
 @synthesize parentViewController;
 
+- (id) initWithHelpInfo:(NSString *)helpInfoFile andParentController:(UIViewController *)theParentController
+{
+	self = [super initWithHelpInfo:helpInfoFile andParentController:theParentController];
+	if(self)
+	{
+		assert(self.sectionHeader != nil);
+		self.sectionHeader.addButtonDelegate = self;
+		assert(theParentController != nil);
+		self.parentViewController = theParentController;
+	}
+	return self;
+}
+
 - (id) init
 {
 	self = [super init];

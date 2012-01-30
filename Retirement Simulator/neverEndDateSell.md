@@ -1,0 +1,1 @@
+Select to own the asset indefinitely after purchasing it.

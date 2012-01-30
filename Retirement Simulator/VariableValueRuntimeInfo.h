@@ -25,8 +25,8 @@
 		NSString *valueVerb;
 		NSString *periodDesc;
 		id<VariableValueListMgr> listMgr;
-		NSString *singleValSubtitleKey;
-		NSString *variableValSubtitleKey;
+		NSString *singleValHelpInfoFile;
+		NSString *variableValHelpInfoFile;
 		NSString *valuePromptKey;
 		NSString *valueTypeTitle;
 		NSString *valueName;
@@ -39,8 +39,8 @@
 @property(nonatomic,retain) NSString *valueVerb;
 @property(nonatomic,retain) NSString *periodDesc;
 @property(nonatomic,retain) id<VariableValueListMgr> listMgr;
-@property(nonatomic,retain) NSString *singleValSubtitleKey;
-@property(nonatomic,retain) NSString *variableValSubtitleKey;
+@property(nonatomic,retain) NSString *singleValHelpInfoFile;
+@property(nonatomic,retain) NSString *variableValHelpInfoFile;
 @property(nonatomic,retain) NSString *inlineValueTitleKey;
 @property(nonatomic,retain) NSString *valuePromptKey;
 @property(nonatomic,retain) NSString *valueTypeTitle;
@@ -55,8 +55,8 @@
 			andValueVerb:(NSString*)verb
 		   andPeriodDesc:(NSString*)thePeriodDesc 
 			  andListMgr:(id<VariableValueListMgr>)theListMgr
-		andSingleValueSubtitleKey:(NSString*)theSingleValSubtitleKey 
-		andVariableValueSubtitleKey:(NSString*)theVarValSubtitleKey
+		andSingleValHelpInfoFile:(NSString*)theSingleValHelpInfoFile 
+		andVariableValHelpInfoFile:(NSString*)theHelpInfoFile
 	   andValuePromptKey:(NSString*)theValPromptKey
 	   andValueTypeTitle:(NSString*)theValueTypeTitle
 	   andValueName:(NSString*)theValueName

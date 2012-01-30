@@ -9,6 +9,7 @@
 #import "SectionHeaderWithSubtitle.h"
 #import "AlertViewHelper.h"
 #import "HelpInfoViewFlipViewController.h"
+#import "HelpFlipViewInfo.h"
 #import "StringValidation.h"
 
 #define CUSTOM_SECTION_VIEW_LEFT_LABEL_OFFSET 15.0
@@ -26,7 +27,7 @@
 @implementation SectionHeaderWithSubtitle
 
 @synthesize headerLabel;
-@synthesize subtitle;
+@synthesize helpInfoHTMLFile;
 @synthesize infoButton;
 @synthesize addButton;
 @synthesize addButtonDelegate;
@@ -93,7 +94,7 @@
 
 - (BOOL)showInfoButton
 {
-	return ((self.subtitle!=nil) && ([self.subtitle length] > 0))?TRUE:FALSE;
+	return [StringValidation nonEmptyString:self.helpInfoHTMLFile];
 }
 
 -(CGFloat)rightOffsetForEditMode:(BOOL)editing
@@ -192,36 +193,16 @@
 	// parent controller must be set if the info popup is 
 	// used.
 	assert(self.parentController != nil);
+	assert(self.helpInfoHTMLFile != nil);
+	HelpFlipViewInfo *flipViewInfo = [[[HelpFlipViewInfo alloc] 
+			initWithParentController:self.parentController 
+			andTitle:self.headerLabel.text andHelpPageHTMLFile:self.helpInfoHTMLFile] autorelease];
 	
 	HelpInfoViewFlipViewController *helpInfoViewController = [[[HelpInfoViewFlipViewController alloc] 
-		initWithHelpInfoDoneDelegate:self] autorelease];
+		initWithHelpFlipViewInfo:flipViewInfo] autorelease];
 	[parentController presentModalViewController:helpInfoViewController animated:TRUE];
 }
 
-// The following 3 methods are delegates for the help
-// info popup.
-
--(void)helpInfoViewDone
-{
-	assert(self.parentController != nil);
-    [self.parentController dismissModalViewControllerAnimated:YES];
-
-}
-
--(NSString*)helpInfoHTML
-{
-	assert(self.subtitle != nil);
-	return self.subtitle;
-}
-
--(NSString*)helpTitle
-{
-	// Header label must be set when using the info popup, since
-	// it is used as the title for the popup/flip view.
-	assert([StringValidation nonEmptyString:self.headerLabel.text]);
-
-	return self.headerLabel.text;
-}
 
 -(void)layoutSubviews
 {
@@ -239,9 +220,8 @@
 {
     [super dealloc];
 	[headerLabel release];
-	[subtitle release];
 	[infoButton release];
-	
+	[helpInfoHTMLFile release];
 	[addButton release];
 	[addButtonDelegate release];
 }

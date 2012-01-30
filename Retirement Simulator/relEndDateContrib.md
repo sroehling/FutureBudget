@@ -1,0 +1,1 @@
+Select this date to make contributions for a fixed amount of time after the contributions start.

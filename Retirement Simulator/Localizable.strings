@@ -64,7 +64,6 @@
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE" = "Contribute Forever";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE" = "Contribute through the end of simulation";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE" = "Contribute Forever";
-"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_SUBTITLE" = "Select to continue account contributions through the end of simulation";
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE" = "Start Date";
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER" = "Contribution Start Date";
 "INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_LABEL" = "Limit Withdrawals?";
@@ -73,7 +72,6 @@
 "INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_LIMITED" = "Limited";
 "INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SELECTION_FORM_TITLE" = "Limit Withdrawals";
 "INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_TITLE" = "Eligible Expenses";
-"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_SUBTITLE" = "Select one or more expenses which are eligible for withdrawal from this account. Or, leave all the expenses unselected to allow any expense to be funded using a withdrawal from this account";
 
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT" = "The first contribution to the %@ %@ occurs on this date. Select and/or edit one of dates below to set the contribution start date.";
 
@@ -88,12 +86,10 @@
 
 "SHARED_ROI_VALUE_TITLE" = "Interest/Return Rate";
 "SHARED_ROI_INLINE_VALUE_TITLE" = "return rate";
-"SHARED_ROI_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed return over time.";
 "SHARED_ROI_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
 "SHARED_ROI_VALUE_PROMPT" = "Enter a rate";
 "SHARED_ROI_PERIOD" = "every year";
 "SHARED_ROI_ACTION_VERB" = "grow investment";
-"SHARED_ROI_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Return/interest rates which can change over time.";
 "DEFAULT_ROI_LOW_RISK_LABEL" = "Low Risk Investment";
 "DEFAULT_ROI_MEDIUM_RISK_LABEL" = "Medium Risk Investment";
 "DEFAULT_ROI_AGGRESSIVE_LABEL" = "Aggressive Investment";
@@ -106,33 +102,27 @@
 
 "SHARED_APPREC_RATE_VALUE_TITLE" = "Appreciation Rate";
 "SHARED_APPREC_RATE_INLINE_VALUE_TITLE" = "appreciation rate";
-"SHARED_APPREC_RATE_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed appreciation over time.";
 "SHARED_APPREC_RATE_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
 "SHARED_APPREC_RATE_VALUE_PROMPT" = "Enter a rate";
 "SHARED_APPREC_RATE_PERIOD" = "every year";
 "SHARED_APPREC_RATE_ACTION_VERB" = "appreciate in value";
-"SHARED_APPREC_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Appreciation/depreciation rates which can change over time.";
 
 
 
 "SHARED_INTEREST_RATE_VALUE_TITLE" = "Interest Rate";
 "SHARED_INTEREST_RATE_INLINE_VALUE_TITLE" = "interest rate";
-"SHARED_INTEREST_RATE_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed interest rate over time.";
 "SHARED_INTEREST_RATE_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
 "SHARED_INTEREST_RATE_VALUE_PROMPT" = "Enter a rate";
 "SHARED_INTEREST_RATE_PERIOD" = "every year";
 "SHARED_INTEREST_RATE_ACTION_VERB" = "accrue interest";
-"SHARED_INTEREST_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Interest rates which can change over time.";
 
 
 "SHARED_LOAN_DOWN_PMT_VALUE_TITLE" = "Down Payment";
 "SHARED_LOAN_DOWN_PMT_INLINE_VALUE_TITLE" = "down payment";
-"SHARED_LOAN_DOWN_PMT_SINGLE_VALUE_SECTION_SUBTITLE" = "Fixed down payment.";
 "SHARED_LOAN_DOWN_PMT_TABLE_SUBTITLE_FORMAT" = "Enter a fixed %@ percentage, or select one of the common %@ percentages.";
 "SHARED_LOAN_DOWN_PMT_VALUE_PROMPT" = "Enter a rate";
 "SHARED_LOAN_DOWN_PMT_PERIOD" = "at start of loan";
 "SHARED_LOAN_DOWN_PMT_ACTION_VERB" = "make payment";
-"SHARED_LOAN_DOWN_PMT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE" = "Common down payment percentages which can be selected for different loans and/or scenarios.";
 
 
 
@@ -152,8 +142,6 @@
 "INPUT_CASH_FLOW_AMOUNT_TABLE_HEADER_FORMAT" = "%@ Amount";
 "INPUT_CASH_FLOW_AMOUNT_TABLE_SUBHEADER_FORMAT" = "Enter an %@ amount for %@";
 "INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_TITLE" = "Single Amount";
-"INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_SUBTITLE" = "This amount does not change over time";
-"INPUT_CASH_FLOW_AMOUNT_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT" = "These amounts can change over time.";
 "INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT" = "Enter an Amount";
 "INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT" = "Select a single %@, to be used for every %@ occurrence. Or, select a variable %@, which can change over time.";
 "INPUT_CASH_FLOW_REPEAT_FREQUENCY_PLACEHOLDER" = "Enter a Frequency";
@@ -219,11 +207,9 @@
 "INPUT_ASSET_NEVER_SELL_FIELD_TITLE" = "Never Sell";
 "INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE" = "Own asset through the end of simulation";
 "INPUT_ASSET_NEVER_SELL_SECTION_TITLE" = "Never Sell";
-"INPUT_ASSET_NEVER_SELL_SECTION_SUBTITLE" = "Select to own the asset indefinitely after purchasing it";
 "INPUT_ASSET_SELL_DATE_TABLE_TITLE" = "Asset Sale Date";
 "INPUT_ASSET_SELL_DATE_TABLE_SUBTITLE_FORMAT" = "Enter and/or select a date the asset %@ will be sold.";
 "INPUT_ASSET_SALE_REL_END_DATE_SECTION_TITLE" = "Sell After Purchase Date";
-"INPUT_ASSET_SALE_REL_END_DATE_SECTION_SUBTITLE" = "Sell the asset a given number of years, months, and/or days after its purchase";
 "INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL" = "After Purchase Date";
 
 
@@ -234,9 +220,7 @@
 "INPUT_LOAN_NEVER_PAYOFF_FIELD_TITLE" = "No Early Payoff";
 "INPUT_LOAN_NEVER_PAYOFF_FIELD_SUBTITLE" = "Don't payoff the loan early.";
 "INPUT_LOAN_NEVER_PAYOFF_SECTION_TITLE" = "No Early Payoff";
-"INPUT_LOAN_NEVER_PAYOFF_SECTION_SUBTITLE" = "Select to disable an early (lump sum) payoff of the loan.";
 "INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_TITLE" = "Payoff After Origination Date";
-"INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_SUBTITLE" = "Payoff the loan a given number of years, months and/or days after its origination";
 "INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL" = "After Origination";
 
 
@@ -244,27 +228,21 @@
 "INPUT_TAX_INLINE_INPUT_TYPE" = "tax";
 "INPUT_TAX_ENABLED_FIELD_LABEL" = "Enable Tax?";
 "INPUT_TAX_SOURCES_SECTION_TITLE" = "Tax Sources";
-"INPUT_TAX_SOURCES_SECTION_SUBTITLE" = "Specify where the taxes come from, including incomes, savings interest, asset sales, taxable withdrawals, or investment gains. The total amount from all sources is typically called a gross income.";
 "INPUT_TAX_ADJUSTMENT_SECTION_TITLE" = "Adjustments";
-"INPUT_TAX_ADJUSTMENT_SECTION_SUBTITLE" = "Specify adjustments to the total taxable amount (gross income), including eligible expenses, account contributions, or loan interest. The result after subtracting these adjustement is typically called an adjusted gross income (AGI).";
 "INPUT_TAX_DEDUCTION_SECTION_TITLE" = "Deductions";
-"INPUT_TAX_DEDUCTION_SECTION_SUBTITLE" = "Specify a standard deduction and/or itemized deductions, of which the greater of the two is subtracted from the adjusted gross income. Itemized deductions include eligible expenses, account interest, and loan interest";
 "INPUT_TAX_CREDITS_SECTION_TITLE" = "Tax Credits";
-"INPUT_TAX_CREDITS_SECTION_SUBTITLE" = "Itemize credits to reduce the taxable amount, after adjustements, deductions, and excemptions have already been applied.";
 
 
 "INPUT_TAX_STD_DEDUCTION_TITLE" = "Standard Deduction";
 "INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL" = "Standard Deduction Growth";
 
 "INPUT_TAX_EXEMPTION_SECTION_TITLE" = "Exemptions";
-"INPUT_TAX_EXEMPTION_SECTION_SUBTITLE" = "In addition to specific adjustments, eligible exemptions (such as for children) further reduce the tax liability";
 "INPUT_TAX_EXEMPTION_AMOUNT_TITLE" = "Exemption Amount";
 "INPUT_TAX_EXEMPTION_GROWTH_RATE_LABEL" = "Exemption Growth";
 "INPUT_TAX_ITEMIZED_SOURCES_TITLE" = "Tax Sources";
 "INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE" = "Tax Source";
 "INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT" = "Percentage Taxed";
 "INPUT_TAX_ITEMIZED_SOURCES_SELECTION_TITLE" = "Taxable Incomes";
-"INPUT_TAX_ITEMIZED_SOURCES_SELECTION_SUBTITLE" = "From the list below, select incomes to be taxed.";
 "INPUT_TAX_ITEMIZED_DEDUCTIONS_SELECTION_TITLE" = "Deductions";
 "INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE" = "Itemized Deductions";
 "INPUT_TAX_ITEMIZED_DEDUCTION_ITEM_TITLE" = "Deduction";
@@ -279,13 +257,9 @@
 "INPUT_TAX_ITEMIZED_CREDITS_AMOUNT_PROMPT" = "Percentage Credit";
 
 "INPUT_TAX_ITEMIZED_SOURCE_TITLE_FORMAT" = "Taxable %@";
-"INPUT_TAX_ITEMIZED_SOURCE_SUBTITLE_FORMAT" = "From the list below, select the %@ to be taxed.";
 "INPUT_TAX_ITEMIZED_ADJUSTMENT_TITLE_FORMAT" = "%@";
-"INPUT_TAX_ITEMIZED_ADJUSTMENT_SUBTITLE_FORMAT" = "From the list below, select the %@ to treated as adjustments.";
 "INPUT_TAX_ITEMIZED_DEDUCTION_TITLE_FORMAT" = "Deductable %@";
-"INPUT_TAX_ITEMIZED_DEDUCTION_SUBTITLE_FORMAT" = "From the list below, select the %@ to treated as deductions.";
 "INPUT_TAX_ITEMIZED_CREDIT_TITLE_FORMAT" = "%@";
-"INPUT_TAX_ITEMIZED_CREDIT_SUBTITLE_FORMAT" = "From the list below, select the %@ to treated as credits.";
 "INPUT_TAX_ITEMIZED_INCOME_TITLE" = "Incomes";
 "INPUT_TAX_ITEMIZED_INCOME_INLINE" = "incomes";
 "INPUT_TAX_ITEMIZED_EXPENSE_TITLE" = "Expenses";
@@ -317,7 +291,6 @@
 "INPUT_INFLATION_RATE_INLINE_VALUE_TITLE" = "growth rate";
 "INPUT_INFLATION_RATE_ACTION_VERB" = "increase amount";
 "INPUT_INFLATION_RATE_PERIOD" = "every year";
-"INPUT_INFLATION_RATE_SINGLE_VALUE_SECTION_SUBTITLE" = "This growth rate is only for the current simulator input, and does not change over time.";
 "INPUT_INFLATION_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT" = "These growth rates can be shared by multiple inputs and can change over time";
 "INPUT_INFLATION_RATE_VALUE_PROMPT" = "Enter a Rate";
 "INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
@@ -341,9 +314,7 @@
 "VALUE_CHANGE_NEW_VALUE_FORMAT" = "New %@";
 "VARIABLE_VALUE_VIEW_TITLE_FORMAT" = "Variable %@";
 "VARIABLE_VALUE_START_DATE_SECTION_TITLE_FORMAT" = "Starting %@";
-"VARIABLE_VALUE_START_DATE_SECTION_SUBTITLE_FORMAT" = "This %@ is used from the start of the simulation until either the end of your plan or the date upon which a value change occurs.";
 "VARIABLE_VALUE_VALUE_CHANGES_SECTION_TITLE_FORMAT" = "%@ Changes";
-"VARIABLE_VALUE_VALUE_CHANGES_SECTION_SUBTITLE_FORMAT" = "These are changes to the %@, which occur after the starting value.";
 "VARIABLE_VALUE_START_DATE_FIELD_LABEL" = "Starting";
 "VARIABLE_VALUE_START_DATE_PLACEHOLDER" = "Enter a Start Date";
 
@@ -354,9 +325,7 @@
 "VARIABLE_DATE_TABLE_TITLE_FORMAT" = "%@ %@ for %@";
 "VARIABLE_DATE_TABLE_TITLE_FORMAT_NO_NAME" = "%@ %@";
 "VARIABLE_DATE_FIXED_DATE_SECTION_TITLE" = "Fixed Date";
-"VARIABLE_DATE_FIXED_DATE_SUBTITLE" = "This date is for the current input only. If this date is selected, changing this date only impacts results for the current input.";
 "VARIABLE_DATE_MILESTONE_DATE_SECTION_TITLE" = "Milestone Date";
-"VARIABLE_DATE_MILESTONE_DATE_SUBTITLE" = "These dates can be shared by multiple inputs. Changes to a milestone date will impact the results for inputs which have also selected the same milestone date.";
 "MILESTONE_DATE_FORM_TITLE" = "Milestone Date";
 "MILESTONE_DATE_NAME_TEXT_FIELD_LABEL" = "Name";
 "MILESTONE_DATE_DATE_FIELD_LABEL" = "Date";
@@ -364,7 +333,6 @@
 "VARIABLE_DATE_MILESTONE_NAME_PLACEHOLDER" = "Enter a Milestone Name";
 "VARIABLE_DATE_MILESTONE_DATE_PLACEHOLDER" = "Enter a Milestone Date";
 "SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE" = "Continue Indefinitely";
-"SIM_DATE_NEVER_ENDING_DATE_SECTION_SUBTITLE" = "Select this date for the event to re-occur until the end of the simulation";
 "SIM_DATE_NEVER_ENDING_DATE_LABEL" = "Never Ending";
 "SIM_DATE_NEVER_ENDING_DATE_INLINE_LABEL" = "never ending";
 "SIM_DATE_NEVER_ENDING_DATE_SUBTITLE" = "Repeat through the end of simulation";
@@ -428,7 +396,6 @@
 "WHAT_IF_TAXES_SUBTITLE" = "Change the tax deductability of expenses, contributions, or withdrawals.";
 "WHAT_IF_TAXES_FORM_TITLE" = "Taxes";
 "WHAT_IF_SCENARIO_SECTION_TITLE" = "Manage Scenarios";
-"WHAT_IF_SCENARIO_SECTION_SUBTITLE" = "Changes to inputs are saved under the current scenario, so the 'what if' impact of these changes can be seen in the results.";
 "WHAT_IF_SCENARIO_SUBTITLE" = "Create a new scenario, or change the current scenario.";
 "WHAT_IF_SCENARIO_FORM_TITLE" = "Current Scenario";
 
@@ -464,7 +431,6 @@
 "SCENARIO_DEFAULT_SCENARIO_NAME" = "Default";
 "SCENARIO_LIST_DEFAULT_SCENARIO_CAPTION" = "Default Scenario";
 "SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_TITLE" = "Alternate Scenarios";
-"SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_SUBTITLE" = "Alternate scenarios are for variations from the default scenario. If an alternate scenario is selected, any changes to inputs will override the values for the default scenario, and the results will include these changes.";
 "SCENARIO_DETAIL_VIEW_TITLE" = "Scenario";
 "SCENARIO_NAME_FIELD_LABEL" = "Name";
 "SCENARIO_NAME_PLACEHOLDER" = "Enter a Name";
@@ -476,7 +442,6 @@
 "STARTUP_VALS_START_DATE_LABEL" = "Start Date";
 "STARTUP_VALS_START_DATE_PLACEHOLDER" = "Enter a date";
 "STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Time Frame";
-"STARTUP_VALUES_START_DATE_SECTION_SUBTITLE" = "These are dates the simulation will start and stop. Update this start date in conjunction with changes to the current balances.";
 "STARTUP_VALUES_CURRENT_ASSET_VALUES" = "Current Asset Values";
 "STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE" = "Outstanding Loan Balances";
 
@@ -486,13 +451,13 @@
 
 
 "STARTUP_VALUES_DEFICITS_SECTION_TITLE" = "Deficits";
-"STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE" = "If expenses are greater than income and account balances are zero, a deficit will be calculated with an interest on the balance";
+"STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE" = "";
 "STARTUP_VALUE_DEFICIT_LABEL" = "Interest on Deficit";
 "STARTUP_VALUE_DEFICIT_PLACEHOLDER" = "Enter a Rate";
 "STARTUP_VALUE_ADJUST_FOR_INFLATION_FIELD_LABEL" = "Adjust Results?";
 "STARTUP_VALUE_ADJUST_FOR_INFLATION_SUBTITLE" = "Based upon default inflation, adjust results to start date.";
 "STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_TITLE" = "Inflation Adjustment";
-"STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_SUBTITLE" = "Based upon the default inflation rate, results can also be adjusted back to the simulation start date or displayed as unadjusted future/inflated values. The default inflation rate is also used for new inputs.";
+"STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_SUBTITLE" = "";
 
 "RELATIVE_END_DATE_FIELD_LABEL" = "After Start Date";
 "RELATIVE_END_DATE_SIM_DATE_FIELD_TITLE_FORMAT" = "After %@";

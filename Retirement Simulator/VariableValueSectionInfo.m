@@ -21,19 +21,35 @@
 #import "LocalizationHelper.h"
 #import "NameFieldEditInfo.h"
 #import "ManagedObjectFieldInfo.h"
+#import "VariableValueRuntimeInfo.h"
+#import "SectionHeaderWithSubtitle.h"
 
 
 @implementation VariableValueSectionInfo
 
 @synthesize varValRuntimeInfo;
 
-- (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo;
+- (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
+	andParentViewController:(UIViewController*)theParentController
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theVarValRuntimeInfo != nil);
 		self.varValRuntimeInfo = theVarValRuntimeInfo;
+		
+		assert(theVarValRuntimeInfo.variableValHelpInfoFile != nil);
+		self.helpInfoHTMLFile = theVarValRuntimeInfo.variableValHelpInfoFile;
+		
+		
+		assert(theParentController != nil);
+		self.parentViewController = theParentController;
+		self.sectionHeader.parentController = theParentController;
+		
+		self.title =  [[[NSString alloc] initWithFormat:
+			LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
+			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
+
 	}
 	return self;
 }

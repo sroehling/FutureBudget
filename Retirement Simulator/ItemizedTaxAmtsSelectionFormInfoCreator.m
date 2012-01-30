@@ -95,12 +95,10 @@
 		if(([fieldPopulator.itemizedIncomes count] > 0) ||
 			([incomesNotItemized count] > 0))
 		{
-			SectionInfo *sectionInfo = [formPopulator nextSection];
-			sectionInfo.title = [NSString stringWithFormat:
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
 				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_INCOME_TITLE")];
-			sectionInfo.subTitle = [NSString stringWithFormat:self.itemizedTaxAmtsInfo.itemSectionSubtitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_INCOME_INLINE")];
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_INCOME_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
 
 			for(IncomeItemizedTaxAmt *itemizedIncome in fieldPopulator.itemizedIncomes )
 			{
@@ -134,12 +132,10 @@
 		if(([fieldPopulator.itemizedExpenses count] > 0) ||
 			([expensesNotItemized count] > 0))
 		{
-			SectionInfo *sectionInfo = [formPopulator nextSection];
-			sectionInfo.title = [NSString stringWithFormat:
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
 				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_EXPENSE_TITLE")];
-			sectionInfo.subTitle = [NSString stringWithFormat:self.itemizedTaxAmtsInfo.itemSectionSubtitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_EXPENSE_INLINE")];
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_EXPENSE_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
 
 			for(ExpenseItemizedTaxAmt *itemizedExpense in fieldPopulator.itemizedExpenses )
 			{
@@ -172,12 +168,10 @@
 		if(([fieldPopulator.itemizedAccountInterest count] > 0) ||
 			([acctInterestNotItemized count] > 0))
 		{
-			SectionInfo *sectionInfo = [formPopulator nextSection];
-			sectionInfo.title = [NSString stringWithFormat:
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
 				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_INTEREST_TITLE")];
-			sectionInfo.subTitle = [NSString stringWithFormat:self.itemizedTaxAmtsInfo.itemSectionSubtitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_INTEREST_INLINE")];
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_INTEREST_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
 
 			for(AccountInterestItemizedTaxAmt *itemizedAcctInterest in fieldPopulator.itemizedAccountInterest )
 			{
@@ -211,12 +205,10 @@
 		if(([fieldPopulator.itemizedAccountContribs count] > 0) ||
 			([acctContribNotItemized count] > 0))
 		{
-			SectionInfo *sectionInfo = [formPopulator nextSection];
-			sectionInfo.title = [NSString stringWithFormat:
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
 				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_CONTRIB_TITLE")];
-			sectionInfo.subTitle = [NSString stringWithFormat:self.itemizedTaxAmtsInfo.itemSectionSubtitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_CONTRIB_INLINE")];
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_CONTRIB_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
 
 			for(AccountContribItemizedTaxAmt *itemizedAcctContrib in fieldPopulator.itemizedAccountContribs )
 			{
@@ -251,12 +243,10 @@
 		if(([fieldPopulator.itemizedAccountWithdrawals count] > 0) ||
 			([acctWithdrawalNotItemized count] > 0))
 		{
-			SectionInfo *sectionInfo = [formPopulator nextSection];
-			sectionInfo.title = [NSString stringWithFormat:
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
 				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_WITHDRAWAL_TITLE")];
-			sectionInfo.subTitle = [NSString stringWithFormat:self.itemizedTaxAmtsInfo.itemSectionSubtitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_WITHDRAWAL_INLINE")];
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_WITHDRAWAL_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
 
 			for(AccountWithdrawalItemizedTaxAmt *itemizedAcctWithdrawal in 
 						fieldPopulator.itemizedAccountWithdrawals )
@@ -293,12 +283,10 @@
 		if(([fieldPopulator.itemizedAssets count] > 0) ||
 			([assetNotItemized count] > 0))
 		{
-			SectionInfo *sectionInfo = [formPopulator nextSection];
-			sectionInfo.title = [NSString stringWithFormat:
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
 				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ASSET_GAIN_TITLE")];
-			sectionInfo.subTitle = [NSString stringWithFormat:self.itemizedTaxAmtsInfo.itemSectionSubtitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ASSET_GAIN_INLINE")];
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ASSET_GAIN_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
 
 			for(AssetGainItemizedTaxAmt *itemizedAssetGain in fieldPopulator.itemizedAssets )
 			{
@@ -332,12 +320,10 @@
 		if(([fieldPopulator.itemizedLoans count] > 0) ||
 			([loansNotItemized count] > 0))
 		{
-			SectionInfo *sectionInfo = [formPopulator nextSection];
-			sectionInfo.title = [NSString stringWithFormat:
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
 				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_LOAN_INTEREST_TITLE")];
-			sectionInfo.subTitle = [NSString stringWithFormat:self.itemizedTaxAmtsInfo.itemSectionSubtitleFormat,
-				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_LOAN_INTEREST_INLINE")];
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_LOAN_INTEREST_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
 
 			for(LoanInterestItemizedTaxAmt *itemizedLoan in fieldPopulator.itemizedLoans )
 			{

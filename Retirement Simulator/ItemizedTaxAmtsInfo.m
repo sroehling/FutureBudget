@@ -17,7 +17,7 @@
 @synthesize amtPrompt;
 @synthesize itemTitle;
 @synthesize itemSectionTitleFormat;
-@synthesize itemSectionSubtitleFormat;
+@synthesize itemHelpInfoFile;
 
 
 @synthesize itemizeIncomes;
@@ -33,7 +33,7 @@
 	andTitle:(NSString*)theTitle andAmtPrompt:(NSString *)theAmtPrompt
 	andItemTitle:(NSString*)theItemTitle
 	andItemSectionTitleFormat:(NSString*)theItemSectionTitleFormat
-	andItemSectionSubtitleFormat:(NSString*)theItemSectionSubtitleFormat
+	andItemHelpInfoFile:(NSString*)theItemHelpFile
 	andItemizeIncomes:(BOOL)doItemizeIncomes
 	andItemizeExpenses:(BOOL)doItemizeExpenses
 	andItemizeAccountContribs:(BOOL)doItemizeAcctContribs
@@ -55,9 +55,10 @@
 		self.itemTitle = theItemTitle;
 		
 		assert([StringValidation nonEmptyString:theItemSectionTitleFormat]);
-		assert([StringValidation nonEmptyString:theItemSectionSubtitleFormat]);
 		self.itemSectionTitleFormat = theItemSectionTitleFormat;
-		self.itemSectionSubtitleFormat = theItemSectionSubtitleFormat;
+		
+		assert([StringValidation nonEmptyString:theItemHelpFile]);
+		self.itemHelpInfoFile = theItemHelpFile;
 		
 		self.itemizeIncomes = doItemizeIncomes;
 		self.itemizeExpenses = doItemizeExpenses;
@@ -81,7 +82,7 @@
 {
 	[super dealloc];
 	[title release];
-	[itemSectionSubtitleFormat release];
+	[itemHelpInfoFile release];
 	[itemSectionTitleFormat release];
 	[itemizedTaxAmts release];
 	[amtPrompt release];

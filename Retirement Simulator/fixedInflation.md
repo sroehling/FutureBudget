@@ -1,0 +1,1 @@
+This growth rate is only for the current simulator input, and does not change over time.

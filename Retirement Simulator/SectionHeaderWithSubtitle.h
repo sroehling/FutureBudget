@@ -10,10 +10,10 @@
 #import "SectionHeaderAddButtonDelegate.h"
 #import "HelpInfoView.h"
 
-@interface SectionHeaderWithSubtitle : UIView <HelpInfoViewDelegate> {
+@interface SectionHeaderWithSubtitle : UIView {
     @private
 		UILabel *headerLabel;
-		NSString *subtitle;
+		NSString *helpInfoHTMLFile;
 		CGFloat subtitleHeight;
 		UIButton *infoButton;
 		
@@ -23,7 +23,7 @@
 }
 
 @property(nonatomic,retain) UILabel *headerLabel;
-@property(nonatomic,retain) NSString *subtitle;
+@property(nonatomic,retain) NSString *helpInfoHTMLFile;
 @property(nonatomic,retain) UIButton *infoButton;
 @property(nonatomic,retain) UIButton *addButton;
 @property(nonatomic,retain) id<SectionHeaderAddButtonDelegate> addButtonDelegate;

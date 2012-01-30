@@ -1,0 +1,1 @@
+Select to disable an early (lump sum) payoff of the loan.

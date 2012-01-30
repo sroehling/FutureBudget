@@ -1,0 +1,1 @@
+Common down payment percentages which can be selected for different loans and/or scenarios.

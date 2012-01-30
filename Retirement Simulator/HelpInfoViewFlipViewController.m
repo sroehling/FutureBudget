@@ -8,21 +8,22 @@
 
 #import "HelpInfoViewFlipViewController.h"
 #import "HelpInfoView.h"
+#import "HelpFlipViewInfo.h"
 
 @protocol HelpInfoViewControllerDelegate;
 
 @implementation HelpInfoViewFlipViewController
 
 @synthesize helpInfoView;
-@synthesize helpDoneDelegate;
+@synthesize helpFlipViewInfo;
 
-- (id)initWithHelpInfoDoneDelegate:(id<HelpInfoViewDelegate>)helpInfoDoneDel
+- (id)initWithHelpFlipViewInfo:(HelpFlipViewInfo*)theHelpFlipViewInfo
 {
 	self = [super init];
 	if(self)
 	{
-		assert(helpInfoDoneDel != nil);
-		self.helpDoneDelegate = helpInfoDoneDel;
+		assert(theHelpFlipViewInfo != nil);
+		self.helpFlipViewInfo = theHelpFlipViewInfo;
 		self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	}
 	return self;
@@ -37,6 +38,8 @@
 - (void)dealloc
 {
     [super dealloc];
+	[helpFlipViewInfo release];
+	[helpInfoView release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +57,7 @@
     [super viewDidLoad];
 	
 	self.helpInfoView = [[[HelpInfoView alloc] initWithFrame:CGRectZero] autorelease];
-	self.helpInfoView.helpInfoViewDelegate = self.helpDoneDelegate;
+	self.helpInfoView.helpFlipViewInfo = self.helpFlipViewInfo;
 	self.view = self.helpInfoView;
 }
 

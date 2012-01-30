@@ -25,8 +25,9 @@
 @synthesize varDateRuntimeInfo;
 
 -(id) initWithRuntimeInfo:(SimDateRuntimeInfo*)theRuntimeInfo
+	andParentController:(UIViewController*)parentController
 {
-	self = [super init];
+	self = [super initWithParentController:parentController];
 	if(self)
 	{
 		self.varDateRuntimeInfo = theRuntimeInfo;

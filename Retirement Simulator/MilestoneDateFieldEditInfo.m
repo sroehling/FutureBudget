@@ -23,6 +23,7 @@
 @synthesize milestoneDate;
 @synthesize milestoneCell;
 @synthesize varDateRuntimeInfo;
+@synthesize parentController;
 
 - (void) configureCell
 {
@@ -30,14 +31,9 @@
     self.milestoneCell.valueDescription.text = [self detailTextLabel];
 }
 
-+ (MilestoneDateFieldEditInfo*)createForMilestoneDate:(MilestoneDate *)theMilestoneDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
-{
-    MilestoneDateFieldEditInfo *fieldEditInfo = [[[MilestoneDateFieldEditInfo alloc]initWithMilestoneDate:theMilestoneDate andVarDateRuntimeInfo:theVarDateRuntimeInfo]autorelease];
-    return fieldEditInfo;
-}
-
 - (id)initWithMilestoneDate:(MilestoneDate*)theMilestoneDate 
 	  andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
+	  andParentController:(UIViewController *)theParentController
 {
     assert(theMilestoneDate != nil);
     self = [super init];
@@ -46,6 +42,9 @@
         self.milestoneDate = theMilestoneDate;
 		
 		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
+		
+		assert(theParentController != nil);
+		self.parentController = theParentController;
 		
 		self.milestoneCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 		[self configureCell];
@@ -75,7 +74,8 @@
 - (UIViewController*)fieldEditController
 {
     MilestoneDateFormPopulator *formPopulator = [[[MilestoneDateFormPopulator alloc] 
-				initWithRuntimeInfo:self.varDateRuntimeInfo] autorelease];
+				initWithRuntimeInfo:self.varDateRuntimeInfo
+				andParentController:self.parentController] autorelease];
     return [formPopulator milestoneDateEditViewController:self.milestoneDate];
 }
 

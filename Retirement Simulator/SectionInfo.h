@@ -15,12 +15,12 @@
 @private
     NSMutableArray *fieldEditInfo;
     NSString *title;
-	NSString *subTitle;
+	NSString *helpInfoHTMLFile;
 	SectionHeaderWithSubtitle *sectionHeader;
 }
 
 @property(nonatomic,retain) NSString *title;
-@property(nonatomic,retain) NSString *subTitle;
+@property(nonatomic,retain) NSString *helpInfoHTMLFile;
 @property(nonatomic,retain) SectionHeaderWithSubtitle *sectionHeader;
 
 - (void) addFieldEditInfo:(id<FieldEditInfo>)fieldEditInfo;
@@ -35,5 +35,7 @@
 
 - (UIView*)viewForSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing;
 - (CGFloat)viewHeightForSection;
+
+- (id) initWithHelpInfo:(NSString*)helpInfoFile andParentController:(UIViewController*)theParentController;
     
 @end

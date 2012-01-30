@@ -8,25 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol HelpInfoViewDelegate;
+@class HelpFlipViewInfo;
 
 @interface HelpInfoView : UIView {
 	@private
 		UIWebView *helpInfo;
 		UINavigationBar *navBar;
 		UILabel *navBarTitle;
-		id<HelpInfoViewDelegate> helpInfoViewDelegate;   
+		HelpFlipViewInfo *helpFlipViewInfo;
+		
 }
 
 @property(nonatomic,retain) UIWebView *helpInfo;
 @property(nonatomic,retain) UINavigationBar *navBar;
-@property(nonatomic,assign) id<HelpInfoViewDelegate> helpInfoViewDelegate;
+@property(nonatomic,retain) HelpFlipViewInfo *helpFlipViewInfo;
 @property(nonatomic,retain)  UILabel *navBarTitle;
 
-@end
-
-@protocol HelpInfoViewDelegate
--(void)helpInfoViewDone;
--(NSString*)helpInfoHTML;
--(NSString*)helpTitle;
 @end
