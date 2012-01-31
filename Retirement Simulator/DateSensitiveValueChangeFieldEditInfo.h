@@ -20,15 +20,18 @@
 		VariableValueRuntimeInfo *varValInfo;
 		ValueSubtitleTableCell *valChangeCell;
 		VariableValue *variableVal;
+		UIViewController *parentController;
 }
 
 @property(nonatomic,retain) DateSensitiveValueChange *valChange;
 @property(nonatomic,retain) VariableValueRuntimeInfo *varValInfo;
 @property(nonatomic,retain) ValueSubtitleTableCell *valChangeCell;
 @property(nonatomic,retain) VariableValue *variableVal;
+@property(nonatomic,assign) UIViewController *parentController;
 
 - (id) initWithValueChange:(DateSensitiveValueChange*)valueChange 
 	andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
-	andVariableValue:(VariableValue*)theVariableVal;
+	andVariableValue:(VariableValue*)theVariableVal 
+	andParentController:(UIViewController*)theController;
 
 @end

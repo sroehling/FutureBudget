@@ -9,6 +9,10 @@
 #import "DateSensitiveValueChange.h"
 #import "SimDate.h"
 
+NSString * const DATE_SENSITIVE_VALUE_CHANGE_START_DATE_SORT_KEY = @"resolvedStartDate";
+NSString * const DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME = @"DateSensitiveValueChange";
+NSString * const DATE_SENSITIVE_VALUE_CHANGE_START_DATE_KEY = @"startDate";
+NSString * const DATE_SENSITIVE_VALUE_CHANGE_NEW_VALUE_KEY = @"newValue";
 
 @implementation DateSensitiveValueChange
 @dynamic startDate;
@@ -29,6 +33,4 @@
 
 @end
 
-NSString * const DATE_SENSITIVE_VALUE_CHANGE_START_DATE_SORT_KEY = @"resolvedStartDate";
-NSString * const DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME = @"DateSensitiveValueChange";
 

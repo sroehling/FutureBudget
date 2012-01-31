@@ -23,6 +23,7 @@
 @synthesize valChange;
 @synthesize valChangeCell;
 @synthesize variableVal;
+@synthesize parentController;
 
 - (void) configureCell
 {
@@ -34,7 +35,7 @@
 
 - (id) initWithValueChange:(DateSensitiveValueChange*)valueChange 
 andVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)varValueInfo
-andVariableValue:(VariableValue*)theVariableVal
+andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewController*)theController
 {
 		self = [super init];
 		if(self)
@@ -46,6 +47,9 @@ andVariableValue:(VariableValue*)theVariableVal
 			self.valChange = valueChange;
 			
 			self.variableVal = theVariableVal;
+			
+			assert(theController != nil);
+			self.parentController = theController;
 			
 			self.valChangeCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 			[self configureCell];
@@ -87,7 +91,7 @@ andVariableValue:(VariableValue*)theVariableVal
 - (UIViewController*)fieldEditController
 {
 	DateSensitiveValueChangeFormPopulator *dsvFormPop = 
-		[[[DateSensitiveValueChangeFormPopulator alloc]init ] autorelease];
+		[[[DateSensitiveValueChangeFormPopulator alloc]initWithParentController:self.parentController ] autorelease];
 	return [dsvFormPop editViewControllerForValueChange:self.valChange
 		andVariableValRuntimeInfo:self.varValInfo andParentVariableValue:self.variableVal];
  }

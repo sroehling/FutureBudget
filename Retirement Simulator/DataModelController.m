@@ -139,6 +139,18 @@
     }
 }
 
+- (void)saveContextAndIgnoreErrors
+{
+    NSError *error = nil;
+    if (self.managedObjectContext!= nil)
+    {
+        if ([self.managedObjectContext hasChanges])
+		{
+			[self.managedObjectContext save:&error];
+		}
+    }
+}
+
 
 
 

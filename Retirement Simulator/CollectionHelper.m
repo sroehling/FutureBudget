@@ -19,6 +19,7 @@
     NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:theKey ascending:YES] autorelease];
     NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects:sortDescriptor, nil] autorelease];   
     
+
     return [theSet sortedArrayUsingDescriptors:sortDescriptors];
 }
 

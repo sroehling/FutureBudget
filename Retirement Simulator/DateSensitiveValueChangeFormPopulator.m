@@ -42,12 +42,15 @@
 	SimDateRuntimeInfo *varDateInfo = [SimDateRuntimeInfo createForDateSensitiveValue:valRuntimeInfo andVariableValue:varValue];
 	
 	SimDateFieldEditInfo *simDateFieldEditInfo = [SimDateFieldEditInfo createForObject:dsValueChange 
-		andKey:@"startDate" andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
+		andKey:DATE_SENSITIVE_VALUE_CHANGE_START_DATE_KEY
+		andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
 		andDefaultFixedDate:dsValueChange.defaultFixedStartDate 
 			andVarDateRuntimeInfo:varDateInfo andShowEndDates:FALSE
 		andDefaultRelEndDateKey:nil];
 		
 	[sectionInfo addFieldEditInfo:simDateFieldEditInfo];
+	
+	
 
 	NSString *newValueLabel = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_NEW_VALUE_FORMAT"),
 							   LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];
@@ -56,7 +59,7 @@
 		       LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];
 		
 	[sectionInfo addFieldEditInfo:[NumberFieldEditInfo 
-			createForObject:dsValueChange andKey:@"newValue" andLabel:newValueLabel
+			createForObject:dsValueChange andKey:DATE_SENSITIVE_VALUE_CHANGE_NEW_VALUE_KEY andLabel:newValueLabel
 			andPlaceholder:newValuePlaceholder 
 			andNumberFormatter:valRuntimeInfo.valueFormatter andValidator:valRuntimeInfo.valueValidator]];
 	

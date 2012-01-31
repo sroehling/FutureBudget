@@ -22,6 +22,8 @@
 @property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
+- (void)saveContextAndIgnoreErrors;
+
 - (NSSet *)fetchObjectsForEntityName:(NSString *)entityName;
 - (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName 
                                       sortKey:(NSString*)theSortKey;

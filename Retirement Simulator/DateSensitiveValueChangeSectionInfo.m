@@ -61,6 +61,7 @@
     
 	DateSensitiveValueChange *valueChange = (DateSensitiveValueChange*)
 		[[DataModelController theDataModelController]insertObject:DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME];
+
 	FixedDate *fixedStartDate = (FixedDate*)[[
 		DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
     fixedStartDate.date = [NSDate date];

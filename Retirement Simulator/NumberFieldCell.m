@@ -22,6 +22,7 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 @synthesize fieldInfo;
 @synthesize validator;
 @synthesize numFormatter;
+@synthesize disabled;
 
 - (id) initWithFrame:(CGRect)frame
 {
@@ -78,24 +79,27 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 
 - (void)textFieldDidEndEditing:(UITextField *)theTextField
 {
-    assert(self.fieldInfo != nil);
-    // Done with editing - commit the value if it's changed
-	
-    
-    NSNumber *theValue = [[NumberHelper theHelper].decimalFormatter 
-                          numberFromString:theTextField.text];
-    if(theValue != nil)
-    {
-        [self.fieldInfo setFieldValue:theValue];       
-    }
-    
-    // Restore the text in the field to the format as specified
-    // by the FieldEditInfo
-    self.textField.text = [self formattedNumber];
-    
-    // Done with editing - commit the value if it's changed
-    
-    [theTextField resignFirstResponder];
+	if(!self.disabled)
+	{
+		assert(self.fieldInfo != nil);
+		// Done with editing - commit the value if it's changed
+		
+		
+		NSNumber *theValue = [[NumberHelper theHelper].decimalFormatter 
+							  numberFromString:theTextField.text];
+		if(theValue != nil)
+		{
+			[self.fieldInfo setFieldValue:theValue];       
+		}
+		
+		// Restore the text in the field to the format as specified
+		// by the FieldEditInfo
+		self.textField.text = [self formattedNumber];
+		
+		// Done with editing - commit the value if it's changed
+		
+		[theTextField resignFirstResponder];
+	}
 
 }
 
@@ -110,11 +114,19 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 	[editableNumberFormatter setMaximumFractionDigits:3];
 	[editableNumberFormatter setGroupingSeparator:@""];
 	
-    // For editing purposes, update the cell to have a plain decimal number
-    NSNumber *value = (NSNumber*)[self.fieldInfo getFieldValue];
-	NSString *formattedValue =  [editableNumberFormatter stringFromNumber:value];
-	assert(formattedValue != nil);
-    self.textField.text = formattedValue;
+	
+	if([self.fieldInfo fieldIsInitializedInParentObject])
+	{
+		NSNumber *value = (NSNumber*)[self.fieldInfo getFieldValue];
+		NSString *formattedValue =  [editableNumberFormatter stringFromNumber:value];
+		assert(formattedValue != nil);
+		// For editing purposes, update the cell to have a plain decimal number
+		self.textField.text = formattedValue;
+	}
+	else
+	{
+		self.textField.text = @"";
+	}
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -126,6 +138,10 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)theTextField
 {
+	if(self.disabled)
+	{
+		return TRUE;
+	}
 	if(theTextField == self.textField)
 	{
 		if([self.textField.text length] == 0 )

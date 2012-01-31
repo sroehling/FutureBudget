@@ -82,13 +82,18 @@
 }
 
 
-- (void)save {    
-    [self stopObservingObjectChangeNotifications];
-	if(self.finshedAddingListener != nil)
+- (void)save {
+    if([self.formInfo allFieldsInitialized])
 	{
-		[self.finshedAddingListener objectFinshedBeingAdded:self.newObject];
+		[self.formInfo disableFieldChanges];
+		[self stopObservingObjectChangeNotifications];
+		if(self.finshedAddingListener != nil)
+		{
+			[self.finshedAddingListener objectFinshedBeingAdded:self.newObject];
+		}
+		[TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
 	}
-    [TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
+
 }
 
 

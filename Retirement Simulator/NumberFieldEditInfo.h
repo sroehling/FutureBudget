@@ -20,6 +20,7 @@
     NSNumberFormatter *numberFormatter;
 	NSManagedObject *objectForDelete;
 	NumberFieldValidator *validator;
+	NumberFieldCell *numberCell;
 
 }
 
@@ -35,6 +36,7 @@
 	  
 @property(nonatomic,retain) NSManagedObject *objectForDelete;
 @property (nonatomic, retain) NSNumberFormatter *numberFormatter;
-@property(nonatomic,retain)NumberFieldValidator *validator;
+@property(nonatomic,retain) NumberFieldValidator *validator;
+@property(nonatomic,retain)	NumberFieldCell *numberCell;
 
 @end

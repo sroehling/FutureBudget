@@ -20,6 +20,7 @@ extern NSString * const NUMBER_FIELD_CELL_ENTITY_NAME;
 	FieldInfo *fieldInfo;
 	NumberFieldValidator *validator;
 	NSNumberFormatter *numFormatter;
+	BOOL disabled;
 
 }
 
@@ -28,5 +29,6 @@ extern NSString * const NUMBER_FIELD_CELL_ENTITY_NAME;
 @property (nonatomic,retain) FieldInfo *fieldInfo;
 @property (nonatomic,retain) NumberFieldValidator *validator;
 @property (nonatomic,retain) NSNumberFormatter *numFormatter;
+@property BOOL disabled;
 
 @end

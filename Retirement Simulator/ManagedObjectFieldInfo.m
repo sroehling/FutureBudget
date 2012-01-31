@@ -72,7 +72,10 @@
     if(fieldAccessEnabled)
     {
         [self.managedObject setValue:newValue forKey:self.fieldKey];
-        [[DataModelController theDataModelController] saveContext];
+		
+		// Do a "soft save" which ignores any errors, because other fields may not be
+		// fully initialized yet.
+        [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
     }
 }
 

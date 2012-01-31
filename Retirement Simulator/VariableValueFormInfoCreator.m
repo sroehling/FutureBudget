@@ -99,7 +99,7 @@
 	
 	
 	NSArray *valueChanges = [CollectionHelper setToSortedArray:
-						  self.variableValue.valueChanges withKey:@"startDate"];
+						  self.variableValue.valueChanges withKey:DATE_SENSITIVE_VALUE_CHANGE_START_DATE_KEY];
 	DateSensitiveValueChangeSectionInfo *vcSectionInfo = 
 		[[[DateSensitiveValueChangeSectionInfo alloc] 
 		  initWithVariableValRuntimeInfo:self.varValRuntimeInfo 
@@ -112,7 +112,7 @@
 		DateSensitiveValueChangeFieldEditInfo *fieldInfo = 
 			[[[DateSensitiveValueChangeFieldEditInfo alloc]
 			  initWithValueChange:valueChange andVariableValueRuntimeInfo:self.varValRuntimeInfo
-			  andVariableValue:self.variableValue ] autorelease];
+			  andVariableValue:self.variableValue andParentController:parentController] autorelease];
         [vcSectionInfo addFieldEditInfo:fieldInfo];
     }
     return formPopulator.formInfo;

@@ -21,6 +21,12 @@ NSString * const SIM_DATE_DATE_KEY = @"date";
 @dynamic dateSensitiveValueChangeStartDate;
 @dynamic sharedAppValsSimEndDate;
 
+- (NSComparisonResult)compare:(SimDate *)otherObject {
+	assert(self.date != nil);
+	assert(otherObject.date != nil);
+    return [self.date compare:otherObject.date];
+}
+
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat
 {
 	assert(0); // must be overridden
@@ -36,5 +42,7 @@ NSString * const SIM_DATE_DATE_KEY = @"date";
 {
 	return self.date;
 }
+
+
 
 @end

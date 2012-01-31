@@ -22,6 +22,7 @@
 
 @synthesize numberFormatter;
 @synthesize objectForDelete;
+@synthesize numberCell;
 @synthesize validator;
 
 
@@ -91,6 +92,7 @@
     [numberFormatter release];
 	[objectForDelete release];
 	[validator release];
+	[numberCell release];
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -98,23 +100,36 @@
 	return 30.0;
 }
 
+-(void)disableFieldAccess
+{
+	[super disableFieldAccess];
+	if(self.numberCell != nil)
+	{
+		self.numberCell.disabled = TRUE;
+	}	
+}
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView
 {
     
     assert(tableView!=nil);
     
-    NumberFieldCell *cell = (NumberFieldCell *)[tableView 
-		dequeueReusableCellWithIdentifier:NUMBER_FIELD_CELL_ENTITY_NAME];
-    if (cell == nil) {
-		cell = [[[NumberFieldCell alloc] init] autorelease];
-    }    
+	if(self.numberCell == nil)
+	{
+		NumberFieldCell *cell = (NumberFieldCell *)[tableView 
+			dequeueReusableCellWithIdentifier:NUMBER_FIELD_CELL_ENTITY_NAME];
+		if (cell == nil) {
+			cell = [[[NumberFieldCell alloc] init] autorelease];
+		}
+		self.numberCell = cell;
+	}
 	// TODO - Bundle up fieldInfo, validator and numFormatter
 	// into a NumberFieldInfo class.
-    cell.fieldInfo = self.fieldInfo;
-	cell.validator = self.validator;
-	cell.numFormatter = self.numberFormatter;
-    cell.label.text = [self textLabel];
+    self.numberCell.fieldInfo = self.fieldInfo;
+	self.numberCell.validator = self.validator;
+	self.numberCell.numFormatter = self.numberFormatter;
+    self.numberCell.label.text = [self textLabel];
+	self.numberCell.disabled = FALSE;
     
     // Only try to initialize the text in the field if the field's
     // value has been initialized in the parent object. If it hasn't,
@@ -122,12 +137,12 @@
     // will be shown.
     if([self.fieldInfo fieldIsInitializedInParentObject])
     {
-        cell.textField.text = [self detailTextLabel];
+        self.numberCell.textField.text = [self detailTextLabel];
     }
 
-    cell.textField.placeholder = self.fieldInfo.fieldPlaceholder;
+    self.numberCell.textField.placeholder = self.fieldInfo.fieldPlaceholder;
     
-    return cell;
+    return self.numberCell;
     
 }
 

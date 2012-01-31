@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_START_DATE_SORT_KEY;
+extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME;
+extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_START_DATE_KEY;
+extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_NEW_VALUE_KEY;
+
+
+
 @class SimDate;
 @class FixedDate;
 @class VariableValue;
@@ -32,5 +39,3 @@
 
 @end
 
-extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_START_DATE_SORT_KEY;
-extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME;

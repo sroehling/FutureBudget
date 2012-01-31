@@ -60,9 +60,7 @@
 		assert([StringValidation nonEmptyString:title]);
 		assert([StringValidation nonEmptyString:theSingleValHelpInfoFile]);
 		assert([StringValidation nonEmptyString:theHelpInfoFile]);
-		assert([StringValidation nonEmptyString:theValueName]);
 		assert([StringValidation nonEmptyString:theValPromptKey]);
-		assert([StringValidation nonEmptyString:theValueName]);
 		
 		
 		self.valueFormatter = valFormatter;
