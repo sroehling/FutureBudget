@@ -70,7 +70,8 @@
 	
     [self commidFieldEdit];
 	
-    [[DataModelController theDataModelController] saveContext];
+	// We perform a "soft save" since other fields may not be initialized yet.
+    [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

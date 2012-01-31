@@ -7,7 +7,7 @@
 //
 
 #import "DateSensitiveValueChangeFieldEditInfo.h"
-#import "DateSensitiveValueChangeFormPopulator.h"
+#import "DateSensitiveValueChangeFormInfoCreator.h"
 #import "DateSensitiveValueChange.h"
 #import "VariableValueRuntimeInfo.h"
 #import "DateHelper.h"
@@ -16,6 +16,7 @@
 #import "SimDate.h"
 #import "LocalizationHelper.h"
 #import "DataModelController.h"
+#import "GenericFieldBasedTableEditViewController.h"
 
 @implementation DateSensitiveValueChangeFieldEditInfo
 
@@ -90,10 +91,14 @@ andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewContr
 
 - (UIViewController*)fieldEditController
 {
-	DateSensitiveValueChangeFormPopulator *dsvFormPop = 
-		[[[DateSensitiveValueChangeFormPopulator alloc]initWithParentController:self.parentController ] autorelease];
-	return [dsvFormPop editViewControllerForValueChange:self.valChange
-		andVariableValRuntimeInfo:self.varValInfo andParentVariableValue:self.variableVal];
+	DateSensitiveValueChangeFormInfoCreator *formInfoCreator = [[[DateSensitiveValueChangeFormInfoCreator alloc]
+		initForValueChange:self.valChange andVariableValRuntimeInfo:self.varValInfo
+		 andParentVariableValue:self.variableVal] autorelease];
+
+    UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
+			initWithFormInfoCreator:formInfoCreator] autorelease];
+
+	return controller;
  }
 
 - (BOOL)hasFieldEditController

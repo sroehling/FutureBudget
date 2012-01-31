@@ -9,10 +9,12 @@
 #import "DateSensitiveValueChangeSectionInfo.h"
 #import "DateSensitiveValueChange.h"
 #import "DataModelController.h"
-#import "DateSensitiveValueChangeFormPopulator.h"
 #import "FixedDate.h"
 #import "LocalizationHelper.h"
 #import "VariableValueRuntimeInfo.h"
+#import "DateSensitiveValueChangeFormInfoCreator.h"
+#import "GenericFieldBasedTableAddViewController.h"
+#import "DateSensitiveValueChangeAddedListener.h"
 
 @implementation DateSensitiveValueChangeSectionInfo
 
@@ -66,13 +68,17 @@
 		DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
     fixedStartDate.date = [NSDate date];
     valueChange.defaultFixedStartDate = fixedStartDate;
+	
+	DateSensitiveValueChangeFormInfoCreator *formInfoCreator = 
+		[[[DateSensitiveValueChangeFormInfoCreator alloc] initForValueChange:valueChange 
+		andVariableValRuntimeInfo:variableValRuntimeInfo andParentVariableValue:self.variableVal] autorelease];
 
-	
-    DateSensitiveValueChangeFormPopulator *formPopulator = [[[DateSensitiveValueChangeFormPopulator alloc] 
-		initWithParentController:self.parentViewController] autorelease];
-	
-	
-    UIViewController *controller =  [formPopulator addViewControllerForValueChange:valueChange andVariableValRuntimeInfo:self.variableValRuntimeInfo andParentVariableValue:self.variableVal];
+    GenericFieldBasedTableAddViewController *controller = 
+		[[[GenericFieldBasedTableAddViewController alloc] 
+		initWithFormInfoCreator:formInfoCreator andNewObject:valueChange] autorelease];
+	controller.finshedAddingListener = 
+		[[[DateSensitiveValueChangeAddedListener alloc] initWithVariableValue:self.variableVal] autorelease];
+    controller.popDepth =1;
     
     [self.parentViewController.navigationController pushViewController:controller animated:YES];
 }
