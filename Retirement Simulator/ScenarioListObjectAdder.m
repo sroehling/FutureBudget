@@ -34,5 +34,11 @@
 	
 }
 
+-(BOOL)supportsAddOutsideEditMode
+{
+	return FALSE;
+}
+
+
 
 @end

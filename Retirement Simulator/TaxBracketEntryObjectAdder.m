@@ -49,6 +49,12 @@
     [parentView.navigationController pushViewController:controller animated:YES];
 }
 
+-(BOOL)supportsAddOutsideEditMode
+{
+	return FALSE;
+}
+
+
 -(void)dealloc
 {
 	[super dealloc];

@@ -12,5 +12,6 @@
 @protocol TableViewObjectAdder <NSObject>
 
 -(void)addObjectFromTableView:(UITableViewController*)parentViewController;
+-(BOOL)supportsAddOutsideEditMode;
 
 @end

@@ -19,4 +19,9 @@
 
 }
 
+-(BOOL)supportsAddOutsideEditMode
+{
+	return TRUE;
+}
+
 @end

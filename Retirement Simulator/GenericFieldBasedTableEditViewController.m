@@ -61,6 +61,25 @@
 
 @synthesize addButton;
 
+-(BOOL)showAddButtonOutsideEditMode
+{
+	if((self.formInfo.objectAdder != nil) &&
+		[self.formInfo.objectAdder supportsAddOutsideEditMode])
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+-(BOOL)showAddButtonInEditMode
+{
+	return (self.formInfo.objectAdder != nil)?TRUE:FALSE;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -70,9 +89,10 @@
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd   
                                   target:self   
                                   action:@selector(insertNewObject)] autorelease];
-    self.navigationItem.leftBarButtonItem = nil; 
-   
+								  
+	self.navigationItem.leftBarButtonItem = [self showAddButtonOutsideEditMode]?self.addButton:nil;
 }
+
 
 #pragma mark -
 #pragma mark Table view data source methods
@@ -114,6 +134,7 @@
 
 
 
+
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     
 	if(!editing)
@@ -130,13 +151,17 @@
 			
 			[self.navigationItem setHidesBackButton:editing animated:NO];
 			[[DataModelController theDataModelController] saveContext];
-			self.navigationItem.leftBarButtonItem = nil;
+			
+			if(![self showAddButtonOutsideEditMode])
+			{
+				self.navigationItem.leftBarButtonItem = nil;
+			}
 		}
 	}
 	else
 	{
 		[super setEditing:editing animated:animated];
-		if(self.formInfo.objectAdder != nil)
+		if([self showAddButtonInEditMode])
 		{
 			self.navigationItem.leftBarButtonItem = self.addButton; 			
 		}
