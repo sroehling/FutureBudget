@@ -14,10 +14,8 @@
 
 @synthesize parentController;
 @synthesize helpPageHTMLFile;
-@synthesize title;
 
 -(id)initWithParentController:(UIViewController*)theParentController
-	andTitle:(NSString*)theTitle
 	andHelpPageHTMLFile:(NSString*)helpHTML
 {
 	self = [super init];
@@ -28,9 +26,6 @@
 		
 		assert([StringValidation nonEmptyString:helpHTML]);
 		self.helpPageHTMLFile = helpHTML;
-		
-		assert([StringValidation nonEmptyString:theTitle]);
-		self.title = theTitle;
 		
 	}
 	return self;
@@ -46,7 +41,6 @@
 {
 	[super dealloc];
 	[helpPageHTMLFile release];
-	[title release];
 }
 
 

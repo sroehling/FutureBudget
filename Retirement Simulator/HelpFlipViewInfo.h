@@ -12,15 +12,12 @@
 @interface HelpFlipViewInfo : NSObject {
 	@private
 		UIViewController *parentController;
-		NSString *title;
 		NSString *helpPageHTMLFile;
 }
 
 -(id)initWithParentController:(UIViewController*)theParentController
-	andTitle:(NSString*)theTitle
 	andHelpPageHTMLFile:(NSString*)helpHTML;
 
-@property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSString *helpPageHTMLFile;
 @property(nonatomic,assign) UIViewController *parentController;
 

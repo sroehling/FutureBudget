@@ -196,7 +196,7 @@
 	assert(self.helpInfoHTMLFile != nil);
 	HelpFlipViewInfo *flipViewInfo = [[[HelpFlipViewInfo alloc] 
 			initWithParentController:self.parentController 
-			andTitle:self.headerLabel.text andHelpPageHTMLFile:self.helpInfoHTMLFile] autorelease];
+			andHelpPageHTMLFile:self.helpInfoHTMLFile] autorelease];
 	
 	HelpInfoViewFlipViewController *helpInfoViewController = [[[HelpInfoViewFlipViewController alloc] 
 		initWithHelpFlipViewInfo:flipViewInfo] autorelease];

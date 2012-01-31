@@ -13,6 +13,23 @@ like a gym membership could be cut altogether.
 
 ### Instructions
 
+For each expense that will be subject to a reduced amount, change
+the expense as follows:
+
+1. Select the __Inputs__ tab, and select the expense needing a change.
+
+2. For this expense, select the __Amount__.
+
+3. Tap the __Edit__ button to enable editing of the amount.
+
+3. If a [single amount](fixedAmount.html) is selected, change the
+   amount. Or, if a [variable amount](variableAmount.html) is selected, tap on 
+   the variable amount to change the starting amount or changes which
+   occur to the amount over time.
+   
+4. Tap the __Done__ button to save the changes.
+   
+
 ### Related Recipes
 
 * [Monthly Expense](recipeMonthlyExpense.html)

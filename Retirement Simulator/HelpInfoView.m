@@ -44,7 +44,7 @@
 			
 		self.navBarTitle = [UIHelper titleForNavBar];
 
-		self.navBarTitle.text = @"TBD";
+		self.navBarTitle.text = @"";
 		[self.navBarTitle sizeToFit];
 		
         item.titleView = self.navBarTitle;			
@@ -120,7 +120,6 @@
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	[self.helpInfo loadRequest:request];
 	
-	self.navBarTitle.text = self.helpFlipViewInfo.title;
 	[self.navBarTitle sizeToFit];
 
 }
