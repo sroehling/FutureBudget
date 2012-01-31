@@ -10,6 +10,7 @@
 #import "DataModelController.h"
 #import "EventRepeatFrequency.h"
 #import "ManagedObjectFieldInfo.h"
+#import "UIHelper.h"
 
 // TBD - Can this class be made into a generic "Core Data object Checklist" controller?
 
@@ -18,6 +19,33 @@
 
 
 @synthesize repeatFrequencies,currentFrequency;
+
+-(void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	// Change the background of the table view to be a textured image, rather than 
+	// the default.
+	self.tableView.backgroundColor = [UIColor clearColor];
+	self.tableView.backgroundView = [[[UIImageView alloc] 
+			initWithImage:[UIImage imageNamed:@"textureOldPaperSmall.png"]] autorelease];
+
+}
+
+// This purpose of this overridden method is to shrink the font size displayed in the title from
+// the standard of 20 to 17. This allows more of the title to be shown, and also shows
+// the title in a more comparable proportion with the other fonts in the table view.
+- (void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    if (!titleView) {
+		titleView = [UIHelper titleForNavBar];
+        self.navigationItem.titleView = titleView;
+     }
+    titleView.text = title;
+    [titleView sizeToFit];
+}
 
 
 - (void) commidFieldEdit
