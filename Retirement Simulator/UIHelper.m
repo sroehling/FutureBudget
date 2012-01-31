@@ -7,7 +7,7 @@
 //
 
 #import "UIHelper.h"
-
+#import "StringValidation.h"
 
 @implementation UIHelper
 
@@ -19,6 +19,31 @@
 	titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	titleView.textColor = [UIColor whiteColor]; // Change to desired color
 	return titleView;
+}
+
++(void)setCommonBackgroundForTable:(UITableViewController*)theController
+{
+	theController.tableView.backgroundColor = [UIColor clearColor];
+	theController.tableView.backgroundView = [[[UIImageView alloc] 
+			initWithImage:[UIImage imageNamed:@"textureOldPaperSmall.png"]] autorelease];
+}
+
+
+// This purpose of this  method is to shrink the font size displayed in the title from
+// the standard of 20 to 17. This allows more of the title to be shown, and also shows
+// the title in a more comparable proportion with the other fonts in the table view.
++(void)setCommonTitleForTable:(UITableViewController*)theController withTitle:(NSString*)title
+{
+	assert(theController != nil);
+	assert([StringValidation nonEmptyString:title]);
+    UILabel *titleView = (UILabel *)theController.navigationItem.titleView;
+    if (!titleView) {
+		titleView = [UIHelper titleForNavBar];
+        theController.navigationItem.titleView = titleView;
+     }
+    titleView.text = title;
+    [titleView sizeToFit];
+
 }
 
 @end

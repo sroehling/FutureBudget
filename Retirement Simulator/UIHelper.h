@@ -14,5 +14,7 @@
 }
 
 +(UILabel*)titleForNavBar;
++(void)setCommonBackgroundForTable:(UITableViewController*)theController;
++(void)setCommonTitleForTable:(UITableViewController*)theController withTitle:(NSString*)title;
 
 @end

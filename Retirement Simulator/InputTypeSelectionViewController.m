@@ -13,6 +13,7 @@
 #import "DetailInputViewCreator.h"
 #import "TableViewHelper.h"
 #import "GenericFieldBasedTableAddViewController.h"
+#import "UIHelper.h"
 
 
 @implementation InputTypeSelectionViewController
@@ -60,11 +61,19 @@
 	typeInfo.description = LOCALIZED_STR(@"INPUT_TAX_TITLE");
 	[self.inputTypes addObject:typeInfo];
 
-	
+	[UIHelper setCommonBackgroundForTable:self];
+
     typeSelected = FALSE;
 
 
 }
+
+- (void)setTitle:(NSString *)title
+{
+	[super setTitle:title];
+	[UIHelper setCommonTitleForTable:self withTitle:title];
+}
+
 
 
 - (IBAction)cancel
