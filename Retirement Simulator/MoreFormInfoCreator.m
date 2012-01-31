@@ -31,7 +31,7 @@
 		LOCALIZED_STR(@"HELP_GETTING_STARTED") 
 		andPageRef:@"gettingStarted"];
 
-	[formPopulator populateStaticNavFieldWithFormInfoCreator:
+	[formPopulator populateStaticNavFieldWithReadOnlyFormInfoCreator:
 		[[[HelpRecipesFormInfoCreator alloc] init] autorelease] 
 		andFieldCaption:LOCALIZED_STR(@"MORE_RECIPES_TITLE") 
 		andSubTitle:LOCALIZED_STR(@"MORE_RECIPES_SUBTITLE")];

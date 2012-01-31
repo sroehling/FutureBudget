@@ -16,6 +16,7 @@
 #import "GenericTableViewFactory.h"
 #import "GenericFieldBasedTableEditViewControllerFactory.h"
 #import "DataModelController.h"
+#import "GenericFieldBasedTableViewControllerFactory.h"
 
 @implementation StaticNavFieldEditInfo
 
@@ -61,6 +62,19 @@
 		andContentDescription:contentDesc
 		andSubViewFactory:theSubViewFactory];
 }
+
+-(id) initForReadOnlyViewWithCaption:(NSString*)caption 
+	andSubtitle:(NSString*)subtitle 
+	andContentDescription:(NSString*)contentDesc
+	andSubFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator
+{
+	id<GenericTableViewFactory> theSubViewFactory = [[[GenericFieldBasedTableViewControllerFactory alloc]
+			initWithFormInfoCreator:theFormInfoCreator] autorelease];
+	return [self initWithCaption:caption andSubtitle:subtitle 
+		andContentDescription:contentDesc
+		andSubViewFactory:theSubViewFactory];
+}
+
 
 - (id) init
 {

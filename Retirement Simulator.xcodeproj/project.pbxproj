@@ -359,6 +359,7 @@
 		00DC49F614D72188006BDF61 /* fixedDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F514D72187006BDF61 /* fixedDate.md */; };
 		00DC49F814D73EBA006BDF61 /* variableValueStartDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */; };
 		00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F914D73F40006BDF61 /* variableValueChange.md */; };
+		00DC49FD14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC49FC14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m */; };
 		00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */; };
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
@@ -1065,6 +1066,8 @@
 		00DC49F514D72187006BDF61 /* fixedDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedDate.md; sourceTree = "<group>"; };
 		00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueStartDate.md; sourceTree = "<group>"; };
 		00DC49F914D73F40006BDF61 /* variableValueChange.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueChange.md; sourceTree = "<group>"; };
+		00DC49FB14D79C6F006BDF61 /* GenericFieldBasedTableViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableViewControllerFactory.h; sourceTree = "<group>"; };
+		00DC49FC14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableViewControllerFactory.m; sourceTree = "<group>"; };
 		00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestTest.h; sourceTree = "<group>"; };
 		00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestTest.m; sourceTree = "<group>"; };
 		00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigest.h; sourceTree = "<group>"; };
@@ -1782,6 +1785,8 @@
 				008DD4C614B53F05000AAEA5 /* MultipleSelectionTableViewController.m */,
 				00210FAC14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.h */,
 				00210FAD14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m */,
+				00DC49FB14D79C6F006BDF61 /* GenericFieldBasedTableViewControllerFactory.h */,
+				00DC49FC14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m */,
 			);
 			name = "Generic Table Views";
 			sourceTree = "<group>";
@@ -3236,6 +3241,7 @@
 				00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */,
 				00899D8414D1DDA100CBFE6F /* HelpPageFormPopulator.m in Sources */,
 				002FAEA514D386E800AE2B41 /* HelpFlipViewInfo.m in Sources */,
+				00DC49FD14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

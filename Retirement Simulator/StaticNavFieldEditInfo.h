@@ -33,5 +33,10 @@
 	andSubtitle:(NSString*)subtitle 
 	andContentDescription:(NSString*)contentDesc
 	andSubFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator;
+	
+-(id) initForReadOnlyViewWithCaption:(NSString*)caption 
+	andSubtitle:(NSString*)subtitle 
+	andContentDescription:(NSString*)contentDesc
+	andSubFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator;
 
 @end

@@ -95,5 +95,21 @@
 
 }
 
+-(void)populateStaticNavFieldWithReadOnlyFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andFieldCaption:(NSString*)caption andSubTitle:(NSString*)subTitle
+{
+	assert([StringValidation nonEmptyString:caption]);
+	assert(formInfoCreator != nil);
+		
+	StaticNavFieldEditInfo *staticNavFieldEditInfo = 
+		[[[StaticNavFieldEditInfo alloc] 
+			initForReadOnlyViewWithCaption:caption
+			andSubtitle:subTitle 
+			andContentDescription:nil
+			andSubFormInfoCreator:formInfoCreator] autorelease];
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:staticNavFieldEditInfo];
+}
+
 
 @end

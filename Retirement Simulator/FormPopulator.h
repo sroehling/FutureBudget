@@ -37,5 +37,7 @@
 
 -(void)populateStaticNavFieldWithFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
 	andFieldCaption:(NSString*)caption andSubTitle:(NSString*)subTitle;
-
+-(void)populateStaticNavFieldWithReadOnlyFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andFieldCaption:(NSString*)caption andSubTitle:(NSString*)subTitle;
+	
 @end
