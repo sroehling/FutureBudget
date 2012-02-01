@@ -15,6 +15,7 @@
 @synthesize valueDescription;
 @synthesize valueSubtitle;
 @synthesize caption;
+@synthesize supportsDelete;
 
 - (id) initWithFrame:(CGRect)frame
 {
@@ -32,6 +33,8 @@
 		
 		self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		self.supportsDelete = FALSE;
 	}    
 	return self;
 }
@@ -53,6 +56,13 @@
 	}		
 	cellHeight += TABLE_CELL_BOTTOM_MARGIN;
 	
+	// If the cell is used for an object that can be deleted,
+	// the overall height of the cell needs to be enough to show the delete button
+	if(self.supportsDelete)
+	{
+		cellHeight = MAX(cellHeight, TABLE_CELL_MIN_OVERALL_HEIGHT_TO_SUPPORT_DELETE);
+	}
+	
 	return cellHeight;
 }
 
@@ -65,7 +75,9 @@
 	[valueDescription sizeToFit];  
 	[valueSubtitle sizeToFit];
 	
-	// Position the labels at the top of the table cell   
+	// Position the labels at the top of the table cell
+	// TODO - Center everything in the middle of the cell, especially  if
+	// the supportsDelete flag is set.   
 	[TableCellHelper topLeftAlignChild:caption withinParentFrame:self.contentView.bounds];
 	[TableCellHelper topRightAlignChild:valueDescription withinParentFrame:self.contentView.bounds];
 	

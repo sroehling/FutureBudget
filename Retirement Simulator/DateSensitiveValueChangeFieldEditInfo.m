@@ -53,6 +53,7 @@ andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewContr
 			self.parentController = theController;
 			
 			self.valChangeCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
+			self.valChangeCell.supportsDelete = TRUE;
 			[self configureCell];
 			
 

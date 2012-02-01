@@ -14,11 +14,13 @@
 		UILabel *caption;
 		UILabel *valueDescription;
 		UILabel *valueSubtitle;
+		BOOL supportsDelete;
 }
 
 @property(nonatomic,retain) UILabel *caption;
 @property(nonatomic,retain) UILabel *valueDescription;
 @property(nonatomic,retain) UILabel *valueSubtitle;
+@property BOOL supportsDelete;
 
 - (CGFloat)cellHeight;    
 
