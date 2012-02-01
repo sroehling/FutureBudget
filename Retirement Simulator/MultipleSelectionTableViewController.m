@@ -100,7 +100,8 @@
     if(!editing)
     {
         // Done editing - save context
-        [[DataModelController theDataModelController] saveContext];
+        [[DataModelController theDataModelController] 
+			saveContextAndIgnoreErrors];
     }
 }
 

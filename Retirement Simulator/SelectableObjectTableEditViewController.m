@@ -194,8 +194,8 @@
 	
     if(!editing)
     {
-        // Done editing - save context
-        [[DataModelController theDataModelController] saveContext];
+        // Done editing - do a "soft save" of the context.
+        [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
     }
 }
 

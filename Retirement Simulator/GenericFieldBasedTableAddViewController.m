@@ -92,6 +92,8 @@
 			[self.finshedAddingListener objectFinshedBeingAdded:self.newObject];
 		}
 		[TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
+		
+		[[DataModelController theDataModelController] saveContext];
 	}
 
 }
@@ -106,9 +108,24 @@
     // is in progress.
     [self.formInfo disableFieldChanges];
     
+	// If adding a new object is canceled, then any uncommitted changes need to
+	// be undone. This will include any objects with required properties that
+	// are still uninitialized or filled with invalid values.  
+	[[DataModelController theDataModelController] rollbackUncommittedChanges];
+	
+	// If a "soft save" (i.e., one which takes place without error checking) occurs
+	// leading up to the cancel, it's possible the new object could have been
+	// already saved, such that it won't get rolled back above. In this case,
+	// we still need to respect the intent of the cancel operation and not 
+	// add the new object. 
+	//
+	// TODO - If we know the editing that is occurring is for new objects, then
+	// we probably need to turn off "soft saving" altogether in any sub forms.
+	// This will have the effect of ensuring a complete rollback in the case of 
+	// a cancel. 
     [[DataModelController theDataModelController] deleteObject:self.newObject];
     self.newObject = nil;
-    
+	
     [TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
 }
 

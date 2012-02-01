@@ -23,6 +23,7 @@
 
 - (void)saveContext;
 - (void)saveContextAndIgnoreErrors;
+- (void)rollbackUncommittedChanges;
 
 - (NSSet *)fetchObjectsForEntityName:(NSString *)entityName;
 - (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName 

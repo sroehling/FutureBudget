@@ -47,6 +47,11 @@
 			initWithManagedObjectModel:self.managedObjectModel] autorelease]; 
 
 	self.managedObjectContext =[[[NSManagedObjectContext alloc] init] autorelease];
+	
+	// Undo Support - By default, on iOS, there is no undo manager. Setting this is needed
+	// so that all changes are catalogued for the rollbackUncommittedChanges method.    
+	[self.managedObjectContext setUndoManager:[[[NSUndoManager  alloc] init] autorelease]];        
+	
 	self.managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
 }
 
@@ -137,6 +142,19 @@
 			[NSException raise:NSGenericException format:[error description] arguments:nil];
         } 
     }
+}
+
+- (void)rollbackUncommittedChanges
+{
+	if(self.managedObjectContext != nil)
+	{
+		NSSet *uncommittedChanges = [self.managedObjectContext updatedObjects];
+		for(NSManagedObject *uncommittedChange in uncommittedChanges)
+		{
+			NSLog(@"Rolling back changes: %@",[uncommittedChange description]);
+		}
+		[self.managedObjectContext undo];
+	}
 }
 
 - (void)saveContextAndIgnoreErrors

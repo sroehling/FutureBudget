@@ -150,7 +150,7 @@
 			[super setEditing:editing animated:animated];
 			
 			[self.navigationItem setHidesBackButton:editing animated:NO];
-			[[DataModelController theDataModelController] saveContext];
+			[[DataModelController theDataModelController] saveContextAndIgnoreErrors];
 			
 			if(![self showAddButtonOutsideEditMode])
 			{

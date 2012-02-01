@@ -119,9 +119,7 @@
 		createDataModelObject:EXPENSE_INPUT_ENTITY_NAME];;
   
     [self populateCashFlowInputProperties:newInput];  
-	
-	[self.dataModelInterface saveContext];
-    
+	    
     return newInput;
 }
 
@@ -135,9 +133,7 @@
 		createDataModelObject:INCOME_INPUT_ENTITY_NAME];
 	
     [self populateCashFlowInputProperties:newInput];
-    
-    [[DataModelController theDataModelController] saveContext];
-    
+        
     return newInput;
   
 }
@@ -155,9 +151,7 @@
 		createDataModelObject:SAVINGS_ACCOUNT_ENTITY_NAME];	
 	
 	[self populateAccountInputProperties:savingsAcct];
-	
-    [[DataModelController theDataModelController] saveContext];
-    
+	    
     return savingsAcct;
   
 }
@@ -213,9 +207,7 @@
 	
 	
 	newInput.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
-	
-	[[DataModelController theDataModelController] saveContext];
-		
+			
 	return newInput;
 }
 

@@ -132,7 +132,7 @@
 	{
 		[self.account removeLimitWithdrawalExpensesObject:self.expense];
 	}
-	[[DataModelController theDataModelController] saveContext];
+	[[DataModelController theDataModelController] saveContextAndIgnoreErrors];
 
 }
 

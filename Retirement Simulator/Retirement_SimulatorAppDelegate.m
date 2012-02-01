@@ -152,7 +152,7 @@
      See also applicationDidEnterBackground:.
      */
     // Saves changes in the application's managed object context before the application 
-    [[DataModelController theDataModelController] saveContext];
+    [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
 
 }
 

@@ -71,7 +71,7 @@
 									 LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
     
     VariableValue *newVariableValue = [self.varValRuntimeInfo.listMgr createNewValue];
-    [[DataModelController theDataModelController] saveContext];
+    [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
 
     
     SectionInfo *sectionInfo = [formPopulator nextSection];
