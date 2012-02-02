@@ -85,7 +85,7 @@
 
 -(void)populateAccountInputProperties:(Account*)newInput
 {
-	newInput.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	newInput.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 	newInput.contribGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -102,8 +102,7 @@
 	newInput.deferredWithdrawalsEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	newInput.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
     
-	newInput.startingBalance = [NSNumber numberWithDouble:0.0];
-	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefaultButNoInitialVal:0.0];
 
 }
 
@@ -168,23 +167,21 @@
 {
 	LoanInput *newInput  = (LoanInput*)[self.dataModelInterface 
 		createDataModelObject:LOAN_INPUT_ENTITY_NAME];
-			
-	newInput.startingBalance = [NSNumber numberWithDouble:0.0];
-	
+				
 	newInput.loanEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
 	// Loan Cost
-	newInput.loanCost = [inputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.loanCost = [inputCreationHelper multiScenAmountWithWithDefaultButNoInitialVal:0.0];
 	
 		
 	newInput.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
 	
 	newInput.loanCostGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
 		
-	newInput.origDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
+	newInput.origDate = [inputCreationHelper multiScenSimDateWithDefaultTodayButNoInitialVal];
 
 	// Interest
-	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefaultButNoInitialVal:0.0];
 		
 	// Down Payment	
 		
@@ -224,16 +221,14 @@
 	
 	newInput.assetEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
-	newInput.cost = [inputCreationHelper multiScenAmountWithDefault:0.0];
+	newInput.cost = [inputCreationHelper multiScenAmountWithWithDefaultButNoInitialVal:0.0];
 
-	newInput.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefaultButNoInitialVal:0.0];
 
-	newInput.purchaseDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
+	newInput.purchaseDate = [inputCreationHelper multiScenSimDateWithDefaultTodayButNoInitialVal];
 	
 	newInput.saleDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
-		
-	newInput.startingValue = [NSNumber numberWithDouble:0.0];
-	
+			
 	return newInput;
 }
 

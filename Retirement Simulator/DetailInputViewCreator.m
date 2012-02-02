@@ -208,8 +208,47 @@
 	[self.formPopulator populateCurrencyField:account andValKey:ACCOUNT_STARTING_BALANCE_KEY
 		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_LABEL") 
 			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")];
+			
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE")];
+	
+	[self.formPopulator populateMultiScenarioInvestmentReturnRate:account.interestRate 
+		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")
+		andValueName:account.name];
+		
+
 
 	SectionInfo *sectionInfo = [formPopulator nextSection];
+	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
+
+	[self.formPopulator populateMultiScenFixedValField:account.withdrawalPriority 
+		andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
+		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")
+		andValidator:[[[PositiveNumberValidator alloc] init] autorelease]];
+	
+	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
+		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:account
+			andFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")
+			andIsNewAccount:self.isForNewObject] autorelease];
+	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
+	
+	
+	LimitedAccountWithdrawalsTableViewFactory *withdrawalTableViewFactory = 
+		[[[LimitedAccountWithdrawalsTableViewFactory alloc] initWithAccount:account] autorelease];
+	
+	
+	NSString *fieldDescription = ([account.limitWithdrawalExpenses count] > 0)?
+		LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_LIMITED"):
+		LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_NO_LIMIT");
+	StaticNavFieldEditInfo *limitWithdrawalsFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_LABEL")
+				andSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_SUBTITLE") 
+				andContentDescription:fieldDescription
+				andSubViewFactory:withdrawalTableViewFactory] autorelease];
+	[sectionInfo addFieldEditInfo:limitWithdrawalsFieldEditInfo];		
+
+
+	sectionInfo = [formPopulator nextSection];
     sectionInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
 		
 		
@@ -260,46 +299,6 @@
         }
         
     }
-		
-		
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE");
-	
-	[self.formPopulator populateMultiScenarioInvestmentReturnRate:account.interestRate 
-		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")
-		andValueName:account.name];
-
-
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
-
-	[self.formPopulator populateMultiScenFixedValField:account.withdrawalPriority 
-		andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
-		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")
-		andValidator:[[[PositiveNumberValidator alloc] init] autorelease]];
-	
-	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
-		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:account
-			andFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")
-			andIsNewAccount:self.isForNewObject] autorelease];
-	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
-	
-	
-	LimitedAccountWithdrawalsTableViewFactory *withdrawalTableViewFactory = 
-		[[[LimitedAccountWithdrawalsTableViewFactory alloc] initWithAccount:account] autorelease];
-	
-	
-	NSString *fieldDescription = ([account.limitWithdrawalExpenses count] > 0)?
-		LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_LIMITED"):
-		LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_DESCRIPTION_NO_LIMIT");
-	StaticNavFieldEditInfo *limitWithdrawalsFieldEditInfo = 
-			[[[StaticNavFieldEditInfo alloc] 
-				initWithCaption:LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_LABEL")
-				andSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWALS_FIELD_SUBTITLE") 
-				andContentDescription:fieldDescription
-				andSubViewFactory:withdrawalTableViewFactory] autorelease];
-	[sectionInfo addFieldEditInfo:limitWithdrawalsFieldEditInfo];		
-
 
 }
 
@@ -317,6 +316,11 @@
 	
 	[self.formPopulator populateMultiScenBoolField:loan.loanEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
+	
+	[formPopulator nextSection];
+	[self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY 
+		andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL") 
+		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
 
 
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_SECTION_TITLE")];
@@ -383,11 +387,6 @@
 				andRelEndDateHelpFile:@"relEndDatePayoff"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
 				];
-	
-	[formPopulator nextSection];
-	[self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY 
-		andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL") 
-		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
 
 
 
@@ -403,6 +402,19 @@
 	
 	[self.formPopulator populateMultiScenBoolField:asset.assetEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
+	
+	
+	[formPopulator nextSectionWithTitle:
+			LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")];
+
+	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
+		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
+		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
+
+	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRate 
+		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")
+			andValueName:asset.name];
+
 	
 	[formPopulator nextSectionWithTitle:
 		LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE")]; 
@@ -433,16 +445,6 @@
 				];
 
 	
-	[formPopulator nextSectionWithTitle:
-			LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")];
-
-	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
-		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
-		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
-
-	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRate 
-		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")
-			andValueName:asset.name];
  
  
 

@@ -74,6 +74,7 @@
 	double acctWithdrawPriority = 
 		[SimInputHelper multiScenFixedVal:theAcct.withdrawalPriority 
 				andScenario:simParams.simScenario];
+	assert(theAcct.startingBalance != nil);
 	double acctStartingBalance = [SimInputHelper doubleVal:theAcct.startingBalance];
 
 	return [self initWithStartingBalance:acctStartingBalance 

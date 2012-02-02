@@ -667,6 +667,8 @@
 	
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
 	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
@@ -677,6 +679,7 @@
 
 	SavingsAccount *acct02 = (SavingsAccount*)[acctCreator createInput];
 	acct02.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct02.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	acct02.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
 	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
 	acct02.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
@@ -995,6 +998,7 @@
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
 	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
 	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
@@ -1006,6 +1010,7 @@
 	acct02.name = @"Acct02";
 	acct02.startingBalance = [NSNumber numberWithDouble:1000.0];
 	acct02.contribAmount = [inputCreationHelper multiScenAmountWithDefault:200.0];	
+	acct02.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
 	acct02.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-20"]];

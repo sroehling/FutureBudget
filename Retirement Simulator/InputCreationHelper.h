@@ -43,6 +43,7 @@
 
 
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal;
+- (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefaultButNoInitialVal:(double)defaultVal;
 - (MultiScenarioGrowthRate*)multiScenDefaultGrowthRate;
 
 - (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal;
@@ -58,6 +59,7 @@
 - (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefault:(NSDate*)defaultDate;
 
 - (MultiScenarioSimDate*)multiScenSimDateWithDefaultToday;
+- (MultiScenarioSimDate*)multiScenSimDateWithDefaultTodayButNoInitialVal;
 - (MultiScenarioSimDate*)multiScenSimDateWithDefault:(NSDate*)defaultDate;
 
 - (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefaultNeverEndDate;
