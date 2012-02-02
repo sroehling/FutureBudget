@@ -39,6 +39,9 @@
 - (FixedValue*)fixedValueForValue:(double)val;
 
 - (MultiScenarioAmount*)multiScenAmountWithDefault:(double)defaultVal;
+- (MultiScenarioAmount*)multiScenAmountWithWithDefaultButNoInitialVal:(double)defaultVal;
+
+
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal;
 - (MultiScenarioGrowthRate*)multiScenDefaultGrowthRate;
 

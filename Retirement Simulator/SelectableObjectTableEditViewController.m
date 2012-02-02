@@ -77,12 +77,32 @@
 }
 
 
+
+
+
+
 - (void)updateCurrentValue:(NSManagedObject*)newVal
 {
     assert(newVal != nil);
     self.currentValue = newVal;
     self.currentValueIndex = [self.formInfo pathForObject:newVal];
     
+}
+
+- (NSManagedObject *)setAssignedValueToCurrentlySelection
+{
+	// The code below originates from uses of this class with a 
+	// DateSensitiveValueFormInfoCreator. 
+	// 
+	// See the lengthly comment in DateSensitiveValueFormInfoCreator 
+	// for a comprehensive discussion why this code is necessary.
+	id<FieldEditInfo> feInfo = [self.formInfo fieldEditInfoIndexPath:self.currentValueIndex];
+	assert(feInfo != nil);
+	NSManagedObject *newValue = [feInfo managedObject];
+	assert(newValue != nil);
+	[self.assignedField setFieldValue:newValue]; 
+	return newValue;
+	
 }
 
 -(void)uncheckCurrentSelection
@@ -173,17 +193,8 @@
 	{
 		if([self.assignedField fieldIsInitializedInParentObject])
 		{
-			// The code below originates from uses of this class with a 
-			// DateSensitiveValueFormInfoCreator. 
-			// 
-			// See the lengthly comment in DateSensitiveValueFormInfoCreator 
-			// for a comprehensive discussion why this code is necessary.
-			id<FieldEditInfo> feInfo = [self.formInfo fieldEditInfoIndexPath:self.currentValueIndex];
-			assert(feInfo != nil);
-			NSManagedObject *newValue = [feInfo managedObject];
-			assert(newValue != nil);
-			[self.assignedField setFieldValue:newValue]; 
 
+			NSManagedObject *newValue = [self setAssignedValueToCurrentlySelection];
 			[self updateCurrentValue:newValue];      
 		}    
 	}

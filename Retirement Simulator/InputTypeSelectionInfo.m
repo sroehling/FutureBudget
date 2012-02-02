@@ -73,8 +73,9 @@
 		multiScenBoolValWithDefault:TRUE];
 	
 	newInput.amountGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
-	newInput.amount = [inputCreationHelper multiScenAmountWithDefault:0.0];
-    
+	
+	newInput.amount = [inputCreationHelper multiScenAmountWithWithDefaultButNoInitialVal:0.0];
+	    
 	newInput.startDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
     newInput.endDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
    	

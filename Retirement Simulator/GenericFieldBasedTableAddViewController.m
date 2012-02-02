@@ -155,7 +155,14 @@
     // from an editor for one of the field values,
     // causing the display of these values to refresh if changed.
     [super viewWillAppear:animated];
+
+	// Another sub-view may be pushed onto the stack for editing and/or setting a
+	// complex property. viewWillAppear will be called when this sub-view
+	// is popped from the stack.
+	[self updateSaveButtonEnabled];
+
     self.editing = TRUE;
+
 
 }
 

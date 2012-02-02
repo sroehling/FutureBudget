@@ -111,6 +111,15 @@
 	return msAmount;
 }
 
+- (MultiScenarioAmount*)multiScenAmountWithWithDefaultButNoInitialVal:(double)defaultVal
+{
+	MultiScenarioAmount *msAmount = [self.dataModel createDataModelObject:MULTI_SCEN_AMOUNT_ENTITY_NAME];
+	assert(defaultVal >= 0.0);		
+    msAmount.defaultFixedAmount = [self multiScenFixedValWithDefault:defaultVal];
+	msAmount.amount = [self multiScenInputValue];
+	return msAmount;
+}
+
 
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal
 {
