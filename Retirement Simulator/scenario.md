@@ -1,4 +1,43 @@
-## Scenario
+## Scenarios
 
-Changes to inputs are saved under the current scenario, so the 'what if' 
-impact of these changes can be seen in the results.
+Inputs can have different values for different scenarios. 
+For example, an expense's __Amount__
+can have a larger value by default, but a smaller value under an
+alternate scenario for [reduced expenses][1]. 
+There are two types of scenarios:
+
+* Default Scenario -  The default scenario represents the inputs' expected
+values. This scenario serves also  serves 
+as a starting  point or "baseline" for changes made under alternate 
+scenarios. There is only one default scenario.
+
+* Alternate Scenario(s) - Alternate scenarios are a good way to try
+different values and address "what if" questions. If a value is not
+set for an alternate scenario, the value for the default scenario is used. 
+Any number of alternate scenarios can be created. 
+ 
+When inputs are first created, the inputs' values are saved
+under the default scenario.  Thereafter, changes to inputs 
+are saved under the currently selected scenario. 
+
+If values are changed under an alternate scenario, these values can be 
+viewed or changed by opening up a detailed view of the scenario
+from the scenario list in the __What If__ tab. 
+
+The currently selected scenario also determines which set of values
+will be used in the results. A way to compare scenarios is to 
+go to the scenario list in the __What If__ tab, then toggle
+back and forth to the __Results__ tab with different scenarios
+selected.
+
+## Related Examples
+
+The following are some examples where an alternate scenario may
+be useful:
+
+* [Cutting Expenses][1]
+* [Early Retirement][2]
+
+
+[1]:recipeCuttingExpenses.html
+[2]:recipeRetireEarly.html

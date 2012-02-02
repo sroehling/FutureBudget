@@ -86,6 +86,8 @@
 
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"HELP_RECIPES_RETIRE_SECTION_TITLE")];
 	[formPopulator populateHelpPageWithTitle:
+		LOCALIZED_STR(@"HELP_RECIPE_RETIRE_EARLY") andPageRef:@"recipeRetireEarly"];
+	[formPopulator populateHelpPageWithTitle:
 		LOCALIZED_STR(@"HELP_RECIPE_RETIRE_CHANGE_EXPENSE") andPageRef:@"recipeChangeRetirementExpense"];
 	[formPopulator populateHelpPageWithTitle:
 		LOCALIZED_STR(@"HELP_RECIPE_RETIRE_SEMIRETIRE") andPageRef:@"recipeSemiRetirement"];

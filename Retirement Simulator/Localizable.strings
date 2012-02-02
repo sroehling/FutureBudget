@@ -145,8 +145,8 @@
 "INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT" = "Enter an Amount";
 "INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT" = "Select a single %@, to be used for every %@ occurrence. Or, select a variable %@, which can change over time.";
 "INPUT_CASH_FLOW_REPEAT_FREQUENCY_PLACEHOLDER" = "Enter a Frequency";
-"INPUT_CASH_FLOW_END_DATE_TABLE_TITLE" = "End Date";
-"INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT" = "%@ End Date";
+"INPUT_CASH_FLOW_END_DATE_TABLE_TITLE" = "Stop Date";
+"INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT" = "%@ Stop Date";
 "INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT" = "After this date, no more occurences of the %@ %@ will occur. To set the end date, select and/or edit one of the dates below.";
 "INPUT_CASH_FLOW_START_DATE_TITLE" = "Start Date";
 "INPUT_CASH_FLOW_START_DATE_TABLE_HEADER_FORMAT" = "%@ Start Date";
@@ -154,9 +154,9 @@
 "INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT" = "This first occurence of the %@ %@ occurs on this date. Select and/or edit one of dates below to set the start date.";
 
 "INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE" = "Occurences";
-"INPUT_CASHFLOW_START_FIELD_LABEL" = "Start";
+"INPUT_CASHFLOW_START_FIELD_LABEL" = "Start Date";
 "INPUT_CASHFLOW_REPEAT_FIELD_LABEL" = "Repeat";
-"INPUT_CASHFLOW_END_FIELD_LABEL" = "End";
+"INPUT_CASHFLOW_END_FIELD_LABEL" = "Stop Date";
 
 "INPUT_TYPE_VIEW_TITLE" = "Input Type";
 
@@ -522,8 +522,8 @@
 
 "MORE_VIEW_TITLE" = "More";
 "MORE_HELP_SECTION_TITLE" = "Help";
-"MORE_RECIPES_TITLE" = "Recipes";
-"MORE_RECIPES_SUBTITLE" = "Step by step instructions for setting up inputs for common scenarios";
+"MORE_RECIPES_TITLE" = "Examples";
+"MORE_RECIPES_SUBTITLE" = "Instructions for setting up inputs for common scenarios";
 "HELP_RECIPES_HEALTH_SECTION_TITLE" = "Health Care";
 "HELP_RECIPE_HSA_TITLE" = "Health Savings Account";
 "HELP_RECIPE_HEALTH_INFLATION_TITLE" = "Health Care Inflation";
@@ -561,6 +561,7 @@
 "HELP_RECIPE_CUT_EXPENSE" = "Cut Expenses";
 "HELP_RECIPE_EMPLOYMENT_INCOME" = "Employment Income";
 "HELP_GETTING_STARTED" = "Getting Started";
+"HELP_RECIPE_RETIRE_EARLY" = "Early Retirement";
 
 
 "NUMBER_VALIDATION_POSITIVE_PERCENT_MSG" = "Enter a percent greater or equal to 0";

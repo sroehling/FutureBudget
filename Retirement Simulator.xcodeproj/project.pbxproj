@@ -360,6 +360,7 @@
 		00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F914D73F40006BDF61 /* variableValueChange.md */; };
 		00DC49FD14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC49FC14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m */; };
 		00DC4A0014D8821E006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC49FF14D88217006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m */; };
+		00DC4A0214D9F3FB006BDF61 /* recipeRetireEarly.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A0114D9F3FB006BDF61 /* recipeRetireEarly.md */; };
 		00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */; };
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
@@ -1068,6 +1069,7 @@
 		00DC49FC14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableViewControllerFactory.m; sourceTree = "<group>"; };
 		00DC49FE14D8820F006BDF61 /* DateSensitiveValueChangeFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFormInfoCreator.h; sourceTree = "<group>"; };
 		00DC49FF14D88217006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeFormInfoCreator.m; sourceTree = "<group>"; };
+		00DC4A0114D9F3FB006BDF61 /* recipeRetireEarly.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeRetireEarly.md; sourceTree = "<group>"; };
 		00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestTest.h; sourceTree = "<group>"; };
 		00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestTest.m; sourceTree = "<group>"; };
 		00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigest.h; sourceTree = "<group>"; };
@@ -2275,6 +2277,7 @@
 				00899DBD14D20C9800CBFE6F /* recipeSocialSecurityIncome.md */,
 				00899DBF14D20CBE00CBFE6F /* recipeDownsizeHouse.md */,
 				00899DC114D20CDC00CBFE6F /* recipeChangeRetirementExpense.md */,
+				00DC4A0114D9F3FB006BDF61 /* recipeRetireEarly.md */,
 			);
 			name = Retirement;
 			sourceTree = "<group>";
@@ -2919,6 +2922,7 @@
 				00DC49F614D72188006BDF61 /* fixedDate.md in Resources */,
 				00DC49F814D73EBA006BDF61 /* variableValueStartDate.md in Resources */,
 				00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */,
+				00DC4A0214D9F3FB006BDF61 /* recipeRetireEarly.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
