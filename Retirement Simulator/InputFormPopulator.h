@@ -22,6 +22,7 @@
 @class NumberFieldValidator;
 @class LoanInput;
 @class VariableValue;
+@class TableHeaderWithDisclosure;
 
 @interface InputFormPopulator : FormPopulator {
     @private
@@ -98,5 +99,8 @@
 	andRelEndDateSectionTitle:(NSString*)relEndDateSectionTitle
 	andRelEndDateHelpFile:(NSString*)relEndDateHelpFile
 	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel;
+	
+	
+-(TableHeaderWithDisclosure*)scenarioListTableHeaderWithParentController:(UIViewController*)parentController;	
 		
 @end

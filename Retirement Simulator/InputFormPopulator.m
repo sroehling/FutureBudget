@@ -55,6 +55,8 @@
 #import "LoanInput.h"
 #import "VariableValueFieldEditInfo.h"
 #import "UpTo100PercentFieldValidator.h"
+#import "TableHeaderWithDisclosure.h"
+#import "SelectScenarioTableHeaderButtonDelegate.h"
 
 @implementation InputFormPopulator
 
@@ -627,6 +629,20 @@
 
     [self.currentSection addFieldEditInfo:simDateFieldEditInfo];
 
+}
+
+-(TableHeaderWithDisclosure*)scenarioListTableHeaderWithParentController:(UIViewController*)parentController
+{
+	SelectScenarioTableHeaderButtonDelegate *scenarioListDisclosureDelegate = 
+			[[[SelectScenarioTableHeaderButtonDelegate alloc] initWithParentController:parentController] autorelease];
+	TableHeaderWithDisclosure *tableHeader = 
+			[[[TableHeaderWithDisclosure alloc] initWithFrame:CGRectZero 
+				andDisclosureButtonDelegate:scenarioListDisclosureDelegate] autorelease];
+	tableHeader.header.text = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"INPUT_CURRENT_SCENARIO_TABLE_HEADER_FORMAT"),
+			[SharedAppValues singleton].currentInputScenario.scenarioName];
+	[tableHeader resizeForChildren];
+	return tableHeader;
 }
 
 

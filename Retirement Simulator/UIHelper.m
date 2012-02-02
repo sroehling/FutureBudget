@@ -46,4 +46,32 @@
 
 }
 
+
++ (UIImage*)stretchableButtonImage:(NSString*)imageFileName
+{
+	UIImage *image = [UIImage imageNamed:imageFileName];
+	UIImage *strechableImage = 
+			[image stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+	return strechableImage;
+}
+
++ (UIButton*)imageButton:(NSString*)imgFilePrefix
+{
+	UIButton *theButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	theButton.backgroundColor = [UIColor clearColor];
+	
+	NSString *normalFileName = [NSString stringWithFormat:
+		@"%@.png",imgFilePrefix];
+	[theButton setBackgroundImage:[UIHelper stretchableButtonImage:normalFileName] 
+		forState:UIControlStateNormal];
+		
+	NSString *highlightFileName = [NSString stringWithFormat:
+		@"%@-1.png",imgFilePrefix];
+	[theButton setBackgroundImage:[UIHelper stretchableButtonImage:highlightFileName] forState:UIControlStateHighlighted];
+	
+	return theButton;
+	
+}
+
+
 @end

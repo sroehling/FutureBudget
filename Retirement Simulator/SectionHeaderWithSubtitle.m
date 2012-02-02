@@ -11,6 +11,7 @@
 #import "HelpInfoViewFlipViewController.h"
 #import "HelpFlipViewInfo.h"
 #import "StringValidation.h"
+#import "UIHelper.h"
 
 #define CUSTOM_SECTION_VIEW_LEFT_LABEL_OFFSET 15.0
 #define CUSTOM_SECTION_VIEW_RIGHT_LABEL_OFFSET 10.0
@@ -33,31 +34,6 @@
 @synthesize addButtonDelegate;
 @synthesize parentController;
 
-- (UIImage*)stretchableButtonImage:(NSString*)imageFileName
-{
-	UIImage *image = [UIImage imageNamed:imageFileName];
-	UIImage *strechableImage = 
-			[image stretchableImageWithLeftCapWidth:12 topCapHeight:0];
-	return strechableImage;
-}
-
-- (UIButton*)createImageButton:(NSString*)imgFilePrefix
-{
-	UIButton *theButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	theButton.backgroundColor = [UIColor clearColor];
-	
-	NSString *normalFileName = [NSString stringWithFormat:
-		@"%@.png",imgFilePrefix];
-	[theButton setBackgroundImage:[self stretchableButtonImage:normalFileName] 
-		forState:UIControlStateNormal];
-		
-	NSString *highlightFileName = [NSString stringWithFormat:
-		@"%@-1.png",imgFilePrefix];
-	[theButton setBackgroundImage:[self stretchableButtonImage:highlightFileName] forState:UIControlStateHighlighted];
-	
-	return theButton;
-	
-}
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -75,13 +51,13 @@
 		self.backgroundColor = [UIColor clearColor];
 		[self addSubview:self.headerLabel];
 		
-		self.infoButton = [self createImageButton:@"buttonhelp"];
+		self.infoButton = [UIHelper imageButton:@"buttonhelp"];
 		[infoButton addTarget:self action:@selector(showInfoPopup) 
                      forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:infoButton];
 		
 		
-		self.addButton = [self createImageButton:@"buttonadd"];
+		self.addButton = [UIHelper imageButton:@"buttonadd"];
 		[self.addButton addTarget:self action:@selector(addButtonPressed) 
                      forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:addButton];

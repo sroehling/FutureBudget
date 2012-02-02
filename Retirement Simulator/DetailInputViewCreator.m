@@ -95,16 +95,8 @@
 	
 	if(!self.isForNewObject)
 	{
-		SelectScenarioTableHeaderButtonDelegate *scenarioListDisclosureDelegate = 
-			[[[SelectScenarioTableHeaderButtonDelegate alloc] initWithParentController:parentController] autorelease];
-		TableHeaderWithDisclosure *tableHeader = 
-			[[[TableHeaderWithDisclosure alloc] initWithFrame:CGRectZero 
-				andDisclosureButtonDelegate:scenarioListDisclosureDelegate] autorelease];
-		tableHeader.header.text = [NSString 
-			stringWithFormat:LOCALIZED_STR(@"INPUT_CURRENT_SCENARIO_TABLE_HEADER_FORMAT"),
-			[SharedAppValues singleton].currentInputScenario.scenarioName];
-		[tableHeader resizeForChildren];
-		formPopulator.formInfo.headerView = tableHeader;
+		formPopulator.formInfo.headerView = [self.formPopulator 
+			scenarioListTableHeaderWithParentController:parentController];
 	}
     
     [self.input acceptInputVisitor:self];

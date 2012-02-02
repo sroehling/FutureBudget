@@ -17,4 +17,7 @@
 +(void)setCommonBackgroundForTable:(UITableViewController*)theController;
 +(void)setCommonTitleForTable:(UITableViewController*)theController withTitle:(NSString*)title;
 
++ (UIImage*)stretchableButtonImage:(NSString*)imageFileName;
++ (UIButton*)imageButton:(NSString*)imgFilePrefix;
+
 @end

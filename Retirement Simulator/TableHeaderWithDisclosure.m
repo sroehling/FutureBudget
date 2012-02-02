@@ -8,12 +8,15 @@
 
 #import "TableHeaderWithDisclosure.h"
 #import "TableHeaderDisclosureButtonDelegate.h"
+#import "UIHelper.h"
 
 static CGFloat kLeftMargin = 10.0;
 static CGFloat kRightMargin = 10.0;
 static CGFloat kTopMargin = 4.0;
 static CGFloat kBottomMargin = 4.0;
 static CGFloat kLabelSpace = 4.0;
+static CGFloat kButtonWidth = 20.0;
+static CGFloat kButtonHeight = 20.0;
 
 
 @implementation TableHeaderWithDisclosure
@@ -41,8 +44,11 @@ static CGFloat kLabelSpace = 4.0;
 
 		self.disclosureButtonDelegate = delegate;
 		
-		self.disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [self.disclosureButton addTarget:self.disclosureButtonDelegate action:@selector(tableHeaderDisclosureButtonPressed) 
+		self.disclosureButton = [UIHelper imageButton:@"buttonDisclosure"];
+		self.disclosureButton.hidden = FALSE;
+		//[UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [self.disclosureButton addTarget:self.disclosureButtonDelegate 
+				action:@selector(tableHeaderDisclosureButtonPressed) 
                      forControlEvents:UIControlEventTouchUpInside];
         // add button to right corner of section        
         [self addSubview:self.disclosureButton];
@@ -86,17 +92,21 @@ static CGFloat kLabelSpace = 4.0;
 	[self.header sizeToFit];      
 	
 	CGRect buttonFrame = self.disclosureButton.frame;
-	CGFloat buttonWidth = CGRectGetWidth(buttonFrame);
+	buttonFrame.size.width = kButtonWidth;
+	buttonFrame.size.height = kButtonHeight;
+	buttonFrame.origin.x = CGRectGetMaxX(self.bounds)- kRightMargin-kButtonWidth;
+	buttonFrame.origin.y = CGRectGetMidY(self.bounds)-CGRectGetHeight(buttonFrame)/2.0;;
+	[self.disclosureButton setFrame:buttonFrame];
+
 	
 	// Position the labels at the top of the table cell    
 	CGRect headerFrame = self.header.frame;    
 	headerFrame.origin.x =CGRectGetMinX(self.bounds)+kLeftMargin;
 	headerFrame.origin.y =CGRectGetMidY(self.bounds)-CGRectGetHeight(headerFrame)/2.0;
-	headerFrame.size.width = CGRectGetWidth(self.bounds) - buttonWidth - kRightMargin - kLabelSpace;
+	headerFrame.size.width = CGRectGetWidth(self.bounds) - kButtonWidth - kRightMargin - kLabelSpace;
 	[self.header setFrame: headerFrame];
 	
-	buttonFrame.origin.x = CGRectGetMaxX(self.bounds)- kRightMargin - buttonWidth;
-	buttonFrame.origin.y = CGRectGetMidY(self.bounds)-CGRectGetHeight(buttonFrame)/2.0;;
+
 	[self.disclosureButton setFrame:buttonFrame];
 	
 }

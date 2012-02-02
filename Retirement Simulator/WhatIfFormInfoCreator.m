@@ -25,6 +25,8 @@
 #import "Scenario.h"
 #import "ScenarioListFormInfoCreator.h"
 #import "ManagedObjectFieldInfo.h"
+#import "InputFormPopulator.h"
+#import "TableHeaderWithDisclosure.h"
 
 #import "SelectableObjectTableViewControllerFactory.h"
 #import "PositiveNumberValidator.h"
@@ -140,6 +142,9 @@
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
 		andParentController:parentController] autorelease];
+	formPopulator.formInfo.headerView = [formPopulator 
+			scenarioListTableHeaderWithParentController:parentController];
+
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_ENABLED_FORM_TITLE");
 	
@@ -237,6 +242,8 @@
 	BOOL isNewObject = FALSE;
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isNewObject
 		andParentController:parentController] autorelease];
+	formPopulator.formInfo.headerView = [formPopulator 
+			scenarioListTableHeaderWithParentController:parentController];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWALS_FORM_TITLE");
 	
@@ -288,6 +295,8 @@
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
 		andParentController:parentController] autorelease];
+	formPopulator.formInfo.headerView = [formPopulator 
+			scenarioListTableHeaderWithParentController:parentController];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_AMOUNTS_FORM_TITLE");
 	
@@ -397,6 +406,8 @@
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
 		andParentController:parentController] autorelease];
+	formPopulator.formInfo.headerView = [formPopulator 
+			scenarioListTableHeaderWithParentController:parentController];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_INVESTMENT_RETURN_FORM_TITLE");
 	
@@ -446,6 +457,8 @@
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
 		andParentController:parentController] autorelease];
+	formPopulator.formInfo.headerView = [formPopulator 
+			scenarioListTableHeaderWithParentController:parentController];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_FORM_TITLE");
 	
@@ -556,8 +569,11 @@
 
 - (FormInfo*)createFormInfo:(UIViewController*)parentController
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
-    
+    InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
+		andParentController:parentController] autorelease];
+ 	formPopulator.formInfo.headerView = [formPopulator 
+			scenarioListTableHeaderWithParentController:parentController];
+   
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_TAXES_FORM_TITLE");
 	
 	// TODO - Need to migrate the inputs referenced below over to the multi-scenario
@@ -583,7 +599,9 @@
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
 		andParentController:parentController] autorelease];
-    
+ 	formPopulator.formInfo.headerView = [formPopulator 
+			scenarioListTableHeaderWithParentController:parentController];
+   
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
