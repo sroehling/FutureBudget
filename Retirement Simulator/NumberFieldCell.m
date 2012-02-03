@@ -16,6 +16,9 @@
 
 NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 
+#define NUMBER_FIELD_MAX_WIDTH 120.0
+#define NUMBER_FIELD_MIN_WIDTH 80.0
+
 @implementation NumberFieldCell
 
 @synthesize label, textField;
@@ -52,6 +55,14 @@ NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 	// Let the labels size themselves to accommodate their text    
 	[self.label sizeToFit];
 	[self.textField sizeToFit];    
+	
+	// Constrain the width of the text field, so it doesn't take over too much 
+	// of the cell.
+	CGRect newFrame = self.textField.frame;
+	newFrame.size.width = MIN(CGRectGetWidth(self.textField.bounds),NUMBER_FIELD_MAX_WIDTH);
+	newFrame.size.width = MAX(newFrame.size.width,NUMBER_FIELD_MIN_WIDTH);
+	[self.textField setFrame:newFrame];
+	
 	
 	// Position the labels at the top of the table cell 
 	[TableCellHelper topLeftAlignChild:self.label withinParentFrame:self.contentView.bounds];
