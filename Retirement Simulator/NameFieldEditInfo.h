@@ -11,8 +11,13 @@
 #import "ManagedObjectFieldEditInfo.h"
 #import "FieldEditInfo.h"
 
+@class NameFieldCell;
+
 @interface NameFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
-    
+    @private
+		NameFieldCell *cell;
 }
+
+@property(nonatomic,retain) NameFieldCell *cell;
 
 @end

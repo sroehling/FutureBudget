@@ -17,6 +17,7 @@ NSString * const NAME_FIELD_CELL_IDENTIFIER = @"NameFieldCell";
 
 @synthesize textField;
 @synthesize fieldInfo;
+@synthesize disabled;
 
 
 - (id) initWithFrame:(CGRect)frame
@@ -31,7 +32,9 @@ NSString * const NAME_FIELD_CELL_IDENTIFIER = @"NameFieldCell";
 		[self.contentView addSubview: self.textField];    
 				
 		self.editingAccessoryType = UITableViewCellAccessoryNone;
-		self.accessoryType = UITableViewCellAccessoryNone;		
+		self.accessoryType = UITableViewCellAccessoryNone;
+		
+		self.disabled = FALSE;
 		
 	}    
 	return self;
@@ -81,8 +84,12 @@ NSString * const NAME_FIELD_CELL_IDENTIFIER = @"NameFieldCell";
 - (void)textFieldDidEndEditing:(UITextField *)theTextField
 {
     assert(self.fieldInfo != nil);
+	
+	if(!self.disabled)
+	{
+		[self.fieldInfo setFieldValue:self.textField.text];
+	}
     
-    [self.fieldInfo setFieldValue:self.textField.text];
     // Done with editing - commit the value if it's changed
 
     [theTextField resignFirstResponder];
@@ -91,6 +98,10 @@ NSString * const NAME_FIELD_CELL_IDENTIFIER = @"NameFieldCell";
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)theTextField
 {
+	if(self.disabled)
+	{
+		return YES;
+	}
 	if(theTextField == self.textField)
 	{
 		if([self.textField.text length] == 0 )

@@ -128,19 +128,33 @@
 #pragma mark -
 #pragma mark Table view data source methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+- (void)selectAndOpenFieldEditInfoForIndex:(NSIndexPath *)indexPath
+{
     id<FieldEditInfo> fieldEditInfoForRow = [self.formInfo fieldEditInfoIndexPath:indexPath];
-    
-    // Deselect the row.
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+	assert(fieldEditInfoForRow != nil);
     if([fieldEditInfoForRow hasFieldEditController])
     {
+		// If editing is occuring within one of the cells of this table view, and it
+		// is the first responder. The first responder needs to resign. By disabling
+		// the fields through the FieldEditInfo (cell controllers), the cells can
+		// discontinue any validation which would prohibit resignation as first
+		// responder.
+		[self.formInfo disableFieldChanges];
+	
         UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
         assert(viewControllerForRow != nil);
         [self.navigationController pushViewController:viewControllerForRow animated:YES];       
     }
+	
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+    
+    // Deselect the row.
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+	[self selectAndOpenFieldEditInfoForIndex:indexPath];
 }
 
 

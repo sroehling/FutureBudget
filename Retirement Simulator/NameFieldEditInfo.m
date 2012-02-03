@@ -12,6 +12,8 @@
 
 @implementation NameFieldEditInfo
 
+@synthesize cell;
+
 - (NSString*)detailTextLabel
 {
     return [self.fieldInfo getFieldValue];
@@ -32,6 +34,7 @@
 
 - (void)dealloc {
     [super dealloc];
+	[cell release];
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -45,12 +48,16 @@
     
     assert(tableView!=nil);
     
-    NameFieldCell *cell = (NameFieldCell *)[tableView 
-		dequeueReusableCellWithIdentifier:NAME_FIELD_CELL_IDENTIFIER];
-    if (cell == nil) {
-		cell = [[[NameFieldCell alloc] init] autorelease];
-    }    
-    cell.fieldInfo = self.fieldInfo;
+	if(self.cell == nil)
+	{
+		NameFieldCell *theCell = (NameFieldCell *)[tableView 
+			dequeueReusableCellWithIdentifier:NAME_FIELD_CELL_IDENTIFIER];
+		if (theCell == nil) {
+			theCell = [[[NameFieldCell alloc] init] autorelease];
+		}    
+		theCell.fieldInfo = self.fieldInfo;
+		self.cell = theCell;
+	}
     
     // Only try to initialize the text in the field if the field's
     // value has been initialized in the parent object. If it hasn't,
@@ -58,13 +65,24 @@
     // will be shown.
     if([self.fieldInfo fieldIsInitializedInParentObject])
     {
-        cell.textField.text = [self detailTextLabel];
+        self.cell.textField.text = [self detailTextLabel];
     }
 
-    cell.textField.placeholder = self.fieldInfo.fieldPlaceholder;
+	self.cell.disabled = FALSE;
+    self.cell.textField.placeholder = self.fieldInfo.fieldPlaceholder;
     
-    return cell;
+    return self.cell;
     
+}
+
+
+-(void)disableFieldAccess
+{
+	[super disableFieldAccess];
+	if(self.cell != nil)
+	{
+		self.cell.disabled = TRUE;
+	}	
 }
 
 

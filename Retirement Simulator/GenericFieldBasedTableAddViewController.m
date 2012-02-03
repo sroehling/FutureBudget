@@ -166,32 +166,4 @@
 
 }
 
-
-
-
-
-#pragma mark -
-#pragma mark Table view data source methods
-
-
-/**
- Manage row selection: If a row is selected, create a new editing view controller to edit the property associated with the selected row.
- */
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-    id<FieldEditInfo> fieldEditInfoForRow = 
-        [self.formInfo fieldEditInfoIndexPath:indexPath];
-    
-    // Deselect the row.
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if([fieldEditInfoForRow hasFieldEditController])
-    {
-        UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
-        assert(viewControllerForRow != nil);
-        [self.navigationController pushViewController:viewControllerForRow animated:YES];       
-    }
-}
-
-
 @end

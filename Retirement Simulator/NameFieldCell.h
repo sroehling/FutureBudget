@@ -15,10 +15,12 @@ extern NSString * const NAME_FIELD_CELL_IDENTIFIER;
     @private
 		UITextField *textField;
 		FieldInfo *fieldInfo;
+		BOOL disabled;
 		
 }
 
 @property (nonatomic, retain) UITextField *textField;
 @property(nonatomic,retain) FieldInfo *fieldInfo;
+@property BOOL disabled;
 
 @end

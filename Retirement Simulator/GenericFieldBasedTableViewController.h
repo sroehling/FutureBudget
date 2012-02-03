@@ -29,7 +29,8 @@
 @property(nonatomic,retain) FormInfo *formInfo;
 @property(nonatomic,retain) id<FormInfoCreator> formInfoCreator;
 
-- (id)initWithFormInfoCreator:(id<FormInfoCreator>) theFormInfoCreator;        
+- (id)initWithFormInfoCreator:(id<FormInfoCreator>) theFormInfoCreator; 
+- (void)selectAndOpenFieldEditInfoForIndex:(NSIndexPath *)indexPath;       
 
 
 @end
