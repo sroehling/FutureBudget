@@ -7,7 +7,7 @@
 //
 
 #import "VariableHeightTableHeader.h"
-
+#import "ColorHelper.h"
 
 @implementation VariableHeightTableHeader
 
@@ -26,6 +26,7 @@ static CGFloat kLabelSpace = 4.0;
     if (self) {
         // Initialization code
 		
+		self.backgroundColor = [ColorHelper tableHeaderBackgroundColor];
 		self.header =[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 		self.header.backgroundColor = [UIColor clearColor];
         self.header.opaque = NO;
@@ -38,7 +39,7 @@ static CGFloat kLabelSpace = 4.0;
 		self.subHeader.backgroundColor = [UIColor clearColor];
         self.subHeader.opaque = NO;
  		self.subHeader.textAlignment = UITextAlignmentLeft;
-		self.subHeader.textColor = [UIColor grayColor];
+		self.subHeader.textColor = [UIColor darkGrayColor];
         self.subHeader.highlightedTextColor = [UIColor whiteColor];
         self.subHeader.font = [UIFont systemFontOfSize:12]; 
 		self.subHeader.lineBreakMode = UILineBreakModeWordWrap;

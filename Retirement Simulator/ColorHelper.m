@@ -26,4 +26,10 @@
 	return [UIColor blackColor];
 }
 
+
++ (UIColor*)tableHeaderBackgroundColor
+{
+	return [UIColor colorWithWhite:0.5 alpha:0.5];
+}
+
 @end

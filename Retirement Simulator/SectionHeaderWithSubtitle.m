@@ -47,7 +47,6 @@
         self.headerLabel.highlightedTextColor = [UIColor whiteColor];
         self.headerLabel.font = [UIFont boldSystemFontOfSize:14];	
 	   
-		self.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
 		self.backgroundColor = [UIColor clearColor];
 		[self addSubview:self.headerLabel];
 		

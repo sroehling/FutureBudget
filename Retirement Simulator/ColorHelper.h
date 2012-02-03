@@ -16,5 +16,6 @@
 + (UIColor*)blueTableTextColor;
 + (UIColor*)promptTextColor;
 + (UIColor*)navBarTintColor;
++ (UIColor*)tableHeaderBackgroundColor;
 
 @end

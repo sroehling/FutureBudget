@@ -9,6 +9,7 @@
 #import "TableHeaderWithDisclosure.h"
 #import "TableHeaderDisclosureButtonDelegate.h"
 #import "UIHelper.h"
+#import "ColorHelper.h"
 
 static CGFloat kLeftMargin = 10.0;
 static CGFloat kRightMargin = 10.0;
@@ -40,13 +41,12 @@ static CGFloat kButtonHeight = 20.0;
         self.header.font = [UIFont boldSystemFontOfSize:12];       
 		[self addSubview:self.header];
 		
-		self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+		self.backgroundColor = [ColorHelper tableHeaderBackgroundColor];
 
 		self.disclosureButtonDelegate = delegate;
 		
 		self.disclosureButton = [UIHelper imageButton:@"buttonDisclosure"];
 		self.disclosureButton.hidden = FALSE;
-		//[UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [self.disclosureButton addTarget:self.disclosureButtonDelegate 
 				action:@selector(tableHeaderDisclosureButtonPressed) 
                      forControlEvents:UIControlEventTouchUpInside];
