@@ -106,3 +106,53 @@
 
 
 @end
+
+
+@implementation UIView(findAndAskForResignationOfFirstResponder)
+
+
+-(UIView*)findFirstResponderInSubviews
+{
+	if(self.isFirstResponder)
+	{
+		return self;
+	}
+	else
+	{
+		for(UIView *subView in self.subviews)
+		{
+			UIView *subViewFR = [subView findFirstResponderInSubviews];
+			if(subViewFR != nil)
+			{
+				return subViewFR;
+			}
+		}
+	}
+	return nil;
+}
+
+-(BOOL)findAndAskForResignationOfFirstResponder
+{    
+
+	UIView *firstResponder = [self findFirstResponderInSubviews];
+	if(firstResponder != nil)
+	{
+		if([firstResponder canResignFirstResponder])
+		{
+			return YES;
+		}
+		else
+		{
+			return NO;
+		}
+	}
+	else
+	{
+		return YES;
+	}
+}
+
+
+@end
+
+

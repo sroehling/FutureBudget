@@ -134,16 +134,36 @@
 	assert(fieldEditInfoForRow != nil);
     if([fieldEditInfoForRow hasFieldEditController])
     {
-		// If editing is occuring within one of the cells of this table view, and it
-		// is the first responder. The first responder needs to resign. By disabling
-		// the fields through the FieldEditInfo (cell controllers), the cells can
-		// discontinue any validation which would prohibit resignation as first
-		// responder.
-		[self.formInfo disableFieldChanges];
 	
-        UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
-        assert(viewControllerForRow != nil);
-        [self.navigationController pushViewController:viewControllerForRow animated:YES];       
+		// Before disabling the views and going into the sub-view, we ask
+		// any first responders to resign. If editing has taken place 
+		// in the first responder and what is edited is valid, then
+		// this will allow the results to be committed.
+		if([self.tableView findAndAskForResignationOfFirstResponder])
+		{
+		
+			// No need to disable the fields (and thus override validation), since
+			// the first responder should voluntarily resign.
+			
+			UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
+			assert(viewControllerForRow != nil);
+			[self.navigationController pushViewController:viewControllerForRow animated:YES];       
+		}
+		else
+		{
+			// If editing is occuring within one of the cells of this table view, and it
+			// is the first responder. The first responder needs to resign. By disabling
+			// the fields through the FieldEditInfo (cell controllers), the cells can
+			// discontinue any validation which would prohibit resignation as first
+			// responder.
+			[self.formInfo disableFieldChanges];
+
+			UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
+			assert(viewControllerForRow != nil);
+			[self.navigationController pushViewController:viewControllerForRow animated:YES];       
+		}
+	
+	
     }
 	
 }

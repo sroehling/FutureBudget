@@ -25,3 +25,10 @@
 	andRightMargin:(CGFloat)rightMargin;
 
 @end
+
+
+@interface UIView(findAndAskForResignationOfFirstResponder)
+
+-(BOOL)findAndAskForResignationOfFirstResponder;
+
+@end

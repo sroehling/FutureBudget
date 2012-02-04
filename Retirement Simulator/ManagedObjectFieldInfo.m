@@ -53,8 +53,6 @@
 
 - (BOOL)fieldIsInitializedInParentObject
 {
-    assert(fieldAccessEnabled);
-    
     id fieldValue = [self.managedObject  valueForKey:self.fieldKey];
     if(fieldValue != nil)
     {
