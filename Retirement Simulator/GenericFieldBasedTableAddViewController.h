@@ -26,7 +26,6 @@
 @property(nonatomic,retain) id<FinishedAddingObjectListener> finshedAddingListener;
 @property(nonatomic) NSInteger popDepth;
 
-- (void)managedObjectsSaved;
 - (id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator andNewObject:(NSManagedObject*)newObj;
 
 @end

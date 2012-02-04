@@ -24,6 +24,9 @@
 - (void)saveContext;
 - (void)saveContextAndIgnoreErrors;
 - (void)rollbackUncommittedChanges;
+-(void)startObservingContextChanges:(id)observer withSelector:(SEL)theSelector;
+-(void)stopObservingContextChanges:(id)observer;
+
 
 - (NSSet *)fetchObjectsForEntityName:(NSString *)entityName;
 - (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName 

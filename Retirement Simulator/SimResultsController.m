@@ -84,7 +84,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 
 
 
-- (void)managedObjectsSaved
+- (void)managedObjectsChanged
 {
     NSLog(@"SimResultsController - Managed Objects Changed - marking results out of date");
 	resultsOutOfDate = TRUE;
@@ -101,11 +101,8 @@ static SimResultsController *theSimResultsControllerSingleton;
 		self.dataModelController = theDataModelController;
 		self.sharedAppVals = theSharedAppVals;
 		
-		
-		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-		assert(dnc != nil);
-		[dnc addObserver:self selector:@selector(managedObjectsSaved) name:NSManagedObjectContextObjectsDidChangeNotification 
-              object:self.dataModelController.managedObjectContext];
+		[self.dataModelController startObservingContextChanges:self 
+			withSelector:@selector(managedObjectsChanged)];
 		resultsOutOfDate = TRUE;
 
 	}
@@ -141,15 +138,10 @@ static SimResultsController *theSimResultsControllerSingleton;
 
 -(void)dealloc
 {
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-	assert(dnc != nil);
-    [dnc removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification 
-		object:self.dataModelController.managedObjectContext];
+	[self.dataModelController stopObservingContextChanges:self];
 
 
 	[super dealloc];
-	
-	
 	
 	[endOfYearResults release];
 	[assetsSimulated release];

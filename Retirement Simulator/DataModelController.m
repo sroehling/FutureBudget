@@ -144,6 +144,28 @@
     }
 }
 
+-(void)startObservingContextChanges:(id)observer withSelector:(SEL)theSelector
+{
+	assert(observer != nil);
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	assert(dnc != nil);
+	[dnc addObserver:observer selector:theSelector
+		name:NSManagedObjectContextObjectsDidChangeNotification 
+		  object:self.managedObjectContext];
+}
+
+-(void)stopObservingContextChanges:(id)observer
+{
+	assert(observer != nil);
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	assert(dnc != nil);
+    [dnc removeObserver:observer 
+		name:NSManagedObjectContextObjectsDidChangeNotification 
+		object:self.managedObjectContext];
+
+}
+
+
 - (void)rollbackUncommittedChanges
 {
 	if(self.managedObjectContext != nil)

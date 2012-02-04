@@ -35,28 +35,10 @@
 
 }
 
-- (void)managedObjectsSaved
+- (void)managedObjectsChanged
 {
-    NSLog(@"Managed objects changed");
+    NSLog(@"Managed objects changed - updating saving button for table controller");
 	[self updateSaveButtonEnabled];
-}
-
-
-
-
-- (void)stopObservingObjectChangeNotifications
-{
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:[DataModelController theDataModelController].managedObjectContext];
-    
-}
-
-- (void)startObservingObjectChangeNotifications
-{
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc addObserver:self selector:@selector(managedObjectsSaved) name:NSManagedObjectContextDidSaveNotification 
-              object:[DataModelController theDataModelController].managedObjectContext];
-    
 }
 
 #define DEFAULT_POP_DEPTH 2
@@ -86,7 +68,10 @@
     if([self.formInfo allFieldsInitialized])
 	{
 		[self.formInfo disableFieldChanges];
-		[self stopObservingObjectChangeNotifications];
+		
+		
+		[[DataModelController theDataModelController] stopObservingContextChanges:self];    
+		
 		if(self.finshedAddingListener != nil)
 		{
 			[self.finshedAddingListener objectFinshedBeingAdded:self.newObject];
@@ -106,7 +91,8 @@
 
 
 - (void)cancel {
-    [self stopObservingObjectChangeNotifications];
+	
+	[[DataModelController theDataModelController] stopObservingContextChanges:self];    
     
     // If we cancel out of edit mode, then we need to disable further access
     // to the managed object before we delete the object. This can be an 
@@ -152,7 +138,8 @@
 	
 	[self updateSaveButtonEnabled];
         
-    [self startObservingObjectChangeNotifications];
+	[[DataModelController theDataModelController] 
+		startObservingContextChanges:self withSelector:@selector(managedObjectsChanged)];    
    
 }
 
