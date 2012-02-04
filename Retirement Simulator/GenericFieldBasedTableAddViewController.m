@@ -93,7 +93,13 @@
 		}
 		[TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
 		
-		[[DataModelController theDataModelController] saveContext];
+		// TBD - To make the save more robust, should a separate context
+		// be used for each form doing an add. A case to consider is when
+		// a shared milestone date is created and added during the addition
+		// of an input, but the input as a whole is not validated. The milestone
+		// date should be saved (with error checking), but the input should
+		// be validated and saved independently.
+		[[DataModelController theDataModelController] saveContextAndIgnoreErrors];
 	}
 
 }
