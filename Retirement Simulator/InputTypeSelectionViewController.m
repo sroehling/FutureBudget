@@ -14,6 +14,7 @@
 #import "TableViewHelper.h"
 #import "GenericFieldBasedTableAddViewController.h"
 #import "UIHelper.h"
+#import "TableCellHelper.h"
 
 
 @implementation InputTypeSelectionViewController
@@ -112,6 +113,7 @@
     assert(typeInfo != nil);
     assert([typeInfo.description length] > 0);
     cell.textLabel.text = typeInfo.description;
+	cell.textLabel.font = [UIFont boldSystemFontOfSize:TABLE_CELL_LABEL_FONT_SIZE];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     
