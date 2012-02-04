@@ -10,12 +10,16 @@
 
 #import "GenericFieldBasedTableViewController.h"
 
+@class WEPopoverController;
+
 @interface GenericFieldBasedTableEditViewController : GenericFieldBasedTableViewController {
 	@private
 		UIBarButtonItem *addButton;
+		WEPopoverController *addButtonPopoverController;
 }
 
 @property(nonatomic,retain) UIBarButtonItem *addButton;
+@property(nonatomic,retain) WEPopoverController *addButtonPopoverController;
 
 @end
 

@@ -31,6 +31,7 @@
     
     formPopulator.formInfo.title = @"Inputs";
 	formPopulator.formInfo.objectAdder = [[[InputListObjectAdder alloc] init] autorelease];
+	formPopulator.formInfo.emptyFormObjectAddPopupCaption = LOCALIZED_STR(@"INPUT_LIST_EMPTY_LIST_ADD_BUTTON_CAPTION");
 	
 	SectionInfo *sectionInfo;
 	

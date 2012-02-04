@@ -20,4 +20,8 @@
 + (UIImage*)stretchableButtonImage:(NSString*)imageFileName;
 + (UIButton*)imageButton:(NSString*)imgFilePrefix;
 
++ (CGFloat)labelHeight:(UILabel*)theLabel forWidth:(CGFloat)maxWidth 
+	andLeftMargin:(CGFloat)leftMargin
+	andRightMargin:(CGFloat)rightMargin;
+
 @end

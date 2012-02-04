@@ -10,9 +10,14 @@
 #import "FieldEditInfo.h"
 #import "DataModelController.h"
 #import "FormInfo.h"
+#import "WEPopoverController.h"
+#import "StringValidation.h"
+#import "TextCaptionWEPopoverContainer.h"
 
 
 @implementation UIView(findAndAskForResignationOfFirstResponder)
+
+
 
 -(UIView*)findFirstResponderInSubviews
 {
@@ -60,6 +65,7 @@
 @implementation GenericFieldBasedTableEditViewController
 
 @synthesize addButton;
+@synthesize addButtonPopoverController;
 
 -(BOOL)showAddButtonOutsideEditMode
 {
@@ -79,6 +85,40 @@
 	return (self.formInfo.objectAdder != nil)?TRUE:FALSE;
 }
 
+-(BOOL)doShowAddButtonCaptionPopover
+{
+	if((!self.editing) && 
+	   [self showAddButtonInEditMode] && 
+	   ([self.formInfo numSections] == 0) &&
+	   ((self.formInfo.emptyFormObjectAddPopupCaption != nil)))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+-(void)showAddButtonCaptionPopover
+{
+	assert([StringValidation nonEmptyString:self.formInfo.emptyFormObjectAddPopupCaption]);
+
+	TextCaptionWEPopoverContainer *popoverContainer = [[[TextCaptionWEPopoverContainer
+		alloc] initWithCaption:self.formInfo.emptyFormObjectAddPopupCaption] autorelease];
+	self.addButtonPopoverController = [[WEPopoverController alloc] 
+		initWithContentViewController:popoverContainer];
+
+	self.addButtonPopoverController.passthroughViews = [NSArray arrayWithObject:self.view];
+
+	assert([self.addButtonPopoverController respondsToSelector:@selector(setContainerViewProperties:)]);
+	[self.addButtonPopoverController setContainerViewProperties:[popoverContainer containerViewProperties]];
+
+	[self.addButtonPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem 
+	  permittedArrowDirections:UIPopoverArrowDirectionUp animated:TRUE];
+
+}
+
 
 - (void)viewDidLoad
 {
@@ -92,6 +132,30 @@
 								  
 	self.navigationItem.leftBarButtonItem = [self showAddButtonOutsideEditMode]?self.addButton:nil;
 }
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	if([self doShowAddButtonCaptionPopover])
+	{
+		[self showAddButtonCaptionPopover];
+	}
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	
+	if(self.addButtonPopoverController != nil)
+	{
+		[self.addButtonPopoverController dismissPopoverAnimated:FALSE];
+		self.addButtonPopoverController = nil;
+	}
+}
+
 
 
 #pragma mark -
@@ -201,6 +265,7 @@
  {
 	 [super dealloc];
 	 [addButton release];
+	 [addButtonPopoverController release];
  }
 
 

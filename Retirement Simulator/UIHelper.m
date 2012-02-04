@@ -73,5 +73,36 @@
 	
 }
 
++(CGFloat)labelWidthWithMargin:(CGFloat)maxWidth andLeftMargin:(CGFloat)leftMargin
+	andRightMargin:(CGFloat)rightMargin
+{
+	return maxWidth - leftMargin - leftMargin;
+}
+
+
++ (CGFloat)labelHeight:(UILabel*)theLabel forWidth:(CGFloat)maxWidth andLeftMargin:(CGFloat)leftMargin
+	andRightMargin:(CGFloat)rightMargin
+{
+	if([theLabel.text length] == 0)
+	{
+		return 0.0;
+	}
+	else
+	{
+		//	CGFloat subTitleWidth = [self subTitleWidthWithMargin:overallWidth];
+		CGFloat subTitleWidth = [UIHelper labelWidthWithMargin:maxWidth 
+			andLeftMargin:leftMargin andRightMargin:rightMargin];
+		
+		CGFloat maxHeight = 300.0;
+		CGSize maxSize = CGSizeMake(subTitleWidth, maxHeight);
+		
+		CGSize subTitleSize = [theLabel.text sizeWithFont:theLabel.font
+			constrainedToSize:maxSize lineBreakMode:theLabel.lineBreakMode];
+		return subTitleSize.height;
+		
+	}
+}
+
+
 
 @end

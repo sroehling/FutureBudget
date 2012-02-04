@@ -16,6 +16,7 @@
 @synthesize objectAdder;
 @synthesize headerView;
 @synthesize sections;
+@synthesize emptyFormObjectAddPopupCaption;
 
 
 - (id) init
@@ -41,6 +42,7 @@
     [sections release];
     [title release];
 	[objectAdder release];
+	[emptyFormObjectAddPopupCaption release];
 	[headerView release];
     
 }

@@ -18,12 +18,14 @@
     NSMutableArray *sections;
     NSString *title;
 	id<TableViewObjectAdder> objectAdder; // optional
+	NSString *emptyFormObjectAddPopupCaption; // optional
 	UIView *headerView; // optional
 }
 
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSMutableArray *sections;
 @property(nonatomic,retain) id<TableViewObjectAdder> objectAdder;
+@property(nonatomic,retain) NSString *emptyFormObjectAddPopupCaption;
 @property(nonatomic,retain) UIView *headerView;
 
 - (void) addSection:(SectionInfo*)section;

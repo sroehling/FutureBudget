@@ -43,6 +43,7 @@
 
 - (CGFloat)subTitleHeightForWidth:(CGFloat)overallWidth;
 {
+	// TODO - Migrate to use code in UIHelper
 	if([self.subTitle.text length] == 0)
 	{
 		return 0.0;

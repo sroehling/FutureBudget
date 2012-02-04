@@ -55,10 +55,6 @@
 	inputNavController.navigationBar.tintColor = navBarControllerColor;
 
 
-
-// TODO - Delete ScenarioListFormInfoCreator (after copying any reusable code from the file)	
-//	ScenarioListFormInfoCreator *scenarioFormInfoCreator = 
-//		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
 	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
 		[[[WhatIfFormInfoCreator alloc] init] autorelease];
 	UIViewController *whatIfController = [[[GenericFieldBasedTableViewController alloc]
