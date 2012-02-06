@@ -21,6 +21,8 @@
 {
 	self.staticCell.caption.text = self.caption;
     self.staticCell.valueDescription.text = self.content;
+	self.staticCell.editingAccessoryType = UITableViewCellAccessoryNone;
+	self.staticCell.accessoryType = UITableViewCellAccessoryNone;
 }
 
 - (id)initWithManagedObj:(NSManagedObject*)theFieldObj andCaption:(NSString*)theCaption 
