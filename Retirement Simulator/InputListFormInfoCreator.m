@@ -22,6 +22,7 @@
 #import "Account.h"
 #import "AssetInput.h"
 #import "TaxInput.h"
+#import "HelpPagePopoverCaptionInfo.h"
 
 @implementation InputListFormInfoCreator
 
@@ -31,7 +32,12 @@
     
     formPopulator.formInfo.title = @"Inputs";
 	formPopulator.formInfo.objectAdder = [[[InputListObjectAdder alloc] init] autorelease];
-	formPopulator.formInfo.emptyFormObjectAddPopupCaption = LOCALIZED_STR(@"INPUT_LIST_EMPTY_LIST_ADD_BUTTON_CAPTION");
+	
+	formPopulator.formInfo.addButtonPopoverInfo = [[[HelpPagePopoverCaptionInfo alloc] initWithPopoverCaption:
+		LOCALIZED_STR(@"INPUT_LIST_EMPTY_LIST_ADD_BUTTON_CAPTION") 
+		andHelpPageMoreInfoCaption:LOCALIZED_STR(@"INPUT_LIST_EMPTY_LIST_ADD_BUTTON_MORE_INFO_CAPTION") 
+		andHelpPageName:@"gettingStarted" 
+		andParentController:parentController] autorelease];
 	
 	SectionInfo *sectionInfo;
 	

@@ -10,14 +10,17 @@
 
 @class WEPopoverContainerViewProperties;
 
+@class HelpPagePopoverCaptionInfo;
+
 @interface TextCaptionWEPopoverContainer : UIViewController {
     @private
-		NSString* captionText;
+		HelpPagePopoverCaptionInfo *captionInfo;		
 }
 
-@property(nonatomic,retain) NSString *captionText;
+@property(nonatomic,retain) HelpPagePopoverCaptionInfo *captionInfo;
 
-- (id)initWithCaption:(NSString*)theCaptionText ;
+- (id)initWithCaptionInfo:(HelpPagePopoverCaptionInfo*)theCaptionInfo;
+
 - (WEPopoverContainerViewProperties *)containerViewProperties;
 
 @end

@@ -43,7 +43,7 @@
 	if((!self.editing) && 
 	   [self showAddButtonInEditMode] && 
 	   ([self.formInfo numSections] == 0) &&
-	   ((self.formInfo.emptyFormObjectAddPopupCaption != nil)))
+	   ((self.formInfo.addButtonPopoverInfo != nil)))
 	{
 		return TRUE;
 	}
@@ -53,12 +53,12 @@
 	}
 }
 
+
 -(void)showAddButtonCaptionPopover
 {
-	assert([StringValidation nonEmptyString:self.formInfo.emptyFormObjectAddPopupCaption]);
 
 	TextCaptionWEPopoverContainer *popoverContainer = [[[TextCaptionWEPopoverContainer
-		alloc] initWithCaption:self.formInfo.emptyFormObjectAddPopupCaption] autorelease];
+		alloc] initWithCaptionInfo:self.formInfo.addButtonPopoverInfo] autorelease];
 	self.addButtonPopoverController = [[WEPopoverController alloc] 
 		initWithContentViewController:popoverContainer];
 

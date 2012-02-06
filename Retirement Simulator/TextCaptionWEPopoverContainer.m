@@ -9,12 +9,14 @@
 #import "TextCaptionWEPopoverContainer.h"
 #import "WEPopoverContainerView.h"
 #import "UIHelper.h"
+#import "HelpPagePopoverCaptionInfo.h"
 #import "StringValidation.h"
 
 
 @implementation TextCaptionWEPopoverContainer
 
-@synthesize captionText;
+@synthesize captionInfo;
+
 
 - (WEPopoverContainerViewProperties *)containerViewProperties {
 	
@@ -52,24 +54,23 @@
 }
 
 
-- (id)initWithCaption:(NSString*)theCaptionText {
+- (id)initWithCaptionInfo:(HelpPagePopoverCaptionInfo*)theCaptionInfo
+{
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     if ((self = [super init])) {
 		CGFloat width = 150;
 		CGFloat height = 150;
 		self.contentSizeForViewInPopover = CGSizeMake(width, height);
 		
-		[StringValidation nonEmptyString:theCaptionText];
-		self.captionText = theCaptionText;
+		self.captionInfo = theCaptionInfo;
     }
     return self;
 }
 
-
 - (void)dealloc
 {
     [super dealloc];
-	[captionText release];
+	[captionInfo release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,9 +88,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	CGFloat popoverHeight = 0.0;
+	
 
 	UILabel *popoverCaption = [[[UILabel alloc] init] autorelease];
-	popoverCaption.text = self.captionText;
+	popoverCaption.text = self.captionInfo.popoverCaption;
 	popoverCaption.lineBreakMode = UILineBreakModeWordWrap;
 	popoverCaption.numberOfLines = 0;
 	popoverCaption.backgroundColor = [UIColor clearColor];
@@ -97,6 +101,8 @@
 	popoverCaption.font = [UIFont systemFontOfSize:14.0];
 
 	CGFloat kPopoverWidth = 150;
+	CGFloat kButtonWidth = 145;
+	CGFloat kVerticalSpace = 2;
 	
 	CGFloat captionHeight = [UIHelper labelHeight:popoverCaption 
 		forWidth:kPopoverWidth andLeftMargin:2 andRightMargin:2];
@@ -106,10 +112,37 @@
 	newFrame.origin.x = 0;
 	newFrame.origin.y = 0;
 	[popoverCaption setFrame:newFrame];
-	
 	[self.view addSubview:popoverCaption];
+	
+	popoverHeight += captionHeight;
+	
+		
+	UIButton *moreInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	moreInfoButton.backgroundColor = [UIColor clearColor];
+	moreInfoButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+	[moreInfoButton setBackgroundImage:[UIHelper stretchableButtonImage:@"popoverMoreInfoButton.png"] forState:UIControlStateNormal];
+	[moreInfoButton setTitleColor:[UIColor darkGrayColor ] forState:UIControlStateNormal];
 
-	self.contentSizeForViewInPopover = CGSizeMake(kPopoverWidth, captionHeight - 1);
+	
+	[moreInfoButton setTitle:self.captionInfo.helpPageMoreInfoCaption forState:UIControlStateNormal];
+	CGRect buttonFrame = moreInfoButton.frame;
+	buttonFrame.origin.x = 2;
+	buttonFrame.origin.y = captionHeight + kVerticalSpace;
+	buttonFrame.size.height = 20;
+	buttonFrame.size.width = kButtonWidth;
+	[moreInfoButton setFrame:buttonFrame];
+		
+	popoverHeight += moreInfoButton.frame.size.height + kVerticalSpace;
+	
+	
+	[moreInfoButton addTarget:self.captionInfo 
+			action:@selector(moreInfoButtonPressed) 
+				 forControlEvents:UIControlEventTouchUpInside];
+
+	[self.view addSubview:moreInfoButton];
+	
+
+	self.contentSizeForViewInPopover = CGSizeMake(kPopoverWidth, popoverHeight);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

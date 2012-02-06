@@ -13,19 +13,21 @@
 #import "FieldEditInfo.h"
 #import "TableViewObjectAdder.h"
 
+@class HelpPagePopoverCaptionInfo;
+
 @interface FormInfo : NSObject {
 @private
     NSMutableArray *sections;
     NSString *title;
 	id<TableViewObjectAdder> objectAdder; // optional
-	NSString *emptyFormObjectAddPopupCaption; // optional
+	HelpPagePopoverCaptionInfo *addButtonPopoverInfo; // optional
 	UIView *headerView; // optional
 }
 
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSMutableArray *sections;
 @property(nonatomic,retain) id<TableViewObjectAdder> objectAdder;
-@property(nonatomic,retain) NSString *emptyFormObjectAddPopupCaption;
+@property(nonatomic,retain) HelpPagePopoverCaptionInfo *addButtonPopoverInfo;
 @property(nonatomic,retain) UIView *headerView;
 
 - (void) addSection:(SectionInfo*)section;

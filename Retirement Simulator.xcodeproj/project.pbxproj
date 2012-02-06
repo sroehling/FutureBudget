@@ -183,6 +183,8 @@
 		0075841014DF3B6B00184BD5 /* markdown-prefix.html in Resources */ = {isa = PBXBuildFile; fileRef = 0075840F14DF3B6B00184BD5 /* markdown-prefix.html */; };
 		0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */ = {isa = PBXBuildFile; fileRef = 0075841114DF3FC200184BD5 /* markdown-suffix.html */; };
 		0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */ = {isa = PBXBuildFile; fileRef = 0075841314DF410500184BD5 /* wrapMarkdown.pl */; };
+		0075841914E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075841814E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m */; };
+		0075841B14E0541D00184BD5 /* popoverMoreInfoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0075841A14E0541D00184BD5 /* popoverMoreInfoButton.png */; };
 		0086C08114279A3B00148785 /* DownPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */; };
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
@@ -796,6 +798,9 @@
 		0075840F14DF3B6B00184BD5 /* markdown-prefix.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-prefix.html"; sourceTree = "<group>"; };
 		0075841114DF3FC200184BD5 /* markdown-suffix.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-suffix.html"; sourceTree = "<group>"; };
 		0075841314DF410500184BD5 /* wrapMarkdown.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = wrapMarkdown.pl; sourceTree = "<group>"; };
+		0075841714E0385F00184BD5 /* HelpPagePopoverCaptionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPagePopoverCaptionInfo.h; sourceTree = "<group>"; };
+		0075841814E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPagePopoverCaptionInfo.m; sourceTree = "<group>"; };
+		0075841A14E0541D00184BD5 /* popoverMoreInfoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverMoreInfoButton.png; sourceTree = "<group>"; };
 		0086C07F14279A3B00148785 /* DownPaymentSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownPaymentSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownPaymentSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08314279B7D00148785 /* SimInputHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimInputHelper.h; sourceTree = "<group>"; };
@@ -1934,9 +1939,6 @@
 		004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */ = {
 			isa = PBXGroup;
 			children = (
-				00DC4A3B14DCD0DA006BDF61 /* WE Popover Container */,
-				00D6845614CDD01F00E3AC9F /* Help Pages */,
-				005EF4E014CA1E63001F3D36 /* Help Flip View */,
 				005EF47C14C88232001F3D36 /* Resources */,
 				0055A8961417DB6B00EFB95C /* Helper */,
 				0049DC6D13A287A000B27046 /* Base Classes */,
@@ -2154,6 +2156,16 @@
 				006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */,
 			);
 			name = Taxes;
+			sourceTree = "<group>";
+		};
+		0075841614E02FF200184BD5 /* Help Views */ = {
+			isa = PBXGroup;
+			children = (
+				00DC4A3B14DCD0DA006BDF61 /* WE Popover Container */,
+				00D6845614CDD01F00E3AC9F /* Help Pages */,
+				005EF4E014CA1E63001F3D36 /* Help Flip View */,
+			);
+			name = "Help Views";
 			sourceTree = "<group>";
 		};
 		0086C08F142956AF00148785 /* Setup */ = {
@@ -2476,6 +2488,7 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				0075841614E02FF200184BD5 /* Help Views */,
 				00D6848614CF61FB00E3AC9F /* 3rdParty */,
 				008AA408141ABB0600FF2A52 /* Icons */,
 				003AD12D138AC83000CB3CB5 /* Helper */,
@@ -2790,6 +2803,9 @@
 		00DC4A3B14DCD0DA006BDF61 /* WE Popover Container */ = {
 			isa = PBXGroup;
 			children = (
+				0075841A14E0541D00184BD5 /* popoverMoreInfoButton.png */,
+				0075841714E0385F00184BD5 /* HelpPagePopoverCaptionInfo.h */,
+				0075841814E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m */,
 				00DC4A3C14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.h */,
 				00DC4A3D14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.m */,
 			);
@@ -3058,6 +3074,7 @@
 				0075841014DF3B6B00184BD5 /* markdown-prefix.html in Resources */,
 				0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */,
 				0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */,
+				0075841B14E0541D00184BD5 /* popoverMoreInfoButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3386,6 +3403,7 @@
 				00DC4A1B14DC952F006BDF61 /* WEPopoverContainerView.m in Sources */,
 				00DC4A1C14DC952F006BDF61 /* UIBarButtonItem+WEPopover.m in Sources */,
 				00DC4A3E14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.m in Sources */,
+				0075841914E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

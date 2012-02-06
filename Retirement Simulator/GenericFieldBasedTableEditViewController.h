@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "GenericFieldBasedTableViewController.h"
+#import "TextCaptionWEPopoverContainer.h"
 
 @class WEPopoverController;
 
