@@ -179,6 +179,10 @@
 		006D3A67145F4A3C004AF798 /* ItemizedAccountContribTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A66145F4A3C004AF798 /* ItemizedAccountContribTaxAmtCreator.m */; };
 		006D3A6A145F5B8E004AF798 /* AccountWithdrawalItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A69145F5B8D004AF798 /* AccountWithdrawalItemizedTaxAmt.m */; };
 		006D3A70145F6003004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A6F145F6001004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m */; };
+		0075840D14DF34BF00184BD5 /* markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = 0075840C14DF34BF00184BD5 /* markdown.css */; };
+		0075841014DF3B6B00184BD5 /* markdown-prefix.html in Resources */ = {isa = PBXBuildFile; fileRef = 0075840F14DF3B6B00184BD5 /* markdown-prefix.html */; };
+		0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */ = {isa = PBXBuildFile; fileRef = 0075841114DF3FC200184BD5 /* markdown-suffix.html */; };
+		0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */ = {isa = PBXBuildFile; fileRef = 0075841314DF410500184BD5 /* wrapMarkdown.pl */; };
 		0086C08114279A3B00148785 /* DownPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */; };
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
@@ -441,7 +445,7 @@
 			outputFiles = (
 				"${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}${INPUT_FILE_BASE}.html",
 			);
-			script = "mkdir -p ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}$; \"${INPUT_FILE_DIR}/Markdown.pl\" --html4tags \"${INPUT_FILE_PATH}\" > ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}${INPUT_FILE_BASE}.html";
+			script = "mkdir -p ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}$; \"${INPUT_FILE_DIR}/wrapMarkdown.pl\" \"${INPUT_FILE_PATH}\" > ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}${INPUT_FILE_BASE}.html";
 		};
 /* End PBXBuildRule section */
 
@@ -788,6 +792,10 @@
 		006D3A69145F5B8D004AF798 /* AccountWithdrawalItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountWithdrawalItemizedTaxAmt.m; sourceTree = "<group>"; };
 		006D3A6E145F6000004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountWithdrawalTaxAmtCreator.h; sourceTree = "<group>"; };
 		006D3A6F145F6001004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAccountWithdrawalTaxAmtCreator.m; sourceTree = "<group>"; };
+		0075840C14DF34BF00184BD5 /* markdown.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = markdown.css; sourceTree = "<group>"; };
+		0075840F14DF3B6B00184BD5 /* markdown-prefix.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-prefix.html"; sourceTree = "<group>"; };
+		0075841114DF3FC200184BD5 /* markdown-suffix.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-suffix.html"; sourceTree = "<group>"; };
+		0075841314DF410500184BD5 /* wrapMarkdown.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = wrapMarkdown.pl; sourceTree = "<group>"; };
 		0086C07F14279A3B00148785 /* DownPaymentSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownPaymentSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08014279A3B00148785 /* DownPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownPaymentSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08314279B7D00148785 /* SimInputHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimInputHelper.h; sourceTree = "<group>"; };
@@ -2487,11 +2495,15 @@
 		00A36BDC136C6CAE008A5C4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0075840C14DF34BF00184BD5 /* markdown.css */,
 				00D6846C14CE004800E3AC9F /* Localizable.strings */,
 				00A36BDD136C6CAE008A5C4C /* Retirement Simulator-Info.plist */,
 				00A36BDE136C6CAE008A5C4C /* InfoPlist.strings */,
 				00A36BE1136C6CAE008A5C4C /* Retirement Simulator-Prefix.pch */,
 				00A36BE2136C6CAE008A5C4C /* main.m */,
+				0075840F14DF3B6B00184BD5 /* markdown-prefix.html */,
+				0075841114DF3FC200184BD5 /* markdown-suffix.html */,
+				0075841314DF410500184BD5 /* wrapMarkdown.pl */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -3042,6 +3054,10 @@
 				00DC4A3814DCA4BA006BDF61 /* popoverArrowDownSimple.png in Resources */,
 				00DC4A3914DCA4BA006BDF61 /* popoverArrowDown@2x.png in Resources */,
 				00DC4A3A14DCA4BA006BDF61 /* popoverArrowDown.png in Resources */,
+				0075840D14DF34BF00184BD5 /* markdown.css in Resources */,
+				0075841014DF3B6B00184BD5 /* markdown-prefix.html in Resources */,
+				0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */,
+				0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
