@@ -18,6 +18,8 @@
 #import "StaticFieldEditInfo.h"
 #import "DefaultScenario.h"
 #import "SharedAppValues.h"
+#import "SectionHeaderWithSubtitle.h"
+#import "SectionInfo.h"
 
 @implementation ScenarioListFormInfoCreator
 
@@ -40,6 +42,7 @@
 	sectionInfo = [formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_TITLE") 
 		andHelpFile:@"scenariosAlternate"];
+	sectionInfo.sectionHeader.addButtonDelegate = [[[ScenarioListObjectAdder alloc] init] autorelease];
 	
 	NSArray *userScenarios = [[DataModelController theDataModelController]
 			fetchSortedObjectsWithEntityName:USER_SCENARIO_ENTITY_NAME 

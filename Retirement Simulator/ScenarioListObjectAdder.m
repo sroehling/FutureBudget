@@ -15,9 +15,8 @@
 
 @implementation ScenarioListObjectAdder
 
--(void)addObjectFromTableView:(UITableViewController*)parentView
+-(void)addObject:(UIViewController*)parentView
 {
-
 	UserScenario *newScenario = [[DataModelController theDataModelController] 
 							  insertObject:USER_SCENARIO_ENTITY_NAME];
 	UserScenarioFormInfoCreator *scenarioFormCreator = 
@@ -31,7 +30,16 @@
 
     [parentView.navigationController pushViewController:controller animated:YES];
 
-	
+}
+
+-(void)addObjectFromTableView:(UITableViewController*)parentView
+{
+	return [self addObject:parentView];	
+}
+
+-(void)addButtonPressedInSectionHeader:(UIViewController*)parentView
+{
+	return [self addObject:parentView];
 }
 
 -(BOOL)supportsAddOutsideEditMode

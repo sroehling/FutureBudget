@@ -160,7 +160,7 @@
 - (void)addButtonPressed
 {
     assert(addButtonDelegate != nil);
-	[self.addButtonDelegate addButtonPressedInSectionHeader];
+	[self.addButtonDelegate addButtonPressedInSectionHeader:self.parentController];
 }
 
 -(void)showInfoPopup

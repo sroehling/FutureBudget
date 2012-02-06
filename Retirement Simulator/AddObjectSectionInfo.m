@@ -39,7 +39,7 @@
 	return self;
 }
 
-- (void)addButtonPressedInSectionHeader
+-(void)addButtonPressedInSectionHeader:(UITableViewController*)parentView
 {
     // no-op
     assert(0); // must be overriden

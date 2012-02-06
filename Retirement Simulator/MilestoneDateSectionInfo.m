@@ -42,7 +42,7 @@
 	return nil;
 }
 
-- (void)addButtonPressedInSectionHeader
+-(void)addButtonPressedInSectionHeader:(UIViewController*)parentView
 {
     assert(self.parentViewController != nil);
     NSLog(@"Add milestone");

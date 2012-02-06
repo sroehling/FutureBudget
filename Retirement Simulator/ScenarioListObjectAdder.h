@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "TableViewObjectAdder.h"
+#import "SectionHeaderAddButtonDelegate.h"
 
-@interface ScenarioListObjectAdder : NSObject <TableViewObjectAdder> {
+@interface ScenarioListObjectAdder : NSObject <TableViewObjectAdder,SectionHeaderAddButtonDelegate> {
     
 }
 

@@ -11,6 +11,6 @@
 
 @protocol SectionHeaderAddButtonDelegate <NSObject>
 
--(void)addButtonPressedInSectionHeader;
+-(void)addButtonPressedInSectionHeader:(UIViewController*)parentView;
 
 @end
