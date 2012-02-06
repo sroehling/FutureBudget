@@ -55,14 +55,6 @@
 	inputNavController.navigationBar.tintColor = navBarControllerColor;
 
 
-	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
-		[[[WhatIfFormInfoCreator alloc] init] autorelease];
-	UIViewController *whatIfController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:whatIfFormInfoCreator] autorelease];
-	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
-	whatIfNavController.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
-	whatIfNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
-	whatIfNavController.navigationBar.tintColor = navBarControllerColor;
 	
 	StartingValsFormInfoCreator *startingValsFormInfoCreator = 
 		[[[StartingValsFormInfoCreator alloc] init] autorelease];
@@ -84,6 +76,15 @@
 	resultsNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
 	resultsNavController.navigationBar.tintColor = navBarControllerColor;
 	
+	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
+		[[[WhatIfFormInfoCreator alloc] init] autorelease];
+	UIViewController *whatIfController = [[[GenericFieldBasedTableViewController alloc]
+		initWithFormInfoCreator:whatIfFormInfoCreator] autorelease];
+	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
+	whatIfNavController.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
+	whatIfNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
+	whatIfNavController.navigationBar.tintColor = navBarControllerColor;
+
 	
 	MoreFormInfoCreator *moreFormInfoCreator = 
 		[[[MoreFormInfoCreator alloc] init] autorelease];
@@ -97,9 +98,13 @@
 	
 	
 	self.tabBarController.viewControllers =
-		[NSArray arrayWithObjects:inputNavController, 
-			whatIfNavController,startingValsNavController,
-			resultsNavController, moreNavController, nil]; 
+		[NSArray arrayWithObjects:
+			inputNavController, 
+			startingValsNavController,
+			resultsNavController, 
+			whatIfNavController,
+			moreNavController, 
+			nil]; 
 	
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;
