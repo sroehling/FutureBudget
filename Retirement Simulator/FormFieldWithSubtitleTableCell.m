@@ -36,12 +36,14 @@
 }
 
 
-- (CGFloat)subTitleWidthWithMargin:(CGFloat)overallWidth
+- (CGFloat)subTitleWidthWithMargin
 {
+	CGSize constraintSize =CGSizeMake([UIScreen mainScreen].bounds.size.width-TABLE_CELL_SCREEN_MARGIN, MAXFLOAT);
+	CGFloat overallWidth = constraintSize.width;
 	return overallWidth - TABLE_CELL_LEFT_MARGIN - TABLE_CELL_RIGHT_MARGIN - TABLE_CELL_DISCLOSURE_WIDTH;
 }
 
-- (CGFloat)subTitleHeightForWidth:(CGFloat)overallWidth;
+- (CGFloat)subTitleHeight
 {
 	// TODO - Migrate to use code in UIHelper
 	if([self.subTitle.text length] == 0)
@@ -50,9 +52,7 @@
 	}
 	else
 	{
-		CGSize constraintSize =CGSizeMake([UIScreen mainScreen].bounds.size.width-30.0, MAXFLOAT);
-		//	CGFloat subTitleWidth = [self subTitleWidthWithMargin:overallWidth];
-		CGFloat subTitleWidth = [self subTitleWidthWithMargin:constraintSize.width];
+		CGFloat subTitleWidth = [self subTitleWidthWithMargin];
 		
 		CGSize maxSize = CGSizeMake(subTitleWidth, 300);
 		
@@ -69,7 +69,7 @@
 	[self.caption sizeToFit];
 	CGFloat cellHeight = TABLE_CELL_TOP_MARGIN;
 	cellHeight += CGRectGetHeight(self.caption.bounds);
-	CGFloat subTitleHeight = [self subTitleHeightForWidth:width];
+	CGFloat subTitleHeight = [self subTitleHeight];
 	if(subTitleHeight > 0.0)
 	{
 		cellHeight += TABLE_CELL_CHILD_SPACE;
@@ -95,11 +95,9 @@
 	CGFloat subTitleX = CGRectGetMinX(self.contentView.bounds) + TABLE_CELL_LEFT_MARGIN;
 	CGFloat subTitleY = TABLE_CELL_TOP_MARGIN + CGRectGetHeight(self.caption.bounds)+TABLE_CELL_CHILD_SPACE;
 	
-	CGFloat overallSubtitleWidth = CGRectGetWidth(self.contentView.bounds);
-	
 	[self.subTitle setFrame: CGRectMake(subTitleX, subTitleY, 
-				[self subTitleWidthWithMargin:overallSubtitleWidth], 
-				[self subTitleHeightForWidth:overallSubtitleWidth])];
+				[self subTitleWidthWithMargin],
+				[self subTitleHeight])];
 
 }
 
