@@ -11,19 +11,23 @@
 #import "DataModelController.h"
 #import "InputCreationHelper.h"
 #import "ExpenseInput.h"
-
+#import "StringValidation.h"
 
 @implementation ItemizedExpenseTaxAmtCreator
 
 @synthesize expense;
+@synthesize label;
 
-- (id)initWithExpense:(ExpenseInput*)theExpense
+- (id)initWithExpense:(ExpenseInput*)theExpense andLabel:(NSString*)theLabel
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theExpense != nil);
 		self.expense = theExpense;
+		
+		assert([StringValidation nonEmptyString:theLabel]);
+		self.label = theLabel;
 	}
 	return self;
 }
@@ -48,7 +52,7 @@
 
 -(NSString*)itemLabel
 {
-	return self.expense.name;
+	return self.label;
 }
 
 
@@ -56,6 +60,7 @@
 {
 	[super dealloc];
 	[expense release];
+	[label release];
 }
 
 

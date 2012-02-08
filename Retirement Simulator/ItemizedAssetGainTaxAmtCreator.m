@@ -10,19 +10,24 @@
 #import "AssetGainItemizedTaxAmt.h"
 #import "AssetInput.h"
 #import "DataModelController.h"
+#import "StringValidation.h"
 #import "InputCreationHelper.h"
 
 @implementation ItemizedAssetGainTaxAmtCreator
 
 @synthesize asset;
+@synthesize label;
 
--(id)initWithAsset:(AssetInput*)theAsset
+-(id)initWithAsset:(AssetInput*)theAsset andLabel:(NSString*)theLabel
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theAsset != nil);
 		self.asset = theAsset;
+		
+		assert([StringValidation nonEmptyString:theLabel]);
+		self.label = theLabel;
 	}
 	return self;
 }
@@ -47,13 +52,14 @@
 
 -(NSString*)itemLabel
 {
-	return self.asset.name;
+	return self.label;
 }
 
 -(void)dealloc
 {
 	[super dealloc];
 	[asset release];
+	[label release];
 }
 
 @end

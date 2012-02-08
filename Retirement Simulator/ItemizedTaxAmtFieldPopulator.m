@@ -121,6 +121,18 @@
 	return unItemizedIncomes;
 }
 
+- (IncomeItemizedTaxAmt*)findItemizedIncome:(IncomeInput*)income
+{
+	assert(income != nil);
+	for(IncomeItemizedTaxAmt *itemizedIncome in self.itemizedIncomes)
+	{
+		if(itemizedIncome.income == income)
+		{
+			return itemizedIncome;
+		}	
+	}
+	return nil;
+}
 
 - (NSArray*)expensesNotAlreadyItemized
 {
@@ -134,6 +146,19 @@
 	}
 	
 	return unItemizedExpenses;
+}
+
+- (ExpenseItemizedTaxAmt*)findItemizedExpense:(ExpenseInput*)expense
+{
+	assert(expense != nil);
+	for(ExpenseItemizedTaxAmt *itemizedExpense in self.itemizedExpenses)
+	{
+		if(itemizedExpense.expense == expense)
+		{
+			return itemizedExpense;
+		}
+	}
+	return nil;
 }
 
 - (NSArray*)acctWithdrawalsNotAlreadyItemized
@@ -150,6 +175,18 @@
 	return unItemizedAccounts;
 }
 
+- (AccountWithdrawalItemizedTaxAmt *)findItemizedAcctWithdrawal:(Account*)account
+{
+	assert(account != nil);
+	for(AccountWithdrawalItemizedTaxAmt *itemizedWithdrawal in self.itemizedAccountWithdrawals)
+	{
+		if(itemizedWithdrawal.account == account)
+		{
+			return itemizedWithdrawal;
+		}
+	}
+	return nil;
+}
 
 - (NSArray*)acctContribsNotAlreadyItemized
 {
@@ -163,6 +200,19 @@
 	}
 	
 	return unItemizedAccounts;
+}
+
+- (AccountContribItemizedTaxAmt *)findItemizedAcctContrib:(Account*)account
+{
+	assert(account != nil);
+	for(AccountContribItemizedTaxAmt *itemizedContrib in self.itemizedAccountContribs)
+	{
+		if(itemizedContrib.account == account)
+		{
+			return itemizedContrib;
+		}
+	}
+	return nil;
 }
 
 - (NSArray*)acctInterestNotAlreadyItemized
@@ -179,6 +229,18 @@
 	return unItemizedAccounts;
 }
 
+-(AccountInterestItemizedTaxAmt *)findItemizedAcctInterest:(Account*)account
+{
+	assert(account != nil);
+	for(AccountInterestItemizedTaxAmt *itemizedInt in self.itemizedAccountInterest)
+	{
+		if(itemizedInt.account == account)
+		{
+			return itemizedInt;
+		}
+	}
+	return nil;
+}
 
 - (NSArray*)assetGainsNotAlreadyItemized
 {
@@ -194,6 +256,18 @@
 	return unItemizedAssets;
 }
 
+-(AssetGainItemizedTaxAmt *)findItemizedAssetGain:(AssetInput*)asset
+{
+	assert(asset != nil);
+	for(AssetGainItemizedTaxAmt *itemizedAsset in self.itemizedAssets)
+	{
+		if(itemizedAsset.asset == asset)
+		{
+			return itemizedAsset;
+		}
+	}
+	return nil;
+}
 
 - (NSArray*)loanInterestNotAlreadyItemized
 {
@@ -211,6 +285,18 @@
 
 
 
+-(LoanInterestItemizedTaxAmt *)findItemizedLoanInterest:(LoanInput*)loan
+{
+	assert(loan != nil);
+	for(LoanInterestItemizedTaxAmt *itemizedLoan in self.itemizedLoans)
+	{
+		if(itemizedLoan.loan == loan)
+		{
+			return itemizedLoan;
+		}
+	}
+	return nil;
+}
 
 
 -(void)dealloc

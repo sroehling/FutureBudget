@@ -9,6 +9,10 @@
 #import "ItemizedTaxAmtsInfo.h"
 
 #import "StringValidation.h"
+#import "ItemizedTaxAmts.h"
+#import "LocalizationHelper.h"
+#import "ItemizedTaxAmtFieldPopulator.h"
+#import "TaxInput.h"
 
 @implementation ItemizedTaxAmtsInfo
 
@@ -18,6 +22,7 @@
 @synthesize itemTitle;
 @synthesize itemSectionTitleFormat;
 @synthesize itemHelpInfoFile;
+@synthesize fieldPopulator;
 
 
 @synthesize itemizeIncomes;
@@ -68,6 +73,9 @@
 		self.itemizeAssetGains = doItemizeAssetGains;
 		self.itemizeLoanInterest = doItemizeLoanInterest;
 		
+		self.fieldPopulator = [[[ItemizedTaxAmtFieldPopulator alloc] 
+					initWithItemizedTaxAmts:itemizedTaxAmts] autorelease];
+		
 	}
 	return self;
 }
@@ -76,6 +84,82 @@
 {
 	assert(0);
 	return nil;
+}
+
+
++(ItemizedTaxAmtsInfo*)taxSourceInfo:(TaxInput*)tax
+{
+	assert(tax != nil);
+	return [[[ItemizedTaxAmtsInfo alloc] 
+			initWithItemizedTaxAmts:tax.itemizedIncomeSources 
+			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE")
+			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT")
+			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE")
+			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_TITLE_FORMAT")
+			andItemHelpInfoFile:@"taxSource"		
+			andItemizeIncomes:				TRUE 
+			andItemizeExpenses:				FALSE 
+			andItemizeAccountContribs:		FALSE 
+			andItemizeAccountWithdrawals:	TRUE 
+			andItemizeAccountInterest:		TRUE 
+			andItemizeAssetGains:			TRUE 
+			andItemizeLoanInterest:			FALSE] autorelease];
+}
+
+
++(ItemizedTaxAmtsInfo*)taxAdjustmentInfo:(TaxInput*)tax
+{
+	return [[[ItemizedTaxAmtsInfo alloc] 
+			initWithItemizedTaxAmts:tax.itemizedAdjustments 
+			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE")
+			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_AMOUNT_PROMPT")
+			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_ITEM_TITLE")
+			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_TITLE_FORMAT")
+			andItemHelpInfoFile:@"taxAdjustment" 		
+			andItemizeIncomes:				FALSE 
+			andItemizeExpenses:				TRUE 
+			andItemizeAccountContribs:		TRUE 
+			andItemizeAccountWithdrawals:	FALSE 
+			andItemizeAccountInterest:		FALSE 
+			andItemizeAssetGains:			FALSE 
+			andItemizeLoanInterest:			TRUE] autorelease];
+}
+
++(ItemizedTaxAmtsInfo*)taxDeductionInfo:(TaxInput*)tax
+
+{
+	return[[[ItemizedTaxAmtsInfo alloc] 
+			initWithItemizedTaxAmts:tax.itemizedDeductions 
+			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE")
+			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_AMOUNT_PROMPT")
+			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_ITEM_TITLE")
+			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_TITLE_FORMAT")
+			andItemHelpInfoFile:@"taxDeduction"  		
+			andItemizeIncomes:				FALSE 
+			andItemizeExpenses:				TRUE 
+			andItemizeAccountContribs:		TRUE 
+			andItemizeAccountWithdrawals:	FALSE 
+			andItemizeAccountInterest:		FALSE 
+			andItemizeAssetGains:			FALSE 
+			andItemizeLoanInterest:			TRUE] autorelease];
+}
+
++(ItemizedTaxAmtsInfo*)taxCreditInfo:(TaxInput*)tax
+{
+	return [[[ItemizedTaxAmtsInfo alloc] 
+			initWithItemizedTaxAmts:tax.itemizedCredits 
+			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE")
+			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_AMOUNT_PROMPT")
+			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_ITEM_TITLE")
+			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_TITLE_FORMAT")
+			andItemHelpInfoFile:@"taxCredit" 	
+			andItemizeIncomes:				FALSE 
+			andItemizeExpenses:				TRUE 
+			andItemizeAccountContribs:		TRUE 
+			andItemizeAccountWithdrawals:	FALSE 
+			andItemizeAccountInterest:		FALSE 
+			andItemizeAssetGains:			FALSE 
+			andItemizeLoanInterest:			TRUE] autorelease];
 }
 
 -(void)dealloc
@@ -87,6 +171,7 @@
 	[itemizedTaxAmts release];
 	[amtPrompt release];
 	[itemTitle release];
+	[fieldPopulator release];
 }
 
 

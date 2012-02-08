@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "FormPopulator.h"
+#import "ItemizedTaxAmtCreator.h"
+
 
 @class Input;
 @class MultiScenarioInputValue;
@@ -24,12 +26,19 @@
 @class VariableValue;
 @class TableHeaderWithDisclosure;
 
+@class ItemizedTaxAmt;
+@class ItemizedTaxAmtsInfo;
+
+
+
 @interface InputFormPopulator : FormPopulator {
     @private
 		Scenario *inputScenario;
+		BOOL isForNewObject;
 }
 
 @property(nonatomic,retain) Scenario *inputScenario;
+@property BOOL isForNewObject;
 
 -(id)initWithScenario:(Scenario*)theInputScenario andParentController:(UIViewController*)parentController;
 -(id)initForNewObject:(BOOL)isNewObject andParentController:(UIViewController*)parentController;
@@ -100,7 +109,12 @@
 	andRelEndDateHelpFile:(NSString*)relEndDateHelpFile
 	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel;
 	
-	
+-(void)populateItemizedTaxForTaxAmtsInfo:(ItemizedTaxAmtsInfo*)itemizedTaxAmtsInfo
+	andTaxAmt:(ItemizedTaxAmt*)itemizedTaxAmt
+	andTaxAmtCreator:(id<ItemizedTaxAmtCreator>)taxAmtCreator;
+-(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
+	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator;
+		
 -(TableHeaderWithDisclosure*)scenarioListTableHeaderWithParentController:(UIViewController*)parentController;	
 		
 @end

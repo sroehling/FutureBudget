@@ -10,19 +10,25 @@
 #import "DataModelController.h"
 #import "InputCreationHelper.h"
 #import "IncomeItemizedTaxAmt.h"
+#import "StringValidation.h"
 
 
 @implementation ItemizedIncomeTaxAmtCreator
 
 @synthesize income;
+@synthesize label;
 
 - (id)initWithIncome:(IncomeInput*)theIncome
+	andItemLabel:(NSString*)theItemLabel
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theIncome != nil);
 		self.income = theIncome;
+		
+		assert([StringValidation nonEmptyString:theItemLabel]);
+		self.label = theItemLabel;
 	}
 	return self;
 }
@@ -47,7 +53,7 @@
 
 -(NSString*)itemLabel
 {
-	return self.income.name;
+	return self.label;
 }
 
 
@@ -55,6 +61,7 @@
 {
 	[super dealloc];
 	[income release];
+	[label release];
 }
 
 

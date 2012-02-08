@@ -11,6 +11,18 @@
 #import "ItemizedTaxAmtVisitor.h"
 
 @class ItemizedTaxAmts;
+@class IncomeItemizedTaxAmt;
+@class ExpenseItemizedTaxAmt;
+@class AccountWithdrawalItemizedTaxAmt;
+@class AccountContribItemizedTaxAmt;
+@class AssetGainItemizedTaxAmt;
+@class AccountInterestItemizedTaxAmt;
+@class LoanInterestItemizedTaxAmt;
+@class ExpenseInput;
+@class IncomeInput;
+@class Account;
+@class AssetInput;
+@class LoanInput;
 
 @interface ItemizedTaxAmtFieldPopulator : NSObject <ItemizedTaxAmtVisitor> {
 	@private
@@ -45,5 +57,17 @@
 - (NSArray*)acctInterestNotAlreadyItemized;
 - (NSArray*)assetGainsNotAlreadyItemized;
 - (NSArray*)loanInterestNotAlreadyItemized;
+
+- (IncomeItemizedTaxAmt*)findItemizedIncome:(IncomeInput*)income;
+
+- (ExpenseItemizedTaxAmt*)findItemizedExpense:(ExpenseInput*)expense;
+
+- (AccountWithdrawalItemizedTaxAmt *)findItemizedAcctWithdrawal:(Account*)account;
+- (AccountContribItemizedTaxAmt *)findItemizedAcctContrib:(Account*)account;
+-(AccountInterestItemizedTaxAmt *)findItemizedAcctInterest:(Account*)account;
+
+-(AssetGainItemizedTaxAmt *)findItemizedAssetGain:(AssetInput*)asset;
+
+-(LoanInterestItemizedTaxAmt *)findItemizedLoanInterest:(LoanInput*)loan;
 
 @end

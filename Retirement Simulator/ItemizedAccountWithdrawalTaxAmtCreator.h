@@ -9,16 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "ItemizedTaxAmtCreator.h"
+#import "ItemizedAccountTaxAmtCreatorBase.h"
 
 @class Account;
 
-@interface ItemizedAccountWithdrawalTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
-    @private
-		Account *account;
+@interface ItemizedAccountWithdrawalTaxAmtCreator : ItemizedAccountTaxAmtCreatorBase {
 }
-
-@property(nonatomic,retain) Account *account;
-
-- (id)initWithAccount:(Account*)theAccount;
 
 @end

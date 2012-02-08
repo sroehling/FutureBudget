@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class TaxInput;
 @class ItemizedTaxAmts;
+
+@class  ItemizedTaxAmtFieldPopulator;
 
 @interface ItemizedTaxAmtsInfo : NSObject {
    @private
@@ -19,6 +22,8 @@
 		NSString *itemHelpInfoFile;
 		
 		ItemizedTaxAmts *itemizedTaxAmts;
+		
+		ItemizedTaxAmtFieldPopulator *fieldPopulator;
 		
 		BOOL itemizeIncomes;
 		BOOL itemizeExpenses;
@@ -37,6 +42,7 @@
 @property(nonatomic,retain) NSString *itemHelpInfoFile;
 
 @property(nonatomic,retain) ItemizedTaxAmts *itemizedTaxAmts;
+@property(nonatomic,retain) ItemizedTaxAmtFieldPopulator *fieldPopulator;
 
 @property BOOL itemizeIncomes;
 @property BOOL itemizeExpenses;
@@ -58,5 +64,10 @@
 	andItemizeAccountInterest:(BOOL)doItemizeAcctInterest
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
 	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest;
+	
++(ItemizedTaxAmtsInfo*)taxSourceInfo:(TaxInput*)tax;
++(ItemizedTaxAmtsInfo*)taxAdjustmentInfo:(TaxInput*)tax;
++(ItemizedTaxAmtsInfo*)taxDeductionInfo:(TaxInput*)tax;
++(ItemizedTaxAmtsInfo*)taxCreditInfo:(TaxInput*)tax;
 
 @end

@@ -11,19 +11,24 @@
 #import "DataModelController.h"
 #import "LoanInput.h"
 #import "LoanInterestItemizedTaxAmt.h"
+#import "StringValidation.h"
 
 
 @implementation ItemizedLoanInterestTaxAmtCreator
 
 @synthesize loan;
+@synthesize label;
 
--(id)initWithLoan:(LoanInput*)theLoan
+-(id)initWithLoan:(LoanInput*)theLoan andLabel:(NSString*)theLabel
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theLoan != nil);
 		self.loan = theLoan;
+		
+		assert([StringValidation nonEmptyString:theLabel]);
+		self.label = theLabel;
 	}
 	return self;
 }
@@ -48,13 +53,14 @@
 
 -(NSString*)itemLabel
 {
-	return self.loan.name;
+	return self.label;
 }
 
 -(void)dealloc
 {
 	[super dealloc];
 	[loan release];
+	[label release];
 }
 
 

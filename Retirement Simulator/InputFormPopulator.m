@@ -57,10 +57,18 @@
 #import "UpTo100PercentFieldValidator.h"
 #import "TableHeaderWithDisclosure.h"
 #import "SelectScenarioTableHeaderButtonDelegate.h"
+#import "MultipleSelectionTableViewControllerFactory.h"
+#import "StaticNavFieldEditInfo.h"
+
+#import "ItemizedTaxAmtsInfo.h"
+#import "ItemizedTaxAmts.h"
+#import "ItemizedTaxAmtCreator.h"
+#import "ItemizedTaxAmtFieldEditInfo.h"
 
 @implementation InputFormPopulator
 
 @synthesize inputScenario;
+@synthesize isForNewObject;
 
 -(id)initWithScenario:(Scenario*)theInputScenario andParentController:(UIViewController*)parentController
 {
@@ -69,6 +77,8 @@
 	{
 		assert(theInputScenario != nil);
 		self.inputScenario = theInputScenario;
+		
+		self.isForNewObject = FALSE;
 	}
 	return self;
 }
@@ -79,10 +89,12 @@
 	if(isNewObject)
 	{
 		theInputScenario = [SharedAppValues singleton].defaultScenario;
+		self.isForNewObject = TRUE;
 	}
 	else
 	{
 		theInputScenario = [SharedAppValues singleton].currentInputScenario;
+		self.isForNewObject = FALSE;
 	}
 	return [self initWithScenario:theInputScenario andParentController:parentController];
 }
@@ -628,6 +640,41 @@
 			andDefaultRelEndDate:multiScenSimEndDate.defaultFixedRelativeEndDate];
 
     [self.currentSection addFieldEditInfo:simDateFieldEditInfo];
+
+}
+
+-(void)populateItemizedTaxForTaxAmtsInfo:(ItemizedTaxAmtsInfo*)itemizedTaxAmtsInfo
+	andTaxAmt:(ItemizedTaxAmt*)itemizedTaxAmt
+	andTaxAmtCreator:(id<ItemizedTaxAmtCreator>)taxAmtCreator
+{
+
+	assert(itemizedTaxAmtsInfo != nil);
+	assert(taxAmtCreator != nil);
+	
+	ItemizedTaxAmtFieldEditInfo *incomeFieldEditInfo = 
+			[[[ItemizedTaxAmtFieldEditInfo alloc] 
+				initWithItemizedTaxAmts:itemizedTaxAmtsInfo.itemizedTaxAmts 
+				andItemizedTaxAmtCreator:taxAmtCreator
+				andItemizedTaxAmt:itemizedTaxAmt
+				andItemizedTaxAmtsInfo:itemizedTaxAmtsInfo 
+				andIsForNewObject:self.isForNewObject] autorelease];
+	[self.currentSection addFieldEditInfo:incomeFieldEditInfo];
+
+}
+
+-(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
+	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+{
+	MultipleSelectionTableViewControllerFactory *taxSelectionTableViewFactory = 
+			[[[MultipleSelectionTableViewControllerFactory alloc] 
+			initWithFormInfoCreator:formInfoCreator] autorelease];
+
+	assert([StringValidation nonEmptyString:fieldLabel]);
+	StaticNavFieldEditInfo *taxesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
+			initWithCaption:fieldLabel
+			andSubtitle:nil andContentDescription:nil 
+			andSubViewFactory:taxSelectionTableViewFactory] autorelease];
+	[self.currentSection addFieldEditInfo:taxesFieldEditInfo];
 
 }
 

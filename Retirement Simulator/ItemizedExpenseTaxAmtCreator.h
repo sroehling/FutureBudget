@@ -14,9 +14,12 @@
 @interface ItemizedExpenseTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
 	@private
 		ExpenseInput *expense;
+		NSString *label;
 }
-@property(nonatomic,retain) ExpenseInput *expense;
 
-- (id)initWithExpense:(ExpenseInput*)theExpense;
+@property(nonatomic,retain) ExpenseInput *expense;
+@property(nonatomic,retain) NSString *label;
+
+- (id)initWithExpense:(ExpenseInput*)theExpense andLabel:(NSString*)theLabel;
 
 @end

@@ -62,6 +62,11 @@
 #import "SelectScenarioTableHeaderButtonDelegate.h"
 #import "SharedAppValues.h"
 #import "Scenario.h"
+#import "ItemizedIncomeTaxFormInfoCreator.h"
+#import "ItemizedAccountTaxFormInfoCreator.h"
+#import "ItemizedLoanTaxFormInfoCreator.h"
+#import "ItemizedAssetTaxFormInfoCreator.h"
+#import "ItemizedExpenseTaxFormInfoCreator.h"
 
 @implementation DetailInputViewCreator
 
@@ -180,13 +185,23 @@
 {    
     formPopulator.formInfo.title = 
 	       LOCALIZED_STR(@"INPUT_EXPENSE_VIEW_TITLE");
-	   
+		   
+	[formPopulator nextSection];
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_EXPENSE_TAX_FIELD_LABEL")
+		andFormInfoCreator:[[[ItemizedExpenseTaxFormInfoCreator alloc] initWithExpense:expense
+			andIsForNewObject:self.isForNewObject] autorelease]];
 }
 
-- (void)visitIncome:(IncomeInput*)input
+- (void)visitIncome:(IncomeInput*)income
 {
     formPopulator.formInfo.title = 
 		LOCALIZED_STR(@"INPUT_INCOME_VIEW_TITLE");
+		
+	[self.formPopulator nextSection];
+	
+	[self.formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE")
+		andFormInfoCreator:[[[ItemizedIncomeTaxFormInfoCreator alloc] initWithIncome:income 
+			andIsForNewObject:self.isForNewObject] autorelease]];	
 }
 
 - (void) visitAccount:(Account*)account
@@ -291,6 +306,11 @@
         }
         
     }
+	
+	[formPopulator nextSection];
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_FIELD_LABEL")
+		andFormInfoCreator:[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account 
+			andIsForNewObject:self.isForNewObject] autorelease]];
 
 }
 
@@ -380,7 +400,10 @@
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
 				];
 
-
+	[formPopulator nextSection];
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_TAXES_FIELD_LABEL")
+		andFormInfoCreator:[[[ItemizedLoanTaxFormInfoCreator alloc] initWithLoan:loan
+		andIsForNewObject:self.isForNewObject] autorelease]];
 
 }
 
@@ -436,9 +459,10 @@
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL")
 				];
 
-	
- 
- 
+ 	[formPopulator nextSection];
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_TAXES_FIELD_TITLE")
+			andFormInfoCreator:[[[ItemizedAssetTaxFormInfoCreator alloc] initWithAsset:asset
+				andIsForNewObject:self.isForNewObject] autorelease]]; 
 
 }
 
@@ -461,71 +485,22 @@
 	SectionInfo *sectionInfo = [formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE")
 		andHelpFile:@"taxIncomeSources"];
-	
-	if(true)
-	{
-		ItemizedTaxAmtsInfo *taxSourceInfo = [[[ItemizedTaxAmtsInfo alloc] 
-			initWithItemizedTaxAmts:tax.itemizedIncomeSources 
-			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE")
-			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT")
-			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE")
-			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_TITLE_FORMAT")
-			andItemHelpInfoFile:@"taxSource"		
-			andItemizeIncomes:TRUE andItemizeExpenses:FALSE 
-			andItemizeAccountContribs:FALSE andItemizeAccountWithdrawals:TRUE andItemizeAccountInterest:TRUE 
-			andItemizeAssetGains:TRUE 
-			andItemizeLoanInterest:FALSE] autorelease];
-		
-		ItemizedTaxAmtsSelectionFormInfoCreator *itemizedIncomeFormInfoCreator = 
-			[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] initWithItemizedTaxAmtsInfo:taxSourceInfo
-				andIsForNewObject:self.isForNewObject] autorelease];
-		MultipleSelectionTableViewControllerFactory *itemizedIncomeSelectionTableViewFactory = 
-			[[[MultipleSelectionTableViewControllerFactory alloc] 
-			initWithFormInfoCreator:itemizedIncomeFormInfoCreator] autorelease];
-		StaticNavFieldEditInfo *taxSourcesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
-			initWithCaption:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE") 
-			andSubtitle:nil andContentDescription:nil 
-			andSubViewFactory:itemizedIncomeSelectionTableViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:taxSourcesFieldEditInfo];
-	}
-	
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE") 
+			andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
+				initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxSourceInfo:tax]
+				andIsForNewObject:self.isForNewObject] autorelease]];		
 
 	// Adjustments Section
 
 	sectionInfo = [formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_TITLE")
 		andHelpFile:@"taxAdjustments"];
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE")
+		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
+			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxAdjustmentInfo:tax]
+			andIsForNewObject:self.isForNewObject] autorelease]];
 	
-	if(true)
-	{
-		ItemizedTaxAmtsInfo *taxAdjustmentInfo = [[[ItemizedTaxAmtsInfo alloc] 
-			initWithItemizedTaxAmts:tax.itemizedAdjustments 
-			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE")
-			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_AMOUNT_PROMPT")
-			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_ITEM_TITLE")
-			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_TITLE_FORMAT")
-			andItemHelpInfoFile:@"taxAdjustment" 		
-			andItemizeIncomes:FALSE andItemizeExpenses:TRUE 
-			andItemizeAccountContribs:TRUE andItemizeAccountWithdrawals:FALSE andItemizeAccountInterest:FALSE 
-			andItemizeAssetGains:FALSE 
-			andItemizeLoanInterest:TRUE] autorelease];
-		ItemizedTaxAmtsSelectionFormInfoCreator *itemizedAdjustmentFormCreator = 
-			[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] initWithItemizedTaxAmtsInfo:taxAdjustmentInfo
-				andIsForNewObject:self.isForNewObject] autorelease];
-		MultipleSelectionTableViewControllerFactory *itemizedAdjustmentSelectionTableViewFactory = 
-			[[[MultipleSelectionTableViewControllerFactory alloc] 
-			initWithFormInfoCreator:itemizedAdjustmentFormCreator] autorelease];
-		StaticNavFieldEditInfo *taxAdjustmentFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
-			initWithCaption:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE") 
-			andSubtitle:nil andContentDescription:nil 
-			andSubViewFactory:itemizedAdjustmentSelectionTableViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:taxAdjustmentFieldEditInfo];
-	}
-	
-
-
 	// Exemptions Section
-
 	sectionInfo = [formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_TITLE")
 		andHelpFile:@"taxExemptions"];
@@ -548,35 +523,11 @@
 	[self.formPopulator populateMultiScenarioAmount:tax.stdDeductionAmt 
 		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_TITLE")
 		andValueName:tax.name];
-		
-		
-	if(true)
-	{
-		ItemizedTaxAmtsInfo *taxDeductionInfo = [[[ItemizedTaxAmtsInfo alloc] 
-			initWithItemizedTaxAmts:tax.itemizedDeductions 
-			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE")
-			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_AMOUNT_PROMPT")
-			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_ITEM_TITLE")
-			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_TITLE_FORMAT")
-			andItemHelpInfoFile:@"taxDeduction"  		
-			andItemizeIncomes:FALSE andItemizeExpenses:TRUE 
-			andItemizeAccountContribs:TRUE andItemizeAccountWithdrawals:FALSE andItemizeAccountInterest:FALSE 
-			andItemizeAssetGains:FALSE 
-			andItemizeLoanInterest:TRUE] autorelease];		
-		ItemizedTaxAmtsSelectionFormInfoCreator *itemizedDeductionFormCreator = 
-			[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] initWithItemizedTaxAmtsInfo:taxDeductionInfo
-				andIsForNewObject:self.isForNewObject] autorelease];
-		MultipleSelectionTableViewControllerFactory *itemizedDeductionSelectionTableViewFactory = 
-			[[[MultipleSelectionTableViewControllerFactory alloc] 
-			initWithFormInfoCreator:itemizedDeductionFormCreator] autorelease];
-		StaticNavFieldEditInfo *taxDeductionFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
-			initWithCaption:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE") 
-			andSubtitle:nil andContentDescription:nil 
-			andSubViewFactory:itemizedDeductionSelectionTableViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:taxDeductionFieldEditInfo];
 
-	}
-	
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE") 
+		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
+			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxDeductionInfo:tax]
+			andIsForNewObject:self.isForNewObject] autorelease]];	
 
 	[self.formPopulator populateMultiScenarioGrowthRate:tax.stdDeductionGrowthRate  
 		withLabel:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL")
@@ -587,35 +538,10 @@
 	sectionInfo = [formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_CREDITS_SECTION_TITLE")
 		andHelpFile:@"taxCredits"];
-		
-	if(true)
-	{
-		ItemizedTaxAmtsInfo *taxCreditInfo = [[[ItemizedTaxAmtsInfo alloc] 
-			initWithItemizedTaxAmts:tax.itemizedCredits 
-			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE")
-			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_AMOUNT_PROMPT")
-			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_ITEM_TITLE")
-			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_TITLE_FORMAT")
-			andItemHelpInfoFile:@"taxCredit" 	
-			andItemizeIncomes:FALSE andItemizeExpenses:TRUE 
-			andItemizeAccountContribs:TRUE andItemizeAccountWithdrawals:FALSE andItemizeAccountInterest:FALSE 
-			andItemizeAssetGains:FALSE 
-			andItemizeLoanInterest:TRUE] autorelease];
-		
-		ItemizedTaxAmtsSelectionFormInfoCreator *itemizedCreditFormCreator = 
-			[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] initWithItemizedTaxAmtsInfo:taxCreditInfo
-				andIsForNewObject:self.isForNewObject] autorelease];
-		MultipleSelectionTableViewControllerFactory *itemizedCreditSelectionTableViewFactory = 
-			[[[MultipleSelectionTableViewControllerFactory alloc] 
-			initWithFormInfoCreator:itemizedCreditFormCreator] autorelease];
-		StaticNavFieldEditInfo *taxCreditFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
-			initWithCaption:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE") 
-			andSubtitle:nil andContentDescription:nil 
-			andSubViewFactory:itemizedCreditSelectionTableViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:taxCreditFieldEditInfo];
-
-	}
-	
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE")
+		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc]
+		initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxCreditInfo:tax]
+			andIsForNewObject:self.isForNewObject] autorelease]];	
 	
 	// Tax Bracket Section
 

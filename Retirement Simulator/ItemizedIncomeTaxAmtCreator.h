@@ -15,10 +15,14 @@
 @interface ItemizedIncomeTaxAmtCreator :  NSObject <ItemizedTaxAmtCreator> {
 	@private
 		IncomeInput *income;
+		NSString *label;
 }
 
 @property(nonatomic,retain) IncomeInput *income;
-- (id)initWithIncome:(IncomeInput*)theIncome;
+@property(nonatomic,retain) NSString *label;
+
+- (id)initWithIncome:(IncomeInput*)theIncome
+	andItemLabel:(NSString*)theItemLabel;
 
 @end
 

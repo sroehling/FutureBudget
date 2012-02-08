@@ -14,10 +14,12 @@
 @interface ItemizedLoanInterestTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
     @private
 		LoanInput *loan;
+		NSString *label;
 }
 
 @property(nonatomic,retain) LoanInput *loan;
+@property(nonatomic,retain) NSString *label;
 
--(id)initWithLoan:(LoanInput*)theLoan;
+-(id)initWithLoan:(LoanInput*)theLoan andLabel:(NSString*)theLabel;
 
 @end

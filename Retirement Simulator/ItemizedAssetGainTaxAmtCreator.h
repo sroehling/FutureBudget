@@ -15,10 +15,12 @@
 @interface ItemizedAssetGainTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
     @private
 		AssetInput *asset;
+		NSString *label;
 }
 
 @property(nonatomic,retain) AssetInput *asset;
+@property(nonatomic,retain) NSString *label;
 
--(id)initWithAsset:(AssetInput*)theAsset;
+-(id)initWithAsset:(AssetInput*)theAsset andLabel:(NSString*)theLabel;
 
 @end

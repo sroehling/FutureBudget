@@ -11,14 +11,9 @@
 @class Account;
 
 #import "ItemizedTaxAmtCreator.h"
+#import "ItemizedAccountTaxAmtCreatorBase.h"
 
-@interface ItemizedAccountContribTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
-    @private
-		Account *account;
+@interface ItemizedAccountContribTaxAmtCreator : ItemizedAccountTaxAmtCreatorBase {
 }
-
-@property(nonatomic,retain) Account *account;
-
-- (id)initWithAccount:(Account*)theAccount;
 
 @end

@@ -85,9 +85,8 @@
 			andParentController:parentController] autorelease];
     
     formPopulator.formInfo.title = self.itemizedTaxAmtsInfo.title;
-
 	ItemizedTaxAmtFieldPopulator *fieldPopulator = 
-		[[[ItemizedTaxAmtFieldPopulator alloc] initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts] autorelease];
+				self.itemizedTaxAmtsInfo.fieldPopulator;
 				
 	if([self.itemizedTaxAmtsInfo itemizeIncomes])
 	{
@@ -102,11 +101,15 @@
 
 			for(IncomeItemizedTaxAmt *itemizedIncome in fieldPopulator.itemizedIncomes )
 			{
+				// TODO - Migrate the code below (and other instances in this file) to use
+				// the formPopulator's "populate" selector for itemized tax amounts.
+				ItemizedIncomeTaxAmtCreator *itemCreator = [[[ItemizedIncomeTaxAmtCreator alloc] 
+						initWithIncome:itemizedIncome.income 
+						andItemLabel:itemizedIncome.income.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *incomeFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
 						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
-						andItemizedTaxAmtCreator:
-							[[[ItemizedIncomeTaxAmtCreator alloc] initWithIncome:itemizedIncome.income] autorelease]
+						andItemizedTaxAmtCreator:itemCreator
 					andItemizedTaxAmt:itemizedIncome
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:incomeFieldEditInfo];
@@ -114,10 +117,12 @@
 			}
 			for(IncomeInput *unitemizedIncome in incomesNotItemized)
 			{	
+				ItemizedIncomeTaxAmtCreator *itemCreator = [[[ItemizedIncomeTaxAmtCreator alloc] 
+						initWithIncome:unitemizedIncome 
+						andItemLabel:unitemizedIncome.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *incomeFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
 					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
-					andItemizedTaxAmtCreator:
-						[[[ItemizedIncomeTaxAmtCreator alloc] initWithIncome:unitemizedIncome] autorelease]
+					andItemizedTaxAmtCreator:itemCreator
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo
 					andIsForNewObject:self.isForNewObject] autorelease];
@@ -143,7 +148,8 @@
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
 						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:
-							[[[ItemizedExpenseTaxAmtCreator alloc] initWithExpense:itemizedExpense.expense] autorelease]
+							[[[ItemizedExpenseTaxAmtCreator alloc] 
+								initWithExpense:itemizedExpense.expense andLabel:itemizedExpense.expense.name] autorelease]
 					andItemizedTaxAmt:itemizedExpense
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:expenseFieldEditInfo];
@@ -153,7 +159,8 @@
 				ItemizedTaxAmtFieldEditInfo *expenseFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
 					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:
-						[[[ItemizedExpenseTaxAmtCreator alloc] initWithExpense:unitemizedExpense] autorelease]
+						[[[ItemizedExpenseTaxAmtCreator alloc] 
+						initWithExpense:unitemizedExpense andLabel:unitemizedExpense.name] autorelease]
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:expenseFieldEditInfo];
@@ -175,12 +182,14 @@
 
 			for(AccountInterestItemizedTaxAmt *itemizedAcctInterest in fieldPopulator.itemizedAccountInterest )
 			{
+				ItemizedAccountTaxAmtCreator *itemizedAcctTaxInterestCreator = 
+					[[[ItemizedAccountTaxAmtCreator alloc] 
+								initWithAcct:itemizedAcctInterest.account 
+								andLabel:itemizedAcctInterest.account.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctInterestFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
 						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
-						andItemizedTaxAmtCreator:
-							[[[ItemizedAccountTaxAmtCreator alloc] 
-								initWithAcct:itemizedAcctInterest.account] autorelease]
+						andItemizedTaxAmtCreator:itemizedAcctTaxInterestCreator
 					andItemizedTaxAmt:itemizedAcctInterest
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:acctInterestFieldEditInfo];
@@ -188,10 +197,12 @@
 			}
 			for(Account *unitemizedAcct in acctInterestNotItemized)
 			{	
+				ItemizedAccountTaxAmtCreator *itemizedAcctTaxInterestCreator = 
+					[[[ItemizedAccountTaxAmtCreator alloc] initWithAcct:unitemizedAcct
+						andLabel:unitemizedAcct.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctInterestFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
 					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
-					andItemizedTaxAmtCreator:
-						[[[ItemizedAccountTaxAmtCreator alloc] initWithAcct:unitemizedAcct] autorelease]
+					andItemizedTaxAmtCreator:itemizedAcctTaxInterestCreator
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:acctInterestFieldEditInfo];
@@ -212,12 +223,14 @@
 
 			for(AccountContribItemizedTaxAmt *itemizedAcctContrib in fieldPopulator.itemizedAccountContribs )
 			{
+			
+				ItemizedAccountContribTaxAmtCreator *itemizedContribCreator = [[[ItemizedAccountContribTaxAmtCreator alloc] 
+								initWithAcct:itemizedAcctContrib.account
+								andLabel:itemizedAcctContrib.account.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctContribFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
 						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
-						andItemizedTaxAmtCreator:
-							[[[ItemizedAccountContribTaxAmtCreator alloc] 
-								initWithAccount:itemizedAcctContrib.account] autorelease]
+						andItemizedTaxAmtCreator:itemizedContribCreator
 					andItemizedTaxAmt:itemizedAcctContrib
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:acctContribFieldEditInfo];
@@ -225,10 +238,12 @@
 			}
 			for(Account *unitemizedAcct in acctContribNotItemized)
 			{	
+				ItemizedAccountContribTaxAmtCreator *itemizedContribCreator = 
+					[[[ItemizedAccountContribTaxAmtCreator alloc] initWithAcct:unitemizedAcct
+					andLabel:unitemizedAcct.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctContribFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
 					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
-					andItemizedTaxAmtCreator:
-						[[[ItemizedAccountContribTaxAmtCreator alloc] initWithAccount:unitemizedAcct] autorelease]
+					andItemizedTaxAmtCreator:itemizedContribCreator
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:acctContribFieldEditInfo];
@@ -251,12 +266,15 @@
 			for(AccountWithdrawalItemizedTaxAmt *itemizedAcctWithdrawal in 
 						fieldPopulator.itemizedAccountWithdrawals )
 			{
+			
+				ItemizedAccountWithdrawalTaxAmtCreator *itemizedWithdrawalCreator = 
+								[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] 
+								initWithAcct:itemizedAcctWithdrawal.account
+								andLabel:itemizedAcctWithdrawal.account.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctWithdrawalFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
 						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
-						andItemizedTaxAmtCreator:
-							[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] 
-								initWithAccount:itemizedAcctWithdrawal.account] autorelease]
+						andItemizedTaxAmtCreator:itemizedWithdrawalCreator
 					andItemizedTaxAmt:itemizedAcctWithdrawal
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:acctWithdrawalFieldEditInfo];
@@ -266,7 +284,7 @@
 			{	
 				ItemizedAccountWithdrawalTaxAmtCreator *itemizedTaxAmtCreator = 
 						[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] 
-						initWithAccount:unitemizedAcct] autorelease];
+						initWithAcct:unitemizedAcct andLabel:unitemizedAcct.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctWithdrawalFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
 					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:itemizedTaxAmtCreator
@@ -295,7 +313,7 @@
 						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:
 							[[[ItemizedAssetGainTaxAmtCreator alloc] 
-								initWithAsset:itemizedAssetGain.asset] autorelease]
+								initWithAsset:itemizedAssetGain.asset andLabel:itemizedAssetGain.asset.name] autorelease]
 					andItemizedTaxAmt:itemizedAssetGain
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:assetGainFieldEditInfo];
@@ -306,7 +324,8 @@
 				ItemizedTaxAmtFieldEditInfo *assetGainFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
 					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:
-						[[[ItemizedAssetGainTaxAmtCreator alloc] initWithAsset:unitemizedAsset] autorelease]
+						[[[ItemizedAssetGainTaxAmtCreator alloc] initWithAsset:unitemizedAsset
+							andLabel:unitemizedAsset.name] autorelease]
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:assetGainFieldEditInfo];
@@ -331,7 +350,9 @@
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
 						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:
-							[[[ItemizedLoanInterestTaxAmtCreator alloc] initWithLoan:itemizedLoan.loan] autorelease]
+							[[[ItemizedLoanInterestTaxAmtCreator alloc] 
+								initWithLoan:itemizedLoan.loan
+								andLabel:itemizedLoan.loan.name] autorelease]
 					andItemizedTaxAmt:itemizedLoan
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:loanFieldEditInfo];
@@ -342,7 +363,8 @@
 				ItemizedTaxAmtFieldEditInfo *loanFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
 					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:
-						[[[ItemizedLoanInterestTaxAmtCreator alloc] initWithLoan:unitemizedLoan] autorelease]
+						[[[ItemizedLoanInterestTaxAmtCreator alloc] initWithLoan:unitemizedLoan
+							andLabel:unitemizedLoan.name] autorelease]
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:loanFieldEditInfo];
