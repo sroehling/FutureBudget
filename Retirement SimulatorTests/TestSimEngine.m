@@ -141,7 +141,7 @@
 		}
 		
 		NSLog(@"checkPlotData: %@: value for year=%d, expecting=%0.2f, got=%0.2f",label,year, expectedVal,resultVal);
-		STAssertEqualsWithAccuracy(expectedVal, resultVal,0.01, 
+		STAssertEqualsWithAccuracy(resultVal,expectedVal,0.01, 
 			@"checkPlotData: %@: value for year=%d, expecting=%0.2f, got=%0.2f",
 			label,year, expectedVal,resultVal);
 		
@@ -2006,9 +2006,33 @@
 	[self resetCoredData];
 	
 	
+	// Parameters:
+	// expense01: Yearly expense of $100
+	// acct01: account with starting balance of $1000
+	// flatTax: 25% flat tax, with itemized & taxable withdrawal on acct01
+	//
+	// Expected Behavior:
+	// There is a $100 withdrawal from acct01, and this amount is taxable. 
+	// To cover taxes, there should be an additional amount $25 withdrawn; 
+	// this will bring the total expected yearly withdrawal to $125. 
+	// But then ... additional amounts must be withdrawn to pay the $25 taxes, 
+	// resulting in an additional $6.25 taxes paid. And yet again, a withdrawal 
+	// is taken to pay the $6.25, so an additional $1.56 is paid. The 
+	// simulator (specifically in the TaxInputCalc class) has an 
+	// iterative loop to calculate this tax.
+	
+	
 	// In this test there is an expense of $100/year. This expense triggers a withdrawal
 	// from acct01, which is itemized a tax source for a tax of 25%.
 	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	
+	// For testing purposes, default to 1 year (instead of 50). By setting the sim end date to 11
+	// months, the simulator will round up to 1 year (instead of rounding up to 6 years).
+	RelativeEndDate *theSimEndDate = [self.coreData createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
+	theSimEndDate.monthsOffset = [NSNumber numberWithInt:11];
+	self.testAppVals.simEndDate = theSimEndDate;
+
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
@@ -2021,7 +2045,9 @@
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] 
+		initWithInputCreationHelper:self.inputCreationHelper
+		andDataModelInterface:self.coreData] autorelease];
 	
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
@@ -2053,21 +2079,13 @@
 	
 	AcctWithdrawalXYPlotDataGenerator *acctWithdrawalData = [[[AcctWithdrawalXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-//	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-//	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-//	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-//	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:133.30 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	
 	[self checkPlotData:acctWithdrawalData withSimResults:simResults andExpectedVals:expected andLabel:@"acct01 withdrawals" withAdjustedVals:FALSE];
 	
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
 	expected = [[[NSMutableArray alloc]init] autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:33.30 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"taxable withdrawals" withAdjustedVals:FALSE];
 
 }

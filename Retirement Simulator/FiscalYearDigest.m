@@ -203,6 +203,11 @@
 				[digestEntry processDigestEntry:processingParams];
 			}
 		}
+		
+		// After processing all tax related digest entries (for incomes, expenses, 
+		// asset sales, asset purchases, etc.), the tax payment is calculated
+		// See the comments in TaxInputCalc.m for further explanation regarding
+		// these dependencies.
 		[self.simParams.taxInputCalcs processDailyTaxPmts:processingParams];
 
 		if([currDayDigestEntries isEndDateForEstimatedTaxes])
@@ -262,33 +267,26 @@
 
 
 	//-------------------------------------------------------------------------------------
-	// In the first pass, we use just the total income as an estimation of the taxes
-	// to be paid. Not having processed the digest entries for withdrawals and
-	// savings interest, we can't include that yet in the total. As a result, the
-	// amount of tax withheld from income will initially be a little low.
-
-	// Note that for the first pass, total deductions
-	// is an estimation of the *expected* tax deductable
-	// expenses and contributions. However, in reality,
-	// this could be reduced, since not all the 
-	// contributions may get funding (e.g., if the
-	// cash balance runs low).
-	
+	// The first pass just processes and sums up the regular expenses, incomes, asset sales, etc. 
+	// However, as this information can't be summed up until the end of the year, the
+	// first pass includes an effectiveTaxRate of 0%. At the end of the first pass, the 
+	// effectieTaxRates are updated to include this information.
 	[self processDigest];
 
 	//-------------------------------------------------------------------------------------
-	// For the second pass, also include in the taxable income calculations the 
-	// taxable savings interest and any taxable account withdrawals incurred through expenses 
-
-	// For the second pass, we can also include the *actual* expense and contribution
-	// amounts accrued over the year. This may be somewhat less than the estimated
-	// deduction from the 1st pass, since some contributions may not be fully funded
-	// if there's not enough cash available.
-	// TODO - Need to have some kind of event handling to process the estimated taxes as an event.
+	// In the second pass, an effectiveTaxRate based upon the sum of everything in the 
+	// first pass is used. Since this does not include any taxes (remembe, effectiveTax
+	// rate is 0 in the first pass), the taxes are a little bit low. However, the 
+	// 2nd pass will pay taxes and possibly boost the taxable income, in the case
+	// that tax payments cause a taxable withdrawal.
+	[self processDigest];	
 		
-	EndOfYearDigestResult *secondPassResults = [self processDigest];
+	//-------------------------------------------------------------------------------------
+	// The third and final pass includes the effectiveTaxRate calculated in the 2nd pass
+	// (including taxable withdrawals for taxes paid). 
+	EndOfYearDigestResult *thirdPassResults = [self processDigest];
 	
-	return secondPassResults;
+	return thirdPassResults;
 
 }
 

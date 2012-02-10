@@ -35,6 +35,8 @@
 @synthesize simParams;
 @synthesize taxesPaid;
 
+#define MAX_TAX_CALC_ITERS 5
+
 
 -(id)initWithTaxInput:(TaxInput*)theTaxInput andSimParams:(SimParams*)theSimParams
 {
@@ -113,15 +115,38 @@
 {
 	assert(processingParams!=nil);
 	
-	double dailyTaxableAmt = [self.incomeCalcEntries dailyItemizedAmnt:processingParams.dayIndex];
-	double dailyTaxDue = dailyTaxableAmt * self.effectiveTaxRate;
-	if(dailyTaxDue > 0.0)
+	double totalTaxesPaid = 0.0;
+	
+	
+	// This initial dailyTaxableAmount will include the processing of digest entries for everything
+	// except the tax payments themselves (e.g., expenses, income, account interest, etc.)
+	;
+	double totalAccruedTaxableIncomeCurrIter = [self.incomeCalcEntries dailyItemizedAmnt:processingParams.dayIndex];
+	double taxableIncomeCurrIter = totalAccruedTaxableIncomeCurrIter;
+	double taxDueCurrIter = taxableIncomeCurrIter * self.effectiveTaxRate;
+	totalTaxesPaid += taxDueCurrIter;
+	
+	NSInteger numIter = 0;
+	while((taxDueCurrIter > 0.0) && (numIter < MAX_TAX_CALC_ITERS))
 	{
-		[processingParams.workingBalanceMgr decrementBalanceFromFundingList:dailyTaxDue 
+		// Process the payment for the taxes due
+		[processingParams.workingBalanceMgr decrementBalanceFromFundingList:taxDueCurrIter 
 			asOfDate:processingParams.currentDate];
-		[self.taxesPaid adjustSum:dailyTaxDue onDay:processingParams.dayIndex];
-
+		[self.taxesPaid adjustSum:taxDueCurrIter onDay:processingParams.dayIndex];
+	
+		// After paying the taxes on the income for the current iteration, recalculate
+		// the total accrued taxable income in totalTaxableIncomeAccrued. totalTaxableIncomeAccrued
+		// Will include any additonal taxable income which has accrued for withdrawals
+		// to pay the taxes.
+		double totalTaxableIncomeAccruedPrevIter = totalAccruedTaxableIncomeCurrIter;
+		totalAccruedTaxableIncomeCurrIter = [self.incomeCalcEntries dailyItemizedAmnt:processingParams.dayIndex];
+		assert(totalAccruedTaxableIncomeCurrIter >= totalTaxableIncomeAccruedPrevIter);
+		taxableIncomeCurrIter = totalAccruedTaxableIncomeCurrIter - totalTaxableIncomeAccruedPrevIter;
+		taxDueCurrIter = taxableIncomeCurrIter * self.effectiveTaxRate;
+	
+		numIter++;
 	}
+	
 }
 
 -(void)dealloc
