@@ -96,6 +96,43 @@
     return -1;
 }
 
+- (id<FieldEditInfo>)findSelectedFieldEditInfo
+{
+	for(id<FieldEditInfo> feInfo in fieldEditInfo)
+	{
+		assert([feInfo respondsToSelector: @selector(isSelected)]);
+		if([feInfo isSelected])
+		{
+			return feInfo;
+		}
+	}
+	return nil;
+}
+
+- (id<FieldEditInfo>)findDefaultSelection
+{
+	for(id<FieldEditInfo> feInfo in fieldEditInfo)
+	{
+		if([feInfo respondsToSelector: @selector(isDefaultSelection)] && 
+			[feInfo isDefaultSelection])
+		{
+			return feInfo;
+		}
+	}
+	return nil;
+
+}
+
+- (void)unselectAllFields
+{
+	for(id<FieldEditInfo> feInfo in fieldEditInfo)
+	{
+		assert([feInfo respondsToSelector: @selector(updateSelection:)]);
+		[feInfo updateSelection:FALSE];
+	}
+
+}
+
 - (void)disableFieldChanges
 {
     for(id<FieldEditInfo> feInfo in fieldEditInfo)

@@ -85,18 +85,20 @@
 
 -(id)initForNewObject:(BOOL)isNewObject andParentController:(UIViewController*)parentController
 {
-	Scenario *theInputScenario;
-	if(isNewObject)
+	self = [super initWithParentController:parentController];
+	if(self)
 	{
-		theInputScenario = [SharedAppValues singleton].defaultScenario;
-		self.isForNewObject = TRUE;
+		if(isNewObject)
+		{
+			self.inputScenario = [SharedAppValues singleton].defaultScenario;
+		}
+		else
+		{
+			self.inputScenario = [SharedAppValues singleton].currentInputScenario;
+		}
 	}
-	else
-	{
-		theInputScenario = [SharedAppValues singleton].currentInputScenario;
-		self.isForNewObject = FALSE;
-	}
-	return [self initWithScenario:theInputScenario andParentController:parentController];
+	self.isForNewObject = isNewObject;
+	return self;
 }
 
 
@@ -270,7 +272,8 @@
 	  createForScenario:self.inputScenario andMultiScenFixedVal:theAmount.amount
 		andLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE")
 	  andValRuntimeInfo:amountRuntimeInfo
-	  andDefaultFixedVal:theAmount.defaultFixedAmount]];
+	  andDefaultFixedVal:theAmount.defaultFixedAmount
+	  andForNewVal:self.isForNewObject]];
 }
 
 -(VariableValueRuntimeInfo*)inflationRateRuntimInfoWithValueLabel:(NSString*)valueLabel
@@ -324,7 +327,8 @@
          createForScenario:self.inputScenario andMultiScenFixedVal:growthRate.growthRate
 			andLabel:LOCALIZED_STR(@"INPUT_INFLATION_RATE_VALUE_TITLE")  
 		 andValRuntimeInfo:grRuntimeInfo 
-		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate]];
+		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate
+		 andForNewVal:self.isForNewObject]];
  
 }
 
@@ -389,7 +393,8 @@
          createForScenario:self.inputScenario andMultiScenFixedVal:roiRate.growthRate 
 			andLabel:LOCALIZED_STR(@"SHARED_ROI_VALUE_TITLE") 
 		 andValRuntimeInfo:roiRuntimeInfo 
-		 andDefaultFixedVal:roiRate.defaultFixedGrowthRate]];
+		 andDefaultFixedVal:roiRate.defaultFixedGrowthRate
+		 andForNewVal:self.isForNewObject]];
 
 
 }
@@ -435,7 +440,8 @@
          createForScenario:self.inputScenario andMultiScenFixedVal:apprecRate.growthRate 
 			andLabel:LOCALIZED_STR(@"SHARED_APPREC_RATE_VALUE_TITLE") 
 		 andValRuntimeInfo:apprecRateRuntimeInfo 
-		 andDefaultFixedVal:apprecRate.defaultFixedGrowthRate]];
+		 andDefaultFixedVal:apprecRate.defaultFixedGrowthRate
+		 andForNewVal:self.isForNewObject]];
 
 
 }
@@ -482,7 +488,8 @@
          createForScenario:self.inputScenario andMultiScenFixedVal:intRate.growthRate
 			andLabel:LOCALIZED_STR(@"SHARED_INTEREST_RATE_VALUE_TITLE") 
 		 andValRuntimeInfo:interestRuntimeInfo 
-		 andDefaultFixedVal:intRate.defaultFixedGrowthRate]];
+		 andDefaultFixedVal:intRate.defaultFixedGrowthRate
+		 andForNewVal:self.isForNewObject]];
 
 
 }
@@ -522,7 +529,8 @@
 	  createForScenario:self.inputScenario andMultiScenFixedVal:loan.multiScenarioDownPmtPercent
 	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") 
 	  andValRuntimeInfo:downPmtVarValRuntimeInfo
-	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed]];
+	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed
+		 andForNewVal:self.isForNewObject]];
 
 
 }

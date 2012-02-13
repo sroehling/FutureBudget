@@ -117,4 +117,16 @@
 }
 
 
+- (BOOL)isSelected
+{
+	assert(self.relEndDateFieldInfo != nil);
+	return self.relEndDateFieldInfo.isSelectedForSelectableObjectTableView;
+}
+
+- (void)updateSelection:(BOOL)isSelected
+{
+	assert(self.relEndDateFieldInfo != nil);
+	self.relEndDateFieldInfo.isSelectedForSelectableObjectTableView = isSelected;
+}
+
 @end

@@ -12,6 +12,7 @@
 @implementation ManagedObjectFieldEditInfo
 
 @synthesize fieldInfo;
+@synthesize isDefaultSelection;
 
 - (id) initWithFieldInfo:(FieldInfo *)theFieldInfo
 {
@@ -20,6 +21,8 @@
     {
         assert(theFieldInfo != nil);
         self.fieldInfo = theFieldInfo;
+		self.isDefaultSelection = FALSE;
+		
     }
     return self;
 }
@@ -48,6 +51,16 @@
 - (NSManagedObject*) managedObject
 {
     return self.fieldInfo.managedObject;
+}
+
+- (BOOL)isSelected
+{
+	return self.fieldInfo.isSelectedForSelectableObjectTableView;
+}
+
+- (void)updateSelection:(BOOL)isSelected
+{
+	self.fieldInfo.isSelectedForSelectableObjectTableView = isSelected;
 }
 
 @end

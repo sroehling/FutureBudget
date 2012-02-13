@@ -15,11 +15,12 @@
 #import "SectionInfo.h"
 #import "UserScenario.h"
 #import "UserScenarioFieldEditInfo.h"
-#import "StaticFieldEditInfo.h"
+#import "DefaultScenarioFieldEditInfo.h"
 #import "DefaultScenario.h"
 #import "SharedAppValues.h"
 #import "SectionHeaderWithSubtitle.h"
 #import "SectionInfo.h"
+#import "DefaultScenarioFieldEditInfo.h"
 
 @implementation ScenarioListFormInfoCreator
 
@@ -35,8 +36,7 @@
 	DefaultScenario *defaultScen = 
 	      [SharedAppValues singleton].defaultScenario;
 	StaticFieldEditInfo *defaultScenarioFieldEditInfo = 
-		[[[StaticFieldEditInfo alloc] initWithManagedObj:defaultScen 
-		   andCaption:LOCALIZED_STR(@"SCENARIO_LIST_DEFAULT_SCENARIO_CAPTION") andContent:@""] autorelease];
+		[[[DefaultScenarioFieldEditInfo alloc] initWithDefaultScen:defaultScen] autorelease];
 	[sectionInfo addFieldEditInfo:defaultScenarioFieldEditInfo];
 	
 	sectionInfo = [formPopulator 

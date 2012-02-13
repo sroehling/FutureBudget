@@ -121,6 +121,43 @@
     }
 }
 
+- (id<FieldEditInfo>)findSelectedFieldEditInfo
+{
+    for(SectionInfo* sectionInfo in sections)
+    {
+		id<FieldEditInfo> fieldEditInfoInSection = [sectionInfo findSelectedFieldEditInfo];
+		if(fieldEditInfoInSection != nil)
+		{
+			return fieldEditInfoInSection;
+		}
+    }
+    return nil;;
+
+}
+
+- (id<FieldEditInfo>)findDefaultSelection
+{
+    for(SectionInfo* sectionInfo in sections)
+    {
+		id<FieldEditInfo> fieldEditInfoInSection = [sectionInfo findDefaultSelection];
+		if(fieldEditInfoInSection != nil)
+		{
+			return fieldEditInfoInSection;
+		}
+    }
+    return nil;;
+
+}
+
+
+- (void)unselectAllFields
+{
+    for(SectionInfo* sectionInfo in sections)
+    {
+        [sectionInfo unselectAllFields];
+    }
+}
+
 - (NSIndexSet*)sectionIndicesNeedingRefreshForEditMode
 {
     // TODO - Return just the sections needing updating, rather than all the sections

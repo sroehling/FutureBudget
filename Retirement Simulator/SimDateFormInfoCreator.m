@@ -19,7 +19,7 @@
 #import "StringLookupTable.h"
 #import "VariableHeightTableHeader.h"
 #import "LocalizationHelper.h"
-#import "StaticFieldEditInfo.h"
+#import "NeverEndDateFieldEditInfo.h"
 #import "SharedAppValues.h"
 #import "NeverEndDate.h"
 #import "FieldInfo.h"
@@ -88,9 +88,9 @@
 
 			NeverEndDate *neverEndDate = [SharedAppValues singleton].sharedNeverEndDate;
 			assert(neverEndDate != nil);
-			StaticFieldEditInfo *neverEndingFieldEditInfo = 
-				[[[StaticFieldEditInfo alloc] initWithManagedObj:neverEndDate 
-				andCaption:@"" andContent:self.varDateRuntimeInfo.neverEndDateFieldCaption] autorelease];
+			NeverEndDateFieldEditInfo *neverEndingFieldEditInfo = 
+				[[[NeverEndDateFieldEditInfo alloc] initWithNeverEndDate:neverEndDate 
+				andContent:self.varDateRuntimeInfo.neverEndDateFieldCaption] autorelease];
 			[sectionInfo addFieldEditInfo:neverEndingFieldEditInfo];
 		}
 		

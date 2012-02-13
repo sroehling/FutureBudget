@@ -22,25 +22,29 @@
 		FieldInfo *defaultFixedValFieldInfo;
 		VariableValueRuntimeInfo *varValRuntimeInfo;
 		ValueSubtitleTableCell *valueCell;
+		BOOL isForNewValue;
 
 }
 
 @property(nonatomic,retain) VariableValueRuntimeInfo *varValRuntimeInfo;
+@property BOOL isForNewValue;
 
 - (id)initWithFieldInfo:(FieldInfo *)theFieldInfo 
 	andDefaultFixedValFieldInfo:(FieldInfo*)theDefaultFieldInfo
-      andValRuntimeInfo:(VariableValueRuntimeInfo *)theVarValRuntimeInfo;
+      andValRuntimeInfo:(VariableValueRuntimeInfo *)theVarValRuntimeInfo
+	  andForNewVal:(BOOL)forNewVal;
 
 @property(nonatomic,retain) FieldInfo *defaultFixedValFieldInfo;
 @property(nonatomic,retain) ValueSubtitleTableCell *valueCell;
 
 + (DateSensitiveValueFieldEditInfo*)createForObject:
 			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
-				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
+				andDefaultFixedValKey:(NSString*)defaultFixedValKey
+				andForNewVal:(BOOL)forNewVal;
 
 + (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario 
 	andMultiScenFixedVal:(MultiScenarioInputValue*)multiScenFixedVal
-	andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
-				andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal;
+	andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal
+		andForNewVal:(BOOL)forNewVal;
 
 @end

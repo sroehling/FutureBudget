@@ -13,9 +13,11 @@
 @interface ManagedObjectFieldEditInfo : NSObject {
 
     FieldInfo *fieldInfo;
+	BOOL isDefaultSelection;
 }
 
 @property (nonatomic, retain) FieldInfo *fieldInfo;
+@property BOOL isDefaultSelection;
 
 - (id) initWithFieldInfo:(FieldInfo*)theFieldInfo;
 - (NSString*) textLabel;

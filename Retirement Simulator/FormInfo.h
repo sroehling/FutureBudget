@@ -41,6 +41,10 @@
 - (NSUInteger)numSections;
 - (SectionInfo*)sectionInfoAtIndex:(NSUInteger)sectionIndex;
 
+- (id<FieldEditInfo>)findSelectedFieldEditInfo;
+- (id<FieldEditInfo>)findDefaultSelection;
+- (void)unselectAllFields;
+
 - (BOOL)allFieldsInitialized;
 - (void)disableFieldChanges;
 

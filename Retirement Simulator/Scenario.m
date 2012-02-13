@@ -11,6 +11,8 @@
 
 @implementation Scenario
 
+@synthesize isSelectedForSelectableObjectTableView;
+
 @dynamic sharedAppValsCurrentInputScenario;
 
 

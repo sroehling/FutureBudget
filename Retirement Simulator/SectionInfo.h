@@ -32,6 +32,9 @@
 - (BOOL)allFieldsInitialized;
 - (void)disableFieldChanges;
 - (NSInteger)findObjectRow:(NSManagedObject*)object;
+- (id<FieldEditInfo>)findSelectedFieldEditInfo;
+- (id<FieldEditInfo>)findDefaultSelection;
+- (void)unselectAllFields;
 
 - (UIView*)viewForSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing;
 - (CGFloat)viewHeightForSection;

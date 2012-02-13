@@ -18,6 +18,10 @@ extern NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY;
 
 @interface VariableValue : DateSensitiveValue {
 @private
+	// isSelectedInTableView is a transient property
+	// VariableValues to function in the
+	// SelectableObjectTableEditViewController
+	BOOL isSelectedInTableView;
 }
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * notes;
@@ -29,6 +33,8 @@ extern NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY;
 @property (nonatomic, retain) NSString * staticNameStringFileKey;
 @property (nonatomic, retain) NSNumber * displayOrder;
 
+
+@property BOOL isSelectedInTableView;
 
 // Inverse relationship
 @property (nonatomic, retain) MultiScenarioAmount * multiScenAmountVariableAmounts;

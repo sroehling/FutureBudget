@@ -129,6 +129,16 @@
 }
 
 
+- (BOOL)isSelected
+{
+	assert(self.milestoneDate != nil);
+	return self.milestoneDate.isSelectedForSelectableObjectTableView;
+}
 
+- (void)updateSelection:(BOOL)isSelected
+{
+	assert(self.milestoneDate != nil);
+	self.milestoneDate.isSelectedForSelectableObjectTableView = isSelected;
+}
 
 @end

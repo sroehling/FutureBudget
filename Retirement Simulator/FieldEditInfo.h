@@ -35,7 +35,11 @@
 @optional
 - (BOOL)supportsDelete;
 - (void)deleteObject;
+
+// The 3 optional selectors below are for use with the 
+// SelectableObjectTableEditViewController. 
 - (void)updateSelection:(BOOL)isSelected;
 - (BOOL)isSelected;
+@property BOOL isDefaultSelection;
 
 @end

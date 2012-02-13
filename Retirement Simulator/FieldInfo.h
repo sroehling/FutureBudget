@@ -13,6 +13,7 @@
 	@private
 		NSString *fieldLabel;
 		NSString *fieldPlaceholder;
+		BOOL isSelectedForSelectableObjectTableView;
 	@protected
 		BOOL fieldAccessEnabled;
 
@@ -21,6 +22,8 @@
 @property(nonatomic,retain) NSString *fieldLabel;
 
 @property(nonatomic,retain) NSString *fieldPlaceholder;
+
+@property BOOL isSelectedForSelectableObjectTableView;
 
 - (void)disableFieldAccess;
 - (NSString*)textLabel;
@@ -31,6 +34,7 @@
 - (id)getFieldValue;
 - (void)setFieldValue:(NSObject*)newValue;
 - (BOOL)fieldIsInitializedInParentObject;
+
 - (NSManagedObject*)managedObject;
 - (NSManagedObject*)fieldObject;
 

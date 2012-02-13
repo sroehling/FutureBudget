@@ -13,6 +13,7 @@
 
 @synthesize fieldLabel;
 @synthesize fieldPlaceholder;
+@synthesize isSelectedForSelectableObjectTableView;
 
 
 -(id)initWithFieldLabel:(NSString*)theFieldLabel
@@ -30,8 +31,7 @@
 		assert([thePlaceholder length] > 0);
 		self.fieldPlaceholder = thePlaceholder;
 		       
-        fieldAccessEnabled = TRUE;
-        
+        fieldAccessEnabled = TRUE;        
     }
     return self;
 }

@@ -19,6 +19,7 @@ extern NSString * const SIM_DATE_DATE_KEY;
 
 @interface SimDate : InputValue {
 @private
+	BOOL isSelectedForSelectableObjectTableView;
 }
 @property (nonatomic, retain) NSDate *date;
 
@@ -26,6 +27,7 @@ extern NSString * const SIM_DATE_DATE_KEY;
 @property (nonatomic, retain) DateSensitiveValueChange * dateSensitiveValueChangeStartDate;
 @property (nonatomic, retain) SharedAppValues * sharedAppValsSimEndDate;
 
+@property BOOL isSelectedForSelectableObjectTableView;
 
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat;
 

@@ -29,6 +29,8 @@ NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY = @"displayOrder";
 // Inverse relationship
 @dynamic multiScenAmountVariableAmounts;
 
+@synthesize isSelectedInTableView;
+
 
 - (void)addValueChangesObject:(DateSensitiveValueChange *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];

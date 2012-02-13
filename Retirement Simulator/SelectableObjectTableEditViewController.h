@@ -18,21 +18,21 @@
         // Upon selection, the selected value is assigned to assignedField; i.e.
         // the LHS of the assignment
         FieldInfo *assignedField;
-    
-        // The currently selected value, serves as the RHS of the assignement
-        NSManagedObject *currentValue;
-    
-        NSIndexPath *currentValueIndex;
-		
+        
 		// Close (pop view controllers) after selection
 		bool closeAfterSelection;
+		
+		// This is an optiona field/property. When it is
+		// set, the controller starts in edit mode with 
+		// the given default index. 
+		BOOL loadInEditModeIfAssignedFieldNotSet;
 }
 
 
 @property(nonatomic,retain) FieldInfo *assignedField;
-@property(nonatomic,retain) NSManagedObject *currentValue;
-@property(nonatomic,retain) NSIndexPath *currentValueIndex;
 @property bool closeAfterSelection;
+
+@property BOOL loadInEditModeIfAssignedFieldNotSet;
 
 -(id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
             andAssignedField:(FieldInfo*)theAssignedField;

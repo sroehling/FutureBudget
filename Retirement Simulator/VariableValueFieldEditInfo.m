@@ -52,6 +52,8 @@
 		
 		self.varValueCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 		[self configureCell];
+		
+		self.variableVal.isSelectedInTableView = FALSE;
 
     }
     return self;
@@ -132,6 +134,16 @@
 	assert(self.variableVal != nil);
 	[[DataModelController theDataModelController] deleteObject:self.variableVal];
 	self.variableVal = nil;
+}
+
+- (BOOL)isSelected
+{
+	return self.variableVal.isSelectedInTableView;
+}
+
+- (void)updateSelection:(BOOL)isSelected
+{
+	self.variableVal.isSelectedInTableView = isSelected;
 }
 
 @end

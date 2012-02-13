@@ -13,11 +13,14 @@
 
 @interface Scenario : NSManagedObject {
 @private
+	BOOL isSelectedForSelectableObjectTableView;
 }
 
 // Inverse property
 @property (nonatomic, retain) NSSet* scenarioValueScenario;
 @property (nonatomic, retain) SharedAppValues * sharedAppValsCurrentInputScenario;
+
+@property BOOL isSelectedForSelectableObjectTableView;
 
 
 - (NSString *)scenarioName;

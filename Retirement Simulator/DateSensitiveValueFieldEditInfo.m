@@ -25,6 +25,7 @@
 @synthesize varValRuntimeInfo;
 @synthesize defaultFixedValFieldInfo;
 @synthesize valueCell;
+@synthesize isForNewValue;
 
 - (void) configureValueCell
 {
@@ -51,6 +52,7 @@
 - (id)initWithFieldInfo:(FieldInfo *)theFieldInfo 
 	andDefaultFixedValFieldInfo:(FieldInfo*)theDefaultFieldInfo
       andValRuntimeInfo:(VariableValueRuntimeInfo *)theVarValRuntimeInfo
+	  andForNewVal:(BOOL)forNewVal
 {
     self = [super initWithFieldInfo:theFieldInfo];
     if(self)
@@ -64,6 +66,8 @@
 		self.valueCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 		self.valueCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		self.valueCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		self.isForNewValue = forNewVal;
 		
 		[self configureValueCell];
     }
@@ -82,8 +86,10 @@
 
 + (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario 
 	andMultiScenFixedVal:(MultiScenarioInputValue*)multiScenFixedVal
-	andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
-				andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal;
+	andLabel:(NSString*)label 
+	andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
+	andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal
+	andForNewVal:(BOOL)forNewVal;
 {
     assert([StringValidation nonEmptyString:label]);
 	assert(multiScenFixedVal != nil);
@@ -106,7 +112,8 @@
 
     DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]
          initWithFieldInfo:fieldInfo andDefaultFixedValFieldInfo:defaultFixedValFieldInfo
-          andValRuntimeInfo:varValRuntimeInfo] autorelease];
+          andValRuntimeInfo:varValRuntimeInfo
+		  andForNewVal:forNewVal] autorelease];
      
     return fieldEditInfo;
 }
@@ -114,7 +121,8 @@
 + (DateSensitiveValueFieldEditInfo*)createForObject:
 			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label 
 			andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
-				andDefaultFixedValKey:(NSString*)defaultFixedValKey;
+				andDefaultFixedValKey:(NSString*)defaultFixedValKey
+				andForNewVal:(BOOL)forNewVal;
 {
     assert(obj != nil);
     assert([StringValidation nonEmptyString:key]);
@@ -129,17 +137,16 @@
     ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
            initWithManagedObject:obj andFieldKey:key andFieldLabel:label
 		   andFieldPlaceholder:dsvValuePlaceholder] autorelease];
-		   
-    
 	
-	
-    ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj andFieldKey:defaultFixedValKey andFieldLabel:label
+    ManagedObjectFieldInfo *defaultFixedValFieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:obj 
+				andFieldKey:defaultFixedValKey andFieldLabel:label
 				andFieldPlaceholder:dsvValuePlaceholder] autorelease];
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
 
     DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]                                                       
          initWithFieldInfo:fieldInfo andDefaultFixedValFieldInfo:defaultFixedValFieldInfo
-          andValRuntimeInfo:varValRuntimeInfo] autorelease];
+          andValRuntimeInfo:varValRuntimeInfo
+		  andForNewVal:forNewVal] autorelease];
      
     return fieldEditInfo;
 }
@@ -157,11 +164,12 @@
     [[[DateSensitiveValueFormInfoCreator alloc] initWithVariableValueFieldInfo:self.fieldInfo 
         andDefaultValFieldInfo:self.defaultFixedValFieldInfo 
 		andVarValRuntimeInfo:self.varValRuntimeInfo] autorelease];
-    	
+		
     SelectableObjectTableEditViewController *dsValueController = 
             [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:dsvFormInfoCreator 
                   andAssignedField:self.fieldInfo] autorelease];
-    
+	dsValueController.loadInEditModeIfAssignedFieldNotSet = self.isForNewValue?TRUE:FALSE;
+	      
     return dsValueController;
 }
 

@@ -13,6 +13,8 @@ NSString * const SIM_DATE_DATE_KEY = @"date";
 
 @implementation SimDate
 
+@synthesize isSelectedForSelectableObjectTableView;
+
 @dynamic date;
 
 // TODO - Need more handling for cascading deletes involving

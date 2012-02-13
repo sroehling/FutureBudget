@@ -122,4 +122,17 @@
 	self.userScen = nil;
 }
 
+- (BOOL)isSelected
+{
+	assert(self.userScen != nil);
+	return self.userScen.isSelectedForSelectableObjectTableView;
+}
+
+- (void)updateSelection:(BOOL)isSelected
+{
+	assert(self.userScen != nil);
+	self.userScen.isSelectedForSelectableObjectTableView = isSelected;
+}
+
+
 @end
