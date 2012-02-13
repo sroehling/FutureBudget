@@ -1,4 +1,6 @@
 ## Deficit
 
-If expenses are greater than income and account balances are zero, a deficit 
-will be calculated with an interest on the balance
+If at any time, the amounts needed to pay expenses are greater than the cash balance
+and balances from account withdrawals, a deficit will be accumulated, and interest 
+will accrue on this balance. If there is a deficit balance, and the income again
+exceeds the expenses, the deficit will be paid down before accruing a positive cash balance.
