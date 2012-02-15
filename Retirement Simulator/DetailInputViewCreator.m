@@ -203,7 +203,7 @@
 		
 	[self.formPopulator nextSection];
 	
-	[self.formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE")
+	[self.formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_INCOME_TAX_FIELD_LABEL")
 		andFormInfoCreator:[[[ItemizedIncomeTaxFormInfoCreator alloc] initWithIncome:income 
 			andIsForNewObject:self.isForNewObject] autorelease]];	
 }
