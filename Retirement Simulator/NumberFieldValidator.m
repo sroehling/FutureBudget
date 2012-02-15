@@ -32,8 +32,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[validationFailedMsg release];
+	[super dealloc];
 }
 
 

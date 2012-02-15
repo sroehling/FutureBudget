@@ -11,6 +11,7 @@
 #import "LimitedWithdrawalExpenseFormInfoCreator.h"
 #import "MultipleSelectionTableViewController.h"
 #import "Account.h"
+#import "FormContext.h"
 
 @implementation LimitedAccountWithdrawalsTableViewFactory
 
@@ -33,22 +34,23 @@
 	return nil;
 }
 
-- (UIViewController*)createTableView
+- (UIViewController*)createTableView:(FormContext*)parentContext
 {	
 	LimitedWithdrawalExpenseFormInfoCreator *formInfoCreator = 
 		[[[LimitedWithdrawalExpenseFormInfoCreator alloc] initWithAccount:self.account] autorelease];
 	
 	MultipleSelectionTableViewController *theController = 
 		[[[MultipleSelectionTableViewController alloc] 
-			initWithFormInfoCreator:formInfoCreator] autorelease];
+			initWithFormInfoCreator:formInfoCreator 
+			andDataModelController:parentContext.dataModelController] autorelease];
 	return theController;
 
 }
 
 -(void)dealloc
 {
-	[super dealloc];
 	[account release];
+	[super dealloc];
 }
 
 

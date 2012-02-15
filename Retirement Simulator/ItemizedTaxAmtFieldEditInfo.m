@@ -20,6 +20,7 @@
 #import "ItemizedTaxAmtsInfo.h"
 #import "ItemizedTaxAmt.h"
 #import "PercentFieldValidator.h"
+#import "FormContext.h"
 
 @implementation ItemizedTaxAmtFieldEditInfo
 
@@ -27,8 +28,10 @@
 @synthesize itemizedTaxAmtCreator;
 @synthesize itemizedTaxAmt;
 @synthesize itemizedTaxAmtsInfo;
+@synthesize dataModelController;
 
--(id)initWithItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
 	andItemizedTaxAmtCreator:(id<ItemizedTaxAmtCreator>)theItemizedTaxAmtCreator
 	andItemizedTaxAmt:(ItemizedTaxAmt*)theItemizedTaxAmt
 	andItemizedTaxAmtsInfo:(ItemizedTaxAmtsInfo*)theItemizedTaxAmtsInfo
@@ -49,6 +52,9 @@
 		
 		self.itemizedTaxAmtsInfo = theItemizedTaxAmtsInfo;
 		
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
+		
 		isForNewObject = forNewObject;
 	}
 	return self;
@@ -62,11 +68,11 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[itemizedTaxAmts release];
 	[itemizedTaxAmtCreator release];
 	[itemizedTaxAmt release];
 	[itemizedTaxAmtsInfo release];
+	[super dealloc];
 }
 
 
@@ -81,7 +87,7 @@
 	return @"";
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
 	if(self.itemizedTaxAmt == nil)
 	{
@@ -93,7 +99,7 @@
 	}
 	
 	InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isForNewObject
-		andParentController:nil] autorelease];
+		andFormContext:parentContext] autorelease];
 	formPopulator.formInfo.title = self.itemizedTaxAmtsInfo.itemTitle;
 	
 	[formPopulator nextSection];
@@ -106,13 +112,9 @@
 		[[[StaticFormInfoCreator alloc] initWithFormInfo:formPopulator.formInfo] autorelease];
 	GenericFieldBasedTableEditViewController *controller = 
 		[[[GenericFieldBasedTableEditViewController alloc] 
-			initWithFormInfoCreator:formInfoCreator] autorelease];
+			initWithFormInfoCreator:formInfoCreator
+			andDataModelController:parentContext.dataModelController] autorelease];
 	return controller;
-}
-
-- (BOOL)hasFieldEditController
-{
-	return TRUE;
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -191,7 +193,7 @@
 		assert([self.itemizedTaxAmts.itemizedAmts containsObject:self.itemizedTaxAmt]);
 		self.itemizedTaxAmt.isEnabled = [NSNumber numberWithBool:FALSE];
 	}
-	[[DataModelController theDataModelController] saveContext];
+	[self.dataModelController saveContextAndIgnoreErrors];
 
 }
 

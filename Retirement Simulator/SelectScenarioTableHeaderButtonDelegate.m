@@ -10,19 +10,21 @@
 #import "SharedAppValues.h"
 #import "ManagedObjectFieldInfo.h"
 #import "ScenarioListFormInfoCreator.h"
+#import "FormContext.h"
 #import "SelectableObjectTableEditViewController.h"
 
 
 @implementation SelectScenarioTableHeaderButtonDelegate
 
-@synthesize parentController;
+@synthesize formContext;
 
--(id)initWithParentController:(UIViewController*)theParentController
+-(id)initWithFormContext:(FormContext*)theFormContext
 {
 	self = [super init];
 	if(self)
 	{
-		self.parentController = theParentController;
+		assert(theFormContext != nil);
+		self.formContext = theFormContext;
 	}
 	return self;
 }
@@ -35,23 +37,30 @@
 
 - (void)tableHeaderDisclosureButtonPressed
 {
-	SharedAppValues *theSharedAppValues = [SharedAppValues singleton];
+	SharedAppValues *theSharedAppValues = [SharedAppValues getUsingDataModelController:self.formContext.dataModelController];
+	
 	ManagedObjectFieldInfo *currentScenarioFieldInfo = 
 		[[[ManagedObjectFieldInfo alloc] initWithManagedObject:theSharedAppValues andFieldKey:SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY 
 			andFieldLabel:@"dummy" andFieldPlaceholder:@"dummy"] autorelease];
 	ScenarioListFormInfoCreator *scenarioFormInfoCreator = 
 		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
-	SelectableObjectTableEditViewController *scenarioController = [[[SelectableObjectTableEditViewController alloc]
-		initWithFormInfoCreator:scenarioFormInfoCreator andAssignedField:currentScenarioFieldInfo] autorelease];
+		
+	SelectableObjectTableEditViewController *scenarioController = 
+		[[SelectableObjectTableEditViewController alloc]
+		initWithFormInfoCreator:scenarioFormInfoCreator andAssignedField:currentScenarioFieldInfo
+		andDataModelController:self.formContext.dataModelController];
+
 	scenarioController.closeAfterSelection = TRUE;
-	[self.parentController.navigationController pushViewController:scenarioController animated:YES];
+	[self.formContext.parentController.navigationController pushViewController:scenarioController animated:YES];
+	
+	[scenarioController release];
 
 }
 
 - (void) dealloc
 {
+	[formContext release];
 	[super dealloc];
-	[parentController release];
 }
 
 @end

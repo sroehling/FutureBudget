@@ -124,9 +124,9 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[variableRates release];
 	[startDate release];
+	[super dealloc];
 }
 
 @end

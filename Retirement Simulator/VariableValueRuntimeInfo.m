@@ -82,7 +82,6 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[valueFormatter release];
 	[valueValidator release];
 	[valueTitleKey release];
@@ -96,6 +95,7 @@
 	[valueTypeTitle release];
 	[valueName release];
 	[tableSubtitle release];
+	[super dealloc];
 }
 
 - (NSString *)inlinePeriodDesc;
@@ -111,11 +111,13 @@
 }
 
 
-+ (VariableValueRuntimeInfo*)createForSharedInterestRate:(Input*)theInput
++ (VariableValueRuntimeInfo*)createForSharedInterestRateWithDataModelController:
+	(DataModelController*)dataModelController andInput:(Input*)theInput
 {
 	SharedEntityVariableValueListMgr *sharedInterestRatesMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] 
-		initWithEntity:INTEREST_RATE_ENTITY_NAME] autorelease];
+		initWithDataModelController:dataModelController 
+		andEntity:INTEREST_RATE_ENTITY_NAME] autorelease];
 	
 	
 	NSString *tableSubtitle = [NSString 
@@ -143,7 +145,7 @@
 }
 
 
-+ (VariableValueRuntimeInfo*)createForSharedInflationRate:(Input*)theInput
++ (VariableValueRuntimeInfo*)createForSharedInflationRateWithDataModelController:(DataModelController*)dataModelController andInput:(Input*)theInput
 {
 
 	// TODO - Review this and the other "create For" methods for duplication with the 
@@ -152,7 +154,7 @@
 
 	assert(theInput != nil);
 	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
-	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
+	[[[SharedEntityVariableValueListMgr alloc] initWithDataModelController:dataModelController andEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
 	
 	NSString *tableSubtitle = [NSString 
 			stringWithFormat:LOCALIZED_STR(@"INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT"),
@@ -208,14 +210,16 @@
 
 
 
-+(VariableValueRuntimeInfo*)createForMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
++(VariableValueRuntimeInfo*)createForDataModelController:(DataModelController*)dataModelController 
+	andMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
 	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
 {
 	assert(theAmount != nil);
 	assert([StringValidation nonEmptyString:valueTitle]);
 
 	MultiScenarioAmountVariableValueListMgr *variableValueMgr = 
-		[[[MultiScenarioAmountVariableValueListMgr alloc] initWithMultiScenarioAmount:theAmount] autorelease];
+		[[[MultiScenarioAmountVariableValueListMgr alloc] initWithDataModelController:dataModelController 
+		andMultiScenarioAmount:theAmount] autorelease];
 		
 		
 	NSString *theTableSubtitle = [NSString 

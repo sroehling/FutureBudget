@@ -135,10 +135,10 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[interestRateCalc release];
 	[workingBalanceName release];
 	[accruedInterest release];
+	[super dealloc];
 }
 
 

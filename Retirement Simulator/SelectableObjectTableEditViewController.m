@@ -22,8 +22,10 @@
 
 - (id) initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
           andAssignedField:(FieldInfo*)theAssignedField
+		  andDataModelController:(DataModelController*)theDataModelController
 {
-    self = [super initWithFormInfoCreator:theFormInfoCreator];
+    self = [super initWithFormInfoCreator:theFormInfoCreator 
+		andDataModelController:theDataModelController];
     if(self)
     {
         assert(theAssignedField != nil);
@@ -46,8 +48,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [assignedField release];
+    [super dealloc];
 }
 
 
@@ -215,7 +217,7 @@
 		[self setAssignedValueFromCurrentlySelectedRow];
 					      
 		// Done editing - do a "soft save" of the context.
-		[[DataModelController theDataModelController] saveContextAndIgnoreErrors];
+		[self.dataModelController saveContextAndIgnoreErrors];
 	}
 	
     [super setEditing:editing animated:animated];

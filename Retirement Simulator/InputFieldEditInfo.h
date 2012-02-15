@@ -12,17 +12,20 @@
 
 @class Input;
 @class FormFieldWithSubtitleTableCell;
+@class DataModelController;
 
 @interface InputFieldEditInfo : NSObject <FieldEditInfo> {
     @private
 		Input *input;
 		FormFieldWithSubtitleTableCell *inputCell;
+		DataModelController *dataModelController;
 }
 
 @property(nonatomic,retain) Input *input;
 @property(nonatomic,retain) FormFieldWithSubtitleTableCell *inputCell;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
 
-- (id)initWithInput:(Input*)theInput;
+- (id)initWithInput:(Input*)theInput andDataModelController:(DataModelController*)dataModelController;
 
 @end

@@ -34,7 +34,8 @@
 
 @property BOOL loadInEditModeIfAssignedFieldNotSet;
 
--(id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
-            andAssignedField:(FieldInfo*)theAssignedField;
+- (id) initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator 
+          andAssignedField:(FieldInfo*)theAssignedField
+		  andDataModelController:(DataModelController*)theDataModelController;
 
 @end

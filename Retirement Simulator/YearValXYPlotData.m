@@ -71,8 +71,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[plotData release];
+	[super dealloc];
 }
 
 @end

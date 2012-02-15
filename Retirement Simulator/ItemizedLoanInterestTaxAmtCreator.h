@@ -10,16 +10,20 @@
 #import "ItemizedTaxAmtCreator.h"
 
 @class LoanInput;
+@class FormContext;
 
 @interface ItemizedLoanInterestTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
     @private
 		LoanInput *loan;
 		NSString *label;
+		FormContext *formContext;
 }
 
 @property(nonatomic,retain) LoanInput *loan;
 @property(nonatomic,retain) NSString *label;
+@property(nonatomic,retain) FormContext *formContext;
 
--(id)initWithLoan:(LoanInput*)theLoan andLabel:(NSString*)theLabel;
+-(id)initWithFormContext:(FormContext*)theFormContext
+	andLoan:(LoanInput*)theLoan andLabel:(NSString*)theLabel;
 
 @end

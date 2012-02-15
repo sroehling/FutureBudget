@@ -11,6 +11,7 @@
 #import "LocalizationHelper.h"
 #import "Account.h"
 #import "SectionInfo.h"
+#import "FormContext.h"
 
 @implementation DeferredWithdrawalFormInfoCreator
 
@@ -36,11 +37,11 @@
 }
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] 
 		initForNewObject:self.isNewAccount
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAWALS_FORM_TITLE");
 	
@@ -63,8 +64,8 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[account release];
+	[super dealloc];
 }
 
 

@@ -322,7 +322,6 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	
 	// MultiScenarioInputValue inverse relationships
 	[accountContribEnabled release];
@@ -375,6 +374,8 @@
 	[assetPurchaseDate  release];
 	[cashFlowStartDate  release];
 	[loanOrigDate  release];
+	
+	[super dealloc];
 
 
 }

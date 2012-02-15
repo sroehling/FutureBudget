@@ -15,6 +15,7 @@
 @class Account;
 @class MultiScenarioAmount;
 @class NumberFieldValidator;
+@class DataModelController;
 
 @interface VariableValueRuntimeInfo : NSObject {
 	@private
@@ -65,12 +66,14 @@
 - (NSString *)inlinePeriodDesc;
 
 
-+ (VariableValueRuntimeInfo*)createForSharedInflationRate:(Input*)theInput;
-+ (VariableValueRuntimeInfo*)createForSharedInterestRate:(Input*)theInput;
++ (VariableValueRuntimeInfo*)createForSharedInflationRateWithDataModelController:(DataModelController*)dataModelController andInput:(Input*)theInput;
++ (VariableValueRuntimeInfo*)createForSharedInterestRateWithDataModelController:
+	(DataModelController*)dataModelController andInput:(Input*)theInput;
 + (VariableValueRuntimeInfo*)createForVariableAmount:(Input*)theInput 
 	andVariableValListMgr:(id<VariableValueListMgr>)listMgr;
 	
-+(VariableValueRuntimeInfo*)createForMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
++(VariableValueRuntimeInfo*)createForDataModelController:(DataModelController*)dataModelController 
+	andMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
 	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName;	
 
 @end

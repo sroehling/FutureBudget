@@ -12,6 +12,7 @@
 
 @class Scenario;
 @class MultiScenarioInputValue;
+@class DataModelController;
 
 @interface MultiScenarioBoolInputValueFieldInfo : FieldInfo {
     @private
@@ -21,8 +22,10 @@
 
 @property(nonatomic,retain) Scenario *currentScen;
 @property(nonatomic,retain) MultiScenarioInputValue *inputVal;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
--(id)initWithFieldLabel:(NSString *)theFieldLabel andFieldPlaceholder:(NSString *)thePlaceholder
+-(id)initWithDataModelController:(DataModelController*)theDataModelController
+    andFieldLabel:(NSString *)theFieldLabel andFieldPlaceholder:(NSString *)thePlaceholder
 	andScenario:(Scenario*)currScenario andInputVal:(MultiScenarioInputValue*)theInputVal;
 
 @end

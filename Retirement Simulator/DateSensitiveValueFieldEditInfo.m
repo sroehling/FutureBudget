@@ -19,6 +19,7 @@
 #import "MultiScenarioInputValueFieldInfo.h"
 #import "MultiScenarioInputValue.h"
 #import "MultiScenarioFixedValueFieldInfo.h"
+#import "FormContext.h"
 
 @implementation DateSensitiveValueFieldEditInfo
 
@@ -84,7 +85,9 @@
     assert(0); // should not be called
 }
 
-+ (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario 
++ (DateSensitiveValueFieldEditInfo*)
+	createForDataModelController:(DataModelController*)theDataModelController
+	andScenario:(Scenario*)theScenario 
 	andMultiScenFixedVal:(MultiScenarioInputValue*)multiScenFixedVal
 	andLabel:(NSString*)label 
 	andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
@@ -106,8 +109,11 @@
 			
 	   
     MultiScenarioFixedValueFieldInfo *defaultFixedValFieldInfo =
-		[[[MultiScenarioFixedValueFieldInfo alloc]initWithFieldLabel:label 
-		andFieldPlaceholder:dsvValuePlaceholder andScenario:theScenario andInputVal:defaultFixedVal]autorelease];
+		[[[MultiScenarioFixedValueFieldInfo alloc] 
+			initWithDataModelController:theDataModelController andFieldLabel:label 
+			andFieldPlaceholder:dsvValuePlaceholder 
+			andScenario:theScenario andInputVal:defaultFixedVal] autorelease];
+
     assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
 
     DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]
@@ -158,7 +164,7 @@
     return [dsValue valueDescription:self.varValRuntimeInfo];
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {    
     DateSensitiveValueFormInfoCreator *dsvFormInfoCreator = 
     [[[DateSensitiveValueFormInfoCreator alloc] initWithVariableValueFieldInfo:self.fieldInfo 
@@ -167,15 +173,11 @@
 		
     SelectableObjectTableEditViewController *dsValueController = 
             [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:dsvFormInfoCreator 
-                  andAssignedField:self.fieldInfo] autorelease];
+                  andAssignedField:self.fieldInfo
+				  andDataModelController:parentContext.dataModelController] autorelease];
 	dsValueController.loadInEditModeIfAssignedFieldNotSet = self.isForNewValue?TRUE:FALSE;
 	      
     return dsValueController;
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 
@@ -193,10 +195,10 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [varValRuntimeInfo release];
     [defaultFixedValFieldInfo release];
 	[valueCell release];
+    [super dealloc];
 }
 
 

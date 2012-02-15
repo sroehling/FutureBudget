@@ -15,8 +15,9 @@
 @synthesize title;
 @synthesize sectionHeader;
 @synthesize helpInfoHTMLFile;
+@synthesize formContext;
 
-- (id) init
+- (id) initWithFormContext:(FormContext*)theFormContext
 {
     self = [super init];
     if(self)
@@ -24,12 +25,19 @@
         fieldEditInfo = [[NSMutableArray alloc] init];
 		
 		self.sectionHeader = [[[SectionHeaderWithSubtitle alloc] initWithFrame:CGRectZero] autorelease];
+		self.sectionHeader.formContext = theFormContext;
         self.title = @"";
     }
     return self;
 }
 
-- (id) initWithHelpInfo:(NSString*)helpInfoFile andParentController:(UIViewController*)theParentController
+- (id) init
+{
+	assert(0);
+	return nil;
+}
+
+- (id) initWithHelpInfo:(NSString*)helpInfoFile andFormContext:(FormContext*)theFormContext
 {
 	self = [super init];
 	if(self)
@@ -37,11 +45,11 @@
        fieldEditInfo = [[NSMutableArray alloc] init];
 		
 		self.sectionHeader = [[[SectionHeaderWithSubtitle alloc] initWithFrame:CGRectZero] autorelease];
+		self.sectionHeader.formContext = theFormContext;
         self.title = @"";
 
 
 		self.helpInfoHTMLFile = helpInfoFile;
-		self.sectionHeader.parentController = theParentController;
 		self.sectionHeader.helpInfoHTMLFile = helpInfoHTMLFile;
 		
 		
@@ -57,11 +65,11 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [fieldEditInfo release];
     [title release];
 	[sectionHeader release];
 	[helpInfoHTMLFile release];
+    [super dealloc];
     
 }
 

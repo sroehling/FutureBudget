@@ -43,7 +43,7 @@
 
 - (void) initFieldUI
 {
-    self.repeatFrequencies = [[DataModelController theDataModelController]
+    self.repeatFrequencies = [self.dataModelController
                               fetchSortedObjectsWithEntityName:EVENT_REPEAT_FREQUENCY_ENTITY_NAME sortKey:@"period"];    
     self.currentFrequency = [self.fieldInfo getFieldValue];
 }
@@ -52,9 +52,9 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [repeatFrequencies release];
     [currentFrequency release];
+    [super dealloc];
     
 }
 

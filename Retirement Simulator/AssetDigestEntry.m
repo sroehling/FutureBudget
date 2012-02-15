@@ -32,8 +32,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[assetInfo release];
+	[super dealloc];
 }
 
 

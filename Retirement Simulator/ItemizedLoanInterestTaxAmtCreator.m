@@ -12,14 +12,18 @@
 #import "LoanInput.h"
 #import "LoanInterestItemizedTaxAmt.h"
 #import "StringValidation.h"
+#import "FormContext.h"
+#import "SharedAppValues.h"
 
 
 @implementation ItemizedLoanInterestTaxAmtCreator
 
 @synthesize loan;
 @synthesize label;
+@synthesize formContext;
 
--(id)initWithLoan:(LoanInput*)theLoan andLabel:(NSString*)theLabel
+-(id)initWithFormContext:(FormContext*)theFormContext
+	andLoan:(LoanInput*)theLoan andLabel:(NSString*)theLabel
 {
 	self = [super init];
 	if(self)
@@ -29,6 +33,9 @@
 		
 		assert([StringValidation nonEmptyString:theLabel]);
 		self.label = theLabel;
+		
+		assert(theFormContext != nil);
+		self.formContext = theFormContext;
 	}
 	return self;
 }
@@ -42,9 +49,13 @@
 - (ItemizedTaxAmt*)createItemizedTaxAmt
 {
 	assert(loan != nil);
-	LoanInterestItemizedTaxAmt *itemizedTaxAmt = [[DataModelController theDataModelController] insertObject:LOAN_INTEREST_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	
+	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:self.formContext.dataModelController];
+	
+	LoanInterestItemizedTaxAmt *itemizedTaxAmt = [self.formContext.dataModelController insertObject:LOAN_INTEREST_ITEMIZED_TAX_AMT_ENTITY_NAME];
 	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
-		initForDatabaseInputs] autorelease];
+		initWithDataModelInterface:self.formContext.dataModelController 
+			andSharedAppVals:sharedAppVals] autorelease];
 	itemizedTaxAmt.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
 	itemizedTaxAmt.loan  = self.loan;
 	return itemizedTaxAmt;
@@ -58,9 +69,10 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[loan release];
 	[label release];
+	[formContext release];
+	[super dealloc];
 }
 
 

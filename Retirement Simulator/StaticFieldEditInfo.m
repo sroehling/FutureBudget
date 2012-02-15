@@ -51,11 +51,11 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [fieldObj release];
 	[staticCell release];
 	[content release];
 	[caption release];
+    [super dealloc];
 }
 
 - (NSString*)detailTextLabel
@@ -66,17 +66,6 @@
 - (NSString*)textLabel
 {
     return @"Text";
-}
-
-- (UIViewController*)fieldEditController
-{
-    assert(0); // should not be called
-	return nil;
-}
-
-- (BOOL)hasFieldEditController
-{
-    return FALSE;
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width

@@ -57,25 +57,8 @@ NSString * const SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY = @"adjustRe
 @dynamic deficitInterestRate;
 @dynamic defaultInflationRate;
 @dynamic repeatYearlyFreq;
-@dynamic adjustResultsForSimStartDate;
+@dynamic adjustResultsForSimStartDate; 
 
-
-static SharedAppValues *theSharedAppVals;  
-
-
-+(SharedAppValues*)singleton
-{  
-	assert(theSharedAppVals != nil);
-	return theSharedAppVals;
-}
-
-+(void)initSingleton:(SharedAppValues*)theAppVals
-{
-	assert(theSharedAppVals == nil);
-	assert(theAppVals != nil);
-	[theAppVals retain];
-	theSharedAppVals = theAppVals;
-}
 
 +(void)createDefaultVariableValue:(double)startingVal withLabelStringFileKey:(NSString*)labelKey
 	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface andEntityName:(NSString*)entityName
@@ -217,26 +200,34 @@ static SharedAppValues *theSharedAppVals;
 {
     NSLog(@"Initializing database with default data ...");
     
+	
+	DataModelController *dmcForInit = [[[DataModelController alloc] init] autorelease];
+	
     
-    if(![[DataModelController theDataModelController] entitiesExistForEntityName:SHARED_APP_VALUES_ENTITY_NAME])
+    if(![dmcForInit entitiesExistForEntityName:SHARED_APP_VALUES_ENTITY_NAME])
 	{
 		NSLog(@"Initializing shared values ...");
 
-		SharedAppValues *sharedVals = [SharedAppValues createWithDataModelInterface:[DataModelController theDataModelController]];
-		[SharedAppValues initSingleton:sharedVals];
+		[SharedAppValues createWithDataModelInterface:dmcForInit];
+		[dmcForInit saveContext];
 
-	}
-	else
-	{
-		NSSet *theAppVals = [[DataModelController theDataModelController] fetchObjectsForEntityName:SHARED_APP_VALUES_ENTITY_NAME];
-		assert([theAppVals count] == 1);
-		[SharedAppValues initSingleton:(SharedAppValues*)[theAppVals anyObject]];
 	}
         
-    [[DataModelController theDataModelController] saveContext];
-
-
 }
+
+
++(SharedAppValues*)getUsingDataModelController:(DataModelController*)dataModelController
+{
+	assert(dataModelController != nil);
+	NSSet *theAppVals = [dataModelController fetchObjectsForEntityName:SHARED_APP_VALUES_ENTITY_NAME];
+	assert([theAppVals count] == 1);
+	SharedAppValues *theAppValues = (SharedAppValues*)[theAppVals anyObject];
+	assert(theAppVals != nil);
+	[theAppVals retain];
+	[theAppVals autorelease];
+	return theAppValues;
+}
+
 
 
 -(NSDate*)beginningOfSimStartDate

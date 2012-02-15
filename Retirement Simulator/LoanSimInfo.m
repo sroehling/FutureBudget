@@ -39,7 +39,9 @@
 	// because the principal reaching 0 is used to stop event repeating, not
 	// a fixed number of repetitions.
 	NSDate *resolvedStartDate = [self loanOrigDate];
-	NSDate *resolvedEndDate = [SharedAppValues singleton].sharedNeverEndDate.date;
+	
+	
+	NSDate *resolvedEndDate = self.simParams.simEndDate;
 	
 	NSLog(@"Loan origination date: date = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedStartDate]);
@@ -339,11 +341,11 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[loan release];
 	[loanBalance release];
 	[extraPmtGrowthCalc release];
 	[simParams release];
+	[super dealloc];
 }
 
 @end

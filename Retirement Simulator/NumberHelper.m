@@ -97,10 +97,10 @@
 
 -(void)dealloc
 {
-    [super dealloc];
     [decimalFormatter release];
 	[percentFormatter release];
 	[currencyFormatter release];
+    [super dealloc];
 }
 
 

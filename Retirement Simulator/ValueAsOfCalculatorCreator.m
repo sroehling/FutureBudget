@@ -57,8 +57,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[valueCalc release];
+	[super dealloc];
 }
 
 

@@ -10,6 +10,8 @@
 #import "SectionHeaderAddButtonDelegate.h"
 #import "HelpInfoView.h"
 
+@class FormContext;
+
 @interface SectionHeaderWithSubtitle : UIView {
     @private
 		UILabel *headerLabel;
@@ -19,7 +21,7 @@
 		
 		UIButton *addButton;
 		id<SectionHeaderAddButtonDelegate> addButtonDelegate;
-		UIViewController *parentController;
+		FormContext *formContext;
 }
 
 @property(nonatomic,retain) UILabel *headerLabel;
@@ -27,7 +29,7 @@
 @property(nonatomic,retain) UIButton *infoButton;
 @property(nonatomic,retain) UIButton *addButton;
 @property(nonatomic,retain) id<SectionHeaderAddButtonDelegate> addButtonDelegate;
-@property(nonatomic,assign) UIViewController *parentController;
+@property(nonatomic,retain) FormContext *formContext;
 
 -(void)sizeForTableWidth:(CGFloat)tableWidth andEditMode:(BOOL)editing;
 -(CGFloat)headerHeight;

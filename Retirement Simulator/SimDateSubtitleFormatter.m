@@ -68,9 +68,9 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[formattedVal release];
 	[simDateRuntimeInfo release];
+	[super dealloc];
 }
 
 

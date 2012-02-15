@@ -34,21 +34,9 @@
 	return @"";
 }
 
-- (UIViewController*)fieldEditController
-{
-    assert(0);
-    return nil;
-    
-}
-
-- (BOOL)hasFieldEditController
-{
-    return FALSE;
-}
-
 - (void)dealloc {
-    [super dealloc];
 	[staticName release];
+    [super dealloc];
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width

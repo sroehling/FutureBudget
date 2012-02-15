@@ -22,10 +22,12 @@
 		id<ItemizedTaxAmtCreator> itemizedTaxAmtCreator;
 		ItemizedTaxAmt *itemizedTaxAmt;
 		ItemizedTaxAmtsInfo *itemizedTaxAmtsInfo;
+		DataModelController *dataModelController;
 		BOOL isForNewObject;
 }
 
--(id)initWithItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
 	andItemizedTaxAmtCreator:(id<ItemizedTaxAmtCreator>)theItemizedTaxAmtCreator
 	andItemizedTaxAmt:(ItemizedTaxAmt*)theItemizedTaxAmt
 	andItemizedTaxAmtsInfo:(ItemizedTaxAmtsInfo*)theItemizedTaxAmtsInfo
@@ -35,5 +37,6 @@
 @property(nonatomic,retain) id<ItemizedTaxAmtCreator> itemizedTaxAmtCreator;
 @property(nonatomic,retain) ItemizedTaxAmt *itemizedTaxAmt;
 @property(nonatomic,retain) ItemizedTaxAmtsInfo *itemizedTaxAmtsInfo;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
 @end

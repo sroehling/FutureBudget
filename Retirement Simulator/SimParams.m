@@ -102,7 +102,6 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 
 	[simStartDate release];
 	[digestStartDate release];
@@ -122,6 +121,7 @@
 	
 	[workingBalanceMgr release];
 	[inflationRate release];
+	[super dealloc];
 }
 
 @end

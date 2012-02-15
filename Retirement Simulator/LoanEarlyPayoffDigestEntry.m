@@ -46,8 +46,8 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[loanInfo release];
+	[super dealloc];
 }
 
 

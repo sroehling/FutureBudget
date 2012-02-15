@@ -19,6 +19,7 @@
 #import "DateHelper.h"
 #import "MultiScenarioInputValue.h"
 #import "MultiScenarioSimDate.h"
+#import "FormContext.h"
 
 @implementation DeferredWithdrawalFieldEditInfo
 
@@ -26,10 +27,14 @@
 @synthesize isNewAccount;
 @synthesize valueCell;
 @synthesize fieldLabel;
+@synthesize dataModelController;
 
 -(bool)deferredWithdrawalsEnabled
 {
- 	Scenario *currentScenario = (Scenario*)[SharedAppValues singleton].defaultScenario;
+
+	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:self.dataModelController];
+	
+ 	Scenario *currentScenario = (Scenario*)sharedAppVals.defaultScenario;
 	return [SimInputHelper multiScenBoolVal:self.account.deferredWithdrawalsEnabled
 		andScenario:currentScenario];
 }
@@ -59,7 +64,8 @@
 	
 }
 
--(id)initWithAccount:(Account*)theAccount andFieldLabel:(NSString*)theFieldLabel
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andAccount:(Account*)theAccount andFieldLabel:(NSString*)theFieldLabel
 	andIsNewAccount:(BOOL)accountIsNew
 {
 	self = [super init];
@@ -72,6 +78,9 @@
 		self.fieldLabel  = theFieldLabel;
 		
 		self.isNewAccount = accountIsNew;
+		
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
 		
 		
 		self.valueCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
@@ -107,14 +116,15 @@
 	}
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
 
 	DeferredWithdrawalFormInfoCreator *dwFormInfoCreator = 
 		[[[DeferredWithdrawalFormInfoCreator alloc] 
 			initWithAccount:self.account andIsNewAccount:self.isNewAccount] autorelease];
 	UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
-	    initWithFormInfoCreator:dwFormInfoCreator] autorelease];
+	    initWithFormInfoCreator:dwFormInfoCreator
+		andDataModelController:parentContext.dataModelController] autorelease];
 	return controller;	
 }
 
@@ -155,10 +165,11 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[account release];
 	[valueCell release];
 	[fieldLabel release];
+	[dataModelController release];
+	[super dealloc];
 }
 
 

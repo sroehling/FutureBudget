@@ -34,8 +34,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[assetSimInfo release];
+	[super dealloc];
 }
 
 @end

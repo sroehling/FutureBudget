@@ -69,9 +69,9 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	[currentData release];
 	[plotDataGenerator release];
+    [super dealloc];
 }
 
 #pragma mark - View lifecycle
@@ -252,7 +252,9 @@
 	}
 	else
 	{
-		if([[SharedAppValues singleton].adjustResultsForSimStartDate boolValue])
+		SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:self.viewInfo.simResultsController.dataModelController];
+			
+		if([sharedAppVals.adjustResultsForSimStartDate boolValue])
 		{
 			plotResult = plotDataVal.inflationAdjustedVal;
 		}

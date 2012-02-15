@@ -14,14 +14,15 @@
 #import "HelpViewFactory.h"
 #import "HelpPageInfo.h"
 #import "HelpPageFormPopulator.h"
+#import "FormContext.h"
 
 @implementation HelpRecipesFormInfoCreator
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     HelpPageFormPopulator *formPopulator = [[[HelpPageFormPopulator alloc] 
-		initWithParentController:parentController] autorelease];
+		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"MORE_RECIPES_TITLE");
 	

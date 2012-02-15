@@ -8,6 +8,7 @@
 
 #import "GenericFieldBasedTableEditViewControllerFactory.h"
 #import "GenericFieldBasedTableEditViewController.h"
+#import "FormContext.h"
 
 @implementation GenericFieldBasedTableEditViewControllerFactory
 
@@ -31,17 +32,17 @@
 	return nil;
 }
 
-- (UIViewController*)createTableView
+-(UIViewController*)createTableView:(FormContext*)parentContext
 {
 	UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
-	    initWithFormInfoCreator:self.formInfoCreator] autorelease];
+	    initWithFormInfoCreator:self.formInfoCreator andDataModelController:parentContext.dataModelController] autorelease];
 	return controller;
 }
 
 -(void)dealloc
 {
-	[super dealloc];
 	[formInfoCreator release];
+	[super dealloc];
 }
 
 

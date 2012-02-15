@@ -13,14 +13,16 @@
 #import "DetailInputViewCreator.h"
 #import "GenericFieldBasedTableEditViewController.h"
 #import "DataModelController.h"
+#import "FormContext.h"
 
 
 @implementation InputFieldEditInfo
 
 @synthesize input;
+@synthesize dataModelController;
 @synthesize inputCell;
 
-- (id)initWithInput:(Input*)theInput
+- (id)initWithInput:(Input*)theInput andDataModelController:(DataModelController*)theDataModelController
 {
 	self = [super init];
 	if(self)
@@ -33,6 +35,9 @@
 		self.inputCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;   
 		self.inputCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
+
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
 	}
 	return self;
 }
@@ -45,9 +50,10 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[input release];
 	[inputCell release];
+	[dataModelController release];
+	[super dealloc];
 }
 
 
@@ -55,7 +61,7 @@
 - (NSString*)detailTextLabel
 {
 	InputListInputDescriptionCreator *descriptionCreator = 
-	[[[InputListInputDescriptionCreator alloc] init] autorelease];
+	[[[InputListInputDescriptionCreator alloc] initWithDataModelController:self.dataModelController] autorelease];
 	
     return [descriptionCreator descripionForInput:self.input];
 			
@@ -66,19 +72,15 @@
     return self.input.name;
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc]
 					initWithInput:self.input andIsForNewObject:FALSE] autorelease];
     UIViewController *detailViewController = 
 		[[[GenericFieldBasedTableEditViewController alloc] 
-		  initWithFormInfoCreator:detailViewCreator] autorelease];
+		  initWithFormInfoCreator:detailViewCreator
+		  andDataModelController:parentContext.dataModelController] autorelease];
 	return detailViewController;
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 - (void)configureInputCell
@@ -125,10 +127,10 @@
 }
 
 
-- (void)deleteObject
+- (void)deleteObject:(DataModelController*)dataModelController
 {
 	assert(self.input != nil);
-	[[DataModelController theDataModelController] deleteObject:self.input];
+	[self.dataModelController deleteObject:self.input];
 	self.input = nil;
 }
 

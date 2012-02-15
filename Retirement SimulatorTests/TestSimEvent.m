@@ -30,8 +30,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[self.eventLabel release];
+	[super dealloc];
 }
 
 

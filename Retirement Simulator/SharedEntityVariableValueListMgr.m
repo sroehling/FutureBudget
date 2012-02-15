@@ -14,14 +14,19 @@
 @implementation SharedEntityVariableValueListMgr
 
 @synthesize entityName;
+@synthesize dataModelController;
 
-- (id) initWithEntity:(NSString *)theEntityName
+- (id) initWithDataModelController:(DataModelController*)theDataModelController 
+		andEntity:(NSString *)theEntityName
 {
 	self = [super init];
 	if(self)
 	{
 		assert([theEntityName length] > 0);
 		self.entityName = theEntityName;
+		
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
 	}
 	return self;
 }
@@ -34,22 +39,22 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[entityName release];
+	[dataModelController release];
+	[super dealloc];
 }
 
 
 - (NSArray*)variableValues
 {
-	NSArray *variableValues = [[DataModelController theDataModelController]
+	NSArray *variableValues = [self.dataModelController
 		fetchSortedObjectsWithEntityName:self.entityName sortKey:VARIABLE_VALUE_DISPLAY_ORDER_KEY];
 	return variableValues;
 }
 
 - (VariableValue*)createNewValue
 {
-	return (VariableValue*)[[DataModelController theDataModelController]
-					 insertObject:self.entityName];
+	return (VariableValue*)[self.dataModelController insertObject:self.entityName];
 	// The following properties must be filled in before the new objectwill be created.
     //    newVariableValue.name
     //    newVariableValue.startingValue

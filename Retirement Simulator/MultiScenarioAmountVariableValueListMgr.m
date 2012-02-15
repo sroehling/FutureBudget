@@ -18,14 +18,19 @@
 @implementation MultiScenarioAmountVariableValueListMgr
 
 @synthesize amount;
+@synthesize dataModelController;
 
--(id)initWithMultiScenarioAmount:(MultiScenarioAmount *)theAmount
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andMultiScenarioAmount:(MultiScenarioAmount *)theAmount
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theAmount != nil);
 		self.amount = theAmount;
+		
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
 	}
 	return self;
 }
@@ -41,8 +46,8 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[amount release];
+	[super dealloc];
 }
 
 
@@ -53,7 +58,7 @@
 
 - (VariableValue*)createNewValue
 {
-	return (VariableValue*)[[DataModelController theDataModelController]
+	return (VariableValue*)[self.dataModelController
 							insertObject:MULTI_SCENARIO_VARIABLE_VALUE_ENTITY_NAME];	
 }
 

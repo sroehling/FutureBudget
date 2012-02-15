@@ -64,13 +64,13 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 
 - (void) dealloc
 {
-	[super dealloc];
 	[balanceStartDate release];
 	[currentBalanceDate release];
 	[deferWithdrawalsUntil release];
 	[limitWithdrawalsToExpense release];
 	[contribs release];
 	[withdrawals release];
+	[super dealloc];
 }
 
 - (void)advanceCurrentBalanceToDate:(NSDate*)newDate

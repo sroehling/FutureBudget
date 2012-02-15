@@ -13,6 +13,7 @@
 #import "LocalizationHelper.h"
 #import "SimDateRuntimeInfo.h"
 #import "DurationFieldEditViewController.h"
+#import "FormContext.h"
 
 @implementation RelativeEndDateFieldEditInfo
 
@@ -50,10 +51,10 @@
 
 - (void) dealloc
 {
-    [super dealloc];
 	[relEndDateFieldInfo release];
 	[relEndDateCell release];
 	[simDateRuntimeInfo release];
+    [super dealloc];
 }
 
 - (void)configureRelEndDateCell
@@ -80,16 +81,11 @@
     return self.simDateRuntimeInfo.relEndDateFieldLabel;
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     DurationFieldEditViewController *durationController = 
         [[[DurationFieldEditViewController alloc] initWithDurationFieldInfo:self.relEndDateFieldInfo] autorelease];
     return durationController;
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 - (UITableViewCell*)cellForFieldEdit:(UITableView *)tableView

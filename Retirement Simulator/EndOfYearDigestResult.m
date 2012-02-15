@@ -94,7 +94,6 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[assetValues release];
 	[loanBalances release];
 	[acctBalances release];
@@ -103,6 +102,7 @@
 	[acctWithdrawals release];
 	[acctContribs release];
 	[taxesPaid release];
+	[super dealloc];
 }
 
 @end

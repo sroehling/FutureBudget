@@ -69,8 +69,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[loan release];
+	[super dealloc];
 }
 
 @end

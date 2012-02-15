@@ -38,9 +38,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[simResultsController release];
 	[viewTitle release];
+	[super dealloc];
 }
 
 @end

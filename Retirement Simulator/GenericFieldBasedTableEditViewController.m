@@ -14,6 +14,7 @@
 #import "StringValidation.h"
 #import "TextCaptionWEPopoverContainer.h"
 #import "UIHelper.h"
+#import "FormContext.h"
 
 @implementation GenericFieldBasedTableEditViewController
 
@@ -125,11 +126,11 @@
 	
 	assert([fieldEditInfoForRow respondsToSelector: @selector(supportsDelete)]);
 	assert([fieldEditInfoForRow supportsDelete]);
-	assert([fieldEditInfoForRow respondsToSelector: @selector(deleteObject)]);
+	assert([fieldEditInfoForRow respondsToSelector: @selector(deleteObject:)]);
 	
     if (editingStyle == UITableViewCellEditingStyleDelete) 
 	{
-		[fieldEditInfoForRow deleteObject];
+		[fieldEditInfoForRow deleteObject:self.dataModelController];
 		[self.formInfo removeFieldEditInfo:indexPath];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 			withRowAnimation:UITableViewRowAnimationFade];
@@ -145,7 +146,10 @@
 {
 	if(self.formInfo.objectAdder != nil)
 	{
-		[self.formInfo.objectAdder addObjectFromTableView:self];
+		FormContext *formContext = [[[FormContext alloc] 
+			initWithParentController:self 
+			andDataModelController:self.dataModelController] autorelease];
+		[self.formInfo.objectAdder addObjectFromTableView:formContext];
 	}
 }
 
@@ -167,7 +171,7 @@
 			[super setEditing:editing animated:animated];
 			
 			[self.navigationItem setHidesBackButton:editing animated:NO];
-			[[DataModelController theDataModelController] saveContextAndIgnoreErrors];
+			[self.dataModelController saveContextAndIgnoreErrors];
 			
 			if(![self showAddButtonOutsideEditMode])
 			{
@@ -216,9 +220,9 @@
  
  - (void) dealloc
  {
-	 [super dealloc];
 	 [addButton release];
 	 [addButtonPopoverController release];
+	 [super dealloc];
  }
 
 

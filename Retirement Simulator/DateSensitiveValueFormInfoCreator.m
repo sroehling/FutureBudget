@@ -20,6 +20,7 @@
 #import "VariableValueFieldEditInfo.h"
 #import "LocalizationHelper.h"
 #import "VariableHeightTableHeader.h"
+#import "FormContext.h"
 
 @implementation DateSensitiveValueFormInfoCreator
 
@@ -47,9 +48,10 @@
 }
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] 
+		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey);
 	
@@ -77,7 +79,6 @@
 	[tableHeader resizeForChildren];
 	formPopulator.formInfo.headerView = tableHeader;
 
-    assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSectionWithTitle:[[[NSString alloc]
 			initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_SINGLE_VALUE_TITLE_FORMAT"),
 			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease]
@@ -141,7 +142,8 @@
 	[sectionInfo addFieldEditInfo:valueFieldEditInfo];
     
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
-					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo andParentViewController:parentController] autorelease];
+					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo 
+					andFormContext:parentContext] autorelease];
     [formPopulator nextCustomSection:vvSectionInfo];
     
 	
@@ -158,10 +160,10 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [defaultValFieldInfo release];
     [fieldInfo release];
 	[varValRuntimeInfo release];
+    [super dealloc];
 }
 
 @end

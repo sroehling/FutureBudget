@@ -83,9 +83,9 @@
 
 
 - (void)dealloc {
-    [super dealloc];
     [fieldLabel release];
 	[fieldPlaceholder release];
+    [super dealloc];
 }
 
 @end

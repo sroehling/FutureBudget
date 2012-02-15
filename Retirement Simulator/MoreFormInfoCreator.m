@@ -15,13 +15,14 @@
 #import "HelpViewFactory.h"
 #import "GenericFieldBasedTableEditViewControllerFactory.h"
 #import "HelpRecipesFormInfoCreator.h"
+#import "FormContext.h"
 
 @implementation MoreFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     HelpPageFormPopulator *formPopulator = [[[HelpPageFormPopulator alloc] 
-		initWithParentController:parentController] autorelease];
+		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"MORE_VIEW_TITLE");
 	

@@ -47,7 +47,6 @@ typedef enum
 
 + (EventRepeatFrequency*)createInDataModel:(id<DataModelInterface>)dataModel 
 	andPeriod:(EventPeriod)thePeriod andMultiplier:(int)theMultiplier;
-+ (EventRepeatFrequency *)createWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier;
 
 @end
 

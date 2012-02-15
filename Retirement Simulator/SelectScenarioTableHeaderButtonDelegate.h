@@ -10,15 +10,16 @@
 
 #import "TableHeaderDisclosureButtonDelegate.h"
 
+@class FormContext;
 
 @interface SelectScenarioTableHeaderButtonDelegate : 
 	NSObject <TableHeaderDisclosureButtonDelegate> {
     @private
-		UIViewController *parentController;
+		FormContext *formContext;
 }
 
-@property(nonatomic,retain) UIViewController *parentController;
+@property(nonatomic,retain) FormContext *formContext;;
 
--(id)initWithParentController:(UIViewController*)parentController;
+-(id)initWithFormContext:(FormContext*)theFormContext;
 
 @end

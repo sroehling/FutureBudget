@@ -25,6 +25,7 @@
 #import "FieldInfo.h"
 #import "RelativeEndDateFieldEditInfo.h"
 #import "RelativeEndDate.h"
+#import "FormContext.h"
 
 
 @implementation SimDateFormInfoCreator
@@ -59,9 +60,10 @@
     return self;
 }
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-   FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+   FormPopulator *formPopulator = [[[FormPopulator alloc] 
+				initWithFormContext:parentContext] autorelease];
     
 	VariableHeightTableHeader *tableHeader = 
 	[[[VariableHeightTableHeader alloc] initWithFrame:CGRectZero] autorelease];
@@ -74,8 +76,6 @@
 	
     formPopulator.formInfo.title = self.varDateRuntimeInfo.tableTitle;
     
-    assert(parentController != nil);
-	
 	SectionInfo *sectionInfo;
 	
 	if(showEndDates)
@@ -86,7 +86,8 @@
 			sectionInfo = [formPopulator nextSectionWithTitle:self.varDateRuntimeInfo.neverEndDateSectionTitle 
 				andHelpFile:self.varDateRuntimeInfo.neverEndDateHelpFile];
 
-			NeverEndDate *neverEndDate = [SharedAppValues singleton].sharedNeverEndDate;
+			NeverEndDate *neverEndDate = 
+				[SharedAppValues getUsingDataModelController:parentContext.dataModelController].sharedNeverEndDate;
 			assert(neverEndDate != nil);
 			NeverEndDateFieldEditInfo *neverEndingFieldEditInfo = 
 				[[[NeverEndDateFieldEditInfo alloc] initWithNeverEndDate:neverEndDate 
@@ -112,21 +113,19 @@
 	[sectionInfo addFieldEditInfo:fixedDateFieldEditInfo];
 	
     MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] initWithRuntimeInfo:self.varDateRuntimeInfo
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
 	
-	
-    mdSectionInfo.parentViewController = parentController;
     sectionInfo = mdSectionInfo;
     [formPopulator nextCustomSection:sectionInfo];
     
-    NSArray *milestoneDates = [[DataModelController theDataModelController]
+    NSArray *milestoneDates = [parentContext.dataModelController
           fetchSortedObjectsWithEntityName:MILESTONE_DATE_ENTITY_NAME sortKey:@"name"];
     for (MilestoneDate *milestoneDate in milestoneDates)
     {
 	
 		MilestoneDateFieldEditInfo *mdFieldEditInfo  = [[[MilestoneDateFieldEditInfo alloc]
 			initWithMilestoneDate:milestoneDate andVarDateRuntimeInfo:self.varDateRuntimeInfo
-			andParentController:parentController] autorelease];
+			andParentController:parentContext.parentController] autorelease];
         // Create the row information for the given milestone date.
         [sectionInfo addFieldEditInfo:mdFieldEditInfo];
     }
@@ -135,11 +134,11 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [fieldInfo release];
     [fixedDateFieldInfo release];
 	[varDateRuntimeInfo release];
 	[defaultRelEndDateFieldInfo release];
+    [super dealloc];
 }
 
 @end

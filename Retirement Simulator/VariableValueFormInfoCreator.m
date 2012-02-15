@@ -21,7 +21,7 @@
 #import "ManagedObjectFieldInfo.h"
 #import "NameFieldEditInfo.h"
 #import "StaticNameFieldEditInfo.h"
-
+#import "FormContext.h"
 
 @implementation VariableValueFormInfoCreator
 
@@ -52,15 +52,15 @@
 }
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-	FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+	FormPopulator *formPopulator = [[[FormPopulator alloc]
+		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = [NSString 
 		stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_VIEW_TITLE_FORMAT"),
 		LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
 		
-    assert(parentController != nil);
     SectionInfo *sectionInfo = [formPopulator nextSection];
 	
 	NSString *varValueNamePlaceholder = [NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_PLACEHOLDER_FORMAT"),
@@ -103,7 +103,8 @@
 	DateSensitiveValueChangeSectionInfo *vcSectionInfo = 
 		[[[DateSensitiveValueChangeSectionInfo alloc] 
 		  initWithVariableValRuntimeInfo:self.varValRuntimeInfo 
-		  andParentVariableValue:self.variableValue andParentController:parentController] autorelease];
+		  andParentVariableValue:self.variableValue 
+		  andFormContext:parentContext] autorelease];
 		  
 	[formPopulator nextCustomSection:vcSectionInfo];		
     for (DateSensitiveValueChange *valueChange in valueChanges)
@@ -112,7 +113,8 @@
 		DateSensitiveValueChangeFieldEditInfo *fieldInfo = 
 			[[[DateSensitiveValueChangeFieldEditInfo alloc]
 			  initWithValueChange:valueChange andVariableValueRuntimeInfo:self.varValRuntimeInfo
-			  andVariableValue:self.variableValue andParentController:parentController] autorelease];
+			  andVariableValue:self.variableValue 
+			  andParentController:parentContext.parentController] autorelease];
         [vcSectionInfo addFieldEditInfo:fieldInfo];
     }
     return formPopulator.formInfo;
@@ -120,9 +122,9 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [varValRuntimeInfo release];
     [variableValue release];
+    [super dealloc];
 }
 
 

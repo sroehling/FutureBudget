@@ -23,6 +23,7 @@
 #import "ManagedObjectFieldInfo.h"
 #import "VariableValueRuntimeInfo.h"
 #import "SectionHeaderWithSubtitle.h"
+#import "FormContext.h"
 
 
 @implementation VariableValueSectionInfo
@@ -30,9 +31,9 @@
 @synthesize varValRuntimeInfo;
 
 - (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
-	andParentViewController:(UIViewController*)theParentController
+	andFormContext:(FormContext*)theFormContext
 {
-	self = [super init];
+	self = [super initWithFormContext:theFormContext];
 	if(self)
 	{
 		assert(theVarValRuntimeInfo != nil);
@@ -41,11 +42,7 @@
 		assert(theVarValRuntimeInfo.variableValHelpInfoFile != nil);
 		self.helpInfoHTMLFile = theVarValRuntimeInfo.variableValHelpInfoFile;
 		
-		
-		assert(theParentController != nil);
-		self.parentViewController = theParentController;
-		self.sectionHeader.parentController = theParentController;
-		
+
 		self.title =  [[[NSString alloc] initWithFormat:
 			LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
 			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
@@ -60,18 +57,17 @@
 	return nil;
 }
 
--(void)addButtonPressedInSectionHeader:(UIViewController*)parentView
+-(void)addButtonPressedInSectionHeader:(FormContext*)parentContext
 {
-    assert(self.parentViewController != nil);
     NSLog(@"Add Variable Value");
     
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:self.parentViewController] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithFormContext:parentContext] autorelease];
 	
     formPopulator.formInfo.title = [[[NSString alloc] initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
 									 LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
     
     VariableValue *newVariableValue = [self.varValRuntimeInfo.listMgr createNewValue];
-    [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
+    [parentContext.dataModelController saveContextAndIgnoreErrors];
 
     
     SectionInfo *sectionInfo = [formPopulator nextSection];
@@ -96,19 +92,19 @@
     GenericFieldBasedTableAddViewController *controller = 
         [[[GenericFieldBasedTableAddViewController alloc]
           initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:formPopulator.formInfo]
-          andNewObject:newVariableValue] autorelease];
+          andNewObject:newVariableValue andDataModelController:parentContext.dataModelController] autorelease];
     controller.popDepth =1;
 	controller.finshedAddingListener = varValRuntimeInfo.listMgr;
 
     
-    [self.parentViewController.navigationController pushViewController:controller animated:YES];
+    [parentContext.parentController.navigationController pushViewController:controller animated:YES];
     
 }
 
 - (void)dealloc
 {
-    [super dealloc];
     [varValRuntimeInfo release];
+    [super dealloc];
 }
 
 @end

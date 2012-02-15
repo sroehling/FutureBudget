@@ -10,16 +10,20 @@
 #import "ItemizedTaxAmtCreator.h"
 
 @class ExpenseInput;
+@class FormContext;
 
 @interface ItemizedExpenseTaxAmtCreator : NSObject <ItemizedTaxAmtCreator> {
 	@private
+		FormContext *formContext;
 		ExpenseInput *expense;
 		NSString *label;
 }
 
+@property(nonatomic,retain) FormContext *formContext;
 @property(nonatomic,retain) ExpenseInput *expense;
 @property(nonatomic,retain) NSString *label;
 
-- (id)initWithExpense:(ExpenseInput*)theExpense andLabel:(NSString*)theLabel;
+- (id)initWithFormContext:(FormContext*)theFormContext 
+		andExpense:(ExpenseInput*)theExpense andLabel:(NSString*)theLabel;
 
 @end

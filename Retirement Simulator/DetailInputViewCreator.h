@@ -13,10 +13,12 @@
 
 @class Input;
 @class InputFormPopulator;
+@class FormContext;
 
 
 @interface DetailInputViewCreator : NSObject <InputVisitor,FormInfoCreator> {
     InputFormPopulator *formPopulator;
+	FormContext *formContext;
     Input *input;
 	BOOL isForNewObject;
 }
@@ -24,6 +26,7 @@
 @property(nonatomic,retain) Input *input;
 @property BOOL isForNewObject;
 @property(nonatomic,retain) InputFormPopulator *formPopulator;
+@property(nonatomic,retain) FormContext *formContext;
 
 -(id) initWithInput:(Input*)theInput andIsForNewObject:(BOOL)forNewObject;
 

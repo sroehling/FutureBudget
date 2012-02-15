@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class FormContext;
 
 @protocol TableViewObjectAdder <NSObject>
 
--(void)addObjectFromTableView:(UITableViewController*)parentViewController;
+-(void)addObjectFromTableView:(FormContext*)parentContext;
 -(BOOL)supportsAddOutsideEditMode;
 
 @end

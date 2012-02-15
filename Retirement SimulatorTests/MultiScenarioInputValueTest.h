@@ -17,13 +17,16 @@
 //#import "application_headers" as required
 
 @class DataModelController;
+@class SharedAppValues;
 
 
 @interface MultiScenarioInputValueTest : SenTestCase {
 @private
 	DataModelController *coreData;
+	SharedAppValues *testAppVals;
 }
 
 @property(nonatomic,retain) DataModelController *coreData;
+@property(nonatomic,retain) SharedAppValues *testAppVals;
 
 @end

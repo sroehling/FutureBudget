@@ -313,12 +313,12 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[digestEntries release];
 	[currentYearDigestStartDate release];
 	[savedEndOfYearResults release];
 	[simParams release];
 	[adjustValueForInflationCalculator release];
+	[super dealloc];
 }
 
 @end

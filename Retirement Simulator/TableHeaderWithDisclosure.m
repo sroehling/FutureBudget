@@ -114,10 +114,10 @@ static CGFloat kButtonHeight = 20.0;
 
 - (void)dealloc
 {
-    [super dealloc];
 	[header release];
 	[disclosureButton release];
 	[disclosureButtonDelegate release];
+    [super dealloc];
 }
 
 @end

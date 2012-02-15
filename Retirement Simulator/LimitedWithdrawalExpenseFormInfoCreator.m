@@ -13,6 +13,7 @@
 #import "DataModelController.h"
 #import "SectionInfo.h"
 #import "LimitedWithdrawalExpenseFieldEditInfo.h"
+#import "FormContext.h"
 
 
 @implementation LimitedWithdrawalExpenseFormInfoCreator
@@ -31,14 +32,15 @@
 }
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] 
+		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SELECTION_FORM_TITLE");
 
 
-	NSArray *inputs = [[DataModelController theDataModelController]
+	NSArray *inputs = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:EXPENSE_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
@@ -67,8 +69,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[account  release];
+	[super dealloc];
 }
 
 

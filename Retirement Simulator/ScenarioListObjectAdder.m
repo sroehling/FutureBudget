@@ -11,35 +11,35 @@
 #import "UserScenarioFormInfoCreator.h"
 #import "UserScenario.h"
 #import "DataModelController.h"
+#import "FormContext.h"
 
 
 @implementation ScenarioListObjectAdder
 
--(void)addObject:(UIViewController*)parentView
+
+-(void)addObjectFromTableView:(FormContext*)parentContext
 {
-	UserScenario *newScenario = [[DataModelController theDataModelController] 
-							  insertObject:USER_SCENARIO_ENTITY_NAME];
+
+	// TODO - Allocate a new DataModelController, so that new scenarios are saved, even
+	// if the parent's object creation is canceled.
+
+	UserScenario *newScenario = [parentContext.dataModelController insertObject:USER_SCENARIO_ENTITY_NAME];
 	UserScenarioFormInfoCreator *scenarioFormCreator = 
 		[[[UserScenarioFormInfoCreator alloc] initWithUserScenario:newScenario] autorelease];
 
     GenericFieldBasedTableAddViewController *controller = [[[GenericFieldBasedTableAddViewController alloc]
 		initWithFormInfoCreator:scenarioFormCreator
-			andNewObject:newScenario] autorelease];
+			andNewObject:newScenario 
+			andDataModelController:parentContext.dataModelController] autorelease];
     controller.popDepth =1;
 	assert(controller.popDepth == 1);
 
-    [parentView.navigationController pushViewController:controller animated:YES];
-
+    [parentContext.parentController.navigationController pushViewController:controller animated:YES];
 }
 
--(void)addObjectFromTableView:(UITableViewController*)parentView
+-(void)addButtonPressedInSectionHeader:(FormContext*)parentContext
 {
-	return [self addObject:parentView];	
-}
-
--(void)addButtonPressedInSectionHeader:(UIViewController*)parentView
-{
-	return [self addObject:parentView];
+	return [self addObjectFromTableView:parentContext];
 }
 
 -(BOOL)supportsAddOutsideEditMode

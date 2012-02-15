@@ -52,8 +52,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[digestSum release];
+	[super dealloc];
 }
 
 @end

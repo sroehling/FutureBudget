@@ -45,8 +45,10 @@
 
 
 - (id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator andNewObject:(NSManagedObject*)newObj
+	andDataModelController:(DataModelController*)theDataModelController
 {
-    self = [super initWithFormInfoCreator:theFormInfoCreator];
+    self = [super initWithFormInfoCreator:theFormInfoCreator
+		andDataModelController:theDataModelController];
     {
         assert(newObj != nil);
         self.newObject = newObj;
@@ -70,7 +72,7 @@
 		[self.formInfo disableFieldChanges];
 		
 		
-		[[DataModelController theDataModelController] stopObservingContextChanges:self];    
+		[self.dataModelController stopObservingContextChanges:self];    
 		
 		if(self.finshedAddingListener != nil)
 		{
@@ -84,7 +86,7 @@
 		// of an input, but the input as a whole is not validated. The milestone
 		// date should be saved (with error checking), but the input should
 		// be validated and saved independently.
-		[[DataModelController theDataModelController] saveContextAndIgnoreErrors];
+		[self.dataModelController saveContextAndIgnoreErrors];
 	}
 
 }
@@ -92,7 +94,7 @@
 
 - (void)cancel {
 	
-	[[DataModelController theDataModelController] stopObservingContextChanges:self];    
+	[self.dataModelController stopObservingContextChanges:self];    
     
     // If we cancel out of edit mode, then we need to disable further access
     // to the managed object before we delete the object. This can be an 
@@ -103,7 +105,7 @@
 	// If adding a new object is canceled, then any uncommitted changes need to
 	// be undone. This will include any objects with required properties that
 	// are still uninitialized or filled with invalid values.  
-	[[DataModelController theDataModelController] rollbackUncommittedChanges];
+	[self.dataModelController rollbackUncommittedChanges];
 	
 	// If a "soft save" (i.e., one which takes place without error checking) occurs
 	// leading up to the cancel, it's possible the new object could have been
@@ -115,7 +117,7 @@
 	// we probably need to turn off "soft saving" altogether in any sub forms.
 	// This will have the effect of ensuring a complete rollback in the case of 
 	// a cancel. 
-    [[DataModelController theDataModelController] deleteObject:self.newObject];
+    [self.dataModelController deleteObject:self.newObject];
     self.newObject = nil;
 	
     [TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
@@ -138,7 +140,7 @@
 	
 	[self updateSaveButtonEnabled];
         
-	[[DataModelController theDataModelController] 
+	[self.dataModelController 
 		startObservingContextChanges:self withSelector:@selector(managedObjectsChanged)];    
    
 }

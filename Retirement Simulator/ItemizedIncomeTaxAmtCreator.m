@@ -11,19 +11,24 @@
 #import "InputCreationHelper.h"
 #import "IncomeItemizedTaxAmt.h"
 #import "StringValidation.h"
-
+#import "FormContext.h"
+#import "SharedAppValues.h"
 
 @implementation ItemizedIncomeTaxAmtCreator
 
 @synthesize income;
 @synthesize label;
+@synthesize formContext;
 
-- (id)initWithIncome:(IncomeInput*)theIncome
+- (id)initWithFormContext:(FormContext*)theFormContext andIncome:(IncomeInput*)theIncome
 	andItemLabel:(NSString*)theItemLabel
 {
 	self = [super init];
 	if(self)
 	{
+		assert(theFormContext != nil);
+		self.formContext = theFormContext;
+		
 		assert(theIncome != nil);
 		self.income = theIncome;
 		
@@ -42,9 +47,11 @@
 - (ItemizedTaxAmt*)createItemizedTaxAmt
 {
 	assert(income != nil);
-	IncomeItemizedTaxAmt *itemizedTaxAmt = [[DataModelController theDataModelController] insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	IncomeItemizedTaxAmt *itemizedTaxAmt = [self.formContext.dataModelController insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:self.formContext.dataModelController];
 	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
-		initForDatabaseInputs] autorelease];
+		initWithDataModelInterface:self.formContext.dataModelController 
+		andSharedAppVals:sharedAppVals] autorelease];
 	itemizedTaxAmt.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
 	itemizedTaxAmt.income  = self.income;
 	return itemizedTaxAmt;
@@ -59,9 +66,10 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[income release];
 	[label release];
+	[formContext release];
+	[super dealloc];
 }
 
 

@@ -37,8 +37,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[fixedVal release];
+	[super dealloc];
 }
 
 @end

@@ -31,13 +31,16 @@
 #import "InflationRate.h"
 #import "AssetInput.h"
 #import "LoanInput.h"
+#import "FormContext.h"
 
 @implementation StartingValsFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
+		
+	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:parentContext.dataModelController];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_VIEW_TITLE");
 	
@@ -46,7 +49,7 @@
 		andHelpFile:@"simTimeFrame"];
 	
 	DateFieldEditInfo *simStartDateInfo = 
-		[DateFieldEditInfo createForObject:[SharedAppValues singleton] 
+		[DateFieldEditInfo createForObject:sharedAppVals 
             andKey:SHARED_APP_VALUES_SIM_START_DATE_KEY 
 			andLabel:LOCALIZED_STR(@"STARTUP_VALS_START_DATE_LABEL")
 			andPlaceholder:LOCALIZED_STR(@"STARTUP_VALS_START_DATE_PLACEHOLDER")];	
@@ -62,15 +65,18 @@
 				andSupportsNeverEndDate:FALSE] autorelease];
 			
 			
-	SimDateFieldEditInfo *endDateFieldEditInfo = [SimDateFieldEditInfo createForObject:[SharedAppValues singleton] andKey:SHARED_APP_VALUES_SIM_END_DATE_KEY andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-		andDefaultFixedDate:[SharedAppValues singleton].defaultFixedSimEndDate andVarDateRuntimeInfo:endDateInfo
+	SimDateFieldEditInfo *endDateFieldEditInfo = [SimDateFieldEditInfo 
+		createForDataModelController:parentContext.dataModelController 
+		andObject:[SharedAppValues getUsingDataModelController:parentContext.dataModelController] 
+			andKey:SHARED_APP_VALUES_SIM_END_DATE_KEY andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
+		andDefaultFixedDate:sharedAppVals.defaultFixedSimEndDate andVarDateRuntimeInfo:endDateInfo
 		andShowEndDates:TRUE andDefaultRelEndDateKey:SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY];
 
 	[sectionInfo addFieldEditInfo:endDateFieldEditInfo];
 
 	
 	
-	NSArray *accounts = [[DataModelController theDataModelController]
+	NSArray *accounts = [parentContext.dataModelController 
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME 
 			sortKey:INPUT_NAME_KEY];
 	if([accounts count] > 0)
@@ -85,7 +91,7 @@
 		}
 	}
 	
-	NSArray *assets = [[DataModelController theDataModelController]
+	NSArray *assets = [parentContext.dataModelController 
 			fetchSortedObjectsWithEntityName:ASSET_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([assets count] > 0)
 	{
@@ -99,7 +105,7 @@
 
 	}
 	
-	NSArray *loans = [[DataModelController theDataModelController] 
+	NSArray *loans = [parentContext.dataModelController  
 			fetchSortedObjectsWithEntityName:LOAN_INPUT_ENTITY_NAME
 			sortKey:INPUT_NAME_KEY];
 	if([loans count]  > 0)
@@ -116,7 +122,7 @@
 	}
 	
 	// TODO - Switch over to use populateCurrencyField from InputFormPopulator
-	Cash *theCash = [SharedAppValues singleton].cash;
+	Cash *theCash = sharedAppVals.cash;
 	
 	NumberFieldValidator *amountValidator = [[[PositiveAmountValidator alloc] init] autorelease];
 	NumberFieldEditInfo *cashBalanceFieldEditInfo = 
@@ -134,7 +140,7 @@
 	// TODO - Switch to use populatePercentField from InputFormPopulator
 	NumberFieldValidator *percentValidator = [[[PercentFieldValidator alloc] init] autorelease];
 	NumberFieldEditInfo *deficitInterestFieldEditInfo = 
-			[NumberFieldEditInfo createForObject:[SharedAppValues singleton].deficitInterestRate 
+			[NumberFieldEditInfo createForObject:sharedAppVals.deficitInterestRate 
 				andKey:FIXED_VALUE_VALUE_KEY 
 			andLabel:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_LABEL") 
 			andPlaceholder:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_PLACEHOLDER") 
@@ -146,7 +152,7 @@
 		andHelpFile:@"inflationAdjustment"];
 	
 	ManagedObjectFieldInfo *adjustForInflationFieldInfo = [[[ManagedObjectFieldInfo alloc] 
-			initWithManagedObject:[SharedAppValues singleton] 
+			initWithManagedObject:sharedAppVals 
 			andFieldKey:SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY 
 			andFieldLabel:LOCALIZED_STR(@"STARTUP_VALUE_ADJUST_FOR_INFLATION_FIELD_LABEL") 
 			andFieldPlaceholder:@"N/A"] autorelease];
@@ -156,7 +162,7 @@
 	[sectionInfo addFieldEditInfo:adjustForInflationFieldEditInfo];
 
 
-	[formPopulator populateSingleScenarioVariableValue:[SharedAppValues singleton].defaultInflationRate 
+	[formPopulator populateSingleScenarioVariableValue:sharedAppVals.defaultInflationRate 
 		withLabel:LOCALIZED_STR(@"DEFAULT_INFLATION_RATE_GROWTH_RATE_FIELD_LABEL") 
 		andValueName:LOCALIZED_STR(@"DEFAULT_INFLATION_RATE_LABEL")];
 	

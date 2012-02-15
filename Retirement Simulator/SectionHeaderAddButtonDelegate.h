@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class FormContext;
 
 @protocol SectionHeaderAddButtonDelegate <NSObject>
 
--(void)addButtonPressedInSectionHeader:(UIViewController*)parentView;
+-(void)addButtonPressedInSectionHeader:(FormContext*)parentContext;
 
 @end

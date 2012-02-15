@@ -31,12 +31,14 @@
 #import "SelectableObjectTableViewControllerFactory.h"
 #import "PositiveNumberValidator.h"
 #import "InputFormPopulator.h"
+#import "FormContext.h"
 
 @implementation WhatIfFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc]
+		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
 	
@@ -44,7 +46,7 @@
 		nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_SCENARIO_SECTION_TITLE")
 		andHelpFile:@"scenario"];
 	
-	SharedAppValues *theSharedAppValues = [SharedAppValues singleton];
+	SharedAppValues *theSharedAppValues = [SharedAppValues getUsingDataModelController:parentContext.dataModelController];
 	ManagedObjectFieldInfo *currentScenarioFieldInfo = 
 		[[[ManagedObjectFieldInfo alloc] initWithManagedObject:theSharedAppValues andFieldKey:SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY 
 			andFieldLabel:@"dummy" andFieldPlaceholder:@"dummy"] autorelease];
@@ -138,19 +140,19 @@
 
 @implementation WhatIfInputsEnabledFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
 	formPopulator.formInfo.headerView = [formPopulator 
-			scenarioListTableHeaderWithParentController:parentController];
+			scenarioListTableHeaderWithFormContext:parentContext];
 
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_ENABLED_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
 		
-	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	NSSet *inputs = [parentContext.dataModelController  fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -162,7 +164,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController 
 				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -176,7 +178,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -189,7 +191,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -202,7 +204,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -215,7 +217,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 				fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -237,19 +239,19 @@
 
 @implementation WhatIfWithdrawalsFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
 	BOOL isNewObject = FALSE;
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:isNewObject
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
 	formPopulator.formInfo.headerView = [formPopulator 
-			scenarioListTableHeaderWithParentController:parentController];
+			scenarioListTableHeaderWithFormContext:parentContext];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWALS_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
 	
-	NSSet *inputs = [[DataModelController theDataModelController] 
+	NSSet *inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -265,7 +267,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -275,7 +277,9 @@
 		for(Account *acct in inputs)
 		{
 			DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
-				[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:acct
+				[[[DeferredWithdrawalFieldEditInfo alloc] 
+					initWithDataModelController:parentContext.dataModelController
+					andAccount:acct
 					andFieldLabel:acct.name
 					andIsNewAccount:isNewObject] autorelease];
 				[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
@@ -291,18 +295,18 @@
 
 @implementation WhatIfAmountFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
 	formPopulator.formInfo.headerView = [formPopulator 
-			scenarioListTableHeaderWithParentController:parentController];
+			scenarioListTableHeaderWithFormContext:parentContext];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_AMOUNTS_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
 		
-	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	NSSet *inputs = [parentContext.dataModelController  fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -316,7 +320,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -331,7 +335,7 @@
  		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -346,7 +350,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -361,7 +365,7 @@
 		}
 	}
 
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 				fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -377,7 +381,7 @@
 	}
 
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -402,18 +406,18 @@
 
 @implementation WhatIfInvestmentReturnFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
 	formPopulator.formInfo.headerView = [formPopulator 
-			scenarioListTableHeaderWithParentController:parentController];
+			scenarioListTableHeaderWithFormContext:parentContext];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_INVESTMENT_RETURN_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
 		
-	NSSet *inputs = [[DataModelController theDataModelController] 
+	NSSet *inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -429,7 +433,7 @@
 	}
 	
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -453,18 +457,18 @@
 
 @implementation WhatIfGrowthRateFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
 	formPopulator.formInfo.headerView = [formPopulator 
-			scenarioListTableHeaderWithParentController:parentController];
+			scenarioListTableHeaderWithFormContext:parentContext];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
 		
-	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	NSSet *inputs = [parentContext.dataModelController  fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -478,7 +482,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -494,7 +498,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -509,7 +513,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -524,7 +528,7 @@
 		}
 	}
 
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -540,7 +544,7 @@
 	}
 
 
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -567,12 +571,12 @@
 @implementation WhatIfTaxesFormInfoCreator
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
  	formPopulator.formInfo.headerView = [formPopulator 
-			scenarioListTableHeaderWithParentController:parentController];
+			scenarioListTableHeaderWithFormContext:parentContext];
    
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_TAXES_FORM_TITLE");
 	
@@ -595,18 +599,18 @@
 @implementation WhatIfDatesFormInfoCreator
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
-		andParentController:parentController] autorelease];
+		andFormContext:parentContext] autorelease];
  	formPopulator.formInfo.headerView = [formPopulator 
-			scenarioListTableHeaderWithParentController:parentController];
+			scenarioListTableHeaderWithFormContext:parentContext];
    
     formPopulator.formInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_FORM_TITLE");
 	
 	SectionInfo *sectionInfo;
 		
-	NSSet *inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	NSSet *inputs = [parentContext.dataModelController  fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -623,7 +627,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -642,7 +646,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -662,7 +666,7 @@
 	}
 
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -681,7 +685,7 @@
 	}
 
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -707,7 +711,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -726,7 +730,7 @@
 
 
 
-	inputs = [[DataModelController theDataModelController] fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	inputs = [parentContext.dataModelController  fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -751,7 +755,7 @@
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -778,7 +782,7 @@
 		}
 	}
 
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -804,7 +808,7 @@
 		}
 	}
 
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
@@ -830,7 +834,7 @@
 	}
 
 
-	inputs = [[DataModelController theDataModelController] 
+	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{

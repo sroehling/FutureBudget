@@ -13,7 +13,7 @@
 #import "DateHelper.h"
 #import "ManagedObjectFieldInfo.h"
 #import "ValueSubtitleTableCell.h"
-
+#import "FormContext.h"
 
 @implementation DateFieldEditInfo
 
@@ -43,11 +43,11 @@
         stringFromDate:[self.fieldInfo getFieldValue]];
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     DateFieldEditViewController *dateController = 
         [[DateFieldEditViewController alloc] initWithNibName:@"DateFieldEditViewController"
-                                                andFieldInfo:fieldInfo];
+             andFieldInfo:fieldInfo andDataModelController:parentContext.dataModelController];
     [dateController autorelease];
     return dateController;
 
@@ -56,11 +56,6 @@
 
 - (void)dealloc {
     [super dealloc];
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width

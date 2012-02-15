@@ -41,6 +41,7 @@
 #import "AllTaxesPaidXYPlotDataGenerator.h"
 #import "TaxesPaidXYPlotDataGenerator.h"
 #import "TaxInput.h"
+#import "FormContext.h"
 
 @implementation ResultsListFormInfoCreator
 
@@ -56,12 +57,13 @@
 	return self;
 }
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
 
 	[self.simResultsController runSimulatorIfResultsOutOfDate];
 
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] 
+		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
 	
@@ -422,8 +424,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[simResultsController release];
+	[super dealloc];
 }
 
 

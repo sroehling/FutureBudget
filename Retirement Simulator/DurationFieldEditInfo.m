@@ -15,6 +15,7 @@
 #import "LocalizationHelper.h"
 #import "DurationFieldEditViewController.h"
 #import "DurationInfo.h"
+#import "FormContext.h"
 
 
 @implementation DurationFieldEditInfo
@@ -35,17 +36,12 @@
 	}
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     DurationFieldEditViewController *durationController = 
         [[[DurationFieldEditViewController alloc] initWithDurationFieldInfo:fieldInfo] autorelease];
     return durationController;
 
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width

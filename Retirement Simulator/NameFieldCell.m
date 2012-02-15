@@ -114,9 +114,9 @@ NSString * const NAME_FIELD_CELL_IDENTIFIER = @"NameFieldCell";
 
 -(void)dealloc
 {
-	[super dealloc];
 	[textField release];
 	[fieldInfo release];
+	[super dealloc];
 }
 
 

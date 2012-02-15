@@ -12,6 +12,7 @@
 
 @class MilestoneDate;
 @class SimDateRuntimeInfo;
+@class FormContext;
 
 @interface MilestoneDateFormPopulator : FormPopulator {
     @private
@@ -21,7 +22,7 @@
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
 -(id) initWithRuntimeInfo:(SimDateRuntimeInfo*)theRuntimeInfo
-	andParentController:(UIViewController*)parentController;
+	andFormContext:(FormContext*)theFormContext;
 
 - (UIViewController*)milestoneDateAddViewController:(MilestoneDate*)milestoneDate;
 - (UIViewController*)milestoneDateEditViewController:(MilestoneDate*)milestoneDate;

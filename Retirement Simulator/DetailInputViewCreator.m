@@ -66,6 +66,7 @@
 #import "ItemizedAccountTaxFormInfoCreator.h"
 #import "ItemizedLoanTaxFormInfoCreator.h"
 #import "ItemizedAssetTaxFormInfoCreator.h"
+#import "FormContext.h"
 #import "ItemizedExpenseTaxFormInfoCreator.h"
 
 @implementation DetailInputViewCreator
@@ -73,6 +74,7 @@
 @synthesize input;
 @synthesize isForNewObject;
 @synthesize formPopulator;
+@synthesize formContext;
 
 -(id) initWithInput:(Input*)theInput andIsForNewObject:(BOOL)forNewObject
 {
@@ -93,15 +95,17 @@
 }
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     self.formPopulator = [[[InputFormPopulator alloc] initForNewObject:self.isForNewObject 
-			andParentController:parentController] autorelease];
+			andFormContext:parentContext] autorelease];
+			
+	self.formContext = parentContext;
 	
 	if(!self.isForNewObject)
 	{
-		formPopulator.formInfo.headerView = [self.formPopulator 
-			scenarioListTableHeaderWithParentController:parentController];
+		formPopulator.formInfo.headerView = [formPopulator 
+			scenarioListTableHeaderWithFormContext:parentContext];
 	}
     
     [self.input acceptInputVisitor:self];
@@ -233,12 +237,14 @@
 		andValidator:[[[PositiveNumberValidator alloc] init] autorelease]];
 	
 	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
-		[[[DeferredWithdrawalFieldEditInfo alloc] initWithAccount:account
+		[[[DeferredWithdrawalFieldEditInfo alloc] 
+			initWithDataModelController:self.formContext.dataModelController 
+			andAccount:account
 			andFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")
 			andIsNewAccount:self.isForNewObject] autorelease];
 	[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
 	
-	
+	assert(self.formContext != nil);
 	LimitedAccountWithdrawalsTableViewFactory *withdrawalTableViewFactory = 
 		[[[LimitedAccountWithdrawalsTableViewFactory alloc] initWithAccount:account] autorelease];
 	
@@ -482,26 +488,28 @@
 
 	// Tax Sources Section
 
-	SectionInfo *sectionInfo = [formPopulator 
+	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE")
 		andHelpFile:@"taxIncomeSources"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE") 
 			andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
-				initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxSourceInfo:tax]
+				initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxSourceInfo:tax 
+						usingDataModelController:self.formContext.dataModelController]
 				andIsForNewObject:self.isForNewObject] autorelease]];		
 
 	// Adjustments Section
 
-	sectionInfo = [formPopulator 
+	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_TITLE")
 		andHelpFile:@"taxAdjustments"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE")
 		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
-			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxAdjustmentInfo:tax]
+			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxAdjustmentInfo:tax 
+						usingDataModelController:self.formContext.dataModelController]
 			andIsForNewObject:self.isForNewObject] autorelease]];
 	
 	// Exemptions Section
-	sectionInfo = [formPopulator 
+	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_TITLE")
 		andHelpFile:@"taxExemptions"];
 	
@@ -516,7 +524,7 @@
 
 	// Deductions Section
 
-	sectionInfo = [formPopulator 
+	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_TITLE")
 		andHelpFile:@"taxDeductions"];
 
@@ -526,7 +534,8 @@
 
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE") 
 		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
-			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxDeductionInfo:tax]
+			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxDeductionInfo:tax 
+						usingDataModelController:self.formContext.dataModelController]
 			andIsForNewObject:self.isForNewObject] autorelease]];	
 
 	[self.formPopulator populateMultiScenarioGrowthRate:tax.stdDeductionGrowthRate  
@@ -535,21 +544,23 @@
 
 	// Tax Credits Section
 		
-	sectionInfo = [formPopulator 
+	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_CREDITS_SECTION_TITLE")
 		andHelpFile:@"taxCredits"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE")
 		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc]
-		initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxCreditInfo:tax]
+		initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxCreditInfo:tax 
+						usingDataModelController:self.formContext.dataModelController]
 			andIsForNewObject:self.isForNewObject] autorelease]];	
 	
 	// Tax Bracket Section
 
-	sectionInfo = [formPopulator nextSection];
+	[formPopulator nextSection];
 	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
 		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket] autorelease];
-	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]initWithCaption:@"Tax Rates" andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
-	[sectionInfo addFieldEditInfo:taxRatesFieldEditInfo];
+	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
+		initWithCaption:@"Tax Rates" andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
+	[formPopulator.currentSection addFieldEditInfo:taxRatesFieldEditInfo];
 
 }
 
@@ -557,6 +568,7 @@
 - (void)dealloc
 {
     [formPopulator release];
+	[formContext release];
     [super dealloc];
 }
 

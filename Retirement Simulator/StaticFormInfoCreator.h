@@ -18,7 +18,6 @@
 
 @property(nonatomic,retain) FormInfo *formInfo;
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController;
 - (id) initWithFormInfo:(FormInfo*)theFormInfo;
 + (StaticFormInfoCreator*)createWithFormInfo:(FormInfo*)theFormInfo;
 

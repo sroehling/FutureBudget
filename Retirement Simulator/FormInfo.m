@@ -38,13 +38,13 @@
 
 - (void)dealloc
 {
-    [super dealloc];
-    [sections release];
+	[sections release];
     [title release];
 	[objectAdder release];
 	[addButtonPopoverInfo release];
 	[headerView release];
-    
+    [super dealloc];
+
 }
 
 - (NSUInteger)numSections

@@ -116,8 +116,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[totalMonths release];
+	[super dealloc];
 }
 
 

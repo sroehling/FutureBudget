@@ -10,8 +10,10 @@
 
 #import "FormInfo.h"
 
+@class FormContext;
+
 @protocol FormInfoCreator <NSObject>
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController;
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext;
 
 @end

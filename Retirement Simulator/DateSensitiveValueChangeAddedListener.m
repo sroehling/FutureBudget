@@ -40,8 +40,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[valueToAddTo release];
+	[super dealloc];
 }
 
 @end

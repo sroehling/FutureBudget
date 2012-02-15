@@ -12,27 +12,33 @@
 #import "TaxBracketEntry.h"
 #import "GenericFieldBasedTableAddViewController.h"
 #import "FinishedAddingTaxBracketEntryListener.h"
+#import "FormContext.h"
 
 
 @implementation TaxBracketEntryObjectAdder
 
 @synthesize taxBracket;
+@synthesize dataModelController;
 
--(id)initWithTaxBracket:(TaxBracket*)theTaxBracket
+-(id)initWithTaxBracket:(TaxBracket*)theTaxBracket 
+	andParentDataModelController:(DataModelController*)parentDataModelController
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theTaxBracket != nil);
 		self.taxBracket = theTaxBracket;
+		
+		assert(parentDataModelController != nil);
+		self.dataModelController = parentDataModelController;
 	}
 	return self;
 }
 
--(void)addObjectFromTableView:(UITableViewController*)parentView
+-(void)addObjectFromTableView:(FormContext*)parentContext
 {
 
-	TaxBracketEntry *taxBracketEntry = [[DataModelController theDataModelController] 
+	TaxBracketEntry *taxBracketEntry = [self.dataModelController 
 							  insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
 
 	TaxBracketEntryFormInfoCreator *taxBracketEntryFormInfoCreator
@@ -41,12 +47,12 @@
 
     GenericFieldBasedTableAddViewController *controller = [[[GenericFieldBasedTableAddViewController alloc]
 		initWithFormInfoCreator:taxBracketEntryFormInfoCreator
-			andNewObject:taxBracketEntry] autorelease];
+			andNewObject:taxBracketEntry andDataModelController:self.dataModelController] autorelease];
 	controller.finshedAddingListener = 
 		[[[FinishedAddingTaxBracketEntryListener alloc] initWithTaxBracket:self.taxBracket] autorelease];
     controller.popDepth =1;
 
-    [parentView.navigationController pushViewController:controller animated:YES];
+    [parentContext.parentController.navigationController pushViewController:controller animated:YES];
 }
 
 -(BOOL)supportsAddOutsideEditMode
@@ -57,8 +63,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[taxBracket release];
+	[dataModelController release];
+	[super dealloc];
 }
 
 

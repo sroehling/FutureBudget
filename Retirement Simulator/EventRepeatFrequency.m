@@ -147,12 +147,6 @@ NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
 
 }
 
-+ (EventRepeatFrequency *)createWithPeriod: (EventPeriod)thePeriod andMultiplier:(int)theMultiplier
-{
-     
-	return [EventRepeatFrequency createInDataModel:[DataModelController theDataModelController] andPeriod:thePeriod andMultiplier:theMultiplier];
-}
-
 
 
 @end

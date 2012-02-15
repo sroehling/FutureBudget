@@ -11,13 +11,18 @@
 #import "VariableValueListMgr.h"
 #import "FinishedAddingObjectListener.h"
 
+@class DataModelController;
+
 @interface SharedEntityVariableValueListMgr : NSObject <VariableValueListMgr,FinishedAddingObjectListener> {
     @private
+		DataModelController *dataModelController;
 		NSString *entityName;
 }
 
-- (id) initWithEntity:(NSString *)entityName;
+- (id) initWithDataModelController:(DataModelController*)theDataModelController 
+		andEntity:(NSString *)theEntityName;
 
 @property(nonatomic,retain) NSString *entityName;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
 @end

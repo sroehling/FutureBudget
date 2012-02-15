@@ -11,18 +11,21 @@
 #import "AddObjectSectionInfo.h"
 @class VariableValueRuntimeInfo;
 @class VariableValue;
+@class DataModelController;
+@class FormContext;
 
 @interface DateSensitiveValueChangeSectionInfo : AddObjectSectionInfo {
     @private
 		VariableValueRuntimeInfo *variableValRuntimeInfo;
 		VariableValue *variableVal;
+
 }
 
 @property(nonatomic,retain) VariableValueRuntimeInfo *variableValRuntimeInfo;
 @property(nonatomic,retain) VariableValue *variableVal;
 
 - (id) initWithVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo
-	andParentVariableValue:(VariableValue*)varValue 
-	andParentController:(UIViewController *)theParentController;
+	andParentVariableValue:(VariableValue*)varValue
+	andFormContext:(FormContext*)theFormContext;
 
 @end

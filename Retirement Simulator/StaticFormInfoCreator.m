@@ -8,6 +8,7 @@
 
 #import "StaticFormInfoCreator.h"
 #import "FormInfo.h"
+#import "FormContext.h"
 
 @implementation StaticFormInfoCreator
 
@@ -25,7 +26,7 @@
     return self;
 }
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     return self.formInfo;
 }
@@ -42,8 +43,8 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [formInfo release];
+    [super dealloc];
 }
 
 @end

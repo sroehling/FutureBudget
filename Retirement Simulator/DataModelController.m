@@ -29,10 +29,10 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];
+    [super dealloc];
 }
 
 
@@ -118,18 +118,22 @@
 	return self;
 }
 
-
-
-
-+(DataModelController*)theDataModelController
-{  
     static DataModelController *theDataModelController;  
-    @synchronized(self)  
-    {    if(!theDataModelController)      
-            theDataModelController =[[DataModelController alloc] init];
-            return theDataModelController;
-    }
+
+
++(DataModelController*)tmpSingletonDataModelControllerForMultiScenarioInputValue
+{  
+	assert(theDataModelController != nil);
+	return theDataModelController;
 }
+
++(void)initTmpSingletonDataModelControllerForMultiScenarioInputValue:(DataModelController*)dmcSingleton
+{
+	assert(dmcSingleton != nil);
+	theDataModelController = dmcSingleton;
+}
+
+
 
 - (void)saveContext
 {

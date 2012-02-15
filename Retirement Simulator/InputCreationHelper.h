@@ -29,7 +29,6 @@
 
 -(id)initWithDataModelInterface:(id<DataModelInterface>)theDataModelInterface
 	andSharedAppVals:(SharedAppValues*)theSharedAppVals;
--(id)initForDatabaseInputs;
 
 // TODO - Consider making this a class which can be instantiated and parameterize 
 // the Core Data method for creating the objects. This way this class can be used

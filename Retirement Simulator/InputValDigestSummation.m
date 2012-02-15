@@ -63,8 +63,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	free(currentSum);
+	[super dealloc];
 }
 
 @end

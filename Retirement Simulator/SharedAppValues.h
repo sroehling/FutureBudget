@@ -19,6 +19,7 @@
 @protocol DataModelInterface;
 @class RelativeEndDate;
 @class FixedValue;
+@class DataModelController;
 @class InflationRate;
 
 extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
@@ -53,9 +54,9 @@ extern NSString * const SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY;
 
 -(NSDate*)beginningOfSimStartDate;
 
-+(void)initSingleton:(SharedAppValues*)theAppVals;
 +(SharedAppValues*)createWithDataModelInterface:(id<DataModelInterface>)dataModelInterface;
-+(SharedAppValues*)singleton;
 +(void)initFromDatabase;
++(SharedAppValues*)getUsingDataModelController:(DataModelController*)dataModelController;
+
 
 @end

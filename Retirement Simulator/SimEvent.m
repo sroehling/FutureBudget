@@ -45,8 +45,8 @@
 
 - (void)dealloc {
     // release owned objects here
-    [super dealloc]; 
     [eventDate release];
+    [super dealloc]; 
 }
 
 @end

@@ -28,16 +28,37 @@
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioSimDate.h"
 #import "MultiScenarioSimEndDate.h"
+#import "MultiScenarioInputValue.h"
+#import "DataModelController.h"
 
 
 @implementation InputListInputDescriptionCreator 
 
 @synthesize generatedDesc;
+@synthesize dataModelController;
+
+-(id)initWithDataModelController:(DataModelController*)theDataModelController
+{
+	self = [super init];
+	if(self)
+	{
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
+	}
+	return self;
+}
+
+-(id)init
+{
+	assert(0);
+	return nil;
+}
 
 - (void) visitCashFlow:(CashFlowInput *)cashFlow
 {
 	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
-		createForMultiScenarioAmount:cashFlow.amount 
+		createForDataModelController:self.dataModelController
+		andMultiScenarioAmount:cashFlow.amount 
 		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")
 		andValueName:cashFlow.name];
 	
@@ -50,6 +71,7 @@
 	 getValueForCurrentOrDefaultScenario]; 
 	NSString *startDateDisplay = [startDate 
 						inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+
 	EventRepeatFrequency *repeatFreq = 
 		(EventRepeatFrequency*)[cashFlow.eventRepeatFrequency getValueForCurrentOrDefaultScenario];
 	NSString *repeatDesc = [repeatFreq inlineDescription];
@@ -67,7 +89,7 @@
 			[cashFlow.amountGrowthRate.growthRate getValueForCurrentOrDefaultScenario];
 	
 	NSString *inflationDesc = [amountGrowthRate 
-		inlineDescription:[VariableValueRuntimeInfo createForSharedInflationRate:cashFlow]];
+		inlineDescription:[VariableValueRuntimeInfo createForSharedInflationRateWithDataModelController:self.dataModelController andInput:cashFlow]];
 	self.generatedDesc = [NSString stringWithFormat:@"%@ starting on %@, repeating %@%@, %@",
 						  amountDisplay,startDateDisplay,repeatDesc,untilDesc,inflationDesc];
 
@@ -87,7 +109,8 @@
 		[account.interestRate.growthRate getValueForCurrentOrDefaultScenario];
 
 	NSString *interestRateDisplay = [interestRate inlineDescription:
-		[VariableValueRuntimeInfo createForSharedInterestRate:account]];
+		[VariableValueRuntimeInfo createForSharedInterestRateWithDataModelController:
+			self.dataModelController andInput:account]];
 
 	NSString *startingBalanceStr = [[NumberHelper theHelper] displayStrFromStoredVal:account.startingBalance andFormatter:[NumberHelper theHelper].currencyFormatter];
 	self.generatedDesc= [NSString 
@@ -105,12 +128,14 @@
 	DateSensitiveValue *interestRate = (DateSensitiveValue*)
 		[loan.interestRate.growthRate getValueForCurrentOrDefaultScenario];
 	NSString *interestRateDisplay = [interestRate inlineDescription:
-		[VariableValueRuntimeInfo createForSharedInterestRate:loan]];
+		[VariableValueRuntimeInfo createForSharedInterestRateWithDataModelController:
+			self.dataModelController andInput:loan]];
 
 	
 
 	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
-		createForMultiScenarioAmount:loan.loanCost 
+		createForDataModelController:self.dataModelController 
+		andMultiScenarioAmount:loan.loanCost 
 		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL") andValueName:loan.name];
 	DateSensitiveValue *amount = (DateSensitiveValue*)
 			[loan.loanCost.amount getValueForCurrentOrDefaultScenario];
@@ -127,7 +152,8 @@
 - (void)visitAsset:(AssetInput*)asset
 {
 	VariableValueRuntimeInfo *varValRuntimeInfo = 
-		[VariableValueRuntimeInfo createForMultiScenarioAmount:asset.cost 
+		[VariableValueRuntimeInfo createForDataModelController:self.dataModelController 
+		andMultiScenarioAmount:asset.cost 
 		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL") andValueName:asset.name];
 	DateSensitiveValue *amount = (DateSensitiveValue*)
 			[asset.cost.amount getValueForCurrentOrDefaultScenario];
@@ -155,8 +181,9 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[generatedDesc release];
+	[dataModelController release];
+	[super dealloc];
 }
 
 @end

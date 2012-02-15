@@ -118,11 +118,11 @@
 
 - (void)dealloc {
     // release owned objects here
-    [super dealloc]; // pretty important.
 	[eventRepeater release];
 	[varRateCalc release];
 	[varAmountCalc release];
 	[simStartDate release];
+    [super dealloc]; // pretty important.
 }
 
 

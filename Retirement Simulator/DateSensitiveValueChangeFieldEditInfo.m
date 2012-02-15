@@ -17,6 +17,7 @@
 #import "LocalizationHelper.h"
 #import "DataModelController.h"
 #import "GenericFieldBasedTableEditViewController.h"
+#import "FormContext.h"
 
 @implementation DateSensitiveValueChangeFieldEditInfo
 
@@ -69,11 +70,11 @@ andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewContr
 
 - (void) dealloc
 {
-	[super dealloc];
 	[varValInfo release];
 	[valChange release];
 	[valChangeCell release];
 	[variableVal release];
+	[super dealloc];
 }
 
 - (NSString*)detailTextLabel
@@ -90,22 +91,18 @@ andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewContr
 	 LOCALIZED_STR(self.varValInfo.valueTitleKey)];
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
 	DateSensitiveValueChangeFormInfoCreator *formInfoCreator = [[[DateSensitiveValueChangeFormInfoCreator alloc]
 		initForValueChange:self.valChange andVariableValRuntimeInfo:self.varValInfo
 		 andParentVariableValue:self.variableVal] autorelease];
 
     UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
-			initWithFormInfoCreator:formInfoCreator] autorelease];
+			initWithFormInfoCreator:formInfoCreator
+			andDataModelController:parentContext.dataModelController] autorelease];
 
 	return controller;
  }
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
-}
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
@@ -142,10 +139,10 @@ andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewContr
 }
 
 
--(void)deleteObject
+-(void)deleteObject:(DataModelController*)dataModelController
 {
 	assert(self.valChange != nil);
-	[[DataModelController theDataModelController] deleteObject:self.valChange];
+	[dataModelController deleteObject:self.valChange];
 	self.valChange = nil;
 }
 

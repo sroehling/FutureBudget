@@ -49,8 +49,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[defaultScenario release];
+	[super dealloc];
 }
 
 

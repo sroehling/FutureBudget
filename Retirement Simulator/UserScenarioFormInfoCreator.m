@@ -27,6 +27,7 @@
 #import "VariableValueRuntimeInfo.h"
 #import "LoanDownPmtPercent.h"
 #import "DateSensitiveValueFieldEditInfo.h"
+#import "FormContext.h"
 
 @implementation UserScenarioFormInfoCreator
 
@@ -50,11 +51,11 @@
 }
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
 	InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] 
 			initWithScenario:self.userScen
-			andParentController:parentController] autorelease];
+			andFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"SCENARIO_DETAIL_VIEW_TITLE");
 	
@@ -606,8 +607,8 @@
 
 -(void) dealloc
 {
-	[super dealloc];
 	[userScen release];
+	[super dealloc];
 }
 
 

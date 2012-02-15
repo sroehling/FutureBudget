@@ -8,17 +8,19 @@
 
 #import "GenericFieldBasedTableViewController.h"
 #import "FormInfo.h"
-#import "FieldEditInfo.h"
+#import "FormContext.h"
 #import "SectionInfo.h"
 #import "UIHelper.h"
+#import "DataModelController.h"
 
 @implementation GenericFieldBasedTableViewController
 
 @synthesize formInfo;
 @synthesize formInfoCreator;
+@synthesize dataModelController;
 
-
-- (id)initWithFormInfoCreator:(id<FormInfoCreator>) theFormInfoCreator
+-(id)initWithFormInfoCreator:(id<FormInfoCreator>) theFormInfoCreator
+	andDataModelController:(DataModelController*)theDataModelController
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self)
@@ -35,13 +37,17 @@
         initialFormInfo.title = @"Dummy";
 
         self.formInfo = initialFormInfo;
+		
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
 				
 		enteringEditMode = FALSE;
 		enteringEditModeEditing = FALSE;
     }
     return self;
-    
+
 }
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,9 +61,9 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [formInfo release];
     [formInfoCreator release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,7 +90,10 @@
 
     if(self.formInfoCreator != nil)
     {
-        self.formInfo = [self.formInfoCreator createFormInfo:self];
+		FormContext *formContext = [[[FormContext alloc] initWithParentController:self
+			andDataModelController:self.dataModelController] autorelease];
+        self.formInfo = [self.formInfoCreator 
+			createFormInfoWithContext:formContext];
     }
     
     self.tableView.allowsSelectionDuringEditing = TRUE;
@@ -97,7 +106,10 @@
     
     if(self.formInfoCreator != nil)
     {
-        self.formInfo = [self.formInfoCreator createFormInfo:self];
+		FormContext *formContext = [[[FormContext alloc] initWithParentController:self
+			andDataModelController:self.dataModelController] autorelease];
+        self.formInfo = [self.formInfoCreator 
+			createFormInfoWithContext:formContext];
     }
 	
     
@@ -132,9 +144,14 @@
 {
     id<FieldEditInfo> fieldEditInfoForRow = [self.formInfo fieldEditInfoIndexPath:indexPath];
 	assert(fieldEditInfoForRow != nil);
-    if([fieldEditInfoForRow hasFieldEditController])
+	if([fieldEditInfoForRow respondsToSelector:@selector(fieldEditController:)])
     {
 	
+		FormContext *formContext = [[[FormContext alloc] 
+				initWithParentController:self andDataModelController:self.dataModelController]
+					autorelease];
+
+
 		// Before disabling the views and going into the sub-view, we ask
 		// any first responders to resign. If editing has taken place 
 		// in the first responder and what is edited is valid, then
@@ -145,7 +162,7 @@
 			// No need to disable the fields (and thus override validation), since
 			// the first responder should voluntarily resign.
 			
-			UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
+			UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController:formContext];
 			assert(viewControllerForRow != nil);
 			[self.navigationController pushViewController:viewControllerForRow animated:YES];       
 		}
@@ -158,8 +175,9 @@
 			// responder.
 			[self.formInfo disableFieldChanges];
 
-			UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController];
+			UIViewController *viewControllerForRow = [fieldEditInfoForRow fieldEditController:formContext];
 			assert(viewControllerForRow != nil);
+			
 			[self.navigationController pushViewController:viewControllerForRow animated:YES];       
 		}
 	

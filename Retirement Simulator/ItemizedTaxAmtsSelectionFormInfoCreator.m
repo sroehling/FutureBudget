@@ -48,6 +48,7 @@
 #import "ItemizedLoanInterestTaxAmtCreator.h"
 #import "ItemizedAccountTaxAmtCreator.h"
 #import "LocalizationHelper.h"
+#import "FormContext.h"
 
 @implementation ItemizedTaxAmtsSelectionFormInfoCreator
 
@@ -77,12 +78,12 @@
 
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
 	
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] 
 		initForNewObject:self.isForNewObject
-			andParentController:parentController] autorelease];
+			andFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = self.itemizedTaxAmtsInfo.title;
 	ItemizedTaxAmtFieldPopulator *fieldPopulator = 
@@ -104,11 +105,13 @@
 				// TODO - Migrate the code below (and other instances in this file) to use
 				// the formPopulator's "populate" selector for itemized tax amounts.
 				ItemizedIncomeTaxAmtCreator *itemCreator = [[[ItemizedIncomeTaxAmtCreator alloc] 
-						initWithIncome:itemizedIncome.income 
+						initWithFormContext:parentContext
+						andIncome:itemizedIncome.income 
 						andItemLabel:itemizedIncome.income.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *incomeFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
-						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:itemCreator
 					andItemizedTaxAmt:itemizedIncome
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -118,10 +121,12 @@
 			for(IncomeInput *unitemizedIncome in incomesNotItemized)
 			{	
 				ItemizedIncomeTaxAmtCreator *itemCreator = [[[ItemizedIncomeTaxAmtCreator alloc] 
-						initWithIncome:unitemizedIncome 
+						initWithFormContext:parentContext
+						andIncome:unitemizedIncome 
 						andItemLabel:unitemizedIncome.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *incomeFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
-					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:itemCreator
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo
@@ -146,10 +151,13 @@
 			{
 				ItemizedTaxAmtFieldEditInfo *expenseFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
-						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:
 							[[[ItemizedExpenseTaxAmtCreator alloc] 
-								initWithExpense:itemizedExpense.expense andLabel:itemizedExpense.expense.name] autorelease]
+								initWithFormContext:parentContext 
+								andExpense:itemizedExpense.expense 
+								andLabel:itemizedExpense.expense.name] autorelease]
 					andItemizedTaxAmt:itemizedExpense
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:expenseFieldEditInfo];
@@ -157,10 +165,13 @@
 			for(ExpenseInput *unitemizedExpense in expensesNotItemized)
 			{	
 				ItemizedTaxAmtFieldEditInfo *expenseFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
-					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:
 						[[[ItemizedExpenseTaxAmtCreator alloc] 
-						initWithExpense:unitemizedExpense andLabel:unitemizedExpense.name] autorelease]
+						initWithFormContext:parentContext 
+						andExpense:unitemizedExpense 
+						andLabel:unitemizedExpense.name] autorelease]
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:expenseFieldEditInfo];
@@ -184,11 +195,13 @@
 			{
 				ItemizedAccountTaxAmtCreator *itemizedAcctTaxInterestCreator = 
 					[[[ItemizedAccountTaxAmtCreator alloc] 
-								initWithAcct:itemizedAcctInterest.account 
+								initWithFormContext:parentContext 
+								andAcct:itemizedAcctInterest.account 
 								andLabel:itemizedAcctInterest.account.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctInterestFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
-						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:itemizedAcctTaxInterestCreator
 					andItemizedTaxAmt:itemizedAcctInterest
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -198,10 +211,12 @@
 			for(Account *unitemizedAcct in acctInterestNotItemized)
 			{	
 				ItemizedAccountTaxAmtCreator *itemizedAcctTaxInterestCreator = 
-					[[[ItemizedAccountTaxAmtCreator alloc] initWithAcct:unitemizedAcct
+					[[[ItemizedAccountTaxAmtCreator alloc] initWithFormContext:parentContext
+						andAcct:unitemizedAcct
 						andLabel:unitemizedAcct.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctInterestFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
-					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:itemizedAcctTaxInterestCreator
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -225,11 +240,13 @@
 			{
 			
 				ItemizedAccountContribTaxAmtCreator *itemizedContribCreator = [[[ItemizedAccountContribTaxAmtCreator alloc] 
-								initWithAcct:itemizedAcctContrib.account
+								initWithFormContext:parentContext
+								andAcct:itemizedAcctContrib.account
 								andLabel:itemizedAcctContrib.account.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctContribFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
-						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:itemizedContribCreator
 					andItemizedTaxAmt:itemizedAcctContrib
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -239,10 +256,12 @@
 			for(Account *unitemizedAcct in acctContribNotItemized)
 			{	
 				ItemizedAccountContribTaxAmtCreator *itemizedContribCreator = 
-					[[[ItemizedAccountContribTaxAmtCreator alloc] initWithAcct:unitemizedAcct
+					[[[ItemizedAccountContribTaxAmtCreator alloc] initWithFormContext:parentContext
+					andAcct:unitemizedAcct
 					andLabel:unitemizedAcct.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctContribFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
-					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:itemizedContribCreator
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -269,11 +288,13 @@
 			
 				ItemizedAccountWithdrawalTaxAmtCreator *itemizedWithdrawalCreator = 
 								[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] 
-								initWithAcct:itemizedAcctWithdrawal.account
+								initWithFormContext:parentContext 
+								andAcct:itemizedAcctWithdrawal.account
 								andLabel:itemizedAcctWithdrawal.account.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctWithdrawalFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
-						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:itemizedWithdrawalCreator
 					andItemizedTaxAmt:itemizedAcctWithdrawal
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -284,9 +305,11 @@
 			{	
 				ItemizedAccountWithdrawalTaxAmtCreator *itemizedTaxAmtCreator = 
 						[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] 
-						initWithAcct:unitemizedAcct andLabel:unitemizedAcct.name] autorelease];
+						initWithFormContext:parentContext 
+						andAcct:unitemizedAcct andLabel:unitemizedAcct.name] autorelease];
 				ItemizedTaxAmtFieldEditInfo *acctWithdrawalFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
-					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:itemizedTaxAmtCreator
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -310,10 +333,13 @@
 			{
 				ItemizedTaxAmtFieldEditInfo *assetGainFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
-						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:
 							[[[ItemizedAssetGainTaxAmtCreator alloc] 
-								initWithAsset:itemizedAssetGain.asset andLabel:itemizedAssetGain.asset.name] autorelease]
+								initWithFormContext:parentContext
+									andAsset:itemizedAssetGain.asset
+									andLabel:itemizedAssetGain.asset.name] autorelease]
 					andItemizedTaxAmt:itemizedAssetGain
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:assetGainFieldEditInfo];
@@ -322,9 +348,11 @@
 			for(AssetInput *unitemizedAsset in assetNotItemized)
 			{	
 				ItemizedTaxAmtFieldEditInfo *assetGainFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
-					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:
-						[[[ItemizedAssetGainTaxAmtCreator alloc] initWithAsset:unitemizedAsset
+						[[[ItemizedAssetGainTaxAmtCreator alloc] initWithFormContext:parentContext
+							andAsset:unitemizedAsset
 							andLabel:unitemizedAsset.name] autorelease]
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -348,10 +376,12 @@
 			{
 				ItemizedTaxAmtFieldEditInfo *loanFieldEditInfo = 
 					[[[ItemizedTaxAmtFieldEditInfo alloc] 
-						initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 						andItemizedTaxAmtCreator:
 							[[[ItemizedLoanInterestTaxAmtCreator alloc] 
-								initWithLoan:itemizedLoan.loan
+								initWithFormContext:parentContext
+								andLoan:itemizedLoan.loan
 								andLabel:itemizedLoan.loan.name] autorelease]
 					andItemizedTaxAmt:itemizedLoan
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -361,9 +391,11 @@
 			for(LoanInput *unitemizedLoan in loansNotItemized)
 			{	
 				ItemizedTaxAmtFieldEditInfo *loanFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc] 
-					initWithItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
 					andItemizedTaxAmtCreator:
-						[[[ItemizedLoanInterestTaxAmtCreator alloc] initWithLoan:unitemizedLoan
+						[[[ItemizedLoanInterestTaxAmtCreator alloc] initWithFormContext:parentContext
+							andLoan:unitemizedLoan
 							andLabel:unitemizedLoan.name] autorelease]
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
@@ -378,8 +410,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[itemizedTaxAmtsInfo release];
+	[super dealloc];
 }
 
 

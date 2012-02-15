@@ -93,9 +93,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[eventList release];
 	[eventCreator release];
+	[super dealloc];
 }
 
 @end

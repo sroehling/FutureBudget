@@ -8,15 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class FormContext;
+@class DataModelController;
 
 @protocol FieldEditInfo <NSObject>
 
 @required
 - (NSString*)textLabel;
 - (NSString*)detailTextLabel;
-
-- (BOOL)hasFieldEditController;
-- (UIViewController*)fieldEditController;
 
 - (BOOL)fieldIsInitializedInParentObject;
 - (void)disableFieldAccess;
@@ -34,7 +33,10 @@
 
 @optional
 - (BOOL)supportsDelete;
-- (void)deleteObject;
+- (void)deleteObject:(DataModelController*)dataModelController;
+
+- (UIViewController*)fieldEditController:(FormContext*)parentContext;
+
 
 // The 3 optional selectors below are for use with the 
 // SelectableObjectTableEditViewController. 

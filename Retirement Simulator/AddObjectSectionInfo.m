@@ -13,17 +13,13 @@
 @implementation AddObjectSectionInfo
 
 
-@synthesize parentViewController;
-
-- (id) initWithHelpInfo:(NSString *)helpInfoFile andParentController:(UIViewController *)theParentController
+- (id) initWithHelpInfo:(NSString *)helpInfoFile andFormContext:(FormContext *)theFormContext
 {
-	self = [super initWithHelpInfo:helpInfoFile andParentController:theParentController];
+	self = [super initWithHelpInfo:helpInfoFile andFormContext:theFormContext];
 	if(self)
 	{
 		assert(self.sectionHeader != nil);
 		self.sectionHeader.addButtonDelegate = self;
-		assert(theParentController != nil);
-		self.parentViewController = theParentController;
 	}
 	return self;
 }
@@ -39,7 +35,7 @@
 	return self;
 }
 
--(void)addButtonPressedInSectionHeader:(UITableViewController*)parentView
+-(void)addButtonPressedInSectionHeader:(FormContext*)parentContext
 {
     // no-op
     assert(0); // must be overriden

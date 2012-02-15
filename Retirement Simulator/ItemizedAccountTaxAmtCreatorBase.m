@@ -15,8 +15,10 @@
 
 @synthesize account;
 @synthesize label;
+@synthesize formContext;
 
-- (id)initWithAcct:(Account*)theAccount andLabel:(NSString*)theLabel
+- (id)initWithFormContext:(FormContext*)theFormContext
+	andAcct:(Account*)theAccount andLabel:(NSString*)theLabel
 {
 	self = [super init];
 	if(self)
@@ -26,6 +28,9 @@
 
 		assert([StringValidation nonEmptyString:theLabel]);
 		self.label = theLabel;
+		
+		assert(theFormContext != nil);
+		self.formContext = theFormContext;
 	}
 	return self;
 }
@@ -51,9 +56,10 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[account release];
 	[label release];
+	[formContext release];
+	[super dealloc];
 }
 
 @end

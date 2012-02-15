@@ -11,17 +11,18 @@
 @class FormInfo;
 @class SectionInfo;
 @protocol FormInfoCreator;
+@class FormContext;
 
 @interface FormPopulator : NSObject {
     @private
         FormInfo *formInfo;
 		SectionInfo *currentSection;
-		UIViewController *parentController;
+		FormContext *formContext;
 }
 
 @property(nonatomic,retain) FormInfo *formInfo;
 @property(nonatomic,retain) SectionInfo *currentSection;
-@property(nonatomic,assign) UIViewController *parentController;
+@property(nonatomic,retain) FormContext *formContext;
 
 // Advance to the next section, allocating a default SectionInfo Object
 - (SectionInfo*) nextSection;
@@ -33,7 +34,7 @@
 // SectionInfo object (derived from SectionInfo)
 - (void)nextCustomSection:(SectionInfo*)customSection;
 
-- (id) initWithParentController:(UIViewController*)theParentController;
+- (id) initWithFormContext:(FormContext*)theFormContext;
 
 -(void)populateStaticNavFieldWithFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
 	andFieldCaption:(NSString*)caption andSubTitle:(NSString*)subTitle;

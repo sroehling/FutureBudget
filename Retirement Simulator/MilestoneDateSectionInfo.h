@@ -11,6 +11,7 @@
 #import "AddObjectSectionInfo.h"
 
 @class SimDateRuntimeInfo;
+@class FormContext;
 
 @interface MilestoneDateSectionInfo : AddObjectSectionInfo {
 	@private
@@ -20,6 +21,6 @@
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 
 -(id)initWithRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
-	andParentController:(UIViewController*)theParentController;
+	andFormContext:(FormContext *)theFormContext;
 
 @end

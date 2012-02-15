@@ -42,10 +42,10 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[year release];
 	[unadjustedVal release];
 	[inflationAdjustedVal release];
+	[super dealloc];
 }
 
 @end

@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class FormContext;
 
 @protocol GenericTableViewFactory <NSObject>
 
-- (UIViewController*)createTableView;
+- (UIViewController*)createTableView:(FormContext*)parentContext;
 
 @end

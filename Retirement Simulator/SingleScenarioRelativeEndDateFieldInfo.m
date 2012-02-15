@@ -12,6 +12,32 @@
 
 @implementation SingleScenarioRelativeEndDateFieldInfo
 
+@synthesize dataModelController;
+
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+		andManagedObject:(NSManagedObject*)theManagedObject
+               andFieldKey:(NSString*)theFieldKey
+             andFieldLabel:(NSString*)theFieldLabel
+			 andFieldPlaceholder:(NSString *)thePlaceholder
+{
+	self = [super initWithManagedObject:theManagedObject 
+		andFieldKey:theFieldKey andFieldLabel:theFieldLabel andFieldPlaceholder:thePlaceholder];
+	if(self)
+	{
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
+	}
+	return self;
+}
+
+-(id)initWithManagedObject:(NSManagedObject*)theManagedObject
+               andFieldKey:(NSString*)theFieldKey
+             andFieldLabel:(NSString*)theFieldLabel
+			 andFieldPlaceholder:(NSString *)thePlaceholder
+{
+	assert(0);
+	return nil;
+}
 
 - (void)setFieldValue:(NSObject*)newValue
 {
@@ -25,7 +51,7 @@
 	else
 	{
 		RelativeEndDate *newRelEndDate = (RelativeEndDate*)
-			[[DataModelController theDataModelController] insertObject:RELATIVE_END_DATE_ENTITY_NAME];
+			[self.dataModelController insertObject:RELATIVE_END_DATE_ENTITY_NAME];
 		newRelEndDate.monthsOffset = (NSNumber*)newValue;
 		[super setFieldValue:newRelEndDate];
 	}
@@ -44,6 +70,12 @@
 	RelativeEndDate *theRelEndDate = (RelativeEndDate*)[super getFieldValue];
 	assert(theRelEndDate != nil); // value must be set for current scenario or default
 	return theRelEndDate;
+}
+
+-(void)dealloc
+{
+	[dataModelController release];
+	[super dealloc];
 }
 
 

@@ -99,9 +99,7 @@
 	
     if(!editing)
     {
-        // Done editing - save context
-        [[DataModelController theDataModelController] 
-			saveContextAndIgnoreErrors];
+		[self.dataModelController saveContextAndIgnoreErrors];
     }
 }
 

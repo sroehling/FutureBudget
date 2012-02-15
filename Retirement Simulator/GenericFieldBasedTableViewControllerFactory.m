@@ -9,6 +9,7 @@
 #import "GenericFieldBasedTableViewControllerFactory.h"
 #import "GenericFieldBasedTableViewController.h"
 #import "FormInfoCreator.h"
+#import "FormContext.h"
 
 @implementation GenericFieldBasedTableViewControllerFactory
 
@@ -31,17 +32,17 @@
 	return nil;
 }
 
-- (UIViewController*)createTableView
+-(UIViewController*)createTableView:(FormContext*)parentContext
 {
 	UIViewController *controller = [[[GenericFieldBasedTableViewController alloc]
-	    initWithFormInfoCreator:self.formInfoCreator] autorelease];
+	    initWithFormInfoCreator:self.formInfoCreator andDataModelController:parentContext.dataModelController ] autorelease];
 	return controller;
 }
 
 -(void)dealloc
 {
-	[super dealloc];
 	[formInfoCreator release];
+	[super dealloc];
 }
 
 

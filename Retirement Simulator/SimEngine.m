@@ -94,13 +94,13 @@
 
 
 -(void)dealloc {
-    [super dealloc];
     [eventCreators release]; 
     [eventList release];
 	[simParams release];
 	[digest release];
 	[dataModelController release];
-}
+   [super dealloc];
+ }
 
 
 - (void) populateEventCreators

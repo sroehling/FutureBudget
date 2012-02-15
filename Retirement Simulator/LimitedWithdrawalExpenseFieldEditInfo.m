@@ -40,9 +40,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[account release];
 	[expense release];
+	[super dealloc];
 }
 
 
@@ -57,17 +57,6 @@
 	return @"";
 }
 
-- (UIViewController*)fieldEditController
-{
-    assert(0);
-    return nil;
-    
-}
-
-- (BOOL)hasFieldEditController
-{
-    return FALSE;
-}
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
@@ -132,8 +121,6 @@
 	{
 		[self.account removeLimitWithdrawalExpensesObject:self.expense];
 	}
-	[[DataModelController theDataModelController] saveContextAndIgnoreErrors];
-
 }
 
 

@@ -47,8 +47,7 @@
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
 	andSharedAppValues:(SharedAppValues *)theSharedAppVals;
-
-+(void)initFromDatabase;
++(void)initSingletonFromDataModelController:(DataModelController*)dataModelController;
 +(SimResultsController*)theSimResultsController;
 
 - (void) runSimulatorForResults;

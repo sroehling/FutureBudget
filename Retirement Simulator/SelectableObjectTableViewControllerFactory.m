@@ -9,11 +9,14 @@
 #import "SelectableObjectTableViewControllerFactory.h"
 
 #import "SelectableObjectTableEditViewController.h"
+#import "FormContext.h"
+
 
 @implementation SelectableObjectTableViewControllerFactory
 
 @synthesize formInfoCreator;
 @synthesize assignedField;
+
 
 
 -(id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator
@@ -38,19 +41,19 @@
 }
 
 
-- (UIViewController*)createTableView
+- (UIViewController*)createTableView:(FormContext*)parentContext
 {
 	SelectableObjectTableEditViewController *theController = [[[SelectableObjectTableEditViewController alloc]
 		initWithFormInfoCreator:self.formInfoCreator
-		 andAssignedField:self.assignedField] autorelease];
+		 andAssignedField:self.assignedField andDataModelController:parentContext.dataModelController] autorelease];
 	return theController;
 }
 
 -(void)dealloc
 {
-	[super dealloc];
 	[formInfoCreator release];
 	[assignedField release];
+	[super dealloc];
 }
 
 @end

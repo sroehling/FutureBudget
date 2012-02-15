@@ -145,11 +145,11 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	[helpInfo release];
 	[helpFlipViewInfo release];
 	[navBar release];
 	[navBarTitle release];
+    [super dealloc];
 }
 
 @end

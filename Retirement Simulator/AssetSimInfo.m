@@ -167,13 +167,13 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[assetValue release];
 	[asset release];
 	[simParams release];
 	[purchaseDate release];
 	[saleDate release];
 	[sumGainsLosses release];
+	[super dealloc];
 }
 
 @end

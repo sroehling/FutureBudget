@@ -16,7 +16,6 @@
 @interface HelpInfoViewFlipViewController : UIViewController 
 {
 	@private
-		id<HelpInfoViewControllerDelegate> delegate;
 		HelpInfoView *helpInfoView;
 		HelpFlipViewInfo *helpFlipViewInfo;
 

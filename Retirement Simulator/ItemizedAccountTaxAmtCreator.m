@@ -10,15 +10,19 @@
 #import "DataModelController.h"
 #import "AccountInterestItemizedTaxAmt.h"
 #import "InputCreationHelper.h"
-
+#import "FormContext.h"
+#import "SharedAppValues.h"
 
 @implementation ItemizedAccountTaxAmtCreator
 
 - (ItemizedTaxAmt*)createItemizedTaxAmt
 {
-	AccountInterestItemizedTaxAmt *itemizedTaxAmt = [[DataModelController theDataModelController] 
+	AccountInterestItemizedTaxAmt *itemizedTaxAmt = [self.formContext.dataModelController 
 		insertObject:ACCOUNT_INTEREST_ITEMIZED_TAX_AMT_ENTITY_NAME];
-	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] initForDatabaseInputs] autorelease];
+
+	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:self.formContext.dataModelController];
+	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] initWithDataModelInterface:self.formContext.dataModelController 
+			andSharedAppVals:sharedAppVals] autorelease];
 	itemizedTaxAmt.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
 	itemizedTaxAmt.account  = self.account;
 	return itemizedTaxAmt;

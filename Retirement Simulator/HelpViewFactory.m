@@ -9,6 +9,7 @@
 #import "HelpViewFactory.h"
 #import "HelpPageViewController.h"
 #import "HelpPageInfo.h"
+#import "FormContext.h"
 
 @implementation HelpViewFactory
 
@@ -31,15 +32,15 @@
 	return nil;
 }
 
-- (UIViewController*)createTableView
+-(UIViewController*)createTableView:(FormContext*)parentContext
 {
 	return [[[HelpPageViewController alloc] initWithHelpPageInfo:self.helpPageInfo] autorelease];
 }
 
 -(void)dealloc
 {
-	[super dealloc];
 	[helpPageInfo release];
+	[super dealloc];
 }
 
 

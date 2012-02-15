@@ -53,9 +53,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[taxInputCalcs release];
 	[taxesSimulated release];
+	[super dealloc];
 }
 
 @end

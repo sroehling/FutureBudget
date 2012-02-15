@@ -69,9 +69,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[account release];
 	[acctBal release];
+	[super dealloc];
 }	
 	
 @end

@@ -19,6 +19,7 @@
 #import "DefaultScenario.h"
 #import "NumberHelper.h"
 #import "TaxBracketEntry.h"
+#import "FormContext.h"
 
 @implementation TaxBracketFormInfoCreator
 
@@ -35,11 +36,11 @@
 	return self;
 }
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {	
     InputFormPopulator *formPopulator = 
 		[[[InputFormPopulator alloc] initForNewObject:FALSE
-			andParentController:parentController] autorelease];
+			andFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"TAX_BRACKET_FORM_TITLE");
 	
@@ -74,8 +75,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[taxBracket release];
+	[super dealloc];
 }
 
 @end

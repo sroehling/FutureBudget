@@ -16,6 +16,7 @@
 @class Scenario;
 @class MultiScenarioInputValue;
 @class FieldInfo;
+@class DataModelController;
 
 @interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private 
@@ -42,9 +43,13 @@
 				andDefaultFixedValKey:(NSString*)defaultFixedValKey
 				andForNewVal:(BOOL)forNewVal;
 
-+ (DateSensitiveValueFieldEditInfo*)createForScenario:(Scenario*)theScenario 
++ (DateSensitiveValueFieldEditInfo*)
+	createForDataModelController:(DataModelController*)theDataModelController
+	andScenario:(Scenario*)theScenario 
 	andMultiScenFixedVal:(MultiScenarioInputValue*)multiScenFixedVal
-	andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal
-		andForNewVal:(BOOL)forNewVal;
+	andLabel:(NSString*)label 
+	andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo
+	andDefaultFixedVal:(MultiScenarioInputValue*)defaultFixedVal
+	andForNewVal:(BOOL)forNewVal;
 
 @end

@@ -10,6 +10,7 @@
 
 #import "FieldEditInfo.h"
 @class SectionHeaderWithSubtitle;
+@class FormContext;
 
 @interface SectionInfo : NSObject {
 @private
@@ -17,11 +18,13 @@
     NSString *title;
 	NSString *helpInfoHTMLFile;
 	SectionHeaderWithSubtitle *sectionHeader;
+	FormContext *formContext;
 }
 
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSString *helpInfoHTMLFile;
 @property(nonatomic,retain) SectionHeaderWithSubtitle *sectionHeader;
+@property(nonatomic,retain) FormContext *formContext;
 
 - (void) addFieldEditInfo:(id<FieldEditInfo>)fieldEditInfo;
 
@@ -39,6 +42,7 @@
 - (UIView*)viewForSectionHeader:(CGFloat)tableWidth andEditMode:(BOOL)editing;
 - (CGFloat)viewHeightForSection;
 
-- (id) initWithHelpInfo:(NSString*)helpInfoFile andParentController:(UIViewController*)theParentController;
+- (id) initWithFormContext:(FormContext*)theFormContext;
+- (id) initWithHelpInfo:(NSString*)helpInfoFile andFormContext:(FormContext*)theFormContext;
     
 @end

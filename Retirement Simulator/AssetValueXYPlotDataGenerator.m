@@ -67,8 +67,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[assetInput release];
+	[super dealloc];
 }
 
 

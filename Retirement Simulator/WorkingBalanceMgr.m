@@ -259,7 +259,6 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	
 	[fundingSources release];
 	[loanBalances release];
@@ -270,6 +269,7 @@
 
 	[accruedEstimatedTaxes release];
 	[nextEstimatedTaxPayment release];
+	[super dealloc];
 }
 
 @end

@@ -9,9 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "ManagedObjectFieldInfo.h"
 
+@class DataModelController;
 
 @interface SingleScenarioRelativeEndDateFieldInfo : ManagedObjectFieldInfo {
-    
+    @private
+		DataModelController *dataModelController;
 }
+
+@property(nonatomic,retain) DataModelController *dataModelController;
+
+
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+		andManagedObject:(NSManagedObject*)theManagedObject
+               andFieldKey:(NSString*)theFieldKey
+             andFieldLabel:(NSString*)theFieldLabel
+			 andFieldPlaceholder:(NSString *)thePlaceholder;
 
 @end

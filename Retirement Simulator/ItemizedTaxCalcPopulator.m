@@ -158,9 +158,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[simParams release];
 	[calcEntry release];
+	[super dealloc];
 }
 
 @end

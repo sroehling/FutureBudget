@@ -15,18 +15,20 @@
 #import "DateSensitiveValueChangeFormInfoCreator.h"
 #import "GenericFieldBasedTableAddViewController.h"
 #import "DateSensitiveValueChangeAddedListener.h"
+#import "FormContext.h"
 
 @implementation DateSensitiveValueChangeSectionInfo
 
 @synthesize variableValRuntimeInfo;
 @synthesize variableVal;
 
+
 - (id) initWithVariableValRuntimeInfo:(VariableValueRuntimeInfo*)valRuntimeInfo
-	andParentVariableValue:(VariableValue*)varValue 
-	andParentController:(UIViewController *)theParentController
+	andParentVariableValue:(VariableValue*)varValue
+	andFormContext:(FormContext*)theFormContext
 {
 	self = [super initWithHelpInfo:@"variableValueChange" 
-				andParentController:theParentController];
+				andFormContext:theFormContext];
 	if(self)
 	{
 		assert(valRuntimeInfo != nil);
@@ -38,7 +40,6 @@
 		self.title =  [NSString stringWithFormat:
 			LOCALIZED_STR(@"VARIABLE_VALUE_VALUE_CHANGES_SECTION_TITLE_FORMAT"),
 			LOCALIZED_STR(self.variableValRuntimeInfo.valueTitleKey)];
-
 	}
 	return self;
 }
@@ -51,21 +52,20 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[variableValRuntimeInfo release];
 	[variableVal release];
+	[super dealloc];
 }
 
--(void)addButtonPressedInSectionHeader:(UIViewController*)parentView
+-(void)addButtonPressedInSectionHeader:(FormContext*)parentContext
 {
-    assert(self.parentViewController != nil);
     NSLog(@"Add value change");
     
 	DateSensitiveValueChange *valueChange = (DateSensitiveValueChange*)
-		[[DataModelController theDataModelController]insertObject:DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME];
+		[self.formContext.dataModelController insertObject:DATE_SENSITIVE_VALUE_CHANGE_ENTITY_NAME];
 
-	FixedDate *fixedStartDate = (FixedDate*)[[
-		DataModelController theDataModelController] insertObject:FIXED_DATE_ENTITY_NAME];
+	FixedDate *fixedStartDate = (FixedDate*)[self.formContext.dataModelController
+		insertObject:FIXED_DATE_ENTITY_NAME];
     fixedStartDate.date = [NSDate date];
     valueChange.defaultFixedStartDate = fixedStartDate;
 	
@@ -75,12 +75,13 @@
 
     GenericFieldBasedTableAddViewController *controller = 
 		[[[GenericFieldBasedTableAddViewController alloc] 
-		initWithFormInfoCreator:formInfoCreator andNewObject:valueChange] autorelease];
+		initWithFormInfoCreator:formInfoCreator andNewObject:valueChange 
+		andDataModelController:self.formContext.dataModelController] autorelease];
 	controller.finshedAddingListener = 
 		[[[DateSensitiveValueChangeAddedListener alloc] initWithVariableValue:self.variableVal] autorelease];
     controller.popDepth =1;
     
-    [self.parentViewController.navigationController pushViewController:controller animated:YES];
+    [parentContext.parentController.navigationController pushViewController:controller animated:YES];
 }
 
 @end

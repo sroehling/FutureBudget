@@ -19,16 +19,18 @@
 
 @implementation MultiScenarioInputValueTest
 @synthesize coreData;
-
+@synthesize testAppVals;
 
 - (void)setUp
 {
 	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
+	self.testAppVals = [SharedAppValues createWithDataModelInterface:self.coreData];
 }
 
 - (void)tearDown
 {
 	[coreData release];
+	[testAppVals release];
 }
 
 - (void)checkOneScenarioValue:(MultiScenarioInputValue*)msInputVal 
@@ -42,7 +44,7 @@
 
 - (FixedValue*)genFixedVal:(double)val
 {
-	FixedValue *fixedVal = [[DataModelController theDataModelController] insertObject:FIXED_VALUE_ENTITY_NAME];
+	FixedValue *fixedVal = [self.coreData insertObject:FIXED_VALUE_ENTITY_NAME];
 	fixedVal.value = [NSNumber numberWithDouble:val];
 	return fixedVal;
 }
@@ -53,9 +55,9 @@
 {
     
     MultiScenarioInputValue *msInputVal = 
-		[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
-	
+		[self.coreData insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	DefaultScenario *defaultScen = self.testAppVals.defaultScenario;
+	[msInputVal setDataModelController:self.coreData];
 	// Set to an initial value
 	[msInputVal setValueForScenario:defaultScen andInputValue:[self genFixedVal:1.0]];
 	[self checkOneScenarioValue:msInputVal andScenario:defaultScen andExpectedVal:1.0];
@@ -69,10 +71,11 @@
 - (void)testUserScenario
 {
     MultiScenarioInputValue *msInputVal = 
-	[[DataModelController theDataModelController] insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	DefaultScenario *defaultScen = [SharedAppValues singleton].defaultScenario;
+	[self.coreData insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
+	[msInputVal setDataModelController:self.coreData];
+	DefaultScenario *defaultScen = self.testAppVals.defaultScenario;
 
-	UserScenario *userScen = [[DataModelController theDataModelController] insertObject:USER_SCENARIO_ENTITY_NAME];
+	UserScenario *userScen = [self.coreData insertObject:USER_SCENARIO_ENTITY_NAME];
 	userScen.name = @"My scenario";
 	
 	// Set to an initial default value

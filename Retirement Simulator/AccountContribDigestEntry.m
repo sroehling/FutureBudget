@@ -58,8 +58,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[workingBalance release];
+	[super dealloc];
 }
 
 @end

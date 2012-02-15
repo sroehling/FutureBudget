@@ -17,6 +17,7 @@
 #import "MilestoneDateFormPopulator.h"
 #import "ValueSubtitleTableCell.h"
 #import "DataModelController.h"
+#import "FormContext.h"
 
 @implementation MilestoneDateFieldEditInfo
 
@@ -54,10 +55,10 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [milestoneDate release];
 	[milestoneCell release];
 	[varDateRuntimeInfo release];
+    [super dealloc];
 }
 
 - (NSString*)detailTextLabel
@@ -71,17 +72,12 @@
     return self.milestoneDate.name;
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     MilestoneDateFormPopulator *formPopulator = [[[MilestoneDateFormPopulator alloc] 
 				initWithRuntimeInfo:self.varDateRuntimeInfo
-				andParentController:self.parentController] autorelease];
+				andFormContext:parentContext] autorelease];
     return [formPopulator milestoneDateEditViewController:self.milestoneDate];
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -121,10 +117,10 @@
 }
 
 
-- (void)deleteObject
+- (void)deleteObject:(DataModelController*)dataModelController
 {
 	assert(self.milestoneDate != nil);
-	[[DataModelController theDataModelController] deleteObject:self.milestoneDate];
+	[dataModelController deleteObject:self.milestoneDate];
 	self.milestoneDate = nil;
 }
 

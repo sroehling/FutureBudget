@@ -42,8 +42,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[inputResultMap release];
+	[super dealloc];
 }
 
 @end

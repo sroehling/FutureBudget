@@ -51,9 +51,9 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[coreData release];
 	[testScenario release];
+	[super dealloc];
 }
 
 

@@ -103,10 +103,10 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	[contentDescription release];
 	[subTitle release];
 	[caption release];
+    [super dealloc];
 }
 
 @end

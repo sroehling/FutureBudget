@@ -75,24 +75,12 @@
     
 }
 
-- (UIViewController*)fieldEditController
-{
-    assert(0);
-    return nil;
-    
-}
-
-- (BOOL)hasFieldEditController
-{
-    return FALSE;
-}
-
 - (void)dealloc {
-    [super dealloc];
     [numberFormatter release];
 	[objectForDelete release];
 	[validator release];
 	[numberCell release];
+    [super dealloc];
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -158,10 +146,10 @@
 	}
 }
 
--(void)deleteObject
+-(void)deleteObject:(DataModelController*)dataModelController
 {
 	assert(self.objectForDelete != nil);
-	[[DataModelController theDataModelController] deleteObject:self.objectForDelete];
+	[dataModelController deleteObject:self.objectForDelete];
 	self.objectForDelete = nil;
 }
 

@@ -115,7 +115,6 @@
 {
 	assert(processingParams!=nil);
 	
-	double totalTaxesPaid = 0.0;
 	
 	
 	// This initial dailyTaxableAmount will include the processing of digest entries for everything
@@ -124,7 +123,6 @@
 	double totalAccruedTaxableIncomeCurrIter = [self.incomeCalcEntries dailyItemizedAmnt:processingParams.dayIndex];
 	double taxableIncomeCurrIter = totalAccruedTaxableIncomeCurrIter;
 	double taxDueCurrIter = taxableIncomeCurrIter * self.effectiveTaxRate;
-	totalTaxesPaid += taxDueCurrIter;
 	
 	NSInteger numIter = 0;
 	while((taxDueCurrIter > 0.0) && (numIter < MAX_TAX_CALC_ITERS))
@@ -151,7 +149,6 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[taxInput release];
 	[simParams release];
 	
@@ -163,6 +160,7 @@
 	[taxBracketCalc release];
 	
 	[taxesPaid release];
+	[super dealloc];
 }
 
 @end

@@ -34,7 +34,8 @@
 @synthesize itemizeAssetGains;
 
 
--(id)initWithItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
 	andTitle:(NSString*)theTitle andAmtPrompt:(NSString *)theAmtPrompt
 	andItemTitle:(NSString*)theItemTitle
 	andItemSectionTitleFormat:(NSString*)theItemSectionTitleFormat
@@ -74,7 +75,8 @@
 		self.itemizeLoanInterest = doItemizeLoanInterest;
 		
 		self.fieldPopulator = [[[ItemizedTaxAmtFieldPopulator alloc] 
-					initWithItemizedTaxAmts:itemizedTaxAmts] autorelease];
+					initWithDataModelController:theDataModelController 
+					andItemizedTaxAmts:itemizedTaxAmts] autorelease];
 		
 	}
 	return self;
@@ -87,11 +89,12 @@
 }
 
 
-+(ItemizedTaxAmtsInfo*)taxSourceInfo:(TaxInput*)tax
++(ItemizedTaxAmtsInfo*)taxSourceInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController
 {
 	assert(tax != nil);
 	return [[[ItemizedTaxAmtsInfo alloc] 
-			initWithItemizedTaxAmts:tax.itemizedIncomeSources 
+			initWithDataModelController:dataModelController 
+			andItemizedTaxAmts:tax.itemizedIncomeSources 
 			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE")
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE")
@@ -107,10 +110,11 @@
 }
 
 
-+(ItemizedTaxAmtsInfo*)taxAdjustmentInfo:(TaxInput*)tax
++(ItemizedTaxAmtsInfo*)taxAdjustmentInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController
 {
 	return [[[ItemizedTaxAmtsInfo alloc] 
-			initWithItemizedTaxAmts:tax.itemizedAdjustments 
+			initWithDataModelController:dataModelController 
+			andItemizedTaxAmts:tax.itemizedAdjustments 
 			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE")
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_ITEM_TITLE")
@@ -125,11 +129,12 @@
 			andItemizeLoanInterest:			TRUE] autorelease];
 }
 
-+(ItemizedTaxAmtsInfo*)taxDeductionInfo:(TaxInput*)tax
++(ItemizedTaxAmtsInfo*)taxDeductionInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController
 
 {
 	return[[[ItemizedTaxAmtsInfo alloc] 
-			initWithItemizedTaxAmts:tax.itemizedDeductions 
+			initWithDataModelController:dataModelController 
+			andItemizedTaxAmts:tax.itemizedDeductions 
 			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE")
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_ITEM_TITLE")
@@ -144,10 +149,11 @@
 			andItemizeLoanInterest:			TRUE] autorelease];
 }
 
-+(ItemizedTaxAmtsInfo*)taxCreditInfo:(TaxInput*)tax
++(ItemizedTaxAmtsInfo*)taxCreditInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController
 {
 	return [[[ItemizedTaxAmtsInfo alloc] 
-			initWithItemizedTaxAmts:tax.itemizedCredits 
+			initWithDataModelController:dataModelController 
+			andItemizedTaxAmts:tax.itemizedCredits 
 			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE")
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_ITEM_TITLE")
@@ -164,7 +170,6 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[title release];
 	[itemHelpInfoFile release];
 	[itemSectionTitleFormat release];
@@ -172,6 +177,7 @@
 	[amtPrompt release];
 	[itemTitle release];
 	[fieldPopulator release];
+	[super dealloc];
 }
 
 

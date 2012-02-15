@@ -17,8 +17,8 @@ NSString * const STATIC_NAME_FIELD_CELL_IDENTIFIER = @"StaticNameFieldCell";
 
 -(void)dealloc
 {
-	[super dealloc];
 	[staticName release];
+	[super dealloc];
 }
 
 

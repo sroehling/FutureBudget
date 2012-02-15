@@ -14,12 +14,15 @@
 #import "TableViewHelper.h"
 #import "GenericFieldBasedTableAddViewController.h"
 #import "UIHelper.h"
+#import "DataModelController.h"
 #import "TableCellHelper.h"
-
+#import "InputCreationHelper.h"
+#import "SharedAppValues.h"
 
 @implementation InputTypeSelectionViewController
 
 @synthesize inputTypes;
+@synthesize dmcForNewInputs;
 
 
 - (void)viewDidLoad
@@ -35,30 +38,52 @@
     self.title = LOCALIZED_STR(@"INPUT_TYPE_VIEW_TITLE");
 
     self.inputTypes = [[[NSMutableArray alloc] init ] autorelease];
+	
+	// TODO - Initialize dmcForNewInputs to a new DataModelController, so that changes associatd with
+	// the new object are kept isolated from everything else.
+	assert(self.dmcForNewInputs != nil);
+		
+	InputCreationHelper *inputCreationHelper =
+		[[[InputCreationHelper alloc] 
+		initWithDataModelInterface:dmcForNewInputs andSharedAppVals:
+			[SharedAppValues getUsingDataModelController:self.dmcForNewInputs]]
+		autorelease];
     
-    InputTypeSelectionInfo *typeInfo = [[[IncomeInputTypeSelectionInfo alloc] init ] autorelease];
+    InputTypeSelectionInfo *typeInfo = [[[IncomeInputTypeSelectionInfo alloc]
+		initWithInputCreationHelper:inputCreationHelper 
+		andDataModelInterface:dmcForNewInputs ] autorelease];
     typeInfo.description = LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_INCOME_TITLE");
     [self.inputTypes addObject:typeInfo];
     
-    typeInfo = [[[ExpenseInputTypeSelectionInfo alloc] init ] autorelease];
+    typeInfo = [[[ExpenseInputTypeSelectionInfo alloc] 
+		initWithInputCreationHelper:inputCreationHelper 
+		andDataModelInterface:dmcForNewInputs ] autorelease];
     typeInfo.description = LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_EXPENSE_TITLE");
     [self.inputTypes addObject:typeInfo];
 	
-	typeInfo = [[[SavingsAccountTypeSelectionInfo alloc] init ] autorelease];
+	typeInfo = [[[SavingsAccountTypeSelectionInfo alloc]
+		initWithInputCreationHelper:inputCreationHelper 
+		andDataModelInterface:dmcForNewInputs ] autorelease];
     typeInfo.description = 	LOCALIZED_STR(@"INPUT_ACCOUNT_TITLE");
     [self.inputTypes addObject:typeInfo];
 
 
-	typeInfo = [[[LoanInputTypeSelctionInfo alloc] init] autorelease];
+	typeInfo = [[[LoanInputTypeSelctionInfo alloc]
+		initWithInputCreationHelper:inputCreationHelper 
+		andDataModelInterface:dmcForNewInputs ] autorelease];
 	typeInfo.description = LOCALIZED_STR(@"INPUT_LOAN_TITLE");
 	[self.inputTypes addObject:typeInfo];
     
-	typeInfo = [[[AssetInputTypeSelectionInfo alloc] init] autorelease];
+	typeInfo = [[[AssetInputTypeSelectionInfo alloc]
+		initWithInputCreationHelper:inputCreationHelper 
+		andDataModelInterface:dmcForNewInputs ] autorelease];
 	typeInfo.description = LOCALIZED_STR(@"INPUT_ASSET_TITLE");
 	[self.inputTypes addObject:typeInfo];
 
 
-	typeInfo = [[[TaxInputTypeSelectionInfo alloc] init] autorelease];
+	typeInfo = [[[TaxInputTypeSelectionInfo alloc]
+		initWithInputCreationHelper:inputCreationHelper 
+		andDataModelInterface:dmcForNewInputs ] autorelease];
 	typeInfo.description = LOCALIZED_STR(@"INPUT_TAX_TITLE");
 	[self.inputTypes addObject:typeInfo];
 
@@ -84,9 +109,10 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [inputTypes release];
-    
+	[dmcForNewInputs release];
+     [super dealloc];
+   
 }
 
 #pragma mark - Table view data source
@@ -132,12 +158,17 @@
     
     Input *newInput = [typeInfo createInput]; // create the managed (core data) object for the given input
     
+	// TODO - Need to initialize with a standalone DataModelController, so that changes
+	// for the new objects can be done in isolation.
     DetailInputViewCreator *detailViewCreator = [[[DetailInputViewCreator alloc] 
                         initWithInput:newInput andIsForNewObject:TRUE] autorelease];
     
+	// Create a new data model controller for the inputs. This keeps any un-validated
+	// additions isolated w.r.t. other changes.
     
     UIViewController *addView =  [[[GenericFieldBasedTableAddViewController alloc] 
-        initWithFormInfoCreator:detailViewCreator andNewObject:newInput] autorelease];
+        initWithFormInfoCreator:detailViewCreator andNewObject:newInput
+		andDataModelController:self.dmcForNewInputs] autorelease];
 
     assert(addView != nil);
     

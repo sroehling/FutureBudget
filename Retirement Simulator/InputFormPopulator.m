@@ -64,15 +64,16 @@
 #import "ItemizedTaxAmts.h"
 #import "ItemizedTaxAmtCreator.h"
 #import "ItemizedTaxAmtFieldEditInfo.h"
+#import "FormContext.h"
 
 @implementation InputFormPopulator
 
 @synthesize inputScenario;
 @synthesize isForNewObject;
 
--(id)initWithScenario:(Scenario*)theInputScenario andParentController:(UIViewController*)parentController
+-(id)initWithScenario:(Scenario*)theInputScenario andFormContext:(FormContext*)theFormContext
 {
-	self = [super initWithParentController:parentController];
+	self = [super initWithFormContext:theFormContext];
 	if(self)
 	{
 		assert(theInputScenario != nil);
@@ -83,18 +84,19 @@
 	return self;
 }
 
--(id)initForNewObject:(BOOL)isNewObject andParentController:(UIViewController*)parentController
+-(id)initForNewObject:(BOOL)isNewObject andFormContext:(FormContext*)theFormContext
 {
-	self = [super initWithParentController:parentController];
+	self = [super initWithFormContext:theFormContext];
 	if(self)
 	{
+		SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:theFormContext.dataModelController];
 		if(isNewObject)
 		{
-			self.inputScenario = [SharedAppValues singleton].defaultScenario;
+			self.inputScenario = sharedAppVals.defaultScenario;
 		}
 		else
 		{
-			self.inputScenario = [SharedAppValues singleton].currentInputScenario;
+			self.inputScenario = sharedAppVals.currentInputScenario;
 		}
 	}
 	self.isForNewObject = isNewObject;
@@ -135,7 +137,7 @@
 	
 	MultiScenarioBoolInputValueFieldInfo *boolFieldInfo =
 		[[[MultiScenarioBoolInputValueFieldInfo alloc] 
-			initWithFieldLabel:label 
+			initWithDataModelController:self.formContext.dataModelController andFieldLabel:label 
 			andFieldPlaceholder:@"n/a" andScenario:self.inputScenario 
 		andInputVal:boolVal] autorelease];
 	BoolFieldEditInfo *boolFieldEditInfo = 
@@ -158,7 +160,8 @@
 	
 	MultiScenarioFixedValueFieldInfo *fieldInfo =
 		[[[MultiScenarioFixedValueFieldInfo alloc] 
-			initWithFieldLabel:label 
+			initWithDataModelController:self.formContext.dataModelController 
+			andFieldLabel:label 
 			andFieldPlaceholder:prompt
 			andScenario:self.inputScenario  andInputVal:inputVal] autorelease];
    NumberFieldEditInfo *fieldEditInfo = 
@@ -191,7 +194,8 @@
 	
 	MultiScenarioFixedValueFieldInfo *fieldInfo =
 		[[[MultiScenarioFixedValueFieldInfo alloc] 
-			initWithFieldLabel:label 
+			initWithDataModelController:self.formContext.dataModelController 
+			andFieldLabel:label 
 			andFieldPlaceholder:prompt
 			andScenario:self.inputScenario  andInputVal:inputVal] autorelease];
 			
@@ -264,12 +268,14 @@
 	
 	
 	VariableValueRuntimeInfo *amountRuntimeInfo = [VariableValueRuntimeInfo 
-		createForMultiScenarioAmount:theAmount withValueTitle:valueTitle andValueName:valueName];
+		createForDataModelController:self.formContext.dataModelController 
+		andMultiScenarioAmount:theAmount withValueTitle:valueTitle andValueName:valueName];
 		
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:self.inputScenario andMultiScenFixedVal:theAmount.amount
+	  createForDataModelController:self.formContext.dataModelController
+	  andScenario:self.inputScenario andMultiScenFixedVal:theAmount.amount
 		andLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE")
 	  andValRuntimeInfo:amountRuntimeInfo
 	  andDefaultFixedVal:theAmount.defaultFixedAmount
@@ -282,7 +288,9 @@
 	assert([StringValidation nonEmptyString:valueLabel]);
 
 	SharedEntityVariableValueListMgr *sharedInflationRatesMgr = 
-	[[[SharedEntityVariableValueListMgr alloc] initWithEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithDataModelController:self.formContext.dataModelController
+		andEntity:INFLATION_RATE_ENTITY_NAME] autorelease];
 	
 	NSString *tableSubtitle = [NSString 
 			stringWithFormat:LOCALIZED_STR(@"INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT"),
@@ -324,7 +332,8 @@
 	
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForScenario:self.inputScenario andMultiScenFixedVal:growthRate.growthRate
+         createForDataModelController:self.formContext.dataModelController
+			andScenario:self.inputScenario andMultiScenFixedVal:growthRate.growthRate
 			andLabel:LOCALIZED_STR(@"INPUT_INFLATION_RATE_VALUE_TITLE")  
 		 andValRuntimeInfo:grRuntimeInfo 
 		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate
@@ -363,7 +372,8 @@
 
 	SharedEntityVariableValueListMgr *sharedROIMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] 
-		initWithEntity:INVESTMENT_RETURN_RATE_ENTITY_NAME] autorelease];
+		initWithDataModelController:self.formContext.dataModelController 
+		andEntity:INVESTMENT_RETURN_RATE_ENTITY_NAME] autorelease];
 	
 	
 	NSString *tableSubtitle = [NSString 
@@ -390,7 +400,8 @@
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForScenario:self.inputScenario andMultiScenFixedVal:roiRate.growthRate 
+         createForDataModelController:self.formContext.dataModelController
+			andScenario:self.inputScenario andMultiScenFixedVal:roiRate.growthRate 
 			andLabel:LOCALIZED_STR(@"SHARED_ROI_VALUE_TITLE") 
 		 andValRuntimeInfo:roiRuntimeInfo 
 		 andDefaultFixedVal:roiRate.defaultFixedGrowthRate
@@ -410,7 +421,8 @@
 
 	SharedEntityVariableValueListMgr *sharedApprecMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] 
-		initWithEntity:ASSET_APPREC_RATE_ENTITY_NAME] autorelease];
+		initWithDataModelController:self.formContext.dataModelController 
+		andEntity:ASSET_APPREC_RATE_ENTITY_NAME] autorelease];
 	
 	
 	NSString *tableSubtitle = [NSString 
@@ -437,7 +449,8 @@
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForScenario:self.inputScenario andMultiScenFixedVal:apprecRate.growthRate 
+         createForDataModelController:self.formContext.dataModelController
+		 andScenario:self.inputScenario andMultiScenFixedVal:apprecRate.growthRate 
 			andLabel:LOCALIZED_STR(@"SHARED_APPREC_RATE_VALUE_TITLE") 
 		 andValRuntimeInfo:apprecRateRuntimeInfo 
 		 andDefaultFixedVal:apprecRate.defaultFixedGrowthRate
@@ -458,7 +471,8 @@
 
 	SharedEntityVariableValueListMgr *sharedInterestRatesMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] 
-		initWithEntity:INTEREST_RATE_ENTITY_NAME] autorelease];
+		initWithDataModelController:self.formContext.dataModelController 
+		andEntity:INTEREST_RATE_ENTITY_NAME] autorelease];
 	
 	
 	NSString *tableSubtitle = [NSString 
@@ -485,12 +499,12 @@
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
         [DateSensitiveValueFieldEditInfo 
-         createForScenario:self.inputScenario andMultiScenFixedVal:intRate.growthRate
+			createForDataModelController:self.formContext.dataModelController 
+			andScenario:self.inputScenario andMultiScenFixedVal:intRate.growthRate
 			andLabel:LOCALIZED_STR(@"SHARED_INTEREST_RATE_VALUE_TITLE") 
 		 andValRuntimeInfo:interestRuntimeInfo 
 		 andDefaultFixedVal:intRate.defaultFixedGrowthRate
 		 andForNewVal:self.isForNewObject]];
-
 
 }
 
@@ -500,7 +514,8 @@
 
 	SharedEntityVariableValueListMgr *sharedDownPmtMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] 
-		initWithEntity:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME] autorelease];
+		initWithDataModelController:self.formContext.dataModelController 
+		andEntity:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME] autorelease];
 
 	NSString *tableSubtitle = [NSString 
 			stringWithFormat:LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_TABLE_SUBTITLE_FORMAT"),
@@ -526,7 +541,8 @@
 		
     [self.currentSection addFieldEditInfo:
 	 [DateSensitiveValueFieldEditInfo 
-	  createForScenario:self.inputScenario andMultiScenFixedVal:loan.multiScenarioDownPmtPercent
+	  createForDataModelController:self.formContext.dataModelController
+	  andScenario:self.inputScenario andMultiScenFixedVal:loan.multiScenarioDownPmtPercent
 	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") 
 	  andValRuntimeInfo:downPmtVarValRuntimeInfo
 	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed
@@ -560,7 +576,8 @@
 
 	MultiScenarioFixedValueFieldInfo *durationFieldInfo =
 		[[[MultiScenarioFixedValueFieldInfo alloc] 
-			initWithFieldLabel:label
+			initWithDataModelController:self.formContext.dataModelController 
+			andFieldLabel:label
 			andFieldPlaceholder:placeholder
 			andScenario:self.inputScenario 
 		andInputVal:duration] autorelease];
@@ -589,7 +606,8 @@
 			andSupportsNeverEndDate:supportEndDates] autorelease];
 			
 	SimDateFieldEditInfo *simDateFieldEditInfo = 
-		[SimDateFieldEditInfo createForMultiScenarioVal:self.inputScenario 
+		[SimDateFieldEditInfo createForDataModelController:self.formContext.dataModelController 
+			andMultiScenarioVal:self.inputScenario 
 			andSimDate:multiScenSimDate.simDate 
 			andLabel:label 
 			andDefaultValue:multiScenSimDate.defaultFixedSimDate 
@@ -640,7 +658,8 @@
 			
 			
 	SimDateFieldEditInfo *simDateFieldEditInfo = 
-		[SimDateFieldEditInfo createForMultiScenarioVal:self.inputScenario 
+		[SimDateFieldEditInfo createForDataModelController:self.formContext.dataModelController 
+			andMultiScenarioVal:self.inputScenario 
 			andSimDate:multiScenSimEndDate.simDate
 			andLabel:label 
 			andDefaultValue:multiScenSimEndDate.defaultFixedSimDate 
@@ -661,7 +680,8 @@
 	
 	ItemizedTaxAmtFieldEditInfo *incomeFieldEditInfo = 
 			[[[ItemizedTaxAmtFieldEditInfo alloc] 
-				initWithItemizedTaxAmts:itemizedTaxAmtsInfo.itemizedTaxAmts 
+				initWithDataModelController:self.formContext.dataModelController 
+						andItemizedTaxAmts:itemizedTaxAmtsInfo.itemizedTaxAmts 
 				andItemizedTaxAmtCreator:taxAmtCreator
 				andItemizedTaxAmt:itemizedTaxAmt
 				andItemizedTaxAmtsInfo:itemizedTaxAmtsInfo 
@@ -686,16 +706,18 @@
 
 }
 
--(TableHeaderWithDisclosure*)scenarioListTableHeaderWithParentController:(UIViewController*)parentController
+-(TableHeaderWithDisclosure*)scenarioListTableHeaderWithFormContext:(FormContext*)formContext
 {
 	SelectScenarioTableHeaderButtonDelegate *scenarioListDisclosureDelegate = 
-			[[[SelectScenarioTableHeaderButtonDelegate alloc] initWithParentController:parentController] autorelease];
+			[[[SelectScenarioTableHeaderButtonDelegate alloc] 
+			initWithFormContext:formContext] autorelease];
 	TableHeaderWithDisclosure *tableHeader = 
 			[[[TableHeaderWithDisclosure alloc] initWithFrame:CGRectZero 
 				andDisclosureButtonDelegate:scenarioListDisclosureDelegate] autorelease];
+	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:formContext.dataModelController];
 	tableHeader.header.text = [NSString 
 			stringWithFormat:LOCALIZED_STR(@"INPUT_CURRENT_SCENARIO_TABLE_HEADER_FORMAT"),
-			[SharedAppValues singleton].currentInputScenario.scenarioName];
+			sharedAppVals.currentInputScenario.scenarioName];
 	[tableHeader resizeForChildren];
 	return tableHeader;
 }
@@ -703,8 +725,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[inputScenario release];
+	[super dealloc];
 }	
 
 @end

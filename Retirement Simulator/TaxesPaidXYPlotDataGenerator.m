@@ -69,8 +69,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[taxInput release];
+	[super dealloc];
 }
 
 @end

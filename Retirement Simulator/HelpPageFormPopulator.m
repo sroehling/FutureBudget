@@ -14,6 +14,7 @@
 #import "HelpViewFactory.h"
 #import "StringValidation.h"
 #import "SectionInfo.h"
+#import "FormContext.h"
 
 
 @implementation HelpPageFormPopulator
@@ -23,7 +24,8 @@
 	assert([StringValidation nonEmptyString:pageTitle]);
 	assert([StringValidation nonEmptyString:pageRef]);
 
-	HelpPageInfo *helpPageInfo = [[[HelpPageInfo alloc] initWithParentController:self.parentController 
+	HelpPageInfo *helpPageInfo = [[[HelpPageInfo alloc] 
+		initWithParentController:self.formContext.parentController 
 		andHelpPageHTML:pageRef] autorelease];
 	HelpViewFactory *helpViewFactory = [[[HelpViewFactory alloc] 
 		initWithHelpPageInfo:helpPageInfo] autorelease];

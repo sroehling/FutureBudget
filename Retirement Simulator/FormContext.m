@@ -1,31 +1,33 @@
 //
-//  HelpPageInfo.m
+//  FormContext.m
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 1/23/12.
+//  Created by Steve Roehling on 2/13/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "HelpPageInfo.h"
-#import "StringValidation.h"
+#import "FormContext.h"
 
 
-@implementation HelpPageInfo
+@implementation FormContext
 
+
+@synthesize dataModelController;
 @synthesize parentController;
-@synthesize helpPageHTML;
+
 
 -(id)initWithParentController:(UIViewController*)theParentController
-	andHelpPageHTML:(NSString*)helpHTML
+	andDataModelController:(DataModelController*)theDataModelController
 {
 	self = [super init];
 	if(self)
 	{
-		assert(theParentController != nil);
+		assert(theParentController !=nil);
+		assert(theDataModelController != nil);
+
 		self.parentController = theParentController;
-		
-		assert([StringValidation nonEmptyString:helpHTML]);
-		self.helpPageHTML = helpHTML;
+		self.dataModelController = theDataModelController;
+
 	}
 	return self;
 }
@@ -38,10 +40,8 @@
 
 -(void)dealloc
 {
-	[helpPageHTML release];
+	[dataModelController release];
 	[super dealloc];
 }
-
-
 
 @end

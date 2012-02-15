@@ -127,9 +127,9 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[workingBalList release];
 	[inputWorkingBalMap release];
+	[super dealloc];
 }
 
 @end

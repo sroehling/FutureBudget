@@ -56,8 +56,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[expenseInfo release];
+	[super dealloc];
 }
 
 @end

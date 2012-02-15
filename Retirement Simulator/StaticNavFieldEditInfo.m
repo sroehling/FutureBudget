@@ -17,6 +17,7 @@
 #import "GenericFieldBasedTableEditViewControllerFactory.h"
 #import "DataModelController.h"
 #import "GenericFieldBasedTableViewControllerFactory.h"
+#import "FormContext.h"
 
 @implementation StaticNavFieldEditInfo
 
@@ -93,16 +94,11 @@
 	return @"";
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
 
-	return [self.subViewFactory createTableView];	
+	return [self.subViewFactory createTableView:parentContext];	
 
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -136,10 +132,10 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[valueCell release];
 	[subViewFactory release];
 	[objectForDelete release];
+	[super dealloc];
 }
 
 -(BOOL)supportsDelete
@@ -155,10 +151,10 @@
 }
 
 
-- (void)deleteObject
+- (void)deleteObject:(DataModelController*)dataModelController
 {
 	assert(self.objectForDelete != nil);
-	[[DataModelController theDataModelController] deleteObject:self.objectForDelete];
+	[dataModelController deleteObject:self.objectForDelete];
 	self.objectForDelete = nil;
 }
 

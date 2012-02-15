@@ -27,6 +27,7 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 @class MultiScenarioAmount;
 @class MultiScenarioGrowthRate;
 @class MultiScenarioSimDate;
+@class DataModelController;
 @class MultiScenarioSimEndDate;
 
 @interface MultiScenarioInputValue : NSManagedObject {
@@ -77,5 +78,7 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 // allocates new objects and references the default data.
 @property(nonatomic,retain) id<DataModelInterface> dataModelInterface;
 @property(nonatomic,retain) SharedAppValues *sharedAppVals;
+
+//-(void)useDataModelController:(DataModelController*)dataModelController;
 
 @end

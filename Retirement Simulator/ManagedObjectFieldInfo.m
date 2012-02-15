@@ -69,12 +69,9 @@
 {
     if(fieldAccessEnabled)
     {
-        [self.managedObject setValue:newValue forKey:self.fieldKey];
-		
-		// Do a "soft save" which ignores any errors, because other fields may not be
-		// fully initialized yet.
-        [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
+        [self.managedObject setValue:newValue forKey:self.fieldKey];		
     }
+	// TBD - Is a save needed here?
 }
 
 -(NSManagedObject*)managedObject
@@ -84,9 +81,9 @@
 
 
 - (void)dealloc {
-    [super dealloc];
     [fieldKey release];
     [managedObjectWithField release];
+    [super dealloc];
 }
 
 

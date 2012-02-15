@@ -9,6 +9,7 @@
 #import "YearValXYPlotResultsViewFactory.h"
 #import "YearValXYPlotDataGenerator.h"
 #import "YearValXYPlotResultsViewController.h"
+#import "FormContext.h"
 
 
 @implementation YearValXYPlotResultsViewFactory
@@ -35,7 +36,7 @@
 }
 
 
-- (UIViewController*)createTableView
+-(UIViewController*)createTableView:(FormContext*)parentContext
 {
 	return [[[YearValXYPlotResultsViewController alloc] 
 		initWithResultsViewInfo:self.resultsViewInfo andPlotDataGenerator:self.plotDataGenerator] autorelease];
@@ -43,8 +44,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[plotDataGenerator release];
+	[super dealloc];
 }
 
 

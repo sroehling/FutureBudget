@@ -39,8 +39,8 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[taxBracket release];
+	[super dealloc];
 }
 
 @end

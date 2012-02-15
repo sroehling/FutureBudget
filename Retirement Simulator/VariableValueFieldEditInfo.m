@@ -21,6 +21,7 @@
 #import "VariableValueFormInfoCreator.h"
 #import "ValueSubtitleTableCell.h"
 #import "DataModelController.h"
+#import "FormContext.h"
 
 @implementation VariableValueFieldEditInfo
 
@@ -61,10 +62,10 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [variableVal release];
 	[varValRuntimeInfo release];
 	[varValueCell release];
+    [super dealloc];
 }
 
 - (NSString*)detailTextLabel
@@ -77,7 +78,7 @@
     return self.variableVal.label;
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
 
 	VariableValueFormInfoCreator *vvFormInfoCreator = 
@@ -85,14 +86,9 @@
 		andVarValueRuntimeInfo:self.varValRuntimeInfo] autorelease];
 		
 	UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc]
-	    initWithFormInfoCreator:vvFormInfoCreator] autorelease];
+	    initWithFormInfoCreator:vvFormInfoCreator andDataModelController:parentContext.dataModelController] autorelease];
 		
 	return controller;
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -129,10 +125,10 @@
 	return [self.variableVal supportsDeletion];
 }
 
--(void)deleteObject
+- (void)deleteObject:(DataModelController*)dataModelController
 {
 	assert(self.variableVal != nil);
-	[[DataModelController theDataModelController] deleteObject:self.variableVal];
+	[dataModelController deleteObject:self.variableVal];
 	self.variableVal = nil;
 }
 

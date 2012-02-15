@@ -80,9 +80,9 @@
 
 - (void)dealloc {
     // release owned objects here
-    [super dealloc]; // pretty important.
 	[eventRepeater release];
 	[loanInfo release];
+    [super dealloc]; // pretty important.
 
 }
 

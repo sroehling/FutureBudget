@@ -38,8 +38,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[cashFlowSummation release];
+	[super dealloc];
 }
 
 

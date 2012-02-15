@@ -61,9 +61,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[inputSimInfoMap release];
 	[inputsSimulated release];
+	[super dealloc];
 }
 
 @end

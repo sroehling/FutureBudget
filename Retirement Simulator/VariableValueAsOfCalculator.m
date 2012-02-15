@@ -64,9 +64,9 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[varVal release];
 	[sortedValChanges release];
+	[super dealloc];
 }
 
 @end

@@ -11,17 +11,21 @@
 #import "ItemizedTaxAmtCreator.h"
 #import "IncomeInput.h"
 
+@class FormContext;
+
 
 @interface ItemizedIncomeTaxAmtCreator :  NSObject <ItemizedTaxAmtCreator> {
 	@private
+		FormContext *formContext;
 		IncomeInput *income;
 		NSString *label;
 }
 
+@property(nonatomic,retain) FormContext *formContext;
 @property(nonatomic,retain) IncomeInput *income;
 @property(nonatomic,retain) NSString *label;
 
-- (id)initWithIncome:(IncomeInput*)theIncome
+- (id)initWithFormContext:(FormContext*)theFormContext andIncome:(IncomeInput*)theIncome
 	andItemLabel:(NSString*)theItemLabel;
 
 @end

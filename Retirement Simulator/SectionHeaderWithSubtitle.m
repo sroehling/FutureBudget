@@ -12,6 +12,7 @@
 #import "HelpFlipViewInfo.h"
 #import "StringValidation.h"
 #import "UIHelper.h"
+#import "FormContext.h"
 
 #define CUSTOM_SECTION_VIEW_LEFT_LABEL_OFFSET 15.0
 #define CUSTOM_SECTION_VIEW_RIGHT_LABEL_OFFSET 10.0
@@ -32,7 +33,7 @@
 @synthesize infoButton;
 @synthesize addButton;
 @synthesize addButtonDelegate;
-@synthesize parentController;
+@synthesize formContext;
 
 
 
@@ -160,22 +161,22 @@
 - (void)addButtonPressed
 {
     assert(addButtonDelegate != nil);
-	[self.addButtonDelegate addButtonPressedInSectionHeader:self.parentController];
+	[self.addButtonDelegate addButtonPressedInSectionHeader:self.formContext];
 }
 
 -(void)showInfoPopup
 {
 	// parent controller must be set if the info popup is 
 	// used.
-	assert(self.parentController != nil);
+	assert(self.formContext != nil);
 	assert(self.helpInfoHTMLFile != nil);
 	HelpFlipViewInfo *flipViewInfo = [[[HelpFlipViewInfo alloc] 
-			initWithParentController:self.parentController 
+			initWithParentController:self.formContext.parentController 
 			andHelpPageHTMLFile:self.helpInfoHTMLFile] autorelease];
 	
 	HelpInfoViewFlipViewController *helpInfoViewController = [[[HelpInfoViewFlipViewController alloc] 
 		initWithHelpFlipViewInfo:flipViewInfo] autorelease];
-	[parentController presentModalViewController:helpInfoViewController animated:TRUE];
+	[self.formContext.parentController presentModalViewController:helpInfoViewController animated:TRUE];
 }
 
 
@@ -193,12 +194,12 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	[headerLabel release];
 	[infoButton release];
 	[helpInfoHTMLFile release];
 	[addButton release];
 	[addButtonDelegate release];
+    [super dealloc];
 }
 
 @end

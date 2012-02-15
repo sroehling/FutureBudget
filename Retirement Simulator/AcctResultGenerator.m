@@ -33,8 +33,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[account release];
+	[super dealloc];
 }
 
 

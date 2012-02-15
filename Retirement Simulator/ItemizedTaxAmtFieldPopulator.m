@@ -28,6 +28,7 @@
 
 
 @synthesize itemizedTaxAmts;
+@synthesize dataModelController;
 
 @synthesize itemizedIncomes;
 @synthesize itemizedExpenses;
@@ -38,13 +39,19 @@
 @synthesize itemizedLoans;
 
 
--(id)initWithItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theItemizedTaxAmts != nil);
 		self.itemizedTaxAmts = theItemizedTaxAmts;
+		
+		// In this case, it's OK to use the singleton data model controller,
+		// since this class only works with information in a read-only way.
+		self.dataModelController = theDataModelController;
+		
 		
 		self.itemizedIncomes = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedExpenses =  [[[NSMutableArray alloc] init] autorelease];
@@ -109,7 +116,7 @@
 
 - (NSArray*)incomesNotAlreadyItemized
 {
-	NSArray *allIncomes = [[DataModelController theDataModelController]
+	NSArray *allIncomes = [self.dataModelController
 			fetchSortedObjectsWithEntityName:INCOME_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	NSMutableArray *unItemizedIncomes = [NSMutableArray arrayWithArray:allIncomes];	
 		
@@ -136,7 +143,7 @@
 
 - (NSArray*)expensesNotAlreadyItemized
 {
-	NSArray *allExpenses = [[DataModelController theDataModelController]
+	NSArray *allExpenses = [self.dataModelController
 			fetchSortedObjectsWithEntityName:EXPENSE_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];;
 	NSMutableArray *unItemizedExpenses = [NSMutableArray arrayWithArray:allExpenses];	
 		
@@ -163,7 +170,7 @@
 
 - (NSArray*)acctWithdrawalsNotAlreadyItemized
 {
-	NSArray *allAccounts = [[DataModelController theDataModelController]
+	NSArray *allAccounts = [self.dataModelController
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
 		
@@ -190,7 +197,7 @@
 
 - (NSArray*)acctContribsNotAlreadyItemized
 {
-	NSArray *allAccounts = [[DataModelController theDataModelController]
+	NSArray *allAccounts = [self.dataModelController
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
 		
@@ -217,7 +224,7 @@
 
 - (NSArray*)acctInterestNotAlreadyItemized
 {
-	NSArray *allAccounts = [[DataModelController theDataModelController]
+	NSArray *allAccounts = [self.dataModelController
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
 		
@@ -244,7 +251,7 @@
 
 - (NSArray*)assetGainsNotAlreadyItemized
 {
-	NSArray *allAssets = [[DataModelController theDataModelController]
+	NSArray *allAssets = [self.dataModelController
 			fetchSortedObjectsWithEntityName:ASSET_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	NSMutableArray *unItemizedAssets = [NSMutableArray arrayWithArray:allAssets];	
 		
@@ -271,7 +278,7 @@
 
 - (NSArray*)loanInterestNotAlreadyItemized
 {
-	NSArray *allLoans = [[DataModelController theDataModelController]
+	NSArray *allLoans = [self.dataModelController
 			fetchSortedObjectsWithEntityName:LOAN_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	NSMutableArray *unItemizedLoans = [NSMutableArray arrayWithArray:allLoans];	
 		
@@ -301,8 +308,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[itemizedTaxAmts release];
+	[dataModelController release];
 	
 	[itemizedIncomes release];
 	[itemizedExpenses release];
@@ -311,6 +318,7 @@
 	[itemizedAccountWithdrawals release];
 	[itemizedAssets release];
 	[itemizedLoans release];
+	[super dealloc];
 }
 
 @end

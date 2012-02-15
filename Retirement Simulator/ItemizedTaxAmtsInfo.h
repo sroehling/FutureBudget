@@ -12,6 +12,7 @@
 @class ItemizedTaxAmts;
 
 @class  ItemizedTaxAmtFieldPopulator;
+@class  DataModelController;
 
 @interface ItemizedTaxAmtsInfo : NSObject {
    @private
@@ -52,7 +53,8 @@
 @property BOOL itemizeLoanInterest;
 @property BOOL itemizeAssetGains;
 
--(id)initWithItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
 	andTitle:(NSString*)theTitle andAmtPrompt:(NSString *)theAmtPrompt
 	andItemTitle:(NSString*)theItemTitle
 	andItemSectionTitleFormat:(NSString*)theItemSectionTitleFormat
@@ -65,9 +67,9 @@
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
 	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest;
 	
-+(ItemizedTaxAmtsInfo*)taxSourceInfo:(TaxInput*)tax;
-+(ItemizedTaxAmtsInfo*)taxAdjustmentInfo:(TaxInput*)tax;
-+(ItemizedTaxAmtsInfo*)taxDeductionInfo:(TaxInput*)tax;
-+(ItemizedTaxAmtsInfo*)taxCreditInfo:(TaxInput*)tax;
++(ItemizedTaxAmtsInfo*)taxSourceInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController;
++(ItemizedTaxAmtsInfo*)taxAdjustmentInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController;
++(ItemizedTaxAmtsInfo*)taxDeductionInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController;
++(ItemizedTaxAmtsInfo*)taxCreditInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController;
 
 @end

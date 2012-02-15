@@ -69,8 +69,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	[captionInfo release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning

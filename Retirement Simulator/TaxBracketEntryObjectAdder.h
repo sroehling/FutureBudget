@@ -12,14 +12,18 @@
 #import "TaxBracket.h"
 
 @class TaxBracket;
+@class DataModelController;
 
 @interface TaxBracketEntryObjectAdder : NSObject <TableViewObjectAdder>  {
 		@private
 			TaxBracket *taxBracket;
+			DataModelController *dataModelController;
 }
 
 @property(nonatomic,retain) TaxBracket *taxBracket;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
--(id)initWithTaxBracket:(TaxBracket*)theTaxBracket;
+-(id)initWithTaxBracket:(TaxBracket*)theTaxBracket 
+	andParentDataModelController:(DataModelController*)parentDataModelController;
 
 @end

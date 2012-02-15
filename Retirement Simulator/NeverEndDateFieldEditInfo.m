@@ -49,8 +49,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[neverEndDate release];
+	[super dealloc];
 }
 
 @end

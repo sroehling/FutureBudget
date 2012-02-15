@@ -91,10 +91,10 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	[valueDescription release];
 	[valueSubtitle release];
 	[caption release];
+    [super dealloc];
 
 }
 

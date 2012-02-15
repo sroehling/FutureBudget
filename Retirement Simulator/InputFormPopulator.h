@@ -25,7 +25,7 @@
 @class LoanInput;
 @class VariableValue;
 @class TableHeaderWithDisclosure;
-
+@class FormContext;
 @class ItemizedTaxAmt;
 @class ItemizedTaxAmtsInfo;
 
@@ -40,8 +40,8 @@
 @property(nonatomic,retain) Scenario *inputScenario;
 @property BOOL isForNewObject;
 
--(id)initWithScenario:(Scenario*)theInputScenario andParentController:(UIViewController*)parentController;
--(id)initForNewObject:(BOOL)isNewObject andParentController:(UIViewController*)parentController;
+-(id)initWithScenario:(Scenario*)theInputScenario andFormContext:(FormContext*)theFormContext;
+-(id)initForNewObject:(BOOL)isNewObject andFormContext:(FormContext*)theFormContext;
 
 - (void)populateInputNameField:(Input*)theInput;
 
@@ -115,6 +115,6 @@
 -(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
 	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator;
 		
--(TableHeaderWithDisclosure*)scenarioListTableHeaderWithParentController:(UIViewController*)parentController;	
+-(TableHeaderWithDisclosure*)scenarioListTableHeaderWithFormContext:(FormContext*)formContext;	
 		
 @end

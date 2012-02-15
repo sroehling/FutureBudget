@@ -8,14 +8,16 @@
 
 #import "InputListObjectAdder.h"
 #import "InputTypeSelectionViewController.h"
+#import "FormContext.h"
 
 @implementation InputListObjectAdder
 
--(void)addObjectFromTableView:(UITableViewController*)parentView
+-(void)addObjectFromTableView:(FormContext*)parentContext
 {
 	InputTypeSelectionViewController *inputTypeViewController = 
 		[[[InputTypeSelectionViewController alloc ]initWithStyle:UITableViewStyleGrouped] autorelease];
-    [parentView.navigationController pushViewController:inputTypeViewController animated:YES];
+	inputTypeViewController.dmcForNewInputs = parentContext.dataModelController;
+    [parentContext.parentController.navigationController pushViewController:inputTypeViewController animated:YES];
 
 }
 

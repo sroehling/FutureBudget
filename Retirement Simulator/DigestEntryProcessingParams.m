@@ -43,9 +43,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[workingBalanceMgr release];
 	[currentDate release];
+	[super dealloc];
 }
 
 @end

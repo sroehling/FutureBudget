@@ -19,6 +19,7 @@
 @class MultiScenarioInputValue;
 @class SimDateSubtitleFormatter;
 @class MultiScenarioInputValue;
+@class DataModelController;
 
 @interface SimDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
     @private
@@ -36,11 +37,13 @@
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 @property(nonatomic,retain) SimDateSubtitleFormatter *subtitleFormatter;
 	
-+ (SimDateFieldEditInfo*)createForObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultFixedDate:(FixedDate*)defaultFixedDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
++ (SimDateFieldEditInfo*)createForDataModelController:(DataModelController*)dataModelController 
+		andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultFixedDate:(FixedDate*)defaultFixedDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 
 	andShowEndDates:(bool)doShowEndDates
-	andDefaultRelEndDateKey:(NSString*)theDefaultRelEndDateKey;
+	andDefaultRelEndDateKey:(NSString*)defaultRelEndDateKey;
 			  
-+ (SimDateFieldEditInfo*)createForMultiScenarioVal:(Scenario*)scenario 
++ (SimDateFieldEditInfo*)createForDataModelController:(DataModelController*)dataModelController 
+	andMultiScenarioVal:(Scenario*)scenario 
 	andSimDate:(MultiScenarioInputValue*)multiScenSimDate andLabel:(NSString*)label
 	andDefaultValue:(MultiScenarioInputValue*)defaultVal 
 	andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 

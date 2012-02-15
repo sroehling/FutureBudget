@@ -112,8 +112,8 @@ static SimResultsController *theSimResultsControllerSingleton;
 
 -(id)init
 {
-	return [self initWithDataModelController:[DataModelController theDataModelController] 
-			andSharedAppValues:[SharedAppValues singleton]];
+	assert(0);
+	return nil;
 }
 
 +(void)initSingleton:(SimResultsController*)theSimResultsCtrl
@@ -130,9 +130,12 @@ static SimResultsController *theSimResultsControllerSingleton;
 	return theSimResultsControllerSingleton;
 }
 
-+(void)initFromDatabase
++(void)initSingletonFromDataModelController:(DataModelController*)dataModelController
 {
-	[SimResultsController initSingleton:[[[SimResultsController alloc] init] autorelease]];
+	SimResultsController *theResultsController = [[[SimResultsController alloc] 
+		initWithDataModelController:dataModelController 
+		andSharedAppValues:[SharedAppValues getUsingDataModelController:dataModelController]] autorelease];
+	[SimResultsController initSingleton:theResultsController];	
 }
 
 
@@ -141,7 +144,6 @@ static SimResultsController *theSimResultsControllerSingleton;
 	[self.dataModelController stopObservingContextChanges:self];
 
 
-	[super dealloc];
 	
 	[endOfYearResults release];
 	[assetsSimulated release];
@@ -153,6 +155,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 	
 	[dataModelController release];
 	[sharedAppVals release];
+	[super dealloc];
 }
 
 

@@ -48,8 +48,8 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[incomeInfo release];
+	[super dealloc];
 }
 
 @end

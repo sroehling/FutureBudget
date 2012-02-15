@@ -83,8 +83,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[calcEntries release];
+	[super dealloc];
 }
 
 @end

@@ -9,14 +9,19 @@
 #import <Foundation/Foundation.h>
 
 @class FieldInfo;
+@class DataModelController;
 
 @interface FieldEditViewController : UIViewController {
     FieldInfo *fieldInfo;
+	DataModelController *dataModelController;
 }
 
 @property(nonatomic,retain) FieldInfo *fieldInfo;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
-- (id) initWithNibName:(NSString *)nibName andFieldInfo:(FieldInfo*)theFieldInfo;
+- (id) initWithNibName:(NSString *)nibName andFieldInfo:(FieldInfo*)theFieldInfo
+	andDataModelController:(DataModelController*)theDataModelController;
+	
 - (void) commidFieldEdit;
 - (void) initFieldUI;
 

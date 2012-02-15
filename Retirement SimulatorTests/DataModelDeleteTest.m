@@ -32,12 +32,6 @@
 
 -(void)resetCoreData
 {
-/* Use the following to test with the 
-   SQLite core data:
-	self.coreDataInterface = [DataModelController theDataModelController];
-	self.testAppVals = [SharedAppValues singleton];
-*/
-
 	self.coreDataInterface = [[[DataModelController alloc] initForInMemoryStorage] autorelease]; 
 	self.testAppVals = [SharedAppValues createWithDataModelInterface:self.coreDataInterface];
 	

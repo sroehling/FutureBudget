@@ -74,18 +74,6 @@
     
 }
 
-- (UIViewController*)fieldEditController
-{
-    assert(0);
-    return nil;
-    
-}
-
-- (BOOL)hasFieldEditController
-{
-    return FALSE;
-}
-
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
@@ -100,8 +88,8 @@
 
 - (void)dealloc 
 {
-    [super dealloc];
 	[boolCell release];
+    [super dealloc];
 }
 
 

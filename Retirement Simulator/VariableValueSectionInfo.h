@@ -11,13 +11,15 @@
 #import "AddObjectSectionInfo.h"
 #import "VariableValueRuntimeInfo.h"
 
+@class DataModelController;
+
 @interface VariableValueSectionInfo : AddObjectSectionInfo {
         @private
             VariableValueRuntimeInfo *varValRuntimeInfo;
 }
 
 - (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
-	andParentViewController:(UIViewController*)theParentController;
+	andFormContext:(FormContext*)theFormContext;
 
 @property(nonatomic,retain) VariableValueRuntimeInfo *varValRuntimeInfo;
 

@@ -19,15 +19,17 @@
 #import "LocalizationHelper.h"
 #import "ManagedObjectFieldInfo.h"
 #import "NameFieldEditInfo.h"
+#import "DataModelController.h"
+#import "FormContext.h"
 
 @implementation MilestoneDateFormPopulator
 
 @synthesize varDateRuntimeInfo;
 
 -(id) initWithRuntimeInfo:(SimDateRuntimeInfo*)theRuntimeInfo
-	andParentController:(UIViewController*)parentController
+	andFormContext:(FormContext*)theFormContext
 {
-	self = [super initWithParentController:parentController];
+	self = [super initWithFormContext:theFormContext];
 	if(self)
 	{
 		self.varDateRuntimeInfo = theRuntimeInfo;
@@ -63,9 +65,15 @@
 - (UIViewController*)milestoneDateAddViewController:(MilestoneDate*)milestoneDate
 {
     [self populateForMilestoneDate:milestoneDate];
+
+// TODO - Allocate a new DataModelController, so that additons to milestone dates
+// can be kept separate from other changes. This will also ensure any additions to 
+// milestone dates are not lost if a new milestone date is created while creating
+// a new input, but the save is canceled.
+	
     GenericFieldBasedTableAddViewController *controller = [[[GenericFieldBasedTableAddViewController alloc]
          initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:self.formInfo] 
-        andNewObject:milestoneDate] autorelease];
+        andNewObject:milestoneDate andDataModelController:self.formContext.dataModelController] autorelease];
     controller.popDepth =1;
     return controller;
     
@@ -74,7 +82,10 @@
 - (UIViewController*)milestoneDateEditViewController:(MilestoneDate*)milestoneDate
 {
     [self populateForMilestoneDate:milestoneDate];
-    UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc] initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:self.formInfo]] autorelease];
+	
+    UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc] 
+		initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:self.formInfo]
+		andDataModelController:self.formContext.dataModelController] autorelease];
 
     return controller;
     
@@ -82,8 +93,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[varDateRuntimeInfo release];
+	[super dealloc];
 }
 
 @end

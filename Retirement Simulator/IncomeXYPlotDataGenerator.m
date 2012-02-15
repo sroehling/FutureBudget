@@ -67,8 +67,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[income release];
+	[super dealloc];
 }
 
 @end

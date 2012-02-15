@@ -255,10 +255,10 @@
 
 - (void) dealloc
 {
-    [super dealloc];
     [mediumDateFormatter release];
 	[longDateFormatter release];
 	[gregorian release];
+    [super dealloc];
 }
 
 + (NSDate*)dateFromStr:(NSString*)dateStr

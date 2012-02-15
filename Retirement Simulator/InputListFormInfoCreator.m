@@ -23,12 +23,16 @@
 #import "AssetInput.h"
 #import "TaxInput.h"
 #import "HelpPagePopoverCaptionInfo.h"
+#import "FormContext.h"
 
 @implementation InputListFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+
+	FormPopulator *formPopulator = [[[FormPopulator alloc]
+		initWithFormContext:parentContext] autorelease];
+		
     
     formPopulator.formInfo.title = @"Inputs";
 	formPopulator.formInfo.objectAdder = [[[InputListObjectAdder alloc] init] autorelease];
@@ -37,11 +41,11 @@
 		LOCALIZED_STR(@"INPUT_LIST_EMPTY_LIST_ADD_BUTTON_CAPTION") 
 		andHelpPageMoreInfoCaption:LOCALIZED_STR(@"INPUT_LIST_EMPTY_LIST_ADD_BUTTON_MORE_INFO_CAPTION") 
 		andHelpPageName:@"gettingStarted" 
-		andParentController:parentController] autorelease];
+		andParentController:parentContext.parentController] autorelease];
 	
 	SectionInfo *sectionInfo;
 	
-	NSArray *inputs = [[DataModelController theDataModelController]
+	NSArray *inputs = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:INCOME_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
@@ -51,12 +55,12 @@
 		{    
 			assert(income != nil);
 			InputFieldEditInfo *inputFieldEditInfo =
-				[[[InputFieldEditInfo alloc] initWithInput:income] autorelease];
+				[[[InputFieldEditInfo alloc] initWithInput:income andDataModelController:parentContext.dataModelController] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
 
-	inputs = [[DataModelController theDataModelController]
+	inputs = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:EXPENSE_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
@@ -66,12 +70,12 @@
 		{    
 			assert(expense != nil);
 			InputFieldEditInfo *inputFieldEditInfo =
-				[[[InputFieldEditInfo alloc] initWithInput:expense] autorelease];
+				[[[InputFieldEditInfo alloc] initWithInput:expense andDataModelController:parentContext.dataModelController] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
 	
-	inputs = [[DataModelController theDataModelController]
+	inputs = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
@@ -81,13 +85,13 @@
 		{    
 			assert(account != nil);
 			InputFieldEditInfo *inputFieldEditInfo =
-				[[[InputFieldEditInfo alloc] initWithInput:account] autorelease];
+				[[[InputFieldEditInfo alloc] initWithInput:account andDataModelController:parentContext.dataModelController] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
 	
 
-	inputs = [[DataModelController theDataModelController]
+	inputs = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:LOAN_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
@@ -97,13 +101,13 @@
 		{    
 			assert(loan != nil);
 			InputFieldEditInfo *inputFieldEditInfo =
-				[[[InputFieldEditInfo alloc] initWithInput:loan] autorelease];
+				[[[InputFieldEditInfo alloc] initWithInput:loan andDataModelController:parentContext.dataModelController] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
 
 
-	inputs = [[DataModelController theDataModelController]
+	inputs = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:ASSET_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
@@ -113,13 +117,13 @@
 		{    
 			assert(asset != nil);
 			InputFieldEditInfo *inputFieldEditInfo =
-				[[[InputFieldEditInfo alloc] initWithInput:asset] autorelease];
+				[[[InputFieldEditInfo alloc] initWithInput:asset andDataModelController:parentContext.dataModelController] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
 
 
-	inputs = [[DataModelController theDataModelController]
+	inputs = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:TAX_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([inputs count] > 0)
 	{
@@ -129,11 +133,10 @@
 		{    
 			assert(tax != nil);
 			InputFieldEditInfo *inputFieldEditInfo =
-				[[[InputFieldEditInfo alloc] initWithInput:tax] autorelease];
+				[[[InputFieldEditInfo alloc] initWithInput:tax andDataModelController:parentContext.dataModelController] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
-
 
 	return formPopulator.formInfo;
 	

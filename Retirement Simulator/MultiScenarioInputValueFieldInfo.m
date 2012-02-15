@@ -75,9 +75,9 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[currentScenario release];
 	[multiScenInputVal release];
+	[super dealloc];
 }
 
 @end

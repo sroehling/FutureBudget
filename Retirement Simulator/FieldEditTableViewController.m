@@ -13,14 +13,19 @@
 @implementation FieldEditTableViewController
 
 @synthesize fieldInfo;
+@synthesize dataModelController;
 
-- (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo
+- (id) initWithFieldInfo:(FieldInfo*)theFieldInfo
+	andDataModelController:(DataModelController*)theDataModelController
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self)
     {
         assert(theFieldInfo != nil);
         self.fieldInfo = theFieldInfo;
+		
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
     }
     return self;
 }
@@ -68,8 +73,8 @@
 	
     [self commidFieldEdit];
 	
-    [[DataModelController theDataModelController] saveContext];
-    
+	[self.dataModelController saveContextAndIgnoreErrors];
+	    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -83,6 +88,7 @@
 
 - (void)dealloc {
     [fieldInfo release];
+	[dataModelController release];
 	[super dealloc];
 }
 

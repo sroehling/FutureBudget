@@ -56,8 +56,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[digestEntries release];
+	[super dealloc];
 }
 
 @end

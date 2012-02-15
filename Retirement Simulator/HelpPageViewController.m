@@ -102,9 +102,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[helpPageInfo release];
 	[helpPage release];
+	[super dealloc];
 }
 
 @end

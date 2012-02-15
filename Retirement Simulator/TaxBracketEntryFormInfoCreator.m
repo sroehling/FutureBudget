@@ -12,6 +12,7 @@
 #import "SharedAppValues.h"
 #import "TaxBracketEntry.h"
 #import "LocalizationHelper.h"
+#import "FormContext.h"
 
 
 @implementation TaxBracketEntryFormInfoCreator
@@ -33,11 +34,11 @@
 	return self;
 }
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] 
 		initForNewObject:self.newEntry
-			andParentController:parentController] autorelease];
+			andFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"TAX_BRACKET_ENTRY_FORM_TITLE");
 		
@@ -60,8 +61,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[taxBracketEntry release];
+	[super dealloc];
 }
 
 @end

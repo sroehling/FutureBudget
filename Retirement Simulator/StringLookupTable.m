@@ -48,8 +48,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[lookupTable release];
+	[super dealloc];
 }
 
 @end

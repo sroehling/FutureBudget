@@ -59,7 +59,6 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[tableTitle  release];
 	[tableHeader release];
 	[tableSubHeader release];
@@ -70,6 +69,7 @@
 	[relEndDateSectionTitle release];
 	[relEndDateHelpFile release];
 	[relEndDateFieldLabel release];
+	[super dealloc];
 }
 
 

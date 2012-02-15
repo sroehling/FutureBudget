@@ -13,22 +13,24 @@
 #import "SectionHeaderWithSubtitle.h"
 #import "FormInfoCreator.h"
 #import "StaticNavFieldEditInfo.h"
+#import "FormContext.h"
 
 
 @implementation FormPopulator
 
 @synthesize currentSection;
-@synthesize parentController;
-
+@synthesize formContext;
 @synthesize formInfo;
 
-- (id) initWithParentController:(UIViewController*)theParentController
+- (id) initWithFormContext:(FormContext*)theFormContext
 {
     self = [super init];
     if(self)
     {
         self.formInfo = [[[FormInfo alloc] init] autorelease];
-		self.parentController = theParentController;
+		
+		assert(theFormContext != nil);
+		self.formContext = theFormContext;
     }
     return self;
 }
@@ -41,16 +43,17 @@
 
 - (void) dealloc
 {
-    [super dealloc];
-    [formInfo release];
 	[currentSection release];
+	[formContext release];
+    [formInfo release];
+	[super dealloc];
 }
 
 - (SectionInfo*)nextSection
 {
-    SectionInfo *nextSection = [[[SectionInfo alloc]init] autorelease];
+    SectionInfo *nextSection = [[[SectionInfo alloc]initWithFormContext:self.formContext] autorelease];
 	self.currentSection = nextSection;
-	nextSection.sectionHeader.parentController = self.parentController;
+	nextSection.sectionHeader.formContext = self.formContext;
     [formInfo addSection:nextSection];
     return nextSection;
 }

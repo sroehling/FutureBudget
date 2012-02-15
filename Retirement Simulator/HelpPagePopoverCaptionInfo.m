@@ -62,10 +62,10 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[helpPageMoreInfoCaption release];
 	[helpPageName release];
 	[popoverCaption release];
+	[super dealloc];
 }
 
 @end

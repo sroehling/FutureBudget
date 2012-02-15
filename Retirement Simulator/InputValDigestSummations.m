@@ -39,8 +39,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[inputValDigestSums release];
+	[super dealloc];
 }
 
 @end

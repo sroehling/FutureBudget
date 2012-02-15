@@ -45,18 +45,17 @@
 
 -(id)init
 {
-	InputCreationHelper *theHelper = [[[InputCreationHelper alloc] initForDatabaseInputs] autorelease];
-	return [self initWithInputCreationHelper:theHelper 
-		andDataModelInterface:[DataModelController theDataModelController]];
+	assert(0);
+	return nil;
 }
 
 
 
 -(void)dealloc
 {
-	[super dealloc];
 	[inputCreationHelper release];
 	[dataModelInterface release];
+	[super dealloc];
 }
 
 -(Input*)createInput

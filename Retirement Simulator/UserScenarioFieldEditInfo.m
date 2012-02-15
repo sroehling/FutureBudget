@@ -12,6 +12,7 @@
 #import "FormFieldWithSubtitleTableCell.h"
 #import "UserScenarioFormInfoCreator.h"
 #import "DataModelController.h"
+#import "FormContext.h"
 
 
 @implementation UserScenarioFieldEditInfo
@@ -37,9 +38,9 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[userScen release];
 	[scenarioCell release];
+	[super dealloc];
 }
 
 
@@ -54,20 +55,16 @@
     return self.userScen.name;
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     UserScenarioFormInfoCreator *formInfoCreator = 
 		[[[UserScenarioFormInfoCreator alloc]
 		initWithUserScenario:self.userScen] autorelease];
     UIViewController *detailViewController = 
 	[[[GenericFieldBasedTableEditViewController alloc] 
-	  initWithFormInfoCreator:formInfoCreator] autorelease];
+	  initWithFormInfoCreator:formInfoCreator
+	  andDataModelController:parentContext.dataModelController] autorelease];
 	return detailViewController;
-}
-
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
 }
 
 - (void)configureScenarioCell
@@ -113,12 +110,12 @@
 	return TRUE;
 }
 
-- (void)deleteObject
+- (void)deleteObject:(DataModelController*)dataModelController
 {
 	// TODO - Need to ensure the current scenario reverts back to default when 
 	// deleting the scenario and the current scenario is this one.
 	assert(self.userScen != nil);
-	[[DataModelController theDataModelController] deleteObject:self.userScen];
+	[dataModelController deleteObject:self.userScen];
 	self.userScen = nil;
 }
 

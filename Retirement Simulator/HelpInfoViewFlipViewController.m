@@ -37,9 +37,9 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	[helpFlipViewInfo release];
 	[helpInfoView release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning

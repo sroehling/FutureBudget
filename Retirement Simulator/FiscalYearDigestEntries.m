@@ -104,9 +104,9 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[dailyDigestEntries release];
 	[startDate release];
+	[super dealloc];
 }
 
 

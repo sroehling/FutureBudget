@@ -95,11 +95,11 @@ NSString * const BOOL_FIELD_CELL_ENTITY_NAME = @"BoolFieldCell";
 
 -(void)dealloc
 {
-    [super dealloc];
 	[label release];
 	[boolSwitch release];
 	[boolFieldInfo release];
 	[valueSubtitle release];
+    [super dealloc];
 }
 
 @end

@@ -14,8 +14,10 @@
 @implementation FieldEditViewController
 
 @synthesize fieldInfo;
+@synthesize dataModelController;
 
 - (id) initWithNibName:(NSString *)nibName andFieldInfo:(FieldInfo*)theFieldInfo
+	andDataModelController:(DataModelController*)theDataModelController
 {
     assert(nibName != nil);
     self = [super initWithNibName:nibName bundle:nil];
@@ -23,6 +25,11 @@
     {
         assert(theFieldInfo != nil);
         self.fieldInfo = theFieldInfo;
+
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
+
+
     }
     return self;
 }
@@ -71,7 +78,7 @@
     [self commidFieldEdit];
 	
 	// We perform a "soft save" since other fields may not be initialized yet.
-    [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
+    [self.dataModelController saveContextAndIgnoreErrors];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -86,6 +93,7 @@
 
 - (void)dealloc {
     [fieldInfo release];
+	[dataModelController release];
 	[super dealloc];
 }
 

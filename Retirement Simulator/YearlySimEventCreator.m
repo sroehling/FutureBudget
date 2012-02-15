@@ -19,9 +19,9 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[yearlyEventRepeater release];
 	[simStartDate release];
+	[super dealloc];
 }
 
 - (id) initWithStartingMonth:(NSInteger)monthNum andStartingDay:(NSInteger)dayNum

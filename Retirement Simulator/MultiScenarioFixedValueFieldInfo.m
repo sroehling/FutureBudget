@@ -18,8 +18,10 @@
 
 @synthesize inputVal;
 @synthesize currentScen;
+@synthesize dataModelController;
 
--(id)initWithFieldLabel:(NSString *)theFieldLabel andFieldPlaceholder:(NSString *)thePlaceholder
+-(id)initWithDataModelController:(DataModelController*)theDataModelController
+	andFieldLabel:(NSString *)theFieldLabel andFieldPlaceholder:(NSString *)thePlaceholder
 	andScenario:(Scenario*)currScenario andInputVal:(MultiScenarioInputValue*)theInputVal
 {
 	self = [super initWithFieldLabel:theFieldLabel andFieldPlaceholder:thePlaceholder];
@@ -27,6 +29,8 @@
 	{
 		assert(currScenario != nil);
 		assert(theInputVal != nil);
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
 		self.currentScen = currScenario;
 		self.inputVal = theInputVal;
 	}
@@ -71,7 +75,7 @@
 	}
 	else
 	{
-		FixedValue *newVal = (FixedValue*)[[DataModelController theDataModelController] 
+		FixedValue *newVal = (FixedValue*)[self.dataModelController 
 			insertObject:FIXED_VALUE_ENTITY_NAME];
 		newVal.value = (NSNumber*)newValue;
 		[self.inputVal setValueForScenario:self.currentScen andInputValue:newVal];
@@ -86,9 +90,10 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[inputVal release];
 	[currentScen release];
+	[dataModelController release];
+	[super dealloc];
 }
 
 

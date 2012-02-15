@@ -103,8 +103,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[taxBracketEntries release];
+	[super dealloc];
 }
 
 @end

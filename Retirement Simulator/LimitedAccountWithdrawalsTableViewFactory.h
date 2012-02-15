@@ -20,5 +20,4 @@
 -(id)initWithAccount:(Account*)theAccount;
 
 @property(nonatomic,retain) Account *account;
-
 @end

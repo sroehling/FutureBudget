@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class DataModelController;
+
 
 @interface InputTypeSelectionViewController : UITableViewController {
     @private
         NSMutableArray *inputTypes;
         BOOL typeSelected;
+		DataModelController *dmcForNewInputs;
 }
 
 @property(nonatomic,retain) NSMutableArray *inputTypes;
+@property(nonatomic,retain) DataModelController *dmcForNewInputs;
 
 @end

@@ -24,6 +24,9 @@
 #import "ColorHelper.h"
 #import "MoreFormInfoCreator.h"
 
+#import "FormPopulator.h"
+#import "FormContext.h"
+
 @implementation Retirement_SimulatorAppDelegate
 
 
@@ -40,15 +43,21 @@
     [NSFetchedResultsController deleteCacheWithName:nil];
     
 	[SharedAppValues initFromDatabase];
-	[SimResultsController initFromDatabase];
+	
+	DataModelController *topLevelDataModelController = 
+		[[[DataModelController alloc]init] autorelease];
+	[DataModelController initTmpSingletonDataModelControllerForMultiScenarioInputValue:topLevelDataModelController];
+
+	
+	[SimResultsController initSingletonFromDataModelController:topLevelDataModelController];
 	
 	// navBarController is the color used in the navigation bar for all the tabbed views.
 	UIColor *navBarControllerColor = [ColorHelper navBarTintColor];
-    
+
 	InputListFormInfoCreator *inputFormInfoCreator = 
 		[[[InputListFormInfoCreator alloc] init] autorelease];
 	UIViewController *inputController = [[[GenericFieldBasedTableEditViewController alloc]
-		initWithFormInfoCreator:inputFormInfoCreator] autorelease];
+		initWithFormInfoCreator:inputFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
 	inputNavController.title = LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
 	inputNavController.tabBarItem.image = [UIImage imageNamed:@"piggy.png"];
@@ -59,7 +68,7 @@
 	StartingValsFormInfoCreator *startingValsFormInfoCreator = 
 		[[[StartingValsFormInfoCreator alloc] init] autorelease];
 	UIViewController *startingValsController = [[[GenericFieldBasedTableEditViewController alloc]
-		initWithFormInfoCreator:startingValsFormInfoCreator] autorelease];
+		initWithFormInfoCreator:startingValsFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *startingValsNavController = 
 		[[[UINavigationController alloc] initWithRootViewController:startingValsController] autorelease];
 	startingValsNavController.title = LOCALIZED_STR(@"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE");
@@ -69,7 +78,7 @@
 	ResultsListFormInfoCreator *resultsListFormInfoCreator = 
 		[[[ResultsListFormInfoCreator alloc] init] autorelease];
 	UIViewController *resultsController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:resultsListFormInfoCreator] autorelease];
+		initWithFormInfoCreator:resultsListFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *resultsNavController = [[[UINavigationController alloc] 
 		initWithRootViewController:resultsController] autorelease];
 	resultsNavController.title = LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
@@ -79,7 +88,7 @@
 	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
 		[[[WhatIfFormInfoCreator alloc] init] autorelease];
 	UIViewController *whatIfController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:whatIfFormInfoCreator] autorelease];
+		initWithFormInfoCreator:whatIfFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
 	whatIfNavController.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
 	whatIfNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
@@ -89,7 +98,7 @@
 	MoreFormInfoCreator *moreFormInfoCreator = 
 		[[[MoreFormInfoCreator alloc] init] autorelease];
 	UIViewController *moreViewController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:moreFormInfoCreator] autorelease];
+		initWithFormInfoCreator:moreFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *moreNavController = [[[UINavigationController alloc] initWithRootViewController:moreViewController] autorelease];
 	moreNavController.title = LOCALIZED_STR(@"MORE_VIEW_TITLE");
 	moreNavController.tabBarItem = [[[UITabBarItem alloc] 
@@ -152,9 +161,6 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-    // Saves changes in the application's managed object context before the application 
-    [[DataModelController theDataModelController] saveContextAndIgnoreErrors];
-
 }
 
 - (void)dealloc

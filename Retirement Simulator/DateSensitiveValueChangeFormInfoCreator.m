@@ -25,6 +25,7 @@
 #import "SimDateFieldEditInfo.h"
 #import "LocalizationHelper.h"
 #import "SimDateRuntimeInfo.h"
+#import "FormContext.h"
 
 @implementation DateSensitiveValueChangeFormInfoCreator
 
@@ -52,9 +53,10 @@
 }
 
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc] 
+		initWithFormContext:parentContext] autorelease];
 	
     formPopulator.formInfo.title = [NSString stringWithFormat:
 		LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_FORMAT"),
@@ -65,7 +67,9 @@
 	SimDateRuntimeInfo *varDateInfo = [SimDateRuntimeInfo createForDateSensitiveValue:valRuntimeInfo 
 				andVariableValue:self.parentVariableVal];
 	
-	SimDateFieldEditInfo *simDateFieldEditInfo = [SimDateFieldEditInfo createForObject:self.valueChange 
+	SimDateFieldEditInfo *simDateFieldEditInfo = [SimDateFieldEditInfo 
+		createForDataModelController:parentContext.dataModelController 
+		andObject:self.valueChange 
 		andKey:DATE_SENSITIVE_VALUE_CHANGE_START_DATE_KEY
 		andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
 		andDefaultFixedDate:self.valueChange.defaultFixedStartDate 
@@ -91,11 +95,10 @@
 
 -(void)dealloc
 {
-	[super dealloc];
-	
 	[parentVariableVal release];
 	[valRuntimeInfo release];
 	[valueChange release];
+	[super dealloc];
 
 }
 

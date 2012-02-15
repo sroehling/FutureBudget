@@ -44,11 +44,6 @@
 	return self;
 }
 
--(id)initForDatabaseInputs
-{
-	return [self initWithDataModelInterface:[DataModelController theDataModelController] andSharedAppVals:[SharedAppValues singleton]];
-}
-
 - (id) init
 {
 	assert(0); // must init with data model interface and shared app vals
@@ -57,9 +52,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[dataModel release];
 	[sharedAppVals release];
+	[super dealloc];
 }
 
 - (MultiScenarioInputValue*)multiScenInputValue

@@ -42,8 +42,9 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[acctSimInfo release];
+	[super dealloc];
+
 }
 
 @end

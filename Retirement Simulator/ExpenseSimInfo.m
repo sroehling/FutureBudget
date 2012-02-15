@@ -43,10 +43,10 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[expense release];
 	[digestSum release];
 	[simParams release];
+	[super dealloc];
 }
 
 

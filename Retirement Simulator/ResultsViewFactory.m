@@ -31,7 +31,7 @@
 	return nil;
 }
 
-- (UIViewController*)createTableView
+-(UIViewController*)createTableView:(FormContext*)parentContext
 {
 	assert(0); // must be overridden
 	return nil;
@@ -40,8 +40,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[resultsViewInfo release];
+	[super dealloc];
 }
 
 @end

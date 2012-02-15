@@ -85,8 +85,8 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 	[eventList release];
+	[super dealloc];
 }
 
 @end

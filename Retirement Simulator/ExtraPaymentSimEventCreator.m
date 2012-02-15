@@ -68,9 +68,9 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[eventRepeater release];
 	[loanInfo release];
+	[super dealloc];
 }
 
 @end

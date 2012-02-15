@@ -12,6 +12,7 @@
 #import "FormInfoCreator.h"
 #import "FinishedAddingObjectListener.h"
 
+@class DataModelController;
 
 @interface GenericFieldBasedTableAddViewController : GenericFieldBasedTableViewController {
 @private
@@ -26,6 +27,7 @@
 @property(nonatomic,retain) id<FinishedAddingObjectListener> finshedAddingListener;
 @property(nonatomic) NSInteger popDepth;
 
-- (id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator andNewObject:(NSManagedObject*)newObj;
+- (id)initWithFormInfoCreator:(id<FormInfoCreator>)theFormInfoCreator andNewObject:(NSManagedObject*)newObj
+	andDataModelController:(DataModelController*)theDataModelController;
 
 @end

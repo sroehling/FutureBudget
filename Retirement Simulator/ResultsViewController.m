@@ -35,8 +35,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	[viewInfo release];
+    [super dealloc];
 }
 
 

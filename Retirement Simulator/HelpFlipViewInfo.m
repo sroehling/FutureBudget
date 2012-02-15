@@ -39,8 +39,8 @@
 
 -(void)dealloc
 {
-	[super dealloc];
 	[helpPageHTMLFile release];
+	[super dealloc];
 }
 
 

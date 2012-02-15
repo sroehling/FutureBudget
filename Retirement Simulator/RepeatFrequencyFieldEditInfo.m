@@ -14,6 +14,7 @@
 #import "FormFieldWithSubtitleTableCell.h"
 #import "LocalizationHelper.h"
 #import "MultiScenarioInputValueFieldInfo.h"
+#import "FormContext.h"
 
 @implementation RepeatFrequencyFieldEditInfo
 
@@ -84,18 +85,15 @@
     return [repeatFrequency description];
 }
 
-- (UIViewController*)fieldEditController
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     RepeatFrequencyEditViewController *repeatController = 
-    [[RepeatFrequencyEditViewController alloc] initWithFieldInfo:fieldInfo];
+    [[RepeatFrequencyEditViewController alloc] initWithFieldInfo:fieldInfo
+		andDataModelController:parentContext.dataModelController];
     [repeatController autorelease];
     return repeatController;
 }
 
-- (BOOL)hasFieldEditController
-{
-    return TRUE;
-}
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
 {
@@ -110,8 +108,8 @@
 
 - (void) dealloc
 {
-	[super dealloc];
 	[freqCell release];
+	[super dealloc];
 }
 
 @end

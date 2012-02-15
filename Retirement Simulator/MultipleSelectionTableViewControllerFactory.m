@@ -9,6 +9,7 @@
 #import "MultipleSelectionTableViewControllerFactory.h"
 
 #import "MultipleSelectionTableViewController.h"
+#import "FormContext.h"
 
 @implementation MultipleSelectionTableViewControllerFactory
 
@@ -31,17 +32,17 @@
 	return nil;
 }
 
-- (UIViewController*)createTableView
+-(UIViewController*)createTableView:(FormContext*)parentContext
 {
 	UIViewController *controller = [[[MultipleSelectionTableViewController alloc]
-	    initWithFormInfoCreator:self.formInfoCreator] autorelease];
+	    initWithFormInfoCreator:self.formInfoCreator andDataModelController:parentContext.dataModelController] autorelease];
 	return controller;
 }
 
 -(void)dealloc
 {
-	[super dealloc];
 	[formInfoCreator release];
+	[super dealloc];
 }
 
 

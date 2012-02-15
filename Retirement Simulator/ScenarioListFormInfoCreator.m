@@ -21,12 +21,14 @@
 #import "SectionHeaderWithSubtitle.h"
 #import "SectionInfo.h"
 #import "DefaultScenarioFieldEditInfo.h"
+#import "FormContext.h"
 
 @implementation ScenarioListFormInfoCreator
 
-- (FormInfo*)createFormInfo:(UIViewController*)parentController
+- (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithParentController:parentController] autorelease];
+    FormPopulator *formPopulator = [[[FormPopulator alloc]
+		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"SCENARIO_LIST_VIEW_TITLE");
 	formPopulator.formInfo.objectAdder = [[[ScenarioListObjectAdder alloc] init] autorelease];
@@ -34,7 +36,7 @@
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	
 	DefaultScenario *defaultScen = 
-	      [SharedAppValues singleton].defaultScenario;
+	      [SharedAppValues getUsingDataModelController:parentContext.dataModelController].defaultScenario;
 	StaticFieldEditInfo *defaultScenarioFieldEditInfo = 
 		[[[DefaultScenarioFieldEditInfo alloc] initWithDefaultScen:defaultScen] autorelease];
 	[sectionInfo addFieldEditInfo:defaultScenarioFieldEditInfo];
@@ -44,7 +46,7 @@
 		andHelpFile:@"scenariosAlternate"];
 	sectionInfo.sectionHeader.addButtonDelegate = [[[ScenarioListObjectAdder alloc] init] autorelease];
 	
-	NSArray *userScenarios = [[DataModelController theDataModelController]
+	NSArray *userScenarios = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:USER_SCENARIO_ENTITY_NAME 
 			sortKey:USER_SCENARIO_NAME_KEY];
 	for (UserScenario *userScen in userScenarios)

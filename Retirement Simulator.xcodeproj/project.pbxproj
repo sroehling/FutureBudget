@@ -398,6 +398,7 @@
 		00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */; };
 		00E533E914E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E533E814E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m */; };
 		00E533EC14E96B13005C6F6F /* NeverEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E533EB14E96B12005C6F6F /* NeverEndDateFieldEditInfo.m */; };
+		00E533EF14E9CAEB005C6F6F /* FormContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E533EE14E9CAE9005C6F6F /* FormContext.m */; };
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
 		00E7D053143A284400B0815E /* SelectableObjectTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */; };
@@ -1159,6 +1160,8 @@
 		00E533E814E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultScenarioFieldEditInfo.m; sourceTree = "<group>"; };
 		00E533EA14E96B11005C6F6F /* NeverEndDateFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeverEndDateFieldEditInfo.h; sourceTree = "<group>"; };
 		00E533EB14E96B12005C6F6F /* NeverEndDateFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeverEndDateFieldEditInfo.m; sourceTree = "<group>"; };
+		00E533ED14E9CAE6005C6F6F /* FormContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormContext.h; sourceTree = "<group>"; };
+		00E533EE14E9CAE9005C6F6F /* FormContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormContext.m; sourceTree = "<group>"; };
 		00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigest.h; sourceTree = "<group>"; };
 		00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigest.m; sourceTree = "<group>"; };
 		00E6CC8713F99FA9005EEC64 /* DigestEntryCltn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigestEntryCltn.h; sourceTree = "<group>"; };
@@ -1667,6 +1670,8 @@
 				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
 				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
 				00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */,
+				00E533ED14E9CAE6005C6F6F /* FormContext.h */,
+				00E533EE14E9CAE9005C6F6F /* FormContext.m */,
 			);
 			name = "Base Classes";
 			sourceTree = "<group>";
@@ -3452,6 +3457,7 @@
 				0075843014E20CCB00184BD5 /* ItemizedLoanTaxFormInfoCreator.m in Sources */,
 				00E533E914E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m in Sources */,
 				00E533EC14E96B13005C6F6F /* NeverEndDateFieldEditInfo.m in Sources */,
+				00E533EF14E9CAEB005C6F6F /* FormContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

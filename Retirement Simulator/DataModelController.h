@@ -13,8 +13,6 @@
 @interface DataModelController : NSObject <DataModelInterface> {
 }
 
-+(DataModelController*)theDataModelController; // singleton
-
 - (id) initForInMemoryStorage; // In for in-memory storage (for testing)
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -37,4 +35,9 @@
 - (id)insertObject:(NSString*)entityName;
 - (void)deleteObject:(NSManagedObject*)theObj;
 
+
++(DataModelController*)tmpSingletonDataModelControllerForMultiScenarioInputValue;
++(void)initTmpSingletonDataModelControllerForMultiScenarioInputValue:
+	(DataModelController*)dmcSingleton;
+	
 @end

@@ -13,6 +13,7 @@
 #import "SectionHeaderWithSubtitle.h"
 #import "LocalizationHelper.h"
 #import "SectionInfo.h"
+#import "FormContext.h"
 
 
 @implementation MilestoneDateSectionInfo
@@ -20,16 +21,15 @@
 @synthesize varDateRuntimeInfo;
 
 -(id)initWithRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo
-	andParentController:(UIViewController*)theParentController
+	andFormContext:(FormContext *)theFormContext
 {
-	self = [super initWithHelpInfo:@"milestoneDate" andParentController:theParentController];
+	self = [super initWithHelpInfo:@"milestoneDate" andFormContext:theFormContext];
 	if(self)
 	{
-		assert(theParentController != nil);
 		assert(theVarDateRuntimeInfo != nil);
 		
 		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
-		self.parentViewController = theParentController;
+				
 		self.title =  LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_DATE_SECTION_TITLE");
 
 	}
@@ -42,27 +42,26 @@
 	return nil;
 }
 
--(void)addButtonPressedInSectionHeader:(UIViewController*)parentView
+-(void)addButtonPressedInSectionHeader:(FormContext*)parentContext
 {
-    assert(self.parentViewController != nil);
     NSLog(@"Add milestone");
     
     MilestoneDate *newMilestoneDate = (MilestoneDate*)
-        [[DataModelController theDataModelController]insertObject:MILESTONE_DATE_ENTITY_NAME];
+        [parentContext.dataModelController insertObject:MILESTONE_DATE_ENTITY_NAME];
     
 
     MilestoneDateFormPopulator *formPopulator = [[[MilestoneDateFormPopulator alloc] 
 		initWithRuntimeInfo:self.varDateRuntimeInfo
-		andParentController:self.parentViewController] autorelease];
+		andFormContext:self.formContext] autorelease];
     UIViewController *controller =  [formPopulator milestoneDateAddViewController:newMilestoneDate];
     
-    [self.parentViewController.navigationController pushViewController:controller animated:YES];
+    [parentContext.parentController.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)dealloc
 {
-	[super dealloc];
 	[varDateRuntimeInfo release];
+	[super dealloc];
 }
 
 

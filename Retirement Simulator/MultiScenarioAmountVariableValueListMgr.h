@@ -11,14 +11,18 @@
 #import "VariableValueListMgr.h"
 
 @class MultiScenarioAmount;
+@class DataModelController;
 
 @interface MultiScenarioAmountVariableValueListMgr : NSObject <VariableValueListMgr> {
     @private
 		MultiScenarioAmount *amount;
+		DataModelController *dataModelController;
 }
 
--(id)initWithMultiScenarioAmount:(MultiScenarioAmount*)theAmount;
+-(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andMultiScenarioAmount:(MultiScenarioAmount *)theAmount;
 
 @property(nonatomic,retain) MultiScenarioAmount *amount;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
 @end

@@ -7,16 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ManagedObjectFieldInfo.h"
+#import "FieldInfo.h"
+
+@class DataModelController;
 
 @interface FieldEditTableViewController : UITableViewController {
-    ManagedObjectFieldInfo *fieldInfo;
+    FieldInfo *fieldInfo;
+	DataModelController *dataModelController;
 }
 
-@property(nonatomic,retain) ManagedObjectFieldInfo *fieldInfo;
+@property(nonatomic,retain) FieldInfo *fieldInfo;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
-
-- (id) initWithFieldInfo:(ManagedObjectFieldInfo*)theFieldInfo;
+- (id) initWithFieldInfo:(FieldInfo*)theFieldInfo
+	andDataModelController:(DataModelController*)theDataModelController;
 - (void) commidFieldEdit;
 - (void) initFieldUI;
 
