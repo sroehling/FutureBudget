@@ -19,6 +19,7 @@
 @synthesize managedObjectContext;
 @synthesize managedObjectModel;
 @synthesize persistentStoreCoordinator;
+@synthesize saveEnabled;
 
 /**
  Returns the URL to the application's Documents directory.
@@ -54,6 +55,8 @@
 	[self.managedObjectContext setUndoManager:[[[NSUndoManager  alloc] init] autorelease]];        
 	
 	self.managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
+	
+	self.saveEnabled = TRUE;
 }
 
 
@@ -123,16 +126,35 @@
 
 - (void)saveContext
 {
-    NSError *error = nil;
-    if (self.managedObjectContext!= nil)
-    {
-        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error])
-        {
-             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			[NSException raise:NSGenericException format:[error description] arguments:nil];
-        } 
-    }
+	if(self.saveEnabled)
+	{
+		NSError *error = nil;
+		if (self.managedObjectContext!= nil)
+		{
+			if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error])
+			{
+				 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+				[NSException raise:NSGenericException format:[error description] arguments:nil];
+			} 
+		}
+	}
 }
+
+- (void)saveContextAndIgnoreErrors
+{
+    if(self.saveEnabled)
+	{
+		NSError *error = nil;
+		if (self.managedObjectContext!= nil)
+		{
+			if ([self.managedObjectContext hasChanges])
+			{
+				[self.managedObjectContext save:&error];
+			}
+		}
+	}
+}
+
 
 -(void)startObservingContextChanges:(id)observer withSelector:(SEL)theSelector
 {
@@ -169,17 +191,6 @@
 	}
 }
 
-- (void)saveContextAndIgnoreErrors
-{
-    NSError *error = nil;
-    if (self.managedObjectContext!= nil)
-    {
-        if ([self.managedObjectContext hasChanges])
-		{
-			[self.managedObjectContext save:&error];
-		}
-    }
-}
 
 
 

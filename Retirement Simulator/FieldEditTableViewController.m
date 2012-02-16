@@ -73,6 +73,9 @@
 	
     [self commidFieldEdit];
 	
+	// It is important to save *before* popping the view controller, since the 
+	// parent controller may need to refresh its results and those results
+	// need to be up to date.
 	[self.dataModelController saveContextAndIgnoreErrors];
 	    
     [self.navigationController popViewControllerAnimated:YES];

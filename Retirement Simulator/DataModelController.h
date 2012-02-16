@@ -11,6 +11,13 @@
 #import "DataModelInterface.h"
 
 @interface DataModelController : NSObject <DataModelInterface> {
+	@private
+		// The saveEnabled flag, which is enabled by default, can be 
+		// disabled by view controllers. The applicability is the
+		// creation of new objects, when changes shouldn't be 
+		// saved until the top-level view controller has verified
+		// the new object is fully populated and valid for saving.
+		BOOL saveEnabled;
 }
 
 - (id) initForInMemoryStorage; // In for in-memory storage (for testing)
@@ -18,6 +25,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property BOOL saveEnabled;
 
 - (void)saveContext;
 - (void)saveContextAndIgnoreErrors;

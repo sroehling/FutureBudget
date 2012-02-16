@@ -18,6 +18,7 @@
 @synthesize saveButton;
 @synthesize popDepth;
 @synthesize finshedAddingListener;
+@synthesize disableCoreDataSaveUntilSaveButtonPressed;
 
 #pragma mark -
 #pragma mark Observing changes to objects while add operation in place
@@ -53,6 +54,7 @@
         assert(newObj != nil);
         self.newObject = newObj;
         self.popDepth = DEFAULT_POP_DEPTH;
+		self.disableCoreDataSaveUntilSaveButtonPressed = FALSE;
     }
     return self;
 }
@@ -78,15 +80,23 @@
 		{
 			[self.finshedAddingListener objectFinshedBeingAdded:self.newObject];
 		}
-		[TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
 		
-		// TBD - To make the save more robust, should a separate context
-		// be used for each form doing an add. A case to consider is when
-		// a shared milestone date is created and added during the addition
-		// of an input, but the input as a whole is not validated. The milestone
-		// date should be saved (with error checking), but the input should
-		// be validated and saved independently.
+		if(self.disableCoreDataSaveUntilSaveButtonPressed)
+		{
+			self.dataModelController.saveEnabled = TRUE;
+		}
+		
+		// To make the save more robust, a separate context can
+		// be used for each form doing an add.
 		[self.dataModelController saveContextAndIgnoreErrors];
+
+		// It is important to save the context before popping the view
+		// controller. In particular, the parent's view controller's 
+		// viewWill appear method will be called after popping. If the
+		// context is not saved, the results shown in the parent controller
+		// may not be up to date.
+		[TableViewHelper popControllerByDepth:self popDepth:self.popDepth];
+
 	}
 
 }
@@ -95,6 +105,9 @@
 - (void)cancel {
 	
 	[self.dataModelController stopObservingContextChanges:self];    
+
+	self.dataModelController.saveEnabled = TRUE;
+
     
     // If we cancel out of edit mode, then we need to disable further access
     // to the managed object before we delete the object. This can be an 
@@ -137,6 +150,11 @@
     UIBarButtonItem *saveButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save)] autorelease];
     self.navigationItem.rightBarButtonItem = saveButtonItem;
     self.saveButton = saveButtonItem;
+	
+	if(self.disableCoreDataSaveUntilSaveButtonPressed)
+	{
+		self.dataModelController.saveEnabled = FALSE;
+	}
 	
 	[self updateSaveButtonEnabled];
         

@@ -39,9 +39,11 @@
 
     self.inputTypes = [[[NSMutableArray alloc] init ] autorelease];
 	
-	// TODO - Initialize dmcForNewInputs to a new DataModelController, so that changes associatd with
-	// the new object are kept isolated from everything else.
-	assert(self.dmcForNewInputs != nil);
+	// Initialize dmcForNewInputs to a new DataModelController, so changes associated with
+	// the new object are kept isolated from other changes, and can
+	// be saved all at once when the new input has been fully populated
+	// and validated.
+	self.dmcForNewInputs = [[[DataModelController alloc] init] autorelease];
 		
 	InputCreationHelper *inputCreationHelper =
 		[[[InputCreationHelper alloc] 
@@ -166,9 +168,10 @@
 	// Create a new data model controller for the inputs. This keeps any un-validated
 	// additions isolated w.r.t. other changes.
     
-    UIViewController *addView =  [[[GenericFieldBasedTableAddViewController alloc] 
+    GenericFieldBasedTableAddViewController *addView =  [[[GenericFieldBasedTableAddViewController alloc] 
         initWithFormInfoCreator:detailViewCreator andNewObject:newInput
 		andDataModelController:self.dmcForNewInputs] autorelease];
+	addView.disableCoreDataSaveUntilSaveButtonPressed = TRUE;
 
     assert(addView != nil);
     

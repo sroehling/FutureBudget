@@ -16,7 +16,6 @@
 {
 	InputTypeSelectionViewController *inputTypeViewController = 
 		[[[InputTypeSelectionViewController alloc ]initWithStyle:UITableViewStyleGrouped] autorelease];
-	inputTypeViewController.dmcForNewInputs = parentContext.dataModelController;
     [parentContext.parentController.navigationController pushViewController:inputTypeViewController animated:YES];
 
 }

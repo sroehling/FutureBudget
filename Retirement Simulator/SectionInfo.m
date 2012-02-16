@@ -27,6 +27,9 @@
 		self.sectionHeader = [[[SectionHeaderWithSubtitle alloc] initWithFrame:CGRectZero] autorelease];
 		self.sectionHeader.formContext = theFormContext;
         self.title = @"";
+		
+		assert(theFormContext != nil);
+		self.formContext = theFormContext;
     }
     return self;
 }
@@ -51,6 +54,9 @@
 
 		self.helpInfoHTMLFile = helpInfoFile;
 		self.sectionHeader.helpInfoHTMLFile = helpInfoHTMLFile;
+		
+		assert(theFormContext != nil);
+		self.formContext = theFormContext;
 		
 		
 	}
