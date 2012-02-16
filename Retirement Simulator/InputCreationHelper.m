@@ -61,8 +61,6 @@
 {
 	MultiScenarioInputValue *msInputVal = 
 		[self.dataModel createDataModelObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	msInputVal.dataModelInterface = self.dataModel;
-	msInputVal.sharedAppVals = self.sharedAppVals;
 	return msInputVal;
 }
 

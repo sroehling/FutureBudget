@@ -294,6 +294,7 @@
 		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
 		00A57F6A1396D549004E148B /* SelectableObjectTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */; };
+		00AA0DC814EC4B7900F74498 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA0DC714EC4B7900F74498 /* CoreDataHelper.m */; };
 		00AA79BB1441E8AF00FED301 /* TaxBracketFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */; };
 		00AA79BE1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BD1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m */; };
 		00AA79C11441F07400FED301 /* TaxBracketEntryFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79C01441F07400FED301 /* TaxBracketEntryFormInfoCreator.m */; };
@@ -992,6 +993,8 @@
 		00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableObjectTableEditViewController.h; sourceTree = "<group>"; };
 		00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableObjectTableEditViewController.m; sourceTree = "<group>"; };
 		00A57F6C1396DCF9004E148B /* FormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInfoCreator.h; sourceTree = "<group>"; };
+		00AA0DC614EC4B7900F74498 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		00AA0DC714EC4B7900F74498 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		00AA79B91441E8AF00FED301 /* TaxBracketFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketFormInfoCreator.h; sourceTree = "<group>"; };
 		00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketFormInfoCreator.m; sourceTree = "<group>"; };
 		00AA79BC1441EA9D00FED301 /* TaxBracketEntryObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntryObjectAdder.h; sourceTree = "<group>"; };
@@ -1654,6 +1657,8 @@
 				005EF48114C9C575001F3D36 /* AlertViewHelper.m */,
 				005EF4E714CA652C001F3D36 /* UIHelper.h */,
 				005EF4E814CA652E001F3D36 /* UIHelper.m */,
+				00AA0DC614EC4B7900F74498 /* CoreDataHelper.h */,
+				00AA0DC714EC4B7900F74498 /* CoreDataHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -3458,6 +3463,7 @@
 				00E533E914E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m in Sources */,
 				00E533EC14E96B13005C6F6F /* NeverEndDateFieldEditInfo.m in Sources */,
 				00E533EF14E9CAEB005C6F6F /* FormContext.m in Sources */,
+				00AA0DC814EC4B7900F74498 /* CoreDataHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

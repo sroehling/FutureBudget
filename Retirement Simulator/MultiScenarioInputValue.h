@@ -32,8 +32,6 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 
 @interface MultiScenarioInputValue : NSManagedObject {
 	@private
-		id<DataModelInterface> dataModelInterface;
-		SharedAppValues *sharedAppVals;
 }
 
 @property (nonatomic, retain) NSSet* scenarioVals;
@@ -73,12 +71,5 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 -(InputValue*)getDefaultValue;
 - (InputValue*)findInputValueForScenario:(Scenario*)scenario;
 - (InputValue*)getValueForScenarioOrDefault:(Scenario*)theScenario;
-
-// The properties below are transient, and control how this object
-// allocates new objects and references the default data.
-@property(nonatomic,retain) id<DataModelInterface> dataModelInterface;
-@property(nonatomic,retain) SharedAppValues *sharedAppVals;
-
-//-(void)useDataModelController:(DataModelController*)dataModelController;
 
 @end

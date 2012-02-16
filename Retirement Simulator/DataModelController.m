@@ -11,6 +11,7 @@
 #import "SharedAppValues.h"
 #import "NeverEndDate.h"
 #import "DefaultScenario.h"
+#import "CoreDataHelper.h"
 
 
 @implementation DataModelController
@@ -118,21 +119,6 @@
 	return self;
 }
 
-    static DataModelController *theDataModelController;  
-
-
-+(DataModelController*)tmpSingletonDataModelControllerForMultiScenarioInputValue
-{  
-	assert(theDataModelController != nil);
-	return theDataModelController;
-}
-
-+(void)initTmpSingletonDataModelControllerForMultiScenarioInputValue:(DataModelController*)dmcSingleton
-{
-	assert(dmcSingleton != nil);
-	theDataModelController = dmcSingleton;
-}
-
 
 
 - (void)saveContext
@@ -231,30 +217,14 @@
 
 - (NSArray*)executeFetchOrThrow:(NSFetchRequest*)fetchReq
 {
-    assert(fetchReq != nil);
-    NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchReq 
-                                                                error:&error];
-    if (error != nil)
-    {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        [NSException raise:NSGenericException format:[error description] arguments:nil];
-    }
-    return results;
+	return [CoreDataHelper executeFetchOrThrow:fetchReq 
+		inManagedObectContext:self.managedObjectContext];
 }
 
 // Convenience method to retrieve all the objects for a given entity name.
 - (NSSet *)fetchObjectsForEntityName:(NSString *)entityName
 {
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:entityName 
-                                   inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-    [request setEntity:entity];
-    
-    
-     return [NSSet setWithArray:[self executeFetchOrThrow:request]];
+	return [CoreDataHelper fetchObjectsForEntityName:entityName inManagedObectContext:self.managedObjectContext];
 }
 
 - (NSArray *)fetchSortedObjectsWithEntityName:(NSString *)entityName sortKey:(NSString*)theSortKey
@@ -311,15 +281,8 @@
 
 - (id)insertObject:(NSString*)entityName
 {
-    assert(entityName != nil);
-    assert([entityName length] >0);
-	
-	id theObject = [NSEntityDescription insertNewObjectForEntityForName:entityName 
-            inManagedObjectContext:self.managedObjectContext];
-	assert(theObject != nil);
-	[theObject retain];
-	[theObject autorelease];
-	return theObject;
+	return [CoreDataHelper insertObjectWithEntityName:entityName 
+		inManagedObectContext:self.managedObjectContext];
 }
 
 - (id)createDataModelObject:(NSString *)entityName

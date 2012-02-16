@@ -57,7 +57,6 @@
     MultiScenarioInputValue *msInputVal = 
 		[self.coreData insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
 	DefaultScenario *defaultScen = self.testAppVals.defaultScenario;
-	[msInputVal setDataModelController:self.coreData];
 	// Set to an initial value
 	[msInputVal setValueForScenario:defaultScen andInputValue:[self genFixedVal:1.0]];
 	[self checkOneScenarioValue:msInputVal andScenario:defaultScen andExpectedVal:1.0];
@@ -72,7 +71,6 @@
 {
     MultiScenarioInputValue *msInputVal = 
 	[self.coreData insertObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	[msInputVal setDataModelController:self.coreData];
 	DefaultScenario *defaultScen = self.testAppVals.defaultScenario;
 
 	UserScenario *userScen = [self.coreData insertObject:USER_SCENARIO_ENTITY_NAME];

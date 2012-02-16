@@ -21,6 +21,7 @@
 #import "InvestmentReturnRate.h"
 #import "StringValidation.h"
 #import "LoanDownPmtPercent.h"
+#import "CoreDataHelper.h"
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
@@ -218,13 +219,9 @@ NSString * const SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY = @"adjustRe
 
 +(SharedAppValues*)getUsingDataModelController:(DataModelController*)dataModelController
 {
-	assert(dataModelController != nil);
-	NSSet *theAppVals = [dataModelController fetchObjectsForEntityName:SHARED_APP_VALUES_ENTITY_NAME];
-	assert([theAppVals count] == 1);
-	SharedAppValues *theAppValues = (SharedAppValues*)[theAppVals anyObject];
-	assert(theAppVals != nil);
-	[theAppVals retain];
-	[theAppVals autorelease];
+	SharedAppValues *theAppValues = (SharedAppValues*)[CoreDataHelper fetchSingleObjectForEntityName:SHARED_APP_VALUES_ENTITY_NAME 
+		inManagedObectContext:dataModelController.managedObjectContext];
+	assert(theAppValues != nil);
 	return theAppValues;
 }
 

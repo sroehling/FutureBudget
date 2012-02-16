@@ -15,6 +15,7 @@
 #import "DataModelController.h"
 #import "SharedAppValues.h"
 #import "Scenario.h"
+#import "CoreDataHelper.h"
 
 NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputValue";
 
@@ -49,13 +50,6 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 @dynamic multiScenSimEndDateSimDate;
 
 
-
-
-
-@synthesize dataModelInterface;
-@synthesize sharedAppVals;
-
-
 - (void)addScenarioValsObject:(ScenarioValue *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
     [self willChangeValueForKey:@"scenarioVals" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
@@ -84,42 +78,13 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
     [self didChangeValueForKey:@"scenarioVals" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
 
--(id)init
-{
-	self = [super init];
-	if(self)
-	{
-		// Since this object instantiates other CoreData objects,
-		// we need the ability to specify what kind of data model interace is 
-		// used to create those objects and also have as a parameter the default
-		// data which is referenced from this class. This is needed primarily
-		// to support unit testing with this object; i.e. when creating objects
-		// using an in-memory core data is necessary.
-		DataModelController *dmc = [DataModelController tmpSingletonDataModelControllerForMultiScenarioInputValue];
-		self.dataModelInterface = dmc;
-		self.sharedAppVals = [SharedAppValues getUsingDataModelController:dmc];
-	}
-	return self;
-}
 
-
-- (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context
+-(SharedAppValues*)sharedAppVals
 {
-	self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-	if(self)
-	{
-		DataModelController *dmc = [DataModelController tmpSingletonDataModelControllerForMultiScenarioInputValue];
-		self.dataModelInterface = dmc;
-		self.sharedAppVals = [SharedAppValues getUsingDataModelController:dmc];
-	}
-	return self;
-}
-
--(bool)sameCoreDataObjects:(NSManagedObject*)obj1 comparedTo:(NSManagedObject*)obj2
-{
-	NSURL *obj1Rep = [[obj1 objectID] URIRepresentation];
-	NSURL *obj2Rep = [[obj2 objectID] URIRepresentation];
-	return [obj1Rep isEqual:obj2Rep];
+	SharedAppValues *theAppValues = (SharedAppValues*)[CoreDataHelper fetchSingleObjectForEntityName:SHARED_APP_VALUES_ENTITY_NAME 
+		inManagedObectContext:self.managedObjectContext];
+	assert(theAppValues != nil);
+	return theAppValues;
 }
 
 -(ScenarioValue*)findScenarioValueForScenario:(Scenario*)scenario
@@ -127,7 +92,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
     assert(scenario != nil);
 	for(ScenarioValue *scenarioVal in self.scenarioVals)
 	{
-		if([self sameCoreDataObjects:scenarioVal.scenario comparedTo:scenario])
+		if([CoreDataHelper sameCoreDataObjects:scenarioVal.scenario comparedTo:scenario])
 		{
 			return scenarioVal;
 		}
@@ -170,14 +135,12 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	}
 	else
 	{
-			assert(self.sharedAppVals != nil);
-
-		Scenario *defaultScen = self.sharedAppVals.defaultScenario;
+		Scenario *defaultScen = [self sharedAppVals].defaultScenario;
 		assert(defaultScen != nil);
 		
 		// If a value is not found for scenario, "revert to default" and 
 		// check if there is a default value
-		if(![self sameCoreDataObjects:scenario comparedTo:defaultScen])
+		if(![CoreDataHelper sameCoreDataObjects:scenario comparedTo:defaultScen])
 		{			
 			ScenarioValue *defaultScenarioVal = [self findScenarioValueForScenario:defaultScen];
 			if(defaultScenarioVal != nil)
@@ -207,9 +170,8 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 -(InputValue*)getValueForCurrentOrDefaultScenario
 {
 // TODO - This returns the value for the current *input* scenario ... need to handle differently when calculating results
-	assert(self.sharedAppVals != nil);
 	
-	Scenario *currentScenario = self.sharedAppVals.currentInputScenario;
+	Scenario *currentScenario = [self sharedAppVals].currentInputScenario;
 	assert(currentScenario != nil);
 	
 	return [self getValueForScenarioOrDefault:currentScenario];
@@ -225,10 +187,10 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	{
 		// If we get here, it means there isn't an existing value for the given scenario. 
 		// We must a new ScenarioValue and assign it the scenario and inputValue.
-		
-		assert(self.dataModelInterface != nil);
-		
-		ScenarioValue *newScenarioVal = (ScenarioValue*)[self.dataModelInterface createDataModelObject:SCENARIO_VALUE_ENTITY_NAME];
+		ScenarioValue *newScenarioVal = (ScenarioValue*)[CoreDataHelper 
+			insertObjectWithEntityName:SCENARIO_VALUE_ENTITY_NAME 
+			inManagedObectContext:self.managedObjectContext];
+			
 		newScenarioVal.scenario = scenario;
 		newScenarioVal.inputValue = inputValue;
 		[self addScenarioValsObject:newScenarioVal];		
@@ -241,7 +203,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 
 -(void)setDefaultValue:(InputValue*)inputValue
 {
-	DefaultScenario *defaultScen = self.sharedAppVals.defaultScenario;
+	DefaultScenario *defaultScen = [self sharedAppVals].defaultScenario;
 	assert(defaultScen != nil);
 	assert(inputValue != nil);
 	[self setValueForScenario:defaultScen andInputValue:inputValue];
@@ -249,21 +211,8 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 
 -(void)dealloc
 {
-	[dataModelInterface release];
-	[sharedAppVals release];
 	[super dealloc];
 }
 
-/*
--(void)useDataModelController:(DataModelController *)dataModelController
-{
-	assert(dataModelController != nil);
-	self.dataModelInterface = dataModelController;
-	self.sharedAppVals = [SharedAppValues getUsingDataModelController:dataModelController];
-	assert(self.sharedAppVals != nil);
-	assert(dataModelController != nil);
-}
-
-*/
 
 @end

@@ -35,9 +35,5 @@
 - (id)insertObject:(NSString*)entityName;
 - (void)deleteObject:(NSManagedObject*)theObj;
 
-
-+(DataModelController*)tmpSingletonDataModelControllerForMultiScenarioInputValue;
-+(void)initTmpSingletonDataModelControllerForMultiScenarioInputValue:
-	(DataModelController*)dmcSingleton;
 	
 @end

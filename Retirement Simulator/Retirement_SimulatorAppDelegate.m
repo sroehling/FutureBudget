@@ -46,7 +46,6 @@
 	
 	DataModelController *topLevelDataModelController = 
 		[[[DataModelController alloc]init] autorelease];
-	[DataModelController initTmpSingletonDataModelControllerForMultiScenarioInputValue:topLevelDataModelController];
 
 	
 	[SimResultsController initSingletonFromDataModelController:topLevelDataModelController];

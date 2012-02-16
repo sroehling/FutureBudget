@@ -84,7 +84,6 @@
 - (MultiScenarioInputValue*)createTestMultiScenInputVal
 {
 	MultiScenarioInputValue *testInputVal = [self.coreData createDataModelObject:MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME];
-	testInputVal.dataModelInterface = self.coreData;
 	return testInputVal;
 }
 
