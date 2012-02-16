@@ -46,14 +46,14 @@
 		[[[ScenarioListFormInfoCreator alloc] init] autorelease];
 		
 	SelectableObjectTableEditViewController *scenarioController = 
-		[[SelectableObjectTableEditViewController alloc]
+		[[[SelectableObjectTableEditViewController alloc]
 		initWithFormInfoCreator:scenarioFormInfoCreator andAssignedField:currentScenarioFieldInfo
-		andDataModelController:self.formContext.dataModelController];
+		andDataModelController:self.formContext.dataModelController] autorelease];
 
 	scenarioController.closeAfterSelection = TRUE;
+	
 	[self.formContext.parentController.navigationController pushViewController:scenarioController animated:YES];
 	
-	[scenarioController release];
 
 }
 

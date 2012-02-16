@@ -45,7 +45,6 @@
     assert(0); // must call init method with assigned field info
 }
 
-
 - (void)dealloc
 {
     [assignedField release];
@@ -103,12 +102,6 @@
     [self.tableView deselectRowAtIndexPath:newPath animated:YES];
   
 	[self setAssignedValueFromCurrentlySelectedRow];
-	
-	if(self.closeAfterSelection)
-	{
-		[self.navigationController popViewControllerAnimated:TRUE];
-	}
-    
 }
 
 
@@ -197,7 +190,11 @@
     {
         // Move the checkmark to the newly selected value
         [self moveSelection:indexPath];
-        
+		if(self.closeAfterSelection)
+		{
+			[self.navigationController popViewControllerAnimated:TRUE];
+		}
+       
     }
 	
 }
