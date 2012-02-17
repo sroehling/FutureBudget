@@ -1,4 +1,4 @@
-## Inflation Adjustment
+# Inflation Adjustment
 
 Based upon the default inflation rate, results can also be 
 adjusted back to the simulation start date or displayed as 

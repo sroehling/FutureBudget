@@ -1,4 +1,4 @@
-## Cutting Expenses
+# Cutting Expenses
 
 Similar to the way expenses may increase or decrease with [retirement][1],
 it may be useful to investigate how cutting back other types of 
@@ -11,7 +11,7 @@ several times a week, this expense could be trimmed and
 the difference being invested. Other expenses,
 like a gym membership could be cut altogether.
 
-### Create a "Cutting Expenses" Scenario
+## Create a "Cutting Expenses" Scenario
 
 To make changes to input values without impacting
 the default results, a new [alternate scenario][1] named "Cutting Expenses"
@@ -21,7 +21,7 @@ This scenario can be created by going to the scenario list in the
 __What If__ tab. Then select it as the current scenario, so further changes 
 to input values will be saved under this scenario.
 
-### Change Expense Amounts
+## Change Expense Amounts
 
 For each expense that will be subject to a reduced amount, change
 the expense as follows:
@@ -40,7 +40,7 @@ the expense as follows:
 4. Tap the __Done__ button to save the changes.
    
 
-### Related Examples
+## Related Examples
 
 * [Monthly Expense](recipeMonthlyExpense.html)
 * [Reduce or Increase Expenses After Retirement](recipeChangeRetirementExpense.html)

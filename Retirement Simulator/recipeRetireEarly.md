@@ -1,6 +1,6 @@
-## Early Retirement
+# Early Retirement
 
-### Create an "Early Retirement" Scenario
+## Create an "Early Retirement" Scenario
 
 To make changes to input values without impacting
 the default results, a new [alternate scenario][1] named "Early Retirement"
@@ -10,7 +10,7 @@ This scenario can be created by going to the scenario list in the
 __What If__ tab. Then select it as the current scenario, so further changes 
 to input values will be saved under this scenario.
 
-### Change the Stop Date for Income
+## Change the Stop Date for Income
 
 The __Stop Date__ for income would be changed to reflect the early 
 retirement date. To make this change, creating and selecting 
@@ -38,7 +38,7 @@ To make this change, do the following:
 ### Moving the Early Retirement Date
 -->
 
-### Related Examples
+## Related Examples
 
 * [Employment Income][3]
 * [Semi-Retirement][4]

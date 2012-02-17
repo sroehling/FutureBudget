@@ -1,10 +1,10 @@
-## Vehicle Currently Owned
+# Vehicle Currently Owned
 
 A vehicle such as a car or boat which you already own is represented as an 
 asset input. If there is also an outstanding loan on the vehicle, a second
 loan input is also required.
 
-### Instructions
+## Instructions
 
 1. Create an asset input to represent the vehicle's value and depreciation.
 
@@ -32,7 +32,7 @@ loan input is also required.
 	  an asset input's __Current Value__, this outstanding balance is used as a starting 
 	  point in the simulation. 
 
-### Related Recipes
+## Related Recipes
 
 * [Purchase a New Car](recipeNewCar.html) 
 * [Home Currently Owned](recipeExistingHouse.html)

@@ -1,4 +1,4 @@
-## Deficit
+# Deficit
 
 If at any time, the amounts needed to pay expenses are greater than the cash balance
 and balances from account withdrawals, a deficit will be accumulated, and interest 
