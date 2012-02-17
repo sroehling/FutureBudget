@@ -47,7 +47,6 @@
 		00254FFB1452374B000AB7B3 /* IncomeDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FFA1452374A000AB7B3 /* IncomeDigestEntry.m */; };
 		00254FFE14531415000AB7B3 /* IncomeSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00254FFD14531415000AB7B3 /* IncomeSimInfo.m */; };
 		0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */; };
-		0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025774F13AFDE2800D15232 /* StringLookupTable.m */; };
 		0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775213B1778600D15232 /* VariableRateCalculator.m */; };
 		0025775613B177C100D15232 /* VariableRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775513B177C000D15232 /* VariableRate.m */; };
 		0025775C13B17BB500D15232 /* VariableRateCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025775B13B17BB400D15232 /* VariableRateCalculatorTest.m */; };
@@ -86,13 +85,10 @@
 		0036DE2413BE2C5C0043F3A5 /* ScenarioValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */; };
 		0036DE2713BE2D710043F3A5 /* MultiScenarioInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */; };
 		0036DE2E13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */; };
-		003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */; };
-		003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD132138ACBE800CB3CB5 /* StringValidation.m */; };
-		003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD135138AD88400CB3CB5 /* TableViewHelper.m */; };
-		003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD138138AF55C00CB3CB5 /* NumberHelper.m */; };
 		003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */; };
 		003CFD0E13C901B70006D083 /* TableHeaderWithDisclosure.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD0D13C901B70006D083 /* TableHeaderWithDisclosure.m */; };
 		003CFD1313C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */; };
+		004107D914EEF06E0063E307 /* libResultraGenericLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 004107D814EEF06E0063E307 /* libResultraGenericLib.a */; };
 		0041263313A6824A008F0647 /* InputListInputDescriptionCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263213A6824A008F0647 /* InputListInputDescriptionCreator.m */; };
 		0041263713A6A653008F0647 /* InputListFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263613A6A653008F0647 /* InputListFormInfoCreator.m */; };
 		0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263913A6A745008F0647 /* InputFieldEditInfo.m */; };
@@ -154,11 +150,9 @@
 		005DAEF314609A1100D87907 /* LoanInterestItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */; };
 		005DAEF614609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */; };
 		005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */; };
-		005EF48214C9C575001F3D36 /* AlertViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF48114C9C575001F3D36 /* AlertViewHelper.m */; };
 		005EF4DF14C9DB84001F3D36 /* UpTo100PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */; };
 		005EF4E314CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */; };
 		005EF4E614CA220B001F3D36 /* HelpInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4E514CA220B001F3D36 /* HelpInfoView.m */; };
-		005EF4E914CA652F001F3D36 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4E814CA652E001F3D36 /* UIHelper.m */; };
 		0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505713EA1900002E38FA /* RelativeEndDate.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
@@ -208,7 +202,6 @@
 		0086C0BA142D310800148785 /* AssetSaleSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B9142D310400148785 /* AssetSaleSimEvent.m */; };
 		0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */; };
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
-		0087924013ABB47100CA9DA7 /* LocalizationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */; };
 		0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */; };
 		00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */; };
 		00899D8414D1DDA100CBFE6F /* HelpPageFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */; };
@@ -294,7 +287,6 @@
 		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
 		00A57F6A1396D549004E148B /* SelectableObjectTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */; };
-		00AA0DC814EC4B7900F74498 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA0DC714EC4B7900F74498 /* CoreDataHelper.m */; };
 		00AA79BB1441E8AF00FED301 /* TaxBracketFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */; };
 		00AA79BE1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BD1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m */; };
 		00AA79C11441F07400FED301 /* TaxBracketEntryFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79C01441F07400FED301 /* TaxBracketEntryFormInfoCreator.m */; };
@@ -413,8 +405,6 @@
 		00EC1F9D13981E280085B25C /* MilestoneDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F9C13981E270085B25C /* MilestoneDateFieldEditInfo.m */; };
 		00EC1FA013992B8B0085B25C /* MilestoneDateSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F9F13992B8A0085B25C /* MilestoneDateSectionInfo.m */; };
 		00EC1FA613997F860085B25C /* MilestoneDateFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */; };
-		00EC1FA913998A090085B25C /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FA813998A090085B25C /* DateHelper.m */; };
-		00EC1FAC139BD27F0085B25C /* ColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FAB139BD27C0085B25C /* ColorHelper.m */; };
 		00EC1FAF139BDB460085B25C /* DateSensitiveValueFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */; };
 		00EC1FB5139BE2560085B25C /* AddObjectSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */; };
 		00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */; };
@@ -554,8 +544,6 @@
 		00254FFD14531415000AB7B3 /* IncomeSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeSimInfo.m; sourceTree = "<group>"; };
 		0025774B13AFAD2D00D15232 /* SimDateRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateRuntimeInfo.h; sourceTree = "<group>"; };
 		0025774C13AFAD2D00D15232 /* SimDateRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateRuntimeInfo.m; sourceTree = "<group>"; };
-		0025774E13AFDE2800D15232 /* StringLookupTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLookupTable.h; sourceTree = "<group>"; };
-		0025774F13AFDE2800D15232 /* StringLookupTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringLookupTable.m; sourceTree = "<group>"; };
 		0025775113B1778600D15232 /* VariableRateCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableRateCalculator.h; sourceTree = "<group>"; };
 		0025775213B1778600D15232 /* VariableRateCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableRateCalculator.m; sourceTree = "<group>"; };
 		0025775413B177C000D15232 /* VariableRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableRate.h; sourceTree = "<group>"; };
@@ -615,14 +603,6 @@
 		0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValue.m; sourceTree = "<group>"; };
 		0036DE2C13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValueFieldInfo.h; sourceTree = "<group>"; };
 		0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueFieldInfo.m; sourceTree = "<group>"; };
-		003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHelper.h; sourceTree = "<group>"; };
-		003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHelper.m; sourceTree = "<group>"; };
-		003AD131138ACBE800CB3CB5 /* StringValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValidation.h; sourceTree = "<group>"; };
-		003AD132138ACBE800CB3CB5 /* StringValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringValidation.m; sourceTree = "<group>"; };
-		003AD134138AD88400CB3CB5 /* TableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewHelper.h; sourceTree = "<group>"; };
-		003AD135138AD88400CB3CB5 /* TableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewHelper.m; sourceTree = "<group>"; };
-		003AD137138AF55C00CB3CB5 /* NumberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberHelper.h; sourceTree = "<group>"; };
-		003AD138138AF55C00CB3CB5 /* NumberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberHelper.m; sourceTree = "<group>"; };
 		003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldCell.h; sourceTree = "<group>"; };
 		003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldCell.m; sourceTree = "<group>"; };
 		003CFD0C13C901B70006D083 /* TableHeaderWithDisclosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderWithDisclosure.h; sourceTree = "<group>"; };
@@ -630,6 +610,7 @@
 		003CFD1013C931D80006D083 /* TableHeaderDisclosureButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderDisclosureButtonDelegate.h; sourceTree = "<group>"; };
 		003CFD1113C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectScenarioTableHeaderButtonDelegate.h; sourceTree = "<group>"; };
 		003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectScenarioTableHeaderButtonDelegate.m; sourceTree = "<group>"; };
+		004107D814EEF06E0063E307 /* libResultraGenericLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libResultraGenericLib.a; sourceTree = SOURCE_ROOT; };
 		0041263113A6824A008F0647 /* InputListInputDescriptionCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListInputDescriptionCreator.h; sourceTree = "<group>"; };
 		0041263213A6824A008F0647 /* InputListInputDescriptionCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputListInputDescriptionCreator.m; sourceTree = "<group>"; };
 		0041263513A6A653008F0647 /* InputListFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListFormInfoCreator.h; sourceTree = "<group>"; };
@@ -754,16 +735,12 @@
 		005DAEF414609AC500D87907 /* ItemizedLoanInterestTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedLoanInterestTaxAmtCreator.h; sourceTree = "<group>"; };
 		005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanInterestTaxAmtCreator.m; sourceTree = "<group>"; };
 		005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textureOldPaperSmall.png; sourceTree = "<group>"; };
-		005EF48014C9C575001F3D36 /* AlertViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewHelper.h; sourceTree = "<group>"; };
-		005EF48114C9C575001F3D36 /* AlertViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewHelper.m; sourceTree = "<group>"; };
 		005EF4DD14C9DB83001F3D36 /* UpTo100PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpTo100PercentFieldValidator.h; sourceTree = "<group>"; };
 		005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpTo100PercentFieldValidator.m; sourceTree = "<group>"; };
 		005EF4E114CA1EC1001F3D36 /* HelpInfoViewFlipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpInfoViewFlipViewController.h; sourceTree = "<group>"; };
 		005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpInfoViewFlipViewController.m; sourceTree = "<group>"; };
 		005EF4E414CA220A001F3D36 /* HelpInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpInfoView.h; sourceTree = "<group>"; };
 		005EF4E514CA220B001F3D36 /* HelpInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpInfoView.m; sourceTree = "<group>"; };
-		005EF4E714CA652C001F3D36 /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
-		005EF4E814CA652E001F3D36 /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
 		0063505613EA1900002E38FA /* RelativeEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDate.h; sourceTree = "<group>"; };
 		0063505713EA1900002E38FA /* RelativeEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDate.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
@@ -859,8 +836,6 @@
 		0087923413AA466A00CA9DA7 /* VariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923513AA47D300CA9DA7 /* SharedEntityVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedEntityVariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedEntityVariableValueListMgr.m; sourceTree = "<group>"; };
-		0087923E13ABB47100CA9DA7 /* LocalizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationHelper.h; sourceTree = "<group>"; };
-		0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationHelper.m; sourceTree = "<group>"; };
 		0087924513AC507E00CA9DA7 /* VariableHeightTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableHeightTableHeader.h; sourceTree = "<group>"; };
 		0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableHeightTableHeader.m; sourceTree = "<group>"; };
 		00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gettingStarted.md; sourceTree = "<group>"; };
@@ -993,8 +968,6 @@
 		00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableObjectTableEditViewController.h; sourceTree = "<group>"; };
 		00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableObjectTableEditViewController.m; sourceTree = "<group>"; };
 		00A57F6C1396DCF9004E148B /* FormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInfoCreator.h; sourceTree = "<group>"; };
-		00AA0DC614EC4B7900F74498 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
-		00AA0DC714EC4B7900F74498 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		00AA79B91441E8AF00FED301 /* TaxBracketFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketFormInfoCreator.h; sourceTree = "<group>"; };
 		00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketFormInfoCreator.m; sourceTree = "<group>"; };
 		00AA79BC1441EA9D00FED301 /* TaxBracketEntryObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntryObjectAdder.h; sourceTree = "<group>"; };
@@ -1192,10 +1165,6 @@
 		00EC1F9F13992B8A0085B25C /* MilestoneDateSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MilestoneDateSectionInfo.m; sourceTree = "<group>"; };
 		00EC1FA413997F830085B25C /* MilestoneDateFormPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MilestoneDateFormPopulator.h; sourceTree = "<group>"; };
 		00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MilestoneDateFormPopulator.m; sourceTree = "<group>"; };
-		00EC1FA713998A090085B25C /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
-		00EC1FA813998A090085B25C /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
-		00EC1FAA139BD27B0085B25C /* ColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorHelper.h; sourceTree = "<group>"; };
-		00EC1FAB139BD27C0085B25C /* ColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorHelper.m; sourceTree = "<group>"; };
 		00EC1FAD139BDB210085B25C /* DateSensitiveValueFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFormInfoCreator.m; sourceTree = "<group>"; };
 		00EC1FB3139BE24D0085B25C /* AddObjectSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddObjectSectionInfo.h; sourceTree = "<group>"; };
@@ -1256,6 +1225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004107D914EEF06E0063E307 /* libResultraGenericLib.a in Frameworks */,
 				00F217D7140F172F00FA73AA /* libCorePlot-CocoaTouch.a in Frameworks */,
 				00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */,
 				00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */,
@@ -1632,35 +1602,6 @@
 				00E533E814E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m */,
 			);
 			name = "Scenario List";
-			sourceTree = "<group>";
-		};
-		003AD12D138AC83000CB3CB5 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				003AD12E138AC84F00CB3CB5 /* CollectionHelper.h */,
-				003AD12F138AC84F00CB3CB5 /* CollectionHelper.m */,
-				003AD131138ACBE800CB3CB5 /* StringValidation.h */,
-				003AD132138ACBE800CB3CB5 /* StringValidation.m */,
-				003AD134138AD88400CB3CB5 /* TableViewHelper.h */,
-				003AD135138AD88400CB3CB5 /* TableViewHelper.m */,
-				003AD137138AF55C00CB3CB5 /* NumberHelper.h */,
-				003AD138138AF55C00CB3CB5 /* NumberHelper.m */,
-				00EC1FA713998A090085B25C /* DateHelper.h */,
-				00EC1FA813998A090085B25C /* DateHelper.m */,
-				00EC1FAA139BD27B0085B25C /* ColorHelper.h */,
-				00EC1FAB139BD27C0085B25C /* ColorHelper.m */,
-				0087923E13ABB47100CA9DA7 /* LocalizationHelper.h */,
-				0087923F13ABB47100CA9DA7 /* LocalizationHelper.m */,
-				0025774E13AFDE2800D15232 /* StringLookupTable.h */,
-				0025774F13AFDE2800D15232 /* StringLookupTable.m */,
-				005EF48014C9C575001F3D36 /* AlertViewHelper.h */,
-				005EF48114C9C575001F3D36 /* AlertViewHelper.m */,
-				005EF4E714CA652C001F3D36 /* UIHelper.h */,
-				005EF4E814CA652E001F3D36 /* UIHelper.m */,
-				00AA0DC614EC4B7900F74498 /* CoreDataHelper.h */,
-				00AA0DC714EC4B7900F74498 /* CoreDataHelper.m */,
-			);
-			name = Helper;
 			sourceTree = "<group>";
 		};
 		0049DC6D13A287A000B27046 /* Base Classes */ = {
@@ -2506,6 +2447,7 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
+				004107D814EEF06E0063E307 /* libResultraGenericLib.a */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
 				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
 				00A36BD4136C6CAE008A5C4C /* Frameworks */,
@@ -2541,7 +2483,6 @@
 				0075841614E02FF200184BD5 /* Help Views */,
 				00D6848614CF61FB00E3AC9F /* 3rdParty */,
 				008AA408141ABB0600FF2A52 /* Icons */,
-				003AD12D138AC83000CB3CB5 /* Helper */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */,
 				0010A58A13D15C5D0096A20F /* Starting Values */,
@@ -3192,10 +3133,6 @@
 				00637A821385D509001E02F1 /* FixedValue.m in Sources */,
 				00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */,
 				00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */,
-				003AD130138AC84F00CB3CB5 /* CollectionHelper.m in Sources */,
-				003AD133138ACBE800CB3CB5 /* StringValidation.m in Sources */,
-				003AD136138AD88400CB3CB5 /* TableViewHelper.m in Sources */,
-				003AD139138AF55D00CB3CB5 /* NumberHelper.m in Sources */,
 				003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */,
 				00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */,
 				00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */,
@@ -3211,8 +3148,6 @@
 				00EC1F9D13981E280085B25C /* MilestoneDateFieldEditInfo.m in Sources */,
 				00EC1FA013992B8B0085B25C /* MilestoneDateSectionInfo.m in Sources */,
 				00EC1FA613997F860085B25C /* MilestoneDateFormPopulator.m in Sources */,
-				00EC1FA913998A090085B25C /* DateHelper.m in Sources */,
-				00EC1FAC139BD27F0085B25C /* ColorHelper.m in Sources */,
 				00EC1FAF139BDB460085B25C /* DateSensitiveValueFormInfoCreator.m in Sources */,
 				00EC1FB5139BE2560085B25C /* AddObjectSectionInfo.m in Sources */,
 				00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */,
@@ -3230,10 +3165,8 @@
 				0041263E13A7DED9008F0647 /* InputListObjectAdder.m in Sources */,
 				0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */,
 				0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */,
-				0087924013ABB47100CA9DA7 /* LocalizationHelper.m in Sources */,
 				0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */,
 				0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */,
-				0025775013AFDE2800D15232 /* StringLookupTable.m in Sources */,
 				0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */,
 				0025775613B177C100D15232 /* VariableRate.m in Sources */,
 				0025776013B24AEC00D15232 /* DateSensitiveValueVariableRateCalculatorCreator.m in Sources */,
@@ -3434,11 +3367,9 @@
 				00210FAE14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m in Sources */,
 				006B087114C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m in Sources */,
 				006B087414C5E7810042FE8E /* TaxesPaidXYPlotDataGenerator.m in Sources */,
-				005EF48214C9C575001F3D36 /* AlertViewHelper.m in Sources */,
 				005EF4DF14C9DB84001F3D36 /* UpTo100PercentFieldValidator.m in Sources */,
 				005EF4E314CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m in Sources */,
 				005EF4E614CA220B001F3D36 /* HelpInfoView.m in Sources */,
-				005EF4E914CA652F001F3D36 /* UIHelper.m in Sources */,
 				00D6845514CDC99700E3AC9F /* MoreFormInfoCreator.m in Sources */,
 				00D6845914CDD03600E3AC9F /* HelpViewFactory.m in Sources */,
 				00D6845C14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m in Sources */,
@@ -3463,7 +3394,6 @@
 				00E533E914E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m in Sources */,
 				00E533EC14E96B13005C6F6F /* NeverEndDateFieldEditInfo.m in Sources */,
 				00E533EF14E9CAEB005C6F6F /* FormContext.m in Sources */,
-				00AA0DC814EC4B7900F74498 /* CoreDataHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3539,7 +3469,9 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/..\"/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-all_load",
 					"-ObjC",
@@ -3558,7 +3490,9 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/..\"/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-all_load",
@@ -3581,6 +3515,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -3598,6 +3533,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
