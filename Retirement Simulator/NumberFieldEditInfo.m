@@ -14,7 +14,7 @@
 #import "DataModelController.h"
 #import "FieldInfo.h"
 #import "NumberFieldValidator.h"
-
+#import "LocalizationHelper.h"
 
 
 @implementation NumberFieldEditInfo
@@ -128,8 +128,13 @@
         self.numberCell.textField.text = [self detailTextLabel];
     }
 
-    self.numberCell.textField.placeholder = self.fieldInfo.fieldPlaceholder;
-    
+	// TODO - The text in self.fieldInfo.fieldPlaceholder is typically
+	// too long to be effectively displayed in the numeric field. An
+	// intermediate solution is to display a generic "Enter Value", then
+	// later support a subtitle which further explains what should be entered.
+    //self.numberCell.textField.placeholder = self.fieldInfo.fieldPlaceholder;
+    self.numberCell.textField.placeholder = LOCALIZED_STR(@"NUMBER_FIELD_PLACEHOLDER");
+	
     return self.numberCell;
     
 }

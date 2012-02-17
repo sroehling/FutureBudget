@@ -17,7 +17,7 @@
 NSString * const NUMBER_FIELD_CELL_ENTITY_NAME = @"NumberFieldCell";
 
 #define NUMBER_FIELD_MAX_WIDTH 120.0
-#define NUMBER_FIELD_MIN_WIDTH 80.0
+#define NUMBER_FIELD_MIN_WIDTH 100.0
 
 @implementation NumberFieldCell
 
