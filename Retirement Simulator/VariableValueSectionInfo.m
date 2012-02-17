@@ -33,15 +33,12 @@
 - (id) initWithVariableValueRuntimeInfo:(VariableValueRuntimeInfo*)theVarValRuntimeInfo
 	andFormContext:(FormContext*)theFormContext
 {
-	self = [super initWithFormContext:theFormContext];
+	self = [super initWithHelpInfo:theVarValRuntimeInfo.variableValHelpInfoFile
+	 andFormContext:theFormContext];
 	if(self)
 	{
 		assert(theVarValRuntimeInfo != nil);
 		self.varValRuntimeInfo = theVarValRuntimeInfo;
-		
-		assert(theVarValRuntimeInfo.variableValHelpInfoFile != nil);
-		self.helpInfoHTMLFile = theVarValRuntimeInfo.variableValHelpInfoFile;
-		
 
 		self.title =  [[[NSString alloc] initWithFormat:
 			LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),

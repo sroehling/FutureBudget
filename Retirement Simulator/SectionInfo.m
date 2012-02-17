@@ -9,6 +9,7 @@
 #import "SectionInfo.h"
 #import "SectionHeaderWithSubtitle.h"
 #import "FixedValue.h"
+#import "StringValidation.h"
 
 @implementation SectionInfo
 
@@ -52,6 +53,7 @@
         self.title = @"";
 
 
+		assert([StringValidation nonEmptyString:helpInfoFile]);
 		self.helpInfoHTMLFile = helpInfoFile;
 		self.sectionHeader.helpInfoHTMLFile = helpInfoHTMLFile;
 		

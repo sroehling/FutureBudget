@@ -24,6 +24,12 @@
 	return self;
 }
 
+-(id)initWithFormContext:(FormContext *)theFormContext
+{
+	assert(0);
+	return nil;
+}
+
 - (id) init
 {
 	self = [super init];
