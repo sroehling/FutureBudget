@@ -1,1 +1,1 @@
-## Health Care Inflation
+# Inflation of Medical Costs
