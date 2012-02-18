@@ -13,8 +13,6 @@
 		0009481813C375F4008F129B /* UserScenarioFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481713C375F4008F129B /* UserScenarioFieldEditInfo.m */; };
 		0009481B13C38912008F129B /* UserScenarioFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */; };
 		000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */; };
-		0010A57B13CFC2260096A20F /* BoolFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A57A13CFC2260096A20F /* BoolFieldEditInfo.m */; };
-		0010A58013CFC58F0096A20F /* BoolFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A57F13CFC58F0096A20F /* BoolFieldCell.m */; };
 		0010A58313CFEE6C0096A20F /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58213CFEE6B0096A20F /* Account.m */; };
 		0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58513CFEE940096A20F /* SavingsAccount.m */; };
 		0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58813D0B1DC0096A20F /* InterestRate.m */; };
@@ -27,7 +25,6 @@
 		001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2C14A24219008A672E /* AcctResultGenerator.m */; };
 		00210FA714BE5C6600E1D394 /* ItemizedTaxAmtFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */; };
 		00210FAB14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FAA14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m */; };
-		00210FAE14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FAD14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m */; };
 		00237957143E4F5D006650E3 /* TaxBracketEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237956143E4F5D006650E3 /* TaxBracketEntry.m */; };
 		0023795A143E4FA4006650E3 /* MultiScenarioGrowthRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237959143E4FA4006650E3 /* MultiScenarioGrowthRate.m */; };
 		0023795D143E5009006650E3 /* TaxBracket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023795C143E5009006650E3 /* TaxBracket.m */; };
@@ -59,7 +56,6 @@
 		002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9D14D3194800AE2B41 /* startingValue.md */; };
 		002FAEA014D32B3F00AE2B41 /* scenario.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9F14D32B3F00AE2B41 /* scenario.md */; };
 		002FAEA214D32C7800AE2B41 /* recipeCuttingExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEA114D32C7800AE2B41 /* recipeCuttingExpense.md */; };
-		002FAEA514D386E800AE2B41 /* HelpFlipViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FAEA414D386E800AE2B41 /* HelpFlipViewInfo.m */; };
 		002FAEA914D38F4600AE2B41 /* currentBalances.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEA814D38F4600AE2B41 /* currentBalances.md */; };
 		002FAEAB14D4413C00AE2B41 /* taxIncomeSources.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEAA14D4413C00AE2B41 /* taxIncomeSources.md */; };
 		002FAEAD14D4434C00AE2B41 /* taxAdjustments.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEAC14D4434C00AE2B41 /* taxAdjustments.md */; };
@@ -85,8 +81,6 @@
 		0036DE2413BE2C5C0043F3A5 /* ScenarioValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */; };
 		0036DE2713BE2D710043F3A5 /* MultiScenarioInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */; };
 		0036DE2E13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */; };
-		003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */; };
-		003CFD0E13C901B70006D083 /* TableHeaderWithDisclosure.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD0D13C901B70006D083 /* TableHeaderWithDisclosure.m */; };
 		003CFD1313C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */; };
 		004107D914EEF06E0063E307 /* libResultraGenericLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 004107D814EEF06E0063E307 /* libResultraGenericLib.a */; };
 		0041263313A6824A008F0647 /* InputListInputDescriptionCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263213A6824A008F0647 /* InputListInputDescriptionCreator.m */; };
@@ -97,8 +91,6 @@
 		0049DC7713A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7613A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m */; };
 		0049DC7A13A54B3100B27046 /* DateSensitiveValueChangeSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7913A54B3000B27046 /* DateSensitiveValueChangeSectionInfo.m */; };
 		0049DC8113A576B300B27046 /* DateSensitiveValueChangeAddedListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */; };
-		0049DC8513A6550C00B27046 /* FormFieldWithSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC8413A6550C00B27046 /* FormFieldWithSubtitleTableCell.m */; };
-		004A599E139ECA5C009FEF25 /* StaticFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */; };
 		004A59A1139F2E7C009FEF25 /* VariableValueRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */; };
 		004CB01913F9B797000E87A9 /* DigestUpdateEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB01813F9B797000E87A9 /* DigestUpdateEventCreator.m */; };
 		004CB01D13F9C986000E87A9 /* DigestUpdateEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB01C13F9C986000E87A9 /* DigestUpdateEvent.m */; };
@@ -117,11 +109,8 @@
 		004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */; };
 		004CB04B13FEF452000E87A9 /* IntermediateVariableRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04A13FEF433000E87A9 /* IntermediateVariableRate.m */; };
 		004CB04E1402BD04000E87A9 /* AccountContribDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04D1402BCBA000E87A9 /* AccountContribDigestEntry.m */; };
-		004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D0D136F52D200E0C4A3 /* DataModelController.m */; };
 		004F5D1113706F7100E0C4A3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D1013706F7100E0C4A3 /* Input.m */; };
 		004F5D24137079AD00E0C4A3 /* ExpenseInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D23137079AD00E0C4A3 /* ExpenseInput.m */; };
-		004F5D5A1371B3C100E0C4A3 /* DateFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */; };
-		004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */; };
 		004F5D741373191600E0C4A3 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D721373191600E0C4A3 /* ResultsViewController.m */; };
 		004F5D8013733BC100E0C4A3 /* SimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D7F13733BC100E0C4A3 /* SimEngine.m */; };
 		004F5D8B1374566200E0C4A3 /* TestSimEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5D8A1374566200E0C4A3 /* TestSimEngine.m */; };
@@ -135,24 +124,16 @@
 		0052E215145C54D300FEC4E2 /* AccountInterestItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0052E214145C54D100FEC4E2 /* AccountInterestItemizedTaxAmt.m */; };
 		0055A881141681C500EFB95C /* BoolInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A880141681C400EFB95C /* BoolInputValue.m */; };
 		0055A88A1416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */; };
-		0055A8951417DB4C00EFB95C /* TableCellHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A8941417DB4A00EFB95C /* TableCellHelper.m */; };
-		0055A89A141851E300EFB95C /* NameFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A899141851E300EFB95C /* NameFieldCell.m */; };
-		0055A89D1418551C00EFB95C /* NameFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */; };
-		0055A8A01419500400EFB95C /* SectionHeaderWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055A89F1419500300EFB95C /* SectionHeaderWithSubtitle.m */; };
 		005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
-		005AE72013C55ED2001D99C6 /* FieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE71F13C55ED2001D99C6 /* FieldInfo.m */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		005DAEEC1460635800D87907 /* AssetGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEB1460635800D87907 /* AssetGainItemizedTaxAmt.m */; };
 		005DAEF01460675500D87907 /* ItemizedAssetGainTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEF1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.m */; };
 		005DAEF314609A1100D87907 /* LoanInterestItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */; };
 		005DAEF614609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */; };
-		005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */; };
 		005EF4DF14C9DB84001F3D36 /* UpTo100PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */; };
-		005EF4E314CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */; };
-		005EF4E614CA220B001F3D36 /* HelpInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4E514CA220B001F3D36 /* HelpInfoView.m */; };
 		0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505713EA1900002E38FA /* RelativeEndDate.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
@@ -163,7 +144,6 @@
 		006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */; };
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
-		006572DE1434FBA70062C00C /* StaticNavFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */; };
 		006B087114C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */; };
 		006B087414C5E7810042FE8E /* TaxesPaidXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */; };
 		006D3A5A145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */; };
@@ -177,8 +157,6 @@
 		0075841014DF3B6B00184BD5 /* markdown-prefix.html in Resources */ = {isa = PBXBuildFile; fileRef = 0075840F14DF3B6B00184BD5 /* markdown-prefix.html */; };
 		0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */ = {isa = PBXBuildFile; fileRef = 0075841114DF3FC200184BD5 /* markdown-suffix.html */; };
 		0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */ = {isa = PBXBuildFile; fileRef = 0075841314DF410500184BD5 /* wrapMarkdown.pl */; };
-		0075841914E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075841814E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m */; };
-		0075841B14E0541D00184BD5 /* popoverMoreInfoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0075841A14E0541D00184BD5 /* popoverMoreInfoButton.png */; };
 		0075841E14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075841D14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.m */; };
 		0075842114E1BD0100184BD5 /* ItemizedAccountTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842014E1BCFF00184BD5 /* ItemizedAccountTaxFormInfoCreator.m */; };
 		0075842414E1C2E600184BD5 /* ItemizedAccountTaxAmtCreatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842314E1C2E500184BD5 /* ItemizedAccountTaxAmtCreatorBase.m */; };
@@ -200,11 +178,8 @@
 		0086C0B4142D229100148785 /* AssetPurchaseSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B3142D228E00148785 /* AssetPurchaseSimEvent.m */; };
 		0086C0B7142D22B100148785 /* AssetSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B6142D22AB00148785 /* AssetSimInfo.m */; };
 		0086C0BA142D310800148785 /* AssetSaleSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B9142D310400148785 /* AssetSaleSimEvent.m */; };
-		0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */; };
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
-		0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */; };
 		00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */; };
-		00899D8414D1DDA100CBFE6F /* HelpPageFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */; };
 		00899D8614D1E8A200CBFE6F /* recipeHSA.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D8514D1E8A200CBFE6F /* recipeHSA.md */; };
 		00899D8814D1E9CF00CBFE6F /* recipeHealthInflation.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D8714D1E9CF00CBFE6F /* recipeHealthInflation.md */; };
 		00899D8A14D1EA4100CBFE6F /* recipeMedicalExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D8914D1EA4100CBFE6F /* recipeMedicalExpense.md */; };
@@ -232,10 +207,6 @@
 		00899DC714D21D9A00CBFE6F /* recipeWedding.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DC614D21D9900CBFE6F /* recipeWedding.md */; };
 		00899DCB14D21E0300CBFE6F /* recipeMonthlyExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DCA14D21E0200CBFE6F /* recipeMonthlyExpense.md */; };
 		00899DCD14D21E2000CBFE6F /* recipeWindfall.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DCC14D21E2000CBFE6F /* recipeWindfall.md */; };
-		008AA414141AC5B100FF2A52 /* buttonhelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA410141AC5B100FF2A52 /* buttonhelp.png */; };
-		008AA415141AC5B100FF2A52 /* buttonhelp-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA411141AC5B100FF2A52 /* buttonhelp-2.png */; };
-		008AA416141AC5B100FF2A52 /* buttonadd.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA412141AC5B100FF2A52 /* buttonadd.png */; };
-		008AA417141AC5B100FF2A52 /* buttonadd-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 008AA413141AC5B100FF2A52 /* buttonadd-2.png */; };
 		008DD4B114B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */; };
 		008DD4B514B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */; };
 		008DD4B814B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B714B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m */; };
@@ -243,13 +214,11 @@
 		008DD4BE14B3AD37000AAEA5 /* LoanEarlyPayoffDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4BD14B3AD36000AAEA5 /* LoanEarlyPayoffDigestEntry.m */; };
 		008DD4C114B4DF45000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4C014B4DF44000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m */; };
 		008DD4C414B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4C314B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m */; };
-		008DD4C714B53F06000AAEA5 /* MultipleSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4C614B53F05000AAEA5 /* MultipleSelectionTableViewController.m */; };
 		008DD4CA14B5413C000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4C914B5413B000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m */; };
 		0095E96113B69A3B000555AC /* VariableValueCalculatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96013B69A3B000555AC /* VariableValueCalculatorTest.m */; };
 		0095E96813B69C66000555AC /* TestCoreDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96713B69C66000555AC /* TestCoreDataObjects.m */; };
 		0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96D13B8E93A000555AC /* EventRepeaterTest.m */; };
 		0095E97513B92794000555AC /* NeverEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E97413B92794000555AC /* NeverEndDate.m */; };
-		0095E98A13BA5876000555AC /* StaticFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E98913BA5876000555AC /* StaticFieldEditInfo.m */; };
 		0095E98D13BA9A9F000555AC /* SharedAppValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E98C13BA9A90000555AC /* SharedAppValues.m */; };
 		0099A1411455D03400E35AF9 /* ItemizedTaxCalcPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1401455D03400E35AF9 /* ItemizedTaxCalcPopulator.m */; };
 		0099A1441455D1AA00E35AF9 /* TaxInputCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1431455D1AA00E35AF9 /* TaxInputCalc.m */; };
@@ -263,12 +232,6 @@
 		0099A15F14575B1200E35AF9 /* ExpenseDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A15E14575B0F00E35AF9 /* ExpenseDigestEntry.m */; };
 		0099A16214575E5A00E35AF9 /* ExpenseSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */; };
 		0099A165145784CD00E35AF9 /* LoanDownPmtSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A164145784CC00E35AF9 /* LoanDownPmtSimEvent.m */; };
-		00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */; };
-		00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAB138EC87A00663C7F /* SectionInfo.m */; };
-		00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BAE138ECA8700663C7F /* FormInfo.m */; };
-		00A14BB2138FEBE800663C7F /* FormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BB1138FEBE600663C7F /* FormPopulator.m */; };
-		00A14BB5138FF53700663C7F /* GenericFieldBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */; };
-		00A254BE1476BB65004F63E3 /* NumberFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254BD1476BB64004F63E3 /* NumberFieldValidator.m */; };
 		00A254C11476BDD2004F63E3 /* PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */; };
 		00A254C41476CBEC004F63E3 /* PositiveAmountValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C31476CBEC004F63E3 /* PositiveAmountValidator.m */; };
 		00A254C71476D138004F63E3 /* GrowthRateFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C61476D137004F63E3 /* GrowthRateFieldValidator.m */; };
@@ -286,15 +249,10 @@
 		00A36C06136C6CAE008A5C4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C04136C6CAE008A5C4C /* InfoPlist.strings */; };
 		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
-		00A57F6A1396D549004E148B /* SelectableObjectTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */; };
 		00AA79BB1441E8AF00FED301 /* TaxBracketFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */; };
 		00AA79BE1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BD1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m */; };
 		00AA79C11441F07400FED301 /* TaxBracketEntryFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79C01441F07400FED301 /* TaxBracketEntryFormInfoCreator.m */; };
 		00ADB2ED138191B700064651 /* RepeatFrequencyFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */; };
-		00ADB2F1138199BC00064651 /* ManagedObjectFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */; };
-		00ADB2F413819ED500064651 /* FieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F313819ED500064651 /* FieldEditViewController.m */; };
-		00ADB2F71381B33A00064651 /* FieldEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2F61381B33900064651 /* FieldEditTableViewController.m */; };
-		00ADB2FE1381C1E000064651 /* GenericFieldBasedTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */; };
 		00ADB3031382D1BF00064651 /* DetailInputViewCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */; };
 		00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */; };
 		00ADB31713842FCA00064651 /* CashFlowInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB31613842FC800064651 /* CashFlowInput.m */; };
@@ -323,10 +281,7 @@
 		00CB5E731492AF2400C4654A /* AllExpenseXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */; };
 		00CB5E761492AF4300C4654A /* ExpenseXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */; };
 		00D6845514CDC99700E3AC9F /* MoreFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */; };
-		00D6845914CDD03600E3AC9F /* HelpViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6845814CDD03600E3AC9F /* HelpViewFactory.m */; };
 		00D6845C14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6845B14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m */; };
-		00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */; };
-		00D6846914CE002F00E3AC9F /* HelpPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */; };
 		00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00D6846C14CE004800E3AC9F /* Localizable.strings */; };
 		00D6848C14CF7DEA00E3AC9F /* recipeNewCar.md in Resources */ = {isa = PBXBuildFile; fileRef = 00D6848B14CF7DEA00E3AC9F /* recipeNewCar.md */; };
 		00D8D263148DD3D300B0314D /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */; };
@@ -363,39 +318,13 @@
 		00DC49F614D72188006BDF61 /* fixedDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F514D72187006BDF61 /* fixedDate.md */; };
 		00DC49F814D73EBA006BDF61 /* variableValueStartDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */; };
 		00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F914D73F40006BDF61 /* variableValueChange.md */; };
-		00DC49FD14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC49FC14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m */; };
 		00DC4A0014D8821E006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC49FF14D88217006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m */; };
 		00DC4A0214D9F3FB006BDF61 /* recipeRetireEarly.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A0114D9F3FB006BDF61 /* recipeRetireEarly.md */; };
-		00DC4A0514DB4A2F006BDF61 /* buttondisclosure-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A0314DB4A2E006BDF61 /* buttondisclosure-2.png */; };
-		00DC4A0614DB4A2F006BDF61 /* buttondisclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A0414DB4A2F006BDF61 /* buttondisclosure.png */; };
-		00DC4A1914DC952F006BDF61 /* WETouchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC4A1014DC952F006BDF61 /* WETouchableView.m */; };
-		00DC4A1A14DC952F006BDF61 /* WEPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC4A1314DC952F006BDF61 /* WEPopoverController.m */; };
-		00DC4A1B14DC952F006BDF61 /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC4A1514DC952F006BDF61 /* WEPopoverContainerView.m */; };
-		00DC4A1C14DC952F006BDF61 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC4A1714DC952F006BDF61 /* UIBarButtonItem+WEPopover.m */; };
-		00DC4A2C14DCA4BA006BDF61 /* popoverBgSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A1D14DCA498006BDF61 /* popoverBgSimple.png */; };
-		00DC4A2D14DCA4BA006BDF61 /* popoverBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A1E14DCA49A006BDF61 /* popoverBg@2x.png */; };
-		00DC4A2E14DCA4BA006BDF61 /* popoverBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A1F14DCA49C006BDF61 /* popoverBg.png */; };
-		00DC4A2F14DCA4BA006BDF61 /* popoverArrowUpSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2014DCA49F006BDF61 /* popoverArrowUpSimple.png */; };
-		00DC4A3014DCA4BA006BDF61 /* popoverArrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2114DCA4A0006BDF61 /* popoverArrowUp@2x.png */; };
-		00DC4A3114DCA4BA006BDF61 /* popoverArrowUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2214DCA4A1006BDF61 /* popoverArrowUp.png */; };
-		00DC4A3214DCA4BA006BDF61 /* popoverArrowRightSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2314DCA4A6006BDF61 /* popoverArrowRightSimple.png */; };
-		00DC4A3314DCA4BA006BDF61 /* popoverArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2414DCA4A7006BDF61 /* popoverArrowRight@2x.png */; };
-		00DC4A3414DCA4BA006BDF61 /* popoverArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2514DCA4A8006BDF61 /* popoverArrowRight.png */; };
-		00DC4A3514DCA4BA006BDF61 /* popoverArrowLeftSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2614DCA4AA006BDF61 /* popoverArrowLeftSimple.png */; };
-		00DC4A3614DCA4BA006BDF61 /* popoverArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2714DCA4B3006BDF61 /* popoverArrowLeft@2x.png */; };
-		00DC4A3714DCA4BA006BDF61 /* popoverArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2814DCA4B5006BDF61 /* popoverArrowLeft.png */; };
-		00DC4A3814DCA4BA006BDF61 /* popoverArrowDownSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2914DCA4B6006BDF61 /* popoverArrowDownSimple.png */; };
-		00DC4A3914DCA4BA006BDF61 /* popoverArrowDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2A14DCA4B7006BDF61 /* popoverArrowDown@2x.png */; };
-		00DC4A3A14DCA4BA006BDF61 /* popoverArrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DC4A2B14DCA4B9006BDF61 /* popoverArrowDown.png */; };
-		00DC4A3E14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC4A3D14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.m */; };
 		00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */; };
 		00E533E914E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E533E814E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m */; };
 		00E533EC14E96B13005C6F6F /* NeverEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E533EB14E96B12005C6F6F /* NeverEndDateFieldEditInfo.m */; };
-		00E533EF14E9CAEB005C6F6F /* FormContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E533EE14E9CAE9005C6F6F /* FormContext.m */; };
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
-		00E7D053143A284400B0815E /* SelectableObjectTableViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */; };
-		00E7D056143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */; };
 		00E898281472F30700FB3D01 /* DataModelDeleteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E898271472F30700FB3D01 /* DataModelDeleteTest.m */; };
 		00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */; };
 		00EC1F91139737D20085B25C /* SimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F90139737D20085B25C /* SimDate.m */; };
@@ -406,7 +335,6 @@
 		00EC1FA013992B8B0085B25C /* MilestoneDateSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F9F13992B8A0085B25C /* MilestoneDateSectionInfo.m */; };
 		00EC1FA613997F860085B25C /* MilestoneDateFormPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */; };
 		00EC1FAF139BDB460085B25C /* DateSensitiveValueFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */; };
-		00EC1FB5139BE2560085B25C /* AddObjectSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */; };
 		00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */; };
 		00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1FBA139BEAFF0085B25C /* VariableValueFieldEditInfo.m */; };
 		00EC455B141B159D00D65D17 /* graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EC455A141B159D00D65D17 /* graph.png */; };
@@ -419,9 +347,6 @@
 		00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */; };
 		00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */; };
 		00EC45901423C5B100D65D17 /* LoanPmtDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */; };
-		00EC45941423F55D00D65D17 /* DurationFieldEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45931423F55D00D65D17 /* DurationFieldEditViewController.m */; };
-		00EC45971423FFD100D65D17 /* DurationFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45961423FFD000D65D17 /* DurationFieldEditInfo.m */; };
-		00EC459A1424397D00D65D17 /* DurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC45991424397C00D65D17 /* DurationInfo.m */; };
 		00F06921142E2D8200D0E1FB /* AssetDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */; };
 		00F1D9D61443F5D300BCB5E9 /* FinishedAddingTaxBracketEntryListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1D9D51443F5D300BCB5E9 /* FinishedAddingTaxBracketEntryListener.m */; };
 		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
@@ -429,11 +354,7 @@
 		00F217D3140F073300FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D2140F073300FA73AA /* CoreData.framework */; };
 		00F217D7140F172F00FA73AA /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D6140F172F00FA73AA /* libCorePlot-CocoaTouch.a */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
-		00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4209F137DC04800980A88 /* DateFieldEditInfo.m */; };
-		00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */; };
-		00F420A9137DDBD000980A88 /* ManagedObjectFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */; };
-		00FF1922147AC762000787B5 /* StaticNameFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1921147AC762000787B5 /* StaticNameFieldCell.m */; };
-		00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */; };
+		00F5B31014EF231E001AF8D4 /* ResultraGenericLibResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00F5B30F14EF231E001AF8D4 /* ResultraGenericLibResources.bundle */; };
 		00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */; };
 /* End PBXBuildFile section */
 
@@ -474,10 +395,6 @@
 		0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScenarioFormInfoCreator.m; sourceTree = "<group>"; };
 		000FABF113BB8B30008AEEDF /* SimDateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateValueFormatter.h; sourceTree = "<group>"; };
 		000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateValueFormatter.m; sourceTree = "<group>"; };
-		0010A57913CFC2260096A20F /* BoolFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoolFieldEditInfo.h; sourceTree = "<group>"; };
-		0010A57A13CFC2260096A20F /* BoolFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolFieldEditInfo.m; sourceTree = "<group>"; };
-		0010A57E13CFC58F0096A20F /* BoolFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoolFieldCell.h; sourceTree = "<group>"; };
-		0010A57F13CFC58F0096A20F /* BoolFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolFieldCell.m; sourceTree = "<group>"; };
 		0010A58113CFEE6B0096A20F /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		0010A58213CFEE6B0096A20F /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		0010A58413CFEE940096A20F /* SavingsAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsAccount.h; sourceTree = "<group>"; };
@@ -502,8 +419,6 @@
 		00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtFieldEditInfo.m; sourceTree = "<group>"; };
 		00210FA914BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtsSelectionFormInfoCreator.h; sourceTree = "<group>"; };
 		00210FAA14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtsSelectionFormInfoCreator.m; sourceTree = "<group>"; };
-		00210FAC14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectionTableViewControllerFactory.h; sourceTree = "<group>"; };
-		00210FAD14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectionTableViewControllerFactory.m; sourceTree = "<group>"; };
 		00237955143E4F5D006650E3 /* TaxBracketEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntry.h; sourceTree = "<group>"; };
 		00237956143E4F5D006650E3 /* TaxBracketEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketEntry.m; sourceTree = "<group>"; };
 		00237958143E4FA4006650E3 /* MultiScenarioGrowthRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioGrowthRate.h; sourceTree = "<group>"; };
@@ -566,8 +481,6 @@
 		002FAE9D14D3194800AE2B41 /* startingValue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = startingValue.md; sourceTree = "<group>"; };
 		002FAE9F14D32B3F00AE2B41 /* scenario.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario.md; sourceTree = "<group>"; };
 		002FAEA114D32C7800AE2B41 /* recipeCuttingExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeCuttingExpense.md; sourceTree = "<group>"; };
-		002FAEA314D386E700AE2B41 /* HelpFlipViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFlipViewInfo.h; sourceTree = "<group>"; };
-		002FAEA414D386E800AE2B41 /* HelpFlipViewInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFlipViewInfo.m; sourceTree = "<group>"; };
 		002FAEA814D38F4600AE2B41 /* currentBalances.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentBalances.md; sourceTree = "<group>"; };
 		002FAEAA14D4413C00AE2B41 /* taxIncomeSources.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxIncomeSources.md; sourceTree = "<group>"; };
 		002FAEAC14D4434C00AE2B41 /* taxAdjustments.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxAdjustments.md; sourceTree = "<group>"; };
@@ -603,11 +516,6 @@
 		0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValue.m; sourceTree = "<group>"; };
 		0036DE2C13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValueFieldInfo.h; sourceTree = "<group>"; };
 		0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueFieldInfo.m; sourceTree = "<group>"; };
-		003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldCell.h; sourceTree = "<group>"; };
-		003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldCell.m; sourceTree = "<group>"; };
-		003CFD0C13C901B70006D083 /* TableHeaderWithDisclosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderWithDisclosure.h; sourceTree = "<group>"; };
-		003CFD0D13C901B70006D083 /* TableHeaderWithDisclosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderWithDisclosure.m; sourceTree = "<group>"; };
-		003CFD1013C931D80006D083 /* TableHeaderDisclosureButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderDisclosureButtonDelegate.h; sourceTree = "<group>"; };
 		003CFD1113C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectScenarioTableHeaderButtonDelegate.h; sourceTree = "<group>"; };
 		003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectScenarioTableHeaderButtonDelegate.m; sourceTree = "<group>"; };
 		004107D814EEF06E0063E307 /* libResultraGenericLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libResultraGenericLib.a; sourceTree = SOURCE_ROOT; };
@@ -617,7 +525,6 @@
 		0041263613A6A653008F0647 /* InputListFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputListFormInfoCreator.m; sourceTree = "<group>"; };
 		0041263813A6A744008F0647 /* InputFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputFieldEditInfo.h; sourceTree = "<group>"; };
 		0041263913A6A745008F0647 /* InputFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputFieldEditInfo.m; sourceTree = "<group>"; };
-		0041263B13A7DDCC008F0647 /* TableViewObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewObjectAdder.h; sourceTree = "<group>"; };
 		0041263C13A7DED8008F0647 /* InputListObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListObjectAdder.h; sourceTree = "<group>"; };
 		0041263D13A7DED9008F0647 /* InputListObjectAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputListObjectAdder.m; sourceTree = "<group>"; };
 		0049DC7213A537CC00B27046 /* VariableValueFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFormInfoCreator.h; sourceTree = "<group>"; };
@@ -626,13 +533,8 @@
 		0049DC7613A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeFieldEditInfo.m; sourceTree = "<group>"; };
 		0049DC7813A54B2F00B27046 /* DateSensitiveValueChangeSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeSectionInfo.h; sourceTree = "<group>"; };
 		0049DC7913A54B3000B27046 /* DateSensitiveValueChangeSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeSectionInfo.m; sourceTree = "<group>"; };
-		0049DC7E13A572B900B27046 /* FinishedAddingObjectListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishedAddingObjectListener.h; sourceTree = "<group>"; };
 		0049DC7F13A576AE00B27046 /* DateSensitiveValueChangeAddedListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeAddedListener.h; sourceTree = "<group>"; };
 		0049DC8013A576B000B27046 /* DateSensitiveValueChangeAddedListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeAddedListener.m; sourceTree = "<group>"; };
-		0049DC8313A6550C00B27046 /* FormFieldWithSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormFieldWithSubtitleTableCell.h; sourceTree = "<group>"; };
-		0049DC8413A6550C00B27046 /* FormFieldWithSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormFieldWithSubtitleTableCell.m; sourceTree = "<group>"; };
-		004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticFormInfoCreator.h; sourceTree = "<group>"; };
-		004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticFormInfoCreator.m; sourceTree = "<group>"; };
 		004A599F139F2E79009FEF25 /* VariableValueRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueRuntimeInfo.h; sourceTree = "<group>"; };
 		004A59A0139F2E7A009FEF25 /* VariableValueRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueRuntimeInfo.m; sourceTree = "<group>"; };
 		004CB01713F9B797000E87A9 /* DigestUpdateEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigestUpdateEventCreator.h; sourceTree = "<group>"; };
@@ -668,15 +570,10 @@
 		004CB04A13FEF433000E87A9 /* IntermediateVariableRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntermediateVariableRate.m; sourceTree = "<group>"; };
 		004CB04C1402BCB6000E87A9 /* AccountContribDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountContribDigestEntry.h; sourceTree = "<group>"; };
 		004CB04D1402BCBA000E87A9 /* AccountContribDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountContribDigestEntry.m; sourceTree = "<group>"; };
-		004F5D0C136F52D200E0C4A3 /* DataModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelController.h; sourceTree = "<group>"; };
-		004F5D0D136F52D200E0C4A3 /* DataModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelController.m; sourceTree = "<group>"; };
 		004F5D0F13706F7100E0C4A3 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		004F5D1013706F7100E0C4A3 /* Input.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Input.m; sourceTree = "<group>"; };
 		004F5D22137079AD00E0C4A3 /* ExpenseInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseInput.h; sourceTree = "<group>"; };
 		004F5D23137079AD00E0C4A3 /* ExpenseInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseInput.m; sourceTree = "<group>"; };
-		004F5D571371B3C100E0C4A3 /* DateFieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFieldEditViewController.h; sourceTree = "<group>"; };
-		004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFieldEditViewController.m; sourceTree = "<group>"; };
-		004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateFieldEditViewController.xib; sourceTree = "<group>"; };
 		004F5D711373191600E0C4A3 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		004F5D721373191600E0C4A3 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		004F5D791373376900E0C4A3 /* SimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEventCreator.h; sourceTree = "<group>"; };
@@ -705,23 +602,12 @@
 		0055A880141681C400EFB95C /* BoolInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolInputValue.m; sourceTree = "<group>"; };
 		0055A8881416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioBoolInputValueFieldInfo.h; sourceTree = "<group>"; };
 		0055A8891416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioBoolInputValueFieldInfo.m; sourceTree = "<group>"; };
-		0055A8931417DB4A00EFB95C /* TableCellHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellHelper.h; sourceTree = "<group>"; };
-		0055A8941417DB4A00EFB95C /* TableCellHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellHelper.m; sourceTree = "<group>"; };
-		0055A898141851E300EFB95C /* NameFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameFieldCell.h; sourceTree = "<group>"; };
-		0055A899141851E300EFB95C /* NameFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameFieldCell.m; sourceTree = "<group>"; };
-		0055A89B1418551B00EFB95C /* NameFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameFieldEditInfo.h; sourceTree = "<group>"; };
-		0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameFieldEditInfo.m; sourceTree = "<group>"; };
-		0055A89E1419500200EFB95C /* SectionHeaderWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionHeaderWithSubtitle.h; sourceTree = "<group>"; };
-		0055A89F1419500300EFB95C /* SectionHeaderWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionHeaderWithSubtitle.m; sourceTree = "<group>"; };
-		0055A8A1141A72CD00EFB95C /* SectionHeaderAddButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionHeaderAddButtonDelegate.h; sourceTree = "<group>"; };
 		005731ED13787AFD008D13C1 /* CashFlowSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowSimEventCreator.h; sourceTree = "<group>"; };
 		005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowSimEventCreator.m; sourceTree = "<group>"; };
 		005731F31379AFBF008D13C1 /* EventRepeatFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeatFrequency.h; sourceTree = "<group>"; };
 		005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeatFrequency.m; sourceTree = "<group>"; };
 		005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyEditViewController.h; sourceTree = "<group>"; };
 		005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyEditViewController.m; sourceTree = "<group>"; };
-		005AE71E13C55ED1001D99C6 /* FieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldInfo.h; sourceTree = "<group>"; };
-		005AE71F13C55ED2001D99C6 /* FieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldInfo.m; sourceTree = "<group>"; };
 		005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedDateFieldInfo.h; sourceTree = "<group>"; };
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
@@ -734,13 +620,8 @@
 		005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanInterestItemizedTaxAmt.m; sourceTree = "<group>"; };
 		005DAEF414609AC500D87907 /* ItemizedLoanInterestTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedLoanInterestTaxAmtCreator.h; sourceTree = "<group>"; };
 		005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanInterestTaxAmtCreator.m; sourceTree = "<group>"; };
-		005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textureOldPaperSmall.png; sourceTree = "<group>"; };
 		005EF4DD14C9DB83001F3D36 /* UpTo100PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpTo100PercentFieldValidator.h; sourceTree = "<group>"; };
 		005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpTo100PercentFieldValidator.m; sourceTree = "<group>"; };
-		005EF4E114CA1EC1001F3D36 /* HelpInfoViewFlipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpInfoViewFlipViewController.h; sourceTree = "<group>"; };
-		005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpInfoViewFlipViewController.m; sourceTree = "<group>"; };
-		005EF4E414CA220A001F3D36 /* HelpInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpInfoView.h; sourceTree = "<group>"; };
-		005EF4E514CA220B001F3D36 /* HelpInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpInfoView.m; sourceTree = "<group>"; };
 		0063505613EA1900002E38FA /* RelativeEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDate.h; sourceTree = "<group>"; };
 		0063505713EA1900002E38FA /* RelativeEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDate.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
@@ -761,8 +642,6 @@
 		006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFormInfoCreator.m; sourceTree = "<group>"; };
 		006572D81434F7A30062C00C /* WhatIfFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatIfFormInfoCreator.h; sourceTree = "<group>"; };
 		006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatIfFormInfoCreator.m; sourceTree = "<group>"; };
-		006572DC1434FBA70062C00C /* StaticNavFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNavFieldEditInfo.h; sourceTree = "<group>"; };
-		006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNavFieldEditInfo.m; sourceTree = "<group>"; };
 		006B086F14C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTaxesPaidXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTaxesPaidXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		006B087214C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxesPaidXYPlotDataGenerator.h; sourceTree = "<group>"; };
@@ -785,9 +664,6 @@
 		0075840F14DF3B6B00184BD5 /* markdown-prefix.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-prefix.html"; sourceTree = "<group>"; };
 		0075841114DF3FC200184BD5 /* markdown-suffix.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-suffix.html"; sourceTree = "<group>"; };
 		0075841314DF410500184BD5 /* wrapMarkdown.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = wrapMarkdown.pl; sourceTree = "<group>"; };
-		0075841714E0385F00184BD5 /* HelpPagePopoverCaptionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPagePopoverCaptionInfo.h; sourceTree = "<group>"; };
-		0075841814E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPagePopoverCaptionInfo.m; sourceTree = "<group>"; };
-		0075841A14E0541D00184BD5 /* popoverMoreInfoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverMoreInfoButton.png; sourceTree = "<group>"; };
 		0075841C14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedIncomeTaxFormInfoCreator.h; sourceTree = "<group>"; };
 		0075841D14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedIncomeTaxFormInfoCreator.m; sourceTree = "<group>"; };
 		0075841F14E1BCFE00184BD5 /* ItemizedAccountTaxFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountTaxFormInfoCreator.h; sourceTree = "<group>"; };
@@ -812,7 +688,6 @@
 		0086C08D14294B4200148785 /* TestLoanInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLoanInput.m; sourceTree = "<group>"; };
 		0086C090142956D500148785 /* SimParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimParams.h; sourceTree = "<group>"; };
 		0086C091142956D500148785 /* SimParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimParams.m; sourceTree = "<group>"; };
-		0086C094142A3F6400148785 /* DataModelInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelInterface.h; sourceTree = "<group>"; };
 		0086C09A142B968C00148785 /* AssetInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetInput.h; sourceTree = "<group>"; };
 		0086C09B142B968D00148785 /* AssetInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetInput.m; sourceTree = "<group>"; };
 		0086C0A2142BC12A00148785 /* AssetValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetValue.h; sourceTree = "<group>"; };
@@ -831,16 +706,10 @@
 		0086C0B6142D22AB00148785 /* AssetSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSimInfo.m; sourceTree = "<group>"; };
 		0086C0B8142D310100148785 /* AssetSaleSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSaleSimEvent.h; sourceTree = "<group>"; };
 		0086C0B9142D310400148785 /* AssetSaleSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSaleSimEvent.m; sourceTree = "<group>"; };
-		0087922C13A8F4B400CA9DA7 /* ValueSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueSubtitleTableCell.h; sourceTree = "<group>"; };
-		0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueSubtitleTableCell.m; sourceTree = "<group>"; };
 		0087923413AA466A00CA9DA7 /* VariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923513AA47D300CA9DA7 /* SharedEntityVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedEntityVariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedEntityVariableValueListMgr.m; sourceTree = "<group>"; };
-		0087924513AC507E00CA9DA7 /* VariableHeightTableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableHeightTableHeader.h; sourceTree = "<group>"; };
-		0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableHeightTableHeader.m; sourceTree = "<group>"; };
 		00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gettingStarted.md; sourceTree = "<group>"; };
-		00899D8214D1DDA100CBFE6F /* HelpPageFormPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageFormPopulator.h; sourceTree = "<group>"; };
-		00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageFormPopulator.m; sourceTree = "<group>"; };
 		00899D8514D1E8A200CBFE6F /* recipeHSA.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeHSA.md; sourceTree = "<group>"; };
 		00899D8714D1E9CF00CBFE6F /* recipeHealthInflation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeHealthInflation.md; sourceTree = "<group>"; };
 		00899D8914D1EA4100CBFE6F /* recipeMedicalExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeMedicalExpense.md; sourceTree = "<group>"; };
@@ -868,10 +737,6 @@
 		00899DC614D21D9900CBFE6F /* recipeWedding.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeWedding.md; sourceTree = "<group>"; };
 		00899DCA14D21E0200CBFE6F /* recipeMonthlyExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeMonthlyExpense.md; sourceTree = "<group>"; };
 		00899DCC14D21E2000CBFE6F /* recipeWindfall.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeWindfall.md; sourceTree = "<group>"; };
-		008AA410141AC5B100FF2A52 /* buttonhelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonhelp.png; sourceTree = "<group>"; };
-		008AA411141AC5B100FF2A52 /* buttonhelp-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonhelp-2.png"; sourceTree = "<group>"; };
-		008AA412141AC5B100FF2A52 /* buttonadd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonadd.png; sourceTree = "<group>"; };
-		008AA413141AC5B100FF2A52 /* buttonadd-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonadd-2.png"; sourceTree = "<group>"; };
 		008DD4AF14B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		008DD4B314B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
@@ -886,8 +751,6 @@
 		008DD4C014B4DF44000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedAccountWithdrawalsTableViewFactory.m; sourceTree = "<group>"; };
 		008DD4C214B4FF19000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedWithdrawalExpenseFormInfoCreator.h; sourceTree = "<group>"; };
 		008DD4C314B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedWithdrawalExpenseFormInfoCreator.m; sourceTree = "<group>"; };
-		008DD4C514B53F04000AAEA5 /* MultipleSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectionTableViewController.h; sourceTree = "<group>"; };
-		008DD4C614B53F05000AAEA5 /* MultipleSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectionTableViewController.m; sourceTree = "<group>"; };
 		008DD4C814B5413A000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedWithdrawalExpenseFieldEditInfo.h; sourceTree = "<group>"; };
 		008DD4C914B5413B000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedWithdrawalExpenseFieldEditInfo.m; sourceTree = "<group>"; };
 		0095E95F13B69A3B000555AC /* VariableValueCalculatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueCalculatorTest.h; sourceTree = "<group>"; };
@@ -899,8 +762,6 @@
 		0095E97313B92794000555AC /* NeverEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeverEndDate.h; sourceTree = "<group>"; };
 		0095E97413B92794000555AC /* NeverEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeverEndDate.m; sourceTree = "<group>"; };
 		0095E98313BA3532000555AC /* SimDateVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateVisitor.h; sourceTree = "<group>"; };
-		0095E98813BA5876000555AC /* StaticFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticFieldEditInfo.h; sourceTree = "<group>"; };
-		0095E98913BA5876000555AC /* StaticFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticFieldEditInfo.m; sourceTree = "<group>"; };
 		0095E98B13BA9A7D000555AC /* SharedAppValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedAppValues.h; sourceTree = "<group>"; };
 		0095E98C13BA9A90000555AC /* SharedAppValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedAppValues.m; sourceTree = "<group>"; };
 		0099A13F1455D03400E35AF9 /* ItemizedTaxCalcPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxCalcPopulator.h; sourceTree = "<group>"; };
@@ -928,18 +789,6 @@
 		0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseSimInfo.m; sourceTree = "<group>"; };
 		0099A163145784CA00E35AF9 /* LoanDownPmtSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanDownPmtSimEvent.h; sourceTree = "<group>"; };
 		0099A164145784CC00E35AF9 /* LoanDownPmtSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanDownPmtSimEvent.m; sourceTree = "<group>"; };
-		00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableAddViewController.h; sourceTree = "<group>"; };
-		00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableAddViewController.m; sourceTree = "<group>"; };
-		00A14BAA138EC87900663C7F /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
-		00A14BAB138EC87A00663C7F /* SectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInfo.m; sourceTree = "<group>"; };
-		00A14BAD138ECA8600663C7F /* FormInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInfo.h; sourceTree = "<group>"; };
-		00A14BAE138ECA8700663C7F /* FormInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInfo.m; sourceTree = "<group>"; };
-		00A14BB0138FEBE400663C7F /* FormPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPopulator.h; sourceTree = "<group>"; };
-		00A14BB1138FEBE600663C7F /* FormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPopulator.m; sourceTree = "<group>"; };
-		00A14BB3138FF53400663C7F /* GenericFieldBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableViewController.h; sourceTree = "<group>"; };
-		00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableViewController.m; sourceTree = "<group>"; };
-		00A254BC1476BB64004F63E3 /* NumberFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldValidator.h; sourceTree = "<group>"; };
-		00A254BD1476BB64004F63E3 /* NumberFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldValidator.m; sourceTree = "<group>"; };
 		00A254BF1476BDD2004F63E3 /* PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentFieldValidator.h; sourceTree = "<group>"; };
 		00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentFieldValidator.m; sourceTree = "<group>"; };
 		00A254C21476CBEB004F63E3 /* PositiveAmountValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositiveAmountValidator.h; sourceTree = "<group>"; };
@@ -965,9 +814,6 @@
 		00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Retirement SimulatorTests-Prefix.pch"; sourceTree = "<group>"; };
 		00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Retirement_SimulatorTests.h; sourceTree = "<group>"; };
 		00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorTests.m; sourceTree = "<group>"; };
-		00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableObjectTableEditViewController.h; sourceTree = "<group>"; };
-		00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableObjectTableEditViewController.m; sourceTree = "<group>"; };
-		00A57F6C1396DCF9004E148B /* FormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInfoCreator.h; sourceTree = "<group>"; };
 		00AA79B91441E8AF00FED301 /* TaxBracketFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketFormInfoCreator.h; sourceTree = "<group>"; };
 		00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketFormInfoCreator.m; sourceTree = "<group>"; };
 		00AA79BC1441EA9D00FED301 /* TaxBracketEntryObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntryObjectAdder.h; sourceTree = "<group>"; };
@@ -976,14 +822,6 @@
 		00AA79C01441F07400FED301 /* TaxBracketEntryFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketEntryFormInfoCreator.m; sourceTree = "<group>"; };
 		00ADB2EB138191B700064651 /* RepeatFrequencyFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyFieldEditInfo.h; sourceTree = "<group>"; };
 		00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyFieldEditInfo.m; sourceTree = "<group>"; };
-		00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectFieldEditInfo.h; sourceTree = "<group>"; };
-		00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectFieldEditInfo.m; sourceTree = "<group>"; };
-		00ADB2F213819ED400064651 /* FieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditViewController.h; sourceTree = "<group>"; };
-		00ADB2F313819ED500064651 /* FieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldEditViewController.m; sourceTree = "<group>"; };
-		00ADB2F51381B33800064651 /* FieldEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditTableViewController.h; sourceTree = "<group>"; };
-		00ADB2F61381B33900064651 /* FieldEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldEditTableViewController.m; sourceTree = "<group>"; };
-		00ADB2FB1381C1DC00064651 /* GenericFieldBasedTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableEditViewController.h; sourceTree = "<group>"; };
-		00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableEditViewController.m; sourceTree = "<group>"; };
 		00ADB3001382CB2B00064651 /* InputVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputVisitor.h; sourceTree = "<group>"; };
 		00ADB3011382D1BE00064651 /* DetailInputViewCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInputViewCreator.h; sourceTree = "<group>"; };
 		00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInputViewCreator.m; sourceTree = "<group>"; };
@@ -1040,14 +878,8 @@
 		00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00D6845314CDC99700E3AC9F /* MoreFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreFormInfoCreator.h; sourceTree = "<group>"; };
 		00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreFormInfoCreator.m; sourceTree = "<group>"; };
-		00D6845714CDD03600E3AC9F /* HelpViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewFactory.h; sourceTree = "<group>"; };
-		00D6845814CDD03600E3AC9F /* HelpViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewFactory.m; sourceTree = "<group>"; };
 		00D6845A14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpRecipesFormInfoCreator.h; sourceTree = "<group>"; };
 		00D6845B14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpRecipesFormInfoCreator.m; sourceTree = "<group>"; };
-		00D6845D14CDEF4100E3AC9F /* HelpPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageViewController.h; sourceTree = "<group>"; };
-		00D6846014CDEFD300E3AC9F /* HelpPageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageInfo.h; sourceTree = "<group>"; };
-		00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageInfo.m; sourceTree = "<group>"; };
-		00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpPageViewController.m; sourceTree = "<group>"; };
 		00D6846C14CE004800E3AC9F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		00D6848714CF622F00E3AC9F /* Markdown.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = Markdown.pl; sourceTree = "<group>"; };
 		00D6848B14CF7DEA00E3AC9F /* recipeNewCar.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeNewCar.md; sourceTree = "<group>"; };
@@ -1097,56 +929,19 @@
 		00DC49F514D72187006BDF61 /* fixedDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedDate.md; sourceTree = "<group>"; };
 		00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueStartDate.md; sourceTree = "<group>"; };
 		00DC49F914D73F40006BDF61 /* variableValueChange.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueChange.md; sourceTree = "<group>"; };
-		00DC49FB14D79C6F006BDF61 /* GenericFieldBasedTableViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableViewControllerFactory.h; sourceTree = "<group>"; };
-		00DC49FC14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableViewControllerFactory.m; sourceTree = "<group>"; };
 		00DC49FE14D8820F006BDF61 /* DateSensitiveValueChangeFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFormInfoCreator.h; sourceTree = "<group>"; };
 		00DC49FF14D88217006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeFormInfoCreator.m; sourceTree = "<group>"; };
 		00DC4A0114D9F3FB006BDF61 /* recipeRetireEarly.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeRetireEarly.md; sourceTree = "<group>"; };
-		00DC4A0314DB4A2E006BDF61 /* buttondisclosure-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttondisclosure-2.png"; sourceTree = "<group>"; };
-		00DC4A0414DB4A2F006BDF61 /* buttondisclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttondisclosure.png; sourceTree = "<group>"; };
-		00DC4A1014DC952F006BDF61 /* WETouchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WETouchableView.m; sourceTree = "<group>"; };
-		00DC4A1114DC952F006BDF61 /* WETouchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WETouchableView.h; sourceTree = "<group>"; };
-		00DC4A1214DC952F006BDF61 /* WEPopoverParentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEPopoverParentView.h; sourceTree = "<group>"; };
-		00DC4A1314DC952F006BDF61 /* WEPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEPopoverController.m; sourceTree = "<group>"; };
-		00DC4A1414DC952F006BDF61 /* WEPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEPopoverController.h; sourceTree = "<group>"; };
-		00DC4A1514DC952F006BDF61 /* WEPopoverContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEPopoverContainerView.m; sourceTree = "<group>"; };
-		00DC4A1614DC952F006BDF61 /* WEPopoverContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEPopoverContainerView.h; sourceTree = "<group>"; };
-		00DC4A1714DC952F006BDF61 /* UIBarButtonItem+WEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WEPopover.m"; sourceTree = "<group>"; };
-		00DC4A1814DC952F006BDF61 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
-		00DC4A1D14DCA498006BDF61 /* popoverBgSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverBgSimple.png; sourceTree = "<group>"; };
-		00DC4A1E14DCA49A006BDF61 /* popoverBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popoverBg@2x.png"; sourceTree = "<group>"; };
-		00DC4A1F14DCA49C006BDF61 /* popoverBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverBg.png; sourceTree = "<group>"; };
-		00DC4A2014DCA49F006BDF61 /* popoverArrowUpSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowUpSimple.png; sourceTree = "<group>"; };
-		00DC4A2114DCA4A0006BDF61 /* popoverArrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popoverArrowUp@2x.png"; sourceTree = "<group>"; };
-		00DC4A2214DCA4A1006BDF61 /* popoverArrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowUp.png; sourceTree = "<group>"; };
-		00DC4A2314DCA4A6006BDF61 /* popoverArrowRightSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowRightSimple.png; sourceTree = "<group>"; };
-		00DC4A2414DCA4A7006BDF61 /* popoverArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popoverArrowRight@2x.png"; sourceTree = "<group>"; };
-		00DC4A2514DCA4A8006BDF61 /* popoverArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowRight.png; sourceTree = "<group>"; };
-		00DC4A2614DCA4AA006BDF61 /* popoverArrowLeftSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowLeftSimple.png; sourceTree = "<group>"; };
-		00DC4A2714DCA4B3006BDF61 /* popoverArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popoverArrowLeft@2x.png"; sourceTree = "<group>"; };
-		00DC4A2814DCA4B5006BDF61 /* popoverArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowLeft.png; sourceTree = "<group>"; };
-		00DC4A2914DCA4B6006BDF61 /* popoverArrowDownSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowDownSimple.png; sourceTree = "<group>"; };
-		00DC4A2A14DCA4B7006BDF61 /* popoverArrowDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popoverArrowDown@2x.png"; sourceTree = "<group>"; };
-		00DC4A2B14DCA4B9006BDF61 /* popoverArrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverArrowDown.png; sourceTree = "<group>"; };
-		00DC4A3C14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCaptionWEPopoverContainer.h; sourceTree = "<group>"; };
-		00DC4A3D14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCaptionWEPopoverContainer.m; sourceTree = "<group>"; };
 		00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestTest.h; sourceTree = "<group>"; };
 		00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestTest.m; sourceTree = "<group>"; };
 		00E533E714E9635C005C6F6F /* DefaultScenarioFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultScenarioFieldEditInfo.h; sourceTree = "<group>"; };
 		00E533E814E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultScenarioFieldEditInfo.m; sourceTree = "<group>"; };
 		00E533EA14E96B11005C6F6F /* NeverEndDateFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeverEndDateFieldEditInfo.h; sourceTree = "<group>"; };
 		00E533EB14E96B12005C6F6F /* NeverEndDateFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeverEndDateFieldEditInfo.m; sourceTree = "<group>"; };
-		00E533ED14E9CAE6005C6F6F /* FormContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormContext.h; sourceTree = "<group>"; };
-		00E533EE14E9CAE9005C6F6F /* FormContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormContext.m; sourceTree = "<group>"; };
 		00E6CC8413F99F21005EEC64 /* FiscalYearDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigest.h; sourceTree = "<group>"; };
 		00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigest.m; sourceTree = "<group>"; };
 		00E6CC8713F99FA9005EEC64 /* DigestEntryCltn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigestEntryCltn.h; sourceTree = "<group>"; };
 		00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigestEntryCltn.m; sourceTree = "<group>"; };
-		00E7D04F143A277C00B0815E /* GenericTableViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewFactory.h; sourceTree = "<group>"; };
-		00E7D051143A284400B0815E /* SelectableObjectTableViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableObjectTableViewControllerFactory.h; sourceTree = "<group>"; };
-		00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableObjectTableViewControllerFactory.m; sourceTree = "<group>"; };
-		00E7D054143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFieldBasedTableEditViewControllerFactory.h; sourceTree = "<group>"; };
-		00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFieldBasedTableEditViewControllerFactory.m; sourceTree = "<group>"; };
 		00E898261472F30700FB3D01 /* DataModelDeleteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelDeleteTest.h; sourceTree = "<group>"; };
 		00E898271472F30700FB3D01 /* DataModelDeleteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelDeleteTest.m; sourceTree = "<group>"; };
 		00EC1F8B139736D40085B25C /* SimDateFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateFormInfoCreator.h; sourceTree = "<group>"; };
@@ -1167,8 +962,6 @@
 		00EC1FA513997F840085B25C /* MilestoneDateFormPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MilestoneDateFormPopulator.m; sourceTree = "<group>"; };
 		00EC1FAD139BDB210085B25C /* DateSensitiveValueFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1FAE139BDB290085B25C /* DateSensitiveValueFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFormInfoCreator.m; sourceTree = "<group>"; };
-		00EC1FB3139BE24D0085B25C /* AddObjectSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddObjectSectionInfo.h; sourceTree = "<group>"; };
-		00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddObjectSectionInfo.m; sourceTree = "<group>"; };
 		00EC1FB6139BE3E40085B25C /* VariableValueSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueSectionInfo.h; sourceTree = "<group>"; };
 		00EC1FB7139BE3E80085B25C /* VariableValueSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueSectionInfo.m; sourceTree = "<group>"; };
 		00EC1FB9139BEAFA0085B25C /* VariableValueFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFieldEditInfo.h; sourceTree = "<group>"; };
@@ -1189,12 +982,6 @@
 		00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceCltn.m; sourceTree = "<group>"; };
 		00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanPmtDigestEntry.h; sourceTree = "<group>"; };
 		00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanPmtDigestEntry.m; sourceTree = "<group>"; };
-		00EC45921423F55D00D65D17 /* DurationFieldEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationFieldEditViewController.h; sourceTree = "<group>"; };
-		00EC45931423F55D00D65D17 /* DurationFieldEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationFieldEditViewController.m; sourceTree = "<group>"; };
-		00EC45951423FFD000D65D17 /* DurationFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationFieldEditInfo.h; sourceTree = "<group>"; };
-		00EC45961423FFD000D65D17 /* DurationFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationFieldEditInfo.m; sourceTree = "<group>"; };
-		00EC45981424397600D65D17 /* DurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationInfo.h; sourceTree = "<group>"; };
-		00EC45991424397C00D65D17 /* DurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInfo.m; sourceTree = "<group>"; };
 		00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDigestEntry.h; sourceTree = "<group>"; };
 		00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetDigestEntry.m; sourceTree = "<group>"; };
 		00F1D9D41443F5D200BCB5E9 /* FinishedAddingTaxBracketEntryListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishedAddingTaxBracketEntryListener.h; sourceTree = "<group>"; };
@@ -1205,17 +992,7 @@
 		00F217D6140F172F00FA73AA /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../CorePlot_0.4/Binaries/iOS/libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
-		00F4209D137DB78700980A88 /* FieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldEditInfo.h; sourceTree = "<group>"; };
-		00F4209E137DC04800980A88 /* DateFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFieldEditInfo.h; sourceTree = "<group>"; };
-		00F4209F137DC04800980A88 /* DateFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFieldEditInfo.m; sourceTree = "<group>"; };
-		00F420A1137DD45500980A88 /* NumberFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFieldEditInfo.h; sourceTree = "<group>"; };
-		00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFieldEditInfo.m; sourceTree = "<group>"; };
-		00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectFieldInfo.h; sourceTree = "<group>"; };
-		00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectFieldInfo.m; sourceTree = "<group>"; };
-		00FF1920147AC762000787B5 /* StaticNameFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNameFieldCell.h; sourceTree = "<group>"; };
-		00FF1921147AC762000787B5 /* StaticNameFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNameFieldCell.m; sourceTree = "<group>"; };
-		00FF1923147AC8D8000787B5 /* StaticNameFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNameFieldEditInfo.h; sourceTree = "<group>"; };
-		00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticNameFieldEditInfo.m; sourceTree = "<group>"; };
+		00F5B30F14EF231E001AF8D4 /* ResultraGenericLibResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ResultraGenericLibResources.bundle; sourceTree = "<group>"; };
 		00FF1926147C0BEF000787B5 /* SimDateSubtitleFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateSubtitleFormatter.h; sourceTree = "<group>"; };
 		00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateSubtitleFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1249,17 +1026,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0010A57713CFC2070096A20F /* Bool Field */ = {
-			isa = PBXGroup;
-			children = (
-				0010A57E13CFC58F0096A20F /* BoolFieldCell.h */,
-				0010A57F13CFC58F0096A20F /* BoolFieldCell.m */,
-				0010A57913CFC2260096A20F /* BoolFieldEditInfo.h */,
-				0010A57A13CFC2260096A20F /* BoolFieldEditInfo.m */,
-			);
-			name = "Bool Field";
-			sourceTree = "<group>";
-		};
 		0010A58A13D15C5D0096A20F /* Starting Values */ = {
 			isa = PBXGroup;
 			children = (
@@ -1604,37 +1370,6 @@
 			name = "Scenario List";
 			sourceTree = "<group>";
 		};
-		0049DC6D13A287A000B27046 /* Base Classes */ = {
-			isa = PBXGroup;
-			children = (
-				005AE71E13C55ED1001D99C6 /* FieldInfo.h */,
-				005AE71F13C55ED2001D99C6 /* FieldInfo.m */,
-				00ADB2EF138199BB00064651 /* ManagedObjectFieldEditInfo.h */,
-				00ADB2F0138199BB00064651 /* ManagedObjectFieldEditInfo.m */,
-				00F4209D137DB78700980A88 /* FieldEditInfo.h */,
-				00ADB2F213819ED400064651 /* FieldEditViewController.h */,
-				00ADB2F313819ED500064651 /* FieldEditViewController.m */,
-				00F420A7137DDBCE00980A88 /* ManagedObjectFieldInfo.h */,
-				00F420A8137DDBCF00980A88 /* ManagedObjectFieldInfo.m */,
-				00E533ED14E9CAE6005C6F6F /* FormContext.h */,
-				00E533EE14E9CAE9005C6F6F /* FormContext.m */,
-			);
-			name = "Base Classes";
-			sourceTree = "<group>";
-		};
-		0049DC6F13A2880700B27046 /* Fields */ = {
-			isa = PBXGroup;
-			children = (
-				006572DB1434FB8D0062C00C /* Static Navigational Field */,
-				0055A8971418519500EFB95C /* Name Field */,
-				0010A57713CFC2070096A20F /* Bool Field */,
-				004A59AE13A07F70009FEF25 /* Number Field */,
-				004A59AC13A07EDB009FEF25 /* Date Field */,
-				00EC45911423F4B200D65D17 /* Duration Field */,
-			);
-			name = Fields;
-			sourceTree = "<group>";
-		};
 		0049DC7013A2884D00B27046 /* Input Creation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1661,17 +1396,6 @@
 				003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */,
 			);
 			name = "Input List";
-			sourceTree = "<group>";
-		};
-		0049DC8213A654B100B27046 /* Custom Cells */ = {
-			isa = PBXGroup;
-			children = (
-				0049DC8313A6550C00B27046 /* FormFieldWithSubtitleTableCell.h */,
-				0049DC8413A6550C00B27046 /* FormFieldWithSubtitleTableCell.m */,
-				0087922C13A8F4B400CA9DA7 /* ValueSubtitleTableCell.h */,
-				0087922D13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m */,
-			);
-			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		004A59A213A025E5009FEF25 /* Date Sensitive Value */ = {
@@ -1817,89 +1541,6 @@
 			name = "Repeat Frequency";
 			sourceTree = "<group>";
 		};
-		004A59AA13A07E3E009FEF25 /* Generic Table Views */ = {
-			isa = PBXGroup;
-			children = (
-				00E7D04F143A277C00B0815E /* GenericTableViewFactory.h */,
-				00ADB2F51381B33800064651 /* FieldEditTableViewController.h */,
-				00ADB2F61381B33900064651 /* FieldEditTableViewController.m */,
-				00A14B9E138D7DA400663C7F /* GenericFieldBasedTableAddViewController.h */,
-				00A14B9F138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m */,
-				00A14BB3138FF53400663C7F /* GenericFieldBasedTableViewController.h */,
-				00A14BB4138FF53500663C7F /* GenericFieldBasedTableViewController.m */,
-				00A57F681396D546004E148B /* SelectableObjectTableEditViewController.h */,
-				00A57F691396D548004E148B /* SelectableObjectTableEditViewController.m */,
-				00E7D051143A284400B0815E /* SelectableObjectTableViewControllerFactory.h */,
-				00E7D052143A284400B0815E /* SelectableObjectTableViewControllerFactory.m */,
-				00ADB2FB1381C1DC00064651 /* GenericFieldBasedTableEditViewController.h */,
-				00ADB2FC1381C1DD00064651 /* GenericFieldBasedTableEditViewController.m */,
-				00E7D054143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.h */,
-				00E7D055143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m */,
-				0049DC7E13A572B900B27046 /* FinishedAddingObjectListener.h */,
-				008DD4C514B53F04000AAEA5 /* MultipleSelectionTableViewController.h */,
-				008DD4C614B53F05000AAEA5 /* MultipleSelectionTableViewController.m */,
-				00210FAC14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.h */,
-				00210FAD14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m */,
-				00DC49FB14D79C6F006BDF61 /* GenericFieldBasedTableViewControllerFactory.h */,
-				00DC49FC14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m */,
-			);
-			name = "Generic Table Views";
-			sourceTree = "<group>";
-		};
-		004A59AC13A07EDB009FEF25 /* Date Field */ = {
-			isa = PBXGroup;
-			children = (
-				004F5D571371B3C100E0C4A3 /* DateFieldEditViewController.h */,
-				004F5D581371B3C100E0C4A3 /* DateFieldEditViewController.m */,
-				004F5D591371B3C100E0C4A3 /* DateFieldEditViewController.xib */,
-				00F4209E137DC04800980A88 /* DateFieldEditInfo.h */,
-				00F4209F137DC04800980A88 /* DateFieldEditInfo.m */,
-			);
-			name = "Date Field";
-			sourceTree = "<group>";
-		};
-		004A59AE13A07F70009FEF25 /* Number Field */ = {
-			isa = PBXGroup;
-			children = (
-				00A254BC1476BB64004F63E3 /* NumberFieldValidator.h */,
-				00A254BD1476BB64004F63E3 /* NumberFieldValidator.m */,
-				00F420A1137DD45500980A88 /* NumberFieldEditInfo.h */,
-				00F420A2137DD45500980A88 /* NumberFieldEditInfo.m */,
-				003AD151138C6D2400CB3CB5 /* NumberFieldCell.h */,
-				003AD152138C6D2600CB3CB5 /* NumberFieldCell.m */,
-			);
-			name = "Number Field";
-			sourceTree = "<group>";
-		};
-		004A59AF13A07FB1009FEF25 /* Section Info */ = {
-			isa = PBXGroup;
-			children = (
-				00A14BAA138EC87900663C7F /* SectionInfo.h */,
-				00A14BAB138EC87A00663C7F /* SectionInfo.m */,
-				0055A8A1141A72CD00EFB95C /* SectionHeaderAddButtonDelegate.h */,
-				0055A89E1419500200EFB95C /* SectionHeaderWithSubtitle.h */,
-				0055A89F1419500300EFB95C /* SectionHeaderWithSubtitle.m */,
-				00EC1FB3139BE24D0085B25C /* AddObjectSectionInfo.h */,
-				00EC1FB4139BE2510085B25C /* AddObjectSectionInfo.m */,
-			);
-			name = "Section Info";
-			sourceTree = "<group>";
-		};
-		004A59B013A0800E009FEF25 /* Table Structure and Creation */ = {
-			isa = PBXGroup;
-			children = (
-				00A57F6C1396DCF9004E148B /* FormInfoCreator.h */,
-				00A14BAD138ECA8600663C7F /* FormInfo.h */,
-				00A14BAE138ECA8700663C7F /* FormInfo.m */,
-				00A14BB0138FEBE400663C7F /* FormPopulator.h */,
-				00A14BB1138FEBE600663C7F /* FormPopulator.m */,
-				004A599C139ECA5B009FEF25 /* StaticFormInfoCreator.h */,
-				004A599D139ECA5B009FEF25 /* StaticFormInfoCreator.m */,
-				0041263B13A7DDCC008F0647 /* TableViewObjectAdder.h */,
-			);
-			name = "Table Structure and Creation";
-			sourceTree = "<group>";
-		};
 		004CB02F13FC26AB000E87A9 /* Cash Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1924,22 +1565,6 @@
 				00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */,
 			);
 			name = Digest;
-			sourceTree = "<group>";
-		};
-		004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */ = {
-			isa = PBXGroup;
-			children = (
-				005EF47C14C88232001F3D36 /* Resources */,
-				0055A8961417DB6B00EFB95C /* Helper */,
-				0049DC6D13A287A000B27046 /* Base Classes */,
-				0087924413AC505B00CA9DA7 /* Table Headers */,
-				004A59B013A0800E009FEF25 /* Table Structure and Creation */,
-				004A59AA13A07E3E009FEF25 /* Generic Table Views */,
-				0049DC8213A654B100B27046 /* Custom Cells */,
-				0049DC6F13A2880700B27046 /* Fields */,
-				004A59AF13A07FB1009FEF25 /* Section Info */,
-			);
-			name = "Form Based Reusable Table Views";
 			sourceTree = "<group>";
 		};
 		004F5D6E1373170C00E0C4A3 /* Application */ = {
@@ -1992,7 +1617,6 @@
 		004F5D7613731A4F00E0C4A3 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				0086C093142A3E9200148785 /* Data Model Controller */,
 				00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */,
 				0036DE2113BE1AF90043F3A5 /* Input Values */,
 				00DC16C313BE10F9006CBACA /* Scenario */,
@@ -2046,30 +1670,6 @@
 			name = "Bool Input Value";
 			sourceTree = "<group>";
 		};
-		0055A8961417DB6B00EFB95C /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				0055A8931417DB4A00EFB95C /* TableCellHelper.h */,
-				0055A8941417DB4A00EFB95C /* TableCellHelper.m */,
-			);
-			name = Helper;
-			sourceTree = "<group>";
-		};
-		0055A8971418519500EFB95C /* Name Field */ = {
-			isa = PBXGroup;
-			children = (
-				0055A898141851E300EFB95C /* NameFieldCell.h */,
-				0055A899141851E300EFB95C /* NameFieldCell.m */,
-				0055A89B1418551B00EFB95C /* NameFieldEditInfo.h */,
-				0055A89C1418551C00EFB95C /* NameFieldEditInfo.m */,
-				00FF1920147AC762000787B5 /* StaticNameFieldCell.h */,
-				00FF1921147AC762000787B5 /* StaticNameFieldCell.m */,
-				00FF1923147AC8D8000787B5 /* StaticNameFieldEditInfo.h */,
-				00FF1924147AC8D9000787B5 /* StaticNameFieldEditInfo.m */,
-			);
-			name = "Name Field";
-			sourceTree = "<group>";
-		};
 		005731EC137874A1008D13C1 /* Simulator Inputs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2084,27 +1684,6 @@
 				0099A1671457ACCD00E35AF9 /* Expense */,
 			);
 			name = "Simulator Inputs";
-			sourceTree = "<group>";
-		};
-		005EF47C14C88232001F3D36 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				005EF47E14C8837A001F3D36 /* textureOldPaperSmall.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		005EF4E014CA1E63001F3D36 /* Help Flip View */ = {
-			isa = PBXGroup;
-			children = (
-				005EF4E414CA220A001F3D36 /* HelpInfoView.h */,
-				005EF4E514CA220B001F3D36 /* HelpInfoView.m */,
-				005EF4E114CA1EC1001F3D36 /* HelpInfoViewFlipViewController.h */,
-				005EF4E214CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m */,
-				002FAEA314D386E700AE2B41 /* HelpFlipViewInfo.h */,
-				002FAEA414D386E800AE2B41 /* HelpFlipViewInfo.m */,
-			);
-			name = "Help Flip View";
 			sourceTree = "<group>";
 		};
 		006572CF14338DCE0062C00C /* Deferred Withdrawals */ = {
@@ -2127,17 +1706,6 @@
 			name = "What If";
 			sourceTree = "<group>";
 		};
-		006572DB1434FB8D0062C00C /* Static Navigational Field */ = {
-			isa = PBXGroup;
-			children = (
-				0095E98913BA5876000555AC /* StaticFieldEditInfo.m */,
-				0095E98813BA5876000555AC /* StaticFieldEditInfo.h */,
-				006572DC1434FBA70062C00C /* StaticNavFieldEditInfo.h */,
-				006572DD1434FBA70062C00C /* StaticNavFieldEditInfo.m */,
-			);
-			name = "Static Navigational Field";
-			sourceTree = "<group>";
-		};
 		006B086D14C5E5CB0042FE8E /* Taxes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2149,16 +1717,6 @@
 			name = Taxes;
 			sourceTree = "<group>";
 		};
-		0075841614E02FF200184BD5 /* Help Views */ = {
-			isa = PBXGroup;
-			children = (
-				00DC4A3B14DCD0DA006BDF61 /* WE Popover Container */,
-				00D6845614CDD01F00E3AC9F /* Help Pages */,
-				005EF4E014CA1E63001F3D36 /* Help Flip View */,
-			);
-			name = "Help Views";
-			sourceTree = "<group>";
-		};
 		0086C08F142956AF00148785 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
@@ -2166,16 +1724,6 @@
 				0086C091142956D500148785 /* SimParams.m */,
 			);
 			name = Setup;
-			sourceTree = "<group>";
-		};
-		0086C093142A3E9200148785 /* Data Model Controller */ = {
-			isa = PBXGroup;
-			children = (
-				004F5D0C136F52D200E0C4A3 /* DataModelController.h */,
-				004F5D0D136F52D200E0C4A3 /* DataModelController.m */,
-				0086C094142A3F6400148785 /* DataModelInterface.h */,
-			);
-			name = "Data Model Controller";
 			sourceTree = "<group>";
 		};
 		0086C098142B8D4600148785 /* Loan */ = {
@@ -2265,18 +1813,6 @@
 			name = "Input Detail";
 			sourceTree = "<group>";
 		};
-		0087924413AC505B00CA9DA7 /* Table Headers */ = {
-			isa = PBXGroup;
-			children = (
-				0087924513AC507E00CA9DA7 /* VariableHeightTableHeader.h */,
-				0087924613AC507E00CA9DA7 /* VariableHeightTableHeader.m */,
-				003CFD0C13C901B70006D083 /* TableHeaderWithDisclosure.h */,
-				003CFD0D13C901B70006D083 /* TableHeaderWithDisclosure.m */,
-				003CFD1013C931D80006D083 /* TableHeaderDisclosureButtonDelegate.h */,
-			);
-			name = "Table Headers";
-			sourceTree = "<group>";
-		};
 		00899DA314D1FF0F00CBFE6F /* Auto */ = {
 			isa = PBXGroup;
 			children = (
@@ -2359,16 +1895,10 @@
 		008AA408141ABB0600FF2A52 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				00DC4A0314DB4A2E006BDF61 /* buttondisclosure-2.png */,
-				00DC4A0414DB4A2F006BDF61 /* buttondisclosure.png */,
 				00EC4560141B183D00D65D17 /* clock.png */,
 				00EC455E141B169E00D65D17 /* piggy.png */,
 				00EC455C141B165A00D65D17 /* scales.png */,
 				00EC455A141B159D00D65D17 /* graph.png */,
-				008AA410141AC5B100FF2A52 /* buttonhelp.png */,
-				008AA411141AC5B100FF2A52 /* buttonhelp-2.png */,
-				008AA412141AC5B100FF2A52 /* buttonadd.png */,
-				008AA413141AC5B100FF2A52 /* buttonadd-2.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -2447,6 +1977,7 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
+				00F5B30F14EF231E001AF8D4 /* ResultraGenericLibResources.bundle */,
 				004107D814EEF06E0063E307 /* libResultraGenericLib.a */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
 				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
@@ -2480,11 +2011,9 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
-				0075841614E02FF200184BD5 /* Help Views */,
 				00D6848614CF61FB00E3AC9F /* 3rdParty */,
 				008AA408141ABB0600FF2A52 /* Icons */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
-				004F5D511371B34800E0C4A3 /* Form Based Reusable Table Views */,
 				0010A58A13D15C5D0096A20F /* Starting Values */,
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
 				004A59A713A02F67009FEF25 /* Simulator */,
@@ -2643,21 +2172,6 @@
 			name = "More View";
 			sourceTree = "<group>";
 		};
-		00D6845614CDD01F00E3AC9F /* Help Pages */ = {
-			isa = PBXGroup;
-			children = (
-				00D6845714CDD03600E3AC9F /* HelpViewFactory.h */,
-				00D6845814CDD03600E3AC9F /* HelpViewFactory.m */,
-				00D6845D14CDEF4100E3AC9F /* HelpPageViewController.h */,
-				00D6846A14CE002F00E3AC9F /* HelpPageViewController.m */,
-				00D6846014CDEFD300E3AC9F /* HelpPageInfo.h */,
-				00D6846114CDEFD300E3AC9F /* HelpPageInfo.m */,
-				00899D8214D1DDA100CBFE6F /* HelpPageFormPopulator.h */,
-				00899D8314D1DDA100CBFE6F /* HelpPageFormPopulator.m */,
-			);
-			name = "Help Pages";
-			sourceTree = "<group>";
-		};
 		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -2672,7 +2186,6 @@
 		00D6848614CF61FB00E3AC9F /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
-				00DC4A0F14DC94B7006BDF61 /* WEPopover */,
 				00D6848714CF622F00E3AC9F /* Markdown.pl */,
 			);
 			name = 3rdParty;
@@ -2774,57 +2287,6 @@
 			name = "Simulation Dates";
 			sourceTree = "<group>";
 		};
-		00DC4A0F14DC94B7006BDF61 /* WEPopover */ = {
-			isa = PBXGroup;
-			children = (
-				00DC4A3F14DCD340006BDF61 /* images */,
-				00DC4A1014DC952F006BDF61 /* WETouchableView.m */,
-				00DC4A1114DC952F006BDF61 /* WETouchableView.h */,
-				00DC4A1214DC952F006BDF61 /* WEPopoverParentView.h */,
-				00DC4A1314DC952F006BDF61 /* WEPopoverController.m */,
-				00DC4A1414DC952F006BDF61 /* WEPopoverController.h */,
-				00DC4A1514DC952F006BDF61 /* WEPopoverContainerView.m */,
-				00DC4A1614DC952F006BDF61 /* WEPopoverContainerView.h */,
-				00DC4A1714DC952F006BDF61 /* UIBarButtonItem+WEPopover.m */,
-				00DC4A1814DC952F006BDF61 /* UIBarButtonItem+WEPopover.h */,
-			);
-			name = WEPopover;
-			sourceTree = "<group>";
-		};
-		00DC4A3B14DCD0DA006BDF61 /* WE Popover Container */ = {
-			isa = PBXGroup;
-			children = (
-				0075841A14E0541D00184BD5 /* popoverMoreInfoButton.png */,
-				0075841714E0385F00184BD5 /* HelpPagePopoverCaptionInfo.h */,
-				0075841814E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m */,
-				00DC4A3C14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.h */,
-				00DC4A3D14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.m */,
-			);
-			name = "WE Popover Container";
-			sourceTree = "<group>";
-		};
-		00DC4A3F14DCD340006BDF61 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				00DC4A1D14DCA498006BDF61 /* popoverBgSimple.png */,
-				00DC4A1E14DCA49A006BDF61 /* popoverBg@2x.png */,
-				00DC4A1F14DCA49C006BDF61 /* popoverBg.png */,
-				00DC4A2014DCA49F006BDF61 /* popoverArrowUpSimple.png */,
-				00DC4A2114DCA4A0006BDF61 /* popoverArrowUp@2x.png */,
-				00DC4A2214DCA4A1006BDF61 /* popoverArrowUp.png */,
-				00DC4A2314DCA4A6006BDF61 /* popoverArrowRightSimple.png */,
-				00DC4A2414DCA4A7006BDF61 /* popoverArrowRight@2x.png */,
-				00DC4A2514DCA4A8006BDF61 /* popoverArrowRight.png */,
-				00DC4A2614DCA4AA006BDF61 /* popoverArrowLeftSimple.png */,
-				00DC4A2714DCA4B3006BDF61 /* popoverArrowLeft@2x.png */,
-				00DC4A2814DCA4B5006BDF61 /* popoverArrowLeft.png */,
-				00DC4A2914DCA4B6006BDF61 /* popoverArrowDownSimple.png */,
-				00DC4A2A14DCA4B7006BDF61 /* popoverArrowDown@2x.png */,
-				00DC4A2B14DCA4B9006BDF61 /* popoverArrowDown.png */,
-			);
-			name = images;
-			sourceTree = "<group>";
-		};
 		00EC458214214B4700D65D17 /* Cash Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -2876,19 +2338,6 @@
 				008DD4BD14B3AD36000AAEA5 /* LoanEarlyPayoffDigestEntry.m */,
 			);
 			name = Loan;
-			sourceTree = "<group>";
-		};
-		00EC45911423F4B200D65D17 /* Duration Field */ = {
-			isa = PBXGroup;
-			children = (
-				00EC45981424397600D65D17 /* DurationInfo.h */,
-				00EC45991424397C00D65D17 /* DurationInfo.m */,
-				00EC45921423F55D00D65D17 /* DurationFieldEditViewController.h */,
-				00EC45931423F55D00D65D17 /* DurationFieldEditViewController.m */,
-				00EC45951423FFD000D65D17 /* DurationFieldEditInfo.h */,
-				00EC45961423FFD000D65D17 /* DurationFieldEditInfo.m */,
-			);
-			name = "Duration Field";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2959,19 +2408,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00F5B31014EF231E001AF8D4 /* ResultraGenericLibResources.bundle in Resources */,
 				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
-				004F5D5B1371B3C100E0C4A3 /* DateFieldEditViewController.xib in Resources */,
 				00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */,
-				008AA414141AC5B100FF2A52 /* buttonhelp.png in Resources */,
-				008AA415141AC5B100FF2A52 /* buttonhelp-2.png in Resources */,
-				008AA416141AC5B100FF2A52 /* buttonadd.png in Resources */,
-				008AA417141AC5B100FF2A52 /* buttonadd-2.png in Resources */,
 				00EC455B141B159D00D65D17 /* graph.png in Resources */,
 				00EC455D141B165A00D65D17 /* scales.png in Resources */,
 				00EC455F141B169E00D65D17 /* piggy.png in Resources */,
 				00EC4561141B183D00D65D17 /* clock.png in Resources */,
-				005EF47F14C8837A001F3D36 /* textureOldPaperSmall.png in Resources */,
 				00D6848C14CF7DEA00E3AC9F /* recipeNewCar.md in Resources */,
 				00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */,
 				00899D8614D1E8A200CBFE6F /* recipeHSA.md in Resources */,
@@ -3044,28 +2488,10 @@
 				00DC49F814D73EBA006BDF61 /* variableValueStartDate.md in Resources */,
 				00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */,
 				00DC4A0214D9F3FB006BDF61 /* recipeRetireEarly.md in Resources */,
-				00DC4A0514DB4A2F006BDF61 /* buttondisclosure-2.png in Resources */,
-				00DC4A0614DB4A2F006BDF61 /* buttondisclosure.png in Resources */,
-				00DC4A2C14DCA4BA006BDF61 /* popoverBgSimple.png in Resources */,
-				00DC4A2D14DCA4BA006BDF61 /* popoverBg@2x.png in Resources */,
-				00DC4A2E14DCA4BA006BDF61 /* popoverBg.png in Resources */,
-				00DC4A2F14DCA4BA006BDF61 /* popoverArrowUpSimple.png in Resources */,
-				00DC4A3014DCA4BA006BDF61 /* popoverArrowUp@2x.png in Resources */,
-				00DC4A3114DCA4BA006BDF61 /* popoverArrowUp.png in Resources */,
-				00DC4A3214DCA4BA006BDF61 /* popoverArrowRightSimple.png in Resources */,
-				00DC4A3314DCA4BA006BDF61 /* popoverArrowRight@2x.png in Resources */,
-				00DC4A3414DCA4BA006BDF61 /* popoverArrowRight.png in Resources */,
-				00DC4A3514DCA4BA006BDF61 /* popoverArrowLeftSimple.png in Resources */,
-				00DC4A3614DCA4BA006BDF61 /* popoverArrowLeft@2x.png in Resources */,
-				00DC4A3714DCA4BA006BDF61 /* popoverArrowLeft.png in Resources */,
-				00DC4A3814DCA4BA006BDF61 /* popoverArrowDownSimple.png in Resources */,
-				00DC4A3914DCA4BA006BDF61 /* popoverArrowDown@2x.png in Resources */,
-				00DC4A3A14DCA4BA006BDF61 /* popoverArrowDown.png in Resources */,
 				0075840D14DF34BF00184BD5 /* markdown.css in Resources */,
 				0075841014DF3B6B00184BD5 /* markdown-prefix.html in Resources */,
 				0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */,
 				0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */,
-				0075841B14E0541D00184BD5 /* popoverMoreInfoButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3103,24 +2529,15 @@
 			files = (
 				00A36BE3136C6CAE008A5C4C /* main.m in Sources */,
 				00A36BE6136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m in Sources */,
-				004F5D0E136F52D200E0C4A3 /* DataModelController.m in Sources */,
 				004F5D1113706F7100E0C4A3 /* Input.m in Sources */,
 				004F5D24137079AD00E0C4A3 /* ExpenseInput.m in Sources */,
-				004F5D5A1371B3C100E0C4A3 /* DateFieldEditViewController.m in Sources */,
 				004F5D741373191600E0C4A3 /* ResultsViewController.m in Sources */,
 				004F5D8013733BC100E0C4A3 /* SimEngine.m in Sources */,
 				005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */,
 				005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */,
 				005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */,
 				00F42097137B510A00980A88 /* EventRepeater.m in Sources */,
-				00F420A0137DC04900980A88 /* DateFieldEditInfo.m in Sources */,
-				00F420A3137DD45500980A88 /* NumberFieldEditInfo.m in Sources */,
-				00F420A9137DDBD000980A88 /* ManagedObjectFieldInfo.m in Sources */,
 				00ADB2ED138191B700064651 /* RepeatFrequencyFieldEditInfo.m in Sources */,
-				00ADB2F1138199BC00064651 /* ManagedObjectFieldEditInfo.m in Sources */,
-				00ADB2F413819ED500064651 /* FieldEditViewController.m in Sources */,
-				00ADB2F71381B33A00064651 /* FieldEditTableViewController.m in Sources */,
-				00ADB2FE1381C1E000064651 /* GenericFieldBasedTableEditViewController.m in Sources */,
 				00ADB3031382D1BF00064651 /* DetailInputViewCreator.m in Sources */,
 				00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */,
 				00ADB31713842FCA00064651 /* CashFlowInput.m in Sources */,
@@ -3133,13 +2550,6 @@
 				00637A821385D509001E02F1 /* FixedValue.m in Sources */,
 				00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */,
 				00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */,
-				003AD153138C6D2800CB3CB5 /* NumberFieldCell.m in Sources */,
-				00A14BA0138D7DA400663C7F /* GenericFieldBasedTableAddViewController.m in Sources */,
-				00A14BAC138EC87B00663C7F /* SectionInfo.m in Sources */,
-				00A14BAF138ECA8900663C7F /* FormInfo.m in Sources */,
-				00A14BB2138FEBE800663C7F /* FormPopulator.m in Sources */,
-				00A14BB5138FF53700663C7F /* GenericFieldBasedTableViewController.m in Sources */,
-				00A57F6A1396D549004E148B /* SelectableObjectTableEditViewController.m in Sources */,
 				00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */,
 				00EC1F91139737D20085B25C /* SimDate.m in Sources */,
 				00EC1F941397396D0085B25C /* MilestoneDate.m in Sources */,
@@ -3149,23 +2559,18 @@
 				00EC1FA013992B8B0085B25C /* MilestoneDateSectionInfo.m in Sources */,
 				00EC1FA613997F860085B25C /* MilestoneDateFormPopulator.m in Sources */,
 				00EC1FAF139BDB460085B25C /* DateSensitiveValueFormInfoCreator.m in Sources */,
-				00EC1FB5139BE2560085B25C /* AddObjectSectionInfo.m in Sources */,
 				00EC1FB8139BE3F90085B25C /* VariableValueSectionInfo.m in Sources */,
 				00EC1FBB139BEB040085B25C /* VariableValueFieldEditInfo.m in Sources */,
-				004A599E139ECA5C009FEF25 /* StaticFormInfoCreator.m in Sources */,
 				004A59A1139F2E7C009FEF25 /* VariableValueRuntimeInfo.m in Sources */,
 				0049DC7413A537CD00B27046 /* VariableValueFormInfoCreator.m in Sources */,
 				0049DC7713A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m in Sources */,
 				0049DC7A13A54B3100B27046 /* DateSensitiveValueChangeSectionInfo.m in Sources */,
 				0049DC8113A576B300B27046 /* DateSensitiveValueChangeAddedListener.m in Sources */,
-				0049DC8513A6550C00B27046 /* FormFieldWithSubtitleTableCell.m in Sources */,
 				0041263313A6824A008F0647 /* InputListInputDescriptionCreator.m in Sources */,
 				0041263713A6A653008F0647 /* InputListFormInfoCreator.m in Sources */,
 				0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */,
 				0041263E13A7DED9008F0647 /* InputListObjectAdder.m in Sources */,
-				0087922E13A8F4B400CA9DA7 /* ValueSubtitleTableCell.m in Sources */,
 				0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */,
-				0087924713AC507E00CA9DA7 /* VariableHeightTableHeader.m in Sources */,
 				0025774D13AFAD2D00D15232 /* SimDateRuntimeInfo.m in Sources */,
 				0025775313B1778600D15232 /* VariableRateCalculator.m in Sources */,
 				0025775613B177C100D15232 /* VariableRate.m in Sources */,
@@ -3174,7 +2579,6 @@
 				0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */,
 				0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */,
 				0095E97513B92794000555AC /* NeverEndDate.m in Sources */,
-				0095E98A13BA5876000555AC /* StaticFieldEditInfo.m in Sources */,
 				0095E98D13BA9A9F000555AC /* SharedAppValues.m in Sources */,
 				000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */,
 				0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */,
@@ -3188,13 +2592,9 @@
 				0009481513C37289008F129B /* ScenarioListObjectAdder.m in Sources */,
 				0009481813C375F4008F129B /* UserScenarioFieldEditInfo.m in Sources */,
 				0009481B13C38912008F129B /* UserScenarioFormInfoCreator.m in Sources */,
-				005AE72013C55ED2001D99C6 /* FieldInfo.m in Sources */,
 				005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */,
 				005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */,
-				003CFD0E13C901B70006D083 /* TableHeaderWithDisclosure.m in Sources */,
 				003CFD1313C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m in Sources */,
-				0010A57B13CFC2260096A20F /* BoolFieldEditInfo.m in Sources */,
-				0010A58013CFC58F0096A20F /* BoolFieldCell.m in Sources */,
 				0010A58313CFEE6C0096A20F /* Account.m in Sources */,
 				0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */,
 				0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */,
@@ -3228,19 +2628,12 @@
 				00BC35C8140D42DD00D79F78 /* SimEventList.m in Sources */,
 				0055A881141681C500EFB95C /* BoolInputValue.m in Sources */,
 				0055A88A1416DD9800EFB95C /* MultiScenarioBoolInputValueFieldInfo.m in Sources */,
-				0055A8951417DB4C00EFB95C /* TableCellHelper.m in Sources */,
-				0055A89A141851E300EFB95C /* NameFieldCell.m in Sources */,
-				0055A89D1418551C00EFB95C /* NameFieldEditInfo.m in Sources */,
-				0055A8A01419500400EFB95C /* SectionHeaderWithSubtitle.m in Sources */,
 				00EC4566141EC05A00D65D17 /* LoanInput.m in Sources */,
 				00EC4578141FBA6C00D65D17 /* LoanDownPmtPercent.m in Sources */,
 				00EC458714214C1E00D65D17 /* LoanPaymentSimEventCreator.m in Sources */,
 				00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */,
 				00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */,
 				00EC45901423C5B100D65D17 /* LoanPmtDigestEntry.m in Sources */,
-				00EC45941423F55D00D65D17 /* DurationFieldEditViewController.m in Sources */,
-				00EC45971423FFD100D65D17 /* DurationFieldEditInfo.m in Sources */,
-				00EC459A1424397D00D65D17 /* DurationInfo.m in Sources */,
 				0086C08114279A3B00148785 /* DownPaymentSimEventCreator.m in Sources */,
 				0086C08514279B7D00148785 /* SimInputHelper.m in Sources */,
 				0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */,
@@ -3259,9 +2652,6 @@
 				006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */,
 				006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */,
 				006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */,
-				006572DE1434FBA70062C00C /* StaticNavFieldEditInfo.m in Sources */,
-				00E7D053143A284400B0815E /* SelectableObjectTableViewControllerFactory.m in Sources */,
-				00E7D056143A2ADC00B0815E /* GenericFieldBasedTableEditViewControllerFactory.m in Sources */,
 				00237957143E4F5D006650E3 /* TaxBracketEntry.m in Sources */,
 				0023795A143E4FA4006650E3 /* MultiScenarioGrowthRate.m in Sources */,
 				0023795D143E5009006650E3 /* TaxBracket.m in Sources */,
@@ -3314,13 +2704,10 @@
 				005DAEF314609A1100D87907 /* LoanInterestItemizedTaxAmt.m in Sources */,
 				005DAEF614609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m in Sources */,
 				002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */,
-				00A254BE1476BB65004F63E3 /* NumberFieldValidator.m in Sources */,
 				00A254C11476BDD2004F63E3 /* PercentFieldValidator.m in Sources */,
 				00A254C41476CBEC004F63E3 /* PositiveAmountValidator.m in Sources */,
 				00A254C71476D138004F63E3 /* GrowthRateFieldValidator.m in Sources */,
 				00A254CA1476D706004F63E3 /* PositiveNumberValidator.m in Sources */,
-				00FF1922147AC762000787B5 /* StaticNameFieldCell.m in Sources */,
-				00FF1925147AC8D9000787B5 /* StaticNameFieldEditInfo.m in Sources */,
 				00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */,
 				003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */,
 				003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */,
@@ -3360,31 +2747,15 @@
 				008DD4BE14B3AD37000AAEA5 /* LoanEarlyPayoffDigestEntry.m in Sources */,
 				008DD4C114B4DF45000AAEA5 /* LimitedAccountWithdrawalsTableViewFactory.m in Sources */,
 				008DD4C414B4FF1A000AAEA5 /* LimitedWithdrawalExpenseFormInfoCreator.m in Sources */,
-				008DD4C714B53F06000AAEA5 /* MultipleSelectionTableViewController.m in Sources */,
 				008DD4CA14B5413C000AAEA5 /* LimitedWithdrawalExpenseFieldEditInfo.m in Sources */,
 				00210FA714BE5C6600E1D394 /* ItemizedTaxAmtFieldEditInfo.m in Sources */,
 				00210FAB14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m in Sources */,
-				00210FAE14BE9AE100E1D394 /* MultipleSelectionTableViewControllerFactory.m in Sources */,
 				006B087114C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m in Sources */,
 				006B087414C5E7810042FE8E /* TaxesPaidXYPlotDataGenerator.m in Sources */,
 				005EF4DF14C9DB84001F3D36 /* UpTo100PercentFieldValidator.m in Sources */,
-				005EF4E314CA1EC1001F3D36 /* HelpInfoViewFlipViewController.m in Sources */,
-				005EF4E614CA220B001F3D36 /* HelpInfoView.m in Sources */,
 				00D6845514CDC99700E3AC9F /* MoreFormInfoCreator.m in Sources */,
-				00D6845914CDD03600E3AC9F /* HelpViewFactory.m in Sources */,
 				00D6845C14CDD35A00E3AC9F /* HelpRecipesFormInfoCreator.m in Sources */,
-				00D6846914CE002F00E3AC9F /* HelpPageViewController.m in Sources */,
-				00D6846214CDEFD300E3AC9F /* HelpPageInfo.m in Sources */,
-				00899D8414D1DDA100CBFE6F /* HelpPageFormPopulator.m in Sources */,
-				002FAEA514D386E800AE2B41 /* HelpFlipViewInfo.m in Sources */,
-				00DC49FD14D79C70006BDF61 /* GenericFieldBasedTableViewControllerFactory.m in Sources */,
 				00DC4A0014D8821E006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m in Sources */,
-				00DC4A1914DC952F006BDF61 /* WETouchableView.m in Sources */,
-				00DC4A1A14DC952F006BDF61 /* WEPopoverController.m in Sources */,
-				00DC4A1B14DC952F006BDF61 /* WEPopoverContainerView.m in Sources */,
-				00DC4A1C14DC952F006BDF61 /* UIBarButtonItem+WEPopover.m in Sources */,
-				00DC4A3E14DCD1B9006BDF61 /* TextCaptionWEPopoverContainer.m in Sources */,
-				0075841914E0385F00184BD5 /* HelpPagePopoverCaptionInfo.m in Sources */,
 				0075841E14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.m in Sources */,
 				0075842114E1BD0100184BD5 /* ItemizedAccountTaxFormInfoCreator.m in Sources */,
 				0075842414E1C2E600184BD5 /* ItemizedAccountTaxAmtCreatorBase.m in Sources */,
@@ -3393,7 +2764,6 @@
 				0075843014E20CCB00184BD5 /* ItemizedLoanTaxFormInfoCreator.m in Sources */,
 				00E533E914E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m in Sources */,
 				00E533EC14E96B13005C6F6F /* NeverEndDateFieldEditInfo.m in Sources */,
-				00E533EF14E9CAEB005C6F6F /* FormContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
