@@ -1,1 +1,10 @@
-This date is for the current input only. If this date is selected, changing this date only impacts results for the current input.
+# Fixed Date
+
+A fixed date is for the current input only. If this date is selected, changing 
+this date only impacts results for the current input.
+
+## See Also
+
+* [Milestone Date][1]
+
+[1]:milestoneDate.html

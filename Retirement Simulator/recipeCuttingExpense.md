@@ -6,7 +6,7 @@ expenses would affect long term results.
 
 For example, instead of having a full price [wedding][2],
 the wedding's size and cost could be reduced with the 
-differece being saved. Or, instead of dining out for lunch 
+difference being saved. Or, instead of dining out for lunch 
 several times a week, this expense could be trimmed and 
 the difference being invested. Other expenses,
 like a gym membership could be cut altogether.
