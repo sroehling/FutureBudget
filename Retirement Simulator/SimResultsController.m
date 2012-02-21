@@ -39,7 +39,9 @@ static SimResultsController *theSimResultsControllerSingleton;
      
     NSLog(@"Starting simulation run...");
     
-    SimEngine *simEngine = [[SimEngine alloc] initWithDataModelController:self.dataModelController andSharedAppValues:self.sharedAppVals ];
+    SimEngine *simEngine = [[SimEngine alloc] 
+		initWithDataModelController:self.dataModelController 
+		andSharedAppValues:self.sharedAppVals ];
            
     [simEngine runSim];
 	
@@ -101,7 +103,8 @@ static SimResultsController *theSimResultsControllerSingleton;
 		self.dataModelController = theDataModelController;
 		self.sharedAppVals = theSharedAppVals;
 		
-		[self.dataModelController startObservingContextChanges:self 
+		// TODO - Need to observe changes to any data model controller.
+		[self.dataModelController startObservingAnyContextChanges:self 
 			withSelector:@selector(managedObjectsChanged)];
 		resultsOutOfDate = TRUE;
 
@@ -141,9 +144,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 
 -(void)dealloc
 {
-	[self.dataModelController stopObservingContextChanges:self];
-
-
+	[self.dataModelController stopObservingAnyContextChanges:self];
 	
 	[endOfYearResults release];
 	[assetsSimulated release];
