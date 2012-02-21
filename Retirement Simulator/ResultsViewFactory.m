@@ -7,7 +7,6 @@
 //
 
 #import "ResultsViewFactory.h"
-#import "ResultsViewController.h"
 
 
 @implementation ResultsViewFactory

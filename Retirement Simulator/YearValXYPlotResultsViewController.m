@@ -94,8 +94,7 @@
 		double resultMinVal = self.currentData.minYVal;
 		double resultMaxVal = self.currentData.maxYVal;
 
-		
-		
+
 		// Create graph from theme
 		graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
 		CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
@@ -126,15 +125,32 @@
 		plotSpace.allowsUserInteraction = NO;
 		plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinYear) 
 			length:CPTDecimalFromFloat(resultMaxYear-resultMinYear)];
-		plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinVal) 
-			length:CPTDecimalFromFloat(resultMaxVal-resultMinVal)];
+			
+			
+		// Pad the range of the Y axis so the user
+		// can always see the results.	
+		double yLength = resultMaxVal - resultMinVal;
+		double minYRange;
+		double maxYRange;
+		if(yLength > 10000)
+		{
+			minYRange = resultMinVal - 10000;
+			maxYRange = resultMaxVal + 10000;
+		}	
+		else
+		{
+			minYRange = resultMinVal - 5000;
+			maxYRange = resultMaxVal + 5000;			
+		}
+		plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(minYRange) 
+			length:CPTDecimalFromFloat(maxYRange-minYRange)];
 
 		// Axes
 		CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
 		CPTXYAxis *x = axisSet.xAxis;
 		x.title = LOCALIZED_STR(@"RESULTS_YEAR_X_AXIS_TITLE");
 		x.majorIntervalLength = CPTDecimalFromString(@"5");
-		x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(resultMinVal);
+		x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(minYRange);
 		x.minorTicksPerInterval = 5;
 		NSNumberFormatter *yearFormatter = [[[NSNumberFormatter alloc]init] autorelease];
 		[yearFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -182,28 +198,20 @@
 		
 		double excludeRange = 1000000000.0;
 		y.labelExclusionRanges = [NSArray arrayWithObjects:
-			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMinVal-excludeRange) 
+			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(minYRange-excludeRange) 
 				length:CPTDecimalFromFloat(excludeRange + 1 )], 
-			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(resultMaxVal+100000) 
+			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(maxYRange+100000) 
 				length:CPTDecimalFromFloat(excludeRange)], 
 			nil];
 
 		// Create a green plot area
 		CPTScatterPlot *dataSourceLinePlot = [[[CPTScatterPlot alloc] init] autorelease];
 		CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
-		lineStyle.lineWidth = 1.f;
+		lineStyle.lineWidth = 2.0f;
 		lineStyle.lineColor = [CPTColor greenColor];
 		dataSourceLinePlot.dataLineStyle = lineStyle;
 		dataSourceLinePlot.identifier = @"Green Plot";
 		dataSourceLinePlot.dataSource = self;
-
-	   // Put an area gradient under the plot above
-		CPTColor *areaColor = [CPTColor colorWithComponentRed:0.3 green:1.0 blue:0.3 alpha:0.8];
-		CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
-		areaGradient.angle = -90.0f;
-		CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient];
-		dataSourceLinePlot.areaFill = areaGradientFill;
-		dataSourceLinePlot.areaBaseValue = CPTDecimalFromString(@"1.75");
 
 		// Animate in the new plot, as an example
 		dataSourceLinePlot.opacity = 0.0f;
@@ -215,6 +223,7 @@
 		fadeInAnimation.fillMode = kCAFillModeForwards;
 		fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
 		[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];	
+		
 	} // if results defined for the plot data
 	else
 	{
@@ -252,7 +261,8 @@
 	}
 	else
 	{
-		SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:self.viewInfo.simResultsController.dataModelController];
+		SharedAppValues *sharedAppVals = [SharedAppValues 
+			getUsingDataModelController:self.viewInfo.simResultsController.dataModelController];
 			
 		if([sharedAppVals.adjustResultsForSimStartDate boolValue])
 		{

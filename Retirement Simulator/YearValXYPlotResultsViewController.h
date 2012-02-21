@@ -20,6 +20,7 @@
 	@private
 		CPTXYGraph *graph;
 		
+		
 						
 		id<YearValXYPlotDataGenerator> plotDataGenerator;
 		YearValXYPlotData *currentData;

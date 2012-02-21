@@ -10,7 +10,6 @@
 #import "DataModelController.h"
 
 #import "InputListFormInfoCreator.h"
-#import "ResultsViewController.h"
 #import "WhatIfFormInfoCreator.h"
 #import "GenericFieldBasedTableEditViewController.h"
 #import "ScenarioListFormInfoCreator.h"
