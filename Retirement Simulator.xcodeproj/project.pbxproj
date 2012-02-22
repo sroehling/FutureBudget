@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		000373D614F487EB008DCDF5 /* expense.md in Resources */ = {isa = PBXBuildFile; fileRef = 000373D514F487EB008DCDF5 /* expense.md */; };
+		000373D914F495BA008DCDF5 /* asset.md in Resources */ = {isa = PBXBuildFile; fileRef = 000373D814F495BA008DCDF5 /* asset.md */; };
+		000373DB14F49E66008DCDF5 /* loan.md in Resources */ = {isa = PBXBuildFile; fileRef = 000373DA14F49E66008DCDF5 /* loan.md */; };
+		000373DD14F4A4A6008DCDF5 /* tax.md in Resources */ = {isa = PBXBuildFile; fileRef = 000373DC14F4A4A6008DCDF5 /* tax.md */; };
 		0009480E13C21AE9008F129B /* MultiScenarioInputValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009480D13C21AE9008F129B /* MultiScenarioInputValueTest.m */; };
 		0009481213C36FF8008F129B /* ScenarioListFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481113C36FF8008F129B /* ScenarioListFormInfoCreator.m */; };
 		0009481513C37289008F129B /* ScenarioListObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481413C37288008F129B /* ScenarioListObjectAdder.m */; };
@@ -385,6 +388,9 @@
 
 /* Begin PBXFileReference section */
 		000373D514F487EB008DCDF5 /* expense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = expense.md; sourceTree = "<group>"; };
+		000373D814F495BA008DCDF5 /* asset.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = asset.md; sourceTree = "<group>"; };
+		000373DA14F49E66008DCDF5 /* loan.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = loan.md; sourceTree = "<group>"; };
+		000373DC14F4A4A6008DCDF5 /* tax.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tax.md; sourceTree = "<group>"; };
 		0009480C13C21AE9008F129B /* MultiScenarioInputValueTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValueTest.h; sourceTree = "<group>"; };
 		0009480D13C21AE9008F129B /* MultiScenarioInputValueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueTest.m; sourceTree = "<group>"; };
 		0009481013C36FF8008F129B /* ScenarioListFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioListFormInfoCreator.h; sourceTree = "<group>"; };
@@ -1286,6 +1292,9 @@
 				002FAE9D14D3194800AE2B41 /* startingValue.md */,
 				002FAE9F14D32B3F00AE2B41 /* scenario.md */,
 				000373D514F487EB008DCDF5 /* expense.md */,
+				000373D814F495BA008DCDF5 /* asset.md */,
+				000373DA14F49E66008DCDF5 /* loan.md */,
+				000373DC14F4A4A6008DCDF5 /* tax.md */,
 			);
 			name = "Key Features";
 			sourceTree = "<group>";
@@ -2496,6 +2505,9 @@
 				0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */,
 				0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */,
 				000373D614F487EB008DCDF5 /* expense.md in Resources */,
+				000373D914F495BA008DCDF5 /* asset.md in Resources */,
+				000373DB14F49E66008DCDF5 /* loan.md in Resources */,
+				000373DD14F4A4A6008DCDF5 /* tax.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
