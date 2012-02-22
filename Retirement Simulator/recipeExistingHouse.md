@@ -15,5 +15,5 @@ If the home was purchased at the same time the mortgage loan was originated, a [
 [1]:asset.html
 [2]:loan.html
 [3]:milestoneDate.html
-[4]:expense.md
-[5]:tax.md
+[4]:expense.html
+[5]:tax.html
