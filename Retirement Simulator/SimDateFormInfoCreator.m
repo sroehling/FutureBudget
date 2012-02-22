@@ -108,9 +108,13 @@
     sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"VARIABLE_DATE_FIXED_DATE_SECTION_TITLE")
 			andHelpFile:@"fixedDate"];
 		
+	// Setup fixedDateFieldEditInfo as the default selection, so that when a date field is initially
+	// edited, it will be selected as the default.
 	DateFieldEditInfo *fixedDateFieldEditInfo = 
 		[[[DateFieldEditInfo alloc] initWithFieldInfo:self.fixedDateFieldInfo] autorelease];
+	fixedDateFieldEditInfo.isDefaultSelection = TRUE;
 	[sectionInfo addFieldEditInfo:fixedDateFieldEditInfo];
+
 	
     MilestoneDateSectionInfo *mdSectionInfo = [[[MilestoneDateSectionInfo alloc] initWithRuntimeInfo:self.varDateRuntimeInfo
 		andFormContext:parentContext] autorelease];

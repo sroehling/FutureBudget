@@ -216,6 +216,7 @@
     SelectableObjectTableEditViewController *viewController = 
     [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:formInfoCreator 
             andAssignedField:self.fieldInfo andDataModelController:parentContext.dataModelController] autorelease];
+	viewController.loadInEditModeIfAssignedFieldNotSet = TRUE;
 
     return viewController;
     
