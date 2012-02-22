@@ -30,6 +30,7 @@ NSString * const SHARED_APP_VALUES_SIM_END_DATE_KEY = @"simEndDate";
 NSString * const SHARED_APP_VALUES_DEFAULT_FIXED_SIM_END_DATE_KEY = @"defaultFixedSimEndDate";
 NSString * const SHARED_APP_VALUES_DEFAULT_RELATIVE_SIM_END_DATE_KEY = @"defaultFixedRelativeEndDate";
 NSString * const SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY = @"adjustResultsForSimStartDate";
+NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStartingBal";
 
 #define DEFAULT_SIM_END_DATE_OFFSET_YEARS 50
 #define DEFAULT_DEFICIT_INTEREST_RATE 0.0
@@ -59,6 +60,7 @@ NSString * const SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY = @"adjustRe
 @dynamic defaultInflationRate;
 @dynamic repeatYearlyFreq;
 @dynamic adjustResultsForSimStartDate; 
+@dynamic deficitStartingBal;
 
 
 +(void)createDefaultVariableValue:(double)startingVal withLabelStringFileKey:(NSString*)labelKey
@@ -193,6 +195,7 @@ NSString * const SHARED_APP_VALUES_ADJUST_RESULTS_FOR_INFLATION_KEY = @"adjustRe
 	FixedValue *theDeficitInterestRate = (FixedValue*)[dataModelInterface createDataModelObject:FIXED_VALUE_ENTITY_NAME];
 	theDeficitInterestRate.value = [NSNumber numberWithDouble:DEFAULT_DEFICIT_INTEREST_RATE];
 	sharedVals.deficitInterestRate = theDeficitInterestRate;
+	sharedVals.deficitStartingBal = [NSNumber numberWithDouble:0.0];
 
 	return sharedVals;
 }

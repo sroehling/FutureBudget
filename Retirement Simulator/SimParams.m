@@ -41,7 +41,8 @@
 
 -(id)initWithStartDate:(NSDate*)simStart andDigestStartDate:(NSDate*)digestStart
 	andSimEndDate:(NSDate*)simEnd andScenario:(Scenario*)scen andCashBal:(double)cashBal
-	andDeficitRate:(FixedValue*)deficitRate andInflationRate:(InflationRate*)theInflationRate
+	andDeficitRate:(FixedValue*)deficitRate andDeficitBalance:(double)startingDeficitBal
+	andInflationRate:(InflationRate*)theInflationRate
 {
 	self = [super init];
 	if(self)
@@ -67,7 +68,9 @@
 		self.inflationRate = theInflationRate;
 			
 		self.workingBalanceMgr = [[[WorkingBalanceMgr alloc] initWithStartDate:self.digestStartDate
-			andCashBal:cashBal andDeficitInterestRate:deficitRate] autorelease];
+			andCashBal:cashBal 
+			andDeficitInterestRate:deficitRate
+			andDeficitBalance:startingDeficitBal] autorelease];
 
 	}
 	return self;
@@ -87,8 +90,11 @@
 	double cashBal = [sharedAppVals.cash.startingBalance doubleValue];
 	FixedValue *deficitRate = sharedAppVals.deficitInterestRate;
 	
+	double startingDeficitBal = [sharedAppVals.deficitStartingBal doubleValue];
+	
 	return [self initWithStartDate:simStart andDigestStartDate:digestStart 
-		andSimEndDate:simEnd andScenario:simScen andCashBal:cashBal andDeficitRate:deficitRate
+		andSimEndDate:simEnd andScenario:simScen andCashBal:cashBal 
+		andDeficitRate:deficitRate andDeficitBalance:startingDeficitBal
 		andInflationRate:sharedAppVals.defaultInflationRate];
 
 }

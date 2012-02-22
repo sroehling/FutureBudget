@@ -60,7 +60,7 @@
 }
 
 - (id)initWithStartDate:(NSDate*)startDate andCashBal:(double)startingCashBal 
-		andDeficitInterestRate:(FixedValue*)deficitRate
+		andDeficitInterestRate:(FixedValue*)deficitRate andDeficitBalance:(double)startingDeficitBal
 {
 
 		assert(startingCashBal >= 0.0);
@@ -70,8 +70,9 @@
 				initWithStartingBalance:startingCashBal 
 				andStartDate:startDate] autorelease];
 		
+		assert(startingDeficitBal >= 0.0);
 		InterestBearingWorkingBalance *deficitBal = [[[InterestBearingWorkingBalance alloc] 
-			initWithStartingBalance:0.0 
+			initWithStartingBalance:startingDeficitBal
 			andInterestRate:deficitRate 
 				andWorkingBalanceName:LOCALIZED_STR(@"DEFICIT_LABEL") 
 				andStartDate:startDate andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];

@@ -60,7 +60,9 @@
 
 -(id)initWithStartDate:(NSDate*)simStart andDigestStartDate:(NSDate*)digestStart
 	andSimEndDate:(NSDate*)simEnd andScenario:(Scenario*)scen andCashBal:(double)cashBal
-	andDeficitRate:(FixedValue*)deficitRate andInflationRate:(InflationRate*)theInflationRate;
+	andDeficitRate:(FixedValue*)deficitRate andDeficitBalance:(double)startingDeficitBal
+	andInflationRate:(InflationRate*)theInflationRate;	
+	
 -(id)initWithSharedAppVals:(SharedAppValues*)sharedAppVals;
 
 

@@ -147,6 +147,16 @@
 			andNumberFormatter:[NumberHelper theHelper].percentFormatter andValidator:percentValidator];
 	[sectionInfo addFieldEditInfo:deficitInterestFieldEditInfo];
 	
+	NumberFieldValidator *deficitBalValidator = [[[PositiveAmountValidator alloc] init] autorelease];
+	NumberFieldEditInfo *deficitBalanceFieldEditInfo = 
+			[NumberFieldEditInfo createForObject:sharedAppVals andKey:SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY 
+			andLabel:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_BALANCE_LABEL") 
+			andPlaceholder:LOCALIZED_STR(@"STARTUP_VALUE_DEFICIT_BALANCE_PLACEHOLDER") 
+			andNumberFormatter:[NumberHelper theHelper].currencyFormatter
+			andValidator:deficitBalValidator];
+	[sectionInfo addFieldEditInfo:deficitBalanceFieldEditInfo];
+
+	
 	sectionInfo = [formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_INFLATION_ADJUSTMENT_SECTION_TITLE") 
 		andHelpFile:@"inflationAdjustment"];

@@ -42,9 +42,10 @@
 
 @property(nonatomic,retain) CashWorkingBalance *accruedEstimatedTaxes;
 @property(nonatomic,retain) CashWorkingBalance *nextEstimatedTaxPayment;
-
+		
 - (id)initWithStartDate:(NSDate*)startDate andCashBal:(double)startingCashBal 
-		andDeficitInterestRate:(FixedValue*)deficitRate;
+		andDeficitInterestRate:(FixedValue*)deficitRate 
+		andDeficitBalance:(double)startingDeficitBal;	
 - (id) initWithCashBalance:(CashWorkingBalance*)cashBal 
 	andDeficitBalance:(InterestBearingWorkingBalance*)deficitBal
 	andStartDate:(NSDate*)startDate;

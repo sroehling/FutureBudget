@@ -125,7 +125,9 @@
 		
 		
 	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"] andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"] 
-		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 andDeficitRate:self.testAppVals.deficitInterestRate andInflationRate:testAppVals.defaultInflationRate] autorelease];	
+		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 
+			andDeficitRate:self.testAppVals.deficitInterestRate andDeficitBalance:0.0
+		andInflationRate:testAppVals.defaultInflationRate] autorelease];	
 	LoanSimInfo *loanInfo = [[[LoanSimInfo alloc] initWithLoan:theLoan andSimParams:simParams] autorelease];
 	
 	
