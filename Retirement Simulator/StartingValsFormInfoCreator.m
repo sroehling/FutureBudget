@@ -95,7 +95,8 @@
 			fetchSortedObjectsWithEntityName:ASSET_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
 	if([assets count] > 0)
 	{
-		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_CURRENT_ASSET_VALUES")];
+		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_CURRENT_ASSET_VALUES")
+			andHelpFile:@"currentAssetValues"];
 		for(AssetInput *asset in assets)
 		{
 			[formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
@@ -111,7 +112,8 @@
 	if([loans count]  > 0)
 	{
 		[formPopulator nextSectionWithTitle:
-			LOCALIZED_STR(@"STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE")];
+			LOCALIZED_STR(@"STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE")
+				andHelpFile:@"outstandingLoanBalances"];
 
 		for(LoanInput *loan in loans)
 		{

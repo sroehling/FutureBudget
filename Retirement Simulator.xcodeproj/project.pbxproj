@@ -131,6 +131,8 @@
 		005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
+		0057F3E914F69C4C006A2FA3 /* currentAssetValues.md in Resources */ = {isa = PBXBuildFile; fileRef = 0057F3E814F69C4C006A2FA3 /* currentAssetValues.md */; };
+		0057F3EC14F69CAA006A2FA3 /* outstandingLoanBalances.md in Resources */ = {isa = PBXBuildFile; fileRef = 0057F3EB14F69CAA006A2FA3 /* outstandingLoanBalances.md */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		005DAEEC1460635800D87907 /* AssetGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEB1460635800D87907 /* AssetGainItemizedTaxAmt.m */; };
@@ -616,6 +618,8 @@
 		005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeatFrequency.m; sourceTree = "<group>"; };
 		005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyEditViewController.h; sourceTree = "<group>"; };
 		005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyEditViewController.m; sourceTree = "<group>"; };
+		0057F3E814F69C4C006A2FA3 /* currentAssetValues.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentAssetValues.md; sourceTree = "<group>"; };
+		0057F3EB14F69CAA006A2FA3 /* outstandingLoanBalances.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = outstandingLoanBalances.md; sourceTree = "<group>"; };
 		005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedDateFieldInfo.h; sourceTree = "<group>"; };
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
@@ -1319,6 +1323,8 @@
 			isa = PBXGroup;
 			children = (
 				002FAEA814D38F4600AE2B41 /* currentBalances.md */,
+				0057F3E814F69C4C006A2FA3 /* currentAssetValues.md */,
+				0057F3EB14F69CAA006A2FA3 /* outstandingLoanBalances.md */,
 			);
 			name = "Startup Tab";
 			sourceTree = "<group>";
@@ -2508,6 +2514,8 @@
 				000373D914F495BA008DCDF5 /* asset.md in Resources */,
 				000373DB14F49E66008DCDF5 /* loan.md in Resources */,
 				000373DD14F4A4A6008DCDF5 /* tax.md in Resources */,
+				0057F3E914F69C4C006A2FA3 /* currentAssetValues.md in Resources */,
+				0057F3EC14F69CAA006A2FA3 /* outstandingLoanBalances.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
