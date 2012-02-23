@@ -108,11 +108,25 @@
 {
 	assert(theStartDate!=nil);
 	assert(theEndDate!=nil);
-	assert([DateHelper dateIsEqualOrLater:theStartDate otherDate:self.startDate]);
+	
+	// If self.startDate is after the given start date, we use it as a basis
+	// for computing the multiplier instead of theStartDate. This could happen
+	// in cases where an input such as a loan has an origination date which starts
+	// after the theStartDate, or an asset which has a purchase date in the future. 
+	NSDate *multiplierStartDate;
+	if([DateHelper dateIsEqualOrLater:theStartDate otherDate:self.startDate])
+	{
+		multiplierStartDate = theStartDate;
+	}
+	else
+	{
+		multiplierStartDate = self.startDate;
+	}
+	
 	assert([DateHelper dateIsEqualOrLater:theEndDate otherDate:self.startDate]);
 	assert([DateHelper dateIsEqualOrLater:theEndDate otherDate:theStartDate]);
 	
-	double startDateMultiplier = [self valueMultiplierForDate:theStartDate];
+	double startDateMultiplier = [self valueMultiplierForDate:multiplierStartDate];
 	double endDateMultiplier = [self valueMultiplierForDate:theEndDate];
 	assert(startDateMultiplier > 0.0);
 	assert(endDateMultiplier > 0.0);

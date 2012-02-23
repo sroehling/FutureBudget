@@ -49,6 +49,8 @@ extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 - (void)advanceCurrentBalanceToDate:(NSDate*)newDate;
 - (void)carryBalanceForward:(NSDate*)newStartDate;
 
+- (double)currentBalanceForDate:(NSDate*)balanceDate;
+
 - (NSString*)balanceName;
 - (void)logBalance;
 

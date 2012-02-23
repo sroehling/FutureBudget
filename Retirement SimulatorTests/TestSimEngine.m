@@ -436,6 +436,39 @@
 
 }
 
+-(void)testFutureAsset
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    	
+	AssetInputTypeSelectionInfo *assetCreator = 
+		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2014-01-02"]];	
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2016-01-02"]];
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+
+	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1464.48 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
+	
+
+}
+
 
 -(void)testAssetStartingVal
 {
@@ -689,6 +722,52 @@
 
 
 }
+
+
+-(void)testFutureLoan
+{
+	[self resetCoredData];
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelInterface:self.coreData] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests. 
+	//
+	// Loans in the future were originally causing assertion failures in the simulation code.
+	// This test ensures support for loans in the future does not regress.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:600.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:60];	
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-02-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] 
+		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// At the end of 2012, the balance should be 0, since the loan hasn't originated yet.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	// Starting on March 15, 2013, there should be 1 payment of $10 each month.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:500.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:380.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:260.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:140.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01" withAdjustedVals:FALSE];
+
+	
+}
+
 
 
 

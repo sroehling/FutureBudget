@@ -86,7 +86,7 @@
 	double sumAssetVal = 0.0;
 	for(AssetSimInfo *assetSimInfo in assetSimInfos)
 	{
-		double assetVal = [assetSimInfo.assetValue currentBalance];
+		double assetVal = [assetSimInfo.assetValue currentBalanceForDate:results.endDate];
 		[results.assetValues setResultForInput:assetSimInfo.asset andValue:assetVal];
 		sumAssetVal += assetVal;
 	}
@@ -96,7 +96,7 @@
 	double sumLoanBal = 0.0;
 	for(LoanSimInfo *loanSimInfo in loanSimInfos)
 	{
-		double loanBal = [loanSimInfo.loanBalance currentBalance];
+		double loanBal = [loanSimInfo.loanBalance currentBalanceForDate:results.endDate];
 		[results.loanBalances setResultForInput:loanSimInfo.loan andValue:loanBal];
 		sumLoanBal += loanBal;
 	}
@@ -108,7 +108,7 @@
 	double sumAcctWithdrawal = 0.0;
 	for(AccountSimInfo *acctSimInfo in acctSimInfos)
 	{
-		double acctBal = [acctSimInfo.acctBal currentBalance];
+		double acctBal = [acctSimInfo.acctBal currentBalanceForDate:results.endDate];
 		[results.acctBalances setResultForInput:acctSimInfo.account andValue:acctBal];
 		sumAcctBal += acctBal;
 		
@@ -144,8 +144,8 @@
 	}
 	results.sumExpense = sumExpense;
 	
-	results.cashBal = [self.simParams.workingBalanceMgr.cashWorkingBalance currentBalance];
-	results.deficitBal = [self.simParams.workingBalanceMgr.deficitBalance currentBalance];
+	results.cashBal = [self.simParams.workingBalanceMgr.cashWorkingBalance currentBalanceForDate:results.endDate];
+	results.deficitBal = [self.simParams.workingBalanceMgr.deficitBalance currentBalanceForDate:results.endDate];
 	
 	assert(results.endDate != nil);
 	assert([DateHelper dateIsEqualOrLater:results.endDate otherDate:self.simParams.simStartDate]);

@@ -103,9 +103,15 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 - (void)carryBalanceForward:(NSDate*)newStartDate
 {
 	assert(newStartDate != nil);
-	assert([DateHelper dateIsEqualOrLater:newStartDate otherDate:self.currentBalanceDate]);
+	// There is only a need to advance the current balance if the date of the
+	// current balance is before the newStartDate. A currentBalanceDate in 
+	// the future could occur for inputs such as loans originating in the future
+	// or assets purchased in the future.
+	if([DateHelper dateIsEqualOrLater:newStartDate otherDate:self.currentBalanceDate])
+	{
+		[self advanceCurrentBalanceToDate:newStartDate];
+	}
 	
-	[self advanceCurrentBalanceToDate:newStartDate];
 	
 	startingBalance = self.currentBalance;
 	self.balanceStartDate = newStartDate;
@@ -122,6 +128,18 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
 		vsEarlierDate:self.balanceStartDate];
 	[self.contribs adjustSum:amount onDay:daysSinceStartDate];
+}
+
+- (double)currentBalanceForDate:(NSDate*)balanceDate
+{
+	if([DateHelper dateIsEqualOrLater:balanceDate otherDate:self.balanceStartDate])
+	{
+		return self.currentBalance;
+	}
+	else
+	{
+		return 0.0;
+	}
 }
 
 
