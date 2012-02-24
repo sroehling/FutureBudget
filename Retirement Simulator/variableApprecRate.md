@@ -13,7 +13,7 @@ which can be quickly selected in different [scenarios][1].
 
 ## Related Examples
 
-* [Purchase a New Car][1]
+* [Purchase a New Vehicle][1]
 
 ## See Also
 

@@ -24,7 +24,7 @@ created to give the loan origination and corresponding asset purchase the same d
 * [Employment Income][1]
 * [Reduce or Increase Expenses After Retirement][2]
 * [Downsize a House][4]
-* [Purchase a New Car][5]
+* [Purchase a New Vehicle][5]
 * [Purchase a New Home][6]
 
 ## See Also
