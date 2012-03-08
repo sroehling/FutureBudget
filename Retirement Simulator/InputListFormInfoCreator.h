@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FormInfoCreator.h"ß
+#import "FormInfoCreator.h"
 
 @interface InputListFormInfoCreator : NSObject  <FormInfoCreator> {
     

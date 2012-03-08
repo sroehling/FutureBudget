@@ -45,7 +45,7 @@
     formPopulator.formInfo.title = LOCALIZED_STR(@"TAX_BRACKET_FORM_TITLE");
 	
 	formPopulator.formInfo.objectAdder = [[[TaxBracketEntryObjectAdder alloc] 
-		initWithTaxBracket:self.taxBracket] autorelease];
+		initWithTaxBracket:self.taxBracket andParentDataModelController:parentContext.dataModelController] autorelease];
 		
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	for(TaxBracketEntry *taxBracketEntry in self.taxBracket.taxBracketEntries)

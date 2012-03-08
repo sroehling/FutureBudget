@@ -27,6 +27,7 @@
 		001E5C2614A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */; };
 		001E5C2A14A240F7008A672E /* AcctContribXYPlotGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */; };
 		001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2C14A24219008A672E /* AcctResultGenerator.m */; };
+		001ED7661509234A002F1119 /* ResultraGenericLibResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 001ED7651509234A002F1119 /* ResultraGenericLibResources.bundle */; };
 		00210FA714BE5C6600E1D394 /* ItemizedTaxAmtFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */; };
 		00210FAB14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FAA14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m */; };
 		00237957143E4F5D006650E3 /* TaxBracketEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237956143E4F5D006650E3 /* TaxBracketEntry.m */; };
@@ -335,7 +336,6 @@
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
 		00E898281472F30700FB3D01 /* DataModelDeleteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E898271472F30700FB3D01 /* DataModelDeleteTest.m */; };
-		00E89B0E14F065FA00042C60 /* ResultraGenericLibResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E89B0D14F065FA00042C60 /* ResultraGenericLibResources.bundle */; };
 		00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */; };
 		00EC1F91139737D20085B25C /* SimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F90139737D20085B25C /* SimDate.m */; };
 		00EC1F941397396D0085B25C /* MilestoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F931397396D0085B25C /* MilestoneDate.m */; };
@@ -428,6 +428,7 @@
 		001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctContribXYPlotGenerator.m; sourceTree = "<group>"; };
 		001E5C2B14A24219008A672E /* AcctResultGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctResultGenerator.h; sourceTree = "<group>"; };
 		001E5C2C14A24219008A672E /* AcctResultGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctResultGenerator.m; sourceTree = "<group>"; };
+		001ED7651509234A002F1119 /* ResultraGenericLibResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ResultraGenericLibResources.bundle; path = "../../../Library/Developer/Xcode/DerivedData/RetirementSim-gssvmqnrwxcodabeeknhqfbigmsr/Build/Products/Debug-iphonesimulator/ResultraGenericLibResources.bundle"; sourceTree = "<group>"; };
 		00210FA514BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtFieldEditInfo.h; sourceTree = "<group>"; };
 		00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtFieldEditInfo.m; sourceTree = "<group>"; };
 		00210FA914BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtsSelectionFormInfoCreator.h; sourceTree = "<group>"; };
@@ -962,7 +963,6 @@
 		00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigestEntryCltn.m; sourceTree = "<group>"; };
 		00E898261472F30700FB3D01 /* DataModelDeleteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelDeleteTest.h; sourceTree = "<group>"; };
 		00E898271472F30700FB3D01 /* DataModelDeleteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelDeleteTest.m; sourceTree = "<group>"; };
-		00E89B0D14F065FA00042C60 /* ResultraGenericLibResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ResultraGenericLibResources.bundle; path = "../../../Library/Developer/Xcode/DerivedData/ResultraGenericLib-eeagbvqvbibjslfqztvjcwbirtpt/Build/Products/Debug-iphoneos/ResultraGenericLibResources.bundle"; sourceTree = "<group>"; };
 		00EC1F8B139736D40085B25C /* SimDateFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateFormInfoCreator.m; sourceTree = "<group>"; };
 		00EC1F8F139737D20085B25C /* SimDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDate.h; sourceTree = "<group>"; };
@@ -2004,7 +2004,7 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
-				00E89B0D14F065FA00042C60 /* ResultraGenericLibResources.bundle */,
+				001ED7651509234A002F1119 /* ResultraGenericLibResources.bundle */,
 				004107D814EEF06E0063E307 /* libResultraGenericLib.a */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
 				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
@@ -2412,6 +2412,9 @@
 /* Begin PBXProject section */
 		00A36BC8136C6CAD008A5C4C /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
 			buildConfigurationList = 00A36BCB136C6CAD008A5C4C /* Build configuration list for PBXProject "Retirement Simulator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -2435,7 +2438,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E89B0E14F065FA00042C60 /* ResultraGenericLibResources.bundle in Resources */,
 				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
 				00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */,
@@ -2528,6 +2530,7 @@
 				0057F42F14F81B2C006A2FA3 /* account.md in Resources */,
 				0058A80F14F830BB00F2DCEF /* income.md in Resources */,
 				0058A81214F92F5600F2DCEF /* accountWithdrawalPriority.md in Resources */,
+				001ED7661509234A002F1119 /* ResultraGenericLibResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2917,6 +2920,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement Simulator/Retirement Simulator-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Retirement Simulator/Retirement Simulator-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2935,6 +2939,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement Simulator/Retirement Simulator-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Retirement Simulator/Retirement Simulator-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2958,6 +2963,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement SimulatorTests/Retirement SimulatorTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Retirement SimulatorTests/Retirement SimulatorTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2984,6 +2990,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement SimulatorTests/Retirement SimulatorTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Retirement SimulatorTests/Retirement SimulatorTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

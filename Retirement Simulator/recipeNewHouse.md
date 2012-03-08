@@ -10,7 +10,7 @@ Assuming the home will be purchased at the same time the mortgage loan is origin
 
 ## Related Examples
 
-* [Purchase a New Home][7]
+* [Existing Home][7]
 * [Vehicle Currently Owned][6]
 
 [1]:asset.html
@@ -19,5 +19,5 @@ Assuming the home will be purchased at the same time the mortgage loan is origin
 [4]:expense.html
 [5]:tax.html
 [6]:recipeExistingVehicle.html
-[7]:recipeNewHouse.html
+[7]:recipeExistingHouse.html
 [8]:taxDeductions.html
