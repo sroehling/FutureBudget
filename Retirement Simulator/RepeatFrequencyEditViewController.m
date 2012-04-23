@@ -31,7 +31,7 @@
 - (void)setTitle:(NSString *)title
 {
 	[super setTitle:title];
-	[UIHelper setCommonTitleForTable:self withTitle:title];
+	[UIHelper setCommonTitleForController:self withTitle:title];
 }
 
 

@@ -88,7 +88,7 @@
 - (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     RepeatFrequencyEditViewController *repeatController = 
-    [[RepeatFrequencyEditViewController alloc] initWithFieldInfo:fieldInfo
+    [[RepeatFrequencyEditViewController alloc] initWithFieldInfo:self.fieldInfo
 		andDataModelController:parentContext.dataModelController];
     [repeatController autorelease];
     return repeatController;

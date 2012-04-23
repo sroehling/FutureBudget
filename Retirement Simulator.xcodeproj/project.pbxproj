@@ -259,6 +259,7 @@
 		00A36C06136C6CAE008A5C4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C04136C6CAE008A5C4C /* InfoPlist.strings */; };
 		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
+		00A8A3191545F595003C6D73 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A8A3181545F595003C6D73 /* StoreKit.framework */; };
 		00AA79BB1441E8AF00FED301 /* TaxBracketFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */; };
 		00AA79BE1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BD1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m */; };
 		00AA79C11441F07400FED301 /* TaxBracketEntryFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79C01441F07400FED301 /* TaxBracketEntryFormInfoCreator.m */; };
@@ -833,6 +834,7 @@
 		00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Retirement SimulatorTests-Prefix.pch"; sourceTree = "<group>"; };
 		00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Retirement_SimulatorTests.h; sourceTree = "<group>"; };
 		00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorTests.m; sourceTree = "<group>"; };
+		00A8A3181545F595003C6D73 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		00AA79B91441E8AF00FED301 /* TaxBracketFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketFormInfoCreator.h; sourceTree = "<group>"; };
 		00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketFormInfoCreator.m; sourceTree = "<group>"; };
 		00AA79BC1441EA9D00FED301 /* TaxBracketEntryObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntryObjectAdder.h; sourceTree = "<group>"; };
@@ -1020,6 +1022,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A8A3191545F595003C6D73 /* StoreKit.framework in Frameworks */,
 				004107D914EEF06E0063E307 /* libResultraGenericLib.a in Frameworks */,
 				00F217D7140F172F00FA73AA /* libCorePlot-CocoaTouch.a in Frameworks */,
 				00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */,
@@ -2004,6 +2007,7 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
+				00A8A3181545F595003C6D73 /* StoreKit.framework */,
 				001ED7651509234A002F1119 /* ResultraGenericLibResources.bundle */,
 				004107D814EEF06E0063E307 /* libResultraGenericLib.a */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
