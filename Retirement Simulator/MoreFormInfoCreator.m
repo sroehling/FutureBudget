@@ -16,6 +16,8 @@
 #import "GenericFieldBasedTableEditViewControllerFactory.h"
 #import "HelpRecipesFormInfoCreator.h"
 #import "FormContext.h"
+#import "BoolFieldEditInfo.h"
+#import "PasscodeFieldInfo.h"
 
 @implementation MoreFormInfoCreator
 
@@ -36,6 +38,17 @@
 		[[[HelpRecipesFormInfoCreator alloc] init] autorelease] 
 		andFieldCaption:LOCALIZED_STR(@"MORE_RECIPES_TITLE") 
 		andSubTitle:LOCALIZED_STR(@"MORE_RECIPES_SUBTITLE")];
+		
+		
+	[formPopulator nextSection];
+	PasscodeFieldInfo *passcodeFieldInfo  = [[[PasscodeFieldInfo alloc] 
+				initWithParentController:parentContext.parentController] autorelease];
+	BoolFieldEditInfo *passcodeFieldEditInfo = 
+		[[[BoolFieldEditInfo alloc] 
+			initWithFieldInfo: passcodeFieldInfo
+			andSubtitle:nil] autorelease];
+	[formPopulator.currentSection addFieldEditInfo:passcodeFieldEditInfo];
+
 
 
 	return formPopulator.formInfo;

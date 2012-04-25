@@ -22,16 +22,33 @@
 #import "SimResultsController.h"
 #import "ColorHelper.h"
 #import "MoreFormInfoCreator.h"
+#import "PasscodeHelper.h"
 
 #import "FormPopulator.h"
 #import "FormContext.h"
 
 @implementation Retirement_SimulatorAppDelegate
 
-
 @synthesize window=_window;
-
 @synthesize tabBarController=_tabBarController;
+@synthesize passcodeValidator;
+
+-(void)configStartingViewController
+{
+	if([PasscodeHelper passcodeIsEnabled])
+	{
+		PTPasscodeViewController *passcodeViewController = 
+			[[[PTPasscodeViewController alloc] initWithDelegate:self.passcodeValidator] autorelease];
+		UINavigationController *passcodeNavController = [[[UINavigationController alloc]
+			   initWithRootViewController:passcodeViewController] autorelease];
+		self.window.rootViewController = passcodeNavController;
+	}
+	else 
+	{
+		self.window.rootViewController = self.tabBarController;
+	}
+
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -112,9 +129,10 @@
 			whatIfNavController,
 			moreNavController, 
 			nil]; 
-	
-    // Add the tab bar controller's current view as a subview of the window
-    self.window.rootViewController = self.tabBarController;
+		
+    
+	self.passcodeValidator = [[[PasscodeValidator alloc] initWithDelegate:self] autorelease];
+	[self configStartingViewController];
 	
     [self.window makeKeyAndVisible];
     
@@ -150,6 +168,8 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+	 
+	 [self configStartingViewController];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -165,34 +185,18 @@
 {
     [_window release];
     [_tabBarController release];
-
+	[passcodeValidator release];
     [super dealloc];
 }
 
 
-- (void)awakeFromNib
+#pragma mark PasscodeValidationDelegate
+
+-(void)passcodeValidated
 {
-  //  RootViewController *rootViewController = (RootViewController *)[self.navigationController //topViewController];
- //   rootViewController.managedObjectContext = self.managedObjectContext;
- }
+	[self.window setRootViewController:self.tabBarController];   
 
-
-
-
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
 }
-*/
-
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
-{
-}
-*/
-
 
 
 @end
