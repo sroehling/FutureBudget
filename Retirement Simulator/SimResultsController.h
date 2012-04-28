@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ProgressUpdateDelegate.h"
+
 @class DataModelController;
 @class SharedAppValues;
 
-@interface SimResultsController : NSObject {
+@interface SimResultsController : NSObject <ProgressUpdateDelegate> {
 	@private
 		NSMutableArray *endOfYearResults;
 		NSInteger resultMinYear;
@@ -44,13 +46,14 @@
 
 @property(nonatomic,retain) DataModelController *dataModelController;
 @property(nonatomic,retain) SharedAppValues *sharedAppVals;
+@property(readonly) BOOL resultsOutOfDate;
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
 	andSharedAppValues:(SharedAppValues *)theSharedAppVals;
 +(void)initSingletonFromDataModelController:(DataModelController*)dataModelController;
 +(SimResultsController*)theSimResultsController;
 
-- (void) runSimulatorForResults;
-- (void) runSimulatorIfResultsOutOfDate;
+- (void) runSimulatorForResults:(id<ProgressUpdateDelegate>)simProgressDelegate;
+- (void)runSimulatorForResults;
 
 @end

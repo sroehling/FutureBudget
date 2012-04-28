@@ -9,14 +9,24 @@
 #import <Foundation/Foundation.h>
 
 #import "FormInfoCreator.h"
+#import "MBProgressHUD.h"
+#import "ProgressUpdateDelegate.h"
+#import "ProgressCompleteDelegate.h"
 
 @class SimResultsController;
 
-@interface ResultsListFormInfoCreator : NSObject <FormInfoCreator> {
+@interface ResultsListFormInfoCreator : NSObject <FormInfoCreator,
+	MBProgressHUDDelegate,ProgressUpdateDelegate> {
     @private
 		SimResultsController *simResultsController;
+		
+		id<ProgressCompleteDelegate> simResultsCompleteDelegate;
+		MBProgressHUD *simProgressHUD;
 }
 
 @property(nonatomic,retain) SimResultsController *simResultsController;
+@property(nonatomic,retain) MBProgressHUD *simProgressHUD;
+@property(nonatomic,assign) id<ProgressCompleteDelegate> simResultsCompleteDelegate;
+
 
 @end

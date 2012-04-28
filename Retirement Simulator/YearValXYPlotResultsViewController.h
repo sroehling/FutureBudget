@@ -10,13 +10,16 @@
 #import "CorePlot-CocoaTouch.h"
 
 #import "ResultsViewController.h"
+#import "ProgressUpdateDelegate.h"
+#import "MBProgressHUD.h"
 
 @class CPTXYGraph;
 
 @protocol YearValXYPlotDataGenerator;
 @class YearValXYPlotData;
 
-@interface YearValXYPlotResultsViewController : ResultsViewController  <CPTPlotDataSource> {
+@interface YearValXYPlotResultsViewController : ResultsViewController  
+	<MBProgressHUDDelegate,ProgressUpdateDelegate,CPTPlotDataSource> {
 	@private
 		CPTXYGraph *graph;
 		
@@ -24,7 +27,11 @@
 						
 		id<YearValXYPlotDataGenerator> plotDataGenerator;
 		YearValXYPlotData *currentData;
+		
+		MBProgressHUD *simProgressHUD;
 }
+
+@property(nonatomic,retain) MBProgressHUD *simProgressHUD;
 
 @property(nonatomic,retain) id<YearValXYPlotDataGenerator> plotDataGenerator;
 @property(nonatomic,retain) YearValXYPlotData *currentData;

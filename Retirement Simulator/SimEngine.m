@@ -62,6 +62,9 @@
 
 #import "DataModelController.h"
 
+#import "ProgressUpdateDelegate.h"
+
+#define UPDATE_SIM_PROGRESS_THRESHOLD 0.005
 
 @implementation SimEngine
 
@@ -347,13 +350,25 @@
 
 }
 
+-(CGFloat)eventProgressVal:(SimEvent*)theEvent
+{
+	NSTimeInterval totalSimTime = [self.simParams.simEndDate timeIntervalSinceDate:self.simParams.simStartDate];
+	NSTimeInterval eventSimTime = [[theEvent eventDate] timeIntervalSinceDate:self.simParams.simStartDate];
+	
+	CGFloat progressVal = ((CGFloat)eventSimTime)/((CGFloat)totalSimTime);
+	return progressVal;
+}
+
 #pragma mark - Main simulator engine loop
 
-- (void)runSim
+- (void)runSim:(id<ProgressUpdateDelegate>)simProgressDelegate
 {
     NSLog(@"Running Simulator");
+	assert(simProgressDelegate != nil);
     
     [self resetSimulator];
+	
+	[simProgressDelegate updateProgress:0.0];
     
     NSLog(@"Plan end date: %@",[[DateHelper theHelper].mediumDateFormatter 
 		stringFromDate:self.simParams.simEndDate]);
@@ -363,10 +378,20 @@
 	assert([DateHelper dateIsEqualOrLater:[nextEventToProcess eventDate] 
 		otherDate:self.simParams.simStartDate]);
 	
+	CGFloat currentProgress = 0.0;
+	
     while ((nextEventToProcess != nil) &&
 		[self eventEarlierOrSameTimeAsSimEnd:nextEventToProcess]) 
     {
 		[self processEvent:nextEventToProcess];
+		
+		CGFloat eventProgress = [self eventProgressVal:nextEventToProcess];
+		if((eventProgress - currentProgress) > UPDATE_SIM_PROGRESS_THRESHOLD)
+		{
+			currentProgress = eventProgress;
+			[simProgressDelegate updateProgress:currentProgress];
+		}
+		
 		nextEventToProcess = [self.eventList nextEvent];
     } // while planEndDate is in the future w.r.t. currentSimDate
      

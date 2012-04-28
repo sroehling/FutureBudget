@@ -29,6 +29,7 @@
 
 @implementation YearValXYPlotResultsViewController
 
+@synthesize simProgressHUD;
 @synthesize currentData;
 @synthesize plotDataGenerator;
 
@@ -50,44 +51,26 @@
 	return nil;
 }
 
-- (void)loadView
-{
-//	[super loadView];
-
-	CPTGraphHostingView *graphView = [[CPTGraphHostingView alloc] 
-		initWithFrame:[UIScreen mainScreen].applicationFrame];		
-	self.view = graphView;
-	[graphView release];
-
-
-}
-
-- (void)viewDidLoad
-{
-	[super viewDidLoad];
-}
 
 - (void)dealloc
 {
 	[currentData release];
 	[plotDataGenerator release];
+	[simProgressHUD release];
     [super dealloc];
 }
 
-#pragma mark - View lifecycle
-
-
-- (void)viewWillAppear:(BOOL)animated {
-	
-	[super viewWillAppear:animated];
-
-	NSLog(@"ResultsViewController: viewWillAppear");
-	[self.viewInfo.simResultsController runSimulatorIfResultsOutOfDate];	
-
-	
-	if([self.plotDataGenerator resultsDefinedInSimResults:
+-(void)generatePlot
+{	if([self.plotDataGenerator resultsDefinedInSimResults:
 			self.viewInfo.simResultsController])
 	{
+	
+		CPTGraphHostingView *graphView = [[CPTGraphHostingView alloc] 
+		initWithFrame:[UIScreen mainScreen].applicationFrame];
+		graphView.autoresizingMask = UIViewAutoresizingFlexibleHeight | 
+					UIViewAutoresizingFlexibleWidth;		
+
+	
 		self.currentData = 
 			[self.plotDataGenerator generatePlotDataFromSimResults:self.viewInfo.simResultsController];
 		assert(self.currentData != nil);
@@ -99,9 +82,8 @@
 		graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
 		CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
 		[graph applyTheme:theme];
-		CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
-		hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
-		hostingView.hostedGraph = graph;
+		graphView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
+		graphView.hostedGraph = graph;
 		
 		// Pad the plot as a whole
 		graph.paddingLeft = 5.0;
@@ -223,6 +205,13 @@
 		fadeInAnimation.fillMode = kCAFillModeForwards;
 		fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
 		[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];	
+	
+		graphView.alpha = 0.0;
+		graphView.backgroundColor = [UIColor blackColor];
+		self.view = graphView;
+		[graphView release];
+		[UIView animateWithDuration:0.5 animations:^{graphView.alpha = 1.0;}];
+
 		
 	} // if results defined for the plot data
 	else
@@ -234,6 +223,77 @@
 		// results view is showing that plot data.
 		[self.navigationController popViewControllerAnimated:FALSE];
 	}
+
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	// Remove HUD from screen when the HUD was hidden
+	[hud removeFromSuperview];
+	[self generatePlot];
+}
+
+#pragma mark ProgressUpdateDelegate
+
+-(void)updateProgress:(CGFloat)currentProgress
+{
+	assert(self.simProgressHUD != nil);
+	self.simProgressHUD.progress = currentProgress;
+}
+
+#pragma mark - View lifecycle
+
+
+- (void)viewWillAppear:(BOOL)animated {
+	
+	[super viewWillAppear:animated];	
+
+	if(!self.viewInfo.simResultsController.resultsOutOfDate)
+	{
+		[self generatePlot];
+	}
+	else 
+	{
+		UIView *blankView = [[[UIView alloc] init] autorelease];
+		blankView.backgroundColor = [UIColor blackColor];
+		blankView.autoresizingMask = UIViewAutoresizingFlexibleHeight | 
+					UIViewAutoresizingFlexibleWidth;
+		self.view = blankView;
+	}
+}
+
+-(void)generateSimResults
+{
+	self.simProgressHUD = [[[MBProgressHUD alloc] 
+			initWithView:self.navigationController.view] autorelease];
+
+	[self.navigationController.view addSubview:self.simProgressHUD];
+	
+	self.simProgressHUD.dimBackground = YES;
+	self.simProgressHUD.mode = MBProgressHUDModeDeterminate;
+	
+	self.simProgressHUD.labelText = LOCALIZED_STR(@"RESULTS_PROGRESS_LABEL");
+	
+	// Regiser for HUD callbacks so we can remove it from the window at the right time
+	self.simProgressHUD.delegate = self;
+	
+	// Show the HUD while the provided method executes in a new thread
+	[self.simProgressHUD showWhileExecuting:@selector(runSimulatorForResults:) 
+			onTarget:self.viewInfo.simResultsController withObject:self animated:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+	
+	[super viewDidAppear:animated];
+	
+	if(self.viewInfo.simResultsController.resultsOutOfDate)
+	{
+		[self generateSimResults];
+	}
+	
 }
 
 

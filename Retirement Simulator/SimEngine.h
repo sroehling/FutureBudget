@@ -15,6 +15,7 @@
 @class DataModelController;
 @class SharedAppValues;
 
+@protocol ProgressUpdateDelegate;
 
 
 @interface SimEngine : NSObject {
@@ -42,7 +43,7 @@
 - (id)initWithDataModelController:(DataModelController*)theDataModelController
 	andSharedAppValues:(SharedAppValues*)theSharedAppVals;
 	
-- (void)runSim;
+- (void)runSim:(id<ProgressUpdateDelegate>)simProgressDelegate;
 
 @property (nonatomic, retain) NSMutableArray *eventCreators;
 @property(nonatomic,retain) FiscalYearDigest *digest;

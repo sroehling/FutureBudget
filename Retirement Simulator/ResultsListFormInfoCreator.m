@@ -43,9 +43,13 @@
 #import "TaxInput.h"
 #import "FormContext.h"
 
+#import "MBProgressHUD.h"
+
 @implementation ResultsListFormInfoCreator
 
+@synthesize simProgressHUD;
 @synthesize simResultsController;
+@synthesize simResultsCompleteDelegate;
 
 -(id)init
 {
@@ -57,10 +61,42 @@
 	return self;
 }
 
+-(BOOL)needsToPreprocessFormData
+{
+	if(self.simResultsController.resultsOutOfDate)
+	{
+		return TRUE;
+	}
+	else 
+	{
+		return FALSE;
+	}
+}
+
+-(void)preprocessFormData:(FormContext*)parentContext 
+	withProgressCompletionDelegate:(id<ProgressCompleteDelegate>)preprocessingCompleteDelegate;
+{
+	self.simProgressHUD = [[[MBProgressHUD alloc] 
+			initWithView:parentContext.parentController.navigationController.view] autorelease];
+	self.simResultsCompleteDelegate = preprocessingCompleteDelegate;
+
+	[parentContext.parentController.navigationController.view addSubview:self.simProgressHUD];
+	
+	self.simProgressHUD.dimBackground = YES;
+	self.simProgressHUD.mode = MBProgressHUDModeDeterminate;
+	
+	self.simProgressHUD.labelText = LOCALIZED_STR(@"RESULTS_PROGRESS_LABEL");
+	
+	// Regiser for HUD callbacks so we can remove it from the window at the right time
+	self.simProgressHUD.delegate = self;
+	
+	// Show the HUD while the provided method executes in a new thread
+	[self.simProgressHUD showWhileExecuting:@selector(runSimulatorForResults:) 
+			onTarget:self.simResultsController withObject:self animated:YES];
+}
+
 - (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
-
-	[self.simResultsController runSimulatorIfResultsOutOfDate];
 
     FormPopulator *formPopulator = [[[FormPopulator alloc] 
 		initWithFormContext:parentContext] autorelease];
@@ -425,8 +461,30 @@
 -(void)dealloc
 {
 	[simResultsController release];
+	[simProgressHUD release];
 	[super dealloc];
 }
+
+- (void)updateProgress:(CGFloat)currentProgress
+{
+	assert(self.simProgressHUD != nil);
+	self.simProgressHUD.progress = currentProgress;
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	// Remove HUD from screen when the HUD was hidded
+	[hud removeFromSuperview];
+	
+	if(self.simResultsCompleteDelegate != nil)
+	{
+		[self.simResultsCompleteDelegate progressComplete];
+	}
+}
+
+
 
 
 @end

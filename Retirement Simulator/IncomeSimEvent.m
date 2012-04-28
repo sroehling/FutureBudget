@@ -22,16 +22,7 @@
 @synthesize incomeAmount;
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
-{
-	NSString *currencyAmount = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.incomeAmount]];
-	
-    
-    NSLog(@"Doing income event: %@ %@ %@",
-          self.incomeInfo.income.name,
-          [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		  currencyAmount);
-		  
+{	
 	IncomeDigestEntry *digestEntry = [[[IncomeDigestEntry alloc] 
 		initWithAmount:self.incomeAmount andCashFlowSummation:self.incomeInfo.digestSum] autorelease];	  
 		  

@@ -15,6 +15,7 @@
 #import "DataModelController.h"
 #import "TaxInputCalcs.h"
 #import "SharedAppValues.h"
+#import "ProgressUpdateDelegate.h"
 
 @implementation SimResultsController
 
@@ -31,10 +32,12 @@
 @synthesize sharedAppVals;
 @synthesize taxesSimulated;
 
+@synthesize resultsOutOfDate;
+
 static SimResultsController *theSimResultsControllerSingleton; 
 
 
-- (void) runSimulatorForResults
+- (void) runSimulatorForResults:(id<ProgressUpdateDelegate>)simProgressDelegate
 {
      
     NSLog(@"Starting simulation run...");
@@ -43,7 +46,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 		initWithDataModelController:self.dataModelController 
 		andSharedAppValues:self.sharedAppVals ];
            
-    [simEngine runSim];
+    [simEngine runSim:simProgressDelegate];
 	
 	self.endOfYearResults = simEngine.digest.savedEndOfYearResults;
 	
@@ -67,24 +70,22 @@ static SimResultsController *theSimResultsControllerSingleton;
 	self.expensesSimulated = simEngine.simParams.expenseInfo.inputsSimulated;
 	self.taxesSimulated = [simEngine.simParams.taxInputCalcs taxesSimulated];
     
-
-    
      NSLog(@"... Done running simulation");
     
     [simEngine release];
 	resultsOutOfDate = FALSE;
+	
 }
 
-- (void) runSimulatorIfResultsOutOfDate
+- (void)runSimulatorForResults
 {
-	if(resultsOutOfDate)
-	{
-		[self runSimulatorForResults];
-	}
-	resultsOutOfDate = FALSE;
+	[self runSimulatorForResults:self];
 }
 
-
+-(void)updateProgress:(CGFloat)currentProgress
+{
+	// no-op
+}
 
 - (void)managedObjectsChanged
 {
