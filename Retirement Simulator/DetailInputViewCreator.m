@@ -482,6 +482,15 @@
 	[self.formPopulator populateMultiScenBoolField:tax.taxEnabled  
 		withLabel:LOCALIZED_STR(@"INPUT_TAX_ENABLED_FIELD_LABEL")];
 		
+	// Tax Bracket Section
+	[formPopulator nextSection];
+	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
+		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket] autorelease];
+	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
+		initWithCaption:LOCALIZED_STR(@"INPUT_TAX_RATES_FIELD_LABEL") andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
+	[formPopulator.currentSection addFieldEditInfo:taxRatesFieldEditInfo];
+
+		
 
 	// TODO - Double-check how the ItemizedTaxAmtsInfo's specify what is itemized versus the 
 	// typical federal and state tax structures.
@@ -553,14 +562,6 @@
 						usingDataModelController:self.formContext.dataModelController]
 			andIsForNewObject:self.isForNewObject] autorelease]];	
 	
-	// Tax Bracket Section
-
-	[formPopulator nextSection];
-	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
-		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket] autorelease];
-	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
-		initWithCaption:@"Tax Rates" andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
-	[formPopulator.currentSection addFieldEditInfo:taxRatesFieldEditInfo];
 
 }
 
