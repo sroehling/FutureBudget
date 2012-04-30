@@ -108,7 +108,8 @@
 	// TBD - What do we do with the credit amount, if it exceeds the tax due?
 	
 	self.effectiveTaxRate = [self.taxBracketCalc calcEffectiveTaxRateForGrossIncome:grossIncome 
-		andTaxableIncome:taxableIncome withCredits:credits];
+		andTaxableIncome:taxableIncome withCredits:credits andSimParams:self.simParams 
+			andCurrentDate:currentDate];
 }
 
 -(void)processDailyTaxPmt:(DigestEntryProcessingParams*)processingParams

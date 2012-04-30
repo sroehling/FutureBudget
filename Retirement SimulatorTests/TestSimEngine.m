@@ -1909,6 +1909,8 @@
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
+	flatTax.taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
 	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
 	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
 	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
@@ -1944,6 +1946,136 @@
     
      
 }
+
+
+- (void)testTaxBracketWithCutoffGrowth {
+        
+ 	[self resetCoredData];
+   
+    NSLog(@"Starting sim engine test ...");
+	
+	// In this test, the first $100 is taxed at 25%, but anything above that is taxed at 50%
+    	
+	IncomeInputTypeSelectionInfo *incomeCreator = 
+		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+
+	TaxInputTypeSelectionInfo *taxCreator = 
+		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	flatTax.taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:100.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:50.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	
+	IncomeItemizedTaxAmt *itemizedIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedIncome.income = income01;
+	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
+
+		
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+		
+	// Since the income is not going up each year, the amount of taxes paid will actually go down
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:72.49 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:69.74 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:66.72 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:63.39 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:59.72 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"bracketed tax" withAdjustedVals:FALSE];
+	
+    
+    NSLog(@"... Done testing sim engine");
+    
+     
+}
+
+- (void)testTaxBracketWithCutoffGrowthAndIncomeGrowth {
+        
+ 	[self resetCoredData];
+   
+    NSLog(@"Starting sim engine test ...");
+	
+	// In this test, the first $100 is taxed at 25%, but anything above that is taxed at 50%
+    	
+	IncomeInputTypeSelectionInfo *incomeCreator = 
+		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+
+	TaxInputTypeSelectionInfo *taxCreator = 
+		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	flatTax.taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:100.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:50.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	
+	IncomeItemizedTaxAmt *itemizedIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedIncome.income = income01;
+	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
+
+		
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+		
+	// Since the income is not going up each year, the amount of taxes paid will actually go down
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:72.85 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:80.17 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:88.19 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:97.01 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:106.70 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"bracketed tax" withAdjustedVals:FALSE];
+	
+    
+    NSLog(@"... Done testing sim engine");
+    
+     
+}
+
 
 - (void)testTaxCredit {
         

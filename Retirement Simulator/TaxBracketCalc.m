@@ -10,10 +10,14 @@
 #import "TaxBracket.h"
 #import "TaxBracketEntry.h"
 #import "CollectionHelper.h"
+#import "SimInputHelper.h"
+#import "SimParams.h"
+#import "MultiScenarioGrowthRate.h"
 
 @implementation TaxBracketCalc
 
 @synthesize taxBracketEntries;
+@synthesize taxBracket;
 
 -(id)initWithTaxBracket:(TaxBracket *)theTaxBracket
 {
@@ -23,6 +27,7 @@
 		assert(theTaxBracket!=nil);
 		self.taxBracketEntries = [CollectionHelper setToSortedArray:theTaxBracket.taxBracketEntries 
 			withKey:TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_KEY];
+		self.taxBracket = theTaxBracket;
 
 	}
 	return self;
@@ -36,6 +41,7 @@
 
 -(double)calcEffectiveTaxRateForGrossIncome:(double)grossIncome 
 	andTaxableIncome:(double)taxableIncome withCredits:(double)creditAmount
+	andSimParams:(SimParams*)simParams andCurrentDate:(NSDate*)currentDate
 {
 	// TODO - We definitely need a unit test of this method
 	assert(taxableIncome >= 0.0);
@@ -54,7 +60,14 @@
 		double totalTax = 0.0;
 		for(TaxBracketEntry *taxBracketEntry in self.taxBracketEntries)
 		{
-			double currCutoffAmount = [taxBracketEntry.cutoffAmount doubleValue];
+			double unadjustedCutoffAmount = [taxBracketEntry.cutoffAmount doubleValue];			
+			double cutoffAmountMultiplier = [SimInputHelper 
+				multiScenVariableRateMultiplier:self.taxBracket.cutoffGrowthRate.growthRate
+				sinceStartDate:simParams.simStartDate 
+				asOfDate:currentDate andScenario:simParams.simScenario];
+
+			double currCutoffAmount = unadjustedCutoffAmount * cutoffAmountMultiplier;
+			
 			assert(currCutoffAmount >= prevCutoffAmount);
 			double currRate = [taxBracketEntry.taxPercent doubleValue]/100.0;
 			assert(currRate >= 0.0);
@@ -104,6 +117,7 @@
 -(void)dealloc
 {
 	[taxBracketEntries release];
+	[taxBracket release];
 	[super dealloc];
 }
 
