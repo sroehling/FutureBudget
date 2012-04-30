@@ -68,6 +68,7 @@
 #import "ItemizedAssetTaxFormInfoCreator.h"
 #import "FormContext.h"
 #import "ItemizedExpenseTaxFormInfoCreator.h"
+#import "TaxBracket.h"
 
 @implementation DetailInputViewCreator
 
@@ -483,12 +484,19 @@
 		withLabel:LOCALIZED_STR(@"INPUT_TAX_ENABLED_FIELD_LABEL")];
 		
 	// Tax Bracket Section
-	[formPopulator nextSection];
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_BRACKET_SECTION_TITLE")];
 	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
 		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket] autorelease];
 	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
 		initWithCaption:LOCALIZED_STR(@"INPUT_TAX_RATES_FIELD_LABEL") andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
 	[formPopulator.currentSection addFieldEditInfo:taxRatesFieldEditInfo];
+	
+	[formPopulator populateMultiScenarioGrowthRate:tax.taxBracket.cutoffGrowthRate 
+		withLabel:LOCALIZED_STR(@"INPUT_TAX_CUTOFF_GROWTH_RATE_FIELD_LABEL")
+		 andValueName:LOCALIZED_STR(@"INPUT_TAX_CUTOFF_GROWTH_RATE_VALUE_NAME")];
+
+	
+	// TODO Add inflation adjustements for tax rates
 
 		
 

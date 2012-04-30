@@ -241,7 +241,7 @@
 {
 	TaxBracket *taxBracket = (TaxBracket*)[self.dataModelInterface 
 		createDataModelObject:TAX_BRACKET_ENTITY_NAME];
-	taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
 	return taxBracket;
 }
 
