@@ -57,6 +57,7 @@
 #import "ItemizedTaxAmt.h"
 #import "IncomeItemizedTaxAmt.h"
 #import "ExpenseItemizedTaxAmt.h"
+#import "TaxesPaidItemizedTaxAmt.h"
 
 #import "Account.h"
 #import "SavingsAccount.h"
@@ -1621,6 +1622,84 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"itemized deduction" withAdjustedVals:FALSE];
+	
+    
+    NSLog(@"... Done testing sim engine");
+    
+     
+}
+
+
+- (void)testItemizedDeductionTaxesPaid {
+        
+ 	[self resetCoredData];
+   
+    NSLog(@"Starting sim engine test ...");
+    	
+	IncomeInputTypeSelectionInfo *incomeCreator = 
+		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+
+	TaxInputTypeSelectionInfo *taxCreator = 
+		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	
+	TaxInput *deductableTax = (TaxInput*)[taxCreator createInput];
+	TaxBracketEntry *deductableTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	deductableTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	deductableTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[deductableTax.taxBracket addTaxBracketEntriesObject:deductableTaxEntry];
+	deductableTax.stdDeductionAmt = [self.inputCreationHelper multiScenAmountWithDefault:0.0];
+	deductableTax.stdDeductionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	IncomeItemizedTaxAmt *itemizedDeductableTaxIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedDeductableTaxIncome.income = income01;
+	itemizedDeductableTaxIncome.multiScenarioApplicablePercent = 
+			[self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[deductableTax.itemizedIncomeSources addItemizedAmtsObject:itemizedDeductableTaxIncome];
+
+
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	flatTax.stdDeductionAmt = [self.inputCreationHelper multiScenAmountWithDefault:0.0];
+	flatTax.stdDeductionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	IncomeItemizedTaxAmt *itemizedFlatTaxIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedFlatTaxIncome.income = income01;
+	itemizedFlatTaxIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedFlatTaxIncome];
+	
+	TaxesPaidItemizedTaxAmt *itemizedTaxesPaid = [self.coreData insertObject:TAXES_PAID_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedTaxesPaid.tax = deductableTax;
+	itemizedTaxesPaid.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedDeductions addItemizedAmtsObject:itemizedTaxesPaid];
+	
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
+		andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	// The flat tax rate is 25%. The deductable tax rate is also 25%, or %50. Since the deductable tax is listed as 
+	// a deduction for the flat tax, it should cut the flat taxable income to $150. Then, 25% of $150 is $37.5.
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:37.5 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:37.5 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:37.5 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:37.5 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:37.5 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"itemized deduction" withAdjustedVals:FALSE];
 	
     

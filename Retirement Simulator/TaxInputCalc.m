@@ -49,17 +49,6 @@
 		assert(theSimParams != nil);
 		self.simParams = theSimParams;
 		
-		self.incomeCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
-			andItemizedTaxAmts:self.taxInput.itemizedIncomeSources] autorelease];
-			
-		self.adjustmentCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
-			andItemizedTaxAmts:self.taxInput.itemizedAdjustments] autorelease];
-			
-		self.deductionCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
-			andItemizedTaxAmts:self.taxInput.itemizedDeductions] autorelease];
-			
-		self.creditCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
-			andItemizedTaxAmts:self.taxInput.itemizedCredits] autorelease];
 			
 		self.taxBracketCalc = [[[TaxBracketCalc alloc] initWithTaxBracket:theTaxInput.taxBracket] autorelease];
 		self.effectiveTaxRate = 0.0;
@@ -75,6 +64,22 @@
 {
 	assert(0);
 	return nil;
+}
+
+-(void)configTaxCalcEntries:(SimParams*)theSimParams
+{
+	self.incomeCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
+		andItemizedTaxAmts:self.taxInput.itemizedIncomeSources] autorelease];
+		
+	self.adjustmentCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
+		andItemizedTaxAmts:self.taxInput.itemizedAdjustments] autorelease];
+		
+	self.deductionCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
+		andItemizedTaxAmts:self.taxInput.itemizedDeductions] autorelease];
+		
+	self.creditCalcEntries = [[[ItemizedTaxCalcEntries alloc] initWithSimParams:theSimParams 
+		andItemizedTaxAmts:self.taxInput.itemizedCredits] autorelease];
+
 }
 
 

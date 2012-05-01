@@ -10,6 +10,7 @@
 
 @class TaxInputCalc;
 @class DigestEntryProcessingParams;
+@class SimParams;
 
 @interface TaxInputCalcs : NSObject {
     @private
@@ -21,6 +22,7 @@
 @property(nonatomic,retain) NSMutableSet *taxesSimulated;
 
 -(void)addTaxInputCalc:(TaxInputCalc*)theTaxInputCalc;
+-(void)configCalcEntries:(SimParams*)theSimParams;
 
 -(void)updateEffectiveTaxRates:(NSDate*)currentDate;
 -(void)processDailyTaxPmts:(DigestEntryProcessingParams*)processingParams;

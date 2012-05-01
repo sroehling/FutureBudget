@@ -44,6 +44,7 @@
 @property(nonatomic,retain) InputValDigestSummation *taxesPaid;
 
 -(id)initWithTaxInput:(TaxInput*)theTaxInput andSimParams:(SimParams*)theSimParams;
+-(void)configTaxCalcEntries:(SimParams*)theSimParams;
 -(void)updateEffectiveTaxRate:(NSDate*)currentDate;
 -(void)processDailyTaxPmt:(DigestEntryProcessingParams*)processingParams;
 

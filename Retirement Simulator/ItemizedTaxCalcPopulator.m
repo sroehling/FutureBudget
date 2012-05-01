@@ -31,15 +31,17 @@
 #import "AssetSimInfo.h"
 #import "AssetGainItemizedTaxAmt.h"
 
-
 #import "Account.h"
 #import "AccountInterestItemizedTaxAmt.h"
 #import "AccountSimInfo.h"
 
-
 #import "LoanInput.h"
 #import "LoanSimInfo.h"
 #import "LoanInterestItemizedTaxAmt.h"
+
+#import "TaxInput.h"
+#import "TaxInputCalc.h"
+#import "TaxesPaidItemizedTaxAmt.h"
 
 #import "InterestBearingWorkingBalance.h"
 
@@ -131,7 +133,11 @@
 
 -(void)visitTaxesPaidItemizedTaxAmt:(TaxesPaidItemizedTaxAmt *)itemizedTaxAmt
 {
-	assert(0); // not implemented yet
+	TaxInputCalc *taxCalc = [self.simParams.taxInfo getSimInfo:itemizedTaxAmt.tax];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
+		andDigestSum:taxCalc.taxesPaid] autorelease];
 }
 
 

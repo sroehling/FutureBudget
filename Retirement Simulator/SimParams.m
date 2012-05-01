@@ -32,6 +32,7 @@
 @synthesize acctInfo;
 @synthesize assetInfo;
 @synthesize loanInfo;
+@synthesize taxInfo;
 
 @synthesize digestSums;
 @synthesize workingBalanceMgr;
@@ -58,6 +59,7 @@
 		self.acctInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 		self.assetInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 		self.loanInfo = [[[InputSimInfoCltn alloc] init] autorelease];
+		self.taxInfo = [[[InputSimInfoCltn alloc] init] autorelease];
 		
 		
 		self.digestSums = [[[InputValDigestSummations alloc] init] autorelease];
@@ -120,6 +122,7 @@
 	[acctInfo release];
 	[assetInfo release];
 	[loanInfo release];
+	[taxInfo release];
 	
 	[digestSums release];
 	

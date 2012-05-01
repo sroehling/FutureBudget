@@ -257,8 +257,14 @@
 			TaxInputCalc *taxCalc = [[[TaxInputCalc alloc] initWithTaxInput:tax 
 					andSimParams:self.simParams] autorelease];
 			[self.simParams.taxInputCalcs addTaxInputCalc:taxCalc];
+			[self.simParams.taxInfo addSimInfo:tax withSimInfo:taxCalc];
 		}
 	}
+	// The tax calculation objects need to be configured in 2 phases. In the first
+	// phase all the objects are initialized. In the 2nd, all the itemizizations are 
+	// setup. This is needed, since TaxInput's can refer to each other when there
+	// is a deduction for taxes paid.
+	[self.simParams.taxInputCalcs configCalcEntries:self.simParams];
 	
 	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
 		initWithStartingMonth:3 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];

@@ -26,6 +26,15 @@
 	return self;
 }
 
+-(void)configCalcEntries:(SimParams*)theSimParams
+{
+	for(TaxInputCalc *taxInputCalc in self.taxInputCalcs)
+	{
+		[taxInputCalc configTaxCalcEntries:theSimParams];
+	}
+
+}
+
 -(void)addTaxInputCalc:(TaxInputCalc*)theTaxInputCalc
 {
 	assert(theTaxInputCalc != nil);
