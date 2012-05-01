@@ -16,6 +16,7 @@
 #import "AccountInterestItemizedTaxAmt.h"
 #import "AssetGainItemizedTaxAmt.h"
 #import "LoanInterestItemizedTaxAmt.h"
+#import "TaxesPaidItemizedTaxAmt.h"
 
 #import "DataModelController.h"
 #import "IncomeInput.h"
@@ -23,6 +24,7 @@
 #import "Account.h"
 #import "AssetInput.h"
 #import "LoanInput.h"
+#import "TaxInput.h"
 
 @implementation ItemizedTaxAmtFieldPopulator
 
@@ -37,6 +39,7 @@
 @synthesize itemizedAccountWithdrawals;
 @synthesize itemizedAssets;
 @synthesize itemizedLoans;
+@synthesize itemizedTaxesPaid;
 
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
@@ -60,6 +63,7 @@
 		self.itemizedAccountWithdrawals = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAssets = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedLoans = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedTaxesPaid = [[[NSMutableArray alloc] init] autorelease];
 		
 		for(ItemizedTaxAmt *itemizedTaxAmt in self.itemizedTaxAmts.itemizedAmts)
 		{
@@ -111,6 +115,12 @@
 {
 	assert(itemizedTaxAmt != nil);
 	[self.itemizedLoans addObject:itemizedTaxAmt];
+}
+
+-(void)visitTaxesPaidItemizedTaxAmt:(TaxesPaidItemizedTaxAmt *)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedTaxesPaid addObject:itemizedTaxAmt];
 }
 
 
@@ -263,6 +273,23 @@
 	return unItemizedAssets;
 }
 
+
+- (NSArray*)taxesPaidNotAlreadyItemizedExcluding:(TaxInput*)taxToExclude
+{
+	NSArray *allTaxes = [self.dataModelController
+			fetchSortedObjectsWithEntityName:TAX_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedTaxes = [NSMutableArray arrayWithArray:allTaxes];	
+		
+	for(TaxesPaidItemizedTaxAmt *itemizedTax in self.itemizedTaxesPaid)
+	{
+		[unItemizedTaxes removeObject:itemizedTax.tax];
+	}
+	[unItemizedTaxes removeObject:taxToExclude];
+	
+	return unItemizedTaxes;
+}
+
+
 -(AssetGainItemizedTaxAmt *)findItemizedAssetGain:(AssetInput*)asset
 {
 	assert(asset != nil);
@@ -318,6 +345,8 @@
 	[itemizedAccountWithdrawals release];
 	[itemizedAssets release];
 	[itemizedLoans release];
+	[itemizedTaxesPaid release];
+	
 	[super dealloc];
 }
 

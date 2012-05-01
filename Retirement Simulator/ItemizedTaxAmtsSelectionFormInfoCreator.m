@@ -35,6 +35,9 @@
 #import "AssetInput.h"
 #import "AssetGainItemizedTaxAmt.h"
 
+#import "TaxInput.h"
+#import "TaxesPaidItemizedTaxAmt.h"
+
 #import "LoanInput.h"
 #import "LoanInterestItemizedTaxAmt.h"
 #import "PercentFieldValidator.h"
@@ -47,6 +50,8 @@
 #import "ItemizedAssetGainTaxAmtCreator.h"
 #import "ItemizedLoanInterestTaxAmtCreator.h"
 #import "ItemizedAccountTaxAmtCreator.h"
+#import "ItemizedTaxesPaidTaxAmtCreator.h"
+
 #import "LocalizationHelper.h"
 #import "FormContext.h"
 
@@ -401,6 +406,46 @@
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:loanFieldEditInfo];
 			}
+		}
+	}
+	
+	if([self.itemizedTaxAmtsInfo itemizeTaxesPaid])
+	{
+		NSArray *taxesNotItemized = [fieldPopulator 
+				taxesPaidNotAlreadyItemizedExcluding:self.itemizedTaxAmtsInfo.tax];
+		if(([fieldPopulator.itemizedTaxesPaid count] > 0) ||
+			([taxesNotItemized count] > 0))
+		{
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
+				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_TAXES_PAID_TITLE")]];
+				
+			for(TaxesPaidItemizedTaxAmt *itemizedTax in fieldPopulator.itemizedTaxesPaid)
+			{			
+				ItemizedTaxAmtFieldEditInfo *taxFieldEditInfo = 
+					[[[ItemizedTaxAmtFieldEditInfo alloc] 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						andItemizedTaxAmtCreator:
+							[[[ItemizedTaxesPaidTaxAmtCreator alloc] initWithFormContext:parentContext andTax:itemizedTax.tax andLabel:itemizedTax.tax.name] autorelease]
+					andItemizedTaxAmt:itemizedTax
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:taxFieldEditInfo];
+			}
+			for(TaxInput *unitemizedTax in taxesNotItemized)
+			{
+				ItemizedTaxAmtFieldEditInfo *taxFieldEditInfo = 
+					[[[ItemizedTaxAmtFieldEditInfo alloc] 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						andItemizedTaxAmtCreator:
+							[[[ItemizedTaxesPaidTaxAmtCreator alloc] initWithFormContext:parentContext 
+								andTax:unitemizedTax andLabel:unitemizedTax.name] autorelease]
+					andItemizedTaxAmt:nil
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:taxFieldEditInfo];
+			}
+
 		}
 	}
 

@@ -21,6 +21,8 @@
 		0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58513CFEE940096A20F /* SavingsAccount.m */; };
 		0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58813D0B1DC0096A20F /* InterestRate.m */; };
 		0010A58D13D15C8B0096A20F /* StartingValsFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */; };
+		0014296E154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */; };
+		00142972154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00142971154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m */; };
 		00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA11402EBC9001D472F /* WorkingBalanceTest.m */; };
 		00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA91406B365001D472F /* EndOfYearDigestResult.m */; };
 		00160CAD1406C9AD001D472F /* FiscalYearDigestEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */; };
@@ -417,6 +419,10 @@
 		0010A58813D0B1DC0096A20F /* InterestRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestRate.m; sourceTree = "<group>"; };
 		0010A58B13D15C8B0096A20F /* StartingValsFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartingValsFormInfoCreator.h; sourceTree = "<group>"; };
 		0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartingValsFormInfoCreator.m; sourceTree = "<group>"; };
+		0014296C154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxesPaidTaxAmtCreator.h; sourceTree = "<group>"; };
+		0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxesPaidTaxAmtCreator.m; sourceTree = "<group>"; };
+		00142970154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxesPaidItemizedTaxAmt.h; sourceTree = "<group>"; };
+		00142971154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxesPaidItemizedTaxAmt.m; sourceTree = "<group>"; };
 		00160CA01402EBC9001D472F /* WorkingBalanceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceTest.h; sourceTree = "<group>"; };
 		00160CA11402EBC9001D472F /* WorkingBalanceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceTest.m; sourceTree = "<group>"; };
 		00160CA81406B363001D472F /* EndOfYearDigestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndOfYearDigestResult.h; sourceTree = "<group>"; };
@@ -1209,6 +1215,8 @@
 				005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */,
 				002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */,
 				002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */,
+				00142970154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.h */,
+				00142971154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m */,
 			);
 			name = "Itemized Tax Amounts";
 			sourceTree = "<group>";
@@ -1361,6 +1369,8 @@
 				005DAEEF1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.m */,
 				005DAEF414609AC500D87907 /* ItemizedLoanInterestTaxAmtCreator.h */,
 				005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */,
+				0014296C154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.h */,
+				0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */,
 			);
 			name = "Itemized Tax Amt Creators";
 			sourceTree = "<group>";
@@ -2807,6 +2817,8 @@
 				0075843014E20CCB00184BD5 /* ItemizedLoanTaxFormInfoCreator.m in Sources */,
 				00E533E914E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m in Sources */,
 				00E533EC14E96B13005C6F6F /* NeverEndDateFieldEditInfo.m in Sources */,
+				0014296E154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m in Sources */,
+				00142972154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

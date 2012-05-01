@@ -23,6 +23,7 @@
 @class Account;
 @class AssetInput;
 @class LoanInput;
+@class TaxInput;
 @class DataModelController;
 
 @interface ItemizedTaxAmtFieldPopulator : NSObject <ItemizedTaxAmtVisitor> {
@@ -37,6 +38,7 @@
 		NSMutableArray *itemizedAccountWithdrawals;
 		NSMutableArray *itemizedAssets;
 		NSMutableArray *itemizedLoans;
+		NSMutableArray *itemizedTaxesPaid;
 }
 
 
@@ -50,6 +52,7 @@
 @property(nonatomic,retain) NSMutableArray *itemizedAccountWithdrawals;
 @property(nonatomic,retain) NSMutableArray *itemizedAssets;
 @property(nonatomic,retain) NSMutableArray *itemizedLoans;
+@property(nonatomic,retain) NSMutableArray *itemizedTaxesPaid;
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
 	andItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts;
@@ -61,6 +64,7 @@
 - (NSArray*)acctInterestNotAlreadyItemized;
 - (NSArray*)assetGainsNotAlreadyItemized;
 - (NSArray*)loanInterestNotAlreadyItemized;
+- (NSArray*)taxesPaidNotAlreadyItemizedExcluding:(TaxInput*)taxToExclude;
 
 - (IncomeItemizedTaxAmt*)findItemizedIncome:(IncomeInput*)income;
 

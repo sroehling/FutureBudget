@@ -22,6 +22,7 @@
 		NSString *itemSectionTitleFormat;
 		NSString *itemHelpInfoFile;
 		
+		TaxInput *tax;
 		ItemizedTaxAmts *itemizedTaxAmts;
 		
 		ItemizedTaxAmtFieldPopulator *fieldPopulator;
@@ -33,6 +34,7 @@
 		BOOL itemizeAccountInterest;
 		BOOL itemizeLoanInterest;
 		BOOL itemizeAssetGains;
+		BOOL itemizedTaxesPaid;
 		
 }
 
@@ -42,6 +44,7 @@
 @property(nonatomic,retain) NSString *itemSectionTitleFormat;
 @property(nonatomic,retain) NSString *itemHelpInfoFile;
 
+@property(nonatomic,retain) TaxInput *tax;
 @property(nonatomic,retain) ItemizedTaxAmts *itemizedTaxAmts;
 @property(nonatomic,retain) ItemizedTaxAmtFieldPopulator *fieldPopulator;
 
@@ -52,8 +55,10 @@
 @property BOOL itemizeAccountInterest;
 @property BOOL itemizeLoanInterest;
 @property BOOL itemizeAssetGains;
+@property BOOL itemizeTaxesPaid;
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andTax:(TaxInput*)theTax
 	andItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
 	andTitle:(NSString*)theTitle andAmtPrompt:(NSString *)theAmtPrompt
 	andItemTitle:(NSString*)theItemTitle
@@ -65,7 +70,8 @@
 	andItemizeAccountWithdrawals:(BOOL)doItemizeAcctWithdrawals
 	andItemizeAccountInterest:(BOOL)doItemizeAcctInterest
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
-	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest;
+	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest
+	andItemizeTaxesPaid:(BOOL)doItemizeTaxesPaid;
 	
 +(ItemizedTaxAmtsInfo*)taxSourceInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController;
 +(ItemizedTaxAmtsInfo*)taxAdjustmentInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController;

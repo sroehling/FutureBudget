@@ -15,6 +15,7 @@
 @class AccountWithdrawalItemizedTaxAmt;
 @class AssetGainItemizedTaxAmt;
 @class LoanInterestItemizedTaxAmt;
+@class TaxesPaidItemizedTaxAmt;
 
 @protocol ItemizedTaxAmtVisitor <NSObject>
 
@@ -30,6 +31,9 @@
 	
 -(void)visitAssetGainItemizedTaxAmt:
 	(AssetGainItemizedTaxAmt*)itemizedTaxAmt;
+	
+-(void)visitTaxesPaidItemizedTaxAmt:
+	(TaxesPaidItemizedTaxAmt*)ItemizedTaxAmt;
 	
 -(void)visitLoanInterestItemizedTaxAmt:(LoanInterestItemizedTaxAmt*)itemizedTaxAmt;
 

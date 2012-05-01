@@ -16,7 +16,9 @@
 
 @implementation ItemizedTaxAmtsInfo
 
+@synthesize tax;
 @synthesize itemizedTaxAmts;
+
 @synthesize title;
 @synthesize amtPrompt;
 @synthesize itemTitle;
@@ -32,9 +34,11 @@
 @synthesize itemizeAccountInterest;
 @synthesize itemizeLoanInterest;
 @synthesize itemizeAssetGains;
+@synthesize itemizeTaxesPaid;
 
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
+	andTax:(TaxInput*)theTax
 	andItemizedTaxAmts:(ItemizedTaxAmts*)theItemizedTaxAmts 
 	andTitle:(NSString*)theTitle andAmtPrompt:(NSString *)theAmtPrompt
 	andItemTitle:(NSString*)theItemTitle
@@ -47,6 +51,7 @@
 	andItemizeAccountInterest:(BOOL)doItemizeAcctInterest
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
 	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest
+	andItemizeTaxesPaid:(BOOL)doItemizeTaxesPaid
 {
 	self = [super init];
 	if(self)
@@ -54,8 +59,11 @@
 		assert(theItemizedTaxAmts != nil);
 		assert(theTitle != nil);
 		assert(theAmtPrompt != nil);
+		assert(theTax != nil);
 		
+		self.tax = theTax;
 		self.itemizedTaxAmts = theItemizedTaxAmts;
+		
 		self.title = theTitle;
 		self.amtPrompt = theAmtPrompt;
 		self.itemTitle = theItemTitle;
@@ -73,6 +81,7 @@
 		self.itemizeAccountInterest = doItemizeAcctInterest;
 		self.itemizeAssetGains = doItemizeAssetGains;
 		self.itemizeLoanInterest = doItemizeLoanInterest;
+		self.itemizeTaxesPaid = doItemizeTaxesPaid;
 		
 		self.fieldPopulator = [[[ItemizedTaxAmtFieldPopulator alloc] 
 					initWithDataModelController:theDataModelController 
@@ -94,6 +103,7 @@
 	assert(tax != nil);
 	return [[[ItemizedTaxAmtsInfo alloc] 
 			initWithDataModelController:dataModelController 
+			andTax:tax
 			andItemizedTaxAmts:tax.itemizedIncomeSources 
 			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE")
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT")
@@ -106,7 +116,8 @@
 			andItemizeAccountWithdrawals:	TRUE 
 			andItemizeAccountInterest:		TRUE 
 			andItemizeAssetGains:			TRUE 
-			andItemizeLoanInterest:			FALSE] autorelease];
+			andItemizeLoanInterest:			FALSE
+			andItemizeTaxesPaid:			FALSE] autorelease];
 }
 
 
@@ -114,6 +125,7 @@
 {
 	return [[[ItemizedTaxAmtsInfo alloc] 
 			initWithDataModelController:dataModelController 
+			andTax:tax
 			andItemizedTaxAmts:tax.itemizedAdjustments 
 			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE")
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_AMOUNT_PROMPT")
@@ -126,7 +138,8 @@
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
 			andItemizeAssetGains:			FALSE 
-			andItemizeLoanInterest:			TRUE] autorelease];
+			andItemizeLoanInterest:			TRUE
+			andItemizeTaxesPaid:			FALSE] autorelease];
 }
 
 +(ItemizedTaxAmtsInfo*)taxDeductionInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController
@@ -134,6 +147,7 @@
 {
 	return[[[ItemizedTaxAmtsInfo alloc] 
 			initWithDataModelController:dataModelController 
+			andTax:tax
 			andItemizedTaxAmts:tax.itemizedDeductions 
 			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE")
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_AMOUNT_PROMPT")
@@ -146,13 +160,15 @@
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
 			andItemizeAssetGains:			FALSE 
-			andItemizeLoanInterest:			TRUE] autorelease];
+			andItemizeLoanInterest:			TRUE
+			andItemizeTaxesPaid:			TRUE] autorelease];
 }
 
 +(ItemizedTaxAmtsInfo*)taxCreditInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController
 {
 	return [[[ItemizedTaxAmtsInfo alloc] 
 			initWithDataModelController:dataModelController 
+			andTax:tax
 			andItemizedTaxAmts:tax.itemizedCredits 
 			andTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE")
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_AMOUNT_PROMPT")
@@ -165,7 +181,8 @@
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
 			andItemizeAssetGains:			FALSE 
-			andItemizeLoanInterest:			TRUE] autorelease];
+			andItemizeLoanInterest:			TRUE
+			andItemizeTaxesPaid:			FALSE] autorelease];
 }
 
 -(void)dealloc
@@ -173,6 +190,7 @@
 	[title release];
 	[itemHelpInfoFile release];
 	[itemSectionTitleFormat release];
+	[tax release];
 	[itemizedTaxAmts release];
 	[amtPrompt release];
 	[itemTitle release];

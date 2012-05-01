@@ -129,6 +129,11 @@
 		andDigestSum:simInfo.loanBalance.accruedInterest] autorelease];	
 }
 
+-(void)visitTaxesPaidItemizedTaxAmt:(TaxesPaidItemizedTaxAmt *)itemizedTaxAmt
+{
+	assert(0); // not implemented yet
+}
+
 
 -(id)initWithSimParams:(SimParams*)theSimParams
 {
