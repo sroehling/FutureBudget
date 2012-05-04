@@ -69,6 +69,8 @@
 #import "FormContext.h"
 #import "ItemizedExpenseTaxFormInfoCreator.h"
 #import "TaxBracket.h"
+#import "TransferInput.h"
+#import "TransferEndpointFieldEditInfo.h"
 
 @implementation DetailInputViewCreator
 
@@ -208,6 +210,35 @@
 		andFormInfoCreator:[[[ItemizedIncomeTaxFormInfoCreator alloc] initWithIncome:income 
 			andIsForNewObject:self.isForNewObject] autorelease]];	
 }
+
+- (void)visitTransfer:(TransferInput *)transfer
+{    
+    formPopulator.formInfo.title = 
+	       LOCALIZED_STR(@"INPUT_TRANSFER_VIEW_TITLE");
+
+	[self.formPopulator nextSection];	
+	ManagedObjectFieldInfo *fromEndpointFieldInfo = [[[ManagedObjectFieldInfo alloc] 
+		initWithManagedObject:transfer 
+		andFieldKey:TRANSFER_INPUT_FROM_ENDPOINT_KEY 
+		andFieldLabel:LOCALIZED_STR(@"INPUT_TRANSFER_FROM_FIELD_LABEL")
+		andFieldPlaceholder:LOCALIZED_STR(@"INPUT_TRANSFER_FROM_PROMPT")] autorelease];
+	TransferEndpointFieldEditInfo *fromEndpointFieldEditInfo = [[[TransferEndpointFieldEditInfo alloc]
+		initWithManagedObjFieldInfo:fromEndpointFieldInfo] autorelease];
+	[formPopulator.currentSection addFieldEditInfo:fromEndpointFieldEditInfo];
+	
+	ManagedObjectFieldInfo *toEndpointFieldInfo = [[[ManagedObjectFieldInfo alloc] 
+		initWithManagedObject:transfer 
+		andFieldKey:TRANSFER_INPUT_TO_ENDPOINT_KEY 
+		andFieldLabel:LOCALIZED_STR(@"INPUT_TRANSFER_TO_FIELD_LABEL")
+		andFieldPlaceholder:LOCALIZED_STR(@"INPUT_TRANSFER_TO_PROMPT")] autorelease];
+	TransferEndpointFieldEditInfo *toEndpointFieldEditInfo = [[[TransferEndpointFieldEditInfo alloc]
+		initWithManagedObjFieldInfo:toEndpointFieldInfo] autorelease];
+	[formPopulator.currentSection addFieldEditInfo:toEndpointFieldEditInfo];
+		   
+				   	   
+}
+
+
 
 - (void) visitAccount:(Account*)account
 {

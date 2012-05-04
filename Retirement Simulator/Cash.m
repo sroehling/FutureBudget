@@ -17,5 +17,7 @@ NSString * const CASH_ENTITY_NAME = @"Cash";
 @dynamic startingBalance;
 
 @dynamic sharedAppValsCash;
+@dynamic transferEndpointCash;
+
 
 @end

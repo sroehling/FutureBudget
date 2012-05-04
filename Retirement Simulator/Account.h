@@ -19,6 +19,7 @@ extern NSString * const ACCOUNT_ENTITY_NAME;
 @class MultiScenarioSimDate;
 @class MultiScenarioSimEndDate;
 @class ExpenseInput;
+@class TransferEndpointAcct;
 
 @interface Account : Input {
 @private
@@ -54,9 +55,6 @@ extern NSString * const ACCOUNT_ENTITY_NAME;
 @property (nonatomic, retain) NSSet* accountWithdrawalItemizedTaxAmt;
 @property (nonatomic, retain) NSSet* accountInterestItemizedTaxAmt;
 @property (nonatomic, retain) NSSet* accountContribItemizedTaxAmt;
-
-
-
-
+@property (nonatomic, retain) TransferEndpointAcct *acctTransferEndpointAcct;
 
 @end

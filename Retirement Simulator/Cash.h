@@ -11,6 +11,7 @@
 #import "Input.h"
 
 @class SharedAppValues;
+@class TransferEndpointCash;
 
 extern NSString * const CASH_STARTING_BALANCE_KEY;
 extern NSString * const CASH_ENTITY_NAME;
@@ -25,6 +26,6 @@ extern NSString * const CASH_ENTITY_NAME;
 // rule, ensuring this Cash input is not deleted if it is referred
 // to as the app's default Cash input.
 @property (nonatomic, retain) SharedAppValues * sharedAppValsCash;
-
+@property (nonatomic, retain) TransferEndpointCash *transferEndpointCash;
 
 @end

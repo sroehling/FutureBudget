@@ -22,6 +22,8 @@
 #import "Account.h"
 #import "AssetInput.h"
 #import "TaxInput.h"
+#import "TransferInput.h"
+
 #import "HelpPagePopoverCaptionInfo.h"
 #import "FormContext.h"
 
@@ -74,6 +76,23 @@
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
+	
+	inputs = [parentContext.dataModelController
+			fetchSortedObjectsWithEntityName:TRANSFER_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	if([inputs count] > 0)
+	{
+		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_TRANSFER")];
+		for(TransferInput *transfer in inputs)
+		{    
+			assert(transfer != nil);
+			InputFieldEditInfo *inputFieldEditInfo =
+				[[[InputFieldEditInfo alloc] initWithInput:transfer 
+					andDataModelController:parentContext.dataModelController] autorelease];
+			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
+		}
+	}
+
+	
 	
 	inputs = [parentContext.dataModelController
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];

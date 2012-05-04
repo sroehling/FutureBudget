@@ -16,6 +16,7 @@
 @class LoanInput;
 @class AssetInput;
 @class TaxInput;
+@class TransferInput;
 
 @protocol InputVisitor <NSObject>
 
@@ -27,5 +28,6 @@
 - (void)visitLoan:(LoanInput*)loan;
 - (void)visitAsset:(AssetInput*)asset;
 - (void)visitTax:(TaxInput*)tax;
+- (void)visitTransfer:(TransferInput*)transfer;
 
 @end

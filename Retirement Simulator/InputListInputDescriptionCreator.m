@@ -30,6 +30,7 @@
 #import "MultiScenarioSimEndDate.h"
 #import "MultiScenarioInputValue.h"
 #import "DataModelController.h"
+#import "TransferInput.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -100,6 +101,10 @@
 }
 
 - (void)visitIncome:(IncomeInput*)input
+{
+}
+
+- (void)visitTransfer:(TransferInput *)transfer
 {
 }
 

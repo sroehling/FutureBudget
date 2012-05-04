@@ -63,6 +63,13 @@
     typeInfo.description = LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_EXPENSE_TITLE");
     [self.inputTypes addObject:typeInfo];
 	
+	typeInfo = [[[TransferInputTypeSelectionInfo alloc] 
+		initWithInputCreationHelper:inputCreationHelper 
+		andDataModelInterface:dmcForNewInputs ] autorelease];
+    typeInfo.description = LOCALIZED_STR(@"INPUT_TYPE_TRANSFER_TITLE");
+    [self.inputTypes addObject:typeInfo];
+
+	
 	typeInfo = [[[SavingsAccountTypeSelectionInfo alloc]
 		initWithInputCreationHelper:inputCreationHelper 
 		andDataModelInterface:dmcForNewInputs ] autorelease];

@@ -41,6 +41,8 @@
 
 @interface IncomeInputTypeSelectionInfo : InputTypeSelectionInfo {} @end
 
+@interface TransferInputTypeSelectionInfo : InputTypeSelectionInfo {} @end
+
 @interface SavingsAccountTypeSelectionInfo : InputTypeSelectionInfo {} @end
 
 @interface LoanInputTypeSelctionInfo : InputTypeSelectionInfo {} @end

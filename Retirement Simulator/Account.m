@@ -40,6 +40,7 @@ NSString * const ACCOUNT_ENTITY_NAME = @"Account";
 @dynamic accountWithdrawalItemizedTaxAmt;
 @dynamic accountInterestItemizedTaxAmt;
 @dynamic accountContribItemizedTaxAmt;
+@dynamic acctTransferEndpointAcct;
 
 - (void)addAccountWithdrawalItemizedTaxAmtObject:(AccountWithdrawalItemizedTaxAmt *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
@@ -156,6 +157,7 @@ NSString * const ACCOUNT_ENTITY_NAME = @"Account";
     [[self primitiveValueForKey:@"limitWithdrawalExpenses"] minusSet:value];
     [self didChangeValueForKey:@"limitWithdrawalExpenses" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
+
 
 
 

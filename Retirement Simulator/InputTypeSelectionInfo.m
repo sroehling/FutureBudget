@@ -20,6 +20,8 @@
 #import "ItemizedTaxAmt.h"
 #import "ItemizedTaxAmts.h"
 #import "InputCreationHelper.h"
+#import "TransferInput.h"
+#import "TransferEndpointAcct.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -102,6 +104,10 @@
 	newInput.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
     
 	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefaultButNoInitialVal:0.0];
+	
+	TransferEndpointAcct *acctTransferEndpoint = 
+		(TransferEndpointAcct *)[self.dataModelInterface createDataModelObject:TRANSFER_ENDPOINT_ACCT_ENTITY_NAME];
+	acctTransferEndpoint.account = newInput;
 
 }
 
@@ -130,6 +136,22 @@
 {
     IncomeInput *newInput  = (IncomeInput*)[self.dataModelInterface 
 		createDataModelObject:INCOME_INPUT_ENTITY_NAME];
+	
+    [self populateCashFlowInputProperties:newInput];
+        
+    return newInput;
+  
+}
+
+@end
+
+
+@implementation TransferInputTypeSelectionInfo
+
+-(Input*)createInput
+{
+    TransferInput *newInput  = (TransferInput*)[self.dataModelInterface 
+		createDataModelObject:TRANSFER_INPUT_ENTITY_NAME];
 	
     [self populateCashFlowInputProperties:newInput];
         

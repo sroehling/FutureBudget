@@ -22,6 +22,7 @@
 #import "StringValidation.h"
 #import "LoanDownPmtPercent.h"
 #import "CoreDataHelper.h"
+#import "TransferEndpointCash.h"
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
@@ -152,6 +153,11 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 	Cash *theCash = (Cash*)[dataModelInterface createDataModelObject:CASH_ENTITY_NAME];
 	theCash.startingBalance = [NSNumber numberWithDouble:0.0];
 	sharedVals.cash = theCash;
+	
+	TransferEndpointCash *cashTransferEndpoint = (TransferEndpointCash *)[dataModelInterface 
+			createDataModelObject:TRANSFER_ENDPOINT_CASH_ENTITY_NAME];
+	cashTransferEndpoint.cash = theCash;
+	
 	
 	sharedVals.defaultInflationRate = (InflationRate*)
 		[dataModelInterface createDataModelObject:INFLATION_RATE_ENTITY_NAME];
