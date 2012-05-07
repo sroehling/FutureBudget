@@ -48,6 +48,10 @@
 #import "AssetSaleSimEventCreator.h"
 #import "ExpenseSimInfo.h"
 
+#import "TransferInput.h"
+#import "TransferSimInfo.h"
+#import "TransferSimEventCreator.h"
+
 #import "TaxInput.h"
 #import "TaxInputCalc.h"
 
@@ -247,6 +251,23 @@
 			} // If asset owned for at least one day
 		} // If asset is enabled
 	}
+	
+	inputs = [self.dataModelController fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME];
+	for(TransferInput *transfer in inputs)
+	{
+		assert(transfer != nil);
+		if([SimInputHelper multiScenBoolVal:transfer.cashFlowEnabled
+				andScenario:simParams.simScenario])
+		{
+			TransferSimInfo *transferInfo = [[[TransferSimInfo alloc] initWithTransferInput:transfer 
+				andSimParams:simParams] autorelease];
+			[self.simParams.transferInfo addSimInfo:transfer withSimInfo:transferInfo];
+			
+			[self.eventCreators addObject:
+				[[[TransferSimEventCreator alloc] initWithTransferSimInfo:transferInfo] autorelease]];
+		}
+	}
+	
 	
 	inputs = [self.dataModelController fetchObjectsForEntityName:TAX_INPUT_ENTITY_NAME];
 	for(TaxInput *tax in inputs)

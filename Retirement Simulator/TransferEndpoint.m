@@ -8,6 +8,7 @@
 
 #import "TransferEndpoint.h"
 #import "TransferInput.h"
+#import "TransferEndpointVisitor.h"
 
 
 @implementation TransferEndpoint
@@ -22,5 +23,11 @@
 	assert(0); // must be overridden
 	return nil;
 }
+
+-(void)acceptEndpointVisitor:(id<TransferEndpointVisitor>)endpointVisitor
+{
+	assert(0);// must be overridden
+}
+
 
 @end

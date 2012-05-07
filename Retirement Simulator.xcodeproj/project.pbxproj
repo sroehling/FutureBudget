@@ -30,6 +30,11 @@
 		0014CD961553112500E9261C /* TransferEndpointSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CD951553112500E9261C /* TransferEndpointSelectionFormInfoCreator.m */; };
 		0014CD9D15533B6300E9261C /* TransferEndpointFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CD9C15533B6300E9261C /* TransferEndpointFieldEditInfo.m */; };
 		0014CDA015543BB600E9261C /* TransferEndpointSelectionFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CD9F15543BB500E9261C /* TransferEndpointSelectionFieldEditInfo.m */; };
+		0014CDA415546F8500E9261C /* TransferSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CDA315546F8500E9261C /* TransferSimInfo.m */; };
+		0014CDA7155470EF00E9261C /* TransferSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CDA6155470EF00E9261C /* TransferSimEventCreator.m */; };
+		0014CDAA1554734800E9261C /* TransferSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CDA91554734700E9261C /* TransferSimEvent.m */; };
+		0014CDAD155474B200E9261C /* TransferDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CDAC155474B100E9261C /* TransferDigestEntry.m */; };
+		0014CDB11554807000E9261C /* EndpointWorkingBalanceResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CDB01554806E00E9261C /* EndpointWorkingBalanceResolver.m */; };
 		00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA11402EBC9001D472F /* WorkingBalanceTest.m */; };
 		00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA91406B365001D472F /* EndOfYearDigestResult.m */; };
 		00160CAD1406C9AD001D472F /* FiscalYearDigestEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */; };
@@ -444,6 +449,17 @@
 		0014CD9C15533B6300E9261C /* TransferEndpointFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferEndpointFieldEditInfo.m; sourceTree = "<group>"; };
 		0014CD9E15543BB400E9261C /* TransferEndpointSelectionFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferEndpointSelectionFieldEditInfo.h; sourceTree = "<group>"; };
 		0014CD9F15543BB500E9261C /* TransferEndpointSelectionFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferEndpointSelectionFieldEditInfo.m; sourceTree = "<group>"; };
+		0014CDA215546F8500E9261C /* TransferSimInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferSimInfo.h; sourceTree = "<group>"; };
+		0014CDA315546F8500E9261C /* TransferSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferSimInfo.m; sourceTree = "<group>"; };
+		0014CDA5155470EF00E9261C /* TransferSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferSimEventCreator.h; sourceTree = "<group>"; };
+		0014CDA6155470EF00E9261C /* TransferSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferSimEventCreator.m; sourceTree = "<group>"; };
+		0014CDA81554734700E9261C /* TransferSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferSimEvent.h; sourceTree = "<group>"; };
+		0014CDA91554734700E9261C /* TransferSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferSimEvent.m; sourceTree = "<group>"; };
+		0014CDAB155474B100E9261C /* TransferDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDigestEntry.h; sourceTree = "<group>"; };
+		0014CDAC155474B100E9261C /* TransferDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDigestEntry.m; sourceTree = "<group>"; };
+		0014CDAE15547FC200E9261C /* TransferEndpointVisitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferEndpointVisitor.h; sourceTree = "<group>"; };
+		0014CDAF1554806C00E9261C /* EndpointWorkingBalanceResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndpointWorkingBalanceResolver.h; sourceTree = "<group>"; };
+		0014CDB01554806E00E9261C /* EndpointWorkingBalanceResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndpointWorkingBalanceResolver.m; sourceTree = "<group>"; };
 		00160CA01402EBC9001D472F /* WorkingBalanceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceTest.h; sourceTree = "<group>"; };
 		00160CA11402EBC9001D472F /* WorkingBalanceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceTest.m; sourceTree = "<group>"; };
 		00160CA81406B363001D472F /* EndOfYearDigestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndOfYearDigestResult.h; sourceTree = "<group>"; };
@@ -1083,6 +1099,23 @@
 			name = "Starting Values";
 			sourceTree = "<group>";
 		};
+		0014CDA115546F2C00E9261C /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				0014CDA215546F8500E9261C /* TransferSimInfo.h */,
+				0014CDA315546F8500E9261C /* TransferSimInfo.m */,
+				0014CDA5155470EF00E9261C /* TransferSimEventCreator.h */,
+				0014CDA6155470EF00E9261C /* TransferSimEventCreator.m */,
+				0014CDA81554734700E9261C /* TransferSimEvent.h */,
+				0014CDA91554734700E9261C /* TransferSimEvent.m */,
+				0014CDAB155474B100E9261C /* TransferDigestEntry.h */,
+				0014CDAC155474B100E9261C /* TransferDigestEntry.m */,
+				0014CDAF1554806C00E9261C /* EndpointWorkingBalanceResolver.h */,
+				0014CDB01554806E00E9261C /* EndpointWorkingBalanceResolver.m */,
+			);
+			name = Transfer;
+			sourceTree = "<group>";
+		};
 		00160CA714055EEC001D472F /* Working Balance */ = {
 			isa = PBXGroup;
 			children = (
@@ -1619,6 +1652,7 @@
 				0014CD8F15530BB200E9261C /* TransferEndpointAcct.m */,
 				0014CD9115530BF200E9261C /* TransferEndpointCash.h */,
 				0014CD9215530BF200E9261C /* TransferEndpointCash.m */,
+				0014CDAE15547FC200E9261C /* TransferEndpointVisitor.h */,
 			);
 			name = "Cash Flow";
 			sourceTree = "<group>";
@@ -1749,6 +1783,7 @@
 				00EC458414214B9C00D65D17 /* Loan */,
 				00EC458314214B6300D65D17 /* Accounts */,
 				00EC458214214B4700D65D17 /* Cash Flow */,
+				0014CDA115546F2C00E9261C /* Transfer */,
 				0099A1661457AC6200E35AF9 /* Income */,
 				0099A1671457ACCD00E35AF9 /* Expense */,
 			);
@@ -2861,6 +2896,11 @@
 				0014CD961553112500E9261C /* TransferEndpointSelectionFormInfoCreator.m in Sources */,
 				0014CD9D15533B6300E9261C /* TransferEndpointFieldEditInfo.m in Sources */,
 				0014CDA015543BB600E9261C /* TransferEndpointSelectionFieldEditInfo.m in Sources */,
+				0014CDA415546F8500E9261C /* TransferSimInfo.m in Sources */,
+				0014CDA7155470EF00E9261C /* TransferSimEventCreator.m in Sources */,
+				0014CDAA1554734800E9261C /* TransferSimEvent.m in Sources */,
+				0014CDAD155474B200E9261C /* TransferDigestEntry.m in Sources */,
+				0014CDB11554807000E9261C /* EndpointWorkingBalanceResolver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

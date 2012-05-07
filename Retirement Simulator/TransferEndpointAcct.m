@@ -8,6 +8,7 @@
 
 #import "TransferEndpointAcct.h"
 #import "Account.h"
+#import "TransferEndpointVisitor.h"
 
 NSString * const TRANSFER_ENDPOINT_ACCT_ENTITY_NAME = @"TransferEndpointAcct";
 
@@ -19,5 +20,11 @@ NSString * const TRANSFER_ENDPOINT_ACCT_ENTITY_NAME = @"TransferEndpointAcct";
 {
 	return self.account.name;
 }
+
+-(void)acceptEndpointVisitor:(id<TransferEndpointVisitor>)endpointVisitor
+{
+	[endpointVisitor visitAcctEndpoint:self];
+}
+
 
 @end

@@ -9,6 +9,7 @@
 #import "TransferEndpointCash.h"
 #import "Cash.h"
 #import "LocalizationHelper.h"
+#import "TransferEndpointVisitor.h"
 
 
 NSString * const TRANSFER_ENDPOINT_CASH_ENTITY_NAME = @"TransferEndpointCash";
@@ -23,5 +24,9 @@ NSString * const TRANSFER_ENDPOINT_CASH_ENTITY_NAME = @"TransferEndpointCash";
 	return LOCALIZED_STR(@"CASH_LABEL");
 }
 
+-(void)acceptEndpointVisitor:(id<TransferEndpointVisitor>)endpointVisitor
+{
+	[endpointVisitor visitCashEndpoint:self];
+}
 
 @end

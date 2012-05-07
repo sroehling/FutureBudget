@@ -96,7 +96,7 @@
 - (void)reset
 {
     repeatCount = 0;
-    self.currentDate = [startDate copy];
+    self.currentDate = [[startDate copy] autorelease];
 }
 
 - (NSDate*)nextDate

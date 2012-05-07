@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "TransferEndpointVisitor.h"
 
 @class TransferInput;
 
@@ -24,6 +25,8 @@
 -(NSString*)endpointLabel;
 
 @property BOOL isSelectedForSelectableObjectTableView;
+
+-(void)acceptEndpointVisitor:(id<TransferEndpointVisitor>)endpointVisitor;
 
 @end
 

@@ -84,9 +84,9 @@
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
 		[self.acctSimInfo.account.contribRepeatFrequency getValueForCurrentOrDefaultScenario];
 	// TODO - Need to pass in an end date to the event repeat frequency
-    self.eventRepeater = [[EventRepeater alloc] 
+    self.eventRepeater = [[[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
-                     andStartDate:resolvedStartDate andEndDate:resolvedEndDate];
+                     andStartDate:resolvedStartDate andEndDate:resolvedEndDate] autorelease];
    
 }
 

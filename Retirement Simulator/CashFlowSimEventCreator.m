@@ -83,9 +83,9 @@
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
 		[self.cashFlow.eventRepeatFrequency getValueForCurrentOrDefaultScenario];
-    self.eventRepeater = [[EventRepeater alloc] 
+    self.eventRepeater = [[[EventRepeater alloc] 
                      initWithEventRepeatFrequency:repeatFreq 
-                     andStartDate:resolvedStartDate andEndDate:resolvedEndDate];
+                     andStartDate:resolvedStartDate andEndDate:resolvedEndDate] autorelease];
    
 }
 
