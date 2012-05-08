@@ -97,7 +97,15 @@
 - (double)valueMultiplierForDate:(NSDate*)theDate
 {
 		assert(theDate != nil);
-		assert([DateHelper dateIsEqualOrLater:theDate otherDate:self.startDate]);
+		
+		// If the start date for value changes is later than the 
+		// given date, we return a value of 1.0, meaning the 
+		// value is unchanged.
+		if([DateHelper dateIsLater:self.startDate otherDate:theDate])
+		{
+			return 1.0;
+		}
+
 		NSInteger daysSinceStart = [DateHelper daysOffset:theDate vsEarlierDate:self.startDate];
 		double amountMultiplier = [self valueMultiplierForDay:daysSinceStart];
 		assert(amountMultiplier >= 0.0);
@@ -108,6 +116,28 @@
 {
 	assert(theStartDate!=nil);
 	assert(theEndDate!=nil);
+	assert([DateHelper dateIsEqualOrLater:theEndDate otherDate:theStartDate]);
+	
+	
+	// There are 3 basic variations of where self.startDate can be in relation to
+	// theStartDate and theEndDate. The logic of this selector depends on which 
+	// variation.
+	// 
+	// V1: (self.startDate,theStartDate,theEndDate): multiplier starts at
+	//    theStartDate).
+	// V2: (theStartDate,self.startDate,theEndDate): multiplier calculated starting
+	//     at self.startDate.
+	// V3: (theStartDate,theEndDate,self.startDate): default to 1.0,
+	//     since self.startDate beginsafter theEndDate.
+
+	// V3 (see above): If the start date for rate calculation is later than the 
+	// given end date, we return a value of 1.0, meaning the 
+	// value is unchanged because the rate multiplier does not change 
+	// before the start date.
+	if([DateHelper dateIsLater:self.startDate otherDate:theEndDate])
+	{
+		return 1.0;
+	} 
 	
 	// If self.startDate is after the given start date, we use it as a basis
 	// for computing the multiplier instead of theStartDate. This could happen
@@ -116,15 +146,14 @@
 	NSDate *multiplierStartDate;
 	if([DateHelper dateIsEqualOrLater:theStartDate otherDate:self.startDate])
 	{
+		// V1 (see above)
 		multiplierStartDate = theStartDate;
 	}
 	else
 	{
+		// V2 (see above)
 		multiplierStartDate = self.startDate;
-	}
-	
-	assert([DateHelper dateIsEqualOrLater:theEndDate otherDate:self.startDate]);
-	assert([DateHelper dateIsEqualOrLater:theEndDate otherDate:theStartDate]);
+	}	
 	
 	double startDateMultiplier = [self valueMultiplierForDate:multiplierStartDate];
 	double endDateMultiplier = [self valueMultiplierForDate:theEndDate];

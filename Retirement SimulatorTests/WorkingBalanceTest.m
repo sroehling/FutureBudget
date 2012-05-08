@@ -266,4 +266,20 @@
 
 }
 
+
+- (void)testFutureInterestBearingBal
+{
+	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-05-01"]];
+	double startingBal = 1000.0;
+
+	InterestBearingWorkingBalance *interestBal = [self 
+		createInterestBearingWorkingAccountWithRate:0.0 andStartDate:startDate 
+	andStartingBal:startingBal];
+
+	NSDate *advanceDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-01-01"]];
+	
+	[interestBal advanceCurrentBalanceToDate:advanceDate];
+}
+
+
 @end

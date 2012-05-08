@@ -254,4 +254,21 @@
 
 }
 
+
+- (void)testFutureVariableRateCalc
+{	
+	FixedValue *fixedVal = (FixedValue*)[self.coreData createDataModelObject:FIXED_VALUE_ENTITY_NAME];
+	fixedVal.value = [NSNumber numberWithDouble:1.2];
+	
+	VariableValue *variableVal = (VariableValue*)[self.coreData createDataModelObject:VARIABLE_VALUE_ENTITY_NAME];
+	variableVal.startingValue = [NSNumber numberWithDouble:10.0];
+	variableVal.name = @"Test";
+
+	DateSensitiveValueVariableRateCalculatorCreator *calcCreator = 
+		[[[DateSensitiveValueVariableRateCalculatorCreator alloc] init] autorelease];
+	VariableRateCalculator *varRateCalc = 
+		[calcCreator createForDateSensitiveValue:variableVal andStartDate:[DateHelper dateFromStr:@"2015-05-04"]];
+	[varRateCalc valueMultiplierBetweenStartDate:[DateHelper dateFromStr:@"2013-01-01"] andEndDate:[DateHelper dateFromStr:@"2014-01-01"]];
+}
+
 @end
