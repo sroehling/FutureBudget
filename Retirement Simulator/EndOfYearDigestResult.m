@@ -34,8 +34,9 @@
 @synthesize simStartDateValueMultiplier;
 @synthesize taxesPaid;
 @synthesize sumTaxesPaid;
+@synthesize fullYearSimulated;
 
--(id)initWithEndDate:(NSDate *)endOfYearDate
+-(id)initWithEndDate:(NSDate *)endOfYearDate andFullYearSimulated:(BOOL)theFullYearSimulated
 {
 	self = [super init];
 	if(self)
@@ -71,6 +72,8 @@
 		self.cashBal = 0.0;
 		
 		self.deficitBal = 0.0;
+		
+		self.fullYearSimulated = theFullYearSimulated;
 	}
 	return self;
 

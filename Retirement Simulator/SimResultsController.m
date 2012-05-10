@@ -33,9 +33,34 @@
 @synthesize taxesSimulated;
 
 @synthesize resultsOutOfDate;
+@synthesize excludePartialYearResults;
 
 static SimResultsController *theSimResultsControllerSingleton; 
 
+-(void)trimResultsForPartialYears
+{
+	if(self.excludePartialYearResults)
+	{
+		EndOfYearDigestResult *eoyResult; 
+		if([self.endOfYearResults count] > 0)
+		{
+			eoyResult = (EndOfYearDigestResult *)[self.endOfYearResults objectAtIndex:0];
+			if(!eoyResult.fullYearSimulated)
+			{
+				[self.endOfYearResults removeObjectAtIndex:0];
+			}
+		}
+		if([self.endOfYearResults count] > 0)
+		{
+			NSInteger lastIndex = [self.endOfYearResults count] - 1;
+			eoyResult = (EndOfYearDigestResult *)[self.endOfYearResults objectAtIndex:lastIndex];
+			if(!eoyResult.fullYearSimulated)
+			{
+				[self.endOfYearResults removeObjectAtIndex:lastIndex];
+			}
+		}
+	}
+}
 
 - (void) runSimulatorForResults:(id<ProgressUpdateDelegate>)simProgressDelegate
 {
@@ -49,6 +74,8 @@ static SimResultsController *theSimResultsControllerSingleton;
     [simEngine runSim:simProgressDelegate];
 	
 	self.endOfYearResults = simEngine.digest.savedEndOfYearResults;
+	
+	[self trimResultsForPartialYears];
 	
 	NSInteger minYear = NSIntegerMax;
 	NSInteger maxYear = 0;
@@ -104,6 +131,8 @@ static SimResultsController *theSimResultsControllerSingleton;
 		self.dataModelController = theDataModelController;
 		self.sharedAppVals = theSharedAppVals;
 		
+		self.excludePartialYearResults = FALSE;
+		
 		// TODO - Need to observe changes to any data model controller.
 		[self.dataModelController startObservingAnyContextChanges:self 
 			withSelector:@selector(managedObjectsChanged)];
@@ -139,6 +168,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 	SimResultsController *theResultsController = [[[SimResultsController alloc] 
 		initWithDataModelController:dataModelController 
 		andSharedAppValues:[SharedAppValues getUsingDataModelController:dataModelController]] autorelease];
+	theResultsController.excludePartialYearResults = TRUE;
 	[SimResultsController initSingleton:theResultsController];	
 }
 

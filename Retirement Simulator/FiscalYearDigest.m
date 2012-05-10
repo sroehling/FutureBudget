@@ -171,7 +171,41 @@
 
 }
 	
-
+-(BOOL)fullYearSimulated
+{
+	if([DateHelper sameYear:self.simParams.simStartDate otherDate:self.currentYearDigestStartDate])
+	{
+		// First year of simulation
+		if([DateHelper dateIsLater:self.simParams.simStartDate 
+			otherDate:self.currentYearDigestStartDate])
+		{
+			return FALSE;
+		}
+		else 
+		{
+			return TRUE;
+		}
+	}
+	else if([DateHelper sameYear:self.simParams.simEndDate 
+		otherDate:self.currentYearDigestStartDate])
+	{
+		NSDate *endOfSimEndDate = [DateHelper endOfDay:self.simParams.simEndDate];
+		if([DateHelper dateIsLater:[DateHelper endOfYear:self.simParams.simEndDate]
+			otherDate:endOfSimEndDate])
+		{
+			return FALSE;
+		}
+		else 
+		{
+			return TRUE;
+		}
+		
+	}
+	else 
+	{
+		return TRUE;
+	}
+}
 
 - (EndOfYearDigestResult*)processDigest
 {
@@ -180,7 +214,7 @@
 	NSDate *endOfYearDate = [DateHelper endOfYear:self.currentYearDigestStartDate];
 
 	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] 
-		initWithEndDate:endOfYearDate] autorelease];
+		initWithEndDate:endOfYearDate andFullYearSimulated:[self fullYearSimulated]] autorelease];
 	
 	NSDate *currentDate = self.currentYearDigestStartDate;
 	

@@ -30,12 +30,17 @@
 		SharedAppValues *sharedAppVals;
 		
 		BOOL resultsOutOfDate;
+		
+		// Optional - exclude results from years where only 
+		// part of the year is simulated.
+		BOOL excludePartialYearResults;
     
 }
 
 @property(nonatomic,retain) NSMutableArray *endOfYearResults;
 @property NSInteger resultMinYear;
 @property NSInteger resultMaxYear;
+@property BOOL excludePartialYearResults;
 
 @property(nonatomic,retain) NSSet *assetsSimulated;
 @property(nonatomic,retain) NSSet *loansSimulated;

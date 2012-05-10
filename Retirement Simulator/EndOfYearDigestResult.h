@@ -13,6 +13,8 @@
 @interface EndOfYearDigestResult : NSObject {
     @private
 		NSDate *endDate;
+		BOOL fullYearSimulated;
+		
 		double totalEndOfYearBalance;
 		
 		EndOfYearInputResults *assetValues;
@@ -49,6 +51,7 @@
 }
 
 @property(nonatomic,retain) NSDate *endDate;
+@property BOOL fullYearSimulated;
 @property double totalEndOfYearBalance;
 
 @property(nonatomic,retain) EndOfYearInputResults *assetValues;
@@ -81,7 +84,7 @@
 
 @property double simStartDateValueMultiplier;
 
--(id)initWithEndDate:(NSDate*)endOfYearDate;
+-(id)initWithEndDate:(NSDate *)endOfYearDate andFullYearSimulated:(BOOL)theFullYearSimulated;
 
 - (NSInteger)yearNumber;
 
