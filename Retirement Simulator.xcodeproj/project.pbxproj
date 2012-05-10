@@ -231,6 +231,7 @@
 		00899DC714D21D9A00CBFE6F /* recipeWedding.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DC614D21D9900CBFE6F /* recipeWedding.md */; };
 		00899DCB14D21E0300CBFE6F /* recipeMonthlyExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DCA14D21E0200CBFE6F /* recipeMonthlyExpense.md */; };
 		00899DCD14D21E2000CBFE6F /* recipeWindfall.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899DCC14D21E2000CBFE6F /* recipeWindfall.md */; };
+		008C5852155C3B7700AB9EE1 /* YearValXYResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C5851155C3B7700AB9EE1 /* YearValXYResultsView.m */; };
 		008DD4B114B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */; };
 		008DD4B514B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */; };
 		008DD4B814B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B714B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m */; };
@@ -800,6 +801,8 @@
 		00899DC614D21D9900CBFE6F /* recipeWedding.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeWedding.md; sourceTree = "<group>"; };
 		00899DCA14D21E0200CBFE6F /* recipeMonthlyExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeMonthlyExpense.md; sourceTree = "<group>"; };
 		00899DCC14D21E2000CBFE6F /* recipeWindfall.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recipeWindfall.md; sourceTree = "<group>"; };
+		008C5850155C3B7700AB9EE1 /* YearValXYResultsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearValXYResultsView.h; sourceTree = "<group>"; };
+		008C5851155C3B7700AB9EE1 /* YearValXYResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearValXYResultsView.m; sourceTree = "<group>"; };
 		008DD4AF14B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		008DD4B314B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
@@ -2325,6 +2328,8 @@
 				00D8D280149007A200B0314D /* YearValXYPlotData.m */,
 				00AF85F81499313F00AE734B /* YearValPlotDataVal.h */,
 				00AF85F91499314000AE734B /* YearValPlotDataVal.m */,
+				008C5850155C3B7700AB9EE1 /* YearValXYResultsView.h */,
+				008C5851155C3B7700AB9EE1 /* YearValXYResultsView.m */,
 			);
 			name = "Year Val XY Results Plot";
 			sourceTree = "<group>";
@@ -2901,6 +2906,7 @@
 				0014CDAA1554734800E9261C /* TransferSimEvent.m in Sources */,
 				0014CDAD155474B200E9261C /* TransferDigestEntry.m in Sources */,
 				0014CDB11554807000E9261C /* EndpointWorkingBalanceResolver.m in Sources */,
+				008C5852155C3B7700AB9EE1 /* YearValXYResultsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
