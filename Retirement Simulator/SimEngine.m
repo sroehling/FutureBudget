@@ -38,7 +38,7 @@
 
 #import "WorkingBalanceCltn.h"
 #import "MultiScenarioInputValue.h"
-#import "DownPaymentSimEventCreator.h"
+#import "LoanOrigSimEventCreator.h"
 #import "ExtraPaymentSimEventCreator.h"
 #import "LoanSimInfo.h"
 
@@ -189,13 +189,9 @@
 				[[[LoanPaymentSimEventCreator alloc] initWithLoanInfo:loanInfo] autorelease];
 			[self.eventCreators addObject:loanPmtEventCreator];
 			
-			if([SimInputHelper multiScenBoolVal:loan.downPmtEnabled
-					andScenario:simParams.simScenario])
-			{
-				DownPaymentSimEventCreator *downPmtCreator = [[[DownPaymentSimEventCreator alloc]
-					initWithLoanInfo:loanInfo] autorelease];
-				[self.eventCreators addObject:downPmtCreator];
-			}
+			LoanOrigSimEventCreator *loanOrigCreator = [[[LoanOrigSimEventCreator alloc]
+				initWithLoanInfo:loanInfo] autorelease];
+			[self.eventCreators addObject:loanOrigCreator];
 			
 			if([SimInputHelper multiScenBoolVal:loan.extraPmtEnabled
 				andScenario:simParams.simScenario])
