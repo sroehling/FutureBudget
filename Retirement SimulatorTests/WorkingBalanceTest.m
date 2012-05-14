@@ -47,12 +47,12 @@
 }
 
 
-- (void)checkCurrentBalance:(WorkingBalance*)bal withExpectedBalance:(double)expectedBal
+- (void)checkCurrentBalance:(WorkingBalance*)bal withExpectedBalance:(double)expectedBal andDate:(NSDate*)currentDate
 {
 	[bal logBalance];
-	STAssertEqualsWithAccuracy(bal.currentBalance, expectedBal, 0.01,
+	STAssertEqualsWithAccuracy([bal currentBalanceForDate:currentDate], expectedBal, 0.01,
 	        @"checkOneValueAsOfWithCalc: Expecting %0.2f, got %0.2f for working balance = %@",
-							   expectedBal,bal.currentBalance,bal.balanceName);
+							   expectedBal,[bal currentBalanceForDate:currentDate],bal.balanceName);
 }
 
 - (void)checkAvailableBalanceDecrement:(WorkingBalance*)bal
@@ -63,9 +63,9 @@
 	andExpectedBalanceAfter:(double)expectedBalAfter
 {
 
-	STAssertEqualsWithAccuracy(bal.currentBalance, expectedBalBefore, 0.001,
+	STAssertEqualsWithAccuracy([bal currentBalanceForDate:decrDate], expectedBalBefore, 0.001,
 	@"checkAvailableBalanceDecrement: Expecting %0.2f, got %0.2f for working balance = %@ (before decrement)",
-							   expectedBalBefore,bal.currentBalance,bal.balanceName);
+							   expectedBalBefore,[bal currentBalanceForDate:decrDate],bal.balanceName);
 
 	double avail = [bal decrementAvailableBalanceForNonExpense:decrAmt asOfDate:decrDate];
 		STAssertEqualsWithAccuracy(expectedAvail, avail, 0.001,
@@ -74,24 +74,24 @@
 	
 	[bal logBalance];
 	
-	STAssertEqualsWithAccuracy(bal.currentBalance, expectedBalAfter, 0.001,
+	STAssertEqualsWithAccuracy([bal currentBalanceForDate:decrDate], expectedBalAfter, 0.001,
 		@"checkAvailableBalanceDecrement: Expecting %0.2f, got %0.2f for working balance = %@ after decrement",
-							   expectedBalAfter,bal.currentBalance,bal.balanceName);
+							   expectedBalAfter,[bal currentBalanceForDate:decrDate],bal.balanceName);
 }
 
 
 - (void)doZeroInterestTests:(WorkingBalance*)bal
 {
-	[self checkCurrentBalance:bal withExpectedBalance:1000];
+	[self checkCurrentBalance:bal withExpectedBalance:1000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	
 	[bal incrementBalance:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:2000.0];
+	[self checkCurrentBalance:bal withExpectedBalance:2000.0 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
 
 	[bal carryBalanceForward:[DateHelper dateFromStr:@"2013-01-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:2000.0];
+	[self checkCurrentBalance:bal withExpectedBalance:2000.0 andDate:[DateHelper dateFromStr:@"2013-01-01"]];
 
 	[bal decrementAvailableBalanceForNonExpense:500.0 asOfDate:[DateHelper dateFromStr:@"2013-05-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:1500.0];
+	[self checkCurrentBalance:bal withExpectedBalance:1500.0 andDate:[DateHelper dateFromStr:@"2013-05-01"]];
 	
 	[self checkAvailableBalanceDecrement:bal 
 		decrementAmount:500 onDate:[DateHelper dateFromStr:@"2013-05-02"]
@@ -128,13 +128,13 @@
 	
 	[bal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
 
-	[self checkCurrentBalance:bal withExpectedBalance:2000];
+	[self checkCurrentBalance:bal withExpectedBalance:2000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
 
 	[bal incrementBalance:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:3000];
+	[self checkCurrentBalance:bal withExpectedBalance:3000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
 
 	[bal decrementAvailableBalanceForNonExpense:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:2000];
+	[self checkCurrentBalance:bal withExpectedBalance:2000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	
 }
 
@@ -159,18 +159,18 @@
 	cashBal.deferWithdrawalsUntil = deferUntilDate;
 	
 	[cashBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-01-01"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:startingBal];
+	[self checkCurrentBalance:cashBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-01-01"]];
 
 	[cashBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-07-01"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:startingBal];
+	[self checkCurrentBalance:cashBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-07-01"]];
 
 	[cashBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:750.0];
+	[self checkCurrentBalance:cashBal withExpectedBalance:750.0 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	
 	[cashBal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
 	
 	[cashBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2012-08-01"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:500.0];
+	[self checkCurrentBalance:cashBal withExpectedBalance:500.0 andDate:[DateHelper dateFromStr:@"2012-08-01"]];
 	
 	
 	InterestBearingWorkingBalance *interestBal = [self 
@@ -179,22 +179,22 @@
 	interestBal.deferWithdrawalsUntil = deferUntilDate;
 	
 	[interestBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-01-01"]];
-	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal];
+	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-01-01"]];
 
 	[interestBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-07-01"]];
-	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal];
+	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-07-01"]];
 	
 	[interestBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-12-31"]];
-	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal];
+	[self checkCurrentBalance:interestBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-12-31"]];
 
 	[interestBal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
 
 
 	[interestBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:interestBal withExpectedBalance:750.0];
+	[self checkCurrentBalance:interestBal withExpectedBalance:750.0 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	
 	[interestBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2012-08-01"]];
-	[self checkCurrentBalance:interestBal withExpectedBalance:500.0];
+	[self checkCurrentBalance:interestBal withExpectedBalance:500.0 andDate:[DateHelper dateFromStr:@"2012-08-01"]];
 
 }
 
@@ -222,45 +222,45 @@
 
 	WorkingBalanceMgr *workingBalMgr = [[[WorkingBalanceMgr alloc] initWithCashBalance:cashBal andDeficitBalance:deficitBal andStartDate:startDate] autorelease];
 	
-	double totalBal = [workingBalMgr totalCurrentNetBalance];
+	double totalBal = [workingBalMgr totalCurrentNetBalance:startDate];
 	STAssertEqualsWithAccuracy(totalBal, 1000.0, 0.001,
 		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for total working balance",
 							   1000.0,totalBal);
 
 	
-	[self checkCurrentBalance:cashBal withExpectedBalance:1000];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+	[self checkCurrentBalance:cashBal withExpectedBalance:1000 andDate:startDate];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:startDate];
 	
 	[workingBalMgr incrementCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:2000];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+	[self checkCurrentBalance:cashBal withExpectedBalance:2000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
 	
 	double decrementCashAmount = [workingBalMgr decrementAvailableCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:1000];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+	[self checkCurrentBalance:cashBal withExpectedBalance:1000 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
 	STAssertEqualsWithAccuracy(decrementCashAmount, 1000.0, 0.001,
 		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for decrement amount",
 							   1000.0,decrementCashAmount);
 
 	[workingBalMgr decrementAvailableCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:0];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
 
 	double decrementAmount = [workingBalMgr decrementBalanceFromFundingList:1000 
 		asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:0];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:1000];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:1000 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
 	STAssertEqualsWithAccuracy(decrementAmount, 0.0, 0.001,
 		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for decrement amount",
 							   0.0,decrementAmount);
 	
 	[workingBalMgr incrementCashBalance:500 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:0];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:500];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-03"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:500 andDate:[DateHelper dateFromStr:@"2012-01-03"]];
 	
 	[workingBalMgr incrementCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:500];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0];
+	[self checkCurrentBalance:cashBal withExpectedBalance:500 andDate:[DateHelper dateFromStr:@"2012-01-03"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-03"]];
 
 
 

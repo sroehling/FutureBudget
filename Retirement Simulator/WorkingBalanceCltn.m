@@ -114,13 +114,13 @@
 	}
 }
 
--(double)totalBalances
+-(double)totalBalances:(NSDate*)currentDate
 {
 	double totalBal = 0.0;
 	for(WorkingBalance *workingBal in self.workingBalList)
 	{
-		assert([workingBal currentBalance]>=0.0);
-		totalBal += [workingBal currentBalance];
+		assert([workingBal currentBalanceForDate:currentDate]>=0.0);
+		totalBal += [workingBal currentBalanceForDate:currentDate];
 	}
 	return totalBal;
 }

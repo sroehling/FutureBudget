@@ -119,7 +119,7 @@
 	[self.nextEstimatedTaxPayment carryBalanceForward:newDate];
 	
 	NSString *currentCashCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.cashWorkingBalance.currentBalance]];
+				stringFromNumber:[NSNumber numberWithDouble:[self.cashWorkingBalance currentBalanceForDate:newDate]]];
 	NSLog(@"Total Cash balance: %@",currentCashCurrency);
 
 }
@@ -173,9 +173,13 @@
 	return [self decrementBalanceFromFundingList:expenseAmount asOfDate:newDate forExpense:nil];
 }
 
-- (double)totalCurrentNetBalance
+- (double)totalCurrentNetBalance:(NSDate*)currentDate
 {
-	double totalBal = [self.fundingSources totalBalances] + [self.assetValues totalBalances] - [self.loanBalances totalBalances] - [self.deficitBalance currentBalance];
+	double totalBal = 
+		[self.fundingSources totalBalances:currentDate] + 
+		[self.assetValues totalBalances:currentDate] - 
+		[self.loanBalances totalBalances:currentDate] - 
+		[self.deficitBalance currentBalanceForDate:currentDate];
 	return totalBal;
 }
 
@@ -199,9 +203,9 @@
 	[self.deficitBalance advanceCurrentBalanceToDate:newDate];
 	[self.cashWorkingBalance advanceCurrentBalanceToDate:newDate];
 	
-	if(self.deficitBalance.currentBalance > 0.0)
+	if([self.deficitBalance currentBalanceForDate:newDate] > 0.0)
 	{
-		assert(self.cashWorkingBalance.currentBalance <= 0.0);
+		assert([self.cashWorkingBalance currentBalanceForDate:newDate] <= 0.0);
 		return 0.0;
 	}
 	else
@@ -220,7 +224,7 @@
 - (void)setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:(NSDate*)theDate;
 {
 	[self.accruedEstimatedTaxes advanceCurrentBalanceToDate:theDate];
-	double accruedBalance = self.accruedEstimatedTaxes.currentBalance;
+	double accruedBalance = [self.accruedEstimatedTaxes currentBalanceForDate:theDate];
 	[self.accruedEstimatedTaxes decrementAvailableBalanceForNonExpense:accruedBalance asOfDate:theDate];
 	[self.nextEstimatedTaxPayment incrementBalance:accruedBalance asOfDate:theDate];
 }
@@ -228,7 +232,7 @@
 - (double)decrementNextEstimatedTaxPaymentAsOfDate:(NSDate*)theDate
 {
 	[self.nextEstimatedTaxPayment advanceCurrentBalanceToDate:theDate];
-	double paymentAmount = self.nextEstimatedTaxPayment.currentBalance;
+	double paymentAmount = [self.nextEstimatedTaxPayment currentBalanceForDate:theDate];
 	assert(paymentAmount >= 0.0);
 	[self.nextEstimatedTaxPayment decrementAvailableBalanceForNonExpense:paymentAmount asOfDate:theDate];
 	return paymentAmount;

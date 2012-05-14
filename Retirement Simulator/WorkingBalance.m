@@ -19,7 +19,6 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 @implementation WorkingBalance
 
 @synthesize balanceStartDate;
-@synthesize currentBalance;
 @synthesize startingBalance;
 @synthesize currentBalanceDate;
 @synthesize withdrawPriority;
@@ -121,7 +120,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	}
 	
 	
-	startingBalance = self.currentBalance;
+	startingBalance = currentBalance;
 	self.balanceStartDate = newStartDate;
 }
 
@@ -142,7 +141,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 {
 	if([DateHelper dateIsEqualOrLater:balanceDate otherDate:self.balanceStartDate])
 	{
-		return self.currentBalance;
+		return currentBalance;
 	}
 	else
 	{
@@ -241,7 +240,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	
 	if([self withdrawalsEnabledAsOfDate:newDate])
 	{
-		double remainingBalance = [self currentBalance];
+		double remainingBalance = currentBalance;
 	
 		[self decrementAvailableBalanceImpl:remainingBalance asOfDate:newDate];
 	
@@ -270,7 +269,7 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 - (void)logBalance
 {
 		NSString *currentBalCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.currentBalance]];
+				stringFromNumber:[NSNumber numberWithDouble:currentBalance]];
 		NSLog(@"Working balance: %@ %@",self.balanceName,currentBalCurrency);
 
 }

@@ -283,7 +283,8 @@
 	// Reset all the digest sums used to tally up taxable incomes, expenses, interest, etc.
 
 
-	endOfYearResults.totalEndOfYearBalance = [self.simParams.workingBalanceMgr totalCurrentNetBalance];
+	endOfYearResults.totalEndOfYearBalance = 
+		[self.simParams.workingBalanceMgr totalCurrentNetBalance:beginningOfNextYear];
 	[self processEndOfYearInputResults:endOfYearResults];
 	[endOfYearResults logResults];
 

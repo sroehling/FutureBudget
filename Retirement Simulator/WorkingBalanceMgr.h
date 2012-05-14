@@ -57,7 +57,7 @@
 
 - (void)carryBalancesForward:(NSDate*)newDate;
 - (void)advanceBalancesToDate:(NSDate*)newDate;
-- (double)totalCurrentNetBalance;
+- (double)totalCurrentNetBalance:(NSDate*)currentDate;
 - (void) resetCurrentBalances;
 
 - (void) incrementCashBalance:(double)incomeAmount asOfDate:(NSDate*)newDate;

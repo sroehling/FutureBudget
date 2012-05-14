@@ -61,7 +61,6 @@ extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
 
 
 @property(readonly) double startingBalance;
-@property(readonly) double currentBalance;
 @property double withdrawPriority;
 
 @property(nonatomic,retain) InputValDigestSummation *contribs;

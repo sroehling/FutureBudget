@@ -30,7 +30,7 @@
 - (void)advanceBalancesToDate:(NSDate*)newDate;
 - (void) resetCurrentBalances;
 - (void)logCurrentBalances;
-- (double)totalBalances;
+-(double)totalBalances:(NSDate*)currentDate;
 - (void)sortByWithdrawalOrder;
 
 @property(nonatomic,retain) NSMutableArray *workingBalList;
