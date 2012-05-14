@@ -15,7 +15,7 @@
 @class ResultsViewInfo;
 @class CPTGraphHostingView;
 
-@interface YearValXYResultsView : UIView <CPTPlotDataSource>
+@interface YearValXYResultsView : UIView <CPTPlotDataSource,UITableViewDataSource,UITableViewDelegate>
 {
 	@private
 		ResultsViewInfo *resultsViewInfo;
@@ -25,7 +25,13 @@
 		YearValXYPlotData *currentData;
 		CPTGraphHostingView *graphView;
 		
+		UITableView *tabularDataView;
+		
 		UISegmentedControl *resultsTypeSelection;
+		
+		UILabel *yearColLabel;
+		UILabel *valColLabel;
+		UIView *headerView;
 
 }
 
@@ -35,6 +41,11 @@
 @property(nonatomic,retain) ResultsViewInfo *resultsViewInfo;
 @property(nonatomic,retain) CPTGraphHostingView *graphView;
 @property(nonatomic,retain) UISegmentedControl *resultsTypeSelection;
+@property(nonatomic,retain) UITableView *tabularDataView;
+
+@property(nonatomic,retain) UILabel *yearColLabel;
+@property(nonatomic,retain) UILabel *valColLabel;
+@property(nonatomic,retain) UIView *headerView;
 
 -(id)initWithResultsViewInfo:(ResultsViewInfo *)theViewInfo 
 	andPlotDataGenerator:(id<YearValXYPlotDataGenerator>)thePlotDataGenerator;

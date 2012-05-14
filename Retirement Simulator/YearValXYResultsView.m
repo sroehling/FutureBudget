@@ -15,9 +15,12 @@
 #import "SimResultsController.h"
 #import "YearValPlotDataVal.h"
 #import "SharedAppValues.h"
+#import "YearValXYResultsCell.h"
+#import "NumberHelper.h"
+#import "TableCellHelper.h"
 
-#define YEARXYVAL_CONTENT_MARGIN_TOP 24.0f
-#define YEARXYVAL_RESULTS_TYPE_SELECTOR_HEIGHT 20.0f
+#define YEARXYVAL_CONTENT_MARGIN_TOP 26.0f
+#define YEARXYVAL_RESULTS_TYPE_SELECTOR_HEIGHT 24.0f
 
 @implementation YearValXYResultsView
 
@@ -27,6 +30,10 @@
 @synthesize resultsViewInfo;
 @synthesize graphView;
 @synthesize resultsTypeSelection;
+@synthesize tabularDataView;
+@synthesize yearColLabel;
+@synthesize valColLabel;
+@synthesize headerView;
 
 
 -(id)initWithResultsViewInfo:(ResultsViewInfo *)theViewInfo 
@@ -45,11 +52,20 @@
 						UIViewAutoresizingFlexibleWidth;
 		[self addSubview:self.chartContentView];
 		
+		self.tabularDataView = [[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain] autorelease];
+		self.tabularDataView.hidden = TRUE;
+		self.tabularDataView.delegate = self;
+		self.tabularDataView.dataSource = self;
+		[self addSubview:self.tabularDataView];
 		
-		NSArray*itemArray =[NSArray arrayWithObjects:@"Chart",@"Table", nil]; 
+		
+		NSArray*itemArray =[NSArray arrayWithObjects:
+			[UIImage imageNamed:@"bargraphicon.png"],
+			[UIImage imageNamed:@"resultsTableIcon.png"], 
+			nil]; 
 		self.resultsTypeSelection =[[UISegmentedControl alloc] initWithItems:itemArray]; 
 		self.resultsTypeSelection.tintColor = [UIColor darkGrayColor];
-		self.resultsTypeSelection.frame = CGRectMake(0,0,130,YEARXYVAL_RESULTS_TYPE_SELECTOR_HEIGHT); 
+		self.resultsTypeSelection.frame = CGRectMake(0,0,100,YEARXYVAL_RESULTS_TYPE_SELECTOR_HEIGHT); 
 		self.resultsTypeSelection.segmentedControlStyle =UISegmentedControlStyleBar; 
 		self.resultsTypeSelection.selectedSegmentIndex =0;
 		 
@@ -64,6 +80,14 @@
 		
 		assert(theViewInfo != nil);
 		self.resultsViewInfo = theViewInfo;
+		
+		
+		self.valColLabel = [TableCellHelper createWrappedLabel];
+		self.yearColLabel = [TableCellHelper createLabel];
+		self.headerView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+		[self.headerView addSubview:self.yearColLabel];
+		[self.headerView addSubview:self.valColLabel];
+		self.headerView.backgroundColor = [UIColor lightGrayColor];
     }
     return self;
 }
@@ -73,9 +97,11 @@
 	if(self.resultsTypeSelection.selectedSegmentIndex == 0)
 	{
 		self.chartContentView.hidden = FALSE;
+		self.tabularDataView.hidden = TRUE;
 	}
 	else {
 		self.chartContentView.hidden = TRUE;
+		self.tabularDataView.hidden = FALSE;
 	}
 }
 
@@ -241,6 +267,7 @@
 -(void)generateResults
 {
 	[self generatePlot];
+	[self.tabularDataView reloadData];
 }
 
 -(void)layoutSubviews
@@ -252,11 +279,15 @@
 	chartFrame.origin.y = YEARXYVAL_CONTENT_MARGIN_TOP;
 
 	[self.chartContentView setFrame:chartFrame];
+	[self.tabularDataView setFrame:chartFrame];
+	
+	
 	if(self.graphView != nil)
 	{
 		CGRect graphFrame = CGRectMake(0,0, chartFrame.size.width, chartFrame.size.height);
 		[self.graphView setFrame:graphFrame];
 	}
+	
 	
 	CGRect resultsTypeFrame = self.resultsTypeSelection.frame;
 	resultsTypeFrame.origin.x = self.frame.size.width/2.0 - resultsTypeFrame.size.width/2.0;
@@ -300,6 +331,92 @@
 	return plotResult;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 28.0;
+}
+
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"ResultsCell";
+
+    YearValXYResultsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+		
+        cell = [[[YearValXYResultsCell alloc] initWithFrame:CGRectZero] autorelease];
+    }
+
+	YearValPlotDataVal *plotDataVal = [currentData.plotData objectAtIndex:indexPath.row];
+	
+	SharedAppValues *sharedAppVals = [SharedAppValues 
+			getUsingDataModelController:self.resultsViewInfo.simResultsController.dataModelController];
+			
+	NSNumber *plotResult;
+	if([sharedAppVals.adjustResultsForSimStartDate boolValue])
+	{
+		plotResult = plotDataVal.inflationAdjustedVal;
+	}
+	else
+	{
+		plotResult = plotDataVal.unadjustedVal;
+	}
+
+
+        // Configure the cell.
+	cell.year.text = [NSString stringWithFormat:@"%04d",[plotDataVal.year intValue]];
+	cell.value.text = [[NumberHelper theHelper].currencyFormatterNoFraction 
+				stringFromNumber:plotResult];
+
+    return cell;
+
+
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [currentData.plotData count];
+}
+
+-(void)configureTableHeader:(UITableView *)tableView
+{
+	
+	self.valColLabel.text = [self.plotDataGenerator dataLabel];
+	self.valColLabel.textAlignment = UITextAlignmentCenter;
+	
+	CGSize maxSize = CGSizeMake(YEARVAL_RESULTS_CELL_COLUMN_WIDTH, 300);
+	CGSize valueSize = [self.valColLabel.text sizeWithFont:self.valColLabel.font
+						constrainedToSize:maxSize
+						lineBreakMode:self.valColLabel.lineBreakMode];
+	valueSize.height = MAX(valueSize.height, YEARVAL_RESULTS_CELL_HEIGHT);
+
+	[self.valColLabel setFrame:CGRectMake(
+		YEARVAL_RESULTS_CELL_VALUE_LEFT_OFFSET, 0, 
+		YEARVAL_RESULTS_CELL_COLUMN_WIDTH, valueSize.height)];
+
+	[yearColLabel sizeToFit];
+	[self.yearColLabel setFrame:CGRectMake(
+		YEARVAL_RESULTS_CELL_YEAR_LEFT_OFFSET, valueSize.height/2.0 - yearColLabel.frame.size.height/2.0, 
+		YEARVAL_RESULTS_CELL_COLUMN_WIDTH, yearColLabel.frame.size.height)];
+	self.yearColLabel.text = LOCALIZED_STR(@"RESULTS_YEAR_X_AXIS_TITLE");
+	self.yearColLabel.textAlignment = UITextAlignmentCenter;
+
+		
+	[self.headerView setFrame:CGRectMake(0, 0, tableView.contentSize.width, valueSize.height)];
+
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	[self configureTableHeader:tableView];
+	return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	[self configureTableHeader:tableView];
+	return self.headerView.frame.size.height;
+}
 
 
 -(void)dealloc
@@ -310,6 +427,10 @@
 	[resultsViewInfo release];
 	[graphView release];
 	[resultsTypeSelection release];
+	[yearColLabel release];
+	[valColLabel release];
+	[headerView release];
+	[tabularDataView release];
 	[super dealloc];
 }
 
