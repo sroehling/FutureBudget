@@ -119,8 +119,15 @@
 			[self.plotDataGenerator 
 				generatePlotDataFromSimResults:self.resultsViewInfo.simResultsController];
 		assert(self.currentData != nil);
-		double resultMinVal = self.currentData.minYVal;
-		double resultMaxVal = self.currentData.maxYVal;
+		
+		
+		SharedAppValues *sharedAppVals = [SharedAppValues 
+			getUsingDataModelController:self.resultsViewInfo.simResultsController.dataModelController];
+			
+		BOOL adjustResultsToSimStartDate = [sharedAppVals.adjustResultsForSimStartDate boolValue];
+
+		double resultMinVal = [self.currentData minYVal:adjustResultsToSimStartDate];
+		double resultMaxVal = [self.currentData maxYVal:adjustResultsToSimStartDate];
 
 
 		// Create graph from theme

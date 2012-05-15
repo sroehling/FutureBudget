@@ -12,16 +12,18 @@
 @interface YearValXYPlotData : NSObject {
     @private
 		NSMutableArray *plotData;
-		double minYVal;
-		double maxYVal;
 }
 
 @property(nonatomic,retain) NSMutableArray *plotData;
-@property double minYVal;
-@property double maxYVal;
 
 -(double)getUnadjustedYValforYear:(NSInteger)year;
 -(double)getAdjustedYValforYear:(NSInteger)year;
+
+
+-(double)maxYVal:(BOOL)adjustToStartDate;
+-(double)minYVal:(BOOL)adjustToStartDate;
+
+
 
 -(void)addPlotDataPointForYear:(NSInteger)year andYVal:(double)yVal 
 		andSimStartValueMultiplier:(double)simStartAdjustmentMultiplier;

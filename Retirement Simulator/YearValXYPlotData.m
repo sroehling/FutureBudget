@@ -12,8 +12,6 @@
 @implementation YearValXYPlotData
 
 @synthesize plotData;
-@synthesize minYVal;
-@synthesize maxYVal;
 
 -(id)init
 {
@@ -21,9 +19,6 @@
 	if(self)
 	{
 		self.plotData = [[[NSMutableArray alloc] init] autorelease];
-		self.maxYVal = -100000000000.0;
-		self.minYVal = 100000000000.0;
-
 	}
 	return self;
 }
@@ -33,11 +28,49 @@
 {
 	assert(year >= 1900);
 
-	self.minYVal = MIN(self.minYVal,yVal);
-	self.maxYVal = MAX(self.maxYVal,yVal);
-	
 	[self.plotData addObject:[[[YearValPlotDataVal alloc] initWithYear:year andVal:yVal andSimStartValueAdjustmentMultiplier:simStartAdjustmentMultiplier]autorelease]];
 }
+
+
+-(double)maxYVal:(BOOL)adjustToStartDate
+{
+	double theMaxYVal = -100000000000.0;
+	for(YearValPlotDataVal *yearVal in self.plotData)
+	{		
+		double yVal;
+		if(adjustToStartDate)
+		{
+			yVal = [yearVal.inflationAdjustedVal doubleValue];
+		}
+		else 
+		{
+			yVal = [yearVal.unadjustedVal doubleValue];
+		}
+		theMaxYVal = MAX(theMaxYVal,yVal);
+	}
+	return theMaxYVal;
+}
+
+-(double)minYVal:(BOOL)adjustToStartDate
+{
+	double theMinYVal = 100000000000.0;
+	for(YearValPlotDataVal *yearVal in self.plotData)
+	{		
+		double yVal;
+		if(adjustToStartDate)
+		{
+			yVal = [yearVal.inflationAdjustedVal doubleValue];
+		}
+		else 
+		{
+			yVal = [yearVal.unadjustedVal doubleValue];
+		}
+		theMinYVal = MAX(theMinYVal,yVal);
+	}
+	return theMinYVal;
+}
+
+
 
 -(double)getUnadjustedYValforYear:(NSInteger)year
 {
