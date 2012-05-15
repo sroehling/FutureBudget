@@ -150,25 +150,31 @@
 		// Setup plot space
 		CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
 		plotSpace.allowsUserInteraction = NO;
-		plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinYear) 
-			length:CPTDecimalFromFloat(resultMaxYear-resultMinYear)];
+		plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(resultMinYear-1) 
+			length:CPTDecimalFromFloat(resultMaxYear-resultMinYear+2)];
 			
 			
 		// Pad the range of the Y axis so the user
 		// can always see the results.	
 		double yLength = resultMaxVal - resultMinVal;
-		double minYRange;
 		double maxYRange;
 		if(yLength > 10000)
 		{
-			minYRange = resultMinVal - 10000;
 			maxYRange = resultMaxVal + 10000;
 		}	
 		else
 		{
-			minYRange = resultMinVal - 5000;
 			maxYRange = resultMaxVal + 5000;			
 		}
+		double minYRange;
+		if(resultMinVal > 0.0)
+		{
+			minYRange = 0.0;
+		}
+		else {
+			minYRange = resultMinVal;
+		}
+		
 		plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(minYRange) 
 			length:CPTDecimalFromFloat(maxYRange-minYRange)];
 
@@ -220,7 +226,7 @@
 			[yAxisFormatter setMinimumFractionDigits:0];
 		}
 		y.labelFormatter = yAxisFormatter;
-		y.orthogonalCoordinateDecimal = CPTDecimalFromInt(resultMinYear);
+		y.orthogonalCoordinateDecimal = CPTDecimalFromInt(resultMinYear-1);
 		y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
 		
 		double excludeRange = 1000000000.0;
@@ -230,27 +236,38 @@
 			[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(maxYRange+100000) 
 				length:CPTDecimalFromFloat(excludeRange)], 
 			nil];
-
-		// Create a green plot area
-		CPTScatterPlot *dataSourceLinePlot = [[[CPTScatterPlot alloc] init] autorelease];
-		CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
-		lineStyle.lineWidth = 2.0f;
-		lineStyle.lineColor = [CPTColor greenColor];
-		dataSourceLinePlot.dataLineStyle = lineStyle;
-		dataSourceLinePlot.identifier = @"Green Plot";
-		dataSourceLinePlot.dataSource = self;
-
-		// Animate in the new plot, as an example
-		dataSourceLinePlot.opacity = 0.0f;
-		[graph addPlot:dataSourceLinePlot];
 		
+		// Create a bar line style
+		CPTMutableLineStyle *barLineStyle = [[[CPTMutableLineStyle alloc] init] autorelease];
+		barLineStyle.lineWidth = 1.0;
+		barLineStyle.lineColor = [CPTColor grayColor];
+			
+		// Create first bar plot 
+		CPTBarPlot *barPlot = [[[CPTBarPlot alloc] init] autorelease];
+		barPlot.lineStyle = barLineStyle;
+		barPlot.fill = [CPTFill fillWithColor:[CPTColor blueColor]];
+		barPlot.barBasesVary = NO;
+		barPlot.baseValue = CPTDecimalFromDouble(0.0);
+		barPlot.barWidth = CPTDecimalFromFloat(0.75f); // bar is 50% of the available space
+		barPlot.barCornerRadius = 1.0f;
+		barPlot.barsAreHorizontal = NO;
+		barPlot.opacity = 0.0f;
+		barPlot.barLabelTextStyle = nil;
+	 
+		barPlot.delegate = self;
+		barPlot.dataSource = self;
+		barPlot.identifier = @"Bar Plot 1";
+
+		[graph addPlot:barPlot toPlotSpace:plotSpace];
+
 		CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
 		fadeInAnimation.duration = 1.0f;
 		fadeInAnimation.removedOnCompletion = NO;
 		fadeInAnimation.fillMode = kCAFillModeForwards;
 		fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
-		[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];	
-	
+		[barPlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];	
+
+
 		graphView.alpha = 0.0;
 		graphView.backgroundColor = [UIColor blackColor];
 		
@@ -308,7 +325,7 @@
 	YearValPlotDataVal *plotDataVal = [currentData.plotData objectAtIndex:index];
 	assert(plotDataVal !=nil);
 	NSNumber *plotResult;
-	if(fieldEnum == CPTScatterPlotFieldX)
+	if (fieldEnum == CPTBarPlotFieldBarLocation)
 	{
 		plotResult = plotDataVal.year;
 	}
@@ -327,7 +344,6 @@
 		}
 	}
 	assert(plotResult != nil);
-//	NSLog(@"Plot result: %0.2f",[plotResult doubleValue]);
 	return plotResult;
 }
 
