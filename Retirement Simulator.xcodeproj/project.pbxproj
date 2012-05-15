@@ -401,20 +401,6 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		0012A6411562F592005965DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0012A63C1562F590005965DB /* MailCleaner.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0012A5F51562F590005965DB;
-			remoteInfo = MailCleaner;
-		};
-		0012A6431562F592005965DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0012A63C1562F590005965DB /* MailCleaner.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0012A6241562F590005965DB;
-			remoteInfo = MailCleanerTests;
-		};
 		00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00A36BC8136C6CAD008A5C4C /* Project object */;
@@ -449,7 +435,6 @@
 		0010A58813D0B1DC0096A20F /* InterestRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestRate.m; sourceTree = "<group>"; };
 		0010A58B13D15C8B0096A20F /* StartingValsFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartingValsFormInfoCreator.h; sourceTree = "<group>"; };
 		0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartingValsFormInfoCreator.m; sourceTree = "<group>"; };
-		0012A63C1562F590005965DB /* MailCleaner.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MailCleaner.xcodeproj; path = ../MailCleaner/MailCleaner.xcodeproj; sourceTree = "<group>"; };
 		00140505155DC40E0084136B /* bargraphicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bargraphicon.png; sourceTree = "<group>"; };
 		0014296C154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxesPaidTaxAmtCreator.h; sourceTree = "<group>"; };
 		0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxesPaidTaxAmtCreator.m; sourceTree = "<group>"; };
@@ -1122,15 +1107,6 @@
 				0010A58C13D15C8B0096A20F /* StartingValsFormInfoCreator.m */,
 			);
 			name = "Starting Values";
-			sourceTree = "<group>";
-		};
-		0012A63D1562F590005965DB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0012A6421562F592005965DB /* MailCleaner.app */,
-				0012A6441562F592005965DB /* MailCleanerTests.octest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		0014CDA115546F2C00E9261C /* Transfer */ = {
@@ -2121,7 +2097,6 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
-				0012A63C1562F590005965DB /* MailCleaner.xcodeproj */,
 				00A8A3181545F595003C6D73 /* StoreKit.framework */,
 				001ED7651509234A002F1119 /* ResultraGenericLibResources.bundle */,
 				004107D814EEF06E0063E307 /* libResultraGenericLib.a */,
@@ -2550,12 +2525,6 @@
 			mainGroup = 00A36BC6136C6CAD008A5C4C;
 			productRefGroup = 00A36BD2136C6CAE008A5C4C /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 0012A63D1562F590005965DB /* Products */;
-					ProjectRef = 0012A63C1562F590005965DB /* MailCleaner.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				00A36BD0136C6CAE008A5C4C /* Retirement Simulator */,
@@ -2563,23 +2532,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		0012A6421562F592005965DB /* MailCleaner.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MailCleaner.app;
-			remoteRef = 0012A6411562F592005965DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0012A6441562F592005965DB /* MailCleanerTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = MailCleanerTests.octest;
-			remoteRef = 0012A6431562F592005965DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00A36BCF136C6CAE008A5C4C /* Resources */ = {
