@@ -65,7 +65,7 @@
 		{
 			yVal = [yearVal.unadjustedVal doubleValue];
 		}
-		theMinYVal = MAX(theMinYVal,yVal);
+		theMinYVal = MIN(theMinYVal,yVal);
 	}
 	return theMinYVal;
 }
