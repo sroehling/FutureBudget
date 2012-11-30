@@ -2149,12 +2149,12 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
-				00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */,
-				00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
 				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
 				00A36BD4136C6CAE008A5C4C /* Frameworks */,
 				00A36BD2136C6CAE008A5C4C /* Products */,
+				00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */,
+				00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
