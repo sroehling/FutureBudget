@@ -178,10 +178,6 @@
 		006D3A67145F4A3C004AF798 /* ItemizedAccountContribTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A66145F4A3C004AF798 /* ItemizedAccountContribTaxAmtCreator.m */; };
 		006D3A6A145F5B8E004AF798 /* AccountWithdrawalItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A69145F5B8D004AF798 /* AccountWithdrawalItemizedTaxAmt.m */; };
 		006D3A70145F6003004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A6F145F6001004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m */; };
-		0075840D14DF34BF00184BD5 /* markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = 0075840C14DF34BF00184BD5 /* markdown.css */; };
-		0075841014DF3B6B00184BD5 /* markdown-prefix.html in Resources */ = {isa = PBXBuildFile; fileRef = 0075840F14DF3B6B00184BD5 /* markdown-prefix.html */; };
-		0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */ = {isa = PBXBuildFile; fileRef = 0075841114DF3FC200184BD5 /* markdown-suffix.html */; };
-		0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */ = {isa = PBXBuildFile; fileRef = 0075841314DF410500184BD5 /* wrapMarkdown.pl */; };
 		0075841E14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075841D14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.m */; };
 		0075842114E1BD0100184BD5 /* ItemizedAccountTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842014E1BCFF00184BD5 /* ItemizedAccountTaxFormInfoCreator.m */; };
 		0075842414E1C2E600184BD5 /* ItemizedAccountTaxAmtCreatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842314E1C2E500184BD5 /* ItemizedAccountTaxAmtCreatorBase.m */; };
@@ -359,6 +355,7 @@
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
 		00E898281472F30700FB3D01 /* DataModelDeleteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E898271472F30700FB3D01 /* DataModelDeleteTest.m */; };
+		00E9FB86166920A600DB0E85 /* markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = 00E9FB85166920A600DB0E85 /* markdown.css */; };
 		00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */; };
 		00EC1F91139737D20085B25C /* SimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F90139737D20085B25C /* SimDate.m */; };
 		00EC1F941397396D0085B25C /* MilestoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F931397396D0085B25C /* MilestoneDate.m */; };
@@ -399,7 +396,7 @@
 			outputFiles = (
 				"${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}${INPUT_FILE_BASE}.html",
 			);
-			script = "mkdir -p ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}$; \"${INPUT_FILE_DIR}/wrapMarkdown.pl\" \"${INPUT_FILE_PATH}\" > ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}${INPUT_FILE_BASE}.html";
+			script = "mkdir -p ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}$; \"${INPUT_FILE_DIR}/../../MarkdownHelpGeneration/wrapMarkdown.pl\" \"${INPUT_FILE_PATH}\" > ${DERIVED_FILE_DIR}/${INPUT_FILE_REGION_PATH_COMPONENT}${INPUT_FILE_BASE}.html";
 		};
 /* End PBXBuildRule section */
 
@@ -774,10 +771,6 @@
 		006D3A69145F5B8D004AF798 /* AccountWithdrawalItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountWithdrawalItemizedTaxAmt.m; sourceTree = "<group>"; };
 		006D3A6E145F6000004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountWithdrawalTaxAmtCreator.h; sourceTree = "<group>"; };
 		006D3A6F145F6001004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAccountWithdrawalTaxAmtCreator.m; sourceTree = "<group>"; };
-		0075840C14DF34BF00184BD5 /* markdown.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = markdown.css; sourceTree = "<group>"; };
-		0075840F14DF3B6B00184BD5 /* markdown-prefix.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-prefix.html"; sourceTree = "<group>"; };
-		0075841114DF3FC200184BD5 /* markdown-suffix.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-suffix.html"; sourceTree = "<group>"; };
-		0075841314DF410500184BD5 /* wrapMarkdown.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = wrapMarkdown.pl; sourceTree = "<group>"; };
 		0075841C14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedIncomeTaxFormInfoCreator.h; sourceTree = "<group>"; };
 		0075841D14E1896E00184BD5 /* ItemizedIncomeTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedIncomeTaxFormInfoCreator.m; sourceTree = "<group>"; };
 		0075841F14E1BCFE00184BD5 /* ItemizedAccountTaxFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountTaxFormInfoCreator.h; sourceTree = "<group>"; };
@@ -1066,6 +1059,7 @@
 		00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigestEntryCltn.m; sourceTree = "<group>"; };
 		00E898261472F30700FB3D01 /* DataModelDeleteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelDeleteTest.h; sourceTree = "<group>"; };
 		00E898271472F30700FB3D01 /* DataModelDeleteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelDeleteTest.m; sourceTree = "<group>"; };
+		00E9FB85166920A600DB0E85 /* markdown.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = markdown.css; path = ../../MarkdownHelpGeneration/markdown.css; sourceTree = "<group>"; };
 		00EC1F8B139736D40085B25C /* SimDateFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateFormInfoCreator.m; sourceTree = "<group>"; };
 		00EC1F8F139737D20085B25C /* SimDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDate.h; sourceTree = "<group>"; };
@@ -2209,15 +2203,12 @@
 		00A36BDC136C6CAE008A5C4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0075840C14DF34BF00184BD5 /* markdown.css */,
+				00E9FB85166920A600DB0E85 /* markdown.css */,
 				00D6846C14CE004800E3AC9F /* Localizable.strings */,
 				00A36BDD136C6CAE008A5C4C /* Retirement Simulator-Info.plist */,
 				00A36BDE136C6CAE008A5C4C /* InfoPlist.strings */,
 				00A36BE1136C6CAE008A5C4C /* Retirement Simulator-Prefix.pch */,
 				00A36BE2136C6CAE008A5C4C /* main.m */,
-				0075840F14DF3B6B00184BD5 /* markdown-prefix.html */,
-				0075841114DF3FC200184BD5 /* markdown-suffix.html */,
-				0075841314DF410500184BD5 /* wrapMarkdown.pl */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2651,6 +2642,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E9FB86166920A600DB0E85 /* markdown.css in Resources */,
 				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
 				00C3DCC81667F0CF00F1F490 /* ResultraGenericLibResources.bundle in Resources */,
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
@@ -2731,10 +2723,6 @@
 				00DC49F814D73EBA006BDF61 /* variableValueStartDate.md in Resources */,
 				00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */,
 				00DC4A0214D9F3FB006BDF61 /* recipeRetireEarly.md in Resources */,
-				0075840D14DF34BF00184BD5 /* markdown.css in Resources */,
-				0075841014DF3B6B00184BD5 /* markdown-prefix.html in Resources */,
-				0075841214DF3FC200184BD5 /* markdown-suffix.html in Resources */,
-				0075841414DF410500184BD5 /* wrapMarkdown.pl in Resources */,
 				000373D614F487EB008DCDF5 /* expense.md in Resources */,
 				000373D914F495BA008DCDF5 /* asset.md in Resources */,
 				000373DB14F49E66008DCDF5 /* loan.md in Resources */,
