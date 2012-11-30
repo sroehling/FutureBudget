@@ -42,7 +42,6 @@
 		001E5C2614A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */; };
 		001E5C2A14A240F7008A672E /* AcctContribXYPlotGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */; };
 		001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2C14A24219008A672E /* AcctResultGenerator.m */; };
-		001ED7661509234A002F1119 /* ResultraGenericLibResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 001ED7651509234A002F1119 /* ResultraGenericLibResources.bundle */; };
 		00210FA714BE5C6600E1D394 /* ItemizedTaxAmtFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */; };
 		00210FAB14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00210FAA14BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.m */; };
 		00237957143E4F5D006650E3 /* TaxBracketEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00237956143E4F5D006650E3 /* TaxBracketEntry.m */; };
@@ -94,6 +93,7 @@
 		003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D41485531F00837D02 /* InvestmentReturnRate.m */; };
 		003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D714855EBA00837D02 /* AssetApprecRate.m */; };
 		003085DB148599A200837D02 /* ScenarioInputValBacktracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */; };
+		003611A6166800CD00A6FB76 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003611A3166800AE00A6FB76 /* libCorePlot-CocoaTouch.a */; };
 		0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1513BE19F20043F3A5 /* Scenario.m */; };
 		0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1913BE1A370043F3A5 /* UserScenario.m */; };
 		0036DE1D13BE1A690043F3A5 /* DefaultScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */; };
@@ -102,7 +102,6 @@
 		0036DE2713BE2D710043F3A5 /* MultiScenarioInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */; };
 		0036DE2E13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */; };
 		003CFD1313C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */; };
-		004107D914EEF06E0063E307 /* libResultraGenericLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 004107D814EEF06E0063E307 /* libResultraGenericLib.a */; };
 		0041263313A6824A008F0647 /* InputListInputDescriptionCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263213A6824A008F0647 /* InputListInputDescriptionCreator.m */; };
 		0041263713A6A653008F0647 /* InputListFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263613A6A653008F0647 /* InputListFormInfoCreator.m */; };
 		0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263913A6A745008F0647 /* InputFieldEditInfo.m */; };
@@ -297,6 +296,11 @@
 		00BC35C5140C5C0900D79F78 /* EstimatedTaxPaymentSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35C4140C5C0800D79F78 /* EstimatedTaxPaymentSimEvent.m */; };
 		00BC35C8140D42DD00D79F78 /* SimEventList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35C7140D42DD00D79F78 /* SimEventList.m */; };
 		00BC35CB140DA3B600D79F78 /* EventListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35CA140DA3B600D79F78 /* EventListTest.m */; };
+		00C3DCC81667F0CF00F1F490 /* ResultraGenericLibResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00C3DCAA1667EFDB00F1F490 /* ResultraGenericLibResources.bundle */; };
+		00C3DCC91667F0EE00F1F490 /* libResultraGenericLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C3DCA61667EFDB00F1F490 /* libResultraGenericLib.a */; };
+		00C3DCCB1667F15A00F1F490 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C3DCCA1667F15A00F1F490 /* Security.framework */; };
+		00C3DCCE1667F29900F1F490 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C3DCCC1667F1C600F1F490 /* CFNetwork.framework */; };
+		00C3DCD01667F3E900F1F490 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C3DCCF1667F3E900F1F490 /* SystemConfiguration.framework */; };
 		00CB5E561491282F00C4654A /* EndOfYearInputResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E551491282F00C4654A /* EndOfYearInputResults.m */; };
 		00CB5E5B1491337900C4654A /* AssetValueXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */; };
 		00CB5E5E149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */; };
@@ -381,7 +385,6 @@
 		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
 		00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D0140F06AD00FA73AA /* CoreData.framework */; };
 		00F217D3140F073300FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D2140F073300FA73AA /* CoreData.framework */; };
-		00F217D7140F172F00FA73AA /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D6140F172F00FA73AA /* libCorePlot-CocoaTouch.a */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
 		00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */; };
 /* End PBXBuildFile section */
@@ -401,12 +404,54 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		003611A2166800AE00A6FB76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		003611A4166800C800A6FB76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
 		00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00A36BC8136C6CAD008A5C4C /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 00A36BD0136C6CAE008A5C4C;
 			remoteInfo = "Retirement Simulator";
+		};
+		00C3DCA51667EFDB00F1F490 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0041073014EEE8300063E307;
+			remoteInfo = ResultraGenericLib;
+		};
+		00C3DCA71667EFDB00F1F490 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0041073D14EEE8300063E307;
+			remoteInfo = ResultraGenericLibTests;
+		};
+		00C3DCA91667EFDB00F1F490 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 004E287B14EF1B060025D89E;
+			remoteInfo = ResultraGenericLibResources;
+		};
+		00C3DCAB1667EFF800F1F490 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0041072F14EEE8300063E307;
+			remoteInfo = ResultraGenericLib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -477,7 +522,6 @@
 		001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctContribXYPlotGenerator.m; sourceTree = "<group>"; };
 		001E5C2B14A24219008A672E /* AcctResultGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctResultGenerator.h; sourceTree = "<group>"; };
 		001E5C2C14A24219008A672E /* AcctResultGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctResultGenerator.m; sourceTree = "<group>"; };
-		001ED7651509234A002F1119 /* ResultraGenericLibResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ResultraGenericLibResources.bundle; path = "../../../Library/Developer/Xcode/DerivedData/RetirementSim-gssvmqnrwxcodabeeknhqfbigmsr/Build/Products/Debug-iphonesimulator/ResultraGenericLibResources.bundle"; sourceTree = "<group>"; };
 		00210FA514BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtFieldEditInfo.h; sourceTree = "<group>"; };
 		00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtFieldEditInfo.m; sourceTree = "<group>"; };
 		00210FA914BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtsSelectionFormInfoCreator.h; sourceTree = "<group>"; };
@@ -565,6 +609,7 @@
 		003085D714855EBA00837D02 /* AssetApprecRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetApprecRate.m; sourceTree = "<group>"; };
 		003085D9148599A100837D02 /* ScenarioInputValBacktracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioInputValBacktracer.h; sourceTree = "<group>"; };
 		003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioInputValBacktracer.m; sourceTree = "<group>"; };
+		00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../CorePlot_0.4/Source/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		0036DE1413BE19F20043F3A5 /* Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scenario.h; sourceTree = "<group>"; };
 		0036DE1513BE19F20043F3A5 /* Scenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scenario.m; sourceTree = "<group>"; };
 		0036DE1813BE1A370043F3A5 /* UserScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenario.h; sourceTree = "<group>"; };
@@ -581,7 +626,6 @@
 		0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueFieldInfo.m; sourceTree = "<group>"; };
 		003CFD1113C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectScenarioTableHeaderButtonDelegate.h; sourceTree = "<group>"; };
 		003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectScenarioTableHeaderButtonDelegate.m; sourceTree = "<group>"; };
-		004107D814EEF06E0063E307 /* libResultraGenericLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libResultraGenericLib.a; sourceTree = SOURCE_ROOT; };
 		0041263113A6824A008F0647 /* InputListInputDescriptionCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListInputDescriptionCreator.h; sourceTree = "<group>"; };
 		0041263213A6824A008F0647 /* InputListInputDescriptionCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputListInputDescriptionCreator.m; sourceTree = "<group>"; };
 		0041263513A6A653008F0647 /* InputListFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListFormInfoCreator.h; sourceTree = "<group>"; };
@@ -927,6 +971,10 @@
 		00BC35C7140D42DD00D79F78 /* SimEventList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimEventList.m; sourceTree = "<group>"; };
 		00BC35C9140DA3B400D79F78 /* EventListTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListTest.h; sourceTree = "<group>"; };
 		00BC35CA140DA3B600D79F78 /* EventListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListTest.m; sourceTree = "<group>"; };
+		00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResultraGenericLib.xcodeproj; path = ../ResultraGenericLib/ResultraGenericLib.xcodeproj; sourceTree = "<group>"; };
+		00C3DCCA1667F15A00F1F490 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		00C3DCCC1667F1C600F1F490 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		00C3DCCF1667F3E900F1F490 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		00CB5E541491282F00C4654A /* EndOfYearInputResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndOfYearInputResults.h; sourceTree = "<group>"; };
 		00CB5E551491282F00C4654A /* EndOfYearInputResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearInputResults.m; sourceTree = "<group>"; };
 		00CB5E591491337900C4654A /* AssetValueXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetValueXYPlotDataGenerator.h; sourceTree = "<group>"; };
@@ -1063,7 +1111,6 @@
 		00F217B8140F058600FA73AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00F217D0140F06AD00FA73AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		00F217D2140F073300FA73AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		00F217D6140F172F00FA73AA /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../CorePlot_0.4/Binaries/iOS/libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 		00FF1926147C0BEF000787B5 /* SimDateSubtitleFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateSubtitleFormatter.h; sourceTree = "<group>"; };
@@ -1075,9 +1122,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				003611A6166800CD00A6FB76 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				00C3DCD01667F3E900F1F490 /* SystemConfiguration.framework in Frameworks */,
+				00C3DCCE1667F29900F1F490 /* CFNetwork.framework in Frameworks */,
+				00C3DCC91667F0EE00F1F490 /* libResultraGenericLib.a in Frameworks */,
+				00C3DCCB1667F15A00F1F490 /* Security.framework in Frameworks */,
 				00A8A3191545F595003C6D73 /* StoreKit.framework in Frameworks */,
-				004107D914EEF06E0063E307 /* libResultraGenericLib.a in Frameworks */,
-				00F217D7140F172F00FA73AA /* libCorePlot-CocoaTouch.a in Frameworks */,
 				00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */,
 				00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */,
 				00A36BD6136C6CAE008A5C4C /* UIKit.framework in Frameworks */,
@@ -1437,6 +1487,14 @@
 				0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */,
 			);
 			name = "Itemized Tax Amt Creators";
+			sourceTree = "<group>";
+		};
+		0036119A166800AD00A6FB76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				003611A3166800AE00A6FB76 /* libCorePlot-CocoaTouch.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		0036DE2113BE1AF90043F3A5 /* Input Values */ = {
@@ -2097,9 +2155,8 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
-				00A8A3181545F595003C6D73 /* StoreKit.framework */,
-				001ED7651509234A002F1119 /* ResultraGenericLibResources.bundle */,
-				004107D814EEF06E0063E307 /* libResultraGenericLib.a */,
+				00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */,
+				00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
 				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
 				00A36BD4136C6CAE008A5C4C /* Frameworks */,
@@ -2119,7 +2176,10 @@
 		00A36BD4136C6CAE008A5C4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				00F217D6140F172F00FA73AA /* libCorePlot-CocoaTouch.a */,
+				00A8A3181545F595003C6D73 /* StoreKit.framework */,
+				00C3DCCF1667F3E900F1F490 /* SystemConfiguration.framework */,
+				00C3DCCC1667F1C600F1F490 /* CFNetwork.framework */,
+				00C3DCCA1667F15A00F1F490 /* Security.framework */,
 				00F217D0140F06AD00FA73AA /* CoreData.framework */,
 				00F217B8140F058600FA73AA /* QuartzCore.framework */,
 				00A36BD5136C6CAE008A5C4C /* UIKit.framework */,
@@ -2250,6 +2310,16 @@
 				00BC35C7140D42DD00D79F78 /* SimEventList.m */,
 			);
 			name = "Sim Events";
+			sourceTree = "<group>";
+		};
+		00C3DC9D1667EFDB00F1F490 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00C3DCA61667EFDB00F1F490 /* libResultraGenericLib.a */,
+				00C3DCA81667EFDB00F1F490 /* ResultraGenericLibTests.octest */,
+				00C3DCAA1667EFDB00F1F490 /* ResultraGenericLibResources.bundle */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		00CB5E581491331500C4654A /* Results Data Generators */ = {
@@ -2482,6 +2552,8 @@
 				00D6848814CF625400E3AC9F /* PBXBuildRule */,
 			);
 			dependencies = (
+				003611A5166800C800A6FB76 /* PBXTargetDependency */,
+				00C3DCAC1667EFF800F1F490 /* PBXTargetDependency */,
 			);
 			name = "Retirement Simulator";
 			productName = "Retirement Simulator";
@@ -2525,6 +2597,16 @@
 			mainGroup = 00A36BC6136C6CAD008A5C4C;
 			productRefGroup = 00A36BD2136C6CAE008A5C4C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0036119A166800AD00A6FB76 /* Products */;
+					ProjectRef = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
+				},
+				{
+					ProductGroup = 00C3DC9D1667EFDB00F1F490 /* Products */;
+					ProjectRef = 00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				00A36BD0136C6CAE008A5C4C /* Retirement Simulator */,
@@ -2533,12 +2615,44 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		003611A3166800AE00A6FB76 /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = 003611A2166800AE00A6FB76 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00C3DCA61667EFDB00F1F490 /* libResultraGenericLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libResultraGenericLib.a;
+			remoteRef = 00C3DCA51667EFDB00F1F490 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00C3DCA81667EFDB00F1F490 /* ResultraGenericLibTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResultraGenericLibTests.octest;
+			remoteRef = 00C3DCA71667EFDB00F1F490 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00C3DCAA1667EFDB00F1F490 /* ResultraGenericLibResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResultraGenericLibResources.bundle;
+			remoteRef = 00C3DCA91667EFDB00F1F490 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		00A36BCF136C6CAE008A5C4C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
+				00C3DCC81667F0CF00F1F490 /* ResultraGenericLibResources.bundle in Resources */,
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
 				00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */,
 				00EC455B141B159D00D65D17 /* graph.png in Resources */,
@@ -2630,7 +2744,6 @@
 				0057F42F14F81B2C006A2FA3 /* account.md in Resources */,
 				0058A80F14F830BB00F2DCEF /* income.md in Resources */,
 				0058A81214F92F5600F2DCEF /* accountWithdrawalPriority.md in Resources */,
-				001ED7661509234A002F1119 /* ResultraGenericLibResources.bundle in Resources */,
 				00140506155DC40E0084136B /* bargraphicon.png in Resources */,
 				00E0726A155DCB41008B3E15 /* resultsTableIcon.png in Resources */,
 			);
@@ -2949,10 +3062,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		003611A5166800C800A6FB76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = 003611A4166800C800A6FB76 /* PBXContainerItemProxy */;
+		};
 		00A36C00136C6CAE008A5C4C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 00A36BD0136C6CAE008A5C4C /* Retirement Simulator */;
 			targetProxy = 00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */;
+		};
+		00C3DCAC1667EFF800F1F490 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResultraGenericLib;
+			targetProxy = 00C3DCAB1667EFF800F1F490 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
