@@ -84,9 +84,17 @@
 	NSDate *simStart = [sharedAppVals beginningOfSimStartDate];
 	
 	// Since the granularity of simulation results is 1 year, we round the end date to the 
-	// beginning of the next year, ensuring that the last year is complete.
+	// beginning of the next year, ensuring that the last year is complete. We also ensure
+	// there is at least 1 full year after the start date to simulate.
 	NSDate *unroundedSimEnd = [sharedAppVals.simEndDate endDateWithStartDate:simStart];
-	NSDate *simEnd = [DateHelper beginningOfNextYear:unroundedSimEnd];
+	NSDate *partialYearAfterSimStart = [DateHelper beginningOfNextYear:simStart];
+	NSDate *fullYearAfterSimStart = [DateHelper beginningOfNextYear:partialYearAfterSimStart];
+	NSDate *yearAfterSimEnd = [DateHelper beginningOfNextYear:unroundedSimEnd];
+	
+	
+	
+	NSDate *simEnd = [DateHelper dateIsLater:fullYearAfterSimStart otherDate:yearAfterSimEnd]?
+		fullYearAfterSimStart:yearAfterSimEnd;
 	
 	NSDate *digestStart = [DateHelper beginningOfYear:simStart];
 	Scenario *simScen = sharedAppVals.currentInputScenario;
