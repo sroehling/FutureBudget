@@ -75,14 +75,15 @@
 	[sectionInfo addFieldEditInfo:endDateFieldEditInfo];
 
 	
+	sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE")
+		andHelpFile:@"currentBalances"];
+	
 	
 	NSArray *accounts = [parentContext.dataModelController 
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME 
 			sortKey:INPUT_NAME_KEY];
 	if([accounts count] > 0)
 	{
-		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE")
-			andHelpFile:@"currentBalances"];
 		for (Account *account in accounts)
 		{
 			NumberFieldEditInfo *acctBalanceFieldEditInfo = 
