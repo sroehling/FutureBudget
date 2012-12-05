@@ -407,6 +407,64 @@
      
 }
 
+- (void)testIncomeWithInflationAdjustment {
+        
+ 	[self resetCoredData];
+   
+    NSLog(@"Starting test: testIncomeWithInflationAdjustment ...");
+	
+	// Inflation rate is the same as the growth rate of the income. They should cancel each other
+	// out, so that the inflation adjusted income is 100.0.
+	CGFloat kInflationRate = 100.0;
+	NSString *incomeStartDate = @"2012-1-01";
+	BOOL doAdjustForInflation = TRUE;
+		
+	self.testAppVals.defaultInflationRate = (InflationRate*)
+		[self.coreData createDataModelObject:INFLATION_RATE_ENTITY_NAME];
+	self.testAppVals.defaultInflationRate.startingValue = [NSNumber numberWithDouble:kInflationRate];
+	self.testAppVals.defaultInflationRate.isDefault = [NSNumber numberWithBool:TRUE];
+	self.testAppVals.defaultInflationRate.staticNameStringFileKey = @"DEFAULT_INFLATION_RATE_LABEL";
+	self.testAppVals.defaultInflationRate.name = @"N/A";
+
+    	
+	IncomeInputTypeSelectionInfo *incomeCreator = 
+		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:incomeStartDate]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:kInflationRate];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	IncomeXYPlotDataGenerator *incomeData = [[[IncomeXYPlotDataGenerator alloc] initWithIncome:income01] autorelease];
+
+	// With the artificial/contrived inflation rate of 100%, the value of the income will drop 50% each
+	// year. The inflation adjusted value is taken at the end of the year. So, if the income occurs at
+	// beginning of the year, it's inflation adjusted value will be roughly half by the end of the year.
+	//
+	// This behavior can be confusing when the inflation adjusted results are displayed in the app, but
+	// it is nonetheless consistent.
+
+
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:50.00 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:50.10 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:50.09 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:incomeData withSimResults:simResults andExpectedVals:expected andLabel:@"income01" withAdjustedVals:doAdjustForInflation];
+
+		
+    NSLog(@"... Done testing: testIncomeWithInflationAdjustment");
+    
+     
+}
+
+
 -(void)testAsset
 {
 	[self resetCoredData];
