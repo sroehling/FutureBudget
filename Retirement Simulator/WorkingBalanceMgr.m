@@ -18,6 +18,8 @@
 #import "InterestBearingWorkingBalance.h"
 #import "WorkingBalanceCltn.h"
 
+static const CGFloat kBalanceDecrementComparisonTolerance = 0.001;
+
 
 @implementation WorkingBalanceMgr
 
@@ -153,7 +155,7 @@
 		remainingBalanceToDecrement -= amountDecremented;
 		if(remainingBalanceToDecrement <= 0.0)
 		{
-			assert(totalDecremented <= expenseAmount);
+			assert(totalDecremented <= (expenseAmount + kBalanceDecrementComparisonTolerance));
 			return totalDecremented;
 		}
 	}
