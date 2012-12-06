@@ -37,6 +37,7 @@
 #import "AssetInput.h"
 #import "AssetValueXYPlotDataGenerator.h"
 #import "AllAssetValueXYPlotDataGenerator.h"
+#import "AssetGainItemizedTaxAmt.h"
 
 #import "LoanInput.h"
 #import "LoanBalXYPlotDataGenerator.h"
@@ -567,6 +568,167 @@
 	
 
 }
+
+-(void)testDepreciatingAsset
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    	
+	AssetInputTypeSelectionInfo *assetCreator = 
+		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
+
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+
+	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:899.74 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:809.76 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:728.78 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
+	
+	
+
+
+}
+
+
+-(void)testAssetAppreciationWithTaxes
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    	
+	AssetInputTypeSelectionInfo *assetCreator = 
+		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	
+	
+	TaxInputTypeSelectionInfo *taxCreator = 
+	[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+	andDataModelInterface:self.coreData] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	AssetGainItemizedTaxAmt *itemizedAssetGain = [self.coreData insertObject:ASSET_GAIN_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedAssetGain.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
+	itemizedAssetGain.asset  = asset01;
+		
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedAssetGain];
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+
+	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.28 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.31 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
+	
+	
+			TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:82.83 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"flatTax" withAdjustedVals:FALSE];
+
+
+}
+
+
+
+-(void)testAssetDepreciationWithTaxes
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    	
+	AssetInputTypeSelectionInfo *assetCreator = 
+		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
+
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	
+	
+	TaxInputTypeSelectionInfo *taxCreator = 
+	[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+	andDataModelInterface:self.coreData] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	AssetGainItemizedTaxAmt *itemizedAssetGain = [self.coreData insertObject:ASSET_GAIN_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedAssetGain.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
+	itemizedAssetGain.asset  = asset01;
+		
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedAssetGain];
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+
+	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:899.74 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:809.76 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:728.78 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
+	
+	
+			TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"flatTax" withAdjustedVals:FALSE];
+
+
+}
+
 
 
 -(void)testLoan

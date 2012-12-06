@@ -15,6 +15,7 @@
 
 @synthesize digestSum;
 @synthesize applicableTaxPerc;
+@synthesize zeroOutNegativeVals;
 
 -(id)initWithTaxPerc:(double)taxPerc andDigestSum:(InputValDigestSummation*)theSum
 {
@@ -28,6 +29,8 @@
 		self.digestSum = theSum;
 		self.applicableTaxPerc = taxPerc;
 		
+		zeroOutNegativeVals = FALSE;
+		
 	}
 	return self;
 }
@@ -40,14 +43,30 @@
 
 -(double)calcYearlyItemizedAmt
 {
-	return self.applicableTaxPerc * digestSum.yearlyTotal;
+
+	double yearlyTotal = digestSum.yearlyTotal;
+	
+	if(self.zeroOutNegativeVals && (yearlyTotal < 0.0))
+	{
+		yearlyTotal = 0.0;
+	}
+
+	return self.applicableTaxPerc * yearlyTotal;
 }
 
 -(double)dailyItemizedAmt:(NSInteger)dayIndex
 {
 	assert(dayIndex >= 0);
 	assert(dayIndex < MAX_DAYS_IN_YEAR);
-	return self.applicableTaxPerc * [self.digestSum dailySum:dayIndex]; 
+	
+	double dailySum = [self.digestSum dailySum:dayIndex];
+	
+	if(self.zeroOutNegativeVals && (dailySum < 0.0))
+	{
+		dailySum = 0.0;
+	}
+	
+	return self.applicableTaxPerc * dailySum; 
 }
 
 -(void)dealloc

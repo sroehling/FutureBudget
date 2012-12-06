@@ -110,10 +110,12 @@
 	double saleValue = [self.assetValue 
 		zeroOutBalanceAsOfDate:processingParams.currentDate];
 	double purchaseCost  = [self purchaseCost];
-	double gain = saleValue-purchaseCost;
-	assert(gain >= 0.0); // TODO - losses not handled yet
 	
-	[self.sumGainsLosses adjustSum:gain onDay:processingParams.dayIndex];
+	// gainOrLoss could be negative if the asset depreciated and is worth
+	// less at the time of sale than purchase.
+	double gainOrLoss = saleValue-purchaseCost;
+	
+	[self.sumGainsLosses adjustSum:gainOrLoss onDay:processingParams.dayIndex];
 	
 	[processingParams.workingBalanceMgr incrementCashBalance:saleValue 
 			asOfDate:processingParams.currentDate];

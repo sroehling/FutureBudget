@@ -14,10 +14,17 @@
     @private
 		double applicableTaxPerc;
 		InputValDigestSummation *digestSum;
+		
+		
+		// zeroOutNegativeVals is used for taxable amounts which can either be
+		// positive or negative, such as asset gains and losses. If a negative
+		// value is seen, it is zeroed out if it is negative.
+		BOOL zeroOutNegativeVals; // default is FALSE
 }
 
 @property double applicableTaxPerc;
 @property(nonatomic,retain) InputValDigestSummation *digestSum;
+@property BOOL zeroOutNegativeVals;
 
 -(id)initWithTaxPerc:(double)taxPerc andDigestSum:(InputValDigestSummation*)theSum;
 -(double)calcYearlyItemizedAmt;

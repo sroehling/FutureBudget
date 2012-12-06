@@ -118,8 +118,12 @@
 		getSimInfo:itemizedTaxAmt.asset];
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
+	
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
 		andDigestSum:simInfo.sumGainsLosses] autorelease];
+		
+	// Any asset losses are zeroed out for purposes of computing taxes.
+	self.calcEntry.zeroOutNegativeVals = TRUE;
 }
 
 -(void)visitLoanInterestItemizedTaxAmt:(LoanInterestItemizedTaxAmt *)itemizedTaxAmt
