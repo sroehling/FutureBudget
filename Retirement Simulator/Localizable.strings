@@ -390,7 +390,7 @@
 "WHAT_IF_ACCOUNT_CONTRIB_FREQUENCY" = "Contribution Frequency";
 "WHAT_IF_FREQUENCY_CASH_FLOW" = "Income and Expense Frequency";
 "WHAT_IF_ACCOUNT_DEFERRED_WITHDRAWALS" = "Deferred Withdrawals";
-"WHAT_IF_ENABLED_SUBTITLE" = "Enable or disable expenses, asset purchases, savings contributions, etc.";
+"WHAT_IF_ENABLED_SUBTITLE" = "Enable or disable incomes, expenses, transfers, asset purchases, savings contributions, etc.";
 "WHAT_IF_ENABLED_ACCOUNT_CONTRIBS" = "Account Contributions";
 "WHAT_IF_ENABLED_LOAN" = "Loans";
 "WHAT_IF_ENABLED_LOAN_DOWN_PMT" = "Loan Down Payment";
@@ -400,6 +400,7 @@
 "WHAT_IF_ENABLED_EXPENSE" = "Expenses";
 "WHAT_IF_ENABLED_CASH_FLOW" = "Enabled Expenses or Incomes";
 "WHAT_IF_ENABLED_INCOME" = "Incomes";
+"WHAT_IF_ENABLED_TRANSFER" = "Transfers";
 "WHAT_IF_ENABLED_ASSET" = "Enabled Asset Purchases";
 "WHAT_IF_ENABLED_TAX" = "Enabled Taxes";
 "WHAT_IF_WITHDRAWALS_FORM_TITLE" = "Withdrawals";
@@ -407,9 +408,10 @@
 "WHAT_IF_WITHDRAWAL_PRIORITY_SECTION_TITLE" = "Withdrawal Priorities";
 "WHAT_IF_WITHDRAWAL_DEFERRED_SECTION_TITLE" = "Deferred Withdrawals";
 "WHAT_IF_AMOUNTS_FORM_TITLE" = "Amounts";
-"WHAT_IF_AMOUNTS_SUBTITLE" = "Change the amounts for income, expenses, asset purchases, loan costs, account contributions or extra loan payments.";
+"WHAT_IF_AMOUNTS_SUBTITLE" = "Change the amounts for income, expenses, transfers, asset purchases, loan costs, account contributions or extra loan payments.";
 "WHAT_IF_AMOUNTS_INCOME" = "Income Amount";
 "WHAT_IF_AMOUNTS_EXPENSE" = "Expense Amounts";
+"WHAT_IF_AMOUNTS_TRANSFER" = "Transfer Amounts";
 "WHAT_IF_AMOUNTS_CASH_FLOW" = "Income or Expense Amounts";
 "WHAT_IF_AMOUNTS_ACCOUNT_CONTRIBS" = "Account Contributions";
 "WHAT_IF_AMOUNTS_LOAN_COST" = "Loan Amounts Borrowed";
@@ -423,10 +425,11 @@
 "WHAT_IF_RETURN_ASSET_APPRECIATION" = "Asset Appreciation";
 "WHAT_IF_RETURN_ACCOUNT_INTEREST" = "Savings Interest";
 "WHAT_IF_GROWTH_RATE_FIELD_CAPTION" = "Growth Rates";
-"WHAT_IF_GROWTH_RATE_SUBTITLE" = "Change annual growth rates for incomes, expenses, extra loan payments, or savings contributions.";
+"WHAT_IF_GROWTH_RATE_SUBTITLE" = "Change annual growth rates for incomes, expenses, transfers, extra loan payments, or savings contributions.";
 "WHAT_IF_GROWTH_RATE_FORM_TITLE" = "Growth Rates";
 "WHAT_IF_GROWTH_RATE_INCOME" = "Incomes";
 "WHAT_IF_GROWTH_RATE_EXPENSE" = "Expenses";
+"WHAT_IF_GROWTH_RATE_TRANSFER" = "Transfers";
 "WHAT_IF_GROWTH_RATE_CASH_FLOW" = "Income and Expense Growth";
 "WHAT_IF_GROWTH_RATE_ACCOUNT_CONTRIBS" = "Account Contributions";
 "WHAT_IF_GROWTH_RATE_LOAN_EXTRA_PMT" = "Loan Extra Payments";

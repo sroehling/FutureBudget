@@ -20,6 +20,8 @@
 #import "ExpenseInput.h"
 #import "IncomeInput.h"
 #import "AssetInput.h"
+#import "TransferInput.h"
+
 #import "NumberHelper.h"
 #import "DeferredWithdrawalFieldEditInfo.h"
 #import "Scenario.h"
@@ -178,6 +180,17 @@
 		}
 	}
 	
+	inputs = [parentContext.dataModelController fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME];
+	if([inputs count] > 0)
+	{
+		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_ENABLED_TRANSFER")];
+		for(TransferInput *transfer in inputs)
+		{
+			[formPopulator populateMultiScenBoolField:transfer.cashFlowEnabled withLabel:transfer.name];
+		}
+	}
+	
+	
 	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
@@ -334,6 +347,21 @@
 				andValueName:expense.name];
  		}
 	}
+
+
+	inputs = [parentContext.dataModelController
+		fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME];
+	if([inputs count] > 0)
+	{
+		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_AMOUNTS_TRANSFER")];
+		for(TransferInput *transfer in inputs)
+		{
+			[formPopulator populateMultiScenarioAmount:transfer.amount
+				withValueTitle:transfer.name
+				andValueName:transfer.name];		
+		}
+	}
+
 	
 	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
@@ -497,6 +525,21 @@
 				andValueName:expense.name];
 		}
 	}
+	
+	
+	inputs = [parentContext.dataModelController
+	fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME];
+	if([inputs count] > 0)
+	{
+		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_TRANSFER")];
+		for(TransferInput *transfer in inputs)
+		{
+			[formPopulator populateMultiScenarioGrowthRate:transfer.amountGrowthRate 
+				withLabel:transfer.name
+				andValueName:transfer.name];
+		}
+	}
+
 	
 	inputs = [parentContext.dataModelController  
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
