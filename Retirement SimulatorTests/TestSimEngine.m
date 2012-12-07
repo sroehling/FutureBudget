@@ -478,10 +478,10 @@
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
-	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-15"]];	
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-15"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
 
 	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
 	[simResults runSimulatorForResults];
@@ -489,15 +489,83 @@
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.31 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
 	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
 	
+	// Asset should be included in net worth calculations
+	// In this case, since the asset was purchased after the start of simulation,
+	// the cost to purchase the asset comes from the cash balance. So, the net worth
+	// only appreciates by the asset appreciation, because the original purchase price
+	// has already been deducted from the cash balance (and added to the deficit balance).
+	NetWorthXYPlotDataGenerator *netWorthData = [[[NetWorthXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:110.02 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:231.06 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:231.06 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:231.06 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Net worth with asset" withAdjustedVals:FALSE];
 
 }
+
+
+-(void)testAssetPurchasedBeforeSimStart
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    	
+	AssetInputTypeSelectionInfo *assetCreator = 
+		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelInterface:self.coreData] autorelease];
+		
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	
+	// If the asset purchase date is before the simulation start, 'startingValue' is
+	// used as a baseline value to use as te asset's value going into the simulation.
+	asset01.startingValue = [NSNumber numberWithDouble:1000.0];
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+
+	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.28 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.31 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
+	
+	// Asset should be included in net worth calculations
+	// In this case, since the asset was purchased before the start of simulation, the
+	// total asset price should be included.
+	NetWorthXYPlotDataGenerator *netWorthData = [[[NetWorthXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.28
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.312 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	// Even after the asset is sold, the net worth should remain the same, since the sale
+	// of the asset goes into the cash balance.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Net worth with asset" withAdjustedVals:FALSE];
+
+}
+
+
 
 -(void)testFutureAsset
 {
@@ -848,6 +916,8 @@
 
 
 }
+
+
 
 
 
