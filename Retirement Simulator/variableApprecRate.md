@@ -1,23 +1,20 @@
 # Variable Appreciation
 
-Appreciation rates for Assets can remain [fixed][2] or change over time. Variable
+Appreciation rates for Assets can remain [fixed][fixedApprec] or change over time. Variable
 appreciation (or depreciation) rates are used when the appreciation is expected
 to change.
 
-For example, a variable appreciation rate could be used for a [car purchase][1], 
+For example, a variable appreciation rate could be used for a car purchase, 
 which is expected to depreciate quickly in the first couple years of ownership, 
 then depreciate slowly thereafter. Even if the appreciation rate isn't 
 expected to change over time, variable appreciation rates can 
 also be used to setup a list of named values
-which can be quickly selected in different [scenarios][1]. 
+which can be quickly selected in different [scenarios][scen]. 
 
-## Related Examples
-
-* [Purchase a New Vehicle][1]
 
 ## See Also
 
-* [Fixed Appreciation][2]
+* [Fixed Appreciation][fixedApprec]
 
-[1]:recipeNewCar.html
-[2]:fixedApprec.html
+[fixedApprec]:fixedApprec.html
+[scen]:scenario.html

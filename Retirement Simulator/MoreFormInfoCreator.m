@@ -14,7 +14,6 @@
 #import "StaticNavFieldEditInfo.h"
 #import "HelpViewFactory.h"
 #import "GenericFieldBasedTableEditViewControllerFactory.h"
-#import "HelpRecipesFormInfoCreator.h"
 #import "FormContext.h"
 #import "BoolFieldEditInfo.h"
 #import "PasscodeFieldInfo.h"
@@ -34,11 +33,9 @@
 		LOCALIZED_STR(@"HELP_GETTING_STARTED") 
 		andPageRef:@"gettingStarted"];
 
-	[formPopulator populateStaticNavFieldWithReadOnlyFormInfoCreator:
-		[[[HelpRecipesFormInfoCreator alloc] init] autorelease] 
-		andFieldCaption:LOCALIZED_STR(@"MORE_RECIPES_TITLE") 
-		andSubTitle:LOCALIZED_STR(@"MORE_RECIPES_SUBTITLE")];
-		
+	[formPopulator populateHelpPageWithTitle:
+		LOCALIZED_STR(@"MORE_ONLINE_HELP_TITLE")
+		andPageRef:@"onlineHelp"];
 		
 	[formPopulator nextSection];
 	PasscodeFieldInfo *passcodeFieldInfo  = [[[PasscodeFieldInfo alloc] 

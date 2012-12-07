@@ -3,7 +3,7 @@
 Inputs can have different values for different scenarios. 
 For example, an expense's __Amount__
 can have a larger value by default, but a smaller value under an
-alternate scenario for [reduced expenses][1]. 
+alternate scenario for reduced expenses. 
 There are two types of scenarios:
 
 * Default Scenario -  The default scenario represents the inputs' expected
@@ -29,15 +29,3 @@ will be used in the results. A way to compare scenarios is to
 go to the scenario list in the __What If__ tab, then toggle
 back and forth to the __Results__ tab with different scenarios
 selected.
-
-## Related Examples
-
-The following are some examples where an alternate scenario may
-be useful:
-
-* [Cutting Expenses][1]
-* [Early Retirement][2]
-
-
-[1]:recipeCuttingExpenses.html
-[2]:recipeRetireEarly.html

@@ -1,1 +1,0 @@
-## Purchase a Vacation Home
