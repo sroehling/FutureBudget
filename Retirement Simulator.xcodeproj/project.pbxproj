@@ -227,6 +227,7 @@
 		0099A15F14575B1200E35AF9 /* ExpenseDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A15E14575B0F00E35AF9 /* ExpenseDigestEntry.m */; };
 		0099A16214575E5A00E35AF9 /* ExpenseSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */; };
 		0099A165145784CD00E35AF9 /* LoanOrigSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A164145784CC00E35AF9 /* LoanOrigSimEvent.m */; };
+		00A0CE8416727DB800CDFD78 /* markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = 00A0CE8316727DB800CDFD78 /* markdown.css */; };
 		00A254C11476BDD2004F63E3 /* PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */; };
 		00A254C41476CBEC004F63E3 /* PositiveAmountValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C31476CBEC004F63E3 /* PositiveAmountValidator.m */; };
 		00A254C71476D138004F63E3 /* GrowthRateFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C61476D137004F63E3 /* GrowthRateFieldValidator.m */; };
@@ -325,7 +326,6 @@
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
 		00E898281472F30700FB3D01 /* DataModelDeleteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E898271472F30700FB3D01 /* DataModelDeleteTest.m */; };
-		00E9FB86166920A600DB0E85 /* markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = 00E9FB85166920A600DB0E85 /* markdown.css */; };
 		00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */; };
 		00EC1F91139737D20085B25C /* SimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F90139737D20085B25C /* SimDate.m */; };
 		00EC1F941397396D0085B25C /* MilestoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F931397396D0085B25C /* MilestoneDate.m */; };
@@ -841,6 +841,7 @@
 		0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseSimInfo.m; sourceTree = "<group>"; };
 		0099A163145784CA00E35AF9 /* LoanOrigSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanOrigSimEvent.h; sourceTree = "<group>"; };
 		0099A164145784CC00E35AF9 /* LoanOrigSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanOrigSimEvent.m; sourceTree = "<group>"; };
+		00A0CE8316727DB800CDFD78 /* markdown.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = markdown.css; path = ../../MarkdownHelpGeneration/markdown.css; sourceTree = "<group>"; };
 		00A254BF1476BDD2004F63E3 /* PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentFieldValidator.h; sourceTree = "<group>"; };
 		00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentFieldValidator.m; sourceTree = "<group>"; };
 		00A254C21476CBEB004F63E3 /* PositiveAmountValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositiveAmountValidator.h; sourceTree = "<group>"; };
@@ -998,7 +999,6 @@
 		00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigestEntryCltn.m; sourceTree = "<group>"; };
 		00E898261472F30700FB3D01 /* DataModelDeleteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelDeleteTest.h; sourceTree = "<group>"; };
 		00E898271472F30700FB3D01 /* DataModelDeleteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelDeleteTest.m; sourceTree = "<group>"; };
-		00E9FB85166920A600DB0E85 /* markdown.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = markdown.css; path = ../../MarkdownHelpGeneration/markdown.css; sourceTree = "<group>"; };
 		00EC1F8B139736D40085B25C /* SimDateFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateFormInfoCreator.m; sourceTree = "<group>"; };
 		00EC1F8F139737D20085B25C /* SimDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDate.h; sourceTree = "<group>"; };
@@ -2047,7 +2047,7 @@
 		00A36BDC136C6CAE008A5C4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				00E9FB85166920A600DB0E85 /* markdown.css */,
+				00A0CE8316727DB800CDFD78 /* markdown.css */,
 				00D6846C14CE004800E3AC9F /* Localizable.strings */,
 				00A36BDD136C6CAE008A5C4C /* Retirement Simulator-Info.plist */,
 				00A36BDE136C6CAE008A5C4C /* InfoPlist.strings */,
@@ -2486,7 +2486,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E9FB86166920A600DB0E85 /* markdown.css in Resources */,
 				00A36BE0136C6CAE008A5C4C /* InfoPlist.strings in Resources */,
 				00C3DCC81667F0CF00F1F490 /* ResultraGenericLibResources.bundle in Resources */,
 				00A36BE9136C6CAE008A5C4C /* MainWindow.xib in Resources */,
@@ -2549,6 +2548,7 @@
 				00140506155DC40E0084136B /* bargraphicon.png in Resources */,
 				00E0726A155DCB41008B3E15 /* resultsTableIcon.png in Resources */,
 				001056371672723E004E647F /* onlineHelp.md in Resources */,
+				00A0CE8416727DB800CDFD78 /* markdown.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
