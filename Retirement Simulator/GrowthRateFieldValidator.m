@@ -32,4 +32,9 @@
 	}
 }
 
+-(BOOL)supportsNegativeValues
+{
+	return TRUE;
+}
+
 @end
