@@ -83,7 +83,7 @@
 			getValueForCurrentOrDefaultScenario];
 	    NSString *endDateDisplay = [endDate 
 				inlineDescription:[DateHelper theHelper].mediumDateFormatter];;
-		untilDesc = [NSString stringWithFormat:@" until %@",endDateDisplay];
+		untilDesc = [NSString stringWithFormat:@" %@ %@",endDate.endDatePrefix,endDateDisplay];
 	}
 	
 	DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)

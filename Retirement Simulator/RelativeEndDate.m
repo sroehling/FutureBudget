@@ -39,6 +39,10 @@ NSString * const RELATIVE_END_DATE_MONTHS_OFFSET_KEY = @"monthsOffset";
 	return [self relativeDateDescription];
 }
 
+-(NSString*)endDatePrefix
+{
+	return LOCALIZED_STR(@"RELATIVE_END_DATE_END_DATE_PREFIX");
+}
 
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor
 {

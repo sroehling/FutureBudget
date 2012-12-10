@@ -8,6 +8,7 @@
 
 #import "MilestoneDate.h"
 #import "SimDateVisitor.h"
+#import "LocalizationHelper.h"
 
 
 NSString * const MILESTONE_DATE_ENTITY_NAME = @"MilestoneDate";
@@ -21,6 +22,10 @@ NSString * const MILESTONE_DATE_ENTITY_NAME = @"MilestoneDate";
 			[withFormat stringFromDate:self.date], self.name];
 }
 
+-(NSString*)endDatePrefix
+{
+	return LOCALIZED_STR(@"MILESTONE_DATE_END_DATE_PREFIX");
+}
 
 -(void)acceptVisitor:(id<SimDateVisitor>)visitor
 {

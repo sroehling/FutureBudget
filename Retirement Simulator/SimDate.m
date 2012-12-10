@@ -35,6 +35,12 @@ NSString * const SIM_DATE_DATE_KEY = @"date";
 	return nil;
 }
 
+- (NSString *)endDatePrefix
+{
+	assert(0); // must be overridden
+	return nil;
+}
+
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor
 {
 	assert(0); // must be overridden

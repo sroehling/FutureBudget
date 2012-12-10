@@ -8,6 +8,7 @@
 
 #import "FixedDate.h"
 #import "SimDateVisitor.h"
+#import "LocalizationHelper.h"
 
 NSString * const FIXED_DATE_ENTITY_NAME = @"FixedDate";
 
@@ -25,6 +26,11 @@ NSString * const FIXED_DATE_ENTITY_NAME = @"FixedDate";
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat
 {
 	return [withFormat stringFromDate:self.date];
+}
+
+-(NSString*)endDatePrefix
+{
+	return LOCALIZED_STR(@"FIXED_DATE_END_DATE_PREFIX");
 }
 
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor

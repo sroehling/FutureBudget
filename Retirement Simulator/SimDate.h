@@ -30,6 +30,7 @@ extern NSString * const SIM_DATE_DATE_KEY;
 @property BOOL isSelectedForSelectableObjectTableView;
 
 - (NSString *)inlineDescription:(NSDateFormatter*)withFormat;
+- (NSString *)endDatePrefix;
 
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor;
 - (NSDate*)endDateWithStartDate:(NSDate*)startDate;
