@@ -47,6 +47,8 @@
 "INPUT_TYPE_TRANSFER_INLINE" = "transfer";
 "INPUT_TYPE_TRANSFER_TITLE" = "Transfer";
 "INPUT_LIST_SECTION_TITLE_TRANSFER" = "Transfers";
+"INPUT_LIST_INCOME_EXPENSE_DESCRIPTION_FORMAT" = "%@ starting on %@, repeating %@, %@";
+"INPUT_LIST_TRANSFER_DESCRIPTION_FORMAT" = "%@ from '%@' to '%@', starting on %@, repeating %@, %@";
 "INPUT_TRANSFER_FROM_FIELD_LABEL" = "Transfer From";
 "INPUT_TRANSFER_FROM_PROMPT" = "Select a Source"; 
 "INPUT_TRANSFER_TO_FIELD_LABEL" = "Transfer To";

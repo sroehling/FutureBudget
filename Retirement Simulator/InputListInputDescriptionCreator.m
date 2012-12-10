@@ -12,6 +12,7 @@
 #import "NumberHelper.h"
 #import "DateHelper.h"
 #import "ExpenseInput.h"
+#import "IncomeInput.h"
 #import "SimDate.h"
 #import "EventRepeatFrequency.h"
 #import "VariableValueRuntimeInfo.h"
@@ -31,6 +32,7 @@
 #import "MultiScenarioInputValue.h"
 #import "DataModelController.h"
 #import "TransferInput.h"
+#import "TransferEndpoint.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -55,24 +57,46 @@
 	return nil;
 }
 
-- (void) visitCashFlow:(CashFlowInput *)cashFlow
+
+-(NSString*)formattedCashFlowAmount:(CashFlowInput *)cashFlow
 {
 	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
 		createForDataModelController:self.dataModelController
 		andMultiScenarioAmount:cashFlow.amount 
 		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")
 		andValueName:cashFlow.name];
-	
 
 	DateSensitiveValue *amount = (DateSensitiveValue*)
 			[cashFlow.amount.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
+	
+	return amountDisplay;
 
-	SimDate *startDate = (SimDate*)[cashFlow.startDate.simDate
-	 getValueForCurrentOrDefaultScenario]; 
-	NSString *startDateDisplay = [startDate 
-						inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+}
 
+-(NSString*)formattedCashflowDate:(MultiScenarioSimDate*)cashFlowDate
+{
+	SimDate *theDate = (SimDate*)[cashFlowDate.simDate getValueForCurrentOrDefaultScenario]; 
+	NSString *dateDisplay = [theDate
+		inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+	return dateDisplay;
+}
+
+-(NSString*)formattedCashFlowGrowthRate:(CashFlowInput*)cashFlow
+{
+	DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)
+			[cashFlow.amountGrowthRate.growthRate getValueForCurrentOrDefaultScenario];
+	
+	NSString *growthRateDesc = [amountGrowthRate
+		inlineDescription:[VariableValueRuntimeInfo
+		createForSharedInflationRateWithDataModelController:self.dataModelController andInput:cashFlow]];
+		
+	return growthRateDesc;
+}
+
+
+-(NSString*)formattedCashFlowRepeatFreq:(CashFlowInput*)cashFlow
+{
 	EventRepeatFrequency *repeatFreq = 
 		(EventRepeatFrequency*)[cashFlow.eventRepeatFrequency getValueForCurrentOrDefaultScenario];
 	NSString *repeatDesc = [repeatFreq inlineDescription];
@@ -83,29 +107,58 @@
 			getValueForCurrentOrDefaultScenario];
 	    NSString *endDateDisplay = [endDate 
 				inlineDescription:[DateHelper theHelper].mediumDateFormatter];;
+				
 		untilDesc = [NSString stringWithFormat:@" %@ %@",endDate.endDatePrefix,endDateDisplay];
 	}
 	
-	DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)
-			[cashFlow.amountGrowthRate.growthRate getValueForCurrentOrDefaultScenario];
+	NSString *repeatFreqDesc = [NSString stringWithFormat:@"%@%@",
+	 repeatDesc,untilDesc];
 	
-	NSString *inflationDesc = [amountGrowthRate 
-		inlineDescription:[VariableValueRuntimeInfo createForSharedInflationRateWithDataModelController:self.dataModelController andInput:cashFlow]];
-	self.generatedDesc = [NSString stringWithFormat:@"%@ starting on %@, repeating %@%@, %@",
-						  amountDisplay,startDateDisplay,repeatDesc,untilDesc,inflationDesc];
+	return repeatFreqDesc;
+}
+
+-(NSString*)incomeOrExpenseDesc:(CashFlowInput *)cashFlow
+{
+	NSString *amountDisplay = [self formattedCashFlowAmount:cashFlow];
+	
+	NSString *startDateDisplay = [self formattedCashflowDate:cashFlow.startDate];
+
+	NSString *repeatFreqDesc = [self formattedCashFlowRepeatFreq:cashFlow];
+	
+	NSString *inflationDesc = [self formattedCashFlowGrowthRate:cashFlow];
+		
+	return [NSString stringWithFormat:LOCALIZED_STR(@"INPUT_LIST_INCOME_EXPENSE_DESCRIPTION_FORMAT"),
+						  amountDisplay,startDateDisplay,repeatFreqDesc,inflationDesc];
+}
+
+- (void) visitCashFlow:(CashFlowInput *)cashFlow
+{
 
 }
 
 - (void)visitExpense:(ExpenseInput*)expense
-{ 
+{
+	self.generatedDesc = [self incomeOrExpenseDesc:expense];
 }
 
 - (void)visitIncome:(IncomeInput*)input
 {
+	self.generatedDesc = [self incomeOrExpenseDesc:input];
 }
 
 - (void)visitTransfer:(TransferInput *)transfer
 {
+	NSString *amountDisplay = [self formattedCashFlowAmount:transfer];
+	
+	NSString *startDateDisplay = [self formattedCashflowDate:transfer.startDate];
+
+	NSString *repeatFreqDesc = [self formattedCashFlowRepeatFreq:transfer];
+	
+	NSString *inflationDesc = [self formattedCashFlowGrowthRate:transfer];
+		
+	self.generatedDesc=  [NSString stringWithFormat:LOCALIZED_STR(@"INPUT_LIST_TRANSFER_DESCRIPTION_FORMAT"),
+						  amountDisplay,transfer.fromEndpoint.endpointLabel,transfer.toEndpoint.endpointLabel,
+						  startDateDisplay,repeatFreqDesc,inflationDesc];
 }
 
 - (void)visitAccount:(Account *)account
