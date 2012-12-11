@@ -21,6 +21,8 @@
 #import "IncomeInput.h"
 #import "AssetInput.h"
 #import "TransferInput.h"
+#import "MultiScenarioInputValue.h"
+#import "EventRepeatFrequency.h"
 
 #import "NumberHelper.h"
 #import "DeferredWithdrawalFieldEditInfo.h"
@@ -641,6 +643,33 @@
 
 @implementation WhatIfDatesFormInfoCreator
 
+-(BOOL)cashFlowEventFrequencyRepeatsMoreThanOnce:(CashFlowInput*)cashFlow
+	forScenario:(Scenario*)inputScenario
+{
+	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
+		[cashFlow.eventRepeatFrequency getValueForScenarioOrDefault:inputScenario];
+	assert(repeatFreq != nil);
+	return [repeatFreq  eventRepeatsMoreThanOnce];
+
+}
+
+-(NSSet*)cashFlowInputsRepeatingMoreThanOnce:(NSSet*)allCashFlows
+		forScenario:(Scenario*)inputScenario
+{
+	assert(allCashFlows != nil);
+	assert(inputScenario != nil);
+	NSMutableSet *repeatingMoreThanOnce = [[[NSMutableSet alloc] init] autorelease];
+	for(CashFlowInput *cashFlow in allCashFlows)
+	{
+		if([self cashFlowEventFrequencyRepeatsMoreThanOnce:cashFlow forScenario:inputScenario])
+		{
+			[repeatingMoreThanOnce addObject:cashFlow];
+		}
+	}
+	return repeatingMoreThanOnce;
+}
+
+
 
 - (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
@@ -773,7 +802,9 @@
 
 
 
-	inputs = [parentContext.dataModelController  fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME];
+	inputs = [self cashFlowInputsRepeatingMoreThanOnce:
+		[parentContext.dataModelController  fetchObjectsForEntityName:INCOME_INPUT_ENTITY_NAME]
+		forScenario:formPopulator.inputScenario];
 	if([inputs count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
@@ -798,8 +829,9 @@
 		}
 	}
 	
-	inputs = [parentContext.dataModelController  
-				fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME];
+	inputs = [self cashFlowInputsRepeatingMoreThanOnce:
+		[parentContext.dataModelController  fetchObjectsForEntityName:EXPENSE_INPUT_ENTITY_NAME]
+		forScenario:formPopulator.inputScenario];
 	if([inputs count]  > 0)
 	{
 
