@@ -441,13 +441,13 @@
 "WHAT_IF_INVESTMENT_RETURN_SUBTITLE" = "Change the expected appreciation or depreciation of assets, the interest rates on accounts, or the expected rate of return on investments.";
 "WHAT_IF_RETURN_ASSET_APPRECIATION" = "Asset Appreciation";
 "WHAT_IF_RETURN_ACCOUNT_INTEREST" = "Savings Interest";
-"WHAT_IF_GROWTH_RATE_FIELD_CAPTION" = "Growth Rates";
-"WHAT_IF_GROWTH_RATE_SUBTITLE" = "Change annual growth rates for incomes, expenses, transfers, extra loan payments, or savings contributions.";
-"WHAT_IF_GROWTH_RATE_FORM_TITLE" = "Growth Rates";
+"WHAT_IF_GROWTH_RATE_FIELD_CAPTION" = "Growth and Interest Rates";
+"WHAT_IF_GROWTH_RATE_SUBTITLE" = "Change annual percentage growth or interest rates for incomes, expenses, transfers, loans, or savings contributions.";
+"WHAT_IF_GROWTH_RATE_FORM_TITLE" = "Rates";
 "WHAT_IF_GROWTH_RATE_INCOME" = "Incomes";
 "WHAT_IF_GROWTH_RATE_EXPENSE" = "Expenses";
 "WHAT_IF_GROWTH_RATE_TRANSFER" = "Transfers";
-"WHAT_IF_GROWTH_RATE_CASH_FLOW" = "Income and Expense Growth";
+"WHAT_IF_GROWTH_RATE_CASH_FLOW" = "Income and Expense";
 "WHAT_IF_GROWTH_RATE_ACCOUNT_CONTRIBS" = "Account Contributions";
 "WHAT_IF_GROWTH_RATE_LOAN_EXTRA_PMT" = "Loan Extra Payments";
 "WHAT_IF_GROWTH_RATE_LOAN_COST" = "Loan Cost (Amount Borrowed)";
