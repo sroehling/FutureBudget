@@ -8,6 +8,7 @@
 
 #import "ResultsViewController.h"
 #import "ResultsViewInfo.h"
+#import "UIHelper.h"
 
 @implementation ResultsViewController
 
@@ -24,6 +25,12 @@
 		self.title = self.viewInfo.viewTitle;
 	}
 	return self;
+}
+
+- (void)setTitle:(NSString *)title
+{
+	[super setTitle:title];
+	[UIHelper setCommonTitleForController:self withTitle:title];
 }
 
 
