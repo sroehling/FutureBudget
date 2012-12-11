@@ -50,6 +50,11 @@
 			andFormContext:parentContext] autorelease];
 			
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ASSET_TAXES_TITLE");
+
+	[formPopulator populateWithHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_TAX_DETAIL_HEADER_FORMAT"),
+			self.asset.name]
+		andSubHeader:LOCALIZED_STR(@"INPUT_ASSET_TAX_DETAIL_SUBHEADER")];
+
 	
 	NSSet *inputs = [parentContext.dataModelController
 			fetchObjectsForEntityName:TAX_INPUT_ENTITY_NAME];

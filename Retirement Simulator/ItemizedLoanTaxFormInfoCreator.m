@@ -9,6 +9,7 @@
 #import "ItemizedLoanTaxFormInfoCreator.h"
 
 #import "FormInfo.h"
+#import "LoanInput.h"
 #import "InputFormPopulator.h"
 #import "AssetInput.h"
 #import "DataModelController.h"
@@ -49,6 +50,12 @@
 			andFormContext:parentContext] autorelease];
 			
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_LOAN_TAXES_TITLE");
+
+	[formPopulator populateWithHeader:[NSString
+		stringWithFormat:LOCALIZED_STR(@"INPUT_LOAN_TAX_DETAIL_HEADER_FORMAT"),
+		self.loan.name]
+	andSubHeader:LOCALIZED_STR(@"INPUT_LOAN_TAX_DETAIL_SUBHEADER")];
+
 	
 	NSSet *inputs = [parentContext.dataModelController 
 			fetchObjectsForEntityName:TAX_INPUT_ENTITY_NAME];

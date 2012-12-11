@@ -49,6 +49,10 @@
 			
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_INCOME_ITEMIZED_TAXES_FORM_TITLE");
 	
+	[formPopulator populateWithHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_INCOME_TAX_DETAIL_HEADER_FORMAT"),
+			self.income.name]
+		andSubHeader:LOCALIZED_STR(@"INPUT_INCOME_TAX_DETAIL_SUBHEADER")];
+	
 	NSSet *inputs = [parentContext.dataModelController 
 			fetchObjectsForEntityName:TAX_INPUT_ENTITY_NAME];
 	if([inputs count] > 0)
