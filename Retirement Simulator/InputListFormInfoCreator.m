@@ -161,4 +161,10 @@
 	
 }
 
+// Show the input list using a plain table style
+-(UITableViewStyle)tableViewStyle
+{
+	return UITableViewStylePlain;
+}
+
 @end
