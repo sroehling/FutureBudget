@@ -15,7 +15,7 @@
 
 "INPUT_LIST_SECTION_TITLE_EXPENSES" = "Expenses";
 "INPUT_LIST_SECTION_TITLE_INCOMES" = "Incomes";
-"INPUT_LIST_SECTION_TITLE_ACCOUNTS" = "Accounts";
+"INPUT_LIST_SECTION_TITLE_ACCOUNTS" = "Savings and Investment Accounts";
 "INPUT_LIST_SECTION_TITLE_LOANS" = "Loans";
 "INPUT_LIST_SECTION_TITLE_ASSETS" = "Assets";
 "INPUT_LIST_SECTION_TITLE_TAXES" = "Taxes";
@@ -152,7 +152,7 @@
 "SHARED_INTEREST_RATE_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
 "SHARED_INTEREST_RATE_VALUE_PROMPT" = "Enter a rate";
 "SHARED_INTEREST_RATE_PERIOD" = "every year";
-"SHARED_INTEREST_RATE_ACTION_VERB" = "accrue interest";
+"SHARED_INTEREST_RATE_ACTION_VERB" = "yield";
 
 
 "SHARED_LOAN_DOWN_PMT_VALUE_TITLE" = "Down Payment";
