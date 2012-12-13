@@ -552,6 +552,7 @@
 		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
+		002E7B66167A2DD700713684 /* AppStoreInfo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStoreInfo.md; sourceTree = "<group>"; };
 		002FAE9B14D3111E00AE2B41 /* milestoneDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = milestoneDate.md; sourceTree = "<group>"; };
 		002FAE9D14D3194800AE2B41 /* startingValue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = startingValue.md; sourceTree = "<group>"; };
 		002FAE9F14D32B3F00AE2B41 /* scenario.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario.md; sourceTree = "<group>"; };
@@ -1338,6 +1339,14 @@
 			name = "Test Helper Code";
 			sourceTree = "<group>";
 		};
+		002E7B65167A2DB100713684 /* App Store */ = {
+			isa = PBXGroup;
+			children = (
+				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
+			);
+			name = "App Store";
+			sourceTree = "<group>";
+		};
 		002FAE9A14D3105900AE2B41 /* Key Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -2030,6 +2039,7 @@
 		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				002E7B65167A2DB100713684 /* App Store */,
 				00D6848614CF61FB00E3AC9F /* 3rdParty */,
 				008AA408141ABB0600FF2A52 /* Icons */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
