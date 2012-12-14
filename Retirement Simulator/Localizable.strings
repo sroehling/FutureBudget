@@ -589,6 +589,8 @@
 "MORE_VIEW_TITLE" = "More";
 "MORE_HELP_SECTION_TITLE" = "Help";
 "MORE_ONLINE_HELP_TITLE" = "Help Pages";
+"HELP_ABOUT" = "About FinSim";
+"MORE_APP_INFO_SECTION_TITLE" = "Information";
 "MORE_ONLINE_HELP_SUBTITLE" = "Examples and frequently asked questions";
 "HELP_GETTING_STARTED" = "Getting Started";
 
@@ -604,5 +606,12 @@
 
 "HELP_INFO_VIEW_DONE_BUTTON_LABEL" = "Done";
 "NUMBER_FIELD_PLACEHOLDER" = "Enter a Value";
+
+
+/* This string is also defined in ResultraGenericLib. The ones here overrides the
+  more generic strings given the library */
+"PASSCODE_ENTRY_PROMPT" = "Enter a passcode for FinSim";
+"PASSCODE_VERIFY_PROMPT" = "Enter your FinSim passcode";
+
 
 

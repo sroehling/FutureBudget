@@ -23,6 +23,8 @@
 #import "ColorHelper.h"
 #import "MoreFormInfoCreator.h"
 #import "PasscodeHelper.h"
+#import "Appirater.h"
+#import "AppHelper.h"
 
 #import "FormPopulator.h"
 #import "FormContext.h"
@@ -32,6 +34,12 @@
 @synthesize window=_window;
 @synthesize tabBarController=_tabBarController;
 @synthesize passcodeValidator;
+
+-(void)configWithMainTabBarController
+{
+	self.window.rootViewController = self.tabBarController;
+	[Appirater appLaunched:YES];
+}
 
 -(void)configStartingViewController
 {
@@ -45,11 +53,21 @@
 	}
 	else 
 	{
-		self.window.rootViewController = self.tabBarController;
+		[self configWithMainTabBarController];
 	}
 
 }
 
+-(void)configureReviewAppPrompt
+{
+	[Appirater setAppId:FINSIM_APP_ID];
+    [Appirater setDaysUntilPrompt:2];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:5];
+    [Appirater setDebug:YES];
+
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -132,8 +150,8 @@
 		
     
 	self.passcodeValidator = [[[PasscodeValidator alloc] initWithDelegate:self] autorelease];
-	[self configStartingViewController];
-	
+	[self configureReviewAppPrompt];
+		
     [self.window makeKeyAndVisible];
     
     
@@ -194,8 +212,7 @@
 
 -(void)passcodeValidated
 {
-	[self.window setRootViewController:self.tabBarController];   
-
+	[self configWithMainTabBarController];
 }
 
 

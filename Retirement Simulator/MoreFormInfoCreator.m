@@ -17,6 +17,7 @@
 #import "FormContext.h"
 #import "BoolFieldEditInfo.h"
 #import "PasscodeFieldInfo.h"
+#import "RateAppFieldEditInfo.h"
 
 @implementation MoreFormInfoCreator
 
@@ -36,6 +37,13 @@
 	[formPopulator populateHelpPageWithTitle:
 		LOCALIZED_STR(@"MORE_ONLINE_HELP_TITLE")
 		andPageRef:@"onlineHelp"];
+		
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"MORE_APP_INFO_SECTION_TITLE")];
+		
+		
+	[formPopulator populateHelpPageWithTitle:LOCALIZED_STR(@"HELP_ABOUT") andPageRef:@"about"];
+
+	[formPopulator.currentSection addFieldEditInfo:[[[RateAppFieldEditInfo alloc] init] autorelease]];
 		
 	[formPopulator nextSection];
 	PasscodeFieldInfo *passcodeFieldInfo  = [[[PasscodeFieldInfo alloc] 

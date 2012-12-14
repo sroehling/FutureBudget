@@ -159,6 +159,9 @@
 		005DAEF314609A1100D87907 /* LoanInterestItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */; };
 		005DAEF614609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */; };
 		005EF4DF14C9DB84001F3D36 /* UpTo100PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */; };
+		005F8AF9167B877D00148BBE /* AppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 005F8AF8167B877D00148BBE /* AppHelper.m */; };
+		005F8AFB167B8BF900148BBE /* thirdPartyLibs.md in Resources */ = {isa = PBXBuildFile; fileRef = 005F8AFA167B8BF900148BBE /* thirdPartyLibs.md */; };
+		005F8AFD167B8C2900148BBE /* about.md in Resources */ = {isa = PBXBuildFile; fileRef = 005F8AFC167B8C2900148BBE /* about.md */; };
 		0063505813EA1900002E38FA /* RelativeEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0063505713EA1900002E38FA /* RelativeEndDate.m */; };
 		00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A781385D4BC001E02F1 /* DateSensitiveValue.m */; };
 		00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A7B1385D4D9001E02F1 /* DateSensitiveValueChange.m */; };
@@ -704,6 +707,10 @@
 		005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanInterestTaxAmtCreator.m; sourceTree = "<group>"; };
 		005EF4DD14C9DB83001F3D36 /* UpTo100PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpTo100PercentFieldValidator.h; sourceTree = "<group>"; };
 		005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpTo100PercentFieldValidator.m; sourceTree = "<group>"; };
+		005F8AF7167B877D00148BBE /* AppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppHelper.h; sourceTree = "<group>"; };
+		005F8AF8167B877D00148BBE /* AppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppHelper.m; sourceTree = "<group>"; };
+		005F8AFA167B8BF900148BBE /* thirdPartyLibs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = thirdPartyLibs.md; sourceTree = "<group>"; };
+		005F8AFC167B8C2900148BBE /* about.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = about.md; sourceTree = "<group>"; };
 		0063505613EA1900002E38FA /* RelativeEndDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeEndDate.h; sourceTree = "<group>"; };
 		0063505713EA1900002E38FA /* RelativeEndDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeEndDate.m; sourceTree = "<group>"; };
 		00637A771385D4BC001E02F1 /* DateSensitiveValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValue.h; sourceTree = "<group>"; };
@@ -1670,6 +1677,8 @@
 				00A36BE4136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.h */,
 				00A36BE5136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m */,
 				00A36BE7136C6CAE008A5C4C /* MainWindow.xib */,
+				005F8AF7167B877D00148BBE /* AppHelper.h */,
+				005F8AF8167B877D00148BBE /* AppHelper.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -2204,6 +2213,8 @@
 				00D6846D14CE04D000E3AC9F /* Help Pages */,
 				00D6845314CDC99700E3AC9F /* MoreFormInfoCreator.h */,
 				00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */,
+				005F8AFA167B8BF900148BBE /* thirdPartyLibs.md */,
+				005F8AFC167B8C2900148BBE /* about.md */,
 			);
 			name = "More View";
 			sourceTree = "<group>";
@@ -2559,6 +2570,8 @@
 				00E0726A155DCB41008B3E15 /* resultsTableIcon.png in Resources */,
 				001056371672723E004E647F /* onlineHelp.md in Resources */,
 				00A0CE8416727DB800CDFD78 /* markdown.css in Resources */,
+				005F8AFB167B8BF900148BBE /* thirdPartyLibs.md in Resources */,
+				005F8AFD167B8C2900148BBE /* about.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2846,6 +2859,7 @@
 				0014CDB11554807000E9261C /* EndpointWorkingBalanceResolver.m in Sources */,
 				008C5852155C3B7700AB9EE1 /* YearValXYResultsView.m in Sources */,
 				00566B05155D844C0095F36D /* YearValXYResultsCell.m in Sources */,
+				005F8AF9167B877D00148BBE /* AppHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
