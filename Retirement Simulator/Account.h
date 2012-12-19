@@ -12,6 +12,7 @@
 
 extern NSString * const ACCOUNT_STARTING_BALANCE_KEY;
 extern NSString * const ACCOUNT_ENTITY_NAME;
+extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 
 @class MultiScenarioInputValue;
 @class MultiScenarioGrowthRate;

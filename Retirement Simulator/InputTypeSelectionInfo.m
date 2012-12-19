@@ -86,6 +86,9 @@
 
 -(void)populateAccountInputProperties:(Account*)newInput
 {
+	
+	newInput.iconImageName = ACCOUNT_INPUT_DEFAULT_ICON_NAME;
+
 	newInput.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 	newInput.contribGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
@@ -123,6 +126,8 @@
     ExpenseInput *newInput  = (ExpenseInput*)[self.dataModelInterface 
 		createDataModelObject:EXPENSE_INPUT_ENTITY_NAME];;
   
+	newInput.iconImageName = EXPENSE_INPUT_DEFAULT_ICON_NAME;
+  
     [self populateCashFlowInputProperties:newInput];  
 	    
     return newInput;
@@ -136,6 +141,8 @@
 {
     IncomeInput *newInput  = (IncomeInput*)[self.dataModelInterface 
 		createDataModelObject:INCOME_INPUT_ENTITY_NAME];
+		
+	newInput.iconImageName = INCOME_INPUT_DEFAULT_ICON_NAME;
 	
     [self populateCashFlowInputProperties:newInput];
         
@@ -152,6 +159,8 @@
 {
     TransferInput *newInput  = (TransferInput*)[self.dataModelInterface 
 		createDataModelObject:TRANSFER_INPUT_ENTITY_NAME];
+		
+	newInput.iconImageName = TRANSFER_INPUT_DEFAULT_ICON_NAME;
 	
     [self populateCashFlowInputProperties:newInput];
         
@@ -169,7 +178,9 @@
 -(Input*)createInput
 {
 	SavingsAccount *savingsAcct = (SavingsAccount*)[self.dataModelInterface 
-		createDataModelObject:SAVINGS_ACCOUNT_ENTITY_NAME];	
+		createDataModelObject:SAVINGS_ACCOUNT_ENTITY_NAME];
+		
+	savingsAcct.iconImageName = ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 	
 	[self populateAccountInputProperties:savingsAcct];
 	    
@@ -188,6 +199,8 @@
 {
 	LoanInput *newInput  = (LoanInput*)[self.dataModelInterface 
 		createDataModelObject:LOAN_INPUT_ENTITY_NAME];
+		
+	newInput.iconImageName = LOAN_INPUT_DEFAULT_ICON_NAME;
 				
 	newInput.loanEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
@@ -239,6 +252,8 @@
 {
 	AssetInput *newInput  = (AssetInput*)[self.dataModelInterface 
 		createDataModelObject:ASSET_INPUT_ENTITY_NAME];
+		
+	newInput.iconImageName = ASSET_INPUT_DEFAULT_ICON_NAME;
 	
 	newInput.assetEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
@@ -271,6 +286,8 @@
 {
 	TaxInput *newInput  = (TaxInput*)[self.dataModelInterface 
 		createDataModelObject:TAX_INPUT_ENTITY_NAME];
+		
+	newInput.iconImageName = TAX_INPUT_DEFAULT_ICON_NAME;
 	
 	newInput.taxEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	

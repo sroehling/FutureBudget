@@ -12,13 +12,16 @@
 @protocol InputVisitor;
 
 extern NSString * const INPUT_NAME_KEY;
+extern NSString * const INPUT_ICON_IMAGE_NAME_KEY;
+
 
 @interface Input : NSManagedObject {
-@private
+	@private
 }
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * notes;
 
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * iconImageName;
+@property (nonatomic, retain) NSString * notes;
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor;
 

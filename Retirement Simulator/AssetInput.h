@@ -12,6 +12,7 @@
 
 extern NSString * const ASSET_INPUT_ENTITY_NAME;
 extern NSString * const INPUT_ASSET_STARTING_VALUE_KEY;
+extern NSString * const ASSET_INPUT_DEFAULT_ICON_NAME;
 
 @class MultiScenarioInputValue;
 @class MultiScenarioGrowthRate;

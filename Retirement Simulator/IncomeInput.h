@@ -11,6 +11,7 @@
 #import "CashFlowInput.h"
 
 extern NSString * const INCOME_INPUT_ENTITY_NAME;
+extern NSString * const INCOME_INPUT_DEFAULT_ICON_NAME;
 
 @interface IncomeInput : CashFlowInput {
 @private

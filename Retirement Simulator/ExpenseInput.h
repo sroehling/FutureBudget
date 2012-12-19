@@ -11,6 +11,7 @@
 #import "CashFlowInput.h"
 
 extern NSString * const EXPENSE_INPUT_ENTITY_NAME;
+extern NSString * const EXPENSE_INPUT_DEFAULT_ICON_NAME;
 
 @class EventRepeatFrequency;
 

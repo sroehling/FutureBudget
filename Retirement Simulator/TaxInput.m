@@ -16,6 +16,7 @@
 #import "LocalizationHelper.h"
 
 NSString * const TAX_INPUT_ENTITY_NAME = @"TaxInput";
+NSString * const TAX_INPUT_DEFAULT_ICON_NAME = @"piggy.png";
 
 @implementation TaxInput
 

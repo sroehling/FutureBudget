@@ -14,6 +14,7 @@
 
 NSString * const ASSET_INPUT_ENTITY_NAME = @"AssetInput";
 NSString * const INPUT_ASSET_STARTING_VALUE_KEY = @"startingValue";
+NSString * const ASSET_INPUT_DEFAULT_ICON_NAME = @"piggy.png";
 
 @implementation AssetInput
 

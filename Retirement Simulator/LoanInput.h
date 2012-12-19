@@ -20,6 +20,7 @@
 @class MultiScenarioSimEndDate;
 
 extern NSString * const LOAN_INPUT_ENTITY_NAME;
+extern NSString * const LOAN_INPUT_DEFAULT_ICON_NAME;
 
 extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 

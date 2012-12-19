@@ -11,6 +11,7 @@
 #import "Input.h"
 
 extern NSString * const TAX_INPUT_ENTITY_NAME;
+extern NSString * const TAX_INPUT_DEFAULT_ICON_NAME;
 
 @class ItemizedTaxAmts, MultiScenarioAmount, MultiScenarioGrowthRate, MultiScenarioInputValue, TaxBracket;
 

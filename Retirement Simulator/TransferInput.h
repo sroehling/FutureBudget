@@ -15,6 +15,7 @@
 extern NSString * const TRANSFER_INPUT_ENTITY_NAME;
 extern NSString * const TRANSFER_INPUT_FROM_ENDPOINT_KEY;
 extern NSString * const TRANSFER_INPUT_TO_ENDPOINT_KEY;
+extern NSString * const TRANSFER_INPUT_DEFAULT_ICON_NAME;
 
 @interface TransferInput : CashFlowInput
 

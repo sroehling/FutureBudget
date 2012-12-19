@@ -11,7 +11,8 @@
 #import "LocalizationHelper.h"
 #import "IncomeItemizedTaxAmt.h"
 
- NSString * const INCOME_INPUT_ENTITY_NAME = @"IncomeInput";
+NSString * const INCOME_INPUT_ENTITY_NAME = @"IncomeInput";
+NSString * const INCOME_INPUT_DEFAULT_ICON_NAME = @"piggy.png";
 
 @implementation IncomeInput
 

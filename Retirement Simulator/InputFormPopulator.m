@@ -65,6 +65,7 @@
 #import "ItemizedTaxAmtCreator.h"
 #import "ItemizedTaxAmtFieldEditInfo.h"
 #import "FormContext.h"
+#import "NameFieldCell.h"
 
 @implementation InputFormPopulator
 
@@ -122,8 +123,19 @@
 		andFieldLabel:LOCALIZED_STR(@"INPUT_NAME_FIELD_LABEL")
 		andFieldPlaceholder:LOCALIZED_STR(@"INPUT_NAME_PLACEHOLDER")] autorelease];
 		
+	ManagedObjectFieldInfo *imageFieldInfo = [[[ManagedObjectFieldInfo alloc]
+		initWithManagedObject:theInput 
+		andFieldKey:INPUT_ICON_IMAGE_NAME_KEY
+		andFieldLabel:@"N/A" andFieldPlaceholder:@"N/A"] autorelease];
+
+	// TODO - Populate with names array which is specific to the input type
+	// (passed in as a parameter).
+	NSArray *imageNames = [NSArray arrayWithObjects:@"clock.png", @"piggy.png",nil];
+		
 	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] 
-		initWithFieldInfo:fieldInfo] autorelease];
+		initWithFieldInfo:fieldInfo andCustomValidator:nil
+			andParentController:self.formContext.parentController
+			andImageNames:imageNames andImageFieldInfo:imageFieldInfo] autorelease];
 	
     [self.currentSection addFieldEditInfo:fieldEditInfo];
 

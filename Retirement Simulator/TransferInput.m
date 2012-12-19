@@ -13,7 +13,7 @@
 NSString * const TRANSFER_INPUT_ENTITY_NAME = @"TransferInput";
 NSString * const TRANSFER_INPUT_FROM_ENDPOINT_KEY = @"fromEndpoint";
 NSString * const TRANSFER_INPUT_TO_ENDPOINT_KEY = @"toEndpoint";
-
+NSString * const TRANSFER_INPUT_DEFAULT_ICON_NAME = @"piggy.png";
 
 @implementation TransferInput
 @dynamic fromEndpoint;

@@ -34,6 +34,13 @@
 		[[[FormFieldWithSubtitleTableCell alloc] initWithFrame:CGRectZero] autorelease];
 		self.inputCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;   
 		self.inputCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		self.inputCell.tableStyle = UITableViewStylePlain;
+		
+		if((self.input.iconImageName != nil) &&
+			(self.input.iconImageName.length > 0))
+		{
+			self.inputCell.imageView.image = [UIImage imageNamed:self.input.iconImageName];
+		}
 
 
 		assert(theDataModelController != nil);
