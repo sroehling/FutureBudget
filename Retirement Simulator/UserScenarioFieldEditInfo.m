@@ -32,6 +32,13 @@
 		self.scenarioCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;   
 		self.scenarioCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
+		if((self.userScen.iconImageName != nil) &&
+			(self.userScen.iconImageName.length > 0))
+		{
+			self.scenarioCell.imageView.image = [UIImage imageNamed:self.userScen.iconImageName];
+		}
+
+
 	}
 	return self;
 }

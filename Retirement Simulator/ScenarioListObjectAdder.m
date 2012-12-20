@@ -24,6 +24,7 @@
 	// if the parent's object creation is canceled.
 
 	UserScenario *newScenario = [parentContext.dataModelController insertObject:USER_SCENARIO_ENTITY_NAME];
+	newScenario.iconImageName = SCENARIO_DEFAULT_ICON_IMAGE_NAME;
 	UserScenarioFormInfoCreator *scenarioFormCreator = 
 		[[[UserScenarioFormInfoCreator alloc] initWithUserScenario:newScenario] autorelease];
 

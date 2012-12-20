@@ -65,7 +65,19 @@
 		initWithManagedObject:self.userScen andFieldKey:USER_SCENARIO_NAME_KEY 
 		andFieldLabel:LOCALIZED_STR(@"SCENARIO_NAME_FIELD_LABEL") 
 		andFieldPlaceholder:LOCALIZED_STR(@"SCENARIO_NAME_PLACEHOLDER")] autorelease];
-	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+		
+	ManagedObjectFieldInfo *imageFieldInfo = [[[ManagedObjectFieldInfo alloc]
+		initWithManagedObject:self.userScen
+		andFieldKey:SCENARIO_ICON_IMAGE_NAME_KEY
+		andFieldLabel:@"N/A" andFieldPlaceholder:@"N/A"] autorelease];
+
+	// TODO - Populate with names array which is specific to the input type
+	// (passed in as a parameter).
+	NSArray *imageNames = [NSArray arrayWithObjects:@"clock.png", @"piggy.png",@"scales.png",nil];
+		
+	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo
+		andCustomValidator:nil andParentController:parentContext.parentController
+		andImageNames:imageNames andImageFieldInfo:imageFieldInfo] autorelease];
 	
     [sectionInfo addFieldEditInfo:fieldEditInfo];
 	

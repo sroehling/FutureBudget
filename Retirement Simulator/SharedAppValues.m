@@ -130,6 +130,7 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 	sharedVals.sharedNeverEndDate = theNeverEndDate;
 	
 	DefaultScenario *defaultScenario = (DefaultScenario*)[dataModelInterface createDataModelObject:DEFAULT_SCENARIO_ENTITY_NAME];
+	defaultScenario.iconImageName = SCENARIO_DEFAULT_ICON_IMAGE_NAME;
 	sharedVals.defaultScenario = defaultScenario;
 	sharedVals.currentInputScenario = defaultScenario;
 	

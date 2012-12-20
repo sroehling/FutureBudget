@@ -9,12 +9,15 @@
 #import "Scenario.h"
 #import "ScenarioValue.h"
 
+NSString * const SCENARIO_DEFAULT_ICON_IMAGE_NAME = @"scales.png";
+NSString * const SCENARIO_ICON_IMAGE_NAME_KEY = @"iconImageName";
+
 @implementation Scenario
 
 @synthesize isSelectedForSelectableObjectTableView;
 
 @dynamic sharedAppValsCurrentInputScenario;
-
+@dynamic iconImageName;
 
 @dynamic scenarioValueScenario;
 
