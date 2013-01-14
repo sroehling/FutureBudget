@@ -117,15 +117,12 @@
 
 }
 
-
-- (void) visitCashFlow:(CashFlowInput *)cashFlow
+-(void)populateCommonCashFlowFields:(CashFlowInput *)cashFlow
 {
-
-	[self.formPopulator populateInputNameField:cashFlow];
-	
     // Amount section
     
 	[formPopulator nextSection];
+	
 	[self.formPopulator populateMultiScenBoolField:cashFlow.cashFlowEnabled 
 		withLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_ENABLED_FIELD_LABEL")];
 
@@ -185,14 +182,93 @@
         }
         
     }
-    
+}
+
+
+- (void) visitCashFlow:(CashFlowInput *)cashFlow
+{
+	// no-op - population occurs when visiting subclasses
 }
 
 - (void)visitExpense:(ExpenseInput*)expense
-{    
-    formPopulator.formInfo.title = 
+{
+
+   formPopulator.formInfo.title = 
 	       LOCALIZED_STR(@"INPUT_EXPENSE_VIEW_TITLE");
-		   
+
+	NSArray *iconNames = [NSArray arrayWithObjects:
+	
+		// Business/Income Related
+		@"input-icon-expense.png",
+		@"input-icon-briefcase.png",
+		
+		// Home & Auto
+		@"input-icon-home.png",
+		@"input-icon-apartment.png",
+		@"input-icon-car.png",
+		@"input-icon-fuel.png",
+		
+		// Medical
+		@"input-icon-medical.png",
+		@"input-icon-medicine.png",
+		@"input-icon-dental.png",
+		@"input-icon-cat.png",
+		@"input-icon-dogpaw.png",
+
+		// Services
+		@"input-icon-cellphone.png",
+		@"input-icon-internet.png",
+		@"input-icon-hair.png",
+		@"input-icon-lightbulb.png",
+		@"input-icon-water.png",
+		@"input-icon-trash.png",
+		@"input-icon-broom.png",
+		@"input-icon-lock.png",
+		@"input-logo-lawn.png",
+		
+		
+		// Discretionary Expenses
+		@"input-icon-tv.png",
+		@"input-icon-camera.png",
+		@"input-icon-shopping.png",
+		@"input-icon-clothes.png",
+
+		@"input-icon-college.png",
+		@"input-icon-book.png",
+		@"input-icon-church.png",
+		@"input-icon-dining.png",
+		@"input-icon-coffee.png",		
+		@"input-icon-golf.png",
+		@"input-icon-tennis.png",
+		@"input-icon-music.png",
+		@"input-icon-computer.png",
+		@"input-icon-wedding.png",
+		@"input-logo-gift.png",
+		
+		// Travel and Leisure
+		@"input-icon-vacation.png",
+		@"input-icon-airplane.png",
+		@"input-icon-boat.png",
+				
+		// Assets/Accounts
+		@"input-icon-money.png",
+		@"input-icon-moneybag.png",
+		@"input-icon-piggybank.png",
+		@"input-icon-invest.png",
+		@"input-icon-candlestick.png",
+
+		// Taxes
+		@"input-icon-taxes.png",
+		@"input-icon-investtax.png",
+		
+		
+		nil];
+
+
+	[self.formPopulator populateInputNameField:expense withIconList:iconNames];
+	
+	[self populateCommonCashFlowFields:expense];
+ 		   
 	[formPopulator nextSection];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_EXPENSE_TAX_FIELD_LABEL")
 		andFormInfoCreator:[[[ItemizedExpenseTaxFormInfoCreator alloc] initWithExpense:expense
@@ -201,8 +277,26 @@
 
 - (void)visitIncome:(IncomeInput*)income
 {
+
     formPopulator.formInfo.title = 
 		LOCALIZED_STR(@"INPUT_INCOME_VIEW_TITLE");
+
+
+	NSArray *iconNames = [NSArray arrayWithObjects:
+	
+		// Business/Income Related
+		@"input-icon-income.png",
+		@"input-icon-briefcase.png",
+		
+		// Assets/Accounts
+		@"input-icon-money.png",
+		
+		nil];
+
+
+	[self.formPopulator populateInputNameField:income withIconList:iconNames];
+
+	[self populateCommonCashFlowFields:income];
 		
 	[self.formPopulator nextSection];
 	
@@ -212,11 +306,21 @@
 }
 
 - (void)visitTransfer:(TransferInput *)transfer
-{    
-    formPopulator.formInfo.title = 
+{
+    formPopulator.formInfo.title =
 	       LOCALIZED_STR(@"INPUT_TRANSFER_VIEW_TITLE");
 
-	[self.formPopulator nextSection];	
+	NSArray *iconNames = [NSArray arrayWithObjects:
+	
+		// Assets/Accounts
+		@"input-icon-money.png",
+
+		nil];
+		  
+	[self.formPopulator populateInputNameField:transfer withIconList:iconNames];
+		  
+	[self.formPopulator nextSection];
+	
 	ManagedObjectFieldInfo *fromEndpointFieldInfo = [[[ManagedObjectFieldInfo alloc] 
 		initWithManagedObject:transfer 
 		andFieldKey:TRANSFER_INPUT_FROM_ENDPOINT_KEY 
@@ -234,7 +338,10 @@
 	TransferEndpointFieldEditInfo *toEndpointFieldEditInfo = [[[TransferEndpointFieldEditInfo alloc]
 		initWithManagedObjFieldInfo:toEndpointFieldInfo] autorelease];
 	[formPopulator.currentSection addFieldEditInfo:toEndpointFieldEditInfo];
-		   
+	
+		  		  
+	[self populateCommonCashFlowFields:transfer];
+		  
 				   	   
 }
 
@@ -244,7 +351,19 @@
 {
     formPopulator.formInfo.title = 
 		LOCALIZED_STR(@"INPUT_ACCOUNT_TITLE");
-	[self.formPopulator populateInputNameField:account];
+		
+		
+	NSArray *iconNames = [NSArray arrayWithObjects:
+			
+		// Assets/Accounts
+		@"input-icon-piggybank.png",
+		@"input-icon-money.png",
+		@"input-icon-invest.png",
+		@"input-icon-candlestick.png",		
+		
+		nil];		
+		
+	[self.formPopulator populateInputNameField:account withIconList:iconNames];
 	
 	 [formPopulator nextSection];
 
@@ -360,7 +479,21 @@
 {
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_LOAN_TITLE");
 	
-	[self.formPopulator populateInputNameField:loan];
+		NSArray *iconNames = [NSArray arrayWithObjects:
+			@"input-icon-money.png",
+
+			// Home & Auto
+			@"input-icon-home.png",
+			@"input-icon-car.png",
+						
+			// Discretionary Expenses
+			@"input-icon-college.png",			
+			@"input-icon-boat.png",
+			@"input-icon-airplane.png",
+			@"input-icon-briefcase.png",
+		nil];		
+	
+	[self.formPopulator populateInputNameField:loan withIconList:iconNames];
 
 	[formPopulator nextSection];
 	
@@ -449,7 +582,22 @@
 {
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ASSET_TITLE");
 	
-	[self.formPopulator populateInputNameField:asset];
+		NSArray *iconNames = [NSArray arrayWithObjects:
+			// Assets/Accounts
+			@"input-icon-moneybag.png",		
+			@"input-icon-money.png",
+			
+			// Home & Auto
+			@"input-icon-home.png",
+			@"input-icon-car.png",
+					
+			// Travel and Leisure
+			@"input-icon-airplane.png",
+			@"input-icon-boat.png",
+		nil];		
+	
+	
+	[self.formPopulator populateInputNameField:asset withIconList:iconNames];
 	
 	[formPopulator nextSection];
 	
@@ -507,7 +655,13 @@
 - (void)visitTax:(TaxInput *)tax
 {
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_TAX_TITLE");
-	[self.formPopulator populateInputNameField:tax];
+	
+	NSArray *iconNames = [NSArray arrayWithObjects:
+		@"input-icon-taxes.png",
+		@"input-icon-investtax.png",
+		nil];		
+	
+	[self.formPopulator populateInputNameField:tax withIconList:iconNames];
 	
 	[formPopulator nextSection];
 	

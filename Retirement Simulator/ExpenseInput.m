@@ -12,7 +12,7 @@
 #import "ExpenseItemizedTaxAmt.h"
 
 NSString * const EXPENSE_INPUT_ENTITY_NAME = @"ExpenseInput";
-NSString * const EXPENSE_INPUT_DEFAULT_ICON_NAME = @"piggy.png";
+NSString * const EXPENSE_INPUT_DEFAULT_ICON_NAME = @"input-icon-expense.png";
 
 @implementation ExpenseInput
 

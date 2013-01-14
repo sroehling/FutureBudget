@@ -43,7 +43,7 @@
 -(id)initWithScenario:(Scenario*)theInputScenario andFormContext:(FormContext*)theFormContext;
 -(id)initForNewObject:(BOOL)isNewObject andFormContext:(FormContext*)theFormContext;
 
-- (void)populateInputNameField:(Input*)theInput;
+- (void)populateInputNameField:(Input*)theInput withIconList:(NSArray*)inputIcons;
 
 -(void)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label;
 

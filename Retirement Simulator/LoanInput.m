@@ -17,7 +17,7 @@
 NSString * const LOAN_INPUT_ENTITY_NAME = @"LoanInput";
 
 NSString * const INPUT_LOAN_STARTING_BALANCE_KEY = @"startingBalance";
-NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"piggy.png";
+NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"input-icon-money.png";
 
 @implementation LoanInput
 

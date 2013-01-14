@@ -16,7 +16,7 @@
 
 NSString * const ACCOUNT_STARTING_BALANCE_KEY = @"startingBalance";
 NSString * const ACCOUNT_ENTITY_NAME = @"Account";
-NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME = @"piggy.png";
+NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME = @"input-icon-piggybank.png";
 
 @implementation Account
 

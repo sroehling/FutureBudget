@@ -112,10 +112,13 @@
 }
 
 
-- (void)populateInputNameField:(Input*)theInput
+- (void)populateInputNameField:(Input*)theInput withIconList:(NSArray*)inputIcons
 {
    [self nextSection];
+   
    assert(theInput!=nil);
+   assert(inputIcons != nil);
+   assert(inputIcons.count > 0);
 	
 	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] 
 		initWithManagedObject:theInput 
@@ -128,81 +131,11 @@
 		andFieldKey:INPUT_ICON_IMAGE_NAME_KEY
 		andFieldLabel:@"N/A" andFieldPlaceholder:@"N/A"] autorelease];
 
-	// TODO - Populate with names array which is specific to the input type
-	// (passed in as a parameter).
-	NSArray *imageNames = [NSArray arrayWithObjects:
-	
-		// Business/Income Related
-		@"input-icon-income.png",
-		@"input-icon-briefcase.png",
-		
-		// Home & Auto
-		@"input-icon-home.png",
-		@"input-icon-apartment.png",
-		@"input-icon-car.png",
-		@"input-icon-fuel.png",
-		
-		// Medical
-		@"input-icon-medical.png",
-		@"input-icon-medicine.png",
-		@"input-icon-dental.png",
-		@"input-icon-cat.png",
-		@"input-icon-dogpaw.png",
-
-		// Services
-		@"input-icon-cellphone.png",
-		@"input-icon-internet.png",
-		@"input-icon-hair.png",
-		@"input-icon-lightbulb.png",
-		@"input-icon-water.png",
-		@"input-icon-trash.png",
-		@"input-icon-broom.png",
-		@"input-icon-lock.png",
-		@"input-logo-lawn.png",
-		
-		
-		// Discretionary Expenses
-		@"input-icon-expense.png",
-		@"input-icon-tv.png",
-		@"input-icon-camera.png",
-		@"input-icon-shopping.png",
-		@"input-icon-clothes.png",
-
-		@"input-icon-college.png",
-		@"input-icon-book.png",
-		@"input-icon-church.png",
-		@"input-icon-dining.png",
-		@"input-icon-coffee.png",		
-		@"input-icon-golf.png",
-		@"input-icon-tennis.png",
-		@"input-icon-music.png",
-		@"input-icon-computer.png",
-		@"input-icon-wedding.png",
-		@"input-logo-gift.png",
-		
-		// Travel and Leisure
-		@"input-icon-vacation.png",
-		@"input-icon-airplane.png",
-		@"input-icon-boat.png",
-				
-		// Assets/Accounts
-		@"input-icon-money.png",
-		@"input-icon-moneybag.png",
-		@"input-icon-piggybank.png",
-		@"input-icon-invest.png",
-		@"input-icon-candlestick.png",
-
-		// Taxes
-		@"input-icon-taxes.png",
-		@"input-icon-investtax.png",
-		
-		
-		nil];
 		
 	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] 
 		initWithFieldInfo:fieldInfo andCustomValidator:nil
 			andParentController:self.formContext.parentController
-			andImageNames:imageNames andImageFieldInfo:imageFieldInfo] autorelease];
+			andImageNames:inputIcons andImageFieldInfo:imageFieldInfo] autorelease];
 	
     [self.currentSection addFieldEditInfo:fieldEditInfo];
 
