@@ -322,6 +322,10 @@
 		0099A15F14575B1200E35AF9 /* ExpenseDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A15E14575B0F00E35AF9 /* ExpenseDigestEntry.m */; };
 		0099A16214575E5A00E35AF9 /* ExpenseSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */; };
 		0099A165145784CD00E35AF9 /* LoanOrigSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A164145784CC00E35AF9 /* LoanOrigSimEvent.m */; };
+		009D562516A4720800526AF1 /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 009D562116A4720700526AF1 /* clock@2x.png */; };
+		009D562616A4720800526AF1 /* graph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 009D562216A4720700526AF1 /* graph@2x.png */; };
+		009D562716A4720800526AF1 /* piggy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 009D562316A4720700526AF1 /* piggy@2x.png */; };
+		009D562816A4720800526AF1 /* scales@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 009D562416A4720800526AF1 /* scales@2x.png */; };
 		00A0CE8416727DB800CDFD78 /* markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = 00A0CE8316727DB800CDFD78 /* markdown.css */; };
 		00A254C11476BDD2004F63E3 /* PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */; };
 		00A254C41476CBEC004F63E3 /* PositiveAmountValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A254C31476CBEC004F63E3 /* PositiveAmountValidator.m */; };
@@ -1033,6 +1037,10 @@
 		0099A16114575E5600E35AF9 /* ExpenseSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseSimInfo.m; sourceTree = "<group>"; };
 		0099A163145784CA00E35AF9 /* LoanOrigSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanOrigSimEvent.h; sourceTree = "<group>"; };
 		0099A164145784CC00E35AF9 /* LoanOrigSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanOrigSimEvent.m; sourceTree = "<group>"; };
+		009D562116A4720700526AF1 /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
+		009D562216A4720700526AF1 /* graph@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graph@2x.png"; sourceTree = "<group>"; };
+		009D562316A4720700526AF1 /* piggy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "piggy@2x.png"; sourceTree = "<group>"; };
+		009D562416A4720800526AF1 /* scales@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scales@2x.png"; sourceTree = "<group>"; };
 		00A0CE8316727DB800CDFD78 /* markdown.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = markdown.css; path = ../../MarkdownHelpGeneration/markdown.css; sourceTree = "<group>"; };
 		00A254BF1476BDD2004F63E3 /* PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentFieldValidator.h; sourceTree = "<group>"; };
 		00A254C01476BDD2004F63E3 /* PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentFieldValidator.m; sourceTree = "<group>"; };
@@ -1957,6 +1965,7 @@
 		004F5D6E1373170C00E0C4A3 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				008AA408141ABB0600FF2A52 /* Toolbar Icons */,
 				00A36BE4136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.h */,
 				00A36BE5136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m */,
 				00A36BE7136C6CAE008A5C4C /* MainWindow.xib */,
@@ -2210,15 +2219,19 @@
 			name = "Input Detail";
 			sourceTree = "<group>";
 		};
-		008AA408141ABB0600FF2A52 /* Icons */ = {
+		008AA408141ABB0600FF2A52 /* Toolbar Icons */ = {
 			isa = PBXGroup;
 			children = (
+				009D562116A4720700526AF1 /* clock@2x.png */,
+				009D562216A4720700526AF1 /* graph@2x.png */,
+				009D562316A4720700526AF1 /* piggy@2x.png */,
+				009D562416A4720800526AF1 /* scales@2x.png */,
 				00EC4560141B183D00D65D17 /* clock.png */,
 				00EC455E141B169E00D65D17 /* piggy.png */,
 				00EC455C141B165A00D65D17 /* scales.png */,
 				00EC455A141B159D00D65D17 /* graph.png */,
 			);
-			name = Icons;
+			name = "Toolbar Icons";
 			sourceTree = "<group>";
 		};
 		0095E96F13B9271B000555AC /* Sim Dates */ = {
@@ -2334,7 +2347,6 @@
 			children = (
 				002E7B65167A2DB100713684 /* App Store */,
 				00D6848614CF61FB00E3AC9F /* 3rdParty */,
-				008AA408141ABB0600FF2A52 /* Icons */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				0010A58A13D15C5D0096A20F /* Starting Values */,
 				004F5D6F1373175D00E0C4A3 /* Input Views */,
@@ -2948,6 +2960,10 @@
 				0030805F169F665000EB70C1 /* input-logo-gift@2x.png in Resources */,
 				00308060169F665000EB70C1 /* input-logo-lawn.png in Resources */,
 				00308061169F665000EB70C1 /* input-logo-lawn@2x.png in Resources */,
+				009D562516A4720800526AF1 /* clock@2x.png in Resources */,
+				009D562616A4720800526AF1 /* graph@2x.png in Resources */,
+				009D562716A4720800526AF1 /* piggy@2x.png in Resources */,
+				009D562816A4720800526AF1 /* scales@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
