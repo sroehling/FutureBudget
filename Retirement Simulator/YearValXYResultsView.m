@@ -60,8 +60,8 @@
 		
 		
 		NSArray*itemArray =[NSArray arrayWithObjects:
-			[UIImage imageNamed:@"bargraphicon.png"],
-			[UIImage imageNamed:@"resultsTableIcon.png"], 
+			[UIImage imageNamed:@"bar-graph-icon"],
+			[UIImage imageNamed:@"results-table-icon"], 
 			nil]; 
 		self.resultsTypeSelection =[[UISegmentedControl alloc] initWithItems:itemArray]; 
 		self.resultsTypeSelection.tintColor = [UIColor darkGrayColor];

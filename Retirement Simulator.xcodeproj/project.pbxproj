@@ -32,7 +32,6 @@
 		00138ABB1684F44700EE3E02 /* input-icon-dining@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00138AB61684F44700EE3E02 /* input-icon-dining@2x.png */; };
 		00138ABC1684F44700EE3E02 /* input-icon-fuel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00138AB71684F44700EE3E02 /* input-icon-fuel@2x.png */; };
 		00138ABD1684F44700EE3E02 /* input-icon-medical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00138AB81684F44700EE3E02 /* input-icon-medical@2x.png */; };
-		00140506155DC40E0084136B /* bargraphicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00140505155DC40E0084136B /* bargraphicon.png */; };
 		0014296E154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */; };
 		00142972154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00142971154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m */; };
 		0014CD891552ED8100E9261C /* TransferInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0014CD881552ED8100E9261C /* TransferInput.m */; };
@@ -296,6 +295,10 @@
 		0086C0BA142D310800148785 /* AssetSaleSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0B9142D310400148785 /* AssetSaleSimEvent.m */; };
 		0087923713AA47D700CA9DA7 /* SharedEntityVariableValueListMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */; };
 		00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */ = {isa = PBXBuildFile; fileRef = 00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */; };
+		008B9A7A16A48552005EC2CC /* bar-graph-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008B9A7816A48552005EC2CC /* bar-graph-icon.png */; };
+		008B9A7B16A48552005EC2CC /* results-table-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008B9A7916A48552005EC2CC /* results-table-icon.png */; };
+		008B9A7E16A485AE005EC2CC /* bar-graph-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 008B9A7C16A485AE005EC2CC /* bar-graph-icon@2x.png */; };
+		008B9A7F16A485AE005EC2CC /* results-table-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 008B9A7D16A485AE005EC2CC /* results-table-icon@2x.png */; };
 		008C5852155C3B7700AB9EE1 /* YearValXYResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C5851155C3B7700AB9EE1 /* YearValXYResultsView.m */; };
 		008DD4B114B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */; };
 		008DD4B514B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */; };
@@ -418,7 +421,6 @@
 		00DC49F814D73EBA006BDF61 /* variableValueStartDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */; };
 		00DC49FA14D73F41006BDF61 /* variableValueChange.md in Resources */ = {isa = PBXBuildFile; fileRef = 00DC49F914D73F40006BDF61 /* variableValueChange.md */; };
 		00DC4A0014D8821E006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC49FF14D88217006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m */; };
-		00E0726A155DCB41008B3E15 /* resultsTableIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E07269155DCB41008B3E15 /* resultsTableIcon.png */; };
 		00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */; };
 		00E533E914E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E533E814E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m */; };
 		00E533EC14E96B13005C6F6F /* NeverEndDateFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E533EB14E96B12005C6F6F /* NeverEndDateFieldEditInfo.m */; };
@@ -557,7 +559,6 @@
 		00138AB61684F44700EE3E02 /* input-icon-dining@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-dining@2x.png"; sourceTree = "<group>"; };
 		00138AB71684F44700EE3E02 /* input-icon-fuel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-fuel@2x.png"; sourceTree = "<group>"; };
 		00138AB81684F44700EE3E02 /* input-icon-medical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-medical@2x.png"; sourceTree = "<group>"; };
-		00140505155DC40E0084136B /* bargraphicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bargraphicon.png; sourceTree = "<group>"; };
 		0014296C154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxesPaidTaxAmtCreator.h; sourceTree = "<group>"; };
 		0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxesPaidTaxAmtCreator.m; sourceTree = "<group>"; };
 		00142970154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxesPaidItemizedTaxAmt.h; sourceTree = "<group>"; };
@@ -983,6 +984,10 @@
 		0087923513AA47D300CA9DA7 /* SharedEntityVariableValueListMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedEntityVariableValueListMgr.h; sourceTree = "<group>"; };
 		0087923613AA47D500CA9DA7 /* SharedEntityVariableValueListMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedEntityVariableValueListMgr.m; sourceTree = "<group>"; };
 		00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gettingStarted.md; sourceTree = "<group>"; };
+		008B9A7816A48552005EC2CC /* bar-graph-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-graph-icon.png"; sourceTree = "<group>"; };
+		008B9A7916A48552005EC2CC /* results-table-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "results-table-icon.png"; sourceTree = "<group>"; };
+		008B9A7C16A485AE005EC2CC /* bar-graph-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-graph-icon@2x.png"; sourceTree = "<group>"; };
+		008B9A7D16A485AE005EC2CC /* results-table-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "results-table-icon@2x.png"; sourceTree = "<group>"; };
 		008C5850155C3B7700AB9EE1 /* YearValXYResultsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearValXYResultsView.h; sourceTree = "<group>"; };
 		008C5851155C3B7700AB9EE1 /* YearValXYResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearValXYResultsView.m; sourceTree = "<group>"; };
 		008DD4AF14B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
@@ -1186,7 +1191,6 @@
 		00DC49F914D73F40006BDF61 /* variableValueChange.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueChange.md; sourceTree = "<group>"; };
 		00DC49FE14D8820F006BDF61 /* DateSensitiveValueChangeFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFormInfoCreator.h; sourceTree = "<group>"; };
 		00DC49FF14D88217006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeFormInfoCreator.m; sourceTree = "<group>"; };
-		00E07269155DCB41008B3E15 /* resultsTableIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resultsTableIcon.png; sourceTree = "<group>"; };
 		00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestTest.h; sourceTree = "<group>"; };
 		00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestTest.m; sourceTree = "<group>"; };
 		00E533E714E9635C005C6F6F /* DefaultScenarioFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultScenarioFieldEditInfo.h; sourceTree = "<group>"; };
@@ -2548,8 +2552,10 @@
 		00D8D27E1490076D00B0314D /* Year Val XY Results Plot */ = {
 			isa = PBXGroup;
 			children = (
-				00140505155DC40E0084136B /* bargraphicon.png */,
-				00E07269155DCB41008B3E15 /* resultsTableIcon.png */,
+				008B9A7C16A485AE005EC2CC /* bar-graph-icon@2x.png */,
+				008B9A7D16A485AE005EC2CC /* results-table-icon@2x.png */,
+				008B9A7816A48552005EC2CC /* bar-graph-icon.png */,
+				008B9A7916A48552005EC2CC /* results-table-icon.png */,
 				00D8D27A1490060B00B0314D /* YearValXYPlotResultsViewFactory.h */,
 				00D8D27B1490060E00B0314D /* YearValXYPlotResultsViewFactory.m */,
 				00D8D2771490031000B0314D /* YearValXYPlotResultsViewController.h */,
@@ -2862,8 +2868,6 @@
 				0057F42F14F81B2C006A2FA3 /* account.md in Resources */,
 				0058A80F14F830BB00F2DCEF /* income.md in Resources */,
 				0058A81214F92F5600F2DCEF /* accountWithdrawalPriority.md in Resources */,
-				00140506155DC40E0084136B /* bargraphicon.png in Resources */,
-				00E0726A155DCB41008B3E15 /* resultsTableIcon.png in Resources */,
 				001056371672723E004E647F /* onlineHelp.md in Resources */,
 				00A0CE8416727DB800CDFD78 /* markdown.css in Resources */,
 				005F8AFB167B8BF900148BBE /* thirdPartyLibs.md in Resources */,
@@ -2964,6 +2968,10 @@
 				009D562616A4720800526AF1 /* graph@2x.png in Resources */,
 				009D562716A4720800526AF1 /* piggy@2x.png in Resources */,
 				009D562816A4720800526AF1 /* scales@2x.png in Resources */,
+				008B9A7A16A48552005EC2CC /* bar-graph-icon.png in Resources */,
+				008B9A7B16A48552005EC2CC /* results-table-icon.png in Resources */,
+				008B9A7E16A485AE005EC2CC /* bar-graph-icon@2x.png in Resources */,
+				008B9A7F16A485AE005EC2CC /* results-table-icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
