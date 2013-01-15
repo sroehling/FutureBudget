@@ -9,7 +9,7 @@
 #import "Scenario.h"
 #import "ScenarioValue.h"
 
-NSString * const SCENARIO_DEFAULT_ICON_IMAGE_NAME = @"scales.png";
+NSString * const SCENARIO_DEFAULT_ICON_IMAGE_NAME = @"scenario-icon-scale.png";
 NSString * const SCENARIO_ICON_IMAGE_NAME_KEY = @"iconImageName";
 
 @implementation Scenario

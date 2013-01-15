@@ -278,6 +278,8 @@
 		0075842A14E1DE0800184BD5 /* ItemizedAssetTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842914E1DE0500184BD5 /* ItemizedAssetTaxFormInfoCreator.m */; };
 		0075842D14E1E0EE00184BD5 /* ItemizedExpenseTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842C14E1E0EB00184BD5 /* ItemizedExpenseTaxFormInfoCreator.m */; };
 		0075843014E20CCB00184BD5 /* ItemizedLoanTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842F14E20CC700184BD5 /* ItemizedLoanTaxFormInfoCreator.m */; };
+		007CB04C16A5C0820034D013 /* scenario-icon-scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 007CB04A16A5C0820034D013 /* scenario-icon-scale.png */; };
+		007CB04D16A5C0820034D013 /* scenario-icon-scale@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007CB04B16A5C0820034D013 /* scenario-icon-scale@2x.png */; };
 		0086C08114279A3B00148785 /* LoanOrigSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08014279A3B00148785 /* LoanOrigSimEventCreator.m */; };
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
@@ -950,6 +952,8 @@
 		0075842C14E1E0EB00184BD5 /* ItemizedExpenseTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedExpenseTaxFormInfoCreator.m; sourceTree = "<group>"; };
 		0075842E14E20CC300184BD5 /* ItemizedLoanTaxFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedLoanTaxFormInfoCreator.h; sourceTree = "<group>"; };
 		0075842F14E20CC700184BD5 /* ItemizedLoanTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanTaxFormInfoCreator.m; sourceTree = "<group>"; };
+		007CB04A16A5C0820034D013 /* scenario-icon-scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scenario-icon-scale.png"; sourceTree = "<group>"; };
+		007CB04B16A5C0820034D013 /* scenario-icon-scale@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scenario-icon-scale@2x.png"; sourceTree = "<group>"; };
 		0086C07F14279A3B00148785 /* LoanOrigSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanOrigSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08014279A3B00148785 /* LoanOrigSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanOrigSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08314279B7D00148785 /* SimInputHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimInputHelper.h; sourceTree = "<group>"; };
@@ -1742,6 +1746,7 @@
 		0036DE2B13BE346F0043F3A5 /* Scenario List */ = {
 			isa = PBXGroup;
 			children = (
+				007CB04916A5C0710034D013 /* Scenario Icons */,
 				0009481013C36FF8008F129B /* ScenarioListFormInfoCreator.h */,
 				0009481113C36FF8008F129B /* ScenarioListFormInfoCreator.m */,
 				0009481913C3890E008F129B /* UserScenarioFormInfoCreator.h */,
@@ -2119,6 +2124,15 @@
 				006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */,
 			);
 			name = Taxes;
+			sourceTree = "<group>";
+		};
+		007CB04916A5C0710034D013 /* Scenario Icons */ = {
+			isa = PBXGroup;
+			children = (
+				007CB04A16A5C0820034D013 /* scenario-icon-scale.png */,
+				007CB04B16A5C0820034D013 /* scenario-icon-scale@2x.png */,
+			);
+			name = "Scenario Icons";
 			sourceTree = "<group>";
 		};
 		0086C08F142956AF00148785 /* Setup */ = {
@@ -2972,6 +2986,8 @@
 				008B9A7B16A48552005EC2CC /* results-table-icon.png in Resources */,
 				008B9A7E16A485AE005EC2CC /* bar-graph-icon@2x.png in Resources */,
 				008B9A7F16A485AE005EC2CC /* results-table-icon@2x.png in Resources */,
+				007CB04C16A5C0820034D013 /* scenario-icon-scale.png in Resources */,
+				007CB04D16A5C0820034D013 /* scenario-icon-scale@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

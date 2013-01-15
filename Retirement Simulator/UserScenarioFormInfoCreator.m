@@ -73,7 +73,31 @@
 
 	// TODO - Populate with names array which is specific to the input type
 	// (passed in as a parameter).
-	NSArray *imageNames = [NSArray arrayWithObjects:@"clock.png", @"piggy.png",@"scales.png",nil];
+	NSArray *imageNames = [NSArray arrayWithObjects:
+	
+			@"scenario-icon-scale.png",
+			
+			@"input-icon-expense.png",
+			@"input-icon-income.png",
+			@"input-icon-briefcase.png",
+			
+			@"input-icon-money.png",
+			@"input-icon-moneybag.png",
+			@"input-icon-piggybank.png",
+			@"input-icon-invest.png",
+
+			@"input-icon-home.png",
+			@"input-icon-apartment.png",
+
+			@"input-icon-college.png",
+			@"input-icon-wedding.png",
+			@"input-icon-vacation.png",
+			@"input-icon-airplane.png",
+			@"input-icon-boat.png",
+			@"input-icon-car.png",
+			@"input-icon-medical.png",
+			
+		nil];
 		
 	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo
 		andCustomValidator:nil andParentController:parentContext.parentController
