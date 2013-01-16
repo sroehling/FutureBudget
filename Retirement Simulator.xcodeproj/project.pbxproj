@@ -350,6 +350,9 @@
 		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
 		00A8A3191545F595003C6D73 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A8A3181545F595003C6D73 /* StoreKit.framework */; };
+		00A9CAC416A60DCC00AF69B2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9CAC316A60DCC00AF69B2 /* Default-568h@2x.png */; };
+		00A9CAC616A60E6A00AF69B2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9CAC516A60E6A00AF69B2 /* Default.png */; };
+		00A9CAC816A60E9E00AF69B2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9CAC716A60E9E00AF69B2 /* Default@2x.png */; };
 		00AA79BB1441E8AF00FED301 /* TaxBracketFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */; };
 		00AA79BE1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BD1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m */; };
 		00AA79C11441F07400FED301 /* TaxBracketEntryFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79C01441F07400FED301 /* TaxBracketEntryFormInfoCreator.m */; };
@@ -1077,6 +1080,9 @@
 		00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Retirement_SimulatorTests.h; sourceTree = "<group>"; };
 		00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorTests.m; sourceTree = "<group>"; };
 		00A8A3181545F595003C6D73 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		00A9CAC316A60DCC00AF69B2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		00A9CAC516A60E6A00AF69B2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		00A9CAC716A60E9E00AF69B2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		00AA79B91441E8AF00FED301 /* TaxBracketFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketFormInfoCreator.h; sourceTree = "<group>"; };
 		00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxBracketFormInfoCreator.m; sourceTree = "<group>"; };
 		00AA79BC1441EA9D00FED301 /* TaxBracketEntryObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxBracketEntryObjectAdder.h; sourceTree = "<group>"; };
@@ -1974,6 +1980,7 @@
 		004F5D6E1373170C00E0C4A3 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				00A9CACA16A60EB500AF69B2 /* New Group */,
 				008AA408141ABB0600FF2A52 /* Toolbar Icons */,
 				00A36BE4136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.h */,
 				00A36BE5136C6CAE008A5C4C /* Retirement_SimulatorAppDelegate.m */,
@@ -2326,6 +2333,7 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
+				00A9CAC916A60EA600AF69B2 /* Launch Images */,
 				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
 				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
 				00A36BD4136C6CAE008A5C4C /* Frameworks */,
@@ -2436,6 +2444,23 @@
 				00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00A9CAC916A60EA600AF69B2 /* Launch Images */ = {
+			isa = PBXGroup;
+			children = (
+				00A9CAC716A60E9E00AF69B2 /* Default@2x.png */,
+				00A9CAC516A60E6A00AF69B2 /* Default.png */,
+				00A9CAC316A60DCC00AF69B2 /* Default-568h@2x.png */,
+			);
+			name = "Launch Images";
+			sourceTree = "<group>";
+		};
+		00A9CACA16A60EB500AF69B2 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		00AA79B71441E80200FED301 /* Tax Bracket */ = {
@@ -2988,6 +3013,9 @@
 				008B9A7F16A485AE005EC2CC /* results-table-icon@2x.png in Resources */,
 				007CB04C16A5C0820034D013 /* scenario-icon-scale.png in Resources */,
 				007CB04D16A5C0820034D013 /* scenario-icon-scale@2x.png in Resources */,
+				00A9CAC416A60DCC00AF69B2 /* Default-568h@2x.png in Resources */,
+				00A9CAC616A60E6A00AF69B2 /* Default.png in Resources */,
+				00A9CAC816A60E9E00AF69B2 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

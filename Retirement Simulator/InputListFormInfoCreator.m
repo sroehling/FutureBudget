@@ -26,6 +26,7 @@
 
 #import "HelpPagePopoverCaptionInfo.h"
 #import "FormContext.h"
+#import "AppHelper.h"
 
 @implementation InputListFormInfoCreator
 
@@ -35,8 +36,15 @@
 	FormPopulator *formPopulator = [[[FormPopulator alloc]
 		initWithFormContext:parentContext] autorelease];
 		
-    
-    formPopulator.formInfo.title = @"Inputs";
+	if([AppHelper generatingLaunchScreen])
+	{
+		// If generating the launch screen, return an empty list.
+		formPopulator.formInfo.title = @" ";
+		formPopulator.formInfo.showEditButton = FALSE;
+		return formPopulator.formInfo;
+	}
+	
+    formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_LIST_TITLE");
 	formPopulator.formInfo.objectAdder = [[[InputListObjectAdder alloc] init] autorelease];
 	
 	formPopulator.formInfo.addButtonPopoverInfo = [[[HelpPagePopoverCaptionInfo alloc] initWithPopoverCaption:

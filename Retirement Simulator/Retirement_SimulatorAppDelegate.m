@@ -38,7 +38,12 @@
 -(void)configWithMainTabBarController
 {
 	self.window.rootViewController = self.tabBarController;
-	[Appirater appLaunched:YES];
+	
+	if(![AppHelper generatingLaunchScreen])
+	{
+		[Appirater appLaunched:YES];
+	}
+	
 }
 
 -(void)configStartingViewController
@@ -92,7 +97,8 @@
 	UIViewController *inputController = [[[GenericFieldBasedTableEditViewController alloc]
 		initWithFormInfoCreator:inputFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
-	inputNavController.title = LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
+	inputNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
 	inputNavController.tabBarItem.image = [UIImage imageNamed:@"piggy.png"];
 	inputNavController.navigationBar.tintColor = navBarControllerColor;
 
@@ -104,7 +110,8 @@
 		initWithFormInfoCreator:startingValsFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *startingValsNavController = 
 		[[[UINavigationController alloc] initWithRootViewController:startingValsController] autorelease];
-	startingValsNavController.title = LOCALIZED_STR(@"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE");
+	startingValsNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE");
 	startingValsNavController.tabBarItem.image = [UIImage imageNamed:@"clock.png"];
 	startingValsNavController.navigationBar.tintColor = navBarControllerColor;
 
@@ -114,7 +121,8 @@
 		initWithFormInfoCreator:resultsListFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *resultsNavController = [[[UINavigationController alloc] 
 		initWithRootViewController:resultsController] autorelease];
-	resultsNavController.title = LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
+	resultsNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
 	resultsNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
 	resultsNavController.navigationBar.tintColor = navBarControllerColor;
 	
@@ -123,7 +131,8 @@
 	UIViewController *whatIfController = [[[GenericFieldBasedTableViewController alloc]
 		initWithFormInfoCreator:whatIfFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
-	whatIfNavController.title = LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
+	whatIfNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
 	whatIfNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
 	whatIfNavController.navigationBar.tintColor = navBarControllerColor;
 
@@ -133,7 +142,8 @@
 	UIViewController *moreViewController = [[[GenericFieldBasedTableViewController alloc]
 		initWithFormInfoCreator:moreFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *moreNavController = [[[UINavigationController alloc] initWithRootViewController:moreViewController] autorelease];
-	moreNavController.title = LOCALIZED_STR(@"MORE_VIEW_TITLE");
+	moreNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"MORE_VIEW_TITLE");
 	moreNavController.tabBarItem = [[[UITabBarItem alloc] 
 		initWithTabBarSystemItem:UITabBarSystemItemMore tag:0] autorelease];
 	moreNavController.navigationBar.tintColor = navBarControllerColor;	

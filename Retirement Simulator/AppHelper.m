@@ -20,6 +20,7 @@ NSString * const FINSIM_APP_ID = @"572539748";
 	// To (re)generate the launch screens, temporarily
 	// return TRUE, then copy the screens from the
 	// screens from the simulator.
+//	return TRUE;
 	return FALSE;
 }
 
