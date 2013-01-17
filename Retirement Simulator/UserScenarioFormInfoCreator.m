@@ -76,6 +76,7 @@
 	NSArray *imageNames = [NSArray arrayWithObjects:
 	
 			@"scenario-icon-scale.png",
+            @"scenario-icon-clock.png",
 			
 			@"input-icon-expense.png",
 			@"input-icon-income.png",

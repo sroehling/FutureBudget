@@ -453,6 +453,8 @@
 		00EC458A14225B9100D65D17 /* LoanPaymentSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */; };
 		00EC458D1423AF2700D65D17 /* WorkingBalanceCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */; };
 		00EC45901423C5B100D65D17 /* LoanPmtDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */; };
+		00EF7A1816A854E70006F805 /* scenario-icon-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EF7A1616A854E70006F805 /* scenario-icon-clock.png */; };
+		00EF7A1916A854E70006F805 /* scenario-icon-clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EF7A1716A854E70006F805 /* scenario-icon-clock@2x.png */; };
 		00F06921142E2D8200D0E1FB /* AssetDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */; };
 		00F1D9D61443F5D300BCB5E9 /* FinishedAddingTaxBracketEntryListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1D9D51443F5D300BCB5E9 /* FinishedAddingTaxBracketEntryListener.m */; };
 		00F217B9140F058600FA73AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217B8140F058600FA73AA /* QuartzCore.framework */; };
@@ -1251,6 +1253,8 @@
 		00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceCltn.m; sourceTree = "<group>"; };
 		00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanPmtDigestEntry.h; sourceTree = "<group>"; };
 		00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanPmtDigestEntry.m; sourceTree = "<group>"; };
+		00EF7A1616A854E70006F805 /* scenario-icon-clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scenario-icon-clock.png"; sourceTree = "<group>"; };
+		00EF7A1716A854E70006F805 /* scenario-icon-clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scenario-icon-clock@2x.png"; sourceTree = "<group>"; };
 		00F0691F142E2D8200D0E1FB /* AssetDigestEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDigestEntry.h; sourceTree = "<group>"; };
 		00F06920142E2D8200D0E1FB /* AssetDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetDigestEntry.m; sourceTree = "<group>"; };
 		00F1D9D41443F5D200BCB5E9 /* FinishedAddingTaxBracketEntryListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishedAddingTaxBracketEntryListener.h; sourceTree = "<group>"; };
@@ -2136,6 +2140,8 @@
 		007CB04916A5C0710034D013 /* Scenario Icons */ = {
 			isa = PBXGroup;
 			children = (
+				00EF7A1616A854E70006F805 /* scenario-icon-clock.png */,
+				00EF7A1716A854E70006F805 /* scenario-icon-clock@2x.png */,
 				007CB04A16A5C0820034D013 /* scenario-icon-scale.png */,
 				007CB04B16A5C0820034D013 /* scenario-icon-scale@2x.png */,
 			);
@@ -3016,6 +3022,8 @@
 				00A9CAC416A60DCC00AF69B2 /* Default-568h@2x.png in Resources */,
 				00A9CAC616A60E6A00AF69B2 /* Default.png in Resources */,
 				00A9CAC816A60E9E00AF69B2 /* Default@2x.png in Resources */,
+				00EF7A1816A854E70006F805 /* scenario-icon-clock.png in Resources */,
+				00EF7A1916A854E70006F805 /* scenario-icon-clock@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
