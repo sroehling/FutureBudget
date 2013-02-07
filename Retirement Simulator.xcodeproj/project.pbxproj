@@ -260,6 +260,18 @@
 		00637A821385D509001E02F1 /* FixedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A811385D509001E02F1 /* FixedValue.m */; };
 		00637A851385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */; };
 		00637A8B1386D99A001E02F1 /* InflationRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00637A8A1386D99A001E02F1 /* InflationRate.m */; };
+		0064D05216C2D059001F6578 /* input-icon-transfer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D05116C2D058001F6578 /* input-icon-transfer.png */; };
+		0064D05416C2D0EB001F6578 /* input-icon-transfer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D05316C2D0EB001F6578 /* input-icon-transfer@2x.png */; };
+		0064D05A16C2E385001F6578 /* input-icon-loan-business.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D05516C2E385001F6578 /* input-icon-loan-business.png */; };
+		0064D05B16C2E385001F6578 /* input-icon-loan-car.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D05616C2E385001F6578 /* input-icon-loan-car.png */; };
+		0064D05C16C2E385001F6578 /* input-icon-loan-college.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D05716C2E385001F6578 /* input-icon-loan-college.png */; };
+		0064D05D16C2E385001F6578 /* input-icon-loan-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D05816C2E385001F6578 /* input-icon-loan-home.png */; };
+		0064D05E16C2E385001F6578 /* input-icon-loan.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D05916C2E385001F6578 /* input-icon-loan.png */; };
+		0064D06416C2E3BB001F6578 /* input-icon-loan-business@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D05F16C2E3BB001F6578 /* input-icon-loan-business@2x.png */; };
+		0064D06516C2E3BB001F6578 /* input-icon-loan-car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06016C2E3BB001F6578 /* input-icon-loan-car@2x.png */; };
+		0064D06616C2E3BB001F6578 /* input-icon-loan-college@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06116C2E3BB001F6578 /* input-icon-loan-college@2x.png */; };
+		0064D06716C2E3BB001F6578 /* input-icon-loan-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06216C2E3BB001F6578 /* input-icon-loan-home@2x.png */; };
+		0064D06816C2E3BB001F6578 /* input-icon-loan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06316C2E3BB001F6578 /* input-icon-loan@2x.png */; };
 		006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */; };
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
@@ -924,6 +936,18 @@
 		00637A841385D824001E02F1 /* DateSensitiveValueFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueFieldEditInfo.m; sourceTree = "<group>"; };
 		00637A891386D999001E02F1 /* InflationRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InflationRate.h; sourceTree = "<group>"; };
 		00637A8A1386D99A001E02F1 /* InflationRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InflationRate.m; sourceTree = "<group>"; };
+		0064D05116C2D058001F6578 /* input-icon-transfer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-transfer.png"; sourceTree = "<group>"; };
+		0064D05316C2D0EB001F6578 /* input-icon-transfer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-transfer@2x.png"; sourceTree = "<group>"; };
+		0064D05516C2E385001F6578 /* input-icon-loan-business.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-business.png"; sourceTree = "<group>"; };
+		0064D05616C2E385001F6578 /* input-icon-loan-car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-car.png"; sourceTree = "<group>"; };
+		0064D05716C2E385001F6578 /* input-icon-loan-college.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-college.png"; sourceTree = "<group>"; };
+		0064D05816C2E385001F6578 /* input-icon-loan-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-home.png"; sourceTree = "<group>"; };
+		0064D05916C2E385001F6578 /* input-icon-loan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan.png"; sourceTree = "<group>"; };
+		0064D05F16C2E3BB001F6578 /* input-icon-loan-business@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-business@2x.png"; sourceTree = "<group>"; };
+		0064D06016C2E3BB001F6578 /* input-icon-loan-car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-car@2x.png"; sourceTree = "<group>"; };
+		0064D06116C2E3BB001F6578 /* input-icon-loan-college@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-college@2x.png"; sourceTree = "<group>"; };
+		0064D06216C2E3BB001F6578 /* input-icon-loan-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-home@2x.png"; sourceTree = "<group>"; };
+		0064D06316C2E3BB001F6578 /* input-icon-loan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan@2x.png"; sourceTree = "<group>"; };
 		006572D114338E500062C00C /* DeferredWithdrawalFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFieldEditInfo.h; sourceTree = "<group>"; };
 		006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFieldEditInfo.m; sourceTree = "<group>"; };
 		006572D4143393110062C00C /* DeferredWithdrawalFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFormInfoCreator.h; sourceTree = "<group>"; };
@@ -1372,6 +1396,18 @@
 		001C11FE1684E09500322EF9 /* Input Icons */ = {
 			isa = PBXGroup;
 			children = (
+				0064D05516C2E385001F6578 /* input-icon-loan-business.png */,
+				0064D05F16C2E3BB001F6578 /* input-icon-loan-business@2x.png */,
+				0064D05616C2E385001F6578 /* input-icon-loan-car.png */,
+				0064D06016C2E3BB001F6578 /* input-icon-loan-car@2x.png */,
+				0064D05716C2E385001F6578 /* input-icon-loan-college.png */,
+				0064D06116C2E3BB001F6578 /* input-icon-loan-college@2x.png */,
+				0064D05816C2E385001F6578 /* input-icon-loan-home.png */,
+				0064D06216C2E3BB001F6578 /* input-icon-loan-home@2x.png */,
+				0064D05916C2E385001F6578 /* input-icon-loan.png */,
+				0064D06316C2E3BB001F6578 /* input-icon-loan@2x.png */,
+				0064D05116C2D058001F6578 /* input-icon-transfer.png */,
+				0064D05316C2D0EB001F6578 /* input-icon-transfer@2x.png */,
 				00307FC2169F664700EB70C1 /* input-icon-airplane.png */,
 				00307FC3169F664700EB70C1 /* input-icon-airplane@2x.png */,
 				00307FC4169F664700EB70C1 /* input-icon-boat.png */,
@@ -3044,6 +3080,18 @@
 				00EF7A3716A861AB0006F805 /* app-icon.png in Resources */,
 				00EF7A3916A861B50006F805 /* app-icon@2x.png in Resources */,
 				00EF7A3B16A861C50006F805 /* app-icon-72.png in Resources */,
+				0064D05216C2D059001F6578 /* input-icon-transfer.png in Resources */,
+				0064D05416C2D0EB001F6578 /* input-icon-transfer@2x.png in Resources */,
+				0064D05A16C2E385001F6578 /* input-icon-loan-business.png in Resources */,
+				0064D05B16C2E385001F6578 /* input-icon-loan-car.png in Resources */,
+				0064D05C16C2E385001F6578 /* input-icon-loan-college.png in Resources */,
+				0064D05D16C2E385001F6578 /* input-icon-loan-home.png in Resources */,
+				0064D05E16C2E385001F6578 /* input-icon-loan.png in Resources */,
+				0064D06416C2E3BB001F6578 /* input-icon-loan-business@2x.png in Resources */,
+				0064D06516C2E3BB001F6578 /* input-icon-loan-car@2x.png in Resources */,
+				0064D06616C2E3BB001F6578 /* input-icon-loan-college@2x.png in Resources */,
+				0064D06716C2E3BB001F6578 /* input-icon-loan-home@2x.png in Resources */,
+				0064D06816C2E3BB001F6578 /* input-icon-loan@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

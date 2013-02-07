@@ -255,12 +255,7 @@
 		@"input-icon-moneybag.png",
 		@"input-icon-piggybank.png",
 		@"input-icon-invest.png",
-		@"input-icon-candlestick.png",
-
-		// Taxes
-		@"input-icon-taxes.png",
-		@"input-icon-investtax.png",
-		
+		@"input-icon-candlestick.png",		
 		
 		nil];
 
@@ -313,7 +308,7 @@
 	NSArray *iconNames = [NSArray arrayWithObjects:
 	
 		// Assets/Accounts
-		@"input-icon-money.png",
+		@"input-icon-transfer.png",
 
 		nil];
 		  
@@ -480,17 +475,15 @@
     formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_LOAN_TITLE");
 	
 		NSArray *iconNames = [NSArray arrayWithObjects:
-			@"input-icon-money.png",
+			@"input-icon-loan.png",
 
 			// Home & Auto
-			@"input-icon-home.png",
-			@"input-icon-car.png",
+			@"input-icon-loan-home.png",
+			@"input-icon-loan-car.png",
 						
 			// Discretionary Expenses
-			@"input-icon-college.png",			
-			@"input-icon-boat.png",
-			@"input-icon-airplane.png",
-			@"input-icon-briefcase.png",
+			@"input-icon-loan-college.png",
+			@"input-icon-loan-business.png",
 		nil];		
 	
 	[self.formPopulator populateInputNameField:loan withIconList:iconNames];
