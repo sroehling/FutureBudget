@@ -110,6 +110,40 @@
 
 }
 
++ (VariableValueRuntimeInfo*)createForLoanInterestRateWithDataModelController:
+    (DataModelController*)dataModelController andInput:(Input*)theInput
+{
+	SharedEntityVariableValueListMgr *sharedInterestRatesMgr =
+        [[[SharedEntityVariableValueListMgr alloc]
+          initWithDataModelController:dataModelController
+          andEntity:INTEREST_RATE_ENTITY_NAME] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString
+       stringWithFormat:LOCALIZED_STR(@"SHARED_INTEREST_RATE_TABLE_SUBTITLE_FORMAT"),
+       LOCALIZED_STR(@"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE"),
+       LOCALIZED_STR(@"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE")];
+    
+	
+	VariableValueRuntimeInfo *interestRuntimeInfo = [[[VariableValueRuntimeInfo alloc]
+          initWithFormatter:[NumberHelper theHelper].percentFormatter
+          andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+          andValueTitle:@"SHARED_INTEREST_RATE_VALUE_TITLE"
+          andInlineValueTitleKey:@"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE"
+          andValueVerb:LOCALIZED_STR(@"SHARED_LOAN_INTEREST_RATE_ACTION_VERB")
+          andPeriodDesc:LOCALIZED_STR(@"SHARED_INTEREST_RATE_PERIOD")
+          andListMgr:sharedInterestRatesMgr
+          andSingleValHelpInfoFile:@"fixedInterest"
+          andVariableValHelpInfoFile:@"variableInterest"
+          andValuePromptKey:@"SHARED_INTEREST_RATE_VALUE_PROMPT"
+          andValueTypeTitle:[theInput inputTypeTitle]
+          andValueName:theInput.name
+          andTableSubtitle:tableSubtitle] autorelease];
+    
+	return interestRuntimeInfo;
+    
+}
+
 
 + (VariableValueRuntimeInfo*)createForSharedInterestRateWithDataModelController:
 	(DataModelController*)dataModelController andInput:(Input*)theInput

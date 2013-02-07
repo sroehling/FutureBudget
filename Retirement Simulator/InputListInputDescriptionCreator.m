@@ -186,7 +186,7 @@
 	DateSensitiveValue *interestRate = (DateSensitiveValue*)
 		[loan.interestRate.growthRate getValueForCurrentOrDefaultScenario];
 	NSString *interestRateDisplay = [interestRate inlineDescription:
-		[VariableValueRuntimeInfo createForSharedInterestRateWithDataModelController:
+		[VariableValueRuntimeInfo createForLoanInterestRateWithDataModelController:
 			self.dataModelController andInput:loan]];
 
 	

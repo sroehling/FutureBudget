@@ -67,9 +67,14 @@
 
 
 + (VariableValueRuntimeInfo*)createForSharedInflationRateWithDataModelController:(DataModelController*)dataModelController andInput:(Input*)theInput;
+
 + (VariableValueRuntimeInfo*)createForSharedInterestRateWithDataModelController:
 	(DataModelController*)dataModelController andInput:(Input*)theInput;
-+ (VariableValueRuntimeInfo*)createForVariableAmount:(Input*)theInput 
++ (VariableValueRuntimeInfo*)createForLoanInterestRateWithDataModelController:
+    (DataModelController*)dataModelController andInput:(Input*)theInput;
+
+
++ (VariableValueRuntimeInfo*)createForVariableAmount:(Input*)theInput
 	andVariableValListMgr:(id<VariableValueListMgr>)listMgr;
 	
 +(VariableValueRuntimeInfo*)createForDataModelController:(DataModelController*)dataModelController 

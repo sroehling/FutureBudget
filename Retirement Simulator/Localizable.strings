@@ -155,13 +155,14 @@
 "SHARED_INTEREST_RATE_ACTION_VERB" = "yield";
 
 
+
 "SHARED_LOAN_DOWN_PMT_VALUE_TITLE" = "Down Payment";
 "SHARED_LOAN_DOWN_PMT_INLINE_VALUE_TITLE" = "down payment";
 "SHARED_LOAN_DOWN_PMT_TABLE_SUBTITLE_FORMAT" = "Enter a fixed %@ percentage, or select one of the common %@ percentages.";
 "SHARED_LOAN_DOWN_PMT_VALUE_PROMPT" = "Enter a rate";
 "SHARED_LOAN_DOWN_PMT_PERIOD" = "at start of loan";
 "SHARED_LOAN_DOWN_PMT_ACTION_VERB" = "make payment";
-
+"SHARED_LOAN_INTEREST_RATE_ACTION_VERB" = "charge interest of";
 
 
 "INPUT_NAV_CONTROLLER_BUTTON_TITLE" = "Inputs";
