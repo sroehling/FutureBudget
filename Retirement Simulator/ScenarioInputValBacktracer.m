@@ -189,8 +189,19 @@
 		if([self populateInputSet:self.cashFlowAmountGrowthRate 
 				withInput:msGrowthRate.cashFlowAmountGrowthRate]) { return; }
 			
-		if([self populateInputSet:self.loanCostGrowthRate 
-			    withInput:msGrowthRate.loanCostGrowthRate]) { return; }
+        // Only show the loan cost (amount borrowed) growth rate if the
+        // loan originates in the future. To show this value when it is not applicable
+        // would cause unnecessary confusion.
+       if(msGrowthRate.loanCostGrowthRate != nil)
+        {
+            LoanInput *theLoan = msGrowthRate.loanCostGrowthRate;
+            if([theLoan originationDateDefinedAndInTheFutureForScenario:scenVal.scenario])
+            {
+                [self populateInputSet:self.loanCostGrowthRate
+                             withInput:msGrowthRate.loanCostGrowthRate];
+            }
+            return;
+        }
 			
 		if([self populateInputSet:self.loanExtraPmtGrowthRate 
 			    withInput:msGrowthRate.loanExtraPmtGrowthRate]) { return; }

@@ -71,6 +71,10 @@
 #import "TaxBracket.h"
 #import "TransferInput.h"
 #import "TransferEndpointFieldEditInfo.h"
+#import "MultiScenarioSimDate.h"
+#import "SimInputHelper.h"
+#import "DateHelper.h"
+#import "MultiScenarioInputValue.h"
 
 @implementation DetailInputViewCreator
 
@@ -493,13 +497,16 @@
 	[self.formPopulator populateMultiScenBoolField:loan.loanEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
 	
+    // TODO - Only show the starting/outstanding balance if the loan originates
+    // in the past.
 	[formPopulator nextSection];
 	[self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL") 
 		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
 
 
-	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_SECTION_TITLE")];
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_SECTION_TITLE")
+        andHelpFile:@"loanOrig"];
 	
 	[self.formPopulator populateMultiScenSimDate:loan.origDate 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL") 
@@ -512,9 +519,16 @@
 		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")
 		andValueName:loan.name];
 
-	[self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate 
-		withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")
-		andValueName:loan.name];
+    // Only show the loan cost (amount borrowed) growth rate if the
+    // loan originates in the future. To show this value when it is not applicable
+    // will cause unnecessary confusion. The loanCostGrowthRate field is initialized
+    // with a default growth rate, so there is no conflict to not showing this value.
+    if([loan originationDateDefinedAndInTheFutureForScenario:formPopulator.inputScenario])
+    {
+        [self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate
+              withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")
+              andValueName:loan.name];        
+    }
 
 	[self.formPopulator populateMultiScenarioInterestRate:loan.interestRate 
 		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") 

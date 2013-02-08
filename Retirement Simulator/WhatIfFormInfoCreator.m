@@ -575,17 +575,36 @@
 
 	inputs = [parentContext.dataModelController  
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
+    
 	if([inputs count]  > 0)
 	{
-		sectionInfo = [formPopulator nextSection];
-		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_LOAN_COST");
-
-		for(LoanInput *loan in inputs)
-		{
-			[formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate 
-				withLabel:loan.name
-				andValueName:loan.name];
-		}
+        
+        // Only show the loan cost (amount borrowed) growth rate if the
+        // loan originates in the future. To show this value when it is not applicable
+        // would cause unnecessary confusion.
+        NSMutableSet *futureLoanInputs = [[[NSMutableSet alloc] init] autorelease];
+ 		for(LoanInput *loan in inputs)
+        {
+            if([loan originationDateDefinedAndInTheFutureForScenario:formPopulator.inputScenario])
+            {
+                [futureLoanInputs addObject:loan];
+            }
+        }
+        
+         if([futureLoanInputs count] > 0)
+        {
+            sectionInfo = [formPopulator nextSection];
+            sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_LOAN_COST");
+            
+            for(LoanInput *futureLoan in futureLoanInputs)
+            {
+                [formPopulator populateMultiScenarioGrowthRate:futureLoan.loanCostGrowthRate
+                                                     withLabel:futureLoan.name
+                                                  andValueName:futureLoan.name];
+            }
+          
+        }
+        
 	}
 
 

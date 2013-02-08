@@ -272,6 +272,7 @@
 		0064D06616C2E3BB001F6578 /* input-icon-loan-college@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06116C2E3BB001F6578 /* input-icon-loan-college@2x.png */; };
 		0064D06716C2E3BB001F6578 /* input-icon-loan-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06216C2E3BB001F6578 /* input-icon-loan-home@2x.png */; };
 		0064D06816C2E3BB001F6578 /* input-icon-loan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06316C2E3BB001F6578 /* input-icon-loan@2x.png */; };
+		0064D06B16C55FB4001F6578 /* loanOrig.md in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06A16C55FB4001F6578 /* loanOrig.md */; };
 		006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */; };
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
@@ -948,6 +949,7 @@
 		0064D06116C2E3BB001F6578 /* input-icon-loan-college@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-college@2x.png"; sourceTree = "<group>"; };
 		0064D06216C2E3BB001F6578 /* input-icon-loan-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-home@2x.png"; sourceTree = "<group>"; };
 		0064D06316C2E3BB001F6578 /* input-icon-loan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan@2x.png"; sourceTree = "<group>"; };
+		0064D06A16C55FB4001F6578 /* loanOrig.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = loanOrig.md; sourceTree = "<group>"; };
 		006572D114338E500062C00C /* DeferredWithdrawalFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFieldEditInfo.h; sourceTree = "<group>"; };
 		006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFieldEditInfo.m; sourceTree = "<group>"; };
 		006572D4143393110062C00C /* DeferredWithdrawalFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFormInfoCreator.h; sourceTree = "<group>"; };
@@ -1724,6 +1726,7 @@
 		002FAEA614D38F0A00AE2B41 /* Context Help */ = {
 			isa = PBXGroup;
 			children = (
+				0064D06916C55F92001F6578 /* Loan */,
 				00DC49E414D71453006BDF61 /* Simulation Dates */,
 				00DC49D714D6FDDD006BDF61 /* Taxes */,
 				00DC49D614D6FDBB006BDF61 /* Variable Values */,
@@ -2146,6 +2149,14 @@
 				0099A1671457ACCD00E35AF9 /* Expense */,
 			);
 			name = "Simulator Inputs";
+			sourceTree = "<group>";
+		};
+		0064D06916C55F92001F6578 /* Loan */ = {
+			isa = PBXGroup;
+			children = (
+				0064D06A16C55FB4001F6578 /* loanOrig.md */,
+			);
+			name = Loan;
 			sourceTree = "<group>";
 		};
 		006572CF14338DCE0062C00C /* Deferred Withdrawals */ = {
@@ -3092,6 +3103,7 @@
 				0064D06616C2E3BB001F6578 /* input-icon-loan-college@2x.png in Resources */,
 				0064D06716C2E3BB001F6578 /* input-icon-loan-home@2x.png in Resources */,
 				0064D06816C2E3BB001F6578 /* input-icon-loan@2x.png in Resources */,
+				0064D06B16C55FB4001F6578 /* loanOrig.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,7 @@
 @class MultiScenarioGrowthRate;
 @class MultiScenarioSimDate;
 @class MultiScenarioSimEndDate;
+@class Scenario;
 
 extern NSString * const LOAN_INPUT_ENTITY_NAME;
 extern NSString * const LOAN_INPUT_DEFAULT_ICON_NAME;
@@ -51,6 +52,8 @@ extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 // Inverse Relationship
 @property (nonatomic, retain) NSSet* loanInterestItemizedTaxAmts;
 
+// Convenience/Helper methods
+-(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario;
 
 
 @end

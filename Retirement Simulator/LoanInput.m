@@ -13,6 +13,9 @@
 #import "VariableValue.h"
 #import "LoanInterestItemizedTaxAmt.h"
 #import "MultiScenarioSimEndDate.h"
+#import "SimInputHelper.h"
+#import "MultiScenarioSimDate.h"
+#import "DateHelper.h"
 
 NSString * const LOAN_INPUT_ENTITY_NAME = @"LoanInput";
 
@@ -99,6 +102,31 @@ NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"input-icon-loan.png";
 {
 	return LOCALIZED_STR(@"INPUT_LOAN_TITLE");
 }
+
+-(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario
+{
+    if([self.origDate.simDate
+        findInputValueForScenarioOrDefault:currentScenario] != nil)
+    {
+        NSDate *currentScenarioOrigDate = [SimInputHelper multiScenFixedDate:self.origDate.simDate
+                                                                 andScenario:currentScenario];
+        if([DateHelper dateIsLater:currentScenarioOrigDate otherDate:[DateHelper today]])
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+    else
+    {
+        return FALSE;
+    }
+ 
+}
+
+
 
 
 @end
