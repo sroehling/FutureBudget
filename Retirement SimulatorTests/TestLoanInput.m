@@ -106,7 +106,8 @@
 - (void)checkPmt:(LoanSimInfo*)loanInfo andPmtRepeater:(EventRepeater*)pmtRepeater
 	expectedPmtDate:(NSString*)expctedPmtDateStr inContext:(NSString*)context
 {
-	NSDate *pmtDate = [pmtRepeater nextDate];
+    NSDate *pmtDate = [pmtRepeater nextDateOnOrAfterDate:loanInfo.simParams.simStartDate];
+
 	[self checkDate:pmtDate vsExpected:expctedPmtDateStr inContext:context];
 	
 	double paymentAmount = [loanInfo monthlyPayment];
@@ -194,6 +195,82 @@
 		
 }
 
+- (void)testLoanWithoutExplicitStartingBalance
+{	
+	LoanInput *theLoan  = [self createTestLoanWithLoanCost:100
+		andDuration:12 andInterestRate:10 andDownPmtPercent:0 andExtraPmtAmt:0];
+		
+	// Override the origination date to 6 months before the simulation start, and
+	// set the starting balance to undefined/nil. This will cause the simulation
+	// engine to calculate a starting balance based on the payments made before
+	// the start date.
+	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
+		initWithDataModelInterface:self.coreData andSharedAppVals:testAppVals] autorelease];
+	theLoan.startingBalance = nil;
+	NSDate *origDate = [DateHelper dateFromStr:@"2011-06-01"];
+	theLoan.origDate = [inputCreationHelper multiScenSimDateWithDefault:origDate];
+		
+		
+	SimParams *simParams = [[[SimParams alloc]
+		initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"]
+		andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"]
+		andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"]
+		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 
+			andDeficitRate:self.testAppVals.deficitInterestRate andDeficitBalance:0.0
+		andInflationRate:testAppVals.defaultInflationRate] autorelease];
+		
+	LoanSimInfo *loanInfo = [[[LoanSimInfo alloc] initWithLoan:theLoan andSimParams:simParams] autorelease];
+	
+	double simulatedStartingBalance = [loanInfo simulatedStartingBalanceForPastLoanOrigination];
+	[self checkValue:simulatedStartingBalance vsExpected:51.26
+		inContext:@"testLoanWithoutExplicitStartingBalance: Simulated Starting Balance (after 6 prior payments"];
+
+	
+	// Cross-checked with MS Excel using the function "=PMT(10%/12,12,100,0,0)"
+
+	double paymentAmount = [loanInfo monthlyPayment];
+
+	[self checkValue:paymentAmount vsExpected:8.79 
+		inContext:@"testLoanWithoutExplicitStartingBalance:monthly payment"];
+	
+	[self checkValue:[loanInfo loanOrigAmount] vsExpected:100 
+		inContext:@"testLoanWithoutExplicitStartingBalance:origination amount"];
+
+	[self checkValue:[loanInfo downPaymentAmount] vsExpected:0 
+		inContext:@"testLoanWithoutExplicitStartingBalance:down pmt amount"];
+	
+	[self checkDate:[loanInfo loanOrigDate] vsExpected:@"2011-06-01" 
+		inContext:@"testLoanWithoutExplicitStartingBalance:origination date"];
+
+	EventRepeater *pmtRepeater = [loanInfo createLoanPmtRepeater];
+
+	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
+		expectedPmtDate:@"2012-01-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 1"];
+	
+	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
+		expectedPmtDate:@"2012-02-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 1"];
+
+	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
+		expectedPmtDate:@"2012-03-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 2"];
+
+	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
+		expectedPmtDate:@"2012-04-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 3"];
+		
+	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
+		expectedPmtDate:@"2012-05-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 4"];
+		
+	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
+		expectedPmtDate:@"2012-06-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 5"];
+		
+	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
+		expectedPmtDate:@"2012-07-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 6"];
+		
+	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
+		expectedPmtDate:@"2012-08-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 7"];
+		
+		
+		
+}
 
 
 @end

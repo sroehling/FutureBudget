@@ -497,13 +497,16 @@
 	[self.formPopulator populateMultiScenBoolField:loan.loanEnabled 
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
 	
-    // TODO - Only show the starting/outstanding balance if the loan originates
-    // in the past.
-	[formPopulator nextSection];
-	[self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY 
-		andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL") 
-		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
-
+    // Only show the starting/outstanding balance if the loan originates
+    // in the past. A starting balance for a future loan doesn't make
+	// sense, so it would only be confusing to show this to the user.
+    if([loan originationDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
+    {
+        [formPopulator nextSection];
+        [self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY
+                andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL")
+				andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
+	}
 
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_SECTION_TITLE")
         andHelpFile:@"loanOrig"];

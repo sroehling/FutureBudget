@@ -112,16 +112,32 @@
 			sortKey:INPUT_NAME_KEY];
 	if([loans count]  > 0)
 	{
-		[formPopulator nextSectionWithTitle:
-			LOCALIZED_STR(@"STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE")
-				andHelpFile:@"outstandingLoanBalances"];
-
+        // Only show the starting/outstanding balance if the loan originates
+        // in the past.
+        NSMutableArray *loansOriginatingInPast = [[[NSMutableArray alloc] init] autorelease];
 		for(LoanInput *loan in loans)
-		{
-			[formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY 
-				andLabel:loan.name
-				andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
-		}
+        {
+            if([loan originationDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
+            {
+                [loansOriginatingInPast addObject:loan];
+            }
+        }
+        
+        if([loansOriginatingInPast count] > 0)
+        {
+            [formPopulator nextSectionWithTitle:
+             LOCALIZED_STR(@"STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE")
+                                    andHelpFile:@"outstandingLoanBalances"];
+            
+            for(LoanInput *pastLoan in loansOriginatingInPast)
+            {
+                [formPopulator populateCurrencyField:pastLoan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY
+                                            andLabel:pastLoan.name
+                                      andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
+            }
+           
+        }
+		
 	}
 	
 	// TODO - Switch over to use populateCurrencyField from InputFormPopulator

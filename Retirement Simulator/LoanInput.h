@@ -52,8 +52,11 @@ extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 // Inverse Relationship
 @property (nonatomic, retain) NSSet* loanInterestItemizedTaxAmts;
 
-// Convenience/Helper methods
+// Convenience/Helper methods - These are used by forms which display
+// loan properties whose applicability depends on whether the loan
+// originated in the past or will originate in the future.
 -(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario;
+-(BOOL)originationDateDefinedAndInThePastForScenario:(Scenario*)currentScenario;
 
 
 @end

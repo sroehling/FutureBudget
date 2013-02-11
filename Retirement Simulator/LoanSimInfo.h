@@ -45,4 +45,6 @@
 - (double)monthlyPayment;
 - (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate;
 
+-(double)simulatedStartingBalanceForPastLoanOrigination;
+
 @end

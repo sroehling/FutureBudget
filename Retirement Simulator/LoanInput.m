@@ -126,6 +126,30 @@ NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"input-icon-loan.png";
  
 }
 
+-(BOOL)originationDateDefinedAndInThePastForScenario:(Scenario*)currentScenario
+{
+    if([self.origDate.simDate
+        findInputValueForScenarioOrDefault:currentScenario] != nil)
+    {
+        NSDate *currentScenarioOrigDate = [SimInputHelper multiScenFixedDate:self.origDate.simDate
+                                                                 andScenario:currentScenario];
+        if([DateHelper dateIsLater:[DateHelper today] otherDate:currentScenarioOrigDate])
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+    else
+    {
+        return FALSE;
+    }
+    
+}
+
+
 
 
 

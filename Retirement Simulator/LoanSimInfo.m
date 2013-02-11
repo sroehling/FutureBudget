@@ -186,6 +186,57 @@
 	return startingBal;
 }
 
+-(double)simulatedStartingBalanceForPastLoanOrigination
+{
+	double startingBalAtLoanOrig = [self startingBalanceAfterDownPayment];
+	NSDate *loanOrigDate = [self loanOrigDate];
+	
+	// If early payoff is enabled and is before the sim start, then
+	// the starting balance is always 0.0, since the loan was paid
+	// off before the simulation start.
+	if([self earlyPayoffAfterOrigination] &&
+			(![self earlyPayoffAfterSimStart]))
+	{
+		return 0.0;
+	}
+
+	
+	// TBD - What do we do about extra payments?
+	
+	VariableRateCalculator *interestRateCalc = [DateSensitiveValueVariableRateCalculatorCreator 
+		createVariableRateCalc:self.loan.interestRate.growthRate 
+		andStartDate:loanOrigDate andScenario:self.simParams.simScenario
+		andUseLoanAnnualRates:true];
+				
+	InterestBearingWorkingBalance *loanBalanceBeforeSimStart = [[[InterestBearingWorkingBalance alloc]
+		initWithStartingBalance:startingBalAtLoanOrig andInterestRateCalc:interestRateCalc 
+		andWorkingBalanceName:self.loan.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
+	double balanceAsOfLastPaymentBeforeSimStart = [loanBalanceBeforeSimStart currentBalanceForDate:loanOrigDate];
+	
+	EventRepeater *pmtRepeater = [self createLoanPmtRepeater];
+	double monthlyPmt = [self monthlyPayment];
+
+	// Loan exists as of the start date. Interest starts on the last
+	// payment date before the sim start date.
+	
+	NSDate *pmtDate = [pmtRepeater nextDate];
+	assert(pmtDate != nil);
+	
+// TODO - Need to test for boundary case where first pmt is on the simulation start date.
+	while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
+	{
+		[loanBalanceBeforeSimStart carryBalanceForward:pmtDate];
+		[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:monthlyPmt asOfDate:pmtDate];
+		balanceAsOfLastPaymentBeforeSimStart = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
+
+		pmtDate = [pmtRepeater nextDate];
+		assert(pmtDate != nil);
+		
+	}
+
+	return balanceAsOfLastPaymentBeforeSimStart;
+}
+
 
 -(id)initWithLoan:(LoanInput*)theLoan andSimParams:(SimParams*)theParams
 {
@@ -220,8 +271,18 @@
 			// In this case the simulation start date is after the origination date. So,
 			// we need to use the "starting balance" for the loan, to account for the all
 			// the prior payments already made on the loan (plus any extra payments, etc.)
+			// If a starting balance hasn't been provided by the user, then "simulat" the
+			// starting balance by computing payments and interest before the simulation
+			// start date.
 			interestStartDate = [self calcInterestStartDate];
-			startingLoanBalance = [self.loan.startingBalance doubleValue];
+			if(self.loan.startingBalance == nil)
+			{
+				startingLoanBalance = [self simulatedStartingBalanceForPastLoanOrigination];
+			}
+			else
+			{
+				startingLoanBalance = [self.loan.startingBalance doubleValue];
+			}
 		}
 		
 		assert(interestStartDate != nil);
