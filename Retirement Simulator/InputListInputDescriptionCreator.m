@@ -32,13 +32,16 @@
 #import "MultiScenarioInputValue.h"
 #import "DataModelController.h"
 #import "TransferInput.h"
+#import "AppHelper.h"
 #import "TransferEndpoint.h"
+#import "SharedAppValues.h"
 
 
 @implementation InputListInputDescriptionCreator 
 
 @synthesize generatedDesc;
 @synthesize dataModelController;
+@synthesize sharedAppVals;
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController
 {
@@ -47,6 +50,8 @@
 	{
 		assert(theDataModelController != nil);
 		self.dataModelController = theDataModelController;
+		
+		self.sharedAppVals = [SharedAppValues getUsingDataModelController:self.dataModelController];
 	}
 	return self;
 }
@@ -74,7 +79,7 @@
 
 }
 
--(NSString*)formattedCashflowDate:(MultiScenarioSimDate*)cashFlowDate
+-(NSString*)formattedMultiScenarioInputDate:(MultiScenarioSimDate*)cashFlowDate
 {
 	SimDate *theDate = (SimDate*)[cashFlowDate.simDate getValueForCurrentOrDefaultScenario]; 
 	NSString *dateDisplay = [theDate
@@ -121,7 +126,7 @@
 {
 	NSString *amountDisplay = [self formattedCashFlowAmount:cashFlow];
 	
-	NSString *startDateDisplay = [self formattedCashflowDate:cashFlow.startDate];
+	NSString *startDateDisplay = [self formattedMultiScenarioInputDate:cashFlow.startDate];
 
 	NSString *repeatFreqDesc = [self formattedCashFlowRepeatFreq:cashFlow];
 	
@@ -150,7 +155,7 @@
 {
 	NSString *amountDisplay = [self formattedCashFlowAmount:transfer];
 	
-	NSString *startDateDisplay = [self formattedCashflowDate:transfer.startDate];
+	NSString *startDateDisplay = [self formattedMultiScenarioInputDate:transfer.startDate];
 
 	NSString *repeatFreqDesc = [self formattedCashFlowRepeatFreq:transfer];
 	
@@ -189,7 +194,8 @@
 		[VariableValueRuntimeInfo createForLoanInterestRateWithDataModelController:
 			self.dataModelController andInput:loan]];
 
-	
+	NSString *originationDateDisplay = [self formattedMultiScenarioInputDate:loan.origDate];
+
 
 	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
 		createForDataModelController:self.dataModelController 
@@ -198,11 +204,26 @@
 	DateSensitiveValue *amount = (DateSensitiveValue*)
 			[loan.loanCost.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
-
-
-	self.generatedDesc= [NSString 
+	
+	NSString *loanDescWithoutStartingBal = [NSString 
 		stringWithFormat:LOCALIZED_STR(@"INPUT_LOAN_INPUT_LIST_FORMAT"),
-			amountDisplay,interestRateDisplay];
+			amountDisplay,originationDateDisplay,interestRateDisplay];
+	self.generatedDesc = loanDescWithoutStartingBal;
+		
+	if([loan originationDateDefinedAndInThePastForScenario:self.sharedAppVals.currentInputScenario] &&
+		(loan.startingBalance != nil))
+	{
+		NSString *startingBalDisplay = 	[[NumberHelper theHelper]
+			displayStrFromStoredVal:loan.startingBalance
+			andFormatter:[NumberHelper theHelper].currencyFormatter];
+
+		NSString *loanDescWithStartingBal = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"INPUT_LOAN_INPUT_LIST_FORMAT_WITH_STARTING_BAL"),
+			amountDisplay,originationDateDisplay,interestRateDisplay,startingBalDisplay];
+
+		self.generatedDesc = loanDescWithStartingBal;
+
+	}
 
 }
 
@@ -241,6 +262,7 @@
 {
 	[generatedDesc release];
 	[dataModelController release];
+	[sharedAppVals release];
 	[super dealloc];
 }
 

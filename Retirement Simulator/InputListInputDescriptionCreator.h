@@ -12,17 +12,20 @@
 
 @class Input;
 @class DataModelController;
+@class SharedAppValues;
 
 @interface InputListInputDescriptionCreator : NSObject <InputVisitor> {
 	@private
 		NSString *generatedDesc;
 		DataModelController *dataModelController;
+		SharedAppValues *sharedAppVals;
 		
     
 }
 
 @property(nonatomic,retain) NSString *generatedDesc;
 @property(nonatomic,retain) DataModelController *dataModelController;
+@property(nonatomic,retain) SharedAppValues *sharedAppVals;
 
 - (NSString*)descripionForInput:(Input*)theInput;
 

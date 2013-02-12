@@ -223,7 +223,8 @@
 "INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL" = "Amount Borrowed";
 "INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL" = "Amount Borrowed Growth Rate";
 "INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL" = "Payment Growth Rate";
-"INPUT_LOAN_INPUT_LIST_FORMAT" = "Borrow %@, %@";
+"INPUT_LOAN_INPUT_LIST_FORMAT" = "Borrow %@ on %@, %@";
+"INPUT_LOAN_INPUT_LIST_FORMAT_WITH_STARTING_BAL" = "Borrow %@ on %@, %@, still owe %@";
 "INPUT_LOAN_DURATION_LABEL" = "Duration";
 "INPUT_LOAN_DURATION_PLACEHOLDER" = "Enter a duration";
 "INPUT_LOAN_TAX_ITEMIZED_ADJUSTMENT_SECTION_TITLE" = "Interest is Adjustment";
