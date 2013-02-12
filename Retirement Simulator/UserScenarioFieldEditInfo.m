@@ -54,7 +54,7 @@
 
 - (NSString*)detailTextLabel
 {
-    return @"";
+    return self.userScen.notes;
 }
 
 - (NSString*)textLabel

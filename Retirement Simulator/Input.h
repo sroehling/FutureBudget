@@ -12,6 +12,7 @@
 @protocol InputVisitor;
 
 extern NSString * const INPUT_NAME_KEY;
+extern NSString * const INPUT_NOTES_KEY;
 extern NSString * const INPUT_ICON_IMAGE_NAME_KEY;
 
 

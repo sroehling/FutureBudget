@@ -265,6 +265,10 @@
 
 
 	[self.formPopulator populateInputNameField:expense withIconList:iconNames];
+	[self.formPopulator populateNoteFieldInParentObj:expense
+		withNameField:INPUT_NOTES_KEY
+		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
 	
 	[self populateCommonCashFlowFields:expense];
  		   
@@ -294,6 +298,10 @@
 
 
 	[self.formPopulator populateInputNameField:income withIconList:iconNames];
+	[self.formPopulator populateNoteFieldInParentObj:income
+		withNameField:INPUT_NOTES_KEY
+		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
 
 	[self populateCommonCashFlowFields:income];
 		
@@ -317,6 +325,10 @@
 		nil];
 		  
 	[self.formPopulator populateInputNameField:transfer withIconList:iconNames];
+	[self.formPopulator populateNoteFieldInParentObj:transfer
+		withNameField:INPUT_NOTES_KEY
+		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
 		  
 	[self.formPopulator nextSection];
 	
@@ -363,6 +375,10 @@
 		nil];		
 		
 	[self.formPopulator populateInputNameField:account withIconList:iconNames];
+	[self.formPopulator populateNoteFieldInParentObj:account
+		withNameField:INPUT_NOTES_KEY
+		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
 	
 	 [formPopulator nextSection];
 
@@ -491,6 +507,10 @@
 		nil];		
 	
 	[self.formPopulator populateInputNameField:loan withIconList:iconNames];
+	[self.formPopulator populateNoteFieldInParentObj:loan
+		withNameField:INPUT_NOTES_KEY
+		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
 
 	[formPopulator nextSection];
 	
@@ -608,6 +628,10 @@
 	
 	
 	[self.formPopulator populateInputNameField:asset withIconList:iconNames];
+	[self.formPopulator populateNoteFieldInParentObj:asset
+		withNameField:INPUT_NOTES_KEY
+		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
 	
 	[formPopulator nextSection];
 	
@@ -669,9 +693,13 @@
 	NSArray *iconNames = [NSArray arrayWithObjects:
 		@"input-icon-taxes.png",
 		@"input-icon-investtax.png",
-		nil];		
+		nil];
 	
 	[self.formPopulator populateInputNameField:tax withIconList:iconNames];
+	[self.formPopulator populateNoteFieldInParentObj:tax
+		withNameField:INPUT_NOTES_KEY
+		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
 	
 	[formPopulator nextSection];
 	

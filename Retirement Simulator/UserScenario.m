@@ -10,6 +10,7 @@
 
 NSString * const USER_SCENARIO_ENTITY_NAME = @"UserScenario";
 NSString * const USER_SCENARIO_NAME_KEY = @"name";
+NSString * const USER_SCENARIO_NOTES_KEY = @"notes";
 
 @implementation UserScenario
 @dynamic name;

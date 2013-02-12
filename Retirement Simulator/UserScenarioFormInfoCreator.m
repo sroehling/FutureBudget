@@ -28,6 +28,8 @@
 #import "LoanDownPmtPercent.h"
 #import "DateSensitiveValueFieldEditInfo.h"
 #import "FormContext.h"
+#import "NoteFieldEditInfo.h"
+#import "InputFormPopulator.h"
 
 @implementation UserScenarioFormInfoCreator
 
@@ -105,6 +107,11 @@
 		andImageNames:imageNames andImageFieldInfo:imageFieldInfo] autorelease];
 	
     [sectionInfo addFieldEditInfo:fieldEditInfo];
+	
+	[formPopulator populateNoteFieldInParentObj:self.userScen
+		withNameField:USER_SCENARIO_NOTES_KEY
+		andFieldTitle:LOCALIZED_STR(@"SCENARIO_NOTE_FIELD_TITLE")
+		andPlaceholder:LOCALIZED_STR(@"SCENARIO_NOTE_FIELD_PLACEHOLDER")];
 	
 	ScenarioInputValBacktracer *inputBacktrace = [[[ScenarioInputValBacktracer alloc] 
 			initWithUserScen:self.userScen] autorelease];

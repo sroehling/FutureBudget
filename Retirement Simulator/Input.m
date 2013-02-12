@@ -9,6 +9,7 @@
 #import "Input.h"
 
 NSString * const INPUT_NAME_KEY = @"name";
+NSString * const INPUT_NOTES_KEY = @"notes";
 NSString * const INPUT_ICON_IMAGE_NAME_KEY = @"iconImageName";
 
 @implementation Input
