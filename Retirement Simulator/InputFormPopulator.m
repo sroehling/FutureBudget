@@ -141,8 +141,8 @@
 
 }
 
-
 -(void)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label
+	andSubtitle:(NSString*)subTitle // subTitle is optional and can be nil for no subtitle
 {
 	assert(boolVal != nil);
 	assert([StringValidation nonEmptyString:label]);
@@ -153,11 +153,15 @@
 			andFieldPlaceholder:@"n/a" andScenario:self.inputScenario 
 		andInputVal:boolVal] autorelease];
 	BoolFieldEditInfo *boolFieldEditInfo = 
-		[[[BoolFieldEditInfo alloc] initWithFieldInfo:boolFieldInfo andSubtitle:nil] autorelease];
+		[[[BoolFieldEditInfo alloc] initWithFieldInfo:boolFieldInfo andSubtitle:subTitle] autorelease];
 		
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:boolFieldEditInfo];
+}
 
+-(void)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label
+{
+	[self populateMultiScenBoolField:boolVal withLabel:label andSubtitle:nil];
 }
 
 

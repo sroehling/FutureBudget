@@ -46,6 +46,8 @@
 - (void)populateInputNameField:(Input*)theInput withIconList:(NSArray*)inputIcons;
 
 -(void)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label;
+-(void)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label
+	andSubtitle:(NSString*)subTitle; // subTitle is optional and can be nil for no subtitle
 
 -(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
 	andValLabel:(NSString*)label andPrompt:(NSString*)prompt

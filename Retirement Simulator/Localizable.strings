@@ -205,6 +205,7 @@
 "INPUT_LOAN_TITLE" = "Loan";
 "INPUT_LOAN_INLINE_TITLE" = "loan";
 "INPUT_LOAN_ENABLED_FIELD_LABEL" = "Origination Enabled?";
+"INPUT_LOAN_ENABLED_FIELD_SUBTITLE" = "Enable borrowing of the money?";
 "INPUT_LOAN_STARTING_BALANCE_LABEL" = "Outstanding Balance";
 "INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER" = "Enter a balance";
 "INPUT_LOAN_ORIG_SECTION_TITLE" = "Origination";

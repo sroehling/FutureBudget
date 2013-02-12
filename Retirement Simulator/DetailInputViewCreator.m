@@ -515,7 +515,8 @@
 	[formPopulator nextSection];
 	
 	[self.formPopulator populateMultiScenBoolField:loan.loanEnabled 
-			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")];
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_LABEL")
+			andSubtitle:LOCALIZED_STR(@"INPUT_LOAN_ENABLED_FIELD_SUBTITLE")];
 	
     // Only show the starting/outstanding balance if the loan originates
     // in the past. A starting balance for a future loan doesn't make
