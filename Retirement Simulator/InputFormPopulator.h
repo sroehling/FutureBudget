@@ -59,6 +59,9 @@
 	
 -(void)populateCurrencyField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder;
+-(void)populateCurrencyField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
+	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
+	andSubtitle:(NSString*)subTitle;
 	
 -(void)populatePercentField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder;

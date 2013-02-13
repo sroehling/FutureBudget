@@ -208,6 +208,7 @@
 "INPUT_LOAN_ENABLED_FIELD_SUBTITLE" = "Enable borrowing of the money?";
 "INPUT_LOAN_STARTING_BALANCE_LABEL" = "Outstanding Balance";
 "INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER" = "Enter a balance";
+"INPUT_LOAN_STARTING_BALANCE_SUBTITLE" = "How much is still owed?";
 "INPUT_LOAN_ORIG_SECTION_TITLE" = "Origination";
 "INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL" = "Make Extra Payments?";
 "INPUT_LOAN_EXTRA_PMT_SECTION_TITLE" = "Extra Payments";

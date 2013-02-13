@@ -236,26 +236,35 @@
 }
 
 
-
-
-
 -(void)populateCurrencyField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
+	andSubtitle:(NSString*)subTitle
 {
 	assert(parentObj != nil);
 	assert([StringValidation nonEmptyString:valKey]);
 	assert([StringValidation nonEmptyString:label]);
 	assert([StringValidation nonEmptyString:placeholder]);
 	
-	NumberFieldEditInfo *currencyFieldEditInfo = 
-			[NumberFieldEditInfo createForObject:parentObj andKey:valKey 
-			andLabel:label
-			andPlaceholder:placeholder
-			andNumberFormatter:[NumberHelper theHelper].currencyFormatter
-			andValidator:[[[PositiveAmountValidator alloc] init] autorelease]];
+	
+	ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
+              initWithManagedObject:parentObj andFieldKey:valKey andFieldLabel:label
+										 andFieldPlaceholder:placeholder];
+    NumberFieldEditInfo *currencyFieldEditInfo = [[NumberFieldEditInfo alloc] 
+		initWithFieldInfo:fieldInfo
+		andNumberFormatter:[NumberHelper theHelper].currencyFormatter
+		andValidator:[[[PositiveAmountValidator alloc] init] autorelease]
+		andSubtitle:subTitle];
+
+	
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:currencyFieldEditInfo];
-	
+}
+
+
+-(void)populateCurrencyField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey
+	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
+{
+	[self populateCurrencyField:parentObj andValKey:valKey andLabel:label andPlaceholder:placeholder andSubtitle:nil];
 }
 
 -(void)populatePercentField:(NSManagedObject*)parentObj andValKey:(NSString*)valKey

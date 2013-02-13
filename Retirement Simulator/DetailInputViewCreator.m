@@ -526,7 +526,8 @@
         [formPopulator nextSection];
         [self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY
                 andLabel:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_LABEL")
-				andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")];
+				andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_PLACEHOLDER")
+				andSubtitle:LOCALIZED_STR(@"INPUT_LOAN_STARTING_BALANCE_SUBTITLE")];
 	}
 
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_SECTION_TITLE")
