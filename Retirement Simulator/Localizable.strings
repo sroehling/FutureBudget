@@ -21,6 +21,10 @@
 "INPUT_LIST_SECTION_TITLE_TAXES" = "Taxes";
 "INPUT_LIST_EMPTY_LIST_ADD_BUTTON_CAPTION" = "To get started, click here to add new inputs.";
 "INPUT_LIST_EMPTY_LIST_ADD_BUTTON_MORE_INFO_CAPTION" = "Learn more ...";
+"INPUT_LIST_NEW_INPUT_TITLE" = "New Input";
+"INPUT_LIST_NEW_INPUT_TABLE_TITLE" = "Create a New Input";
+"INPUT_LIST_NEW_INPUT_TABLE_SUBTITLE" = "From the list below, select which type of input to be created.";
+
 
 "ITEMIZED_TAX_ACCOUNT_INTEREST_SECTION_TITLE" = "Savings Interest";
 "ITEMIZED_TAX_ACCOUNT_CONTRIBUTIONS_SECTION_TITLE" = "Account Contributions";
@@ -51,6 +55,7 @@
 "INPUT_TRANSFER_VIEW_TITLE" = "Transfer";
 "INPUT_TYPE_TRANSFER_INLINE" = "transfer";
 "INPUT_TYPE_TRANSFER_TITLE" = "Transfer";
+"INPUT_TYPE_TRANSFER_SUBTITLE" = "Money moved between accounts or to or from cash";
 "INPUT_LIST_SECTION_TITLE_TRANSFER" = "Transfers";
 "INPUT_LIST_INCOME_EXPENSE_DESCRIPTION_FORMAT" = "%@ starting on %@, repeating %@, %@";
 "INPUT_LIST_TRANSFER_DESCRIPTION_FORMAT" = "%@ from '%@' to '%@', starting on %@, repeating %@, %@";
@@ -71,6 +76,7 @@
 
 
 "INPUT_ACCOUNT_TITLE" = "Account";
+"INPUT_ACCOUNT_SUBTITLE" = "Accounts for investments or savings";
 "INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE" = "Contributions";
 "INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL" = "Contribution Amount";
 "INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL" = "Enable Contribution?";
@@ -173,7 +179,9 @@
 "INPUT_CASHFLOW_TYPE_EXPENSE_INLINE" = "expense";
 "INPUT_CASHFLOW_TYPE_INCOME_INLINE" = "income";
 "INPUT_CASHFLOW_TYPE_EXPENSE_TITLE" = "Expense";
+"INPUT_CASHFLOW_TYPE_EXPENSE_SUBTITLE" = "Money spent";
 "INPUT_CASHFLOW_TYPE_INCOME_TITLE" = "Income";
+"INPUT_CASHFLOW_TYPE_INCOME_SUBTITLE" = "Money received (e.g., salary, inheritance)";
 "INPUT_CASHFLOW_AMOUNT_SECTION_TITLE" = "Amount";
 "INPUT_CASH_FLOW_ENABLED_FIELD_LABEL" = "Enabled?";
 
@@ -203,6 +211,7 @@
 "INPUT_TYPE_VIEW_TITLE" = "Input Type";
 
 "INPUT_LOAN_TITLE" = "Loan";
+"INPUT_LOAN_SUBTITLE" = "Borrow money to purchase assets or for other purposes.";
 "INPUT_LOAN_INLINE_TITLE" = "loan";
 "INPUT_LOAN_ENABLED_FIELD_LABEL" = "Origination Enabled?";
 "INPUT_LOAN_ENABLED_FIELD_SUBTITLE" = "Enable borrowing of the money?";
@@ -239,6 +248,7 @@
 
 
 "INPUT_ASSET_TITLE" = "Asset";
+"INPUT_ASSET_SUBTITLE" = "Property owned, such as a home or car";
 "INPUT_ASSET_VALUE_SECTION_TITLE" = "Value";
 "INPUT_ASSET_ENABLED_FIELD_LABEL" = "Purchase Enabled?";
 "INPUT_ASSET_COST_FIELD_LABEL" = "Purchase Cost";
@@ -283,6 +293,7 @@
 
 
 "INPUT_TAX_TITLE" = "Tax";
+"INPUT_TAX_SUBTITLE" = "Subtract from income, investment gains or asset gains";
 "INPUT_TAX_INLINE_INPUT_TYPE" = "tax";
 "INPUT_TAX_ENABLED_FIELD_LABEL" = "Enable Tax?";
 "INPUT_TAX_BRACKET_SECTION_TITLE" = "Tax Rate Bracket";

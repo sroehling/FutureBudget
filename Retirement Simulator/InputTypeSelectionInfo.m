@@ -26,12 +26,16 @@
 
 @implementation InputTypeSelectionInfo
 
-@synthesize description;
+@synthesize inputLabel;
+@synthesize subTitle;
+@synthesize imageName;
 @synthesize inputCreationHelper;
 @synthesize dataModelInterface;
 
 -(id)initWithInputCreationHelper:(InputCreationHelper*)theHelper 
 	andDataModelInterface:(id<DataModelInterface>)theDataModelInterface
+	andLabel:(NSString*)theLabel andSubtitle:(NSString*)theSubTitle
+	andImageName:(NSString*)theImageName
 {
 	self = [super init];
 	if(self)
@@ -41,6 +45,10 @@
 		
 		assert(theDataModelInterface != nil);
 		self.dataModelInterface = theDataModelInterface;
+		
+		self.imageName = theImageName;
+		self.inputLabel = theLabel;
+		self.subTitle = theSubTitle;
 	}
 	return self;
 }
@@ -57,6 +65,9 @@
 {
 	[inputCreationHelper release];
 	[dataModelInterface release];
+	[inputLabel release];
+	[subTitle release];
+	[imageName release];
 	[super dealloc];
 }
 

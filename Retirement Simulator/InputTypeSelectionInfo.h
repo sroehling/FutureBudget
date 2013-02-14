@@ -16,20 +16,25 @@
 
 @interface InputTypeSelectionInfo : NSObject {
     @private
-// TODO - Need to replace description with another name
-    NSString *description;
+		NSString *inputLabel;
+		NSString *subTitle;
+		NSString *imageName;
 	@protected
 	id<DataModelInterface> dataModelInterface;
 	InputCreationHelper *inputCreationHelper;
 
 }
 
-@property(nonatomic,retain) NSString *description;
+@property(nonatomic,retain) NSString *inputLabel;
+@property(nonatomic,retain) NSString *subTitle;
+@property(nonatomic,retain) NSString *imageName;
 @property(nonatomic,retain) InputCreationHelper *inputCreationHelper;
 @property(nonatomic,retain) id<DataModelInterface> dataModelInterface;
 
 -(id)initWithInputCreationHelper:(InputCreationHelper*)theHelper 
-	andDataModelInterface:(id<DataModelInterface>)theDataModelInterface;
+	andDataModelInterface:(id<DataModelInterface>)theDataModelInterface
+	andLabel:(NSString*)theLabel andSubtitle:(NSString*)theSubTitle
+	andImageName:(NSString*)theImageName;
 
 - (Input*)createInput; // must be overriden
 

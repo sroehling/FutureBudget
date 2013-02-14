@@ -16,6 +16,8 @@
 		0009481513C37289008F129B /* ScenarioListObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481413C37288008F129B /* ScenarioListObjectAdder.m */; };
 		0009481813C375F4008F129B /* UserScenarioFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481713C375F4008F129B /* UserScenarioFieldEditInfo.m */; };
 		0009481B13C38912008F129B /* UserScenarioFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */; };
+		000E92B616CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92B516CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m */; };
+		000E92B916CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92B816CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m */; };
 		000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */; };
 		001056371672723E004E647F /* onlineHelp.md in Resources */ = {isa = PBXBuildFile; fileRef = 001056361672723E004E647F /* onlineHelp.md */; };
 		0010A58313CFEE6C0096A20F /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58213CFEE6B0096A20F /* Account.m */; };
@@ -374,7 +376,6 @@
 		00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */; };
 		00ADB31713842FCA00064651 /* CashFlowInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB31613842FC800064651 /* CashFlowInput.m */; };
 		00ADB31A1384330800064651 /* IncomeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3191384330700064651 /* IncomeInput.m */; };
-		00ADB31E13844F7100064651 /* InputTypeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */; };
 		00ADB3221384521000064651 /* InputTypeSelectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */; };
 		00AF85FA1499314200AE734B /* YearValPlotDataVal.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF85F91499314000AE734B /* YearValPlotDataVal.m */; };
 		00AF85FE149A6C5700AE734B /* CashBalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF85FD149A6C5300AE734B /* CashBalXYPlotDataGenerator.m */; };
@@ -561,6 +562,10 @@
 		0009481713C375F4008F129B /* UserScenarioFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScenarioFieldEditInfo.m; sourceTree = "<group>"; };
 		0009481913C3890E008F129B /* UserScenarioFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenarioFormInfoCreator.h; sourceTree = "<group>"; };
 		0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScenarioFormInfoCreator.m; sourceTree = "<group>"; };
+		000E92B416CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTypeSelectionFieldEditInfo.h; sourceTree = "<group>"; };
+		000E92B516CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTypeSelectionFieldEditInfo.m; sourceTree = "<group>"; };
+		000E92B716CBFC4800E07465 /* InputTypeSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTypeSelectionFormInfoCreator.h; sourceTree = "<group>"; };
+		000E92B816CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTypeSelectionFormInfoCreator.m; sourceTree = "<group>"; };
 		000FABF113BB8B30008AEEDF /* SimDateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateValueFormatter.h; sourceTree = "<group>"; };
 		000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateValueFormatter.m; sourceTree = "<group>"; };
 		001056361672723E004E647F /* onlineHelp.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = onlineHelp.md; sourceTree = "<group>"; };
@@ -1130,8 +1135,6 @@
 		00ADB31613842FC800064651 /* CashFlowInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowInput.m; sourceTree = "<group>"; };
 		00ADB3181384330600064651 /* IncomeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeInput.h; sourceTree = "<group>"; };
 		00ADB3191384330700064651 /* IncomeInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeInput.m; sourceTree = "<group>"; };
-		00ADB31B13844F6F00064651 /* InputTypeSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTypeSelectionViewController.h; sourceTree = "<group>"; };
-		00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTypeSelectionViewController.m; sourceTree = "<group>"; };
 		00ADB3201384520E00064651 /* InputTypeSelectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTypeSelectionInfo.h; sourceTree = "<group>"; };
 		00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTypeSelectionInfo.m; sourceTree = "<group>"; };
 		00AF85F81499313F00AE734B /* YearValPlotDataVal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearValPlotDataVal.h; sourceTree = "<group>"; };
@@ -1823,8 +1826,10 @@
 		0049DC7013A2884D00B27046 /* Input Creation */ = {
 			isa = PBXGroup;
 			children = (
-				00ADB31B13844F6F00064651 /* InputTypeSelectionViewController.h */,
-				00ADB31C13844F7000064651 /* InputTypeSelectionViewController.m */,
+				000E92B416CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.h */,
+				000E92B516CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m */,
+				000E92B716CBFC4800E07465 /* InputTypeSelectionFormInfoCreator.h */,
+				000E92B816CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m */,
 				00ADB3201384520E00064651 /* InputTypeSelectionInfo.h */,
 				00ADB3211384520F00064651 /* InputTypeSelectionInfo.m */,
 			);
@@ -3154,7 +3159,6 @@
 				00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */,
 				00ADB31713842FCA00064651 /* CashFlowInput.m in Sources */,
 				00ADB31A1384330800064651 /* IncomeInput.m in Sources */,
-				00ADB31E13844F7100064651 /* InputTypeSelectionViewController.m in Sources */,
 				00ADB3221384521000064651 /* InputTypeSelectionInfo.m in Sources */,
 				00637A791385D4BC001E02F1 /* DateSensitiveValue.m in Sources */,
 				00637A7C1385D4D9001E02F1 /* DateSensitiveValueChange.m in Sources */,
@@ -3392,6 +3396,8 @@
 				008C5852155C3B7700AB9EE1 /* YearValXYResultsView.m in Sources */,
 				00566B05155D844C0095F36D /* YearValXYResultsCell.m in Sources */,
 				005F8AF9167B877D00148BBE /* AppHelper.m in Sources */,
+				000E92B616CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m in Sources */,
+				000E92B916CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

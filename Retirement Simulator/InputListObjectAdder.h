@@ -9,10 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #import "TableViewObjectAdder.h"
+#import "SelectableObjectCreationTableViewController.h"
 
-@interface InputListObjectAdder : NSObject <TableViewObjectAdder>
+@class DataModelController;
+@class FormContext;
+
+@interface InputListObjectAdder : NSObject <TableViewObjectAdder,ObjectSelectedForCreationDelegate>
 {
-    
+	@private
+		DataModelController *dmcForNewInputs;
+		FormContext *currentContext;
 }
+
+@property(nonatomic,retain) DataModelController *dmcForNewInputs;
+@property(nonatomic,retain) FormContext *currentContext;
 
 @end
