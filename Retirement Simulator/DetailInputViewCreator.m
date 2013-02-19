@@ -75,6 +75,7 @@
 #import "SimInputHelper.h"
 #import "DateHelper.h"
 #import "MultiScenarioInputValue.h"
+#import "InputTagsFieldEditInfo.h"
 
 @implementation DetailInputViewCreator
 
@@ -269,6 +270,8 @@
 		withNameField:INPUT_NOTES_KEY
 		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
+	[self.formPopulator.currentSection addFieldEditInfo:
+			[[[InputTagsFieldEditInfo alloc] initWithInput:expense] autorelease]];
 	
 	[self populateCommonCashFlowFields:expense];
  		   
@@ -302,6 +305,8 @@
 		withNameField:INPUT_NOTES_KEY
 		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
+	[self.formPopulator.currentSection addFieldEditInfo:
+			[[[InputTagsFieldEditInfo alloc] initWithInput:income] autorelease]];
 
 	[self populateCommonCashFlowFields:income];
 		
@@ -329,6 +334,8 @@
 		withNameField:INPUT_NOTES_KEY
 		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
+	[self.formPopulator.currentSection addFieldEditInfo:
+			[[[InputTagsFieldEditInfo alloc] initWithInput:transfer] autorelease]];
 		  
 	[self.formPopulator nextSection];
 	
@@ -379,6 +386,8 @@
 		withNameField:INPUT_NOTES_KEY
 		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
+	[self.formPopulator.currentSection addFieldEditInfo:
+			[[[InputTagsFieldEditInfo alloc] initWithInput:account] autorelease]];
 	
 	 [formPopulator nextSection];
 
@@ -511,6 +520,8 @@
 		withNameField:INPUT_NOTES_KEY
 		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
+	[self.formPopulator.currentSection addFieldEditInfo:
+			[[[InputTagsFieldEditInfo alloc] initWithInput:loan] autorelease]];
 
 	[formPopulator nextSection];
 	
@@ -634,6 +645,8 @@
 		withNameField:INPUT_NOTES_KEY
 		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
+	[self.formPopulator.currentSection addFieldEditInfo:
+			[[[InputTagsFieldEditInfo alloc] initWithInput:asset] autorelease]];
 	
 	[formPopulator nextSection];
 	
@@ -702,6 +715,8 @@
 		withNameField:INPUT_NOTES_KEY
 		andFieldTitle:LOCALIZED_STR(@"INPUT_NOTE_FIELD_TITLE")
 		andPlaceholder:LOCALIZED_STR(@"INPUT_NOTE_FIELD_PLACEHOLDER")];
+	[self.formPopulator.currentSection addFieldEditInfo:
+			[[[InputTagsFieldEditInfo alloc] initWithInput:tax] autorelease]];
 	
 	[formPopulator nextSection];
 	

@@ -35,6 +35,17 @@
 
 "INPUT_CURRENT_SCENARIO_TABLE_HEADER_FORMAT" = "Current Scenario: %@";
 
+"INPUT_TAGS_FIELD_CAPTION" = "Tags";
+"INPUT_TAGS_LIST_TITLE" = "Tags";
+"INPUT_TAG_TITLE" = "Tag";
+"INPUT_TAG_NAME_PLACEHOLDER" = "Enter a Tag Name";
+"INPUT_TAG_NOTES_FIELD_LABEL" = "Tag Notes";
+"INPUT_TAG_NOTES_PLACEHOLDER" = "Detailed Description (Optional)";
+"INPUT_TAG_NAME_VALIDATION_MSG" = "Tags must have a name and it must be different than the other tags' names";
+"INPUT_TAG_SELECT_TABLE_HEADER_FORMAT" = "Tags for '%@'";
+"INPUT_TAG_SELECT_TABLE_SUBHEADER" = "From the list below, select tags for the input. Tap on the edit button to create new or change existing tags.";
+"INPUT_TAGS_FIELD_NO_TAGS_SELECTED_CONTENT" = "None";
+
 
 "INPUT_EXPENSE_VIEW_TITLE" = "Expense";
 "INPUT_EXPENSE_ITEMIZED_ADJUSTMENT_SECTION_TITLE" = "Expense is Adjustment";

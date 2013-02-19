@@ -17,6 +17,7 @@ NSString * const INPUT_ICON_IMAGE_NAME_KEY = @"iconImageName";
 @dynamic name;
 @dynamic notes;
 @dynamic iconImageName;
+@dynamic tags;
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

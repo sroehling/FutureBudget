@@ -18,6 +18,14 @@
 		0009481B13C38912008F129B /* UserScenarioFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0009481A13C38910008F129B /* UserScenarioFormInfoCreator.m */; };
 		000E92B616CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92B516CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m */; };
 		000E92B916CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92B816CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m */; };
+		000E92C116CEAB2700E07465 /* InputTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92C016CEAB2700E07465 /* InputTag.m */; };
+		000E92E016CEB1CE00E07465 /* InputTagSelectionFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92DF16CEB1CE00E07465 /* InputTagSelectionFieldEditInfo.m */; };
+		000E92E316CEB74300E07465 /* InputTagSelectionFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92E216CEB74300E07465 /* InputTagSelectionFormInfoCreator.m */; };
+		000E92E616CEC1E600E07465 /* InputTagsFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92E516CEC1E500E07465 /* InputTagsFieldEditInfo.m */; };
+		000E92E916CEC8C300E07465 /* InputTagAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92E816CEC8C200E07465 /* InputTagAdder.m */; };
+		000E92EC16CECC8100E07465 /* InputTagFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92EB16CECC7F00E07465 /* InputTagFormInfoCreator.m */; };
+		000E92EE16CEDBA300E07465 /* inputTags.md in Resources */ = {isa = PBXBuildFile; fileRef = 000E92ED16CEDBA200E07465 /* inputTags.md */; };
+		000E92F116CEDD1800E07465 /* InputTagNameFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92F016CEDD1600E07465 /* InputTagNameFieldValidator.m */; };
 		000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */; };
 		001056371672723E004E647F /* onlineHelp.md in Resources */ = {isa = PBXBuildFile; fileRef = 001056361672723E004E647F /* onlineHelp.md */; };
 		0010A58313CFEE6C0096A20F /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58213CFEE6B0096A20F /* Account.m */; };
@@ -566,6 +574,21 @@
 		000E92B516CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTypeSelectionFieldEditInfo.m; sourceTree = "<group>"; };
 		000E92B716CBFC4800E07465 /* InputTypeSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTypeSelectionFormInfoCreator.h; sourceTree = "<group>"; };
 		000E92B816CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTypeSelectionFormInfoCreator.m; sourceTree = "<group>"; };
+		000E92BF16CEAB2600E07465 /* InputTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTag.h; sourceTree = "<group>"; };
+		000E92C016CEAB2700E07465 /* InputTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTag.m; sourceTree = "<group>"; };
+		000E92DE16CEB1CE00E07465 /* InputTagSelectionFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTagSelectionFieldEditInfo.h; sourceTree = "<group>"; };
+		000E92DF16CEB1CE00E07465 /* InputTagSelectionFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagSelectionFieldEditInfo.m; sourceTree = "<group>"; };
+		000E92E116CEB74300E07465 /* InputTagSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTagSelectionFormInfoCreator.h; sourceTree = "<group>"; };
+		000E92E216CEB74300E07465 /* InputTagSelectionFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagSelectionFormInfoCreator.m; sourceTree = "<group>"; };
+		000E92E416CEC1E400E07465 /* InputTagsFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTagsFieldEditInfo.h; sourceTree = "<group>"; };
+		000E92E516CEC1E500E07465 /* InputTagsFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagsFieldEditInfo.m; sourceTree = "<group>"; };
+		000E92E716CEC8C100E07465 /* InputTagAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTagAdder.h; sourceTree = "<group>"; };
+		000E92E816CEC8C200E07465 /* InputTagAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagAdder.m; sourceTree = "<group>"; };
+		000E92EA16CECC7F00E07465 /* InputTagFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTagFormInfoCreator.h; sourceTree = "<group>"; };
+		000E92EB16CECC7F00E07465 /* InputTagFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagFormInfoCreator.m; sourceTree = "<group>"; };
+		000E92ED16CEDBA200E07465 /* inputTags.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inputTags.md; sourceTree = "<group>"; };
+		000E92EF16CEDD1400E07465 /* InputTagNameFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTagNameFieldValidator.h; sourceTree = "<group>"; };
+		000E92F016CEDD1600E07465 /* InputTagNameFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagNameFieldValidator.m; sourceTree = "<group>"; };
 		000FABF113BB8B30008AEEDF /* SimDateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateValueFormatter.h; sourceTree = "<group>"; };
 		000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateValueFormatter.m; sourceTree = "<group>"; };
 		001056361672723E004E647F /* onlineHelp.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = onlineHelp.md; sourceTree = "<group>"; };
@@ -1336,6 +1359,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000E92DD16CEB13300E07465 /* Input Tag */ = {
+			isa = PBXGroup;
+			children = (
+				000E92DE16CEB1CE00E07465 /* InputTagSelectionFieldEditInfo.h */,
+				000E92DF16CEB1CE00E07465 /* InputTagSelectionFieldEditInfo.m */,
+				000E92E116CEB74300E07465 /* InputTagSelectionFormInfoCreator.h */,
+				000E92E216CEB74300E07465 /* InputTagSelectionFormInfoCreator.m */,
+				000E92E416CEC1E400E07465 /* InputTagsFieldEditInfo.h */,
+				000E92E516CEC1E500E07465 /* InputTagsFieldEditInfo.m */,
+				000E92E716CEC8C100E07465 /* InputTagAdder.h */,
+				000E92E816CEC8C200E07465 /* InputTagAdder.m */,
+				000E92EA16CECC7F00E07465 /* InputTagFormInfoCreator.h */,
+				000E92EB16CECC7F00E07465 /* InputTagFormInfoCreator.m */,
+				000E92EF16CEDD1400E07465 /* InputTagNameFieldValidator.h */,
+				000E92F016CEDD1600E07465 /* InputTagNameFieldValidator.m */,
+			);
+			name = "Input Tag";
+			sourceTree = "<group>";
+		};
 		0010A58A13D15C5D0096A20F /* Starting Values */ = {
 			isa = PBXGroup;
 			children = (
@@ -1739,6 +1781,7 @@
 				002FAEBA14D45CEA00AE2B41 /* deficit.md */,
 				002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */,
 				002FAEC014D466F500AE2B41 /* limitedWithdrawal.md */,
+				000E92ED16CEDBA200E07465 /* inputTags.md */,
 			);
 			name = "Context Help";
 			sourceTree = "<group>";
@@ -1983,6 +2026,8 @@
 				00237954143E4EED006650E3 /* Taxes */,
 				004CB03013FC2A21000E87A9 /* Cash.h */,
 				004CB03113FC2A21000E87A9 /* Cash.m */,
+				000E92BF16CEAB2600E07465 /* InputTag.h */,
+				000E92C016CEAB2700E07465 /* InputTag.m */,
 			);
 			name = Inputs;
 			sourceTree = "<group>";
@@ -2048,6 +2093,7 @@
 		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
+				000E92DD16CEB13300E07465 /* Input Tag */,
 				001C11FE1684E09500322EF9 /* Input Icons */,
 				0023797A143FBC57006650E3 /* Helper */,
 				0023799E1441E754006650E3 /* Tax Bracket */,
@@ -3109,6 +3155,7 @@
 				0064D06716C2E3BB001F6578 /* input-icon-loan-home@2x.png in Resources */,
 				0064D06816C2E3BB001F6578 /* input-icon-loan@2x.png in Resources */,
 				0064D06B16C55FB4001F6578 /* loanOrig.md in Resources */,
+				000E92EE16CEDBA300E07465 /* inputTags.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3398,6 +3445,13 @@
 				005F8AF9167B877D00148BBE /* AppHelper.m in Sources */,
 				000E92B616CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m in Sources */,
 				000E92B916CBFC4900E07465 /* InputTypeSelectionFormInfoCreator.m in Sources */,
+				000E92C116CEAB2700E07465 /* InputTag.m in Sources */,
+				000E92E016CEB1CE00E07465 /* InputTagSelectionFieldEditInfo.m in Sources */,
+				000E92E316CEB74300E07465 /* InputTagSelectionFormInfoCreator.m in Sources */,
+				000E92E616CEC1E600E07465 /* InputTagsFieldEditInfo.m in Sources */,
+				000E92E916CEC8C300E07465 /* InputTagAdder.m in Sources */,
+				000E92EC16CECC8100E07465 /* InputTagFormInfoCreator.m in Sources */,
+				000E92F116CEDD1800E07465 /* InputTagNameFieldValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
