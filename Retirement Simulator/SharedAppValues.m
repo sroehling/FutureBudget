@@ -62,6 +62,9 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 @dynamic repeatYearlyFreq;
 @dynamic adjustResultsForSimStartDate; 
 @dynamic deficitStartingBal;
+@dynamic filteredTags;
+@dynamic filteredTagsMatchAny;
+
 
 
 +(void)createDefaultVariableValue:(double)startingVal withLabelStringFileKey:(NSString*)labelKey
@@ -203,6 +206,8 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 	theDeficitInterestRate.value = [NSNumber numberWithDouble:DEFAULT_DEFICIT_INTEREST_RATE];
 	sharedVals.deficitInterestRate = theDeficitInterestRate;
 	sharedVals.deficitStartingBal = [NSNumber numberWithDouble:0.0];
+	
+	sharedVals.filteredTagsMatchAny = [NSNumber numberWithBool:TRUE];
 
 	return sharedVals;
 }

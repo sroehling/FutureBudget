@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class Input;
+@class SharedAppValues;
 
 extern NSString * const INPUT_TAG_ENTITY_NAME;
 extern NSString * const INPUT_TAG_NAME_KEY;
@@ -21,6 +22,10 @@ extern NSString * const INPUT_TAG_NOTES_KEY;
 @property (nonatomic, retain) NSString * tagName;
 @property (nonatomic, retain) NSString * notes;
 @property (nonatomic, retain) NSSet *taggedInputs;
+
+@property (nonatomic, retain) SharedAppValues *sharedAppValsFilteredTags;
+
+
 @end
 
 @interface InputTag (CoreDataGeneratedAccessors)

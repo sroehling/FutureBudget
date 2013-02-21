@@ -20,4 +20,7 @@ NSString * const INPUT_TAG_NOTES_KEY = @"notes";
 @dynamic notes;
 @dynamic taggedInputs;
 
+// Inverse relationship
+@dynamic sharedAppValsFilteredTags;
+
 @end

@@ -8,9 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "FormInfoCreator.h"
+#import "TableHeaderDisclosureButtonDelegate.h"
 
-@interface InputListFormInfoCreator : NSObject  <FormInfoCreator> {
-    
+@protocol InputListHeaderDelegate;
+@class TableHeaderWithDisclosure;
+
+@interface InputListFormInfoCreator : NSObject  <FormInfoCreator,TableHeaderDisclosureButtonDelegate> {
+    @private
+		id<InputListHeaderDelegate> headerDelegate;
+		TableHeaderWithDisclosure *tableHeader;
 }
+
+@property(nonatomic,assign) id<InputListHeaderDelegate> headerDelegate;
+@property(nonatomic,assign) TableHeaderWithDisclosure *tableHeader;
+
+-(void)configureHeader:(DataModelController*)dataModelController;
+
+@end
+
+@protocol InputListHeaderDelegate <NSObject>
+
+-(void)inputListHeaderFilterTagsButtonPressed;
 
 @end

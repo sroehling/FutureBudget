@@ -8,19 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "StaticFieldEditInfo.h"
+#import "TagSelectionFieldEditInfo.h"
 
 @class Input;
 @class InputTag;
 
-@interface InputTagSelectionFieldEditInfo : StaticFieldEditInfo
+@interface InputTagSelectionFieldEditInfo : TagSelectionFieldEditInfo
 {
 	@private
 		Input *inputBeingTagged;
-		InputTag *inputTag;
 }
 
-@property(nonatomic,retain) InputTag *inputTag;
 @property(nonatomic,retain) Input *inputBeingTagged;
 
 -(id)initWithInput:(Input*)theInput andTag:(InputTag*)theTag;

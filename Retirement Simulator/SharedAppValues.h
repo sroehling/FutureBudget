@@ -21,6 +21,7 @@
 @class FixedValue;
 @class DataModelController;
 @class InflationRate;
+@class InputTag;
 
 extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
 extern NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY;
@@ -54,6 +55,11 @@ extern NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY;
 @property (nonatomic, retain) InflationRate * defaultInflationRate;
 @property (nonatomic, retain) NSNumber * adjustResultsForSimStartDate;
 
+// InputTags used to narrow the list of Inputs shown
+@property (nonatomic, retain) NSSet *filteredTags;
+@property (nonatomic, retain) NSNumber * filteredTagsMatchAny;
+
+
 
 -(NSDate*)beginningOfSimStartDate;
 
@@ -61,5 +67,13 @@ extern NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY;
 +(void)initFromDatabase;
 +(SharedAppValues*)getUsingDataModelController:(DataModelController*)dataModelController;
 
+@end
+
+@interface SharedAppValues (CoreDataGeneratedAccessors)
+
+- (void)addFilteredTagsObject:(InputTag *)value;
+- (void)removeFilteredTagsObject:(InputTag *)value;
+- (void)addFilteredTags:(NSSet *)values;
+- (void)removeFilteredTags:(NSSet *)values;
 
 @end

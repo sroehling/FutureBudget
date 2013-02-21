@@ -14,6 +14,7 @@
 #import "GenericFieldBasedTableEditViewController.h"
 #import "ScenarioListFormInfoCreator.h"
 #import "SelectableObjectTableEditViewController.h"
+#import "InputListTableViewController.h"
 #import "SharedAppValues.h"
 #import "LocalizationHelper.h"
 #import "ManagedObjectFieldInfo.h"
@@ -92,10 +93,8 @@
 	// navBarController is the color used in the navigation bar for all the tabbed views.
 	UIColor *navBarControllerColor = [ColorHelper navBarTintColor];
 
-	InputListFormInfoCreator *inputFormInfoCreator = 
-		[[[InputListFormInfoCreator alloc] init] autorelease];
-	UIViewController *inputController = [[[GenericFieldBasedTableEditViewController alloc]
-		initWithFormInfoCreator:inputFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
+	UIViewController *inputController = [[[InputListTableViewController alloc]
+		initWithDataModelController:topLevelDataModelController] autorelease];
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
 	inputNavController.title = [AppHelper generatingLaunchScreen]?
 			@"":LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");

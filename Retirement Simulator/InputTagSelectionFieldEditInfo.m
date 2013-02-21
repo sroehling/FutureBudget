@@ -18,34 +18,19 @@
 @implementation InputTagSelectionFieldEditInfo
 
 @synthesize inputBeingTagged;
-@synthesize inputTag;
 
 -(id)initWithInput:(Input*)theInput andTag:(InputTag*)theTag
 {
-	self = [super initWithManagedObj:theTag 
-		andCaption:theTag.tagName andContent:@""];
+	self = [super initWithTag:theTag];
 	if(self)
 	{
-		self.inputTag = theTag;
 		self.inputBeingTagged = theInput;
-		self.staticCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	return self;
 }
 
-
-
--(id)initWithManagedObj:(NSManagedObject *)theFieldObj andCaption:(NSString *)theCaption 
-	andContent:(NSString *)theContent
-{
-	assert(0);
-	return nil;
-}
-
-
 -(void)dealloc
 {
-	[inputTag release];
 	[inputBeingTagged release];
 	[super dealloc];
 }  
@@ -69,33 +54,5 @@
 	}
 }
 
-
-- (UIViewController*)fieldEditController:(FormContext*)parentContext
-{
-
-	InputTagFormInfoCreator *tagFormInfoCreator =
-		[[[InputTagFormInfoCreator alloc] initWithTag:self.inputTag] autorelease];
-	
-	GenericFieldBasedTableEditViewController *editView =
-		[[[GenericFieldBasedTableEditViewController alloc] initWithFormInfoCreator:tagFormInfoCreator
-		andDataModelController:parentContext.dataModelController] autorelease];
-		
-	return editView;
-
-}
-
-
--(BOOL)supportsDelete
-{
-	return TRUE;
-}
-
-
--(void)deleteObject:(DataModelController*)dataModelController
-{
-	assert([self supportsDelete]);
-	[dataModelController deleteObject:self.inputTag];
-	self.inputTag = nil;
-}
 
 @end

@@ -15,6 +15,8 @@
 extern NSString * const INPUT_NAME_KEY;
 extern NSString * const INPUT_NOTES_KEY;
 extern NSString * const INPUT_ICON_IMAGE_NAME_KEY;
+extern NSString * const INPUT_TAGS_KEY;
+extern NSString * const INPUT_ENTITY_NAME;
 
 
 @interface Input : NSManagedObject {

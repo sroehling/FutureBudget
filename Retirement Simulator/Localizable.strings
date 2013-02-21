@@ -24,6 +24,11 @@
 "INPUT_LIST_NEW_INPUT_TITLE" = "New Input";
 "INPUT_LIST_NEW_INPUT_TABLE_TITLE" = "Create a New Input";
 "INPUT_LIST_NEW_INPUT_TABLE_SUBTITLE" = "From the list below, select which type of input to be created.";
+"INPUT_LIST_TAG_FILTER_TABLE_HEADER" = "Filter Inputs by Tag";
+"INPUT_LIST_TAG_FILTER_TABLE_SUBHEADER" = "Select tags to narrow which inputs are shown, or leave all tags unselected to show all inputs. Tap on the edit button to create new or change existing tags.";
+"INPUT_LIST_TAGS_HEADER_ALL_INPUTS" = "All Inputs";
+"INPUT_LIST_TAGS_HEADER_FILTERED_INPUTS" = "Show Inputs with Tag(s):";
+"INPUT_LIST_TAGS_HEADER_MATCH_ANY_TAG_FORMAT" = "or %@";
 
 
 "ITEMIZED_TAX_ACCOUNT_INTEREST_SECTION_TITLE" = "Savings Interest";
