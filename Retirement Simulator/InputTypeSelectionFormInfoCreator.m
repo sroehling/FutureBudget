@@ -23,19 +23,37 @@
 #import "ExpenseInput.h"
 #import "LoanInput.h"
 #import "TaxInput.h"
+#import "TaxPresets.h"
 #import "TransferInput.h"
 #import "Account.h"
+
+#import "TaxInputBlankOrPresetFormInfoCreator.h"
+#import "SelectableObjectCreationTableViewFactory.h"
+#import "StaticNavFieldEditInfo.h"
 
 @implementation InputTypeSelectionFormInfoCreator
 
 @synthesize dmcForNewInputs;
+@synthesize inputSelectedForCreationDelegate;
+@synthesize inputCreationHelper;
 
 -(id)initWithDmcForNewInputs:(DataModelController*)theDmcForNewInputs
+	andInputSelectedForCreationDelegate:(id<ObjectSelectedForCreationDelegate>)theInputSelectedForCreationDelegate
 {
 	self = [super init];
 	if(self)
 	{
 		self.dmcForNewInputs = theDmcForNewInputs;
+		
+		self.inputCreationHelper =
+		[[[InputCreationHelper alloc] 
+		initWithDataModelController:dmcForNewInputs andSharedAppVals:
+			[SharedAppValues getUsingDataModelController:self.dmcForNewInputs]]
+		autorelease];
+
+		
+		assert(theInputSelectedForCreationDelegate != nil);
+		self.inputSelectedForCreationDelegate = theInputSelectedForCreationDelegate;
 	}
 	return self;
 }
@@ -43,6 +61,7 @@
 - (void)dealloc
 {
 	[dmcForNewInputs release];
+	[inputCreationHelper release];
      [super dealloc];
 }
 
@@ -61,17 +80,12 @@
 	formPopulator.formInfo.headerView = tableHeader;
 	
 		
-	InputCreationHelper *inputCreationHelper =
-		[[[InputCreationHelper alloc] 
-		initWithDataModelInterface:dmcForNewInputs andSharedAppVals:
-			[SharedAppValues getUsingDataModelController:self.dmcForNewInputs]]
-		autorelease];
 		
 	[formPopulator nextSection];
     
     InputTypeSelectionInfo *typeInfo = [[[IncomeInputTypeSelectionInfo alloc]
-		initWithInputCreationHelper:inputCreationHelper 
-		andDataModelInterface:dmcForNewInputs
+		initWithInputCreationHelper:self.inputCreationHelper
+		andDataModelController:dmcForNewInputs
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_INCOME_TITLE")
 		andSubtitle:LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_INCOME_SUBTITLE")
 		andImageName:INCOME_INPUT_DEFAULT_ICON_NAME] autorelease];
@@ -80,8 +94,8 @@
 	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo];
     
     typeInfo = [[[ExpenseInputTypeSelectionInfo alloc] 
-		initWithInputCreationHelper:inputCreationHelper 
-		andDataModelInterface:dmcForNewInputs
+		initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:dmcForNewInputs
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_EXPENSE_TITLE") andSubtitle:LOCALIZED_STR(@"INPUT_CASHFLOW_TYPE_EXPENSE_SUBTITLE")
 		andImageName:EXPENSE_INPUT_DEFAULT_ICON_NAME] autorelease];
  	inputFieldInfo =
@@ -90,8 +104,8 @@
 
 
 	typeInfo = [[[TransferInputTypeSelectionInfo alloc]
-		initWithInputCreationHelper:inputCreationHelper 
-		andDataModelInterface:dmcForNewInputs
+		initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:dmcForNewInputs
 		andLabel:LOCALIZED_STR(@"INPUT_TYPE_TRANSFER_TITLE")
 		andSubtitle:LOCALIZED_STR(@"INPUT_TYPE_TRANSFER_SUBTITLE")
 		andImageName:TRANSFER_INPUT_DEFAULT_ICON_NAME] autorelease];
@@ -100,8 +114,8 @@
 	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo]; 
 	
 	typeInfo = [[[SavingsAccountTypeSelectionInfo alloc]
-		initWithInputCreationHelper:inputCreationHelper 
-		andDataModelInterface:dmcForNewInputs
+		initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:dmcForNewInputs
 		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_TITLE")
 		andSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_SUBTITLE")
 		andImageName:ACCOUNT_INPUT_DEFAULT_ICON_NAME] autorelease];
@@ -110,8 +124,8 @@
 	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo];
 
 	typeInfo = [[[LoanInputTypeSelctionInfo alloc]
-		initWithInputCreationHelper:inputCreationHelper 
-		andDataModelInterface:dmcForNewInputs
+		initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:dmcForNewInputs
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_TITLE")
 		andSubtitle:LOCALIZED_STR(@"INPUT_LOAN_SUBTITLE")
 		andImageName:LOAN_INPUT_DEFAULT_ICON_NAME] autorelease];
@@ -121,8 +135,8 @@
 
 
 	typeInfo = [[[AssetInputTypeSelectionInfo alloc]
-		initWithInputCreationHelper:inputCreationHelper 
-		andDataModelInterface:dmcForNewInputs
+		initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:dmcForNewInputs
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_TITLE")
 		andSubtitle:LOCALIZED_STR(@"INPUT_ASSET_SUBTITLE")
 		andImageName:ASSET_INPUT_DEFAULT_ICON_NAME] autorelease];
@@ -131,14 +145,24 @@
 	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo];   
 
 
-	typeInfo = [[[TaxInputTypeSelectionInfo alloc]
-		initWithInputCreationHelper:inputCreationHelper 
-		andDataModelInterface:dmcForNewInputs andLabel:LOCALIZED_STR(@"INPUT_TAX_TITLE")
-		andSubtitle:LOCALIZED_STR(@"INPUT_TAX_SUBTITLE")
-		andImageName:TAX_INPUT_DEFAULT_ICON_NAME] autorelease];
-	inputFieldInfo =
-		[[[InputTypeSelectionFieldEditInfo alloc] initWithTypeSelectionInfo:typeInfo] autorelease];
-	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo];
+	// For the tax input, a second level of selection is done to pick either
+	// a blank/un-initialized tax input, or select to populate with a
+	// preset.
+	TaxInputBlankOrPresetFormInfoCreator *taxInputSelectionFormInfoCreator =
+		[[[TaxInputBlankOrPresetFormInfoCreator alloc]
+		initWithInputCreationHelper:self.inputCreationHelper] autorelease];
+	 SelectableObjectCreationTableViewFactory *taxInputSelectionViewFactory =
+		[[[SelectableObjectCreationTableViewFactory alloc]
+		initWithObjectSelectionCreationDelegate:self.inputSelectedForCreationDelegate
+		andFormInfoCreator:taxInputSelectionFormInfoCreator] autorelease];
+	StaticNavFieldEditInfo *taxInputFieldEditInfo =
+		[[[StaticNavFieldEditInfo alloc] 
+			initWithCaption:LOCALIZED_STR(@"INPUT_TAX_TITLE")
+			andSubtitle:LOCALIZED_STR(@"INPUT_TAX_SUBTITLE") 
+			andContentDescription:nil
+			andSubViewFactory:taxInputSelectionViewFactory] autorelease];
+	taxInputFieldEditInfo.valueCell.imageView.image = [UIImage imageNamed:TAX_INPUT_DEFAULT_ICON_NAME];
+	[formPopulator.currentSection addFieldEditInfo:taxInputFieldEditInfo];		
 	
 	
     return formPopulator.formInfo;

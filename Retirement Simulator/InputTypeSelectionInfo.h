@@ -12,7 +12,7 @@
 @class Input;
 @class CashFlowInput;
 @class InputCreationHelper;
-@protocol DataModelInterface;
+@class DataModelController;
 
 @interface InputTypeSelectionInfo : NSObject {
     @private
@@ -20,7 +20,8 @@
 		NSString *subTitle;
 		NSString *imageName;
 	@protected
-	id<DataModelInterface> dataModelInterface;
+	
+	DataModelController *dataModelController;
 	InputCreationHelper *inputCreationHelper;
 
 }
@@ -29,10 +30,10 @@
 @property(nonatomic,retain) NSString *subTitle;
 @property(nonatomic,retain) NSString *imageName;
 @property(nonatomic,retain) InputCreationHelper *inputCreationHelper;
-@property(nonatomic,retain) id<DataModelInterface> dataModelInterface;
+@property(nonatomic,retain) DataModelController *dataModelController;
 
 -(id)initWithInputCreationHelper:(InputCreationHelper*)theHelper 
-	andDataModelInterface:(id<DataModelInterface>)theDataModelInterface
+	andDataModelController:(DataModelController *)theDataModelController
 	andLabel:(NSString*)theLabel andSubtitle:(NSString*)theSubTitle
 	andImageName:(NSString*)theImageName;
 
@@ -54,4 +55,5 @@
 
 @interface AssetInputTypeSelectionInfo : InputTypeSelectionInfo {} @end
 
-@interface TaxInputTypeSelectionInfo : InputTypeSelectionInfo {} @end
+// NOTE: TaxInputTypeSelectionInfo is defined in its own file, since it
+// has a more involved implementation.

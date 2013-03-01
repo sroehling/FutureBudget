@@ -13,6 +13,7 @@
 #import "DetailInputViewCreator.h"
 #import "DataModelController.h"
 #import "FormContext.h"
+#import "TableViewHelper.h"
 #import "Input.h"
 
 @implementation InputListObjectAdder
@@ -39,7 +40,8 @@
 
 	InputTypeSelectionFormInfoCreator *inputSelectionFormInfoCreator =
 		[[[InputTypeSelectionFormInfoCreator alloc]
-		initWithDmcForNewInputs:self.dmcForNewInputs] autorelease];
+		initWithDmcForNewInputs:self.dmcForNewInputs
+		andInputSelectedForCreationDelegate:self] autorelease];
 		
 	SelectableObjectCreationTableViewController *inputCreationViewController
 		= [[[SelectableObjectCreationTableViewController alloc]
@@ -71,6 +73,14 @@
         initWithFormInfoCreator:detailViewCreator andNewObject:theNewInput
 		andDataModelController:self.dmcForNewInputs] autorelease];
 	addView.disableCoreDataSaveUntilSaveButtonPressed = TRUE;
+	
+	NSInteger currentViewControllerDepth = [TableViewHelper viewControllerDepth:self.currentContext.parentController];
+	
+	// The controller depth will be 0, 1, 2, etc. where the controller is at 0 depth is the input list.
+	// An input can be created with an GenericFieldBasedTableAddViewController at depth 2 or 3 (for tax inputs).
+	// Pushing the view controller below will add one to the view controller depth. Popping by the current depth
+	// will have the effect of popping all but the last view controller, which is the input list.
+	addView.popDepth = currentViewControllerDepth+1;
 
      
 	[self.currentContext.parentController.navigationController

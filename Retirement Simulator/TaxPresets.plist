@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>PRESET_NAME</key>
+		<string>2013 U.S. Federal Income Tax</string>
+		<key>PRESET_DESCRIPTION</key>
+		<string>Includes a tax bracket matching the 2013 tax tables for U.S. federal income taxes.</string>
+		<key>PRESET_IMAGE_NAME</key>
+		<string>input-icon-taxes.png</string>
+		<key>TAX_BRACKET</key>
+		<array>
+			<dict>
+				<key>TAX_PERCENT</key>
+				<integer>15</integer>
+				<key>CUTOFF_AMOUNT</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>TAX_PERCENT</key>
+				<integer>40</integer>
+				<key>CUTOFF_AMOUNT</key>
+				<integer>20000</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>PRESET_NAME</key>
+		<string>25% Flat/Effective Tax</string>
+		<key>PRESET_DESCRIPTION</key>
+		<string>Includes a single tax bracket entry of 25%, which represents a single tax rate of 25% for all taxed incomes.</string>
+		<key>PRESET_IMAGE_NAME</key>
+		<string>input-icon-investtax.png</string>
+		<key>TAX_BRACKET</key>
+		<array>
+			<dict>
+				<key>TAX_PERCENT</key>
+				<integer>25</integer>
+				<key>CUTOFF_AMOUNT</key>
+				<integer>0</integer>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>

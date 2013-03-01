@@ -50,7 +50,7 @@
 	TaxesPaidItemizedTaxAmt *itemizedTaxAmt = [self.formContext.dataModelController insertObject:TAXES_PAID_ITEMIZED_TAX_AMT_ENTITY_NAME];
 	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:self.formContext.dataModelController];
 	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
-		initWithDataModelInterface:self.formContext.dataModelController
+		initWithDataModelController:self.formContext.dataModelController
 		andSharedAppVals:sharedAppVals] autorelease];
 	itemizedTaxAmt.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
 	itemizedTaxAmt.tax  = self.tax;

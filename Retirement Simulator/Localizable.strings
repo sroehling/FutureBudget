@@ -68,6 +68,8 @@
 "INPUT_INCOME_TAX_DETAIL_HEADER_FORMAT" = "Income Taxes for %@";
 "INPUT_INCOME_TAX_DETAIL_SUBHEADER" = "Select any taxes which apply to the income. If an applicable tax is not listed, create the appropriate tax input first.";
 
+"TAX_PRESET_SECTION_HEADER" = "Tax Presets";
+
 "INPUT_TRANSFER_VIEW_TITLE" = "Transfer";
 "INPUT_TYPE_TRANSFER_INLINE" = "transfer";
 "INPUT_TYPE_TRANSFER_TITLE" = "Transfer";
@@ -310,6 +312,11 @@
 
 "INPUT_TAX_TITLE" = "Tax";
 "INPUT_TAX_SUBTITLE" = "Subtract from income, investment gains or asset gains";
+"INPUT_LIST_NEW_TAX_INPUT_TITLE" = "New Tax Input";
+"INPUT_LIST_NEW_TAX_INPUT_TABLE_TITLE" = "Create a New Tax Input";
+"INPUT_LIST_NEW_TAX_INPUT_TABLE_SUBTITLE" = "From the list below, select either an uninitialized/blank tax input or one of the presets. Presets initialize the tax bracket, which is a good starting point for further refinements.";
+"INPUT_LIST_NEW_UNINITIALIZED_TAX_FIELD_LABEL" = "Blank Tax Input";
+"INPUT_LIST_NEW_UNINITIALIZED_TAX_FIELD_SUBTITLE" = "Start with an uninitialized tax input. You'll need to define the tax bracket/table.";
 "INPUT_TAX_INLINE_INPUT_TYPE" = "tax";
 "INPUT_TAX_ENABLED_FIELD_LABEL" = "Enable Tax?";
 "INPUT_TAX_BRACKET_SECTION_TITLE" = "Tax Rate Bracket";

@@ -79,6 +79,7 @@
 #import "TransferInput.h"
 #import "TransferEndpointAcct.h"
 #import "TransferEndpointCash.h"
+#import "TaxInputTypeSelectionInfo.h"
 
 @implementation TestSimEngine
 
@@ -100,7 +101,7 @@
 	self.testAppVals.simEndDate = theSimEndDate;
 	
 	self.inputCreationHelper = [[[InputCreationHelper alloc] 
-		initWithDataModelInterface:self.coreData
+		initWithDataModelController:self.coreData
 		andSharedAppVals:self.testAppVals] autorelease];
 }
 
@@ -169,7 +170,7 @@
     	
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -209,10 +210,11 @@
 	self.testAppVals.defaultInflationRate.isDefault = [NSNumber numberWithBool:TRUE];
 	self.testAppVals.defaultInflationRate.staticNameStringFileKey = @"DEFAULT_INFLATION_RATE_LABEL";
 	self.testAppVals.defaultInflationRate.name = @"N/A";
-    	
+    
+		
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -253,7 +255,7 @@
     	
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -303,7 +305,7 @@
     	
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -353,7 +355,7 @@
     	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -430,7 +432,7 @@
     	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -474,7 +476,7 @@
     	
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
@@ -521,7 +523,7 @@
     	
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
@@ -575,7 +577,7 @@
     	
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
@@ -609,7 +611,7 @@
     	
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:2000.0];
@@ -645,7 +647,7 @@
     	
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
@@ -681,7 +683,7 @@
     	
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
@@ -693,7 +695,7 @@
 	
 	TaxInputTypeSelectionInfo *taxCreator = 
 	[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-	andDataModelInterface:self.coreData] autorelease];
+	andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -744,7 +746,7 @@
     	
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
@@ -756,7 +758,7 @@
 	
 	TaxInputTypeSelectionInfo *taxCreator = 
 	[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-	andDataModelInterface:self.coreData] autorelease];
+	andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -805,7 +807,7 @@
 
 	LoanInputTypeSelctionInfo *loanCreator = 
 		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-			andDataModelInterface:self.coreData] autorelease];
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// In this test, we create a 0% interest loan over 36 months. This tests that the values
 	// given as input to the loan carry through properly to the end results. Testing of loans
@@ -863,7 +865,7 @@
 
 	LoanInputTypeSelctionInfo *loanCreator = 
 		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-			andDataModelInterface:self.coreData] autorelease];
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// In this test, we create a 0% interest loan over 36 months. This tests that the values
 	// given as input to the loan carry through properly to the end results. Testing of loans
@@ -927,7 +929,7 @@
 
 	LoanInputTypeSelctionInfo *loanCreator = 
 		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-			andDataModelInterface:self.coreData] autorelease];
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// In this test, we create a 0% interest loan over 36 months. This tests that the values
 	// given as input to the loan carry through properly to the end results. Testing of loans
@@ -973,7 +975,7 @@
 
 	LoanInputTypeSelctionInfo *loanCreator = 
 		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-			andDataModelInterface:self.coreData] autorelease];
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// In this test, we create a 0% interest loan over 36 months. This tests that the values
 	// given as input to the loan carry through properly to the end results. Testing of loans
@@ -1036,7 +1038,7 @@
 
 	LoanInputTypeSelctionInfo *loanCreator = 
 		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-			andDataModelInterface:self.coreData] autorelease];
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// In this test, we create a 0% interest loan over 36 months. This tests that the values
 	// given as input to the loan carry through properly to the end results. Testing of loans
@@ -1094,7 +1096,7 @@
 
 	LoanInputTypeSelctionInfo *loanCreator = 
 		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-			andDataModelInterface:self.coreData] autorelease];
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// In this test, we create a 0% interest loan over 36 months. This tests that the values
 	// given as input to the loan carry through properly to the end results. Testing of loans
@@ -1141,7 +1143,7 @@
 
 	LoanInputTypeSelctionInfo *loanCreator = 
 		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-			andDataModelInterface:self.coreData] autorelease];
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// In this test, we create a 0% interest loan over 36 months. This tests that the values
 	// given as input to the loan carry through properly to the end results. Testing of loans
@@ -1196,7 +1198,7 @@
 {
 	[self resetCoredData];
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// Account contributions will only occur if there is a balance of cash to draw from. So,
 	// for testing purposes, we initialize the cash balance so that contributions will occur.
@@ -1265,7 +1267,7 @@
 	
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -1275,7 +1277,7 @@
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// Account contributions will only occur if there is a balance of cash to draw from. So,
 	// for testing purposes, we initialize the cash balance so that contributions will occur.
@@ -1315,7 +1317,7 @@
 	
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -1326,7 +1328,7 @@
 
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.name = @"Asset01";
@@ -1338,7 +1340,7 @@
 	
 	
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// Account contributions will only occur if there is a balance of cash to draw from. So,
 	// for testing purposes, we initialize the cash balance so that contributions will occur.
@@ -1375,7 +1377,7 @@
 	
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -1391,7 +1393,7 @@
 	expense02.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense02.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// Account contributions will only occur if there is a balance of cash to draw from. So,
 	// for testing purposes, we initialize the cash balance so that contributions will occur.
@@ -1453,7 +1455,7 @@
 	
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -1463,7 +1465,7 @@
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// Account contributions will only occur if there is a balance of cash to draw from. So,
 	// for testing purposes, we initialize the cash balance so that contributions will occur.
@@ -1526,7 +1528,7 @@
 {
 	[self resetCoredData];
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// Account contributions will only occur if there is a balance of cash to draw from. So,
 	// for testing purposes, we initialize the cash balance so that contributions will occur.
@@ -1602,7 +1604,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:500.0];
@@ -1611,7 +1613,7 @@
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
@@ -1677,7 +1679,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:400.0];
@@ -1709,7 +1711,7 @@
 
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -1745,7 +1747,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:400.0];
@@ -1794,7 +1796,7 @@
 
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:1000.0];
@@ -1829,7 +1831,7 @@
     	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -1846,7 +1848,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -1926,7 +1928,7 @@
 	// 100 which is taxed at 25%. This means there should be $25 taxes paid each year.	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
@@ -1937,7 +1939,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -1986,7 +1988,7 @@
 	// 100 which is taxed at 25%. This means there should be $25 taxes paid each year.	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:150.0];
@@ -1996,7 +1998,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:50.0];
@@ -2007,7 +2009,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2059,7 +2061,7 @@
     	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
@@ -2070,7 +2072,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	
 	TaxInput *deductableTax = (TaxInput*)[taxCreator createInput];
@@ -2141,7 +2143,7 @@
 	// than the $50.	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -2151,7 +2153,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:50.0];
@@ -2163,7 +2165,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2235,7 +2237,7 @@
 	// the net worth goes down by $25.00 each year, but stays the same with the deduction.
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -2245,7 +2247,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -2256,7 +2258,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2339,7 +2341,7 @@
     	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
@@ -2350,7 +2352,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2393,7 +2395,7 @@
     	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
@@ -2404,7 +2406,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2457,7 +2459,7 @@
     	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
@@ -2468,7 +2470,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2521,7 +2523,7 @@
     	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
@@ -2532,7 +2534,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2587,7 +2589,7 @@
 	// paid of $15 each year.	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -2597,7 +2599,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:10.0];
@@ -2608,7 +2610,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2661,7 +2663,7 @@
 	// This should result in a taxes paid of $25 each year.	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
@@ -2671,7 +2673,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -2682,7 +2684,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	
@@ -2738,7 +2740,7 @@
 	// 100 which is taxed at 25%. This means there should be $25 taxes paid each year.	
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
@@ -2749,7 +2751,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
 	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
@@ -2823,7 +2825,7 @@
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
 		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
@@ -2834,7 +2836,7 @@
 	
 	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] 
 		initWithInputCreationHelper:self.inputCreationHelper
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
@@ -2846,7 +2848,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
 	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
@@ -2888,7 +2890,7 @@
 
 	IncomeInputTypeSelectionInfo *incomeCreator = 
 		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
 	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
@@ -2896,7 +2898,7 @@
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
 	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
@@ -2912,7 +2914,7 @@
 
 	TaxInputTypeSelectionInfo *taxCreator = 
 		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelInterface:self.coreData] autorelease];
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
 	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
 	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
@@ -2953,7 +2955,7 @@
 {
 	[self resetCoredData];
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// Account contributions will only occur if there is a balance of cash to draw from. So,
 	// for testing purposes, we initialize the cash balance so that contributions will occur.
@@ -2981,7 +2983,7 @@
 	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
-		initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
 	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
@@ -3022,7 +3024,7 @@
 {
 	[self resetCoredData];
 	
-	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	// Account contributions will only occur if there is a balance of cash to draw from. So,
 	// for testing purposes, we initialize the cash balance so that contributions will occur.
@@ -3040,7 +3042,7 @@
 
 	
 	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
-		initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreData] autorelease];
+		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
 	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];

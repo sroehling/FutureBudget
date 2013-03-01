@@ -16,18 +16,18 @@
 @class FixedValue;
 @class SharedAppValues;
 
-@protocol DataModelInterface;
+@class DataModelController;
 
 @interface InputCreationHelper : NSObject {
     @private
-		id<DataModelInterface> dataModel;
+		DataModelController *dataModel;
 		SharedAppValues *sharedAppVals;
 }
 
-@property(nonatomic,retain) id<DataModelInterface> dataModel;
+@property(nonatomic,retain) DataModelController *dataModel;
 @property(nonatomic,retain) SharedAppValues *sharedAppVals;
 
--(id)initWithDataModelInterface:(id<DataModelInterface>)theDataModelInterface
+-(id)initWithDataModelController:(DataModelController*)theDataModel
 	andSharedAppVals:(SharedAppValues*)theSharedAppVals;
 
 // TODO - Consider making this a class which can be instantiated and parameterize 

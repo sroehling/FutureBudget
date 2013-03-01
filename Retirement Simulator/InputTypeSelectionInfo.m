@@ -15,10 +15,6 @@
 #import "Account.h"
 #import "LoanInput.h"
 #import "AssetInput.h"
-#import "TaxInput.h"
-#import "TaxBracket.h"
-#import "ItemizedTaxAmt.h"
-#import "ItemizedTaxAmts.h"
 #import "InputCreationHelper.h"
 #import "TransferInput.h"
 #import "TransferEndpointAcct.h"
@@ -30,10 +26,10 @@
 @synthesize subTitle;
 @synthesize imageName;
 @synthesize inputCreationHelper;
-@synthesize dataModelInterface;
+@synthesize dataModelController;
 
 -(id)initWithInputCreationHelper:(InputCreationHelper*)theHelper 
-	andDataModelInterface:(id<DataModelInterface>)theDataModelInterface
+	andDataModelController:(DataModelController *)theDataModelController
 	andLabel:(NSString*)theLabel andSubtitle:(NSString*)theSubTitle
 	andImageName:(NSString*)theImageName
 {
@@ -43,8 +39,8 @@
 		assert(theHelper != nil);
 		self.inputCreationHelper = theHelper;
 		
-		assert(theDataModelInterface != nil);
-		self.dataModelInterface = theDataModelInterface;
+		assert(theDataModelController != nil);
+		self.dataModelController = theDataModelController;
 		
 		self.imageName = theImageName;
 		self.inputLabel = theLabel;
@@ -64,7 +60,7 @@
 -(void)dealloc
 {
 	[inputCreationHelper release];
-	[dataModelInterface release];
+	[dataModelController release];
 	[inputLabel release];
 	[subTitle release];
 	[imageName release];
@@ -120,7 +116,7 @@
 	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefaultButNoInitialVal:0.0];
 	
 	TransferEndpointAcct *acctTransferEndpoint = 
-		(TransferEndpointAcct *)[self.dataModelInterface createDataModelObject:TRANSFER_ENDPOINT_ACCT_ENTITY_NAME];
+		(TransferEndpointAcct *)[self.dataModelController createDataModelObject:TRANSFER_ENDPOINT_ACCT_ENTITY_NAME];
 	acctTransferEndpoint.account = newInput;
 
 }
@@ -134,7 +130,7 @@
 -(Input*)createInput
 {
 	
-    ExpenseInput *newInput  = (ExpenseInput*)[self.dataModelInterface 
+    ExpenseInput *newInput  = (ExpenseInput*)[self.dataModelController 
 		createDataModelObject:EXPENSE_INPUT_ENTITY_NAME];;
   
 	newInput.iconImageName = EXPENSE_INPUT_DEFAULT_ICON_NAME;
@@ -150,7 +146,7 @@
 
 -(Input*)createInput
 {
-    IncomeInput *newInput  = (IncomeInput*)[self.dataModelInterface 
+    IncomeInput *newInput  = (IncomeInput*)[self.dataModelController 
 		createDataModelObject:INCOME_INPUT_ENTITY_NAME];
 		
 	newInput.iconImageName = INCOME_INPUT_DEFAULT_ICON_NAME;
@@ -168,7 +164,7 @@
 
 -(Input*)createInput
 {
-    TransferInput *newInput  = (TransferInput*)[self.dataModelInterface 
+    TransferInput *newInput  = (TransferInput*)[self.dataModelController 
 		createDataModelObject:TRANSFER_INPUT_ENTITY_NAME];
 		
 	newInput.iconImageName = TRANSFER_INPUT_DEFAULT_ICON_NAME;
@@ -188,7 +184,7 @@
 
 -(Input*)createInput
 {
-	SavingsAccount *savingsAcct = (SavingsAccount*)[self.dataModelInterface 
+	SavingsAccount *savingsAcct = (SavingsAccount*)[self.dataModelController 
 		createDataModelObject:SAVINGS_ACCOUNT_ENTITY_NAME];
 		
 	savingsAcct.iconImageName = ACCOUNT_INPUT_DEFAULT_ICON_NAME;
@@ -208,7 +204,7 @@
 
 - (Input*)createInput
 {
-	LoanInput *newInput  = (LoanInput*)[self.dataModelInterface 
+	LoanInput *newInput  = (LoanInput*)[self.dataModelController 
 		createDataModelObject:LOAN_INPUT_ENTITY_NAME];
 		
 	newInput.iconImageName = LOAN_INPUT_DEFAULT_ICON_NAME;
@@ -261,7 +257,7 @@
 
 - (Input*)createInput
 {
-	AssetInput *newInput  = (AssetInput*)[self.dataModelInterface 
+	AssetInput *newInput  = (AssetInput*)[self.dataModelController 
 		createDataModelObject:ASSET_INPUT_ENTITY_NAME];
 		
 	newInput.iconImageName = ASSET_INPUT_DEFAULT_ICON_NAME;
@@ -282,44 +278,4 @@
 @end
 
 
-@implementation TaxInputTypeSelectionInfo
 
-
-- (TaxBracket*)createTaxBracket
-{
-	TaxBracket *taxBracket = (TaxBracket*)[self.dataModelInterface 
-		createDataModelObject:TAX_BRACKET_ENTITY_NAME];
-	taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
-	return taxBracket;
-}
-
-- (Input*)createInput
-{
-	TaxInput *newInput  = (TaxInput*)[self.dataModelInterface 
-		createDataModelObject:TAX_INPUT_ENTITY_NAME];
-		
-	newInput.iconImageName = TAX_INPUT_DEFAULT_ICON_NAME;
-	
-	newInput.taxEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	
-	newInput.exemptionAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
-	newInput.stdDeductionAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
-	newInput.exemptionGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
-	newInput.stdDeductionGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
-	
-	newInput.itemizedAdjustments = [self.dataModelInterface 
-		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
-	newInput.itemizedDeductions = [self.dataModelInterface 
-		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
-	newInput.itemizedIncomeSources = [self.dataModelInterface 
-		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
-	newInput.itemizedCredits = [self.dataModelInterface 
-		createDataModelObject:ITEMIZED_TAX_AMTS_ENTITY_NAME];
-
-	newInput.taxBracket = [self createTaxBracket];
-
-	return newInput;
-}
-
-
-@end

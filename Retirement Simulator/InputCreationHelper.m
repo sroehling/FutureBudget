@@ -21,7 +21,6 @@
 #import "MultiScenarioGrowthRate.h"
 #import "MultiScenarioSimDate.h"
 #import "MultiScenarioSimEndDate.h"
-#import "DataModelInterface.h"
 #import "DataModelController.h"
 
 @implementation InputCreationHelper
@@ -29,14 +28,14 @@
 @synthesize dataModel;
 @synthesize sharedAppVals;
 
--(id)initWithDataModelInterface:(id<DataModelInterface>)theDataModelInterface
+-(id)initWithDataModelController:(DataModelController*)theDataModel
 	andSharedAppVals:(SharedAppValues*)theSharedAppVals
 {
 	self = [super init];
 	if(self)
 	{
-		assert(theDataModelInterface != nil);
-		self.dataModel = theDataModelInterface;
+		assert(theDataModel != nil);
+		self.dataModel = theDataModel;
 		
 		assert(theSharedAppVals != nil);
 		self.sharedAppVals = theSharedAppVals;

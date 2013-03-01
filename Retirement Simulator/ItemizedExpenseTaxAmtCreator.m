@@ -55,7 +55,7 @@
 	ExpenseItemizedTaxAmt *itemizedTaxAmt = [self.formContext.dataModelController 
 				insertObject:EXPENSE_ITEMIZED_TAX_AMT_ENTITY_NAME];
 	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
-		initWithDataModelInterface:self.formContext.dataModelController
+		initWithDataModelController:self.formContext.dataModelController
 		 andSharedAppVals:sharedAppVals] autorelease];
 	itemizedTaxAmt.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
 	itemizedTaxAmt.expense  = self.expense;

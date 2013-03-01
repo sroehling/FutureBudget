@@ -90,6 +90,7 @@
 		0025776613B2940100D15232 /* FixedValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776513B2940100D15232 /* FixedValueAsOfCalculator.m */; };
 		0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */; };
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
+		0026D3FC16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D3FB16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m */; };
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
 		002FAE9C14D3111E00AE2B41 /* milestoneDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9B14D3111E00AE2B41 /* milestoneDate.md */; };
 		002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9D14D3194800AE2B41 /* startingValue.md */; };
@@ -292,6 +293,8 @@
 		006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */; };
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
+		006B012D16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B012C16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m */; };
+		006B012F16DE742400416F54 /* taxPresets.md in Resources */ = {isa = PBXBuildFile; fileRef = 006B012E16DE742400416F54 /* taxPresets.md */; };
 		006B087114C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */; };
 		006B087414C5E7810042FE8E /* TaxesPaidXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */; };
 		006D3A5A145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */; };
@@ -460,6 +463,8 @@
 		00E6CC8613F99F27005EEC64 /* FiscalYearDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8513F99F23005EEC64 /* FiscalYearDigest.m */; };
 		00E6CC8913F99FB0005EEC64 /* DigestEntryCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */; };
 		00E898281472F30700FB3D01 /* DataModelDeleteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E898271472F30700FB3D01 /* DataModelDeleteTest.m */; };
+		00E9ADDE16DD1F2300128579 /* TaxPresets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00E9ADDD16DD1F2300128579 /* TaxPresets.plist */; };
+		00E9ADE116DD1F8100128579 /* TaxPresets.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9ADE016DD1F8100128579 /* TaxPresets.m */; };
 		00EC1F8D139736D40085B25C /* SimDateFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */; };
 		00EC1F91139737D20085B25C /* SimDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F90139737D20085B25C /* SimDate.m */; };
 		00EC1F941397396D0085B25C /* MilestoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC1F931397396D0085B25C /* MilestoneDate.m */; };
@@ -717,6 +722,8 @@
 		0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueAsOfCalculator.m; sourceTree = "<group>"; };
 		0025776A13B2971A00D15232 /* ValueAsOfCalculatorCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueAsOfCalculatorCreator.h; sourceTree = "<group>"; };
 		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
+		0026D3FA16DFC46C00922D16 /* TaxInputTypeSelectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxInputTypeSelectionInfo.h; sourceTree = "<group>"; };
+		0026D3FB16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputTypeSelectionInfo.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
 		002E7B66167A2DD700713684 /* AppStoreInfo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStoreInfo.md; sourceTree = "<group>"; };
@@ -1000,6 +1007,9 @@
 		006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFormInfoCreator.m; sourceTree = "<group>"; };
 		006572D81434F7A30062C00C /* WhatIfFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatIfFormInfoCreator.h; sourceTree = "<group>"; };
 		006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatIfFormInfoCreator.m; sourceTree = "<group>"; };
+		006B012B16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxInputBlankOrPresetFormInfoCreator.h; sourceTree = "<group>"; };
+		006B012C16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputBlankOrPresetFormInfoCreator.m; sourceTree = "<group>"; };
+		006B012E16DE742400416F54 /* taxPresets.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxPresets.md; sourceTree = "<group>"; };
 		006B086F14C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTaxesPaidXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTaxesPaidXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		006B087214C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxesPaidXYPlotDataGenerator.h; sourceTree = "<group>"; };
@@ -1286,6 +1296,9 @@
 		00E6CC8813F99FA9005EEC64 /* DigestEntryCltn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigestEntryCltn.m; sourceTree = "<group>"; };
 		00E898261472F30700FB3D01 /* DataModelDeleteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelDeleteTest.h; sourceTree = "<group>"; };
 		00E898271472F30700FB3D01 /* DataModelDeleteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelDeleteTest.m; sourceTree = "<group>"; };
+		00E9ADDD16DD1F2300128579 /* TaxPresets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TaxPresets.plist; sourceTree = "<group>"; };
+		00E9ADDF16DD1F8100128579 /* TaxPresets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxPresets.h; sourceTree = "<group>"; };
+		00E9ADE016DD1F8100128579 /* TaxPresets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxPresets.m; sourceTree = "<group>"; };
 		00EC1F8B139736D40085B25C /* SimDateFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateFormInfoCreator.h; sourceTree = "<group>"; };
 		00EC1F8C139736D40085B25C /* SimDateFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateFormInfoCreator.m; sourceTree = "<group>"; };
 		00EC1F8F139737D20085B25C /* SimDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDate.h; sourceTree = "<group>"; };
@@ -1762,6 +1775,18 @@
 			name = "Test Helper Code";
 			sourceTree = "<group>";
 		};
+		0026D3FD16DFC61100922D16 /* Taxes */ = {
+			isa = PBXGroup;
+			children = (
+				00E9ADDC16DD1EEE00128579 /* Tax Presets */,
+				006B012B16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.h */,
+				006B012C16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m */,
+				0026D3FA16DFC46C00922D16 /* TaxInputTypeSelectionInfo.h */,
+				0026D3FB16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m */,
+			);
+			name = Taxes;
+			sourceTree = "<group>";
+		};
 		002E7B65167A2DB100713684 /* App Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -1887,6 +1912,7 @@
 		0049DC7013A2884D00B27046 /* Input Creation */ = {
 			isa = PBXGroup;
 			children = (
+				0026D3FD16DFC61100922D16 /* Taxes */,
 				000E92B416CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.h */,
 				000E92B516CBFBDF00E07465 /* InputTypeSelectionFieldEditInfo.m */,
 				000E92B716CBFC4800E07465 /* InputTypeSelectionFormInfoCreator.h */,
@@ -2119,11 +2145,10 @@
 		004F5D6F1373175D00E0C4A3 /* Input Views */ = {
 			isa = PBXGroup;
 			children = (
+				00E9ADDB16DD1EBF00128579 /* Taxes */,
 				000E92DD16CEB13300E07465 /* Input Tag */,
 				001C11FE1684E09500322EF9 /* Input Icons */,
 				0023797A143FBC57006650E3 /* Helper */,
-				0023799E1441E754006650E3 /* Tax Bracket */,
-				00237970143F9DE1006650E3 /* Tax Itemized Amounts */,
 				006572D71434F3610062C00C /* What If */,
 				0087923013A9497400CA9DA7 /* Input Detail */,
 				0049DC7113A28AC600B27046 /* Input List */,
@@ -2818,6 +2843,26 @@
 			name = "Simulation Dates";
 			sourceTree = "<group>";
 		};
+		00E9ADDB16DD1EBF00128579 /* Taxes */ = {
+			isa = PBXGroup;
+			children = (
+				00237970143F9DE1006650E3 /* Tax Itemized Amounts */,
+				0023799E1441E754006650E3 /* Tax Bracket */,
+			);
+			name = Taxes;
+			sourceTree = "<group>";
+		};
+		00E9ADDC16DD1EEE00128579 /* Tax Presets */ = {
+			isa = PBXGroup;
+			children = (
+				00E9ADDD16DD1F2300128579 /* TaxPresets.plist */,
+				00E9ADDF16DD1F8100128579 /* TaxPresets.h */,
+				00E9ADE016DD1F8100128579 /* TaxPresets.m */,
+				006B012E16DE742400416F54 /* taxPresets.md */,
+			);
+			name = "Tax Presets";
+			sourceTree = "<group>";
+		};
 		00EC458214214B4700D65D17 /* Cash Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -3184,6 +3229,8 @@
 				000E92EE16CEDBA300E07465 /* inputTags.md in Resources */,
 				003FFA3B16D5348300B83067 /* search.png in Resources */,
 				003FFA3C16D5348300B83067 /* search@2x.png in Resources */,
+				00E9ADDE16DD1F2300128579 /* TaxPresets.plist in Resources */,
+				006B012F16DE742400416F54 /* taxPresets.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3484,6 +3531,9 @@
 				003FFA4216D5457900B83067 /* InputListFilterTagSelectionFormInfoCreator.m in Sources */,
 				003FFA4516D555DB00B83067 /* TagSelectionFieldEditInfo.m in Sources */,
 				003FFA4816D5595D00B83067 /* FilteredTagFieldEditInfo.m in Sources */,
+				00E9ADE116DD1F8100128579 /* TaxPresets.m in Sources */,
+				006B012D16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m in Sources */,
+				0026D3FC16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
