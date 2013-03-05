@@ -724,7 +724,8 @@
 		withLabel:LOCALIZED_STR(@"INPUT_TAX_ENABLED_FIELD_LABEL")];
 		
 	// Tax Bracket Section
-	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_BRACKET_SECTION_TITLE")];
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_BRACKET_SECTION_TITLE")
+		andHelpFile:@"taxRate"];
 	
 	
 	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
@@ -741,10 +742,6 @@
 		 andValueName:LOCALIZED_STR(@"INPUT_TAX_CUTOFF_GROWTH_RATE_VALUE_NAME")];
 
 	
-	// TODO Add inflation adjustements for tax rates
-
-		
-
 	// TODO - Double-check how the ItemizedTaxAmtsInfo's specify what is itemized versus the 
 	// typical federal and state tax structures.
 

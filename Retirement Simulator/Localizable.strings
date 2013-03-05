@@ -319,7 +319,7 @@
 "INPUT_LIST_NEW_UNINITIALIZED_TAX_FIELD_SUBTITLE" = "Start with an uninitialized tax input. You'll need to define the tax bracket/table.";
 "INPUT_TAX_INLINE_INPUT_TYPE" = "tax";
 "INPUT_TAX_ENABLED_FIELD_LABEL" = "Enable Tax?";
-"INPUT_TAX_BRACKET_SECTION_TITLE" = "Tax Rate Bracket";
+"INPUT_TAX_BRACKET_SECTION_TITLE" = "Tax Rates";
 "INPUT_TAX_RATES_FIELD_LABEL" = "Tax Bracket Entries";
 "INPUT_TAX_CUTOFF_GROWTH_RATE_FIELD_LABEL" = "Cutoff Amounts Growth Rate";
 "INPUT_TAX_CUTOFF_GROWTH_RATE_VALUE_NAME" = "Cuttoff Amounts";
@@ -332,8 +332,6 @@
 "INPUT_TAX_BRACKET_SINGLE_BRACKET_SUMMARY_FORMAT" = "%@ for the first %@, %@ for amounts above %@";
 "INPUT_TAX_BRACKET_SINGLE_BRACKET_INITIAL_BRACKET_FORMAT" = "%@ for the first %@";
 "INPUT_TAX_BRACKET_SINGLE_BRACKET_ABOVE_AMOUNT_BRACKET_FORMAT" = "%@ for amounts above %@";
-
-
 
 "INPUT_TAX_STD_DEDUCTION_TITLE" = "Standard Deduction";
 "INPUT_TAX_STD_DEDUCTION_GROWTH_RATE_LABEL" = "Standard Deduction Growth";
