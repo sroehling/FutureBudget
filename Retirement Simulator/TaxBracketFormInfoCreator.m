@@ -20,6 +20,7 @@
 #import "NumberHelper.h"
 #import "TaxBracketEntry.h"
 #import "FormContext.h"
+#import "CollectionHelper.h"
 
 @implementation TaxBracketFormInfoCreator
 
@@ -48,7 +49,12 @@
 		initWithTaxBracket:self.taxBracket andParentDataModelController:parentContext.dataModelController] autorelease];
 		
 	SectionInfo *sectionInfo = [formPopulator nextSection];
-	for(TaxBracketEntry *taxBracketEntry in self.taxBracket.taxBracketEntries)
+	
+	NSArray *sortedTaxBracketEntries = [CollectionHelper
+			setToSortedArray:self.taxBracket.taxBracketEntries
+			withKey:TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_KEY];
+	
+	for(TaxBracketEntry *taxBracketEntry in sortedTaxBracketEntries)
 	{
 		TaxBracketEntryFormInfoCreator *taxBracketEntryFormInfoCreator
 			= [[[TaxBracketEntryFormInfoCreator alloc] 

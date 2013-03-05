@@ -91,6 +91,7 @@
 		0025776913B295E500D15232 /* VariableValueAsOfCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776813B295E500D15232 /* VariableValueAsOfCalculator.m */; };
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
 		0026D3FC16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D3FB16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m */; };
+		0026D40016E6512200922D16 /* TestTaxBracket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D3FF16E6512200922D16 /* TestTaxBracket.m */; };
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
 		002FAE9C14D3111E00AE2B41 /* milestoneDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9B14D3111E00AE2B41 /* milestoneDate.md */; };
 		002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9D14D3194800AE2B41 /* startingValue.md */; };
@@ -724,6 +725,8 @@
 		0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueAsOfCalculatorCreator.m; sourceTree = "<group>"; };
 		0026D3FA16DFC46C00922D16 /* TaxInputTypeSelectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxInputTypeSelectionInfo.h; sourceTree = "<group>"; };
 		0026D3FB16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputTypeSelectionInfo.m; sourceTree = "<group>"; };
+		0026D3FE16E6512200922D16 /* TestTaxBracket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTaxBracket.h; sourceTree = "<group>"; };
+		0026D3FF16E6512200922D16 /* TestTaxBracket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTaxBracket.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
 		002E7B66167A2DD700713684 /* AppStoreInfo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStoreInfo.md; sourceTree = "<group>"; };
@@ -2594,6 +2597,8 @@
 				0086C08D14294B4200148785 /* TestLoanInput.m */,
 				00E898261472F30700FB3D01 /* DataModelDeleteTest.h */,
 				00E898271472F30700FB3D01 /* DataModelDeleteTest.m */,
+				0026D3FE16E6512200922D16 /* TestTaxBracket.h */,
+				0026D3FF16E6512200922D16 /* TestTaxBracket.m */,
 			);
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
@@ -3556,6 +3561,7 @@
 				00E0C8EB140E98EE00BC269E /* FiscalYearDigestTest.m in Sources */,
 				0086C08E14294B4200148785 /* TestLoanInput.m in Sources */,
 				00E898281472F30700FB3D01 /* DataModelDeleteTest.m in Sources */,
+				0026D40016E6512200922D16 /* TestTaxBracket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

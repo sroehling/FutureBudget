@@ -36,7 +36,7 @@
 	self.testAppVals = [SharedAppValues createWithDataModelInterface:self.coreDataInterface];
 	
 	self.inputCreationHelper = [[[InputCreationHelper alloc] 
-		initWithDataModelInterface:self.coreDataInterface
+		initWithDataModelController:self.coreDataInterface
 		andSharedAppVals:self.testAppVals] autorelease];
 
 }
@@ -239,7 +239,7 @@
 	
 	NSLog(@"Test that the deletion of an expense cascades to delete any associated ItemizedTaxAmts");
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
-		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelInterface:self.coreDataInterface] autorelease];
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreDataInterface andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 	ExpenseInput *expense = (ExpenseInput*)[expenseCreator createInput];
 	expense.name = @"Test Expense";

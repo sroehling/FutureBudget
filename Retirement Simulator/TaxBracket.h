@@ -26,5 +26,6 @@ extern NSString * const TAX_BRACKET_ENTITY_NAME;
 
 
 - (void)addTaxBracketEntriesObject:(TaxBracketEntry *)value;
+- (NSString*)taxBracketSummary;
 
 @end

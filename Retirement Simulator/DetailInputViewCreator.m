@@ -725,10 +725,15 @@
 		
 	// Tax Bracket Section
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_BRACKET_SECTION_TITLE")];
+	
+	
 	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
 		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket] autorelease];
+	// TODO - Add a subtitle which summarizes the tax bracket
 	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
-		initWithCaption:LOCALIZED_STR(@"INPUT_TAX_RATES_FIELD_LABEL") andSubtitle:nil andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
+		initWithCaption:LOCALIZED_STR(@"INPUT_TAX_RATES_FIELD_LABEL")
+			andSubtitle:[tax.taxBracket taxBracketSummary]
+			andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
 	[formPopulator.currentSection addFieldEditInfo:taxRatesFieldEditInfo];
 	
 	[formPopulator populateMultiScenarioGrowthRate:tax.taxBracket.cutoffGrowthRate 

@@ -49,8 +49,8 @@
 {
 	LoanInput *theLoan  = (LoanInput*)[self.coreData createDataModelObject:LOAN_INPUT_ENTITY_NAME];
 	
-	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
-		initWithDataModelInterface:self.coreData andSharedAppVals:testAppVals] autorelease];
+	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc]
+		initWithDataModelController:self.coreData andSharedAppVals:testAppVals] autorelease];
 	
 	theLoan.startingBalance = [NSNumber numberWithDouble:0.0];
 	theLoan.loanEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
@@ -205,7 +205,7 @@
 	// engine to calculate a starting balance based on the payments made before
 	// the start date.
 	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
-		initWithDataModelInterface:self.coreData andSharedAppVals:testAppVals] autorelease];
+		initWithDataModelController:self.coreData andSharedAppVals:testAppVals] autorelease];
 	theLoan.startingBalance = nil;
 	NSDate *origDate = [DateHelper dateFromStr:@"2011-06-01"];
 	theLoan.origDate = [inputCreationHelper multiScenSimDateWithDefault:origDate];

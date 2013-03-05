@@ -327,6 +327,12 @@
 "INPUT_TAX_ADJUSTMENT_SECTION_TITLE" = "Adjustments";
 "INPUT_TAX_DEDUCTION_SECTION_TITLE" = "Deductions";
 "INPUT_TAX_CREDITS_SECTION_TITLE" = "Tax Credits";
+"INPUT_TAX_BRACKET_NO_ENTRIES_SUMMARY" = "0% tax (no tax bracket entries defined)";
+"INPUT_TAX_BRACKET_SINGLE_RATE_SUMMARY_FORMAT" = "%@ flat/effective rate (same tax percent for all amounts)";
+"INPUT_TAX_BRACKET_SINGLE_BRACKET_SUMMARY_FORMAT" = "%@ for the first %@, %@ for amounts above %@";
+"INPUT_TAX_BRACKET_SINGLE_BRACKET_INITIAL_BRACKET_FORMAT" = "%@ for the first %@";
+"INPUT_TAX_BRACKET_SINGLE_BRACKET_ABOVE_AMOUNT_BRACKET_FORMAT" = "%@ for amounts above %@";
+
 
 
 "INPUT_TAX_STD_DEDUCTION_TITLE" = "Standard Deduction";
