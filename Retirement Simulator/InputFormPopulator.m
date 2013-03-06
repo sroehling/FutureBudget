@@ -68,6 +68,8 @@
 #import "NameFieldCell.h"
 #import "ItemizedTaxAmtsSelectionFormInfoCreator.h"
 
+#import "InputNameValidator.h"
+
 @implementation InputFormPopulator
 
 @synthesize inputScenario;
@@ -133,8 +135,11 @@
 		andFieldLabel:@"N/A" andFieldPlaceholder:@"N/A"] autorelease];
 
 		
+	InputNameValidator *uniqueNameValidator = [[[InputNameValidator alloc]
+		initWithInput:theInput andDataModelController:self.formContext.dataModelController] autorelease];
+		
 	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] 
-		initWithFieldInfo:fieldInfo andCustomValidator:nil
+		initWithFieldInfo:fieldInfo andCustomValidator:uniqueNameValidator
 			andParentController:self.formContext.parentController
 			andImageNames:inputIcons andImageFieldInfo:imageFieldInfo] autorelease];
 	

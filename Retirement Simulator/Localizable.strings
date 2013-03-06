@@ -87,6 +87,7 @@
 "INPUT_NAME_PLACEHOLDER" = "Enter a Name";
 "INPUT_NOTE_FIELD_TITLE" = "Notes";
 "INPUT_NOTE_FIELD_PLACEHOLDER" = "Enter comments or notes (optional)";
+"INPUT_NAME_VALIDATION_MSG" = "Inputs must have a name which is different than other inputs. Please choose another name";
 
 "INPUT_INCOME_TAX_FIELD_LABEL" = "Taxes";
 
