@@ -28,6 +28,7 @@
 @class FormContext;
 @class ItemizedTaxAmt;
 @class ItemizedTaxAmtsInfo;
+@class ItemizedTaxAmtsSelectionFormInfoCreator;
 
 
 
@@ -117,8 +118,11 @@
 -(void)populateItemizedTaxForTaxAmtsInfo:(ItemizedTaxAmtsInfo*)itemizedTaxAmtsInfo
 	andTaxAmt:(ItemizedTaxAmt*)itemizedTaxAmt
 	andTaxAmtCreator:(id<ItemizedTaxAmtCreator>)taxAmtCreator;
+
 -(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
 	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator;
+-(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
+	andItemizedTaxAmtsFormInfoCreator:(ItemizedTaxAmtsSelectionFormInfoCreator *)formInfoCreator;
 		
 -(TableHeaderWithDisclosure*)scenarioListTableHeaderWithFormContext:(FormContext*)formContext;	
 		

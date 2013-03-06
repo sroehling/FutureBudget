@@ -66,6 +66,7 @@
 #import "ItemizedTaxAmtFieldEditInfo.h"
 #import "FormContext.h"
 #import "NameFieldCell.h"
+#import "ItemizedTaxAmtsSelectionFormInfoCreator.h"
 
 @implementation InputFormPopulator
 
@@ -725,7 +726,25 @@
 	assert([StringValidation nonEmptyString:fieldLabel]);
 	StaticNavFieldEditInfo *taxesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
 			initWithCaption:fieldLabel
-			andSubtitle:nil andContentDescription:nil 
+			andSubtitle:nil andContentDescription:nil
+			andSubViewFactory:taxSelectionTableViewFactory] autorelease];
+	[self.currentSection addFieldEditInfo:taxesFieldEditInfo];
+
+}
+
+-(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
+	andItemizedTaxAmtsFormInfoCreator:(ItemizedTaxAmtsSelectionFormInfoCreator *)formInfoCreator
+{
+	MultipleSelectionTableViewControllerFactory *taxSelectionTableViewFactory = 
+			[[[MultipleSelectionTableViewControllerFactory alloc] 
+			initWithFormInfoCreator:formInfoCreator] autorelease];
+
+	// TODO - Include a subtitle which summarizes which items are itemized.
+	assert([StringValidation nonEmptyString:fieldLabel]);
+	StaticNavFieldEditInfo *taxesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
+			initWithCaption:fieldLabel
+			andSubtitle:[formInfoCreator.itemizedTaxAmtsInfo itemizationSummary]
+			andContentDescription:[formInfoCreator.itemizedTaxAmtsInfo itemizationCountSummary]
 			andSubViewFactory:taxSelectionTableViewFactory] autorelease];
 	[self.currentSection addFieldEditInfo:taxesFieldEditInfo];
 

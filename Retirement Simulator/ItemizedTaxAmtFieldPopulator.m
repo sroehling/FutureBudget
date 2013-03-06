@@ -17,6 +17,7 @@
 #import "AssetGainItemizedTaxAmt.h"
 #import "LoanInterestItemizedTaxAmt.h"
 #import "TaxesPaidItemizedTaxAmt.h"
+#import "LocalizationHelper.h"
 
 #import "DataModelController.h"
 #import "IncomeInput.h"
@@ -330,6 +331,186 @@
 		}
 	}
 	return nil;
+}
+
+-(NSUInteger)enabledItemizationCount:(NSArray*)itemizations
+{
+	NSUInteger theCount = 0;
+	for(ItemizedTaxAmt *itemization in itemizations)
+	{
+		if([itemization.isEnabled boolValue])
+		{
+			theCount++;
+		}
+	}
+	return theCount;
+}
+
+
+-(NSString*)itemizationSummary
+{
+	NSMutableArray *listOfListsOfItemizations =
+		[[[NSMutableArray alloc] init] autorelease];
+
+	if([self enabledItemizationCount:self.itemizedIncomes] > 0)
+	{
+		NSMutableArray *incomeNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(IncomeItemizedTaxAmt *itemizedIncome in self.itemizedIncomes)
+		{
+			if([itemizedIncome.isEnabled boolValue])
+			{
+				[incomeNameList addObject:itemizedIncome.income.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_INCOME_TITLE"),
+			[incomeNameList componentsJoinedByString:@","]]];
+	}
+	
+	if([self enabledItemizationCount:self.itemizedAccountInterest] > 0)
+	{
+		NSMutableArray *acctNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(AccountInterestItemizedTaxAmt *itemizedInt in self.itemizedAccountInterest)
+		{
+			if([itemizedInt.isEnabled boolValue])
+			{
+				[acctNameList addObject:itemizedInt.account.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_INTEREST_TITLE"),
+			[acctNameList componentsJoinedByString:@","]]];
+	}
+
+	if([self enabledItemizationCount:self.itemizedLoans] > 0)
+	{
+		NSMutableArray *loanNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(LoanInterestItemizedTaxAmt *itemizedLoan in self.itemizedLoans)
+		{
+			if([itemizedLoan.isEnabled boolValue])
+			{
+				[loanNameList addObject:itemizedLoan.loan.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_LOAN_INTEREST_TITLE"),
+			[loanNameList componentsJoinedByString:@","]]];
+	}
+
+	if([self enabledItemizationCount:self.itemizedAssets] > 0)
+	{
+		NSMutableArray *assetNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(AssetGainItemizedTaxAmt *itemizedAsset in self.itemizedAssets)
+		{
+			if([itemizedAsset.isEnabled boolValue])
+			{
+				[assetNameList addObject:itemizedAsset.asset.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ASSET_GAIN_TITLE"),
+			[assetNameList componentsJoinedByString:@","]]];
+	}
+	
+	if([self enabledItemizationCount:self.itemizedExpenses] > 0)
+	{
+		NSMutableArray *expenseNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(ExpenseItemizedTaxAmt *itemizedExpense in self.itemizedExpenses)
+		{
+			if([itemizedExpense.isEnabled boolValue])
+			{
+				[expenseNameList addObject:itemizedExpense.expense.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_EXPENSE_TITLE"),
+			[expenseNameList componentsJoinedByString:@","]]];
+	}
+	
+	if([self enabledItemizationCount:self.itemizedTaxesPaid] > 0)
+	{
+		NSMutableArray *taxNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(TaxesPaidItemizedTaxAmt *itemizedTax in self.itemizedTaxesPaid)
+		{
+			if([itemizedTax.isEnabled boolValue])
+			{
+				[taxNameList addObject:itemizedTax.tax.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_TAXES_PAID_TITLE"),
+			[taxNameList componentsJoinedByString:@","]]];
+	}
+
+	if([self enabledItemizationCount:self.itemizedAccountWithdrawals] > 0)
+	{
+		NSMutableArray *acctNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(AccountWithdrawalItemizedTaxAmt *itemizedWithdrawal in self.itemizedAccountWithdrawals)
+		{
+			if([itemizedWithdrawal.isEnabled boolValue])
+			{
+				[acctNameList addObject:itemizedWithdrawal.account.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_WITHDRAWAL_TITLE"),
+			[acctNameList componentsJoinedByString:@","]]];
+	}
+
+	if([self enabledItemizationCount:self.itemizedAccountContribs] > 0)
+	{
+		NSMutableArray *acctNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(AccountContribItemizedTaxAmt *itemizedContrib in self.itemizedAccountContribs)
+		{
+			if([itemizedContrib.isEnabled boolValue])
+			{
+				[acctNameList addObject:itemizedContrib.account.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_CONTRIB_TITLE"),
+			[acctNameList componentsJoinedByString:@","]]];
+	}
+
+	return [listOfListsOfItemizations componentsJoinedByString:@"  "];
+}
+
+-(NSUInteger)itemizationCount
+{
+	NSUInteger theCount = 0;
+	
+	theCount += [self enabledItemizationCount:self.itemizedIncomes];
+	
+	theCount += [self enabledItemizationCount:self.itemizedAccountInterest];
+
+	theCount += [self enabledItemizationCount:self.itemizedLoans];
+
+	theCount += [self enabledItemizationCount:self.itemizedAssets];
+	
+	theCount += [self enabledItemizationCount:self.itemizedExpenses];
+	
+	theCount += [self enabledItemizationCount:self.itemizedTaxesPaid];
+
+	theCount += [self enabledItemizationCount:self.itemizedAccountWithdrawals];
+
+	theCount += [self enabledItemizationCount:self.itemizedAccountContribs];
+	
+	return theCount;
+	
+	
+}
+
+-(NSString*)itemizationCountSummary
+{
+	NSUInteger theCount = [self itemizationCount];
+	if(theCount == 0)
+	{
+		return LOCALIZED_STR(@"INPUT_TAX_ITEMIZATION_COUNT_NONE");
+	}
+	else
+	{
+		return [NSString stringWithFormat:@"%d",theCount];
+	}
 }
 
 

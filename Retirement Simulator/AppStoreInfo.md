@@ -24,7 +24,7 @@ Finance
 
 ## Description
 
-FinSim will help you plan for your financial future by flexibly evaluating different budgeting and investing what-if scenarios. 
+FinSim will help you plan for your financial future by flexibly evaluating different longer term budgeting and investing what-if scenarios. 
 
 While most financial planning/budgeting apps are based on more general or "canned" inputs, FinSim works with specific assumptions about both current and future incomes, expenses and investments. By supporting specific inputs, FinSim flexibly supports many types of scenarios; for example:
 

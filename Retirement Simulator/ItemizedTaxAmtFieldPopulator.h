@@ -78,4 +78,7 @@
 
 -(LoanInterestItemizedTaxAmt *)findItemizedLoanInterest:(LoanInput*)loan;
 
+-(NSString*)itemizationSummary;
+-(NSString*)itemizationCountSummary;
+
 @end

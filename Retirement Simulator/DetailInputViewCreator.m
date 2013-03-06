@@ -751,7 +751,7 @@
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE")
 		andHelpFile:@"taxIncomeSources"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE") 
-			andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
+			andItemizedTaxAmtsFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc]
 				initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxSourceInfo:tax 
 						usingDataModelController:self.formContext.dataModelController]
 				andIsForNewObject:self.isForNewObject] autorelease]];		
@@ -762,7 +762,7 @@
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_TITLE")
 		andHelpFile:@"taxAdjustments"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE")
-		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
+		andItemizedTaxAmtsFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
 			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxAdjustmentInfo:tax 
 						usingDataModelController:self.formContext.dataModelController]
 			andIsForNewObject:self.isForNewObject] autorelease]];
@@ -792,7 +792,7 @@
 		andValueName:tax.name];
 
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_TITLE") 
-		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
+		andItemizedTaxAmtsFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
 			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxDeductionInfo:tax 
 						usingDataModelController:self.formContext.dataModelController]
 			andIsForNewObject:self.isForNewObject] autorelease]];	
@@ -807,7 +807,7 @@
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_CREDITS_SECTION_TITLE")
 		andHelpFile:@"taxCredits"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE")
-		andFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc]
+		andItemizedTaxAmtsFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc]
 		initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxCreditInfo:tax 
 						usingDataModelController:self.formContext.dataModelController]
 			andIsForNewObject:self.isForNewObject] autorelease]];	

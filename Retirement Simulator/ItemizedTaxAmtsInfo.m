@@ -185,6 +185,16 @@
 			andItemizeTaxesPaid:			FALSE] autorelease];
 }
 
+-(NSString *)itemizationSummary
+{
+	return [self.fieldPopulator itemizationSummary];
+}
+
+-(NSString*)itemizationCountSummary
+{
+	return [self.fieldPopulator itemizationCountSummary];
+}
+
 -(void)dealloc
 {
 	[title release];

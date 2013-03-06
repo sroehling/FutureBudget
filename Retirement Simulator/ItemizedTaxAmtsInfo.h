@@ -78,4 +78,7 @@
 +(ItemizedTaxAmtsInfo*)taxDeductionInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController;
 +(ItemizedTaxAmtsInfo*)taxCreditInfo:(TaxInput*)tax usingDataModelController:(DataModelController*)dataModelController;
 
+-(NSString *)itemizationSummary;
+-(NSString*)itemizationCountSummary;
+
 @end
