@@ -95,6 +95,7 @@
 		0026D40216E67C5200922D16 /* taxRate.md in Resources */ = {isa = PBXBuildFile; fileRef = 0026D40116E67C5100922D16 /* taxRate.md */; };
 		0026D42016E7B1E500922D16 /* InputNameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D41F16E7B1E500922D16 /* InputNameValidator.m */; };
 		0026D42316E8F61800922D16 /* ScenarioNameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D42216E8F61800922D16 /* ScenarioNameValidator.m */; };
+		0026D42616E90CDB00922D16 /* MilestoneDateNameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D42516E90CDB00922D16 /* MilestoneDateNameValidator.m */; };
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
 		002FAE9C14D3111E00AE2B41 /* milestoneDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9B14D3111E00AE2B41 /* milestoneDate.md */; };
 		002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9D14D3194800AE2B41 /* startingValue.md */; };
@@ -735,6 +736,8 @@
 		0026D41F16E7B1E500922D16 /* InputNameValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputNameValidator.m; sourceTree = "<group>"; };
 		0026D42116E8F61800922D16 /* ScenarioNameValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioNameValidator.h; sourceTree = "<group>"; };
 		0026D42216E8F61800922D16 /* ScenarioNameValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioNameValidator.m; sourceTree = "<group>"; };
+		0026D42416E90CDB00922D16 /* MilestoneDateNameValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MilestoneDateNameValidator.h; sourceTree = "<group>"; };
+		0026D42516E90CDB00922D16 /* MilestoneDateNameValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MilestoneDateNameValidator.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
 		002E7B66167A2DD700713684 /* AppStoreInfo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStoreInfo.md; sourceTree = "<group>"; };
@@ -2020,6 +2023,8 @@
 				00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */,
 				00E533EA14E96B11005C6F6F /* NeverEndDateFieldEditInfo.h */,
 				00E533EB14E96B12005C6F6F /* NeverEndDateFieldEditInfo.m */,
+				0026D42416E90CDB00922D16 /* MilestoneDateNameValidator.h */,
+				0026D42516E90CDB00922D16 /* MilestoneDateNameValidator.m */,
 			);
 			name = "Sim Date";
 			sourceTree = "<group>";
@@ -3555,6 +3560,7 @@
 				0026D3FC16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m in Sources */,
 				0026D42016E7B1E500922D16 /* InputNameValidator.m in Sources */,
 				0026D42316E8F61800922D16 /* ScenarioNameValidator.m in Sources */,
+				0026D42616E90CDB00922D16 /* MilestoneDateNameValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

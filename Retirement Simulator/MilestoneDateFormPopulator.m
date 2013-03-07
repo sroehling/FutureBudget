@@ -21,6 +21,7 @@
 #import "NameFieldEditInfo.h"
 #import "DataModelController.h"
 #import "FormContext.h"
+#import "MilestoneDateNameValidator.h"
 
 @implementation MilestoneDateFormPopulator
 
@@ -50,7 +51,11 @@
     SectionInfo *sectionInfo = [self nextSection];
 	
 	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:milestoneDate andFieldKey:@"name" andFieldLabel:LOCALIZED_STR(@"MILESTONE_DATE_NAME_TEXT_FIELD_LABEL") andFieldPlaceholder:LOCALIZED_STR(@"VARIABLE_DATE_MILESTONE_NAME_PLACEHOLDER")] autorelease];
-	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
+	
+	MilestoneDateNameValidator *nameValidator = [[[MilestoneDateNameValidator alloc] initWithMilestone:milestoneDate andDataModelController:self.formContext.dataModelController] autorelease];
+	
+	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo
+		andCustomValidator:nameValidator] autorelease];
     [sectionInfo addFieldEditInfo:fieldEditInfo];
 	
 	

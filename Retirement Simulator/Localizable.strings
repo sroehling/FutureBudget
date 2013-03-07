@@ -433,6 +433,8 @@
 "MILESTONE_DATE_NAME_TEXT_FIELD_LABEL" = "Name";
 "MILESTONE_DATE_DATE_FIELD_LABEL" = "Date";
 "MILESTONE_DATE_END_DATE_PREFIX" = "until";
+"MILESTONE_NAME_VALIDATION_MSG" = "Milestone dates must have a name which is different than other milestone dates. Please choose another name";
+
 "FIXED_DATE_END_DATE_PREFIX" = "until";
 "VARIABLE_DATE_DATE_ENTRY_PROMPT" = "Enter a Date";
 "VARIABLE_DATE_MILESTONE_NAME_PLACEHOLDER" = "Enter a Milestone Name";
