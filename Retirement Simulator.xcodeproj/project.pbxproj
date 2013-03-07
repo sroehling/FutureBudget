@@ -94,6 +94,7 @@
 		0026D40016E6512200922D16 /* TestTaxBracket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D3FF16E6512200922D16 /* TestTaxBracket.m */; };
 		0026D40216E67C5200922D16 /* taxRate.md in Resources */ = {isa = PBXBuildFile; fileRef = 0026D40116E67C5100922D16 /* taxRate.md */; };
 		0026D42016E7B1E500922D16 /* InputNameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D41F16E7B1E500922D16 /* InputNameValidator.m */; };
+		0026D42316E8F61800922D16 /* ScenarioNameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D42216E8F61800922D16 /* ScenarioNameValidator.m */; };
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
 		002FAE9C14D3111E00AE2B41 /* milestoneDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9B14D3111E00AE2B41 /* milestoneDate.md */; };
 		002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9D14D3194800AE2B41 /* startingValue.md */; };
@@ -732,6 +733,8 @@
 		0026D40116E67C5100922D16 /* taxRate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxRate.md; sourceTree = "<group>"; };
 		0026D41E16E7B1E400922D16 /* InputNameValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputNameValidator.h; sourceTree = "<group>"; };
 		0026D41F16E7B1E500922D16 /* InputNameValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputNameValidator.m; sourceTree = "<group>"; };
+		0026D42116E8F61800922D16 /* ScenarioNameValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioNameValidator.h; sourceTree = "<group>"; };
+		0026D42216E8F61800922D16 /* ScenarioNameValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioNameValidator.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
 		002E7B66167A2DD700713684 /* AppStoreInfo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStoreInfo.md; sourceTree = "<group>"; };
@@ -1913,6 +1916,8 @@
 				003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */,
 				00E533E714E9635C005C6F6F /* DefaultScenarioFieldEditInfo.h */,
 				00E533E814E9635C005C6F6F /* DefaultScenarioFieldEditInfo.m */,
+				0026D42116E8F61800922D16 /* ScenarioNameValidator.h */,
+				0026D42216E8F61800922D16 /* ScenarioNameValidator.m */,
 			);
 			name = "Scenario List";
 			sourceTree = "<group>";
@@ -3549,6 +3554,7 @@
 				006B012D16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m in Sources */,
 				0026D3FC16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m in Sources */,
 				0026D42016E7B1E500922D16 /* InputNameValidator.m in Sources */,
+				0026D42316E8F61800922D16 /* ScenarioNameValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

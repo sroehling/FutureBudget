@@ -545,6 +545,8 @@
 "SCENARIO_NAME_PLACEHOLDER" = "Enter a Name";
 "SCENARIO_NOTE_FIELD_TITLE" = "Notes";
 "SCENARIO_NOTE_FIELD_PLACEHOLDER" = "Enter comments or notes (optional)";
+"SCENARIO_NAME_VALIDATION_MSG" = "Scenarios must have a name which is different than other scenarios. Please choose another name";
+
 
 "STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE" = "Startup";
 "STARTUP_VALUES_VIEW_TITLE" = "Startup";

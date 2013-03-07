@@ -30,6 +30,7 @@
 #import "FormContext.h"
 #import "NoteFieldEditInfo.h"
 #import "InputFormPopulator.h"
+#import "ScenarioNameValidator.h"
 
 @implementation UserScenarioFormInfoCreator
 
@@ -102,8 +103,11 @@
 			
 		nil];
 		
+	ScenarioNameValidator *scenNameValidator = [[[ScenarioNameValidator alloc]
+		initWithScenario:self.userScen andDataModelController:parentContext.dataModelController] autorelease];
+		
 	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo
-		andCustomValidator:nil andParentController:parentContext.parentController
+		andCustomValidator:scenNameValidator andParentController:parentContext.parentController
 		andImageNames:imageNames andImageFieldInfo:imageFieldInfo] autorelease];
 	
     [sectionInfo addFieldEditInfo:fieldEditInfo];
