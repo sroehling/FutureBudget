@@ -34,6 +34,9 @@
 
 @synthesize account;
 @synthesize isForNewObject;
+@synthesize showContributions;
+@synthesize showWithdrawal;
+@synthesize showInterest;
 
 
 -(id)initWithAcct:(Account*)theAccount andIsForNewObject:(BOOL)forNewObject
@@ -45,6 +48,10 @@
 		self.account = theAccount;
 		
 		self.isForNewObject = forNewObject;
+		
+		self.showInterest = FALSE;
+		self.showContributions = FALSE;
+		self.showWithdrawal = FALSE;
 	}
 	return self;
 }
@@ -78,72 +85,79 @@
 	if([inputs count] > 0)
 	{
 		
-		[formPopulator nextSectionWithTitle:
-				LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_DEDUCTABLE_CONTRIBUTIONS_SECTION_HEADER")];
-		for(TaxInput *tax in inputs)
+		if(self.showContributions)
 		{
-			ItemizedTaxAmtsInfo *taxDeductionInfo = [ItemizedTaxAmtsInfo taxDeductionInfo:tax
-				usingDataModelController:parentContext.dataModelController];
-			[formPopulator populateItemizedTaxForTaxAmtsInfo:taxDeductionInfo
-					andTaxAmt:[taxDeductionInfo.fieldPopulator findItemizedAcctContrib:self.account] 
-					andTaxAmtCreator:[[[ItemizedAccountContribTaxAmtCreator alloc] 
-						initWithFormContext:parentContext
-						andAcct:self.account andLabel:tax.name] autorelease]];
+			[formPopulator nextSectionWithTitle:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_DEDUCTABLE_CONTRIBUTIONS_SECTION_HEADER")];
+			for(TaxInput *tax in inputs)
+			{
+				ItemizedTaxAmtsInfo *taxDeductionInfo = [ItemizedTaxAmtsInfo taxDeductionInfo:tax
+					usingDataModelController:parentContext.dataModelController];
+				[formPopulator populateItemizedTaxForTaxAmtsInfo:taxDeductionInfo
+						andTaxAmt:[taxDeductionInfo.fieldPopulator findItemizedAcctContrib:self.account] 
+						andTaxAmtCreator:[[[ItemizedAccountContribTaxAmtCreator alloc] 
+							initWithFormContext:parentContext
+							andAcct:self.account andLabel:tax.name] autorelease]];
+			}
+
+			[formPopulator nextSectionWithTitle:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_ADJUSTABLE_CONTRIBUTIONS_SECTION_HEADER")];
+			for(TaxInput *tax in inputs)
+			{
+				ItemizedTaxAmtsInfo *taxAdjustmentInfo = [ItemizedTaxAmtsInfo taxAdjustmentInfo:tax
+					usingDataModelController:parentContext.dataModelController];
+				[formPopulator populateItemizedTaxForTaxAmtsInfo:taxAdjustmentInfo
+						andTaxAmt:[taxAdjustmentInfo.fieldPopulator findItemizedAcctContrib:self.account] 
+						andTaxAmtCreator:[[[ItemizedAccountContribTaxAmtCreator alloc] 
+					initWithFormContext:parentContext
+					andAcct:self.account andLabel:tax.name] autorelease]];
+			}
+			
+			[formPopulator nextSectionWithTitle:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_CREDIT_CONTRIBUTIONS_SECTION_HEADER")];
+			for(TaxInput *tax in inputs)
+			{
+				ItemizedTaxAmtsInfo *taxCreditInfo = [ItemizedTaxAmtsInfo taxCreditInfo:tax
+					usingDataModelController:parentContext.dataModelController];
+				[formPopulator populateItemizedTaxForTaxAmtsInfo:taxCreditInfo
+						andTaxAmt:[taxCreditInfo.fieldPopulator findItemizedAcctContrib:self.account] 
+						andTaxAmtCreator:[[[ItemizedAccountContribTaxAmtCreator alloc] 
+					initWithFormContext:parentContext
+					andAcct:self.account andLabel:tax.name] autorelease]];				
+			}
 		}
 
 
-		[formPopulator nextSectionWithTitle:
-				LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_ADJUSTABLE_CONTRIBUTIONS_SECTION_HEADER")];
-		for(TaxInput *tax in inputs)
+		if(self.showWithdrawal)
 		{
-			ItemizedTaxAmtsInfo *taxAdjustmentInfo = [ItemizedTaxAmtsInfo taxAdjustmentInfo:tax
-				usingDataModelController:parentContext.dataModelController];
-			[formPopulator populateItemizedTaxForTaxAmtsInfo:taxAdjustmentInfo
-					andTaxAmt:[taxAdjustmentInfo.fieldPopulator findItemizedAcctContrib:self.account] 
-					andTaxAmtCreator:[[[ItemizedAccountContribTaxAmtCreator alloc] 
-				initWithFormContext:parentContext
-				andAcct:self.account andLabel:tax.name] autorelease]];
-		}
-		
-		[formPopulator nextSectionWithTitle:
-				LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_CREDIT_CONTRIBUTIONS_SECTION_HEADER")];
-		for(TaxInput *tax in inputs)
-		{
-			ItemizedTaxAmtsInfo *taxCreditInfo = [ItemizedTaxAmtsInfo taxCreditInfo:tax
-				usingDataModelController:parentContext.dataModelController];
-			[formPopulator populateItemizedTaxForTaxAmtsInfo:taxCreditInfo
-					andTaxAmt:[taxCreditInfo.fieldPopulator findItemizedAcctContrib:self.account] 
-					andTaxAmtCreator:[[[ItemizedAccountContribTaxAmtCreator alloc] 
-				initWithFormContext:parentContext
-				andAcct:self.account andLabel:tax.name] autorelease]];				
+			[formPopulator nextSectionWithTitle:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_TAXABLE_WITHDRAWALS_SECTION_HEADER")];
+			for(TaxInput *tax in inputs)
+			{
+				ItemizedTaxAmtsInfo *taxSourceInfo = [ItemizedTaxAmtsInfo taxSourceInfo:tax
+					usingDataModelController:parentContext.dataModelController];
+				[formPopulator populateItemizedTaxForTaxAmtsInfo:taxSourceInfo
+						andTaxAmt:[taxSourceInfo.fieldPopulator findItemizedAcctWithdrawal:self.account] 
+						andTaxAmtCreator:[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] 
+					initWithFormContext:parentContext
+					andAcct:self.account andLabel:tax.name] autorelease]];
+			}
 		}
 
-
-		[formPopulator nextSectionWithTitle:
-				LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_TAXABLE_WITHDRAWALS_SECTION_HEADER")];
-		for(TaxInput *tax in inputs)
+		if(self.showInterest)
 		{
-			ItemizedTaxAmtsInfo *taxSourceInfo = [ItemizedTaxAmtsInfo taxSourceInfo:tax
-				usingDataModelController:parentContext.dataModelController];
-			[formPopulator populateItemizedTaxForTaxAmtsInfo:taxSourceInfo
-					andTaxAmt:[taxSourceInfo.fieldPopulator findItemizedAcctWithdrawal:self.account] 
-					andTaxAmtCreator:[[[ItemizedAccountWithdrawalTaxAmtCreator alloc] 
-				initWithFormContext:parentContext
-				andAcct:self.account andLabel:tax.name] autorelease]];
-		}
-
-
-		[formPopulator nextSectionWithTitle:
-				LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_TAXABLE_INTEREST_SECTION_HEADER")];
-		for(TaxInput *tax in inputs)
-		{
-			ItemizedTaxAmtsInfo *taxSourceInfo = [ItemizedTaxAmtsInfo taxSourceInfo:tax
-				usingDataModelController:parentContext.dataModelController];
-			[formPopulator populateItemizedTaxForTaxAmtsInfo:taxSourceInfo
-					andTaxAmt:[taxSourceInfo.fieldPopulator findItemizedAcctInterest:self.account] 
-					andTaxAmtCreator:[[[ItemizedAccountTaxAmtCreator alloc] 
-				initWithFormContext:parentContext
-				andAcct:self.account andLabel:tax.name] autorelease]];
+			[formPopulator nextSectionWithTitle:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_TAXABLE_INTEREST_SECTION_HEADER")];
+			for(TaxInput *tax in inputs)
+			{
+				ItemizedTaxAmtsInfo *taxSourceInfo = [ItemizedTaxAmtsInfo taxSourceInfo:tax
+					usingDataModelController:parentContext.dataModelController];
+				[formPopulator populateItemizedTaxForTaxAmtsInfo:taxSourceInfo
+						andTaxAmt:[taxSourceInfo.fieldPopulator findItemizedAcctInterest:self.account] 
+						andTaxAmtCreator:[[[ItemizedAccountTaxAmtCreator alloc] 
+					initWithFormContext:parentContext
+					andAcct:self.account andLabel:tax.name] autorelease]];
+			}
 		}
 
 

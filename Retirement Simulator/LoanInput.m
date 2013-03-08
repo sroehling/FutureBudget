@@ -54,38 +54,6 @@ NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"input-icon-loan.png";
 // Inverse Relationship
 @dynamic loanInterestItemizedTaxAmts;
 
-- (void)addLoanInterestItemizedTaxAmtsObject:(LoanInterestItemizedTaxAmt *)value {    
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"loanInterestItemizedTaxAmts" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey:@"loanInterestItemizedTaxAmts"] addObject:value];
-    [self didChangeValueForKey:@"loanInterestItemizedTaxAmts" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-- (void)removeLoanInterestItemizedTaxAmtsObject:(LoanInterestItemizedTaxAmt *)value {
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"loanInterestItemizedTaxAmts" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey:@"loanInterestItemizedTaxAmts"] removeObject:value];
-    [self didChangeValueForKey:@"loanInterestItemizedTaxAmts" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-- (void)addLoanInterestItemizedTaxAmts:(NSSet *)value {    
-    [self willChangeValueForKey:@"loanInterestItemizedTaxAmts" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
-    [[self primitiveValueForKey:@"loanInterestItemizedTaxAmts"] unionSet:value];
-    [self didChangeValueForKey:@"loanInterestItemizedTaxAmts" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
-}
-
-- (void)removeLoanInterestItemizedTaxAmts:(NSSet *)value {
-    [self willChangeValueForKey:@"loanInterestItemizedTaxAmts" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
-    [[self primitiveValueForKey:@"loanInterestItemizedTaxAmts"] minusSet:value];
-    [self didChangeValueForKey:@"loanInterestItemizedTaxAmts" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
-}
-
-
-
-
-
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor
 {
     [super acceptInputVisitor:inputVisitor];

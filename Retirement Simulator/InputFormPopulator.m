@@ -69,6 +69,9 @@
 #import "ItemizedTaxAmtsSelectionFormInfoCreator.h"
 
 #import "InputNameValidator.h"
+#import "ItemizedTaxAmt.h"
+#import "ItemizedTaxAmts.h"
+#import "TaxInput.h"
 
 @implementation InputFormPopulator
 
@@ -721,19 +724,117 @@
 
 }
 
--(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
+-(NSString*)itemizationTypeSummary:(NSMutableArray*)itemizationNameList andPrefix:(NSString*)itemTypePrefix
+{
+	if(itemizationNameList.count > 0)
+	{
+		NSString *formattedItemNameList = [itemizationNameList componentsJoinedByString:@","];
+		return [NSString stringWithFormat:@"%@:%@",itemTypePrefix,formattedItemNameList];
+	}
+	return nil;
+}
+
+-(NSString*)itemizationSummaryForItemizedTaxAmtsInfo:(NSSet*)itemizedTaxAmts
+{
+	NSString *summary = nil;
+	if(itemizedTaxAmts != nil)
+	{
+		NSMutableArray *sourceForTax = [[[NSMutableArray alloc] init] autorelease];
+		NSMutableArray *creditForTax = [[[NSMutableArray alloc] init] autorelease];
+		NSMutableArray *deductionForTax = [[[NSMutableArray alloc] init] autorelease];
+		NSMutableArray *adjustmentForTax = [[[NSMutableArray alloc] init] autorelease];
+		
+		for(ItemizedTaxAmt *itemizedTaxAmt in itemizedTaxAmts)
+		{
+			if([itemizedTaxAmt.isEnabled boolValue])
+			{
+				ItemizedTaxAmts *taxAmts = itemizedTaxAmt.itemizedTaxAmts;
+				assert(taxAmts != nil);
+				
+				if(taxAmts.taxItemizedIncomeSources != nil)
+				{
+					[sourceForTax addObject:taxAmts.taxItemizedIncomeSources.name];
+				}
+				
+				if(taxAmts.taxItemizedCredits != nil)
+				{
+					[creditForTax addObject:taxAmts.taxItemizedCredits.name];
+				}
+
+				if(taxAmts.taxItemizedDeductions != nil)
+				{
+					[deductionForTax addObject:taxAmts.taxItemizedDeductions.name];
+				}
+				
+				if(taxAmts.taxItemizedAdjustments != nil)
+				{
+					[adjustmentForTax addObject:taxAmts.taxItemizedAdjustments.name];
+				}
+				
+			}
+		}
+		
+		NSMutableArray *typeSummmaryList = [[[NSMutableArray alloc] init] autorelease];
+		
+		NSString *typeSummary = [self itemizationTypeSummary:sourceForTax
+			andPrefix:LOCALIZED_STR(@"INPUT_TAX_ITEMIZATION_SUMMARY_SOURCE")];
+		if(typeSummary != nil) { [typeSummmaryList addObject:typeSummary]; }
+		
+		typeSummary = [self itemizationTypeSummary:deductionForTax
+			andPrefix:LOCALIZED_STR(@"INPUT_TAX_ITEMIZATION_SUMMARY_DEDUCTION")];
+		if(typeSummary != nil) { [typeSummmaryList addObject:typeSummary]; }
+		
+		typeSummary = [self itemizationTypeSummary:adjustmentForTax
+			andPrefix:LOCALIZED_STR(@"INPUT_TAX_ITEMIZATION_SUMMARY_ADJUSTMENT")];
+		if(typeSummary != nil) { [typeSummmaryList addObject:typeSummary]; }
+
+		typeSummary = [self itemizationTypeSummary:creditForTax
+			andPrefix:LOCALIZED_STR(@"INPUT_TAX_ITEMIZATION_SUMMARY_CREDIT")];
+		if(typeSummary != nil) { [typeSummmaryList addObject:typeSummary]; }
+		
+		if(typeSummmaryList.count>0)
+		{
+			summary = [typeSummmaryList componentsJoinedByString:@"  "];
+		}
+		
+						
+	}
+	return summary;
+}
+
+-(StaticNavFieldEditInfo*)createItemizedTaxSelectionFieldEditInfoWithFieldLabel:(NSString*)fieldLabel
 	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andItemizedTaxAmtsInfo:(NSSet*)itemizedTaxAmts
 {
 	MultipleSelectionTableViewControllerFactory *taxSelectionTableViewFactory = 
 			[[[MultipleSelectionTableViewControllerFactory alloc] 
 			initWithFormInfoCreator:formInfoCreator] autorelease];
-
+			
+			
+	NSString *subTitle = [self itemizationSummaryForItemizedTaxAmtsInfo:itemizedTaxAmts];
+	
+	// TODO - Include a subtitle listing the taxes
 	assert([StringValidation nonEmptyString:fieldLabel]);
 	StaticNavFieldEditInfo *taxesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
 			initWithCaption:fieldLabel
-			andSubtitle:nil andContentDescription:nil
+			andSubtitle:subTitle andContentDescription:nil
 			andSubViewFactory:taxSelectionTableViewFactory] autorelease];
+			
+	return taxesFieldEditInfo;
+	
 	[self.currentSection addFieldEditInfo:taxesFieldEditInfo];
+
+}
+
+
+-(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
+	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andItemizedTaxAmtsInfo:(NSSet*)itemizedTaxAmts
+{
+
+	StaticNavFieldEditInfo *fieldEditInfo =
+		[self createItemizedTaxSelectionFieldEditInfoWithFieldLabel:fieldLabel andFormInfoCreator:formInfoCreator andItemizedTaxAmtsInfo:itemizedTaxAmts];
+	[self.currentSection addFieldEditInfo:fieldEditInfo];
 
 }
 
@@ -744,7 +845,6 @@
 			[[[MultipleSelectionTableViewControllerFactory alloc] 
 			initWithFormInfoCreator:formInfoCreator] autorelease];
 
-	// TODO - Include a subtitle which summarizes which items are itemized.
 	assert([StringValidation nonEmptyString:fieldLabel]);
 	StaticNavFieldEditInfo *taxesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
 			initWithCaption:fieldLabel

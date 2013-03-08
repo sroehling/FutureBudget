@@ -19,6 +19,7 @@ extern NSString * const ASSET_INPUT_DEFAULT_ICON_NAME;
 @class MultiScenarioSimDate;
 @class MultiScenarioSimEndDate;
 @class MultiScenarioAmount;
+@class AssetGainItemizedTaxAmt;
 
 @interface AssetInput : Input {
 @private
@@ -29,5 +30,15 @@ extern NSString * const ASSET_INPUT_DEFAULT_ICON_NAME;
 @property (nonatomic, retain) MultiScenarioAmount * cost;
 @property (nonatomic, retain) MultiScenarioGrowthRate * apprecRate;
 @property (nonatomic, retain) MultiScenarioInputValue * assetEnabled;
+@property (nonatomic, retain) NSSet *assetGainItemizedTaxAmts;
+@end
+
+@interface AssetInput (CoreDataGeneratedAccessors)
+
+- (void)addAssetGainItemizedTaxAmtsObject:(AssetGainItemizedTaxAmt *)value;
+- (void)removeAssetGainItemizedTaxAmtsObject:(AssetGainItemizedTaxAmt *)value;
+- (void)addAssetGainItemizedTaxAmts:(NSSet *)values;
+- (void)removeAssetGainItemizedTaxAmts:(NSSet *)values;
+
 
 @end

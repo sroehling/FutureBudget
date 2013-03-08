@@ -19,6 +19,7 @@
 @class MultiScenarioSimDate;
 @class MultiScenarioSimEndDate;
 @class Scenario;
+@class LoanInterestItemizedTaxAmt;
 
 extern NSString * const LOAN_INPUT_ENTITY_NAME;
 extern NSString * const LOAN_INPUT_DEFAULT_ICON_NAME;
@@ -57,6 +58,14 @@ extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 // originated in the past or will originate in the future.
 -(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario;
 -(BOOL)originationDateDefinedAndInThePastForScenario:(Scenario*)currentScenario;
+@end
+
+@interface LoanInput (CoreDataGeneratedAccessors)
+
+- (void)addLoanInterestItemizedTaxAmtsObject:(LoanInterestItemizedTaxAmt *)value;
+- (void)removeLoanInterestItemizedTaxAmtsObject:(LoanInterestItemizedTaxAmt *)value;
+- (void)addLoanInterestItemizedTaxAmts:(NSSet *)values;
+- (void)removeLoanInterestItemizedTaxAmts:(NSSet *)values;
 
 
 @end

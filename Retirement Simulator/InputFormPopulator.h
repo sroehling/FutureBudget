@@ -29,6 +29,7 @@
 @class ItemizedTaxAmt;
 @class ItemizedTaxAmtsInfo;
 @class ItemizedTaxAmtsSelectionFormInfoCreator;
+@class StaticNavFieldEditInfo;
 
 
 
@@ -119,8 +120,12 @@
 	andTaxAmt:(ItemizedTaxAmt*)itemizedTaxAmt
 	andTaxAmtCreator:(id<ItemizedTaxAmtCreator>)taxAmtCreator;
 
+-(StaticNavFieldEditInfo*)createItemizedTaxSelectionFieldEditInfoWithFieldLabel:(NSString*)fieldLabel
+	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andItemizedTaxAmtsInfo:(NSSet*)itemizedTaxAmts;
 -(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
-	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator;
+	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andItemizedTaxAmtsInfo:(NSSet*)itemizedTaxAmts;
 -(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
 	andItemizedTaxAmtsFormInfoCreator:(ItemizedTaxAmtsSelectionFormInfoCreator *)formInfoCreator;
 		

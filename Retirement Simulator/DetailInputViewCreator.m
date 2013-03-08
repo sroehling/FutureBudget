@@ -123,6 +123,7 @@
 }
 
 -(void)populateCommonCashFlowFields:(CashFlowInput *)cashFlow
+	withAmountTaxFieldEditInfo:(StaticNavFieldEditInfo*)amountTaxFieldEditInfo
 {
     // Amount section
     
@@ -142,6 +143,11 @@
 	[self.formPopulator populateMultiScenarioGrowthRate:cashFlow.amountGrowthRate 
 		withLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_GROWTH_RATE_FIELD_LABEL") 
 		andValueName:cashFlow.name];
+		
+	if(amountTaxFieldEditInfo != nil)
+	{
+		[self.formPopulator.currentSection addFieldEditInfo:amountTaxFieldEditInfo];
+	}
 
     // Occurences section
 
@@ -273,12 +279,14 @@
 	[self.formPopulator.currentSection addFieldEditInfo:
 			[[[InputTagsFieldEditInfo alloc] initWithInput:expense] autorelease]];
 	
-	[self populateCommonCashFlowFields:expense];
- 		   
-	[formPopulator nextSection];
-	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_EXPENSE_TAX_FIELD_LABEL")
+	StaticNavFieldEditInfo *amountTaxFieldEditInfo = [formPopulator createItemizedTaxSelectionFieldEditInfoWithFieldLabel:LOCALIZED_STR(@"INPUT_EXPENSE_TAX_FIELD_LABEL")
 		andFormInfoCreator:[[[ItemizedExpenseTaxFormInfoCreator alloc] initWithExpense:expense
-			andIsForNewObject:self.isForNewObject] autorelease]];
+			andIsForNewObject:self.isForNewObject] autorelease]
+			andItemizedTaxAmtsInfo:expense.expenseItemizedTaxAmts];
+
+	
+	[self populateCommonCashFlowFields:expense withAmountTaxFieldEditInfo:amountTaxFieldEditInfo];
+
 }
 
 - (void)visitIncome:(IncomeInput*)income
@@ -308,13 +316,13 @@
 	[self.formPopulator.currentSection addFieldEditInfo:
 			[[[InputTagsFieldEditInfo alloc] initWithInput:income] autorelease]];
 
-	[self populateCommonCashFlowFields:income];
-		
-	[self.formPopulator nextSection];
-	
-	[self.formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_INCOME_TAX_FIELD_LABEL")
+	StaticNavFieldEditInfo *amountTaxFieldEditInfo = [self.formPopulator createItemizedTaxSelectionFieldEditInfoWithFieldLabel:LOCALIZED_STR(@"INPUT_INCOME_TAX_FIELD_LABEL")
 		andFormInfoCreator:[[[ItemizedIncomeTaxFormInfoCreator alloc] initWithIncome:income 
-			andIsForNewObject:self.isForNewObject] autorelease]];	
+			andIsForNewObject:self.isForNewObject] autorelease]
+			andItemizedTaxAmtsInfo:income.incomeItemizedTaxAmts];
+
+
+	[self populateCommonCashFlowFields:income withAmountTaxFieldEditInfo:amountTaxFieldEditInfo];
 }
 
 - (void)visitTransfer:(TransferInput *)transfer
@@ -358,7 +366,7 @@
 	[formPopulator.currentSection addFieldEditInfo:toEndpointFieldEditInfo];
 	
 		  		  
-	[self populateCommonCashFlowFields:transfer];
+	[self populateCommonCashFlowFields:transfer withAmountTaxFieldEditInfo:nil];
 		  
 				   	   
 }
@@ -400,6 +408,12 @@
 	[self.formPopulator populateMultiScenarioInvestmentReturnRate:account.interestRate 
 		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")
 		andValueName:account.name];
+	ItemizedAccountTaxFormInfoCreator *acctTaxFormInfoCreator =
+			[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
+			andIsForNewObject:self.isForNewObject] autorelease];
+	acctTaxFormInfoCreator.showInterest = TRUE;
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_TAXES_FIELD_LABEL")
+		andFormInfoCreator:acctTaxFormInfoCreator andItemizedTaxAmtsInfo:account.accountInterestItemizedTaxAmt];
 		
 
 
@@ -436,6 +450,14 @@
 	[sectionInfo addFieldEditInfo:limitWithdrawalsFieldEditInfo];		
 
 
+	ItemizedAccountTaxFormInfoCreator *acctWithdTaxFormInfoCreator =
+			[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
+			andIsForNewObject:self.isForNewObject] autorelease];
+	acctWithdTaxFormInfoCreator.showWithdrawal = TRUE;
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_TAXES_FIELD_LABEL")
+		andFormInfoCreator:acctWithdTaxFormInfoCreator andItemizedTaxAmtsInfo:account.accountWithdrawalItemizedTaxAmt];
+
+
 	sectionInfo = [formPopulator nextSection];
     sectionInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
 		
@@ -449,7 +471,7 @@
 	[self.formPopulator populateMultiScenarioGrowthRate:account.contribGrowthRate 
 		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL")
 		andValueName:input.name];
-		
+	
 	[self.formPopulator populateMultiScenSimDate:account.contribStartDate 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL")  
 		andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE")
@@ -487,11 +509,14 @@
         }
         
     }
-	
-	[formPopulator nextSection];
-	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_FIELD_LABEL")
-		andFormInfoCreator:[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account 
-			andIsForNewObject:self.isForNewObject] autorelease]];
+
+	ItemizedAccountTaxFormInfoCreator *acctContribTaxFormInfoCreator =
+			[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
+			andIsForNewObject:self.isForNewObject] autorelease];
+	acctContribTaxFormInfoCreator.showContributions = TRUE;
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_TAXES_FIELD_LABEL")
+		andFormInfoCreator:acctContribTaxFormInfoCreator andItemizedTaxAmtsInfo:account.accountContribItemizedTaxAmt];
+
 
 }
 
@@ -566,15 +591,19 @@
               andValueName:loan.name];        
     }
 
+
+	[self.formPopulator populateMultiScenarioDuration:loan.loanDuration 
+		andLabel:LOCALIZED_STR(@"INPUT_LOAN_DURATION_LABEL") 
+		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_DURATION_PLACEHOLDER") ];
+		
 	[self.formPopulator populateMultiScenarioInterestRate:loan.interestRate 
 		withLabel:LOCALIZED_STR(@"INPUT_LOAN_INTEREST_RATE_FIELD_LABEL") 
 		andValueName:loan.name];
 	  
-	
-	
-	[self.formPopulator populateMultiScenarioDuration:loan.loanDuration 
-		andLabel:LOCALIZED_STR(@"INPUT_LOAN_DURATION_LABEL") 
-		andPlaceholder:LOCALIZED_STR(@"INPUT_LOAN_DURATION_PLACEHOLDER") ];
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_TAXES_FIELD_LABEL")
+		andFormInfoCreator:[[[ItemizedLoanTaxFormInfoCreator alloc] initWithLoan:loan
+		andIsForNewObject:self.isForNewObject] autorelease]
+		andItemizedTaxAmtsInfo:loan.loanInterestItemizedTaxAmts];
 		
 			 
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_SECTION_TITLE")];
@@ -613,12 +642,6 @@
 				andRelEndDateHelpFile:@"relEndDatePayoff"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
 				];
-
-	[formPopulator nextSection];
-	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_TAXES_FIELD_LABEL")
-		andFormInfoCreator:[[[ItemizedLoanTaxFormInfoCreator alloc] initWithLoan:loan
-		andIsForNewObject:self.isForNewObject] autorelease]];
-
 }
 
 - (void)visitAsset:(AssetInput*)asset
@@ -693,11 +716,10 @@
 				andRelEndDateHelpFile:@"relEndDateSell"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL")
 				];
-
- 	[formPopulator nextSection];
-	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_TAXES_FIELD_TITLE")
+ 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_TAXES_FIELD_TITLE")
 			andFormInfoCreator:[[[ItemizedAssetTaxFormInfoCreator alloc] initWithAsset:asset
-				andIsForNewObject:self.isForNewObject] autorelease]]; 
+				andIsForNewObject:self.isForNewObject] autorelease]
+			andItemizedTaxAmtsInfo:asset.assetGainItemizedTaxAmts];
 
 }
 

@@ -57,7 +57,7 @@
 "INPUT_EXPENSE_ITEMIZED_DEDUCTION_SECTION_TITLE" = "Expense is Deductable";
 "INPUT_EXPENSE_ITEMIZED_CREDIT_SECTION_TITLE" = "Expense is Credit";
 "INPUT_EXPENSE_TAXES_TITLE" = "Expense Taxes";
-"INPUT_EXPENSE_TAX_FIELD_LABEL" = "Taxes";
+"INPUT_EXPENSE_TAX_FIELD_LABEL" = "Amount's Tax Treatment";
 "INPUT_EXPENSE_TAX_DETAIL_HEADER_FORMAT" = "Tax Treatment for %@";
 "INPUT_EXPENSE_TAX_DETAIL_SUBHEADER" = "Select any taxes for which the expense is a deduction, adjustment or credit. If an applicable tax is not listed, create the appropriate tax input first.";
 
@@ -89,7 +89,7 @@
 "INPUT_NOTE_FIELD_PLACEHOLDER" = "Enter comments or notes (optional)";
 "INPUT_NAME_VALIDATION_MSG" = "Inputs must have a name which is different than other inputs. Please choose another name";
 
-"INPUT_INCOME_TAX_FIELD_LABEL" = "Taxes";
+"INPUT_INCOME_TAX_FIELD_LABEL" = "Taxes on Amount";
 
 "INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER" = "Enter a balance";
 
@@ -129,7 +129,9 @@
 "INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SELECTION_FORM_TITLE" = "Limit Withdrawals";
 "INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_TITLE" = "Eligible Expenses";
 "INPUT_ACCOUNT_TAXES_FORM_TITLE" = "Account Taxes";
-"INPUT_ACCOUNT_TAXES_FIELD_LABEL" = "Taxes";
+"INPUT_ACCOUNT_CONTRIB_TAXES_FIELD_LABEL" = "Contributions' Tax Treatment";
+"INPUT_ACCOUNT_WITHDRAWAL_TAXES_FIELD_LABEL" = "Taxes on Withdrawals";
+"INPUT_ACCOUNT_INTEREST_TAXES_FIELD_LABEL" = "Taxes on Interest";
 "INPUT_ACCOUNT_TAXES_DEDUCTABLE_CONTRIBUTIONS_SECTION_HEADER" = "Deductable Contributions";
 "INPUT_ACCOUNT_TAXES_ADJUSTABLE_CONTRIBUTIONS_SECTION_HEADER" = "Contributions are Adjustments";
 "INPUT_ACCOUNT_TAXES_TAXABLE_INTEREST_SECTION_HEADER" = "Taxable Interest";
@@ -261,7 +263,7 @@
 "INPUT_LOAN_TAX_ITEMIZED_DEDUCTABLE_SECTION_TITLE" = "Interest is Deductable";
 "INPUT_LOAN_TAX_ITEMIZED_CREDIT_SECTION_TITLE" = "Interest is Credit";
 "INPUT_LOAN_TAXES_TITLE" = "Loan Taxes";
-"INPUT_LOAN_TAXES_FIELD_LABEL" = "Taxes";
+"INPUT_LOAN_TAXES_FIELD_LABEL" = "Tax Treatment for Interest";
 "INPUT_LOAN_TAX_DETAIL_HEADER_FORMAT" = "Taxes for %@";
 "INPUT_LOAN_TAX_DETAIL_SUBHEADER" = "Select any taxes for which the loan interest is an adjustment, deduction or credit. If an applicable tax is not listed, create the appropriate tax input first.";
 
@@ -294,7 +296,7 @@
 "INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL" = "After Purchase Date";
 "INPUT_ASSET_TAXABLE_GAIN_SECTION_TITLE" = "Taxable Gains";
 "INPUT_ASSET_TAXES_TITLE" = "Asset Taxes";
-"INPUT_ASSET_TAXES_FIELD_TITLE" = "Taxes";
+"INPUT_ASSET_TAXES_FIELD_TITLE" = "Taxes on Gains When Sold";
 "INPUT_ASSET_TAX_DETAIL_HEADER_FORMAT" = "Taxable Gains for %@";
 "INPUT_ASSET_TAX_DETAIL_SUBHEADER" = "Select any taxes which apply to gains from an asset sale. If an applicable tax is not listed, create the appropriate tax input first.";
 
@@ -377,6 +379,11 @@
 "INPUT_TAX_ITEMIZED_LOAN_INTEREST_TITLE" = "Loan Interest";
 "INPUT_TAX_ITEMIZED_LOAN_INTEREST_INLINE" = "loan interest";
 "INPUT_TAX_ITEMIZATION_COUNT_NONE" = "None";
+
+"INPUT_TAX_ITEMIZATION_SUMMARY_SOURCE" = "Income source for";
+"INPUT_TAX_ITEMIZATION_SUMMARY_DEDUCTION" = "Deduction for";
+"INPUT_TAX_ITEMIZATION_SUMMARY_ADJUSTMENT" = "Adjustment for";
+"INPUT_TAX_ITEMIZATION_SUMMARY_CREDIT" = "Credit for";
 
 
 "TAX_BRACKET_FORM_TITLE" = "Tax Brackets";
