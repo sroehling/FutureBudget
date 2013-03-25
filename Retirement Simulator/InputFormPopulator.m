@@ -73,6 +73,9 @@
 #import "ItemizedTaxAmts.h"
 #import "TaxInput.h"
 
+#import "AccountWithdrawalOrderInfo.h"
+#import "AccountWithdrawalOrderFieldEditInfo.h"
+
 @implementation InputFormPopulator
 
 @synthesize inputScenario;
@@ -852,6 +855,20 @@
 			andContentDescription:[formInfoCreator.itemizedTaxAmtsInfo itemizationCountSummary]
 			andSubViewFactory:taxSelectionTableViewFactory] autorelease];
 	[self.currentSection addFieldEditInfo:taxesFieldEditInfo];
+
+}
+
+-(void)populateAcctWithdrawalOrderField:(Account*)account
+	andFieldCaption:(NSString*)caption andFieldSubtitle:(NSString*)subtitle
+{
+	AccountWithdrawalOrderInfo *withdrawalOrderInfo =
+		[[[AccountWithdrawalOrderInfo alloc] initWithAccount:account
+		andDataModelController:self.formContext.dataModelController
+		andCurrentScenaro:self.inputScenario] autorelease];
+	AccountWithdrawalOrderFieldEditInfo *withdrawalFieldEditInfo =
+		[[[AccountWithdrawalOrderFieldEditInfo alloc]
+			initWithAccountWithdrawalOrderInfo:withdrawalOrderInfo andCaption:caption andSubtitle:subtitle] autorelease];
+	[self.currentSection addFieldEditInfo:withdrawalFieldEditInfo];
 
 }
 

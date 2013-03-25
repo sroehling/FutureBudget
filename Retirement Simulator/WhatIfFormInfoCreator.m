@@ -36,6 +36,8 @@
 #import "PositiveNumberValidator.h"
 #import "InputFormPopulator.h"
 #import "FormContext.h"
+#import "AccountWithdrawalOrderInfo.h"
+#import "AccountWithdrawalOrderFieldEditInfo.h"
 
 @implementation WhatIfFormInfoCreator
 
@@ -266,36 +268,39 @@
 	
 	SectionInfo *sectionInfo;
 	
-	NSSet *inputs = [parentContext.dataModelController  
-					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
-	if([inputs count]  > 0)
+	// When displayed in the what-if view, the accounts need to be sorted
+	// by their withdrawal order.
+	NSArray *sortedWithdrawalOrderInfos = [AccountWithdrawalOrderInfo
+		sortedWithdrawalOrderInfos:parentContext.dataModelController
+		underScenario:formPopulator.inputScenario];	
+	if([sortedWithdrawalOrderInfos count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWAL_PRIORITY_SECTION_TITLE");
 	
-		for(Account *acct in inputs)
+		for(AccountWithdrawalOrderInfo *acctWithdrawalOrderInfo in sortedWithdrawalOrderInfos)
 		{
-			[formPopulator populateMultiScenFixedValField:acct.withdrawalPriority 
-				andValLabel:acct.name
-				andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")
-				andValidator:[[[PositiveNumberValidator alloc] init] autorelease]];
+			AccountWithdrawalOrderFieldEditInfo *withdrawalFieldEditInfo =
+				[[[AccountWithdrawalOrderFieldEditInfo alloc]
+				initWithAccountWithdrawalOrderInfo:acctWithdrawalOrderInfo
+				andCaption:acctWithdrawalOrderInfo.account.name andSubtitle:@""] autorelease];
+			[formPopulator.currentSection addFieldEditInfo:withdrawalFieldEditInfo];
 		}
 	}
 	
-	inputs = [parentContext.dataModelController  
-					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
-	if([inputs count]  > 0)
+	// Display the deferred withdrawal settings in the same order as the withdrawal order.
+	if([sortedWithdrawalOrderInfos count]  > 0)
 	{
 		sectionInfo = [formPopulator nextSection];
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWAL_DEFERRED_SECTION_TITLE");
 		
-		for(Account *acct in inputs)
+		for(AccountWithdrawalOrderInfo *acctWithdrawalOrderInfo in sortedWithdrawalOrderInfos)
 		{
 			DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
 				[[[DeferredWithdrawalFieldEditInfo alloc] 
 					initWithDataModelController:parentContext.dataModelController
-					andAccount:acct
-					andFieldLabel:acct.name
+					andAccount:acctWithdrawalOrderInfo.account
+					andFieldLabel:acctWithdrawalOrderInfo.account.name
 					andIsNewAccount:isNewObject] autorelease];
 				[sectionInfo addFieldEditInfo:deferredWithdrawalFieldInfo];
 

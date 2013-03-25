@@ -415,16 +415,13 @@
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_TAXES_FIELD_LABEL")
 		andFormInfoCreator:acctTaxFormInfoCreator andItemizedTaxAmtsInfo:account.accountInterestItemizedTaxAmt];
 		
-
-
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");
-
-	[self.formPopulator populateMultiScenFixedValField:account.withdrawalPriority 
-		andValLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL") 
-		andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")
-		andValidator:[[[PositiveNumberValidator alloc] init] autorelease]];
 	
+	[self.formPopulator populateAcctWithdrawalOrderField:account
+		andFieldCaption:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL")
+		andFieldSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_SUBTITLE")];
+		
 	DeferredWithdrawalFieldEditInfo *deferredWithdrawalFieldInfo = 
 		[[[DeferredWithdrawalFieldEditInfo alloc] 
 			initWithDataModelController:self.formContext.dataModelController 

@@ -18,6 +18,7 @@
 #import "InputCreationHelper.h"
 #import "TransferInput.h"
 #import "TransferEndpointAcct.h"
+#import "CoreDataHelper.h"
 
 
 @implementation InputTypeSelectionInfo
@@ -107,8 +108,11 @@
 		
 	newInput.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	
+	// Populate initial priority to one which is lower than all the other ones.
+	NSUInteger numAcctsIncludingNewOne =
+		[inputCreationHelper.dataModel countObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	newInput.withdrawalPriority = [inputCreationHelper 
-		multiScenFixedValWithDefault:1.0];
+		multiScenFixedValWithDefault:(double)numAcctsIncludingNewOne];
 	
 	newInput.deferredWithdrawalsEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	newInput.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefaultToday];

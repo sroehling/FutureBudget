@@ -31,6 +31,9 @@
 #import "NoteFieldEditInfo.h"
 #import "InputFormPopulator.h"
 #import "ScenarioNameValidator.h"
+#import "FormContext.h"
+#import "AccountWithdrawalOrderInfo.h"
+#import "AccountWithdrawalOrderFieldEditInfo.h"
 
 @implementation UserScenarioFormInfoCreator
 
@@ -158,12 +161,18 @@
 	{
 		sectionInfo = [formPopulator nextSection];
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_WITHDRAWAL_PRIORITY_SECTION_TITLE");
-		for(Account *acct in inputBacktrace.accountWithdrawalPriority)
+
+		NSArray *sortedWithdrawalOrderInfos = [AccountWithdrawalOrderInfo sortedWithdrawalOrderInfosFromAccountSet:
+			inputBacktrace.accountWithdrawalPriority
+			andDmc:formPopulator.formContext.dataModelController underScenario:self.userScen];
+		
+		for(AccountWithdrawalOrderInfo *acctWithOrderInfo in sortedWithdrawalOrderInfos)
 		{
-			[formPopulator populateMultiScenFixedValField:acct.withdrawalPriority 
-				andValLabel:acct.name
-				andPrompt:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER")
-				andValidator:[[[PositiveNumberValidator alloc] init] autorelease]];
+			AccountWithdrawalOrderFieldEditInfo *withdrawalFieldEditInfo =
+				[[[AccountWithdrawalOrderFieldEditInfo alloc]
+				initWithAccountWithdrawalOrderInfo:acctWithOrderInfo
+				andCaption:acctWithOrderInfo.account.name  andSubtitle:@""] autorelease];
+			[formPopulator.currentSection addFieldEditInfo:withdrawalFieldEditInfo];
 		}
 	}
 	

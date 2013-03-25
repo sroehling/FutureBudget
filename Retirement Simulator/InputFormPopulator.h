@@ -30,6 +30,7 @@
 @class ItemizedTaxAmtsInfo;
 @class ItemizedTaxAmtsSelectionFormInfoCreator;
 @class StaticNavFieldEditInfo;
+@class Account;
 
 
 
@@ -128,7 +129,10 @@
 	andItemizedTaxAmtsInfo:(NSSet*)itemizedTaxAmts;
 -(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
 	andItemizedTaxAmtsFormInfoCreator:(ItemizedTaxAmtsSelectionFormInfoCreator *)formInfoCreator;
-		
+
+-(void)populateAcctWithdrawalOrderField:(Account*)account
+	andFieldCaption:(NSString*)caption andFieldSubtitle:(NSString*)subtitle;
+
 -(TableHeaderWithDisclosure*)scenarioListTableHeaderWithFormContext:(FormContext*)formContext;	
 		
 @end

@@ -101,7 +101,9 @@
 "INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL" = "Enable Contribution?";
 "INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL" = "Contribution Growth Rate";
 "INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE" = "Withdrawals";
-"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL" = "Withdrawal Priority";
+"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL" = "Withdrawal Order";
+"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_SUBTITLE" = "Versus other accounts, the order (priority) in which withdrawals to pay expenses occur";
+"INPUT_ACCOUNT__WITHDRAWAL_PRIORITY_TABLE_SUBTITLE" = "The relative withdrawal order for different accounts is listed below. Tap on the Edit button to change the order";
 "INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_PLACEHOLDER" = "Enter a priority";
 "INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL" = "Defer Withdrawals?";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAWALS_ENABLED" = "Yes";
@@ -478,7 +480,7 @@
 "WHAT_IF_ENABLED_TAX" = "Enabled Taxes";
 "WHAT_IF_WITHDRAWALS_FORM_TITLE" = "Withdrawals";
 "WHAT_IF_WITHDRAWALS_SUBTITLE" = "Change the priority of account withdrawals, or change deferred withdrawal dates.";
-"WHAT_IF_WITHDRAWAL_PRIORITY_SECTION_TITLE" = "Withdrawal Priorities";
+"WHAT_IF_WITHDRAWAL_PRIORITY_SECTION_TITLE" = "Account Withdrawal Orders";
 "WHAT_IF_WITHDRAWAL_DEFERRED_SECTION_TITLE" = "Deferred Withdrawals";
 "WHAT_IF_AMOUNTS_FORM_TITLE" = "Amounts";
 "WHAT_IF_AMOUNTS_SUBTITLE" = "Change the amounts for income, expenses, transfers, asset purchases, loan costs, account contributions or extra loan payments.";
