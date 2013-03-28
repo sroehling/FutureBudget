@@ -1,7 +1,10 @@
-# Simulation Time Frame
+# Results Time Frame
 
-The __Start Date__ and __Stop Date__ are dates the simulation will start and stop. 
-If the start date is changed, the [current balances][1], [current asset values][2], 
+Results will be calculated between the __Start Date__ and __Stop Date__.
+
+The values for account balances, loan balances, asset values and the cash balance should
+be entered as of the start date. So, if the start date is changed, 
+the [current balances][1], [current asset values][2], 
 [outstanding loan balances][3], and [deficit balance][4] should also be 
 updated to reflect their values as of the start date.
 

@@ -11,6 +11,6 @@ for any outstanding revolving credit balances, such as credit cards.
 
 ## See Also
 
-* [Simulation Time Frame][1]
+* [Results Time Frame][1]
 
-[1]:simTimeFrame.html
+[1]:resultsTimeFrame.html

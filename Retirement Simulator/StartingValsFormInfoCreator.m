@@ -46,7 +46,7 @@
 	
 	SectionInfo *sectionInfo = [formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_START_DATE_SECTION_TITLE")
-		andHelpFile:@"simTimeFrame"];
+		andHelpFile:@"resultsTimeFrame"];
 	
 	DateFieldEditInfo *simStartDateInfo = 
 		[DateFieldEditInfo createForObject:sharedAppVals 

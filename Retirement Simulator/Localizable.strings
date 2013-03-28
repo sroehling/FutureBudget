@@ -565,13 +565,13 @@
 "STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE" = "Enter balances as of the start date";
 "STARTUP_VALS_START_DATE_LABEL" = "Start Date";
 "STARTUP_VALS_START_DATE_PLACEHOLDER" = "Enter a date";
-"STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Simulation Time Frame";
+"STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Results Time Frame";
 "STARTUP_VALUES_CURRENT_ASSET_VALUES" = "Current Asset Values";
 "STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE" = "Outstanding Loan Balances";
 
 "SIM_END_DATE_TABLE_TITLE" = "End Date";
-"SIM_END_DATE_TABLE_HEADER" = "Simulation End Date";
-"SIM_END_DATE_TABLE_SUBTITLE" = "This is the date the simulation will end. Enter a date for as long as you need to plan for.";
+"SIM_END_DATE_TABLE_HEADER" = "Results End Date";
+"SIM_END_DATE_TABLE_SUBTITLE" = "This is the date the calculation of results will end. Enter a date for as long as you need to plan for.";
 
 
 "STARTUP_VALUES_DEFICITS_SECTION_TITLE" = "Deficits";
@@ -589,7 +589,7 @@
 "RELATIVE_END_DATE_SIM_DATE_FIELD_TITLE_FORMAT" = "After %@";
 "RELATIVE_END_DATE_END_DATE_PREFIX" = "for";
 
-"RESULTS_PROGRESS_LABEL" = "Simulating";
+"RESULTS_PROGRESS_LABEL" = "Calculating Results";
 "RESULTS_NAV_CONTROLLER_BUTTON_TITLE" = "Results";
 "RESULTS_NET_WORTH_DATA_LABEL" = "Net Worth";
 "RESULTS_YEAR_X_AXIS_TITLE" = "End of Year";
