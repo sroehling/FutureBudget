@@ -21,6 +21,7 @@
 
 #define YEARXYVAL_CONTENT_MARGIN_TOP 26.0f
 #define YEARXYVAL_RESULTS_TYPE_SELECTOR_HEIGHT 24.0f
+#define YEARXYVAL_CONTENT_MARGIN_BOTTOM 15.0f
 
 @implementation YearValXYResultsView
 
@@ -34,6 +35,24 @@
 @synthesize yearColLabel;
 @synthesize valColLabel;
 @synthesize headerView;
+@synthesize inflationAdjustmentLabel;
+
+-(void)dealloc
+{
+	[inflationAdjustmentLabel release];
+	[currentData release];
+	[plotDataGenerator release];
+	[chartContentView release];
+	[resultsViewInfo release];
+	[graphView release];
+	[resultsTypeSelection release];
+	[yearColLabel release];
+	[valColLabel release];
+	[headerView release];
+	[tabularDataView release];
+	[super dealloc];
+}
+
 
 
 -(id)initWithResultsViewInfo:(ResultsViewInfo *)theViewInfo 
@@ -88,6 +107,16 @@
 		[self.headerView addSubview:self.yearColLabel];
 		[self.headerView addSubview:self.valColLabel];
 		self.headerView.backgroundColor = [UIColor lightGrayColor];
+		
+		self.inflationAdjustmentLabel = [[[UILabel alloc]
+			initWithFrame:CGRectMake(0, 0, self.frame.size.width, YEARXYVAL_CONTENT_MARGIN_BOTTOM)]
+				autorelease];
+		self.inflationAdjustmentLabel.textAlignment = NSTextAlignmentCenter;
+		self.inflationAdjustmentLabel.font = [UIFont systemFontOfSize:10.0f];
+		self.inflationAdjustmentLabel.textColor = [UIColor whiteColor];
+		self.inflationAdjustmentLabel.backgroundColor = [UIColor clearColor];
+		[self addSubview:self.inflationAdjustmentLabel];
+
     }
     return self;
 }
@@ -105,7 +134,7 @@
 	}
 }
 
--(void)generatePlot
+-(void)generatePlot:(BOOL)adjustResultsToSimStartDate
 {	
 
 	if([self.plotDataGenerator resultsDefinedInSimResults:
@@ -121,10 +150,6 @@
 		assert(self.currentData != nil);
 		
 		
-		SharedAppValues *sharedAppVals = [SharedAppValues 
-			getUsingDataModelController:self.resultsViewInfo.simResultsController.dataModelController];
-			
-		BOOL adjustResultsToSimStartDate = [sharedAppVals.adjustResultsForSimStartDate boolValue];
 
 		double resultMinVal = [self.currentData minYVal:adjustResultsToSimStartDate];
 		double resultMaxVal = [self.currentData maxYVal:adjustResultsToSimStartDate];
@@ -290,8 +315,19 @@
 
 -(void)generateResults
 {
-	[self generatePlot];
+
+	SharedAppValues *sharedAppVals = [SharedAppValues 
+		getUsingDataModelController:self.resultsViewInfo.simResultsController.dataModelController];
+		
+	BOOL adjustResultsToSimStartDate = [sharedAppVals.adjustResultsForSimStartDate boolValue];
+
+
+	[self generatePlot:adjustResultsToSimStartDate];
 	[self.tabularDataView reloadData];
+	
+	self.inflationAdjustmentLabel.text = adjustResultsToSimStartDate?
+		LOCALIZED_STR(@"RESULTS_ADJUSTED_FOR_INFLATION_FOOTER"):
+		LOCALIZED_STR(@"RESULTS_NOT_ADJUSTED_FOR_INFLATION_FOOTER");
 }
 
 -(void)layoutSubviews
@@ -299,7 +335,7 @@
 	[super layoutSubviews];
 	
 	CGRect chartFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-	chartFrame.size.height = chartFrame.size.height - YEARXYVAL_CONTENT_MARGIN_TOP;
+	chartFrame.size.height = chartFrame.size.height - YEARXYVAL_CONTENT_MARGIN_TOP - YEARXYVAL_CONTENT_MARGIN_BOTTOM;
 	chartFrame.origin.y = YEARXYVAL_CONTENT_MARGIN_TOP;
 
 	[self.chartContentView setFrame:chartFrame];
@@ -317,6 +353,10 @@
 	resultsTypeFrame.origin.x = self.frame.size.width/2.0 - resultsTypeFrame.size.width/2.0;
 	resultsTypeFrame.origin.y = (YEARXYVAL_CONTENT_MARGIN_TOP - resultsTypeFrame.size.height)/2.0;
 	[self.resultsTypeSelection setFrame:resultsTypeFrame];
+	
+	[self.inflationAdjustmentLabel setFrame:CGRectMake(
+			0, self.frame.size.height-YEARXYVAL_CONTENT_MARGIN_BOTTOM,
+			self.frame.size.width, YEARXYVAL_CONTENT_MARGIN_BOTTOM)];
 }
 
 
@@ -442,19 +482,5 @@
 }
 
 
--(void)dealloc
-{
-	[currentData release];
-	[plotDataGenerator release];
-	[chartContentView release];
-	[resultsViewInfo release];
-	[graphView release];
-	[resultsTypeSelection release];
-	[yearColLabel release];
-	[valColLabel release];
-	[headerView release];
-	[tabularDataView release];
-	[super dealloc];
-}
 
 @end

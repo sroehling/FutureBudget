@@ -606,6 +606,8 @@
 "RESULTS_LOAN_SECTION_TITLE" = "Loan Balances";
 "RESULTS_LOAN_ALL_LOAN_TITLE" = "All Loans";
 "RESULTS_LOAN_ALL_LOAN_SUBTITLE" = "Plot the outstanding balances of all loans";
+"RESULTS_ADJUSTED_FOR_INFLATION_FOOTER" = "Results adjusted for inflation";
+"RESULTS_NOT_ADJUSTED_FOR_INFLATION_FOOTER" = "Results not adjusted for inflation";
 
 "RESULTS_ACCT_SECTION_TITLE" = "Account Balances";
 "RESULTS_ACCT_ALL_ACCT_BALANCE_DATA_LABEL" = "All Account Balances";
