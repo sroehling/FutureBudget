@@ -35,6 +35,10 @@
 #import "AppHelper.h"
 #import "TransferEndpoint.h"
 #import "SharedAppValues.h"
+#import "TaxBracket.h"
+#import "ItemizedTaxAmts.h"
+#import "ItemizedTaxAmtsInfo.h"
+#import "ItemizedTaxAmtFieldPopulator.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -245,7 +249,21 @@
 
 - (void)visitTax:(TaxInput *)tax
 {
-	self.generatedDesc = tax.name;
+	ItemizedTaxAmtsInfo *itemizedTaxSrcInfo = [ItemizedTaxAmtsInfo taxSourceInfo:tax
+						usingDataModelController:self.dataModelController];
+
+	NSString *itemizationSubtitle;
+	if(itemizedTaxSrcInfo.fieldPopulator.itemizationCount > 0)
+	{
+		itemizationSubtitle = [itemizedTaxSrcInfo itemizationSummary];
+	}
+	else
+	{
+		itemizationSubtitle = LOCALIZED_STR(@"INPUT_LIST_TAX_SUBTITLE_NO_SOURCE");
+	}
+				
+	self.generatedDesc = [NSString stringWithFormat:LOCALIZED_STR(@"INPUT_LIST_TAX_SUBTITLE_FORMAT"),
+		[tax.taxBracket taxBracketSummary],itemizationSubtitle];
 }
 
 - (NSString*)descripionForInput:(Input*)theInput

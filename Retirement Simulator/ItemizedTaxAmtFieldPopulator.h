@@ -80,5 +80,6 @@
 
 -(NSString*)itemizationSummary;
 -(NSString*)itemizationCountSummary;
+-(NSUInteger)itemizationCount;
 
 @end
