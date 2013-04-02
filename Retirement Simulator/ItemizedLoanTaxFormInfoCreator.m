@@ -23,6 +23,7 @@
 #import "ItemizedTaxAmtFieldEditInfo.h"
 #import "FormContext.h"
 #import "LoanInterestItemizedTaxAmt.h"
+#import "StringValidation.h"
 
 @implementation ItemizedLoanTaxFormInfoCreator
 
@@ -50,10 +51,13 @@
 			andFormContext:parentContext] autorelease];
 			
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_LOAN_TAXES_TITLE");
-
-	[formPopulator populateWithHeader:[NSString
+	
+	NSString *formHeader = [StringValidation nonEmptyString:self.loan.name]?
+		[NSString
 		stringWithFormat:LOCALIZED_STR(@"INPUT_LOAN_TAX_DETAIL_HEADER_FORMAT"),
-		self.loan.name]
+		self.loan.name]:LOCALIZED_STR(@"INPUT_LOAN_TAX_DETAIL_HEADER_NAME_UNDEFINED");
+
+	[formPopulator populateWithHeader:formHeader
 	andSubHeader:LOCALIZED_STR(@"INPUT_LOAN_TAX_DETAIL_SUBHEADER")];
 
 	

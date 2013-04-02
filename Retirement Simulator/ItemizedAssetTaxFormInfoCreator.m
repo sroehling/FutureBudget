@@ -22,6 +22,7 @@
 #import "ItemizedAssetGainTaxAmtCreator.h"
 #import "ItemizedTaxAmtFieldEditInfo.h"
 #import "FormContext.h"
+#import "StringValidation.h"
 
 
 @implementation ItemizedAssetTaxFormInfoCreator
@@ -50,9 +51,12 @@
 			andFormContext:parentContext] autorelease];
 			
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ASSET_TAXES_TITLE");
+	
+	NSString *formHeader = [StringValidation nonEmptyString:self.asset.name]?
+		[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_TAX_DETAIL_HEADER_FORMAT"),
+			self.asset.name]:LOCALIZED_STR(@"INPUT_ASSET_TAX_DETAIL_HEADER_NAME_UNDEFINED");
 
-	[formPopulator populateWithHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_TAX_DETAIL_HEADER_FORMAT"),
-			self.asset.name]
+	[formPopulator populateWithHeader:formHeader
 		andSubHeader:LOCALIZED_STR(@"INPUT_ASSET_TAX_DETAIL_SUBHEADER")];
 
 	

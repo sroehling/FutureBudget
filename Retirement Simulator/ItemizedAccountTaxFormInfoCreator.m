@@ -29,6 +29,7 @@
 #import "ItemizedAccountTaxAmtCreator.h"
 #import "ItemizedAccountWithdrawalTaxAmtCreator.h"
 #import "FormContext.h"
+#import "StringValidation.h"
 
 @implementation ItemizedAccountTaxFormInfoCreator
 
@@ -73,10 +74,12 @@
 			
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_ACCOUNT_TAXES_TITLE");
 	
-	
-	[formPopulator populateWithHeader:[NSString
+	NSString *formHeader = [StringValidation nonEmptyString:self.account.name]?
+		[NSString
 		stringWithFormat:LOCALIZED_STR(@"INPUT_ACCOUNT_TAX_DETAIL_HEADER_FORMAT"),
-		self.account.name]
+		self.account.name]:LOCALIZED_STR(@"INPUT_ACCOUNT_TAX_DETAIL_HEADER_NAME_UNDEFINED");
+	
+	[formPopulator populateWithHeader:formHeader
 	andSubHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_TAX_DETAIL_SUBHEADER")];
 
 	

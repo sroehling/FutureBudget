@@ -58,7 +58,8 @@
 "INPUT_EXPENSE_ITEMIZED_CREDIT_SECTION_TITLE" = "Expense is Credit";
 "INPUT_EXPENSE_TAXES_TITLE" = "Expense Taxes";
 "INPUT_EXPENSE_TAX_FIELD_LABEL" = "Amount's Tax Treatment";
-"INPUT_EXPENSE_TAX_DETAIL_HEADER_FORMAT" = "Tax Treatment for %@";
+"INPUT_EXPENSE_TAX_DETAIL_HEADER_FORMAT" = "Expense Tax Treatment for %@";
+"INPUT_EXPENSE_TAX_DETAIL_HEADER_NAME_UNDEFINED" = "Expense Tax Treatment";
 "INPUT_EXPENSE_TAX_DETAIL_SUBHEADER" = "Select any taxes for which the expense is a deduction, adjustment or credit. If an applicable tax is not listed, create the appropriate tax input first.";
 
 
@@ -66,6 +67,7 @@
 "INPUT_INCOME_ITEMIZED_TAXES_FORM_TITLE" = "Income Taxes";
 "INPUT_INCOME_TAXABLE_SECTION_TITLE" = "Taxable Income";
 "INPUT_INCOME_TAX_DETAIL_HEADER_FORMAT" = "Income Taxes for %@";
+"INPUT_INCOME_TAX_DETAIL_HEADER_NAME_UNDEFINED" = "Income Taxes";
 "INPUT_INCOME_TAX_DETAIL_SUBHEADER" = "Select any taxes which apply to the income. If an applicable tax is not listed, create the appropriate tax input first.";
 
 "TAX_PRESET_SECTION_HEADER" = "Tax Presets";
@@ -141,6 +143,7 @@
 "INPUT_ACCOUNT_TAXES_TAXABLE_WITHDRAWALS_SECTION_HEADER" = "Taxable Withdrawals";
 "INPUT_ACCOUNT_ACCOUNT_TAXES_TITLE" = "Account Taxes";
 "INPUT_ACCOUNT_TAX_DETAIL_HEADER_FORMAT" = "Taxes for %@";
+"INPUT_ACCOUNT_TAX_DETAIL_HEADER_NAME_UNDEFINED" = "Account Taxes";
 "INPUT_ACCOUNT_TAX_DETAIL_SUBHEADER" = "Select any taxes which apply to the account. If an applicable tax is not listed, create the appropriate tax input first.";
 
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT" = "The first contribution to the %@ %@ occurs on this date. Select and/or edit one of dates below to set the contribution start date.";
@@ -267,6 +270,7 @@
 "INPUT_LOAN_TAXES_TITLE" = "Loan Taxes";
 "INPUT_LOAN_TAXES_FIELD_LABEL" = "Tax Treatment for Interest";
 "INPUT_LOAN_TAX_DETAIL_HEADER_FORMAT" = "Taxes for %@";
+"INPUT_LOAN_TAX_DETAIL_HEADER_NAME_UNDEFINED" = "Tax Treatment for Interest";
 "INPUT_LOAN_TAX_DETAIL_SUBHEADER" = "Select any taxes for which the loan interest is an adjustment, deduction or credit. If an applicable tax is not listed, create the appropriate tax input first.";
 
 
@@ -300,6 +304,7 @@
 "INPUT_ASSET_TAXES_TITLE" = "Asset Taxes";
 "INPUT_ASSET_TAXES_FIELD_TITLE" = "Taxes on Gains When Sold";
 "INPUT_ASSET_TAX_DETAIL_HEADER_FORMAT" = "Taxable Gains for %@";
+"INPUT_ASSET_TAX_DETAIL_HEADER_NAME_UNDEFINED" = "Taxable Gains";
 "INPUT_ASSET_TAX_DETAIL_SUBHEADER" = "Select any taxes which apply to gains from an asset sale. If an applicable tax is not listed, create the appropriate tax input first.";
 
 

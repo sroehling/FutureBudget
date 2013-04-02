@@ -20,6 +20,7 @@
 #import "ItemizedTaxAmtFieldEditInfo.h"
 #import "IncomeItemizedTaxAmt.h"
 #import "FormContext.h"
+#import "StringValidation.h"
 
 
 @implementation ItemizedIncomeTaxFormInfoCreator
@@ -49,8 +50,11 @@
 			
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_INCOME_ITEMIZED_TAXES_FORM_TITLE");
 	
-	[formPopulator populateWithHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_INCOME_TAX_DETAIL_HEADER_FORMAT"),
-			self.income.name]
+	NSString *formHeader = [StringValidation nonEmptyString:self.income.name]?
+		[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_INCOME_TAX_DETAIL_HEADER_FORMAT"),
+			self.income.name]:LOCALIZED_STR(@"INPUT_INCOME_TAX_DETAIL_HEADER_NAME_UNDEFINED");
+	
+	[formPopulator populateWithHeader:formHeader
 		andSubHeader:LOCALIZED_STR(@"INPUT_INCOME_TAX_DETAIL_SUBHEADER")];
 	
 	NSSet *inputs = [parentContext.dataModelController 

@@ -24,6 +24,7 @@
 #import "ItemizedExpenseTaxAmtCreator.h"
 #import "FormContext.h"
 #import "ExpenseItemizedTaxAmt.h"
+#import "StringValidation.h"
 
 @implementation ItemizedExpenseTaxFormInfoCreator
 
@@ -51,9 +52,12 @@
 			andFormContext:parentContext] autorelease];
 			
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_EXPENSE_TAXES_TITLE");
+	
+	NSString *formHeader = [StringValidation nonEmptyString:self.expense.name]?
+		[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_EXPENSE_TAX_DETAIL_HEADER_FORMAT"),
+			self.expense.name]:LOCALIZED_STR(@"INPUT_EXPENSE_TAX_DETAIL_HEADER_NAME_UNDEFINED");
 
-	[formPopulator populateWithHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_EXPENSE_TAX_DETAIL_HEADER_FORMAT"),
-			self.expense.name]
+	[formPopulator populateWithHeader:formHeader
 		andSubHeader:LOCALIZED_STR(@"INPUT_EXPENSE_TAX_DETAIL_SUBHEADER")];
 
 	
