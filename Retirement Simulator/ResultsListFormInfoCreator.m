@@ -121,8 +121,112 @@
 				andContentDescription:nil
 				andSubViewFactory:netWorthViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:netWorthFieldEditInfo];		
+
+
+		ResultsViewInfo *cashBalViewInfo = [[[ResultsViewInfo alloc]
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")] autorelease];
+		ResultsViewFactory *cashBalViewFactory =
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:cashBalViewInfo
+				andPlotDataGenerator:[[[CashBalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *cashBalFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:cashBalViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:cashBalFieldEditInfo];
+
+		ResultsViewInfo *deficitBalViewInfo = [[[ResultsViewInfo alloc] 
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")] autorelease];
+		ResultsViewFactory *deficitBalViewFactory = 
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:deficitBalViewInfo
+				andPlotDataGenerator:[[[DeficitBalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *deficitBalFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:deficitBalViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:deficitBalFieldEditInfo];
+
+
 	}
 
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"RESULTS_INCOME_SECTION_TITLE");
+	if(true)
+	{
+		ResultsViewInfo *allIncomeViewInfo = [[[ResultsViewInfo alloc] 
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_TITLE")] autorelease];
+		ResultsViewFactory *allAcctViewFactory = 
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allIncomeViewInfo
+				andPlotDataGenerator:[[[AllIncomeXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *allIncomeFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:allAcctViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:allIncomeFieldEditInfo];
+		
+		for(IncomeInput *income in self.simResultsController.incomesSimulated)
+		{
+			ResultsViewInfo *incomeViewInfo = [[[ResultsViewInfo alloc] 
+				initWithSimResultsController:self.simResultsController 
+				andViewTitle:income.name] autorelease];
+			ResultsViewFactory *incomeViewFactory = 
+				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:incomeViewInfo
+					andPlotDataGenerator:[[[IncomeXYPlotDataGenerator alloc]
+					initWithIncome:income]autorelease]] autorelease];
+			StaticNavFieldEditInfo *incomeFieldEditInfo = 
+				[[[StaticNavFieldEditInfo alloc] 
+					initWithCaption:income.name
+					andSubtitle:@"" 
+					andContentDescription:nil
+					andSubViewFactory:incomeViewFactory] autorelease];
+			[sectionInfo addFieldEditInfo:incomeFieldEditInfo];
+		}
+	}
+	
+	sectionInfo = [formPopulator nextSection];
+	sectionInfo.title = LOCALIZED_STR(@"RESULTS_EXPENSE_SECTION_TITLE");
+	if(true)
+	{
+		ResultsViewInfo *allExpenseViewInfo = [[[ResultsViewInfo alloc] 
+			initWithSimResultsController:self.simResultsController 
+			andViewTitle:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_TITLE")] autorelease];
+		ResultsViewFactory *allExpenseViewFactory = 
+			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allExpenseViewInfo
+				andPlotDataGenerator:[[[AllExpenseXYPlotDataGenerator alloc]init]autorelease]] autorelease];
+		StaticNavFieldEditInfo *allExpenseFieldEditInfo = 
+			[[[StaticNavFieldEditInfo alloc] 
+				initWithCaption:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_TITLE")
+				andSubtitle:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_SUBTITLE") 
+				andContentDescription:nil
+				andSubViewFactory:allExpenseViewFactory] autorelease];
+		[sectionInfo addFieldEditInfo:allExpenseFieldEditInfo];
+		
+		for(ExpenseInput *expense in self.simResultsController.expensesSimulated)
+		{
+			ResultsViewInfo *expenseViewInfo = [[[ResultsViewInfo alloc] 
+				initWithSimResultsController:self.simResultsController 
+				andViewTitle:expense.name] autorelease];
+			ResultsViewFactory *expenseViewFactory = 
+				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:expenseViewInfo
+					andPlotDataGenerator:[[[ExpenseXYPlotDataGenerator alloc]
+					initWithExpense:expense]autorelease]] autorelease];
+			StaticNavFieldEditInfo *expenseFieldEditInfo = 
+				[[[StaticNavFieldEditInfo alloc] 
+					initWithCaption:expense.name
+					andSubtitle:@"" 
+					andContentDescription:nil
+					andSubViewFactory:expenseViewFactory] autorelease];
+			[sectionInfo addFieldEditInfo:expenseFieldEditInfo];
+		}
+	}
 
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"RESULTS_ASSET_SECTION_TITLE");
@@ -142,19 +246,6 @@
 				andSubViewFactory:allAssetsViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allAssetsFieldEditInfo];
 		
-		ResultsViewInfo *cashBalViewInfo = [[[ResultsViewInfo alloc]
-			initWithSimResultsController:self.simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")] autorelease];
-		ResultsViewFactory *cashBalViewFactory =
-			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:cashBalViewInfo
-				andPlotDataGenerator:[[[CashBalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
-		StaticNavFieldEditInfo *cashBalFieldEditInfo = 
-			[[[StaticNavFieldEditInfo alloc] 
-				initWithCaption:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")
-				andSubtitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_SUBTITLE") 
-				andContentDescription:nil
-				andSubViewFactory:cashBalViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:cashBalFieldEditInfo];
 		
 		
 		for(AssetInput *asset in self.simResultsController.assetsSimulated)
@@ -193,19 +284,6 @@
 				andSubViewFactory:allLoanViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allLoanFieldEditInfo];
 		
-		ResultsViewInfo *deficitBalViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")] autorelease];
-		ResultsViewFactory *deficitBalViewFactory = 
-			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:deficitBalViewInfo
-				andPlotDataGenerator:[[[DeficitBalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
-		StaticNavFieldEditInfo *deficitBalFieldEditInfo = 
-			[[[StaticNavFieldEditInfo alloc] 
-				initWithCaption:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")
-				andSubtitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_SUBTITLE") 
-				andContentDescription:nil
-				andSubViewFactory:deficitBalViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:deficitBalFieldEditInfo];
 		
 		for(LoanInput *loan in self.simResultsController.loansSimulated)
 		{
@@ -342,79 +420,6 @@
 
 
 	
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"RESULTS_INCOME_SECTION_TITLE");
-	if(true)
-	{
-		ResultsViewInfo *allIncomeViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_TITLE")] autorelease];
-		ResultsViewFactory *allAcctViewFactory = 
-			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allIncomeViewInfo
-				andPlotDataGenerator:[[[AllIncomeXYPlotDataGenerator alloc]init]autorelease]] autorelease];
-		StaticNavFieldEditInfo *allIncomeFieldEditInfo = 
-			[[[StaticNavFieldEditInfo alloc] 
-				initWithCaption:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_TITLE")
-				andSubtitle:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_SUBTITLE") 
-				andContentDescription:nil
-				andSubViewFactory:allAcctViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:allIncomeFieldEditInfo];
-		
-		for(IncomeInput *income in self.simResultsController.incomesSimulated)
-		{
-			ResultsViewInfo *incomeViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
-				andViewTitle:income.name] autorelease];
-			ResultsViewFactory *incomeViewFactory = 
-				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:incomeViewInfo
-					andPlotDataGenerator:[[[IncomeXYPlotDataGenerator alloc]
-					initWithIncome:income]autorelease]] autorelease];
-			StaticNavFieldEditInfo *incomeFieldEditInfo = 
-				[[[StaticNavFieldEditInfo alloc] 
-					initWithCaption:income.name
-					andSubtitle:@"" 
-					andContentDescription:nil
-					andSubViewFactory:incomeViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:incomeFieldEditInfo];
-		}
-	}
-	
-	sectionInfo = [formPopulator nextSection];
-	sectionInfo.title = LOCALIZED_STR(@"RESULTS_EXPENSE_SECTION_TITLE");
-	if(true)
-	{
-		ResultsViewInfo *allExpenseViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_TITLE")] autorelease];
-		ResultsViewFactory *allExpenseViewFactory = 
-			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allExpenseViewInfo
-				andPlotDataGenerator:[[[AllExpenseXYPlotDataGenerator alloc]init]autorelease]] autorelease];
-		StaticNavFieldEditInfo *allExpenseFieldEditInfo = 
-			[[[StaticNavFieldEditInfo alloc] 
-				initWithCaption:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_TITLE")
-				andSubtitle:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_SUBTITLE") 
-				andContentDescription:nil
-				andSubViewFactory:allExpenseViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:allExpenseFieldEditInfo];
-		
-		for(ExpenseInput *expense in self.simResultsController.expensesSimulated)
-		{
-			ResultsViewInfo *expenseViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
-				andViewTitle:expense.name] autorelease];
-			ResultsViewFactory *expenseViewFactory = 
-				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:expenseViewInfo
-					andPlotDataGenerator:[[[ExpenseXYPlotDataGenerator alloc]
-					initWithExpense:expense]autorelease]] autorelease];
-			StaticNavFieldEditInfo *expenseFieldEditInfo = 
-				[[[StaticNavFieldEditInfo alloc] 
-					initWithCaption:expense.name
-					andSubtitle:@"" 
-					andContentDescription:nil
-					andSubViewFactory:expenseViewFactory] autorelease];
-			[sectionInfo addFieldEditInfo:expenseFieldEditInfo];
-		}
-	}
 
 	sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"RESULTS_TAXES_SECTION_TITLE");
