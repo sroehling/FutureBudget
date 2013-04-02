@@ -196,23 +196,6 @@
 		}
 	}
 	
-	inputs = [parentContext.dataModelController
-			fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME
-			andPredicate:showInputPredicate andSortKey:INPUT_NAME_KEY andSortAscending:TRUE];
-	if([inputs count] > 0)
-	{
-		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_TRANSFER")];
-		for(TransferInput *transfer in inputs)
-		{    
-			assert(transfer != nil);
-			InputFieldEditInfo *inputFieldEditInfo =
-				[[[InputFieldEditInfo alloc] initWithInput:transfer 
-					andDataModelController:parentContext.dataModelController] autorelease];
-			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
-		}
-	}
-
-	
 	
 	inputs = [parentContext.dataModelController
 			fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME
@@ -230,6 +213,23 @@
 		}
 	}
 	
+
+	inputs = [parentContext.dataModelController
+			fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME
+			andPredicate:showInputPredicate andSortKey:INPUT_NAME_KEY andSortAscending:TRUE];
+	if([inputs count] > 0)
+	{
+		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LIST_SECTION_TITLE_TRANSFER")];
+		for(TransferInput *transfer in inputs)
+		{    
+			assert(transfer != nil);
+			InputFieldEditInfo *inputFieldEditInfo =
+				[[[InputFieldEditInfo alloc] initWithInput:transfer 
+					andDataModelController:parentContext.dataModelController] autorelease];
+			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
+		}
+	}
+
 
 	inputs = [parentContext.dataModelController
 			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME

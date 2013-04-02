@@ -81,7 +81,8 @@
 	
 		
 		
-	[formPopulator nextSection];
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LIST_BASIC_INPUTS_SECTION_HEADER")];
+
     
     InputTypeSelectionInfo *typeInfo = [[[IncomeInputTypeSelectionInfo alloc]
 		initWithInputCreationHelper:self.inputCreationHelper
@@ -103,15 +104,8 @@
 	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo];
 
 
-	typeInfo = [[[TransferInputTypeSelectionInfo alloc]
-		initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelController:dmcForNewInputs
-		andLabel:LOCALIZED_STR(@"INPUT_TYPE_TRANSFER_TITLE")
-		andSubtitle:LOCALIZED_STR(@"INPUT_TYPE_TRANSFER_SUBTITLE")
-		andImageName:TRANSFER_INPUT_DEFAULT_ICON_NAME] autorelease];
-	inputFieldInfo =
-		[[[InputTypeSelectionFieldEditInfo alloc] initWithTypeSelectionInfo:typeInfo] autorelease];
-	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo]; 
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LIST_ADVANCED_INPUTS_SECTION_HEADER")];
+
 	
 	typeInfo = [[[SavingsAccountTypeSelectionInfo alloc]
 		initWithInputCreationHelper:self.inputCreationHelper 
@@ -122,6 +116,18 @@
 	inputFieldInfo =
 		[[[InputTypeSelectionFieldEditInfo alloc] initWithTypeSelectionInfo:typeInfo] autorelease];
 	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo];
+
+
+	typeInfo = [[[TransferInputTypeSelectionInfo alloc]
+		initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:dmcForNewInputs
+		andLabel:LOCALIZED_STR(@"INPUT_TYPE_TRANSFER_TITLE")
+		andSubtitle:LOCALIZED_STR(@"INPUT_TYPE_TRANSFER_SUBTITLE")
+		andImageName:TRANSFER_INPUT_DEFAULT_ICON_NAME] autorelease];
+	inputFieldInfo =
+		[[[InputTypeSelectionFieldEditInfo alloc] initWithTypeSelectionInfo:typeInfo] autorelease];
+	[formPopulator.currentSection addFieldEditInfo:inputFieldInfo]; 
+
 
 	typeInfo = [[[LoanInputTypeSelctionInfo alloc]
 		initWithInputCreationHelper:self.inputCreationHelper 
