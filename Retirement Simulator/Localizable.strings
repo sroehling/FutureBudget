@@ -161,7 +161,7 @@
 
 "SHARED_ROI_VALUE_TITLE" = "Interest/Return Rate";
 "SHARED_ROI_INLINE_VALUE_TITLE" = "return rate";
-"SHARED_ROI_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
+"SHARED_ROI_TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
 "SHARED_ROI_VALUE_PROMPT" = "Enter a rate";
 "SHARED_ROI_PERIOD" = "every year";
 "SHARED_ROI_ACTION_VERB" = "grow investment";
@@ -176,8 +176,8 @@
 
 
 "SHARED_APPREC_RATE_VALUE_TITLE" = "Appreciation Rate";
-"SHARED_APPREC_RATE_INLINE_VALUE_TITLE" = "appreciation rate";
-"SHARED_APPREC_RATE_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
+"SHARED_APPREC_RATE_INLINE_VALUE_TITLE" = "appreciation percentage rate";
+"SHARED_APPREC_RATE_TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
 "SHARED_APPREC_RATE_VALUE_PROMPT" = "Enter a rate";
 "SHARED_APPREC_RATE_PERIOD" = "every year";
 "SHARED_APPREC_RATE_ACTION_VERB" = "appreciate in value";
@@ -185,8 +185,8 @@
 
 
 "SHARED_INTEREST_RATE_VALUE_TITLE" = "Interest Rate";
-"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE" = "interest rate";
-"SHARED_INTEREST_RATE_TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
+"SHARED_INTEREST_RATE_INLINE_VALUE_TITLE" = "interest percentage rate";
+"SHARED_INTEREST_RATE_TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
 "SHARED_INTEREST_RATE_VALUE_PROMPT" = "Enter a rate";
 "SHARED_INTEREST_RATE_PERIOD" = "every year";
 "SHARED_INTEREST_RATE_ACTION_VERB" = "yield";
@@ -221,7 +221,7 @@
 "INPUT_CASH_FLOW_AMOUNT_TABLE_SUBHEADER_FORMAT" = "Enter an %@ amount for %@";
 "INPUT_CASH_FLOW_AMOUNT_SINGLE_VALUE_SECTION_TITLE" = "Single Amount";
 "INPUT_CASH_FLOW_AMOUNT_VALUE_PROMPT" = "Enter an Amount";
-"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT" = "Select a single %@, to be used for every %@ occurrence. Or, select a variable %@, which can change over time.";
+"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT" = "Enter a single %@, to be used for every %@ occurrence. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
 "INPUT_CASH_FLOW_REPEAT_FREQUENCY_PLACEHOLDER" = "Enter a Frequency";
 "INPUT_CASH_FLOW_END_DATE_TABLE_TITLE" = "Stop Date";
 "INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT" = "%@ Stop Date";
@@ -414,7 +414,7 @@
 "INPUT_INFLATION_RATE_PERIOD" = "every year";
 "INPUT_INFLATION_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT" = "These growth rates can be shared by multiple inputs and can change over time";
 "INPUT_INFLATION_RATE_VALUE_PROMPT" = "Enter a Rate";
-"INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT" = "Select a single fixed %@. Or, select a variable %@, which can change over time.";
+"INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
 "DEFAULT_INFLATION_RATE_LABEL" = "Default Inflation Rate";
 "DEFAULT_INFLATION_RATE_GROWTH_RATE_FIELD_LABEL" = "Yearly Increase";
 

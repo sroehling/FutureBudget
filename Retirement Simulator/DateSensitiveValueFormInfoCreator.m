@@ -21,6 +21,7 @@
 #import "LocalizationHelper.h"
 #import "VariableHeightTableHeader.h"
 #import "FormContext.h"
+#import "NumberFieldCell.h"
 
 @implementation DateSensitiveValueFormInfoCreator
 
@@ -137,10 +138,14 @@
 	
 	NumberFieldEditInfo *valueFieldEditInfo = 
 		[[[NumberFieldEditInfo alloc]initWithFieldInfo:self.defaultValFieldInfo
-		 andNumberFormatter:self.varValRuntimeInfo.valueFormatter andValidator:self.varValRuntimeInfo.valueValidator] autorelease];
+		 andNumberFormatter:self.varValRuntimeInfo.valueFormatter
+		 andValidator:self.varValRuntimeInfo.valueValidator] autorelease];
 	valueFieldEditInfo.isDefaultSelection = TRUE;
 	[sectionInfo addFieldEditInfo:valueFieldEditInfo];
-    
+ 
+	formPopulator.formInfo.firstResponder = valueFieldEditInfo.numberCell.textField;
+
+	   
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]
 					initWithVariableValueRuntimeInfo:self.varValRuntimeInfo 
 					andFormContext:parentContext] autorelease];
