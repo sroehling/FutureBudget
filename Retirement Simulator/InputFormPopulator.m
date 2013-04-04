@@ -816,11 +816,20 @@
 			
 	NSString *subTitle = [self itemizationSummaryForItemizedTaxAmtsInfo:itemizedTaxAmts];
 	
-	// TODO - Include a subtitle listing the taxes
+	NSString *itemizationDescription = nil;
+	if(subTitle == nil)
+	{
+		// If the subtitle is nil, then there aren't any itemizations for the input
+		// In this case, at least display a caption for there not being any itemizations.
+		// If the subtitle is not nil, then the actual itemizations can be listed.
+		itemizationDescription =
+			LOCALIZED_STR(@"ITEMIZED_TAX_NO_ITEMIZATIONS_FOR_INPUT_CONTENT_DESCRIPTION");
+	}
+	
 	assert([StringValidation nonEmptyString:fieldLabel]);
 	StaticNavFieldEditInfo *taxesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
 			initWithCaption:fieldLabel
-			andSubtitle:subTitle andContentDescription:nil
+			andSubtitle:subTitle andContentDescription:itemizationDescription
 			andSubViewFactory:taxSelectionTableViewFactory] autorelease];
 			
 	return taxesFieldEditInfo;
@@ -837,6 +846,7 @@
 
 	StaticNavFieldEditInfo *fieldEditInfo =
 		[self createItemizedTaxSelectionFieldEditInfoWithFieldLabel:fieldLabel andFormInfoCreator:formInfoCreator andItemizedTaxAmtsInfo:itemizedTaxAmts];
+		
 	[self.currentSection addFieldEditInfo:fieldEditInfo];
 
 }
