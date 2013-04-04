@@ -8,6 +8,9 @@ the [current balances][1], [current asset values][2],
 [outstanding loan balances][3], and [deficit balance][4] should also be 
 updated to reflect their values as of the start date.
 
+Choosing a start date at the beginning of the year is recommended, since this 
+will ensure results for the first year are comparable with following years. 
+
 ## See Also
 
 * [Current Balances][1]

@@ -131,6 +131,8 @@ static SimResultsController *theSimResultsControllerSingleton;
 		self.dataModelController = theDataModelController;
 		self.sharedAppVals = theSharedAppVals;
 		
+		// By default, results from partial years (in particular, the first year),
+		// will not be excluded.
 		self.excludePartialYearResults = FALSE;
 		
 		// TODO - Need to observe changes to any data model controller.
@@ -168,7 +170,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 	SimResultsController *theResultsController = [[[SimResultsController alloc] 
 		initWithDataModelController:dataModelController 
 		andSharedAppValues:[SharedAppValues getUsingDataModelController:dataModelController]] autorelease];
-	theResultsController.excludePartialYearResults = TRUE;
+	theResultsController.excludePartialYearResults = FALSE;
 	[SimResultsController initSingleton:theResultsController];	
 }
 
