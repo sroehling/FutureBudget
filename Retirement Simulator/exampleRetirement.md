@@ -56,4 +56,5 @@ After selecting the "Early Retirement" scenario, the dates and amounts for retir
 [scenario]:scenario.html
 [addbutton]:buttonadd.png
 [variableInterest]:variableInterest.html
+[variableAmount]:variableAmount.html
 
