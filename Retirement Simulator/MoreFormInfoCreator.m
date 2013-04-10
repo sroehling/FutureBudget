@@ -35,8 +35,9 @@
 		andPageRef:@"gettingStarted"];
 
 	[formPopulator populateHelpPageWithTitle:
-		LOCALIZED_STR(@"MORE_ONLINE_HELP_TITLE")
-		andPageRef:@"onlineHelp"];
+		LOCALIZED_STR(@"MORE_EXAMPLES_TITLE")
+		andSubTitle:LOCALIZED_STR(@"MORE_EXAMPLES_SUBTITLE")
+		andPageRef:@"example"];
 		
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"MORE_APP_INFO_SECTION_TITLE")];
 		

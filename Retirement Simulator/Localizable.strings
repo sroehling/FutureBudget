@@ -662,10 +662,10 @@
 
 "MORE_VIEW_TITLE" = "More";
 "MORE_HELP_SECTION_TITLE" = "Help";
-"MORE_ONLINE_HELP_TITLE" = "Help Pages";
+"MORE_EXAMPLES_TITLE" = "Examples";
+"MORE_EXAMPLES_SUBTITLE" = "Suggestions for setting up inputs and scenarios for common examples, such as housing and education.";
 "HELP_ABOUT" = "About FinSim";
 "MORE_APP_INFO_SECTION_TITLE" = "Information";
-"MORE_ONLINE_HELP_SUBTITLE" = "Examples and frequently asked questions";
 "HELP_GETTING_STARTED" = "Getting Started";
 
 

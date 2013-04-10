@@ -27,7 +27,6 @@
 		000E92EE16CEDBA300E07465 /* inputTags.md in Resources */ = {isa = PBXBuildFile; fileRef = 000E92ED16CEDBA200E07465 /* inputTags.md */; };
 		000E92F116CEDD1800E07465 /* InputTagNameFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E92F016CEDD1600E07465 /* InputTagNameFieldValidator.m */; };
 		000FABF313BB8B31008AEEDF /* SimDateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */; };
-		001056371672723E004E647F /* onlineHelp.md in Resources */ = {isa = PBXBuildFile; fileRef = 001056361672723E004E647F /* onlineHelp.md */; };
 		0010A58313CFEE6C0096A20F /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58213CFEE6B0096A20F /* Account.m */; };
 		0010A58613CFEE940096A20F /* SavingsAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58513CFEE940096A20F /* SavingsAccount.m */; };
 		0010A58913D0B1DF0096A20F /* InterestRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0010A58813D0B1DC0096A20F /* InterestRate.m */; };
@@ -59,6 +58,16 @@
 		00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA11402EBC9001D472F /* WorkingBalanceTest.m */; };
 		00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA91406B365001D472F /* EndOfYearDigestResult.m */; };
 		00160CAD1406C9AD001D472F /* FiscalYearDigestEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */; };
+		001AE1C7171494C5000F461D /* example.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1BE171494C5000F461D /* example.md */; };
+		001AE1C8171494C5000F461D /* exampleEducation.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1BF171494C5000F461D /* exampleEducation.md */; };
+		001AE1C9171494C5000F461D /* exampleExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1C0171494C5000F461D /* exampleExpense.md */; };
+		001AE1CA171494C5000F461D /* exampleHousing.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1C1171494C5000F461D /* exampleHousing.md */; };
+		001AE1CB171494C5000F461D /* exampleIncome.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1C2171494C5000F461D /* exampleIncome.md */; };
+		001AE1CC171494C5000F461D /* exampleMedical.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1C3171494C5000F461D /* exampleMedical.md */; };
+		001AE1CD171494C5000F461D /* exampleRetirement.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1C4171494C5000F461D /* exampleRetirement.md */; };
+		001AE1CE171494C5000F461D /* exampleSavings.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1C5171494C5000F461D /* exampleSavings.md */; };
+		001AE1CF171494C5000F461D /* exampleTransportation.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1C6171494C5000F461D /* exampleTransportation.md */; };
+		001AE1D11714BC0C000F461D /* exampleTaxes.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1D01714BC0B000F461D /* exampleTaxes.md */; };
 		001E5C2614A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */; };
 		001E5C2A14A240F7008A672E /* AcctContribXYPlotGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */; };
 		001E5C2D14A24219008A672E /* AcctResultGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001E5C2C14A24219008A672E /* AcctResultGenerator.m */; };
@@ -611,7 +620,6 @@
 		000E92F016CEDD1600E07465 /* InputTagNameFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagNameFieldValidator.m; sourceTree = "<group>"; };
 		000FABF113BB8B30008AEEDF /* SimDateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateValueFormatter.h; sourceTree = "<group>"; };
 		000FABF213BB8B31008AEEDF /* SimDateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateValueFormatter.m; sourceTree = "<group>"; };
-		001056361672723E004E647F /* onlineHelp.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = onlineHelp.md; sourceTree = "<group>"; };
 		0010A58113CFEE6B0096A20F /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		0010A58213CFEE6B0096A20F /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		0010A58413CFEE940096A20F /* SavingsAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingsAccount.h; sourceTree = "<group>"; };
@@ -665,6 +673,16 @@
 		00160CA91406B365001D472F /* EndOfYearDigestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearDigestResult.m; sourceTree = "<group>"; };
 		00160CAB1406C9A5001D472F /* FiscalYearDigestEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestEntries.h; sourceTree = "<group>"; };
 		00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestEntries.m; sourceTree = "<group>"; };
+		001AE1BE171494C5000F461D /* example.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.md; sourceTree = "<group>"; };
+		001AE1BF171494C5000F461D /* exampleEducation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleEducation.md; sourceTree = "<group>"; };
+		001AE1C0171494C5000F461D /* exampleExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleExpense.md; sourceTree = "<group>"; };
+		001AE1C1171494C5000F461D /* exampleHousing.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleHousing.md; sourceTree = "<group>"; };
+		001AE1C2171494C5000F461D /* exampleIncome.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleIncome.md; sourceTree = "<group>"; };
+		001AE1C3171494C5000F461D /* exampleMedical.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleMedical.md; sourceTree = "<group>"; };
+		001AE1C4171494C5000F461D /* exampleRetirement.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleRetirement.md; sourceTree = "<group>"; };
+		001AE1C5171494C5000F461D /* exampleSavings.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleSavings.md; sourceTree = "<group>"; };
+		001AE1C6171494C5000F461D /* exampleTransportation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleTransportation.md; sourceTree = "<group>"; };
+		001AE1D01714BC0B000F461D /* exampleTaxes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleTaxes.md; sourceTree = "<group>"; };
 		001E5C2414A240D4008A672E /* AllAcctContribXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctContribXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctContribXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		001E5C2814A240F6008A672E /* AcctContribXYPlotGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctContribXYPlotGenerator.h; sourceTree = "<group>"; };
@@ -1495,6 +1513,23 @@
 				0052E2071459B03300FEC4E2 /* TaxInputCalcs.m */,
 			);
 			name = Taxes;
+			sourceTree = "<group>";
+		};
+		001AE1BD1714949D000F461D /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				001AE1BE171494C5000F461D /* example.md */,
+				001AE1C0171494C5000F461D /* exampleExpense.md */,
+				001AE1C1171494C5000F461D /* exampleHousing.md */,
+				001AE1C4171494C5000F461D /* exampleRetirement.md */,
+				001AE1C6171494C5000F461D /* exampleTransportation.md */,
+				001AE1C5171494C5000F461D /* exampleSavings.md */,
+				001AE1BF171494C5000F461D /* exampleEducation.md */,
+				001AE1C2171494C5000F461D /* exampleIncome.md */,
+				001AE1D01714BC0B000F461D /* exampleTaxes.md */,
+				001AE1C3171494C5000F461D /* exampleMedical.md */,
+			);
+			name = Examples;
 			sourceTree = "<group>";
 		};
 		001C11FE1684E09500322EF9 /* Input Icons */ = {
@@ -2789,10 +2824,10 @@
 		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
 			isa = PBXGroup;
 			children = (
+				001AE1BD1714949D000F461D /* Examples */,
 				002FAEA614D38F0A00AE2B41 /* Context Help */,
 				002FAE9A14D3105900AE2B41 /* Key Features */,
 				00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */,
-				001056361672723E004E647F /* onlineHelp.md */,
 			);
 			name = "Help Pages";
 			sourceTree = "<group>";
@@ -3166,7 +3201,6 @@
 				0057F42F14F81B2C006A2FA3 /* account.md in Resources */,
 				0058A80F14F830BB00F2DCEF /* income.md in Resources */,
 				0058A81214F92F5600F2DCEF /* accountWithdrawalPriority.md in Resources */,
-				001056371672723E004E647F /* onlineHelp.md in Resources */,
 				00A0CE8416727DB800CDFD78 /* markdown.css in Resources */,
 				005F8AFB167B8BF900148BBE /* thirdPartyLibs.md in Resources */,
 				005F8AFD167B8C2900148BBE /* about.md in Resources */,
@@ -3299,6 +3333,16 @@
 				00E9ADDE16DD1F2300128579 /* TaxPresets.plist in Resources */,
 				006B012F16DE742400416F54 /* taxPresets.md in Resources */,
 				0026D40216E67C5200922D16 /* taxRate.md in Resources */,
+				001AE1C7171494C5000F461D /* example.md in Resources */,
+				001AE1C8171494C5000F461D /* exampleEducation.md in Resources */,
+				001AE1C9171494C5000F461D /* exampleExpense.md in Resources */,
+				001AE1CA171494C5000F461D /* exampleHousing.md in Resources */,
+				001AE1CB171494C5000F461D /* exampleIncome.md in Resources */,
+				001AE1CC171494C5000F461D /* exampleMedical.md in Resources */,
+				001AE1CD171494C5000F461D /* exampleRetirement.md in Resources */,
+				001AE1CE171494C5000F461D /* exampleSavings.md in Resources */,
+				001AE1CF171494C5000F461D /* exampleTransportation.md in Resources */,
+				001AE1D11714BC0C000F461D /* exampleTaxes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
