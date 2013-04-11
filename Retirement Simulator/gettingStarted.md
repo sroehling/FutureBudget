@@ -13,29 +13,15 @@ Basically, the steps to work with FinSim include:
 The steps above would be repeated as new inputs are added or existing ones are changed. Consistent with the 
 steps outlined above, below are more specific suggestions for getting started.
 
-## Start with Simplifying Assumptions
+## Start with Simplifying Assumptions and Basic Inputs 
 
-When first getting started, a recommendation is to start with some more general inputs, rather
-than a long list of detailed inputs. This allows you to get some results quickly, but
-continue to add more details later. This is also a good way to become familiar with the app's basic functions.
+When first getting started, a recommendation is to start with some more general inputs, rather than a long list of detailed inputs. For example, a single 'Monthly Living Expenses' expense input can be created instead of splitting into individual expenses such as groceries, utilities, or gasoline.
 
-For example, a single 'Monthly Living Expenses' expense input can be created instead of 
-splitting into individual expenses such as groceries, utilities, or gasoline.
+Many budgeting scenarios can also be initially represented with only basic [income][income] and [expense][expense] inputs. For example, rather than initially splitting employment income based upon all the different taxes and employment related benefits, a single "Take Home Pay" expense can be created.
 
-Another simplifying assumption can be made for taxes. Instead of initially creating separate 
-tax inputs for different taxes like federal, state, and investment gains, a single tax input can
-be created to represent the expected overall or "effective" tax percentage. In the end, the 
-results may not be overly sensitive to the overall tax percentage.
+These approaches allow you to get some results quickly, but continue to dig deeper and add more details later. This is also a good way to become familiar with the app's basic functions.
 
-## Leverage Common Examples
-
-There are recommendations for inputting [common examples][inputExamples] like 
-buying a new car, purchasing a house, or financing a college education.
-
-Even if these specific examples don't apply to you, they show how 
-financial scenarios can be split into loan, asset and expense inputs.
-
-## More Advanced Usage
+## More Advanced Inputs and Features
 
 Besides making a list of inputs and generating results, a number of other features
 are useful. For example:
@@ -47,11 +33,13 @@ online instead of residential college education).
 investment accounts' growth rates.
 * [Tags][tags] - Group related inputs so their values can be reviewed and changed together. 
 
-The app also supports more advanced inputs, such as assets, loans, and accounts for savings or investments. For greater detail, multiple inputs can be used. For example, a home purchase could be represented by loan (mortgage), asset, and expense inputs.
+The app also supports more advanced inputs, such as [assets][asset], [loans][loan], and [accounts][account] for savings or investments. For greater detail, multiple inputs can be used. For example, a home purchase could be represented by loan (mortgage), asset, and expense inputs.
 
 Along with different input types, there are numerous and flexible ways to configure these inputs. For example, if you expect to drive less after retirement, using a [variable amount][variableAmount], an expense for gasoline could be reduced after your expected retirement date.
 
 Finally, after populating the FutureBudget with inputs, "what if" scenarios can be evaluated by changing inputs under a specific [scenario][scenario]. For example, a scenario could be used to evaluate sending your kids away for college versus living at home and attending college online.
+
+The recommendations for inputting [common examples][inputExamples] also provide suggestions formore advanced usage by splitting into multiple inputs, [scenarios][scenario], [tags][tags], and [variable amounts][variableAmount].
 
 ## Feedback and Support
 
@@ -66,3 +54,8 @@ address for feedback and support is <finsim@resultra.com>.
 [scenario]:scenario.html
 [tags]:inputTags.html
 [variableAmount]:variableAmount.html
+[expense]:expense.html
+[income]:income.html
+[asset]:asset.html
+[loan]:loan.html
+[account]:account.html
