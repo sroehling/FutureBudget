@@ -4,6 +4,6 @@ Select this type of date to Payoff the loan a given number of years, months and/
 
 ## See Also
 
-* [No Early Payoff](neverEndDatePayoff.html)
-* [Fixed Date](fixedDate.html)
-* [Milestone Date](milestoneDate.html)
+* [No Early Payoff][neverEndDatePayoff]
+* [Fixed Date][fixedDate]
+* [Milestone Date][milestone]

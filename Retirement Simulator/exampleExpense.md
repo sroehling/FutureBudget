@@ -19,7 +19,7 @@ Expense inputs are not limited to repeating monthly expenses. They can be used f
 
 ## Cutting Expenses
 
-Similar to the way expenses may increase or decrease with [retirement][retirement], it may be interesting to investigate how cutting back other types of expenses would affect long term results.
+Similar to the way expenses may increase or decrease with [retirementExample][retirement], it may be interesting to investigate how cutting back other types of expenses would affect long term results.
 
 For example, instead of having a full price wedding, the wedding's size and cost could be reduced with the difference being saved. Or, instead of dining out for lunch several times a week, this expense could be trimmed and the difference being invested. Other expenses, like a gym membership could be cut altogether.
 
@@ -39,9 +39,3 @@ For each expense that will be subject to a reduced amount, change the expense as
    
 4. Tap the __Done__ button to save the changes.
 
-[retirement]:exampleRetirement.html
-
-[scenario]:scenario.html
-[fixedAmount]:fixedAmount.html
-[variableAmount]:variableAmount.html
-[expense]:expense.html

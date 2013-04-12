@@ -71,13 +71,3 @@ will occur amongst different accounts.
 
 ## Brokerage Account
 
-[currentBal]:currentBalances.html
-[taxSource]:taxSource.html
-[withdrawPriority]:accountWithdrawalPriority.html
-[tax]:tax.html
-[varReturn]:variableReturn.html
-[milestone]:milestoneDate.html
-[expense]:expense.html
-[income]:income.html
-[account]:account.html
-[deduction]:taxDeduction.html

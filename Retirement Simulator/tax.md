@@ -4,11 +4,4 @@ A tax input includes a tax bracket which determines the [tax rate(s)][taxRate] a
 
 Once a tax input has been created with an associated tax bracket, the way tax inputs basically work are to link with other inputs to calculate the taxes to be paid. In particular, a tax input can be linked with [income][income],[account][account] and [asset][asset] inputs to calculate the taxes paid on income, account returns or withdrawals, and asset gains respectively. A tax input can also be linked with [expense][expense] or [account][account] inputs to calculate deductions, credits, or adjustments for certain expenses, account contributions, or withdrawals.
 
-The [tax examples][taxExample] also provide some suggestions for creating different types of tax inputs.
-
-
-[income]:income.html
-[account]:account.html
-[asset]:asset.html
-[taxRate]:taxRate.html
-[taxExample]:exampleTaxes.html
+The [tax examples][taxesExample] also provide some suggestions for creating different types of tax inputs.

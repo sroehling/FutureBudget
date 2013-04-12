@@ -16,9 +16,5 @@ are not taxed.
 
 ## See Also
 
-* [Current Balances][currBal]
-* [Account Withdrawal Priority][acctWith]
-
-
-[currBal]:currentBalances.html
-[acctWith]:accountWithdrawalPriority.html
+* [Current Balances][currentBal]
+* [Account Withdrawal Priority][withdrawPriority]

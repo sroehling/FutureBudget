@@ -49,13 +49,3 @@ button, tap on it for more information.
 
 Finally, please feel free to contact us with any questions or feedback. The email
 address for feedback and support is <finsim@resultra.com>.
-
-[inputExamples]:example.html
-[scenario]:scenario.html
-[tags]:inputTags.html
-[variableAmount]:variableAmount.html
-[expense]:expense.html
-[income]:income.html
-[asset]:asset.html
-[loan]:loan.html
-[account]:account.html

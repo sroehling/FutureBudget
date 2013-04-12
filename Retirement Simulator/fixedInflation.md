@@ -6,6 +6,5 @@ To change the growth rate, tap on the __Edit__ button, make the change, then tap
 
 ## See Also
 
-* [Variable Growth Rate][1]
+* [Variable Growth Rate][variableInflation]
 
-[1]:variableInflation.html

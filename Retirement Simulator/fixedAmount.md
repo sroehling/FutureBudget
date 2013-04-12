@@ -9,6 +9,4 @@ To change the amount, tap on the __Edit__ button, make the change, then tap on t
 
 ## See Also
 
-* [Variable Amount][varAmt]
-
-[varAmt]:variableAmount.html
+* [Variable Amount][variableAmount]

@@ -51,10 +51,3 @@ Similar to the [milestone date][milestone] for the expected retirement date, set
 
 After selecting the "Early Retirement" scenario, the dates and amounts for retirement related inputs are changed as appropriate.
 
-
-[milestone]:milestoneDate.html
-[scenario]:scenario.html
-[addbutton]:buttonadd.png
-[variableInterest]:variableInterest.html
-[variableAmount]:variableAmount.html
-

@@ -10,6 +10,4 @@ represent a "flat tax" or an effective tax rate.
 A tax bracket with multiple entries allows different percentages to be used for different amounts.
 For example, a progressive income tax includes higher tax percentage for larger taxable incomes.
 
-When creating tax inputs, some presets are provided with different examples of tax brackets. 
-
-[taxSource]:taxSource.html
+When creating tax inputs, some presets are provided with different examples of tax brackets.

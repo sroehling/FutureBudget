@@ -5,12 +5,10 @@ and balances from account withdrawals, a deficit will be accumulated, and intere
 will accrue on this balance. If there is a deficit balance, and the income again
 exceeds the expenses, the deficit will be paid down before accruing a positive cash balance.
 
-A __Current Deficit__ can also be set to indicate how much deficit there as of the simulation's
-[start date][1]. A current deficit is appropriate 
+A __Current Deficit__ can also be set to indicate how much deficit there as of the
+[start date][resultsTimeFrame] for results. A current deficit is appropriate 
 for any outstanding revolving credit balances, such as credit cards.
 
 ## See Also
 
-* [Results Time Frame][1]
-
-[1]:resultsTimeFrame.html
+* [Results Time Frame][resultsTimeFrame]

@@ -23,14 +23,3 @@ One interesting renting [scenario][scenario] would be taking on an extra roommat
 ## Paying Off a House
 
 TBD
-
-[asset]:asset.html
-[loan]:loan.html
-[milestone]:milestoneDate.html
-[expense]:expense.html
-[tax]:tax.html
-[deduction]:taxDeduction.html
-[tags]:inputTags.html
-[scenario]:scenario.html
-[fixedAmount]:fixedAmount.html
-[variableAmount]:variableAmount.html

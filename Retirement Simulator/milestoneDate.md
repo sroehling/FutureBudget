@@ -6,7 +6,7 @@ will impact the results for all inputs which have selected the same milestone da
 
 Similarly, if different dates are under consideration for the same
 input, several milestone dates can be created then set in
-different [scenarios][scen].
+different [scenarios][scenario].
 
 For example, a milestone date could be setup for a planned retirement date. 
 Then, retirement related inputs, such as employment income, housing, 
@@ -22,6 +22,3 @@ created to give the loan origination and corresponding asset purchase the same d
 ## See Also
 
 * [Fixed Date][fixedDate]
-
-[fixedDate]:fixedDate.html
-[scen]:scenario.html

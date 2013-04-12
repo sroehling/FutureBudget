@@ -4,7 +4,7 @@ A [loan][loan]'s outstanding balance provides a current "snapshot" of the loan b
 of the [start date][resultsTimeFrame] of the simulation. 
 
 If the [origination date][loanOrig] of the loan 
-is before the [simulation start date][1], the outstanding loan balance represents
+is before the [simulation start date][resultsTimeFrame], the outstanding loan balance represents
 the balance as of this start date. The assumption is this starting balance could 
 include any extra payments which have already been payed on the loan's principal balance.
 
@@ -17,7 +17,3 @@ an outstanding balance is not needed.
 * [Results Time Frame][resultsTimeFrame]
 * [Loan Origination][loanOrig]
 * [Loan Input][loan]
-
-[resultsTimeFrame]:resultsTimeFrame.html
-[loan]:loan.html
-[loanOrig]:loanOrig.html

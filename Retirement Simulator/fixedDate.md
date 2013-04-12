@@ -5,6 +5,4 @@ this date only impacts results for the current input.
 
 ## See Also
 
-* [Milestone Date][1]
-
-[1]:milestoneDate.html
+* [Milestone Date][milestone]

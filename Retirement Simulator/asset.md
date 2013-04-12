@@ -2,6 +2,4 @@
 
 ## See Also
 
-* [Current Asset Values][1]
-
-[1]:currentAssetValues.html
+* [Current Asset Values][currentAssetVals]

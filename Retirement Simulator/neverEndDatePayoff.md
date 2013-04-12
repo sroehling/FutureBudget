@@ -4,6 +4,6 @@ Select to disable an early (lump sum) payoff of the loan.
 
 ## See Also
 
-* [Payoff After Origination Date](relEndDatePayoff.html)
-* [Fixed Date](fixedDate.html)
-* [Milestone Date](milestoneDate.html)
+* [Payoff After Origination Date][relEndDatePayoff]
+* [Fixed Date][fixedDate]
+* [Milestone Date][milestone]

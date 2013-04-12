@@ -19,10 +19,3 @@ Instructions:
 ## Leasing a Vehicle
 
 When leasing a vehicle, a monthly payment is made for the term or number of months in the lease. Although this payment may be less than the loan payment to purchase the same vehicle, the vehicle is not owned at the end of the lease. If you're leasing, or planning to lease a vehicle, you can typically setup a single monthly expense called "Lease Payment".
-
-[asset]:asset.html
-[loan]:loan.html
-[milestone]:milestoneDate.html
-[expense]:expense.html
-[tax]:tax.html
-[deduction]:taxDeduction.html

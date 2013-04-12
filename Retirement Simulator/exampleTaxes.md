@@ -24,16 +24,6 @@ The most advanced tax inputs include:
 
 * A tax bracket with multiple tax rates for different levels of income.
 * Links to one or more inputs as [tax sources][taxSource], such as incomes or account interest.
-* Links to inputs serving as [itemized deductions][taxDeduction], such as expenses or mortgage loan interest. 
+* Links to inputs serving as [itemized deductions][deduction], such as expenses or mortgage loan interest. 
 
 As appropriate, multiple tax inputs could be used for different tax jurisdictions, such as the U.S. federal and state level.
-
-[housingExample]:exampleHousing.html
-[incomeExample]:exampleIncome.html
-[income]:income.html
-[expense]:expense.html
-[tax]:tax.html
-[taxSource]:taxSource.html
-[taxDeduction]:taxDeductions.html
-[asset]:asset.html
-[account]:account.html

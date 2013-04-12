@@ -4,6 +4,6 @@ Select this date to make contributions for a given number of years and months af
 
 ## See Also
 
-* [Contribute Forever](neverEndDateContrib.html)
-* [Fixed Date](fixedDate.html)
-* [Milestone Date](milestoneDate.html)
+* [Contribute Forever][neverEndDateContrib]
+* [Fixed Date][fixedDate]
+* [Milestone Date][milestoneDate]

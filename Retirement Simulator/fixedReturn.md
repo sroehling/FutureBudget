@@ -6,6 +6,4 @@ To change the return rate, tap on the __Edit__ button, make the change, then tap
 
 ## See Also
 
-* [Variable Return Rate][1]
-
-[1]:variableReturn.html
+* [Variable Return Rate][varReturn]

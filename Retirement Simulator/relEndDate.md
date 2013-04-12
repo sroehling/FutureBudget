@@ -4,6 +4,6 @@ Select this date for the event to occur for a given number of years and months a
 
 ## See Also
 
-* [Continue Indefinitely](neverEndDate.html)
-* [Milestone Date](milestoneDate.html)
-* [Fixed Date](fixedDate.html)
+* [Continue Indefinitely][neverEndDate]
+* [Milestone Date][milestone]
+* [Fixed Date][fixedDate]

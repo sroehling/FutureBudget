@@ -1,10 +1,10 @@
 # Education Examples
 
-Along with [housing][housing] and transportation, education can be one of the most significant expenses. For example, education expenses may include private schools or kids' college educations.
+Along with [housingExample][housing] and transportation, education can be one of the most significant expenses. For example, education expenses may include private schools or kids' college educations.
 
 ## Breaking Down College Expenses
 
-Similar to [monthly bills][exampleExpense], you could start by entering a single yearly expense for college. The __Start Date__ would be set to the expected starting date of the first semester, and the amount would be expected cost for the year.
+Similar to [monthly bills][expenseExample], you could start by entering a single yearly expense for college. The __Start Date__ would be set to the expected starting date of the first semester, and the amount would be expected cost for the year.
 
 However, at some point, you may want to split college expenses into multiple inputs, such as:
 
@@ -29,10 +29,3 @@ When a new [expense input][expense] is first created, it has a __Yearly Increase
 ## Scholarships and Financial Aid
 
 ## Saving for College
-
-[expense]:expense.html
-[variableInflation]:variableInflation.html
-[housing]:exampleHousing.html
-[exampleExpense]:exampleExpense.html
-[scenario]:scenario.html
-[tags]:inputTags.html

@@ -8,4 +8,3 @@ To change the appreciation rate, tap on the __Edit__ button, make the change, th
 
 * [Variable Appreciation][varApprecRate]
 
-[varApprecRate]:variableApprecRate.html

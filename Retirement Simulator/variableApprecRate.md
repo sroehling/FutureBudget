@@ -9,12 +9,9 @@ which is expected to depreciate quickly in the first couple years of ownership,
 then depreciate slowly thereafter. Even if the appreciation rate isn't 
 expected to change over time, variable appreciation rates can 
 also be used to setup a list of named values
-which can be quickly selected in different [scenarios][scen]. 
+which can be quickly selected in different [scenarios][scenario]. 
 
 
 ## See Also
 
 * [Fixed Appreciation][fixedApprec]
-
-[fixedApprec]:fixedApprec.html
-[scen]:scenario.html

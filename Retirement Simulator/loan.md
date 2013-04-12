@@ -2,8 +2,5 @@
 
 ## See Also
 
-* [Outstanding Loan Balances][loanBal]
+* [Outstanding Loan Balances][outstandingLoanBal]
 * [Loan Origination][loanOrig]
-
-[loanBal]:outstandingLoanBalances.html1
-[loanOrig]:loanOrig.html
