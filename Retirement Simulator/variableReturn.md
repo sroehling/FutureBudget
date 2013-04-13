@@ -1,6 +1,6 @@
-# Variable Return Rate
+## Variable Return Rate
 
-An account input's return/interest rate can remain [fixed][fixedReturn] or change over time. 
+An account input's return/interest rate can remain fixed or change over time. 
 Variable return rates are used when the return rate is expected
 to change over time, or shared by different inputs. 
 
@@ -13,8 +13,4 @@ low today, but expected to increase in the future, a variable rate could be used
 Even if the return rate isn't 
 expected to change over time, variable return rates can  be used to setup 
 a list of common return rates,
-which can be easily selected in different [scenarios][scen].
-
-## See Also
-
-* [Fixed Growth Rate][fixedReturn]
+which can be easily selected in different [scenarios][scenario].

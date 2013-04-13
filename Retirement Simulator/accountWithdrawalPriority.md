@@ -1,4 +1,4 @@
-# Account Withdrawal Order
+## Account Withdrawal Order
 
 Relative to (versus) other accounts, an account's withdrawal order determines the order in which money 
 will be withdrawn from accounts to pay expenses. 

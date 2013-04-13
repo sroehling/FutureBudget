@@ -1,4 +1,4 @@
-# Deficit
+## Deficit
 
 If at any time, the amounts needed to pay expenses are greater than the cash balance
 and balances from account withdrawals, a deficit will be accumulated, and interest 
@@ -9,6 +9,6 @@ A __Current Deficit__ can also be set to indicate how much deficit there as of t
 [start date][resultsTimeFrame] for results. A current deficit is appropriate 
 for any outstanding revolving credit balances, such as credit cards.
 
-## See Also
+### See Also
 
 * [Results Time Frame][resultsTimeFrame]

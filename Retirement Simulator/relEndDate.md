@@ -1,8 +1,8 @@
-# Stop After Start Date
+## Stop After Start Date
 
 Select this date for the event to occur for a given number of years and months after the start date.
 
-## See Also
+### See Also
 
 * [Continue Indefinitely][neverEndDate]
 * [Milestone Date][milestone]

@@ -1,14 +1,14 @@
-# Expense Examples
+## Expense Examples
 
 For regular monthly expenses, like utilities, groceries, gasoline, cell phone service, etc., an [expense input][expense] represents the amount of money spent for these expenses.
 
-## Starting with Combined Expenses
+### Starting with Combined Expenses
 
 When first starting to use the app, one recommendation is to combine all monthly expenses into a single expense input called "Monthly Bills" or similar. The amount on this expense would be equal to the sum total of all the expenses it represents.
 
 When and if you decide to perform what-if analyses with the individual expenses, This combined expense can later be split into individual expenses. For example, to see the impact over time of eating out less, you could create a separate "Dining Out" expense and change its amount under a different [scenario][scenario]. 
 
-## Irregular Expenses
+### Irregular Expenses
 
 Expense inputs are not limited to repeating monthly expenses. They can be used for one-time expenses, expenses in the future, or expenses which occur once per year, such as:
 
@@ -17,9 +17,9 @@ Expense inputs are not limited to repeating monthly expenses. They can be used f
 * Summer vacations.
 * Holiday gifts.
 
-## Cutting Expenses
+### Cutting Expenses
 
-Similar to the way expenses may increase or decrease with [retirementExample][retirement], it may be interesting to investigate how cutting back other types of expenses would affect long term results.
+Similar to the way expenses may increase or decrease with [retirement][retirementExample], it may be interesting to investigate how cutting back other types of expenses would affect long term results.
 
 For example, instead of having a full price wedding, the wedding's size and cost could be reduced with the difference being saved. Or, instead of dining out for lunch several times a week, this expense could be trimmed and the difference being invested. Other expenses, like a gym membership could be cut altogether.
 

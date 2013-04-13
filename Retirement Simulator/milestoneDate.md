@@ -1,4 +1,4 @@
-# Milestone Date
+## Milestone Date
 
 Milestone dates are named dates which can be can be referenced and shared by 
 multiple inputs. Changes to a milestone date 
@@ -18,7 +18,3 @@ inputs would be set to this milestone under an early retirement scenario.
 As another example, if a loan will be taken for the future purchase 
 of a new car or home, a milestone date could be 
 created to give the loan origination and corresponding asset purchase the same date. 
-
-## See Also
-
-* [Fixed Date][fixedDate]

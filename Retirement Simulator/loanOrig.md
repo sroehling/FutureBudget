@@ -1,4 +1,4 @@
-# Loan Origination
+## Loan Origination
 
 Loan origination parameters include the following:
 

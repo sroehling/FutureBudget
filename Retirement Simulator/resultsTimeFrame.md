@@ -1,4 +1,4 @@
-# Results Time Frame
+## Results Time Frame
 
 Results will be calculated between the __Start Date__ and __Stop Date__.
 
@@ -11,7 +11,7 @@ updated to reflect their values as of the start date.
 Choosing a start date at the beginning of the year is recommended, since this 
 will ensure results for the first year are comparable with following years. 
 
-## See Also
+### See Also
 
 * [Current Balances][currentBal]
 * [Current Asset Values][currentAssetVals]

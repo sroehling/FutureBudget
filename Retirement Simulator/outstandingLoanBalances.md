@@ -1,4 +1,4 @@
-# Outstanding Loan Balances
+## Outstanding Loan Balances
 
 A [loan][loan]'s outstanding balance provides a current "snapshot" of the loan balance as 
 of the [start date][resultsTimeFrame] of the simulation. 
@@ -12,7 +12,7 @@ However, if the origination date is
 after the simulation start date (e.g., for an loan you plan to take in the future), 
 an outstanding balance is not needed.
 
-## See Also
+### See Also
 
 * [Results Time Frame][resultsTimeFrame]
 * [Loan Origination][loanOrig]

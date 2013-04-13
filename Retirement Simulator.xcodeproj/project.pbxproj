@@ -233,6 +233,7 @@
 		0041263713A6A653008F0647 /* InputListFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263613A6A653008F0647 /* InputListFormInfoCreator.m */; };
 		0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263913A6A745008F0647 /* InputFieldEditInfo.m */; };
 		0041263E13A7DED9008F0647 /* InputListObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263D13A7DED9008F0647 /* InputListObjectAdder.m */; };
+		0042D47C1718ACB200575E70 /* sectionFeatures.md in Resources */ = {isa = PBXBuildFile; fileRef = 0042D47B1718ACB100575E70 /* sectionFeatures.md */; };
 		0049DC7413A537CD00B27046 /* VariableValueFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */; };
 		0049DC7713A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7613A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m */; };
 		0049DC7A13A54B3100B27046 /* DateSensitiveValueChangeSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7913A54B3000B27046 /* DateSensitiveValueChangeSectionInfo.m */; };
@@ -686,6 +687,7 @@
 		001AE1D01714BC0B000F461D /* exampleTaxes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleTaxes.md; sourceTree = "<group>"; };
 		001AE1D21715DDD0000F461D /* transfer.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transfer.md; sourceTree = "<group>"; };
 		001AE1E517186EC3000F461D /* links_external.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = links_external.md; sourceTree = "<group>"; };
+		001AE1E71718A116000F461D /* links_internal.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = links_internal.md; sourceTree = "<group>"; };
 		001E5C2414A240D4008A672E /* AllAcctContribXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctContribXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctContribXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		001E5C2814A240F6008A672E /* AcctContribXYPlotGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctContribXYPlotGenerator.h; sourceTree = "<group>"; };
@@ -915,6 +917,11 @@
 		0041263913A6A745008F0647 /* InputFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputFieldEditInfo.m; sourceTree = "<group>"; };
 		0041263C13A7DED8008F0647 /* InputListObjectAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListObjectAdder.h; sourceTree = "<group>"; };
 		0041263D13A7DED9008F0647 /* InputListObjectAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputListObjectAdder.m; sourceTree = "<group>"; };
+		0042D4791718AC5500575E70 /* sectionExamples.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = sectionExamples.md; sourceTree = "<group>"; };
+		0042D47A1718AC7900575E70 /* sectionInputs.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = sectionInputs.md; sourceTree = "<group>"; };
+		0042D47B1718ACB100575E70 /* sectionFeatures.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sectionFeatures.md; sourceTree = "<group>"; };
+		0042D47D1718BF9B00575E70 /* selfContainedUserGuideFileList.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = selfContainedUserGuideFileList.txt; sourceTree = "<group>"; };
+		0042D47E1719A9AA00575E70 /* README_SelfContainedUserGuide.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README_SelfContainedUserGuide.md; sourceTree = "<group>"; };
 		0049DC7213A537CC00B27046 /* VariableValueFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFormInfoCreator.h; sourceTree = "<group>"; };
 		0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueFormInfoCreator.m; sourceTree = "<group>"; };
 		0049DC7513A53E4400B27046 /* DateSensitiveValueChangeFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFieldEditInfo.h; sourceTree = "<group>"; };
@@ -2013,6 +2020,27 @@
 			name = "Scenario List";
 			sourceTree = "<group>";
 		};
+		0042D4781718AC1B00575E70 /* Self-contained User Guide */ = {
+			isa = PBXGroup;
+			children = (
+				0042D4791718AC5500575E70 /* sectionExamples.md */,
+				0042D47A1718AC7900575E70 /* sectionInputs.md */,
+				0042D47B1718ACB100575E70 /* sectionFeatures.md */,
+				0042D47D1718BF9B00575E70 /* selfContainedUserGuideFileList.txt */,
+				0042D47E1719A9AA00575E70 /* README_SelfContainedUserGuide.md */,
+			);
+			name = "Self-contained User Guide";
+			sourceTree = "<group>";
+		};
+		0042D47F1719AF7900575E70 /* Markdown Links */ = {
+			isa = PBXGroup;
+			children = (
+				001AE1E71718A116000F461D /* links_internal.md */,
+				001AE1E517186EC3000F461D /* links_external.md */,
+			);
+			name = "Markdown Links";
+			sourceTree = "<group>";
+		};
 		0049DC7013A2884D00B27046 /* Input Creation */ = {
 			isa = PBXGroup;
 			children = (
@@ -2828,7 +2856,8 @@
 		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
 			isa = PBXGroup;
 			children = (
-				001AE1E517186EC3000F461D /* links_external.md */,
+				0042D47F1719AF7900575E70 /* Markdown Links */,
+				0042D4781718AC1B00575E70 /* Self-contained User Guide */,
 				001AE1BD1714949D000F461D /* Examples */,
 				002FAEA614D38F0A00AE2B41 /* Context Help */,
 				002FAE9A14D3105900AE2B41 /* Key Features */,
@@ -3349,6 +3378,7 @@
 				001AE1CF171494C5000F461D /* exampleTransportation.md in Resources */,
 				001AE1D11714BC0C000F461D /* exampleTaxes.md in Resources */,
 				001AE1D31715DDD1000F461D /* transfer.md in Resources */,
+				0042D47C1718ACB200575E70 /* sectionFeatures.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

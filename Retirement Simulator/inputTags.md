@@ -1,4 +1,4 @@
-# Input Tags
+## Input Tags
 
 Input tags are a convenient way to organize and work with inputs. Inputs can be assigned multiple tags. For example:
 

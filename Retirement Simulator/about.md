@@ -1,9 +1,9 @@
-# About FinSim
+## About FinSim
 
 FinSim is a product of Resultra, LLC. If you have any further questions or inquiries, 
 please visit the [website for this app][AppWebsite].
 
-## Acknowledgements
+### Acknowledgements
 
 The FinSim software incorporates under license a number of 
 [third party software libraries][ThirdPartyLibs].

@@ -1,4 +1,4 @@
-# Variable Growth Rate
+## Variable Growth Rate
 
 Growth rates can remain fixed or change over time. Variable growth rates 
 are used when the growth rate is expected
@@ -13,7 +13,3 @@ expected to change over time, variable growth rates can
 also be used to setup a list of common values
 which can be easily selected in different [scenarios][scenario]. 
 There is also a __Default Inflation Rate__, which is the default for most growth rates.
-
-## See Also
-
-* [Fixed Growth Rate][fixedInflation]

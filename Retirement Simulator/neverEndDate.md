@@ -1,8 +1,8 @@
-# Continue Indefinitely
+## Continue Indefinitely
 
 Select this date for the event to occur indefinitely.
 
-## See Also
+### See Also
 
 * [Stop After Start Date][relEndDate]
 * [Milestone Date][milestone]

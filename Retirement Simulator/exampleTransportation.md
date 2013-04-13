@@ -1,6 +1,6 @@
-# Transportation Examples
+## Transportation Examples
 
-# Purchasing a Vehicle
+## Purchasing a Vehicle
 
 A vehicle you own, or plan to own, is represented as an [asset input][asset]. If you borrowed money (or plan to borrow money) to pay for the vehicle, a [loan input][loan] is also required.
 
@@ -16,6 +16,6 @@ Instructions:
   * Set the __Origination Date__ to the date you acquired the vehicle. If you want to ensure this date matches the __Purchase Date__ described above, a [milestone date][milestone] can also be created and shared between the asset and loan inputs. 
   * Set the __Outstanding Balance__ to the amount still owed on the loan. Similar to an asset input's __Current Value__, this outstanding balance is used as a starting point in the simulation.
 
-## Leasing a Vehicle
+### Leasing a Vehicle
 
 When leasing a vehicle, a monthly payment is made for the term or number of months in the lease. Although this payment may be less than the loan payment to purchase the same vehicle, the vehicle is not owned at the end of the lease. If you're leasing, or planning to lease a vehicle, you can typically setup a single monthly expense called "Lease Payment".

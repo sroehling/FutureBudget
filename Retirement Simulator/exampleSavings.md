@@ -1,6 +1,6 @@
-# Savings and Investment Examples
+## Savings and Investment Examples
 
-## Regular Savings
+### Regular Savings
 
 A "regular savings" account refers to an account where after tax income 
 is deposited into an account, and the account accrues interest. An [account input][account] represents
@@ -18,7 +18,7 @@ selected as having taxable interest in the __Taxes__ section of the account itse
 If the return rate is currently low, but expected to rise over time,
 a [variable return][varReturn] rate can also be used with a savings account.
 
-## 401K Investment Account
+### 401K Investment Account
 
 A 401K account is an account where tax deductible contributions
 are made into the account, the interest (or investment returns) accrue
@@ -40,7 +40,7 @@ also be configured with deferred withdrawals. A [milestone date][milestone]
 can also be setup for the deferred withdrawal date; such a milestone date
 could be shared by other accounts, such as Roth IRAs or other 401Ks.
 
-## Roth IRA Account
+### Roth IRA Account
 
 A Roth IRA account is an account where after tax contributions
 are made into the account, the interest (or investment returns) accrue
@@ -63,11 +63,11 @@ accounts can also be configured with deferred withdrawals. A [milestone date][mi
 can also be setup for the deferred withdrawal date; such a milestone date
 could be shared by other accounts, such as 401Ks] or other Roth IRAs.
 
-## Withdrawal Priorities
+### Withdrawal Priorities
 
 While deferred withdrawals determine when withdrawals can occur from an account,
 the [withdrawal priority][withdrawPriority] setting determines the relative order in which withdrawals
 will occur amongst different accounts.
 
-## Brokerage Account
+### Brokerage Account
 

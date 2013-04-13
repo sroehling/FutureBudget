@@ -1,6 +1,6 @@
-# Housing Examples
+## Housing Examples
 
-## Home Ownership
+### Home Ownership
 
 A home mortgage is often times setup so you pay a single amount each month. The mortgage company not only pays down the loan, but also pays property taxes and insurance from an escrow account. 
 
@@ -14,12 +14,12 @@ After splitting housing into multiple inputs, a suggestion is to [tag][tags] all
 
 Assuming the home was or will be purchased at the same time the mortgage loan is originated, a [milestone date][milestone] can be created for the purchase date. The __Purchase Date__ for the [asset input][asset], the mortgage loan's __Origination Date__, and the __Start Date__ for related expenses could then reference this same milestone date.
 
-## Renting
+### Renting
 
 When renting, you typically make a single monthly payment to the property owner, who then pays the mortgage, property taxes and other expenses. So, if you're renting, or planning to rent, you can typically setup a single monthly expense called "Rent Payment". 
 
 One interesting renting [scenario][scenario] would be taking on an extra roommate. The payment amount would be reduced to your portion of the overall rent. Other monthly expenses, such as utilities would also be reduced.
 
-## Paying Off a House
+### Paying Off a House
 
 TBD

@@ -1,6 +1,6 @@
-# Retirement Examples
+## Retirement Examples
 
-## Choosing an Expected Retirement Date
+### Choosing an Expected Retirement Date
 
 Creating a 
 a [milestone date][milestone] named "Expected Retirement" is suggested. Multiple inputs can then select this same milestone date as a stop date, such as employment income or employment related expenses. If the expected retirement date changes, all the inputs which have selected this milestone will also change.
@@ -25,19 +25,19 @@ retirement date, as follows:
 8. In other retirement related inputs, also select the milestone date as a stop date.
 
 
-## Reducing Expenses
+### Reducing Expenses
 
 While certain employment related expenses may stop altogether after retirement, others such as gasoline, dry cleaning, or dining out may decrease after retirement. 
 
 To represent these decreased expenses, a [variable amount][variableAmount] would be used, where the starting value is the pre-retirement amount, but there is a decrease in the amount after the retirement date.
 
-## Invest More Conservatively After Retirement
+### Invest More Conservatively After Retirement
 
 Similar to the way certain expense amounts may reduce after retirement, the expected rate of return for investment accounts may decrease after retirement. In other words, after retirement, you might accept a lesser rate of return in return decreased risk of heavy losses.
 
 To represent the a low expected rate of return, a [variable return rate][variableInterest] is used. The starting value is the expected return rate before retirement, and the return rate changes to a smaller percentage value after the expected retirement date.
 
-## Retiring Early
+### Retiring Early
 
 To make changes to input values without impacting
 the default results, a new [alternate scenario][scenario] named "Early Retirement"

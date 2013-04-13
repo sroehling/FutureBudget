@@ -1,4 +1,4 @@
-# 3rd Party Libraries
+## 3rd Party Libraries
 
 The FinSim software incorporates under license a number of 
 third party software libraries.

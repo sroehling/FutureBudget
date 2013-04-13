@@ -1,4 +1,4 @@
-# Account Input
+## Account Input
 
 Account inputs represent various types of savings and investment accounts,
 such as regular savings, 401Ks, or Roth IRAs.
@@ -11,10 +11,5 @@ __Contribution Amount__ and repeat frequency.
 
 Account inputs are different in the way withdrawals are limited, contributions are taxed, 
 withdrawals are taxed, or interest (returns) are taxed. For example, the interest on regular savings
-taxed as income, the contributions to a [401K][2] are tax deductable, but withdrawals from a Roth IRA
-are not taxed. 
-
-## See Also
-
-* [Current Balances][currentBal]
-* [Account Withdrawal Priority][withdrawPriority]
+taxed as income, the contributions to a 401K are tax deductable, but withdrawals from a Roth IRA
+are not taxed.

@@ -1,4 +1,4 @@
-# Tax Input
+## Tax Input
 
 A tax input includes a tax bracket which determines the [tax rate(s)][taxRate] associated with linked inputs. When the tax input is first created, there are a number of presets for creating example tax brackets. Different tax brackets offer flexibility to represent different types of investment capital gains, progressive income, effective tax rates, or flat income taxes.
 

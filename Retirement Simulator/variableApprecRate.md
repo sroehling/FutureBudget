@@ -1,4 +1,4 @@
-# Variable Appreciation
+## Variable Appreciation
 
 Appreciation rates for Assets can remain [fixed][fixedApprec] or change over time. Variable
 appreciation (or depreciation) rates are used when the appreciation is expected
@@ -12,6 +12,6 @@ also be used to setup a list of named values
 which can be quickly selected in different [scenarios][scenario]. 
 
 
-## See Also
+### See Also
 
 * [Fixed Appreciation][fixedApprec]
