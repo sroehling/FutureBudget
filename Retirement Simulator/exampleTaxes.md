@@ -1,6 +1,6 @@
 ## Tax Examples
 
-When first creating inputs for [housing] and [income], it is suggested to represent these items as single [income][income] or [expense][expense] inputs, such as "Take Home Pay" or "Mortgage Payment". An expense input like "Take Home Pay" would already have the tax payments factored in. Similarly, a "Mortgage Payment" expense input would the loan payment, property taxes, insurance.
+When first creating inputs for [housing][housingExample] and [income][incomeExample], it is suggested to represent these items as single [income][income] or [expense][expense] inputs, such as "Take Home Pay" or "Mortgage Payment". An expense input like "Take Home Pay" would already have the tax payments factored in. Similarly, a "Mortgage Payment" expense input would the loan payment, property taxes, insurance.
 
 Similarly, it is recommended to start with simplified [tax inputs][tax], then add more details when and if other inputs become more detailed or the long term results are sensitive to tax calculations. 
 

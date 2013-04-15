@@ -11,6 +11,13 @@
 [incomeExample]:exampleIncome.html
 [taxesExample]:exampleTaxes.html
 
+[employmentIncomeExample]:exampleIncome.html#employment-income
+[monthlyBillsExpenseExample]:exampleExpense.html#starting-with-combined-expenses
+[expenseExampleIrregular]:exampleExpense.html#irregular-expenses
+[exampleHomeOwnership]:exampleHousing.html#home-ownership
+[exampleCarOwnership]:exampleTransportation.html#purchasing-a-vehicle
+[windfallIncomeExample]:exampleIncome.html#windfall-income
+
 <!-- Inputs -->
 [expense]:expense.html
 [asset]:asset.html

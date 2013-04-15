@@ -1,6 +1,6 @@
 ## Transportation Examples
 
-## Purchasing a Vehicle
+### Purchasing a Vehicle
 
 A vehicle you own, or plan to own, is represented as an [asset input][asset]. If you borrowed money (or plan to borrow money) to pay for the vehicle, a [loan input][loan] is also required.
 

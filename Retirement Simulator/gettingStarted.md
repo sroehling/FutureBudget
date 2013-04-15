@@ -40,12 +40,3 @@ Along with different input types, there are numerous and flexible ways to config
 Finally, after populating the FutureBudget with inputs, "what if" scenarios can be evaluated by changing inputs under a specific [scenario][scenario]. For example, a scenario could be used to evaluate sending your kids away for college versus living at home and attending college online.
 
 The recommendations for inputting [common examples][inputExamples] also provide suggestions formore advanced usage by splitting into multiple inputs, [scenarios][scenario], [tags][tags], and [variable amounts][variableAmount].
-
-## Feedback and Support
-
-Although much of the app should be self-explanatory, help is available
-to further explain and clarify certain features, input values, etc. If you see a help
-button, tap on it for more information.
-
-Finally, please feel free to contact us with any questions or feedback. The email
-address for feedback and support is <finsim@resultra.com>.

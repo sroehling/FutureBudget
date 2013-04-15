@@ -5,6 +5,9 @@ exampleIncome.md
 exampleExpense.md
 exampleRetirement.md
 exampleEducation.md
+exampleHousing.md
+exampleTransportation.md
+exampleTaxes.md
 
 sectionInputs.md
 income.md

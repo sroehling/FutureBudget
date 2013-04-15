@@ -10,6 +10,14 @@
 [incomeExample]:#income-examples
 [taxesExample]:#tax-examples
 
+[employmentIncomeExample]:#employment-income
+[monthlyBillsExpenseExample]:#starting-with-combined-expenses
+[expenseExampleIrregular]:#irregular-expenses
+[exampleHomeOwnership]:#home-ownership
+[exampleCarOwnership]:#purchasing-a-vehicle
+[windfallIncomeExample]:#windfall-income
+
+
 <!-- Inputs -->
 [expense]:#expense-input
 [asset]:#asset-input
