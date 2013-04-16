@@ -63,11 +63,5 @@ accounts can also be configured with deferred withdrawals. A [milestone date][mi
 can also be setup for the deferred withdrawal date; such a milestone date
 could be shared by other accounts, such as 401Ks] or other Roth IRAs.
 
-### Withdrawal Priorities
-
-While deferred withdrawals determine when withdrawals can occur from an account,
-the [withdrawal priority][withdrawPriority] setting determines the relative order in which withdrawals
-will occur amongst different accounts.
-
 ### Brokerage Account
 

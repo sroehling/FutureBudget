@@ -7,6 +7,7 @@ exampleRetirement.md
 exampleEducation.md
 exampleHousing.md
 exampleTransportation.md
+exampleSavings.md
 exampleTaxes.md
 
 sectionInputs.md
@@ -26,5 +27,6 @@ inputTags.md
 variableAmount.md
 variableInflation.md
 variableReturn.md
+accountWithdrawalPriority.md
 
 links_internal.md

@@ -33,9 +33,9 @@ online instead of residential college education).
 investment accounts' growth rates.
 * [Tags][tags] - Group related inputs so their values can be reviewed and changed together. 
 
-The app also supports more advanced inputs, such as [assets][asset], [loans][loan], and [accounts][account] for savings or investments. For greater detail, multiple inputs can be used. For example, a home purchase could be represented by loan (mortgage), asset, and expense inputs.
+The app also supports more advanced inputs, such as [assets][asset], [loans][loan], and [accounts][account] for savings or investments. For greater detail, multiple inputs can be used. For example, a [home purchase][exampleHomeOwnership] could be represented by loan (mortgage), asset, and expense inputs.
 
-Along with different input types, there are numerous and flexible ways to configure these inputs. For example, if you expect to drive less after retirement, using a [variable amount][variableAmount], an expense for gasoline could be reduced after your expected retirement date.
+Along with different input types, there are numerous and flexible ways to configure these inputs. For example, if you expect to drive less after retirement, using a [variable amount][variableAmount], an expense for gasoline could be reduced after your [expected retirement date][exampleRetirementPlannedRetirementDate].
 
 Finally, after populating the FutureBudget with inputs, "what if" scenarios can be evaluated by changing inputs under a specific [scenario][scenario]. For example, a scenario could be used to evaluate sending your kids away for college versus living at home and attending college online.
 

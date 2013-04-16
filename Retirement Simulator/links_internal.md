@@ -19,7 +19,9 @@
 [cuttingExpensesExample]:#cutting-expenses
 [collegeExpensesExample]:#breaking-down-college-expenses
 [exampleRetirementPlannedRetirementDate]:#expected-retirement-date
-
+[example401K]:#k-investment-account
+[exampleRegularSavings]:#regular-savings
+[exampleRoth]:#roth-ira-account
 
 <!-- Inputs -->
 [expense]:#expense-input
