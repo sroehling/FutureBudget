@@ -3,7 +3,7 @@
 Inputs can have different values for different scenarios. 
 For example, an expense's __Amount__
 can have a larger value by default, but a smaller value under an
-alternate scenario for reduced expenses. 
+alternate scenario for [reduced expenses][cuttingExpensesExample]. 
 There are two types of scenarios:
 
 * Default Scenario -  The default scenario represents the inputs' expected

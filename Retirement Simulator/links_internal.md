@@ -16,6 +16,9 @@
 [exampleHomeOwnership]:#home-ownership
 [exampleCarOwnership]:#purchasing-a-vehicle
 [windfallIncomeExample]:#windfall-income
+[cuttingExpensesExample]:#cutting-expenses
+[collegeExpensesExample]:#breaking-down-college-expenses
+[exampleRetirementPlannedRetirementDate]:#expected-retirement-date
 
 
 <!-- Inputs -->

@@ -1,9 +1,9 @@
 ## Retirement Examples
 
-### Choosing an Expected Retirement Date
+### Expected Retirement Date
 
 Creating a 
-a [milestone date][milestone] named "Expected Retirement" is suggested. Multiple inputs can then select this same milestone date as a stop date, such as employment income or employment related expenses. If the expected retirement date changes, all the inputs which have selected this milestone will also change.
+a [milestone date][milestone] named "Expected Retirement" is suggested. Multiple inputs can then select this same milestone date as a stop date, such as [employment income][employmentIncomeExample] or employment related expenses. If the expected retirement date changes, all the inputs which have selected this milestone will also change.
 
 To setup the milestone, a retirement related input should first be selected. For example, the __Stop Date__ for income would be changed to reflect the expected
 retirement date, as follows:
@@ -16,7 +16,7 @@ retirement date, as follows:
 
 4. Tap the __Edit__ button.
 
-5. While in edit mode, tap the add button to create the new "Retirement" milestone date.
+5. While in edit mode, tap the add button to create the new "Expected Retirement" milestone date.
 
 6. When done creating the milestone date, tap the __Done__ button.
 

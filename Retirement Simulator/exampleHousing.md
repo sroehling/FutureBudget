@@ -22,4 +22,8 @@ One interesting renting [scenario][scenario] would be taking on an extra roommat
 
 ### Paying Off a House
 
-TBD
+If you expect to pay off a house, you would first need create separate asset, loan and expense inputs to represent [home ownership][exampleHomeOwnership]. In particular, the home loan needs to be separate from the other home ownership related inputs; the reason is once the house is paid off, certain expenses will continue and the home can still be considered an asset.
+
+Depending upon how quickly you want to pay off the house, the [loan input][loan] representing the home loan can be setup accordingly. The loan input can be setup with extra payments, an early payoff date, or both.
+
+Once the home is paid off, and assuming there are no expected changes to income or other expenses, you will want to consider what to do with all the money not being spent on payments for the home loan. One option is to create a [transfer input][transfer] to move the excess money from cash to an investment or savigs account.

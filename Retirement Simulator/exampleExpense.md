@@ -39,3 +39,5 @@ For each expense that will be subject to a reduced amount, change the expense as
    
 4. Tap the __Done__ button to save the changes.
 
+
+After identifying expenses which can be cut, a suggestion is to [tag][tags] the corresponding [expense inputs][expense] with a tag named "Cuttable Expenses" or similar. Then, if you want to review and change the amounts associated with these inputs, the input list can be filtered accordingly.
