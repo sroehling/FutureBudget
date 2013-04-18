@@ -43,7 +43,7 @@
 	
 	sectionInfo = [formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_TITLE") 
-		andHelpFile:@"scenariosAlternate"];
+		andHelpFile:@"scenario" andAnchorWithinHelpFile:@"alternate-scenarios"];
 	sectionInfo.sectionHeader.addButtonDelegate = [[[ScenarioListObjectAdder alloc] init] autorelease];
 	
 	NSArray *userScenarios = [parentContext.dataModelController

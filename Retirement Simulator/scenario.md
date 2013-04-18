@@ -6,16 +6,22 @@ can have a larger value by default, but a smaller value under an
 alternate scenario for [reduced expenses][cuttingExpensesExample]. 
 There are two types of scenarios:
 
-* Default Scenario -  The default scenario represents the inputs' expected
+### Default Scenario
+
+The default scenario represents the inputs' expected
 values. This scenario serves also  serves 
 as a starting  point or "baseline" for changes made under alternate 
 scenarios. There is only one default scenario.
 
-* Alternate Scenario(s) - Alternate scenarios are a good way to try
+### Alternate Scenarios
+
+Alternate scenarios are a good way to try
 different values and address "what if" questions. If a value is not
 set for an alternate scenario, the value for the default scenario is used. 
 Any number of alternate scenarios can be created. 
  
+### Input Values and Scenarios 
+
 When inputs are first created, the inputs' values are saved
 under the default scenario.  Thereafter, changes to inputs 
 are saved under the currently selected scenario. 

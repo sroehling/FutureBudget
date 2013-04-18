@@ -23,7 +23,7 @@ Similar to the way expenses may increase or decrease with [retirement][retiremen
 
 For example, instead of having a full price wedding, the wedding's size and cost could be reduced with the difference being saved. Or, instead of dining out for lunch several times a week, this expense could be trimmed and the difference being invested. Other expenses, like a gym membership could be cut altogether.
 
-To make changes to input values without impacting the default results, a new [alternate scenario][scenario] named "Cutting Expenses" could first be created and selected as the current scenario. 
+To make changes to input values without impacting the default results, a new [alternate scenario][alternateScenario] named "Cutting Expenses" could first be created and selected as the current scenario. 
 
 This scenario can be created by going to the scenario list in the __What If__ tab. Then select it as the current scenario, so further changes to input values will be saved under this scenario.
 

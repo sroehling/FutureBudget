@@ -6,7 +6,7 @@ A "regular savings" account refers to an account where after tax income
 is deposited into an account, and the account accrues interest. An [account input][account] represents
 a regular savings account.
 
-The [current balance][currentBal], [withdrawal priority][withdrawPriority], interest rate and contributions for this type
+The [current balance][currentBal], [withdrawal order][withdrawPriority], interest rate and contributions for this type
 of are configured like any other account. 
 
 What makes a regular savings account
@@ -22,7 +22,7 @@ a [variable return][varReturn] rate can also be used with a savings account.
 
 A 401K account is an account where tax deductible contributions
 are made into the account, the interest (or investment returns) accrue
-tax free, but withdrawals are taxable. A [account input][account] represents
+tax free, but withdrawals are taxable. An [account input][account] represents
 a 401K account.
 
 The [current balance][currentBal], interest rate and contributions for this type
@@ -44,7 +44,7 @@ could be shared by other accounts, such as Roth IRAs or other 401Ks.
 
 A Roth IRA account is an account where after tax contributions
 are made into the account, the interest (or investment returns) accrue
-tax free, and withdrawals are tax free. An [account input][1]
+tax free, and withdrawals are tax free. An [account input][account]
 Roth IRA account.
 
 The [current balance][currentBal], interest rate and contributions for this type

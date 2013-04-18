@@ -40,7 +40,7 @@ To represent the a low expected rate of return, a [variable return rate][variabl
 ### Retiring Early
 
 To make changes to input values without impacting
-the default results, a new [alternate scenario][scenario] named "Early Retirement"
+the default results, a new [alternate scenario][alternateScenario] named "Early Retirement"
 is created then selected as the current scenario. 
 
 This scenario can be created by going to the scenario list in the 

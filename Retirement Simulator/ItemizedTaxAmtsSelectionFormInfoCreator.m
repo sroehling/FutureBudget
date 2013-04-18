@@ -103,7 +103,8 @@
 			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
 				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
 				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_INCOME_TITLE")]
-				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile
+				andAnchorWithinHelpFile:self.itemizedTaxAmtsInfo.anchorWithinHelpFile];
 
 			for(IncomeItemizedTaxAmt *itemizedIncome in fieldPopulator.itemizedIncomes )
 			{

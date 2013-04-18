@@ -34,16 +34,17 @@
 
 <!-- Main Features -->
 [scenario]:#scenarios
+[alternateScenario]:#alternate-scenarios
 [milestone]:#milestone-date
 [tags]:#input-tags
-[withdrawPriority]:#account-withdrawal-order
+[withdrawPriority]:#withdrawal-order
 
 <!-- Startup (simulation setup) -->
 [deficit]:deficit.html
 [resultsTimeFrame]:resultsTimeFrame.html
-[currentBal]:currentBalances.html
-[currentAssetVals]:currentAssetValues.html
-[outstandingLoanBal]:outstandingLoanBalances.html
+[currentBal]:#current-account-balances
+[currentAssetVals]:#current-asset-value
+[outstandingLoanBal]:#outstanding-loan-balance
 
 <!--Variable & Fixed Values -->
 [fixedAmount]:fixedAmount.html
@@ -71,11 +72,11 @@
 [neverEndDateSell]:neverEndDateSell.html
 
 <!-- Tax Related -->
-[deduction]:taxDeduction.html
-[taxSource]:taxSource.html
-[credit]:taxCredit.html
-[adjustment]:taxAdjustments.html
-[taxRate]:taxRate.html
+[deduction]:#deductions
+[taxSource]:#tax-sources
+[credit]:#credits
+[adjustment]:#adjustments
+[taxRate]:#tax-rates
 
-[loanOrig]:loanOrig.html
+[loanOrig]:#loan-origination
 

@@ -76,7 +76,7 @@
 
 	
 	sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE")
-		andHelpFile:@"currentBalances"];
+		andHelpFile:@"account" andAnchorWithinHelpFile:@"current-account-balances"];
 	
 	
 	NSArray *accounts = [parentContext.dataModelController 
@@ -97,7 +97,7 @@
 	if([assets count] > 0)
 	{
 		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_CURRENT_ASSET_VALUES")
-			andHelpFile:@"currentAssetValues"];
+			andHelpFile:@"asset" andAnchorWithinHelpFile:@"current-asset-value"];
 		for(AssetInput *asset in assets)
 		{
 			[formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
@@ -127,7 +127,7 @@
         {
             [formPopulator nextSectionWithTitle:
              LOCALIZED_STR(@"STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE")
-                                    andHelpFile:@"outstandingLoanBalances"];
+					andHelpFile:@"loan" andAnchorWithinHelpFile:@"outstanding-loan-balance"];
             
             for(LoanInput *pastLoan in loansOriginatingInPast)
             {

@@ -35,6 +35,7 @@
 @synthesize itemizeLoanInterest;
 @synthesize itemizeAssetGains;
 @synthesize itemizeTaxesPaid;
+@synthesize anchorWithinHelpFile;
 
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
@@ -44,6 +45,7 @@
 	andItemTitle:(NSString*)theItemTitle
 	andItemSectionTitleFormat:(NSString*)theItemSectionTitleFormat
 	andItemHelpInfoFile:(NSString*)theItemHelpFile
+	andAnchorWithinHelpFile:(NSString*)anchorName
 	andItemizeIncomes:(BOOL)doItemizeIncomes
 	andItemizeExpenses:(BOOL)doItemizeExpenses
 	andItemizeAccountContribs:(BOOL)doItemizeAcctContribs
@@ -73,6 +75,7 @@
 		
 		assert([StringValidation nonEmptyString:theItemHelpFile]);
 		self.itemHelpInfoFile = theItemHelpFile;
+		self.anchorWithinHelpFile = anchorName;
 		
 		self.itemizeIncomes = doItemizeIncomes;
 		self.itemizeExpenses = doItemizeExpenses;
@@ -109,7 +112,8 @@
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_ITEM_TITLE")
 			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCE_TITLE_FORMAT")
-			andItemHelpInfoFile:@"taxSource"		
+			andItemHelpInfoFile:@"tax"
+			andAnchorWithinHelpFile:@"tax-sources"
 			andItemizeIncomes:				TRUE 
 			andItemizeExpenses:				FALSE 
 			andItemizeAccountContribs:		FALSE 
@@ -131,7 +135,8 @@
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_ITEM_TITLE")
 			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENT_TITLE_FORMAT")
-			andItemHelpInfoFile:@"taxAdjustment" 		
+			andItemHelpInfoFile:@"tax"
+			andAnchorWithinHelpFile:@"adjustments"
 			andItemizeIncomes:				FALSE 
 			andItemizeExpenses:				TRUE 
 			andItemizeAccountContribs:		TRUE 
@@ -153,7 +158,8 @@
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTIONS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_ITEM_TITLE")
 			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_DEDUCTION_TITLE_FORMAT")
-			andItemHelpInfoFile:@"taxDeduction"  		
+			andItemHelpInfoFile:@"tax"
+			andAnchorWithinHelpFile:@"deductions"
 			andItemizeIncomes:				FALSE 
 			andItemizeExpenses:				TRUE 
 			andItemizeAccountContribs:		TRUE 
@@ -174,7 +180,8 @@
 			andAmtPrompt:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_AMOUNT_PROMPT")
 			andItemTitle:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_ITEM_TITLE")
 			andItemSectionTitleFormat:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDIT_TITLE_FORMAT")
-			andItemHelpInfoFile:@"taxCredit" 	
+			andItemHelpInfoFile:@"tax"
+			andAnchorWithinHelpFile:@"credits"
 			andItemizeIncomes:				FALSE 
 			andItemizeExpenses:				TRUE 
 			andItemizeAccountContribs:		TRUE 
@@ -199,6 +206,7 @@
 {
 	[title release];
 	[itemHelpInfoFile release];
+	[anchorWithinHelpFile release];
 	[itemSectionTitleFormat release];
 	[tax release];
 	[itemizedTaxAmts release];

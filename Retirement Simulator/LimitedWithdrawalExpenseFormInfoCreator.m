@@ -46,7 +46,7 @@
 	{
 		SectionInfo *sectionInfo = [formPopulator 
 			nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_LIMITED_WITHDRAWAL_SECTION_TITLE")
-			andHelpFile:@"limitedWithdrawal"];
+			andHelpFile:@"account" andAnchorWithinHelpFile:@"limited-withdrawals"];
 		for(ExpenseInput *expense in inputs)
 		{ 
 		  

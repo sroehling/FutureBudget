@@ -564,7 +564,7 @@
 	}
 
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_SECTION_TITLE")
-        andHelpFile:@"loanOrig"];
+        andHelpFile:@"loan" andAnchorWithinHelpFile:@"loan-origination"];
 	
 	[self.formPopulator populateMultiScenSimDate:loan.origDate 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL") 
@@ -744,7 +744,7 @@
 		
 	// Tax Bracket Section
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_BRACKET_SECTION_TITLE")
-		andHelpFile:@"taxRate"];
+		andHelpFile:@"tax" andAnchorWithinHelpFile:@"tax-rates"];
 	
 	
 	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
@@ -768,7 +768,7 @@
 
 	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_SOURCES_SECTION_TITLE")
-		andHelpFile:@"taxIncomeSources"];
+		andHelpFile:@"tax" andAnchorWithinHelpFile:@"tax-sources"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_SOURCES_TITLE") 
 			andItemizedTaxAmtsFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc]
 				initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxSourceInfo:tax 
@@ -779,7 +779,7 @@
 
 	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_ADJUSTMENT_SECTION_TITLE")
-		andHelpFile:@"taxAdjustments"];
+		andHelpFile:@"tax" andAnchorWithinHelpFile:@"adjustments"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ADJUSTMENTS_TITLE")
 		andItemizedTaxAmtsFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc] 
 			initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxAdjustmentInfo:tax 
@@ -789,7 +789,7 @@
 	// Exemptions Section
 	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_SECTION_TITLE")
-		andHelpFile:@"taxExemptions"];
+		andHelpFile:@"tax" andAnchorWithinHelpFile:@"exemptions"];
 	
 	[self.formPopulator populateMultiScenarioAmount:tax.exemptionAmt 
 		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_EXEMPTION_AMOUNT_TITLE")
@@ -804,7 +804,7 @@
 
 	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_DEDUCTION_SECTION_TITLE")
-		andHelpFile:@"taxDeductions"];
+		andHelpFile:@"tax" andAnchorWithinHelpFile:@"deductions"];
 
 	[self.formPopulator populateMultiScenarioAmount:tax.stdDeductionAmt 
 		withValueTitle:LOCALIZED_STR(@"INPUT_TAX_STD_DEDUCTION_TITLE")
@@ -824,7 +824,7 @@
 		
 	[formPopulator 
 		nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_CREDITS_SECTION_TITLE")
-		andHelpFile:@"taxCredits"];
+		andHelpFile:@"tax" andAnchorWithinHelpFile:@"credits"];
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_CREDITS_TITLE")
 		andItemizedTaxAmtsFormInfoCreator:[[[ItemizedTaxAmtsSelectionFormInfoCreator alloc]
 		initWithItemizedTaxAmtsInfo:[ItemizedTaxAmtsInfo taxCreditInfo:tax 

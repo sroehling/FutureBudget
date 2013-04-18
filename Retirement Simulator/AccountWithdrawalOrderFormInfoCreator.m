@@ -44,9 +44,12 @@
     FormPopulator *formPopulator = [[[FormPopulator alloc] 
 		initWithFormContext:parentContext] autorelease];
 		
+	// TODO - Need to merge account withdrawal priority into the account help file and link
+	// to an anchor within the file.
 	[formPopulator populateWithHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL")
 		andSubHeader:LOCALIZED_STR(@"INPUT_ACCOUNT__WITHDRAWAL_PRIORITY_TABLE_SUBTITLE")
-		andHelpFile:@"accountWithdrawalPriority" andParentController:parentContext.parentController];
+		andHelpFile:@"account" andAnchorWithinHelpFile:@"withdrawal-order"
+		andParentController:parentContext.parentController];
   
 	formPopulator.formInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL");
   		

@@ -102,7 +102,6 @@
 		0025776C13B2971C00D15232 /* ValueAsOfCalculatorCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025776B13B2971B00D15232 /* ValueAsOfCalculatorCreator.m */; };
 		0026D3FC16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D3FB16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m */; };
 		0026D40016E6512200922D16 /* TestTaxBracket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D3FF16E6512200922D16 /* TestTaxBracket.m */; };
-		0026D40216E67C5200922D16 /* taxRate.md in Resources */ = {isa = PBXBuildFile; fileRef = 0026D40116E67C5100922D16 /* taxRate.md */; };
 		0026D42016E7B1E500922D16 /* InputNameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D41F16E7B1E500922D16 /* InputNameValidator.m */; };
 		0026D42316E8F61800922D16 /* ScenarioNameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D42216E8F61800922D16 /* ScenarioNameValidator.m */; };
 		0026D42616E90CDB00922D16 /* MilestoneDateNameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D42516E90CDB00922D16 /* MilestoneDateNameValidator.m */; };
@@ -112,23 +111,10 @@
 		0026D45416EA8EDE00922D16 /* AccountWithdrawalOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0026D45316EA8EDD00922D16 /* AccountWithdrawalOrderInfo.m */; };
 		002BE66A14698CCA002E6162 /* ItemizedTaxAmts.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */; };
 		002FAE9C14D3111E00AE2B41 /* milestoneDate.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9B14D3111E00AE2B41 /* milestoneDate.md */; };
-		002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9D14D3194800AE2B41 /* startingValue.md */; };
 		002FAEA014D32B3F00AE2B41 /* scenario.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAE9F14D32B3F00AE2B41 /* scenario.md */; };
-		002FAEA914D38F4600AE2B41 /* currentBalances.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEA814D38F4600AE2B41 /* currentBalances.md */; };
-		002FAEAB14D4413C00AE2B41 /* taxIncomeSources.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEAA14D4413C00AE2B41 /* taxIncomeSources.md */; };
-		002FAEAD14D4434C00AE2B41 /* taxAdjustments.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEAC14D4434C00AE2B41 /* taxAdjustments.md */; };
-		002FAEAF14D4441400AE2B41 /* taxExemptions.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEAE14D4441400AE2B41 /* taxExemptions.md */; };
-		002FAEB314D444BE00AE2B41 /* taxDeductions.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEB214D444BD00AE2B41 /* taxDeductions.md */; };
-		002FAEB514D4459600AE2B41 /* taxCredits.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEB414D4459600AE2B41 /* taxCredits.md */; };
-		002FAEB714D4495200AE2B41 /* scenariosAlternate.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEB614D4495100AE2B41 /* scenariosAlternate.md */; };
 		002FAEB914D45B7E00AE2B41 /* resultsTimeFrame.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEB814D45B7D00AE2B41 /* resultsTimeFrame.md */; };
 		002FAEBB14D45CEB00AE2B41 /* deficit.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEBA14D45CEA00AE2B41 /* deficit.md */; };
 		002FAEBD14D45D7E00AE2B41 /* inflationAdjustment.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */; };
-		002FAEC114D466F700AE2B41 /* limitedWithdrawal.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC014D466F500AE2B41 /* limitedWithdrawal.md */; };
-		002FAEC314D4784500AE2B41 /* taxSource.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC214D4784300AE2B41 /* taxSource.md */; };
-		002FAEC514D478AF00AE2B41 /* taxAdjustment.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC414D478AD00AE2B41 /* taxAdjustment.md */; };
-		002FAEC714D4790200AE2B41 /* taxDeduction.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC614D478FF00AE2B41 /* taxDeduction.md */; };
-		002FAEC914D4797000AE2B41 /* taxCredit.md in Resources */ = {isa = PBXBuildFile; fileRef = 002FAEC814D4796E00AE2B41 /* taxCredit.md */; };
 		00307FBF169F605500EB70C1 /* input-icon-book@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00307FBE169F605500EB70C1 /* input-icon-book@2x.png */; };
 		00307FC1169F616F00EB70C1 /* input-icon-book.png in Resources */ = {isa = PBXBuildFile; fileRef = 00307FC0169F616F00EB70C1 /* input-icon-book.png */; };
 		00308012169F665000EB70C1 /* input-icon-airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 00307FC2169F664700EB70C1 /* input-icon-airplane.png */; };
@@ -275,11 +261,8 @@
 		005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
-		0057F3E914F69C4C006A2FA3 /* currentAssetValues.md in Resources */ = {isa = PBXBuildFile; fileRef = 0057F3E814F69C4C006A2FA3 /* currentAssetValues.md */; };
-		0057F3EC14F69CAA006A2FA3 /* outstandingLoanBalances.md in Resources */ = {isa = PBXBuildFile; fileRef = 0057F3EB14F69CAA006A2FA3 /* outstandingLoanBalances.md */; };
 		0057F42F14F81B2C006A2FA3 /* account.md in Resources */ = {isa = PBXBuildFile; fileRef = 0057F42E14F81B2C006A2FA3 /* account.md */; };
 		0058A80F14F830BB00F2DCEF /* income.md in Resources */ = {isa = PBXBuildFile; fileRef = 0058A80E14F830BB00F2DCEF /* income.md */; };
-		0058A81214F92F5600F2DCEF /* accountWithdrawalPriority.md in Resources */ = {isa = PBXBuildFile; fileRef = 0058A81114F92F5600F2DCEF /* accountWithdrawalPriority.md */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		005DAEEC1460635800D87907 /* AssetGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEB1460635800D87907 /* AssetGainItemizedTaxAmt.m */; };
@@ -309,7 +292,6 @@
 		0064D06616C2E3BB001F6578 /* input-icon-loan-college@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06116C2E3BB001F6578 /* input-icon-loan-college@2x.png */; };
 		0064D06716C2E3BB001F6578 /* input-icon-loan-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06216C2E3BB001F6578 /* input-icon-loan-home@2x.png */; };
 		0064D06816C2E3BB001F6578 /* input-icon-loan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06316C2E3BB001F6578 /* input-icon-loan@2x.png */; };
-		0064D06B16C55FB4001F6578 /* loanOrig.md in Resources */ = {isa = PBXBuildFile; fileRef = 0064D06A16C55FB4001F6578 /* loanOrig.md */; };
 		006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */; };
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
@@ -758,7 +740,6 @@
 		0026D3FB16DFC46C00922D16 /* TaxInputTypeSelectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputTypeSelectionInfo.m; sourceTree = "<group>"; };
 		0026D3FE16E6512200922D16 /* TestTaxBracket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTaxBracket.h; sourceTree = "<group>"; };
 		0026D3FF16E6512200922D16 /* TestTaxBracket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTaxBracket.m; sourceTree = "<group>"; };
-		0026D40116E67C5100922D16 /* taxRate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxRate.md; sourceTree = "<group>"; };
 		0026D41E16E7B1E400922D16 /* InputNameValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputNameValidator.h; sourceTree = "<group>"; };
 		0026D41F16E7B1E500922D16 /* InputNameValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputNameValidator.m; sourceTree = "<group>"; };
 		0026D42116E8F61800922D16 /* ScenarioNameValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioNameValidator.h; sourceTree = "<group>"; };
@@ -777,23 +758,10 @@
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
 		002E7B66167A2DD700713684 /* AppStoreInfo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStoreInfo.md; sourceTree = "<group>"; };
 		002FAE9B14D3111E00AE2B41 /* milestoneDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = milestoneDate.md; sourceTree = "<group>"; };
-		002FAE9D14D3194800AE2B41 /* startingValue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = startingValue.md; sourceTree = "<group>"; };
 		002FAE9F14D32B3F00AE2B41 /* scenario.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario.md; sourceTree = "<group>"; };
-		002FAEA814D38F4600AE2B41 /* currentBalances.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentBalances.md; sourceTree = "<group>"; };
-		002FAEAA14D4413C00AE2B41 /* taxIncomeSources.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxIncomeSources.md; sourceTree = "<group>"; };
-		002FAEAC14D4434C00AE2B41 /* taxAdjustments.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxAdjustments.md; sourceTree = "<group>"; };
-		002FAEAE14D4441400AE2B41 /* taxExemptions.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxExemptions.md; sourceTree = "<group>"; };
-		002FAEB214D444BD00AE2B41 /* taxDeductions.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxDeductions.md; sourceTree = "<group>"; };
-		002FAEB414D4459600AE2B41 /* taxCredits.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxCredits.md; sourceTree = "<group>"; };
-		002FAEB614D4495100AE2B41 /* scenariosAlternate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenariosAlternate.md; sourceTree = "<group>"; };
 		002FAEB814D45B7D00AE2B41 /* resultsTimeFrame.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = resultsTimeFrame.md; sourceTree = "<group>"; };
 		002FAEBA14D45CEA00AE2B41 /* deficit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deficit.md; sourceTree = "<group>"; };
 		002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inflationAdjustment.md; sourceTree = "<group>"; };
-		002FAEC014D466F500AE2B41 /* limitedWithdrawal.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = limitedWithdrawal.md; sourceTree = "<group>"; };
-		002FAEC214D4784300AE2B41 /* taxSource.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxSource.md; sourceTree = "<group>"; };
-		002FAEC414D478AD00AE2B41 /* taxAdjustment.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxAdjustment.md; sourceTree = "<group>"; };
-		002FAEC614D478FF00AE2B41 /* taxDeduction.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxDeduction.md; sourceTree = "<group>"; };
-		002FAEC814D4796E00AE2B41 /* taxCredit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxCredit.md; sourceTree = "<group>"; };
 		00307FBE169F605500EB70C1 /* input-icon-book@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-book@2x.png"; sourceTree = "<group>"; };
 		00307FC0169F616F00EB70C1 /* input-icon-book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-book.png"; sourceTree = "<group>"; };
 		00307FC2169F664700EB70C1 /* input-icon-airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-airplane.png"; sourceTree = "<group>"; };
@@ -1005,11 +973,8 @@
 		005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeatFrequency.m; sourceTree = "<group>"; };
 		005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyEditViewController.h; sourceTree = "<group>"; };
 		005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyEditViewController.m; sourceTree = "<group>"; };
-		0057F3E814F69C4C006A2FA3 /* currentAssetValues.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentAssetValues.md; sourceTree = "<group>"; };
-		0057F3EB14F69CAA006A2FA3 /* outstandingLoanBalances.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = outstandingLoanBalances.md; sourceTree = "<group>"; };
 		0057F42E14F81B2C006A2FA3 /* account.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = account.md; sourceTree = "<group>"; };
 		0058A80E14F830BB00F2DCEF /* income.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = income.md; sourceTree = "<group>"; };
-		0058A81114F92F5600F2DCEF /* accountWithdrawalPriority.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = accountWithdrawalPriority.md; sourceTree = "<group>"; };
 		005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedDateFieldInfo.h; sourceTree = "<group>"; };
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
@@ -1054,7 +1019,6 @@
 		0064D06116C2E3BB001F6578 /* input-icon-loan-college@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-college@2x.png"; sourceTree = "<group>"; };
 		0064D06216C2E3BB001F6578 /* input-icon-loan-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan-home@2x.png"; sourceTree = "<group>"; };
 		0064D06316C2E3BB001F6578 /* input-icon-loan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input-icon-loan@2x.png"; sourceTree = "<group>"; };
-		0064D06A16C55FB4001F6578 /* loanOrig.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = loanOrig.md; sourceTree = "<group>"; };
 		006572D114338E500062C00C /* DeferredWithdrawalFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFieldEditInfo.h; sourceTree = "<group>"; };
 		006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFieldEditInfo.m; sourceTree = "<group>"; };
 		006572D4143393110062C00C /* DeferredWithdrawalFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredWithdrawalFormInfoCreator.h; sourceTree = "<group>"; };
@@ -1906,7 +1870,7 @@
 		002FAE9A14D3105900AE2B41 /* Key Features */ = {
 			isa = PBXGroup;
 			children = (
-				002FAE9D14D3194800AE2B41 /* startingValue.md */,
+				000E92ED16CEDBA200E07465 /* inputTags.md */,
 				002FAE9F14D32B3F00AE2B41 /* scenario.md */,
 				000373D514F487EB008DCDF5 /* expense.md */,
 				000373D814F495BA008DCDF5 /* asset.md */,
@@ -1914,7 +1878,6 @@
 				000373DC14F4A4A6008DCDF5 /* tax.md */,
 				0057F42E14F81B2C006A2FA3 /* account.md */,
 				0058A80E14F830BB00F2DCEF /* income.md */,
-				0058A81114F92F5600F2DCEF /* accountWithdrawalPriority.md */,
 				001AE1D21715DDD0000F461D /* transfer.md */,
 			);
 			name = "Key Features";
@@ -1923,29 +1886,11 @@
 		002FAEA614D38F0A00AE2B41 /* Context Help */ = {
 			isa = PBXGroup;
 			children = (
-				0064D06916C55F92001F6578 /* Loan */,
+				0042D480171F2B9A00575E70 /* Startup */,
 				00DC49E414D71453006BDF61 /* Simulation Dates */,
-				00DC49D714D6FDDD006BDF61 /* Taxes */,
 				00DC49D614D6FDBB006BDF61 /* Variable Values */,
-				002FAEA714D38F1F00AE2B41 /* Startup Tab */,
-				002FAEB614D4495100AE2B41 /* scenariosAlternate.md */,
-				002FAEB814D45B7D00AE2B41 /* resultsTimeFrame.md */,
-				002FAEBA14D45CEA00AE2B41 /* deficit.md */,
-				002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */,
-				002FAEC014D466F500AE2B41 /* limitedWithdrawal.md */,
-				000E92ED16CEDBA200E07465 /* inputTags.md */,
 			);
 			name = "Context Help";
-			sourceTree = "<group>";
-		};
-		002FAEA714D38F1F00AE2B41 /* Startup Tab */ = {
-			isa = PBXGroup;
-			children = (
-				002FAEA814D38F4600AE2B41 /* currentBalances.md */,
-				0057F3E814F69C4C006A2FA3 /* currentAssetValues.md */,
-				0057F3EB14F69CAA006A2FA3 /* outstandingLoanBalances.md */,
-			);
-			name = "Startup Tab";
 			sourceTree = "<group>";
 		};
 		003085D11483EEA100837D02 /* Itemized Tax Amt Creators */ = {
@@ -2039,6 +1984,16 @@
 				001AE1E517186EC3000F461D /* links_external.md */,
 			);
 			name = "Markdown Links";
+			sourceTree = "<group>";
+		};
+		0042D480171F2B9A00575E70 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				002FAEB814D45B7D00AE2B41 /* resultsTimeFrame.md */,
+				002FAEBA14D45CEA00AE2B41 /* deficit.md */,
+				002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */,
+			);
+			name = Startup;
 			sourceTree = "<group>";
 		};
 		0049DC7013A2884D00B27046 /* Input Creation */ = {
@@ -2386,14 +2341,6 @@
 				0099A1671457ACCD00E35AF9 /* Expense */,
 			);
 			name = "Simulator Inputs";
-			sourceTree = "<group>";
-		};
-		0064D06916C55F92001F6578 /* Loan */ = {
-			isa = PBXGroup;
-			children = (
-				0064D06A16C55FB4001F6578 /* loanOrig.md */,
-			);
-			name = Loan;
 			sourceTree = "<group>";
 		};
 		006572CF14338DCE0062C00C /* Deferred Withdrawals */ = {
@@ -2945,23 +2892,6 @@
 			name = "Variable Values";
 			sourceTree = "<group>";
 		};
-		00DC49D714D6FDDD006BDF61 /* Taxes */ = {
-			isa = PBXGroup;
-			children = (
-				002FAEC214D4784300AE2B41 /* taxSource.md */,
-				002FAEC414D478AD00AE2B41 /* taxAdjustment.md */,
-				002FAEC614D478FF00AE2B41 /* taxDeduction.md */,
-				002FAEC814D4796E00AE2B41 /* taxCredit.md */,
-				002FAEAA14D4413C00AE2B41 /* taxIncomeSources.md */,
-				002FAEAC14D4434C00AE2B41 /* taxAdjustments.md */,
-				002FAEAE14D4441400AE2B41 /* taxExemptions.md */,
-				002FAEB214D444BD00AE2B41 /* taxDeductions.md */,
-				002FAEB414D4459600AE2B41 /* taxCredits.md */,
-				0026D40116E67C5100922D16 /* taxRate.md */,
-			);
-			name = Taxes;
-			sourceTree = "<group>";
-		};
 		00DC49E414D71453006BDF61 /* Simulation Dates */ = {
 			isa = PBXGroup;
 			children = (
@@ -3186,23 +3116,10 @@
 				00EC4561141B183D00D65D17 /* clock.png in Resources */,
 				00899D8014D1DCEC00CBFE6F /* gettingStarted.md in Resources */,
 				002FAE9C14D3111E00AE2B41 /* milestoneDate.md in Resources */,
-				002FAE9E14D3194800AE2B41 /* startingValue.md in Resources */,
 				002FAEA014D32B3F00AE2B41 /* scenario.md in Resources */,
-				002FAEA914D38F4600AE2B41 /* currentBalances.md in Resources */,
-				002FAEAB14D4413C00AE2B41 /* taxIncomeSources.md in Resources */,
-				002FAEAD14D4434C00AE2B41 /* taxAdjustments.md in Resources */,
-				002FAEAF14D4441400AE2B41 /* taxExemptions.md in Resources */,
-				002FAEB314D444BE00AE2B41 /* taxDeductions.md in Resources */,
-				002FAEB514D4459600AE2B41 /* taxCredits.md in Resources */,
-				002FAEB714D4495200AE2B41 /* scenariosAlternate.md in Resources */,
 				002FAEB914D45B7E00AE2B41 /* resultsTimeFrame.md in Resources */,
 				002FAEBB14D45CEB00AE2B41 /* deficit.md in Resources */,
 				002FAEBD14D45D7E00AE2B41 /* inflationAdjustment.md in Resources */,
-				002FAEC114D466F700AE2B41 /* limitedWithdrawal.md in Resources */,
-				002FAEC314D4784500AE2B41 /* taxSource.md in Resources */,
-				002FAEC514D478AF00AE2B41 /* taxAdjustment.md in Resources */,
-				002FAEC714D4790200AE2B41 /* taxDeduction.md in Resources */,
-				002FAEC914D4797000AE2B41 /* taxCredit.md in Resources */,
 				00DC49CA14D6F363006BDF61 /* variableInterest.md in Resources */,
 				00DC49CD14D6F624006BDF61 /* variableInflation.md in Resources */,
 				00DC49CF14D6F747006BDF61 /* variableAmount.md in Resources */,
@@ -3230,11 +3147,8 @@
 				000373D914F495BA008DCDF5 /* asset.md in Resources */,
 				000373DB14F49E66008DCDF5 /* loan.md in Resources */,
 				000373DD14F4A4A6008DCDF5 /* tax.md in Resources */,
-				0057F3E914F69C4C006A2FA3 /* currentAssetValues.md in Resources */,
-				0057F3EC14F69CAA006A2FA3 /* outstandingLoanBalances.md in Resources */,
 				0057F42F14F81B2C006A2FA3 /* account.md in Resources */,
 				0058A80F14F830BB00F2DCEF /* income.md in Resources */,
-				0058A81214F92F5600F2DCEF /* accountWithdrawalPriority.md in Resources */,
 				00A0CE8416727DB800CDFD78 /* markdown.css in Resources */,
 				005F8AFB167B8BF900148BBE /* thirdPartyLibs.md in Resources */,
 				005F8AFD167B8C2900148BBE /* about.md in Resources */,
@@ -3360,13 +3274,11 @@
 				0064D06616C2E3BB001F6578 /* input-icon-loan-college@2x.png in Resources */,
 				0064D06716C2E3BB001F6578 /* input-icon-loan-home@2x.png in Resources */,
 				0064D06816C2E3BB001F6578 /* input-icon-loan@2x.png in Resources */,
-				0064D06B16C55FB4001F6578 /* loanOrig.md in Resources */,
 				000E92EE16CEDBA300E07465 /* inputTags.md in Resources */,
 				003FFA3B16D5348300B83067 /* search.png in Resources */,
 				003FFA3C16D5348300B83067 /* search@2x.png in Resources */,
 				00E9ADDE16DD1F2300128579 /* TaxPresets.plist in Resources */,
 				006B012F16DE742400416F54 /* taxPresets.md in Resources */,
-				0026D40216E67C5200922D16 /* taxRate.md in Resources */,
 				001AE1C7171494C5000F461D /* example.md in Resources */,
 				001AE1C8171494C5000F461D /* exampleEducation.md in Resources */,
 				001AE1C9171494C5000F461D /* exampleExpense.md in Resources */,

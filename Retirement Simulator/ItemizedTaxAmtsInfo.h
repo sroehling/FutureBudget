@@ -21,6 +21,7 @@
 		NSString *itemTitle;
 		NSString *itemSectionTitleFormat;
 		NSString *itemHelpInfoFile;
+		NSString *anchorWithinHelpFile;
 		
 		TaxInput *tax;
 		ItemizedTaxAmts *itemizedTaxAmts;
@@ -43,6 +44,7 @@
 @property(nonatomic,retain) NSString *itemTitle;
 @property(nonatomic,retain) NSString *itemSectionTitleFormat;
 @property(nonatomic,retain) NSString *itemHelpInfoFile;
+@property(nonatomic,retain) NSString *anchorWithinHelpFile;
 
 @property(nonatomic,retain) TaxInput *tax;
 @property(nonatomic,retain) ItemizedTaxAmts *itemizedTaxAmts;
@@ -64,6 +66,7 @@
 	andItemTitle:(NSString*)theItemTitle
 	andItemSectionTitleFormat:(NSString*)theItemSectionTitleFormat
 	andItemHelpInfoFile:(NSString*)theItemHelpFile
+	andAnchorWithinHelpFile:(NSString*)anchorName
 	andItemizeIncomes:(BOOL)doItemizeIncomes
 	andItemizeExpenses:(BOOL)doItemizeExpenses
 	andItemizeAccountContribs:(BOOL)doItemizeAcctContribs
