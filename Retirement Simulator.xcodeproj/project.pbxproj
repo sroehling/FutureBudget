@@ -220,6 +220,8 @@
 		0041263A13A6A745008F0647 /* InputFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263913A6A745008F0647 /* InputFieldEditInfo.m */; };
 		0041263E13A7DED9008F0647 /* InputListObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041263D13A7DED9008F0647 /* InputListObjectAdder.m */; };
 		0042D47C1718ACB200575E70 /* sectionFeatures.md in Resources */ = {isa = PBXBuildFile; fileRef = 0042D47B1718ACB100575E70 /* sectionFeatures.md */; };
+		0042D48317205DE200575E70 /* cash.md in Resources */ = {isa = PBXBuildFile; fileRef = 0042D48217205DE100575E70 /* cash.md */; };
+		0042D48417208BFF00575E70 /* sectionStartup.md in Resources */ = {isa = PBXBuildFile; fileRef = 0042D4811720582000575E70 /* sectionStartup.md */; };
 		0049DC7413A537CD00B27046 /* VariableValueFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */; };
 		0049DC7713A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7613A53E4500B27046 /* DateSensitiveValueChangeFieldEditInfo.m */; };
 		0049DC7A13A54B3100B27046 /* DateSensitiveValueChangeSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0049DC7913A54B3000B27046 /* DateSensitiveValueChangeSectionInfo.m */; };
@@ -890,6 +892,8 @@
 		0042D47B1718ACB100575E70 /* sectionFeatures.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sectionFeatures.md; sourceTree = "<group>"; };
 		0042D47D1718BF9B00575E70 /* selfContainedUserGuideFileList.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = selfContainedUserGuideFileList.txt; sourceTree = "<group>"; };
 		0042D47E1719A9AA00575E70 /* README_SelfContainedUserGuide.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README_SelfContainedUserGuide.md; sourceTree = "<group>"; };
+		0042D4811720582000575E70 /* sectionStartup.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = sectionStartup.md; sourceTree = "<group>"; };
+		0042D48217205DE100575E70 /* cash.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cash.md; sourceTree = "<group>"; };
 		0049DC7213A537CC00B27046 /* VariableValueFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValueFormInfoCreator.h; sourceTree = "<group>"; };
 		0049DC7313A537CD00B27046 /* VariableValueFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValueFormInfoCreator.m; sourceTree = "<group>"; };
 		0049DC7513A53E4400B27046 /* DateSensitiveValueChangeFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFieldEditInfo.h; sourceTree = "<group>"; };
@@ -1971,6 +1975,7 @@
 				0042D4791718AC5500575E70 /* sectionExamples.md */,
 				0042D47A1718AC7900575E70 /* sectionInputs.md */,
 				0042D47B1718ACB100575E70 /* sectionFeatures.md */,
+				0042D4811720582000575E70 /* sectionStartup.md */,
 				0042D47D1718BF9B00575E70 /* selfContainedUserGuideFileList.txt */,
 				0042D47E1719A9AA00575E70 /* README_SelfContainedUserGuide.md */,
 			);
@@ -1992,6 +1997,7 @@
 				002FAEB814D45B7D00AE2B41 /* resultsTimeFrame.md */,
 				002FAEBA14D45CEA00AE2B41 /* deficit.md */,
 				002FAEBC14D45D7D00AE2B41 /* inflationAdjustment.md */,
+				0042D48217205DE100575E70 /* cash.md */,
 			);
 			name = Startup;
 			sourceTree = "<group>";
@@ -3291,6 +3297,8 @@
 				001AE1D11714BC0C000F461D /* exampleTaxes.md in Resources */,
 				001AE1D31715DDD1000F461D /* transfer.md in Resources */,
 				0042D47C1718ACB200575E70 /* sectionFeatures.md in Resources */,
+				0042D48317205DE200575E70 /* cash.md in Resources */,
+				0042D48417208BFF00575E70 /* sectionStartup.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

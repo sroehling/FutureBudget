@@ -571,6 +571,8 @@
 
 "STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE" = "Startup";
 "STARTUP_VALUES_VIEW_TITLE" = "Startup";
+"STARTUP_VALS_TABLE_TITLE" = "Startup Values for Results Generation";
+"STARTUP_VALS_TABLE_SUBTITLE" = "The values below include a timeframe for results generation, starting/current values for inputs, and adjustments for inflation.";
 "STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE" = "Starting Balances";
 "STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE" = "Enter balances as of the start date";
 "STARTUP_VALS_START_DATE_LABEL" = "Start Date";
@@ -586,6 +588,7 @@
 
 "STARTUP_VALUES_DEFICITS_SECTION_TITLE" = "Deficits";
 "STARTUP_VALUES_DEFICITS_SECTION_SUBTITLE" = "";
+"STARTUP_VALUE_CASH_SECTION_TITLE" = "Starting Cash Balance";
 "STARTUP_VALUE_DEFICIT_LABEL" = "Interest on Deficit";
 "STARTUP_VALUE_DEFICIT_BALANCE_LABEL" = "Current Deficit";
 "STARTUP_VALUE_DEFICIT_BALANCE_PLACEHOLDER" = "Enter a Current Deficit";

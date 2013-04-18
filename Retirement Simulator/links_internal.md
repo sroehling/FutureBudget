@@ -40,11 +40,13 @@
 [withdrawPriority]:#withdrawal-order
 
 <!-- Startup (simulation setup) -->
-[deficit]:deficit.html
+[deficit]:#deficits
+[cash]:#starting-cash-balance
 [resultsTimeFrame]:resultsTimeFrame.html
 [currentBal]:#current-account-balances
 [currentAssetVals]:#current-asset-value
 [outstandingLoanBal]:#outstanding-loan-balance
+[inflationAdjustment]:#inflation-adjustment
 
 <!--Variable & Fixed Values -->
 [fixedAmount]:fixedAmount.html

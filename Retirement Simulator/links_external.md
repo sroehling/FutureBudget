@@ -42,10 +42,12 @@
 
 <!-- Startup (simulation setup) -->
 [deficit]:deficit.html
+[cash]:cash.html
 [resultsTimeFrame]:resultsTimeFrame.html
 [currentBal]:account.html#current-account-balances
 [currentAssetVals]:asset.html#current-asset-value
 [outstandingLoanBal]:loan.html#outstanding-loan-balance
+[inflationAdjustment]:inflationAdjustment.html
 
 <!--Variable & Fixed Values -->
 [fixedAmount]:fixedAmount.html

@@ -40,6 +40,10 @@
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
 		andFormContext:parentContext] autorelease];
 		
+	[formPopulator populateWithHeader:LOCALIZED_STR(@"STARTUP_VALS_TABLE_TITLE")
+		andSubHeader:LOCALIZED_STR(@"STARTUP_VALS_TABLE_SUBTITLE") andHelpFile:@"sectionStartup"
+		andParentController:parentContext.parentController];
+		
 	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:parentContext.dataModelController];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"STARTUP_VALUES_VIEW_TITLE");
@@ -75,15 +79,13 @@
 	[sectionInfo addFieldEditInfo:endDateFieldEditInfo];
 
 	
-	sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE")
-		andHelpFile:@"account" andAnchorWithinHelpFile:@"current-account-balances"];
-	
-	
 	NSArray *accounts = [parentContext.dataModelController 
 			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME 
 			sortKey:INPUT_NAME_KEY];
 	if([accounts count] > 0)
 	{
+		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE")
+			andHelpFile:@"account" andAnchorWithinHelpFile:@"current-account-balances"];
 		for (Account *account in accounts)
 		{
 			NumberFieldEditInfo *acctBalanceFieldEditInfo = 
@@ -140,6 +142,9 @@
 		
 	}
 	
+	sectionInfo = [formPopulator 
+		nextSectionWithTitle:LOCALIZED_STR(@"STARTUP_VALUE_CASH_SECTION_TITLE")
+		andHelpFile:@"cash"];
 	// TODO - Switch over to use populateCurrencyField from InputFormPopulator
 	Cash *theCash = sharedAppVals.cash;
 	

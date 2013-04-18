@@ -19,6 +19,11 @@ tax.md
 account.md
 transfer.md
 
+sectionStartup.md
+resultsTimeFrame.md
+cash.md
+deficit.md
+inflationAdjustment.md
 
 sectionFeatures.md
 scenario.md
