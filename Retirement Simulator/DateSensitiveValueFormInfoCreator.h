@@ -18,11 +18,13 @@
         FieldInfo *fieldInfo;
         FieldInfo *defaultValFieldInfo;
 		VariableValueRuntimeInfo *varValRuntimeInfo;
+		BOOL isNewVal;
 }
 
 - (id)initWithVariableValueFieldInfo:(FieldInfo*)vvFieldInfo
                   andDefaultValFieldInfo:(FieldInfo*)theDefaultValFieldInfo
-               andVarValRuntimeInfo:(VariableValueRuntimeInfo *) varValRuntimeInfo;
+               andVarValRuntimeInfo:(VariableValueRuntimeInfo *) varValRuntimeInfo
+			   andIsForNewValue:(BOOL)isNewDateSensVal;
 
 @property(nonatomic,retain) FieldInfo *defaultValFieldInfo;
 @property(nonatomic,retain) FieldInfo *fieldInfo;

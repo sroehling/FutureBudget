@@ -32,6 +32,7 @@
 - (id)initWithVariableValueFieldInfo:(FieldInfo*)vvFieldInfo
                   andDefaultValFieldInfo:(FieldInfo*)theDefaultValFieldInfo
                andVarValRuntimeInfo:(VariableValueRuntimeInfo *) theVarValRuntimeInfo
+				andIsForNewValue:(BOOL)isNewDateSensVal
 {
     self = [super init];
     if(self)
@@ -44,6 +45,8 @@
         
 		assert(theVarValRuntimeInfo != nil);
 		self.varValRuntimeInfo = theVarValRuntimeInfo;
+		
+		isNewVal = isNewDateSensVal;
     }
     return self;
 }
@@ -143,7 +146,13 @@
 	valueFieldEditInfo.isDefaultSelection = TRUE;
 	[sectionInfo addFieldEditInfo:valueFieldEditInfo];
  
-	formPopulator.formInfo.firstResponder = valueFieldEditInfo.numberCell.textField;
+	if(isNewVal)
+	{
+		// Only set the text field as the first responder (i.e., put the text field
+		// in edit mode upon opening the view) when the form is being
+		// opened for a new value.
+		formPopulator.formInfo.firstResponder = valueFieldEditInfo.numberCell.textField;
+	}
 
 	   
     VariableValueSectionInfo *vvSectionInfo = [[[VariableValueSectionInfo alloc]

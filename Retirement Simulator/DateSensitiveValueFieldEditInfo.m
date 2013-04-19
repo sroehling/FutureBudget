@@ -169,7 +169,8 @@
     DateSensitiveValueFormInfoCreator *dsvFormInfoCreator = 
     [[[DateSensitiveValueFormInfoCreator alloc] initWithVariableValueFieldInfo:self.fieldInfo 
         andDefaultValFieldInfo:self.defaultFixedValFieldInfo 
-		andVarValRuntimeInfo:self.varValRuntimeInfo] autorelease];
+		andVarValRuntimeInfo:self.varValRuntimeInfo
+		andIsForNewValue:self.isForNewValue] autorelease];
 		
     SelectableObjectTableEditViewController *dsValueController = 
             [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:dsvFormInfoCreator 
