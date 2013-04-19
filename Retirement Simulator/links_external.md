@@ -62,6 +62,9 @@
 [variableAmount]:variableAmount.html
 [variableInterest]:variableInterest.html
 [varReturn]:variableReturn.html
+[variableValueChange]:variableValueChange.html
+[variableValueStarting]:variableValueStartDate.html
+
 
 <!-- Dates Related -->
 [fixedDate]:fixedDate.html
