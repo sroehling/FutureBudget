@@ -33,6 +33,10 @@
     formPopulator.formInfo.title = LOCALIZED_STR(@"SCENARIO_LIST_VIEW_TITLE");
 	formPopulator.formInfo.objectAdder = [[[ScenarioListObjectAdder alloc] init] autorelease];
 	
+	[formPopulator populateWithHeader:LOCALIZED_STR(@"SCENARIO_LIST_TABLE_HEADER")
+			andSubHeader:LOCALIZED_STR(@"SCENARIO_LIST_TABLE_SUBHEADER")
+			andHelpFile:@"scenario" andParentController:parentContext.parentController];
+	
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	
 	DefaultScenario *defaultScen = 

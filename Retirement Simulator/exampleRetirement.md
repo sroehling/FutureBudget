@@ -37,7 +37,7 @@ Similar to the way certain expense amounts may reduce after retirement, the expe
 
 To represent the a low expected rate of return, a [variable return rate][variableInterest] is used. The starting value is the expected return rate before retirement, and the return rate changes to a smaller percentage value after the expected retirement date.
 
-### Retiring Early
+### Early Retirement
 
 To make changes to input values without impacting
 the default results, a new [alternate scenario][alternateScenario] named "Early Retirement"

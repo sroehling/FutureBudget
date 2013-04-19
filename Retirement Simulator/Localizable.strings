@@ -558,6 +558,8 @@
 
 
 "SCENARIO_LIST_VIEW_TITLE" = "Scenarios";
+"SCENARIO_LIST_TABLE_HEADER" = "Default and Alternate Scenarios";
+"SCENARIO_LIST_TABLE_SUBHEADER" = "Select from the list below to change the current scenario. Edit this list to add new alternate scenarios.";
 "SCENARIO_DEFAULT_SCENARIO_NAME" = "Default";
 "SCENARIO_LIST_DEFAULT_SCENARIO_CAPTION" = "Default Scenario";
 "SCENARIO_LIST_ALTERNATE_SCENARIOS_SECTION_TITLE" = "Alternate Scenarios";

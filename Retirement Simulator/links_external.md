@@ -20,6 +20,8 @@
 [cuttingExpensesExample]:exampleExpense.html#cutting-expenses
 [collegeExpensesExample]:exampleEducation.html#breaking-down-college-expenses
 [exampleRetirementPlannedRetirementDate]:exampleRetirement.html#expected-retirement-date
+[exampleEarlyRetirement]:exampleRetirement.html#early-retirement
+[exampleRetirementReduceExpenses]:exampleRetirement.html#reducing-expenses
 [example401K]:exampleSavings.html#k-investment-account
 [exampleRegularSavings]:exampleSavings.html#regular-savings
 [exampleRoth]:exampleSavings.html#roth-ira-account

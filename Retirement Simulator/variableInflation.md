@@ -4,7 +4,7 @@ Growth rates can remain fixed or change over time. Variable growth rates
 are used when the growth rate is expected
 to change over time, or shared by different inputs. 
 
-For example, if the expected growth rates for college or health care expenses 
+For example, if the expected growth rates for [college][collegeExpensesExample] or health care expenses 
 are expected to be high for the next few years, then lower thereafter, a variable
  growth rate could be used to represent this change over time.
 

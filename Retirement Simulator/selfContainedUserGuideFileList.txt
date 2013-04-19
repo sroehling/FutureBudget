@@ -30,7 +30,8 @@ scenario.md
 milestoneDate.md
 inputTags.md
 variableAmount.md
-variableInflation.md
 variableReturn.md
+variableApprecRate.md
+variableInflation.md
 
 links_internal.md
