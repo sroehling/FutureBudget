@@ -17,7 +17,7 @@ steps outlined above, below are more specific suggestions for getting started.
 
 When first getting started, a recommendation is to start with some more general inputs, rather than a long list of detailed inputs. For example, a single 'Monthly Living Expenses' expense input can be created instead of splitting into individual expenses such as groceries, utilities, or gasoline.
 
-Many budgeting scenarios can also be initially represented with only basic [income][income] and [expense][expense] inputs. For example, rather than initially splitting employment income based upon all the different taxes and employment related benefits, a single "Take Home Pay" expense can be created.
+Many budgeting scenarios can also be initially represented with only basic [income][income] and [expense][expense] inputs. For example, rather than initially splitting [employment income][employmentIncomeExample] based upon all the different taxes and employment related benefits, a single "Take Home Pay" expense can be created.
 
 These approaches allow you to get some results quickly, but continue to dig deeper and add more details later. This is also a good way to become familiar with the app's basic functions.
 

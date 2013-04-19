@@ -5,6 +5,8 @@ For example, an expense's __Amount__
 can have a larger value by default, but a smaller value under an
 alternate scenario for [reduced expenses][cuttingExpensesExample]. 
 
+Under different scenarios, not only can values change, but inputs can be enabled and disabled altogether. For example, if you decide to [purchase a new car][exampleCarOwnership] with cash instead of a money from a loan, the loan input could be disabled.
+
 ### Default Scenario
 
 The default scenario represents the inputs' expected
