@@ -23,9 +23,3 @@ After breaking down the college expenses into multiple inputs, a suggestion is t
 ### College Tuition Inflation
 
 When a new [expense input][expense] is first created, it has a __Yearly Increase__  which is the __Default Inflation Rate__. However, if for college tuition, the assumption is the costs will grow at a different rate than the default inflation rate, a custom [variable growth rate][variableInflation] could be created for these expenses. For example, this variable growth rate could have a starting value which is higher than the default inflation rate, then lower over time as costs moderate.
-
-### Student Loans
-
-### Scholarships and Financial Aid
-
-### Saving for College
