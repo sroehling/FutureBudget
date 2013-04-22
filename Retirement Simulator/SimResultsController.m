@@ -28,6 +28,8 @@
 @synthesize incomesSimulated;
 @synthesize expensesSimulated;
 
+@synthesize scenarioSimulated;
+
 @synthesize dataModelController;
 @synthesize sharedAppVals;
 @synthesize taxesSimulated;
@@ -72,6 +74,8 @@ static SimResultsController *theSimResultsControllerSingleton;
 		andSharedAppValues:self.sharedAppVals ];
            
     [simEngine runSim:simProgressDelegate];
+	
+	self.scenarioSimulated = simEngine.simParams.simScenario;
 	
 	self.endOfYearResults = simEngine.digest.savedEndOfYearResults;
 	
@@ -186,6 +190,8 @@ static SimResultsController *theSimResultsControllerSingleton;
 	[incomesSimulated release];
 	[expensesSimulated release];
 	[taxesSimulated release];
+	
+	[scenarioSimulated release];
 	
 	[dataModelController release];
 	[sharedAppVals release];

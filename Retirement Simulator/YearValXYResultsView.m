@@ -18,6 +18,7 @@
 #import "YearValXYResultsCell.h"
 #import "NumberHelper.h"
 #import "TableCellHelper.h"
+#import "Scenario.h"
 
 #define YEARXYVAL_CONTENT_MARGIN_TOP 26.0f
 #define YEARXYVAL_RESULTS_TYPE_SELECTOR_HEIGHT 24.0f
@@ -35,11 +36,11 @@
 @synthesize yearColLabel;
 @synthesize valColLabel;
 @synthesize headerView;
-@synthesize inflationAdjustmentLabel;
+@synthesize footerLabel;
 
 -(void)dealloc
 {
-	[inflationAdjustmentLabel release];
+	[footerLabel release];
 	[currentData release];
 	[plotDataGenerator release];
 	[chartContentView release];
@@ -108,14 +109,14 @@
 		[self.headerView addSubview:self.valColLabel];
 		self.headerView.backgroundColor = [UIColor lightGrayColor];
 		
-		self.inflationAdjustmentLabel = [[[UILabel alloc]
+		self.footerLabel = [[[UILabel alloc]
 			initWithFrame:CGRectMake(0, 0, self.frame.size.width, YEARXYVAL_CONTENT_MARGIN_BOTTOM)]
 				autorelease];
-		self.inflationAdjustmentLabel.textAlignment = NSTextAlignmentCenter;
-		self.inflationAdjustmentLabel.font = [UIFont systemFontOfSize:10.0f];
-		self.inflationAdjustmentLabel.textColor = [UIColor whiteColor];
-		self.inflationAdjustmentLabel.backgroundColor = [UIColor clearColor];
-		[self addSubview:self.inflationAdjustmentLabel];
+		self.footerLabel.textAlignment = NSTextAlignmentCenter;
+		self.footerLabel.font = [UIFont systemFontOfSize:10.0f];
+		self.footerLabel.textColor = [UIColor whiteColor];
+		self.footerLabel.backgroundColor = [UIColor clearColor];
+		[self addSubview:self.footerLabel];
 
     }
     return self;
@@ -325,9 +326,15 @@
 	[self generatePlot:adjustResultsToSimStartDate];
 	[self.tabularDataView reloadData];
 	
-	self.inflationAdjustmentLabel.text = adjustResultsToSimStartDate?
+	NSString *inflationAdjustText = adjustResultsToSimStartDate?
 		LOCALIZED_STR(@"RESULTS_ADJUSTED_FOR_INFLATION_FOOTER"):
 		LOCALIZED_STR(@"RESULTS_NOT_ADJUSTED_FOR_INFLATION_FOOTER");
+		
+	NSString *footerText = [NSString stringWithFormat:@"%@     %@:%@",inflationAdjustText,
+		LOCALIZED_STR(@"SCENARIO_DETAIL_VIEW_TITLE"),
+		self.resultsViewInfo.simResultsController.scenarioSimulated.scenarioName];
+	
+	self.footerLabel.text = footerText;
 }
 
 -(void)layoutSubviews
@@ -354,7 +361,7 @@
 	resultsTypeFrame.origin.y = (YEARXYVAL_CONTENT_MARGIN_TOP - resultsTypeFrame.size.height)/2.0;
 	[self.resultsTypeSelection setFrame:resultsTypeFrame];
 	
-	[self.inflationAdjustmentLabel setFrame:CGRectMake(
+	[self.footerLabel setFrame:CGRectMake(
 			0, self.frame.size.height-YEARXYVAL_CONTENT_MARGIN_BOTTOM,
 			self.frame.size.width, YEARXYVAL_CONTENT_MARGIN_BOTTOM)];
 }

@@ -29,7 +29,7 @@
 		
 		UISegmentedControl *resultsTypeSelection;
 		
-		UILabel *inflationAdjustmentLabel;
+		UILabel *footerLabel;
 		
 		UILabel *yearColLabel;
 		UILabel *valColLabel;
@@ -48,7 +48,7 @@
 @property(nonatomic,retain) UILabel *yearColLabel;
 @property(nonatomic,retain) UILabel *valColLabel;
 @property(nonatomic,retain) UIView *headerView;
-@property(nonatomic,retain) UILabel *inflationAdjustmentLabel;
+@property(nonatomic,retain) UILabel *footerLabel;
 
 -(id)initWithResultsViewInfo:(ResultsViewInfo *)theViewInfo 
 	andPlotDataGenerator:(id<YearValXYPlotDataGenerator>)thePlotDataGenerator;
