@@ -138,6 +138,7 @@
 	UserScenario *customScenario = [self.coreDataInterface createDataModelObject:USER_SCENARIO_ENTITY_NAME];
 		
 	customScenario.name = @"Custom Scenario";
+	customScenario.iconImageName = SCENARIO_DEFAULT_ICON_IMAGE_NAME;
 	[self checkValidDelete:customScenario expected:YES label:@"Custom Scenario just allocated"];
 
 	ScenarioValue *scenVal = [self.coreDataInterface createDataModelObject:SCENARIO_VALUE_ENTITY_NAME];
@@ -173,6 +174,7 @@
 	UserScenario *customScenario = [self.coreDataInterface createDataModelObject:USER_SCENARIO_ENTITY_NAME];
 		
 	customScenario.name = @"Custom Scenario";
+	customScenario.iconImageName = SCENARIO_DEFAULT_ICON_IMAGE_NAME;
 
 	ScenarioValue *scenVal = [self.coreDataInterface createDataModelObject:SCENARIO_VALUE_ENTITY_NAME];
 	scenVal.scenario = customScenario;
@@ -207,6 +209,7 @@
 	
 	UserScenario *customScenario = [self.coreDataInterface createDataModelObject:USER_SCENARIO_ENTITY_NAME];
 	customScenario.name = @"Custom Scenario";
+	customScenario.iconImageName = SCENARIO_DEFAULT_ICON_IMAGE_NAME;
 	
 	[valWithScenarioChange setValueForScenario:customScenario 
 		andInputValue:[inputCreationHelper fixedValueForValue:200.0]];
