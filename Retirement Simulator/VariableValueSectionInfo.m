@@ -24,6 +24,7 @@
 #import "VariableValueRuntimeInfo.h"
 #import "SectionHeaderWithSubtitle.h"
 #import "FormContext.h"
+#import "VariableValueFormInfoCreator.h"
 
 
 @implementation VariableValueSectionInfo
@@ -58,38 +59,19 @@
 {
     NSLog(@"Add Variable Value");
     
-    FormPopulator *formPopulator = [[[FormPopulator alloc] initWithFormContext:parentContext] autorelease];
-	
-    formPopulator.formInfo.title = [[[NSString alloc] initWithFormat:LOCALIZED_STR(@"DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT"),
-									 LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)] autorelease];
     
     VariableValue *newVariableValue = [self.varValRuntimeInfo.listMgr createNewValue];
     [parentContext.dataModelController saveContextAndIgnoreErrors];
 
-    
-    SectionInfo *sectionInfo = [formPopulator nextSection];
-	
-	NSString *varValueNamePlaceholder = [NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_PLACEHOLDER_FORMAT"),
-			LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
-	
-	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:newVariableValue andFieldKey:@"name"  andFieldLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL") 
-		andFieldPlaceholder:varValueNamePlaceholder] autorelease];
-	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo] autorelease];
-    [sectionInfo addFieldEditInfo:fieldEditInfo];
-			 
-	NSString *varValStartingValPlaceholder = 
-		[NSString stringWithFormat:LOCALIZED_STR(@"VARIABLE_VALUE_START_VALUE_PLACEHOLDER_FORMAT"),
-		LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey)];
-			 
-    [sectionInfo addFieldEditInfo:[NumberFieldEditInfo createForObject:newVariableValue 
-             andKey:@"startingValue" andLabel:LOCALIZED_STR(@"VARIABLE_VALUE_START_DATE_FIELD_LABEL")
-			 andPlaceholder:varValStartingValPlaceholder
-			 andNumberFormatter:self.varValRuntimeInfo.valueFormatter andValidator:varValRuntimeInfo.valueValidator]];
-    
-    GenericFieldBasedTableAddViewController *controller = 
-        [[[GenericFieldBasedTableAddViewController alloc]
-          initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:formPopulator.formInfo]
-          andNewObject:newVariableValue andDataModelController:parentContext.dataModelController] autorelease];
+	VariableValueFormInfoCreator *vvFormInfoCreator = 
+		[[[VariableValueFormInfoCreator alloc] initWithVariableValue:newVariableValue
+		andVarValueRuntimeInfo:self.varValRuntimeInfo] autorelease];
+		 
+    GenericFieldBasedTableAddViewController *controller =
+		[[[GenericFieldBasedTableAddViewController alloc]
+			initWithFormInfoCreator:vvFormInfoCreator
+			andNewObject:newVariableValue 
+			andDataModelController:parentContext.dataModelController] autorelease];
     controller.popDepth =1;
 	controller.finshedAddingListener = varValRuntimeInfo.listMgr;
 
