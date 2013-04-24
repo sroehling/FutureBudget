@@ -18,6 +18,9 @@
 @property(nonatomic,retain) NSMutableArray *inputValDigestSums;
 
 -(void)addDigestSum:(InputValDigestSummation*)digestSum;
+
 -(void)resetSums;
+-(void)rewindSumsToStartDate;
+-(void)snapshotSumsAtStartDate;
 
 @end

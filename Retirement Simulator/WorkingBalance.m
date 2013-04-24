@@ -103,6 +103,8 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 {
 	assert(newStartDate != nil);
 	
+
+
 	// There is only a need to advance the balance if the newDate is greater
 	// than the balance start date.
 	if(![DateHelper dateIsEqualOrLater:newStartDate otherDate:self.balanceStartDate])
@@ -116,12 +118,15 @@ NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
 	// or assets purchased in the future.
 	if([DateHelper dateIsEqualOrLater:newStartDate otherDate:self.currentBalanceDate])
 	{
+		// Advance the balanceStartDate first. This is used by the advanceCurrentBalanceToDate
+		// method to calculate an relative index in which to place the accrued interest.
+		self.balanceStartDate = newStartDate;
+		
 		[self advanceCurrentBalanceToDate:newStartDate];
 	}
 	
 	
 	startingBalance = currentBalance;
-	self.balanceStartDate = newStartDate;
 }
 
 

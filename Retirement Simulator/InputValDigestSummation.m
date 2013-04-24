@@ -44,6 +44,20 @@
 	}
 }
 
+-(void)snapshotSumAtStartDate
+{
+	firstDaySum = currentSum[0];
+}
+
+-(void)rewindSumToStartDate
+{
+	for(int i = 0; i < MAX_DAYS_IN_YEAR;i++)
+	{
+		currentSum[i] = 0.0;
+	}
+	currentSum[0] = firstDaySum;
+}
+
 -(double)yearlyTotal
 {
 	double total = 0.0;

@@ -37,6 +37,22 @@
 	}
 }
 
+-(void)rewindSumsToStartDate
+{
+	for(InputValDigestSummation *digestSum in self.inputValDigestSums)
+	{
+		[digestSum rewindSumToStartDate];
+	}
+}
+
+-(void)snapshotSumsAtStartDate
+{
+	for(InputValDigestSummation *digestSum in self.inputValDigestSums)
+	{
+		[digestSum snapshotSumAtStartDate];
+	}
+}
+
 -(void)dealloc
 {
 	[inputValDigestSums release];

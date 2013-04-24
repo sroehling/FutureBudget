@@ -59,6 +59,7 @@
 #import "IncomeItemizedTaxAmt.h"
 #import "ExpenseItemizedTaxAmt.h"
 #import "TaxesPaidItemizedTaxAmt.h"
+#import "AccountInterestItemizedTaxAmt.h"
 
 #import "Account.h"
 #import "SavingsAccount.h"
@@ -491,8 +492,8 @@
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.31 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
@@ -506,8 +507,8 @@
 	NetWorthXYPlotDataGenerator *netWorthData = [[[NetWorthXYPlotDataGenerator alloc] init] autorelease];
 	expected = [[[NSMutableArray alloc]init] autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:110.02 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:231.06 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:109.71 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:230.71 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:231.06 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:231.06 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Net worth with asset" withAdjustedVals:FALSE];
@@ -541,9 +542,9 @@
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.28 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.31 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
@@ -554,10 +555,12 @@
 	// total asset price should be included.
 	NetWorthXYPlotDataGenerator *netWorthData = [[[NetWorthXYPlotDataGenerator alloc] init] autorelease];
 	expected = [[[NSMutableArray alloc]init] autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.28
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.312 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	// Since the asset it sold on 2015-01-01, there is one extra day of interest for the $0.34.
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	
 	// Even after the asset is sold, the net worth should remain the same, since the sale
@@ -593,8 +596,8 @@
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1464.48 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1464.1 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
 	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
@@ -661,9 +664,9 @@
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:899.74 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:809.76 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:728.78 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:900 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:810 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:729 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
@@ -715,9 +718,9 @@
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.28 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.31 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.34 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
@@ -778,9 +781,9 @@
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:899.74 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:809.76 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:728.78 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:900 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:810 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:729 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
@@ -1668,6 +1671,75 @@
 
 }
 
+-(void)testTaxAccountInterest
+{
+	[self resetCoredData];
+	
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:500.0];
+	
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.withdrawalPriority = [inputCreationHelper multiScenFixedValWithDefault:1.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+
+	TaxInputTypeSelectionInfo *taxCreator = 
+		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	AccountInterestItemizedTaxAmt *itemizeAcctInterest = [self.coreData insertObject:ACCOUNT_INTEREST_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizeAcctInterest.account = acct01;	
+	itemizeAcctInterest.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizeAcctInterest];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+
+
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:27.5 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:30.25 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:33.275 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Note - There is an outstanding defect for the interest/return on leap years. The interest rate is calculated for
+	// a daily return, so on leap years, this amounts to 366 days per year. The amount below should actuall be 36.60, but
+	// it is a little high because of this 1 day extra of interest.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:36.70 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected
+		andLabel:@"flatTax" withAdjustedVals:FALSE];
+	
+
+	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1210.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1331.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1464.1 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1610.93 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:acctData01 withSimResults:simResults andExpectedVals:expected andLabel:@"acct01" withAdjustedVals:FALSE];
+
+
+
+}
 
 
 -(void)testCashBalWithExpense

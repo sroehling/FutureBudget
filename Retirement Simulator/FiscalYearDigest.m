@@ -218,11 +218,18 @@
 	
 	NSDate *currentDate = self.currentYearDigestStartDate;
 	
-	// TODO - Stop the iteration if the currentDate falls into the next year,
-	// not just when it reaches MAX_DAYS_IN_YEAR.
-	for(int currDayIndex=0; currDayIndex < MAX_DAYS_IN_YEAR; currDayIndex++)
+	int currDayIndex=0;
+	while([DateHelper sameYear:currentDate otherDate:self.currentYearDigestStartDate])
 	{
-		DigestEntryCltn *currDayDigestEntries = 
+		// Advance all the balances through the current day. This ensures any outstanding
+		// interest is accrued.
+//		NSDate *nextDay = [DateHelper nextDay:currentDate];
+//		if(![DateHelper sameYear:nextDay otherDate:currentDate])
+//		{
+			[self.simParams.workingBalanceMgr advanceBalancesToDate:currentDate];
+//		}
+
+		DigestEntryCltn *currDayDigestEntries =
 			[self.digestEntries entriesForDayIndex:currDayIndex];
 		
 		DigestEntryProcessingParams *processingParams = 
@@ -237,60 +244,36 @@
 				[digestEntry processDigestEntry:processingParams];
 			}
 		}
-		
+
 		// After processing all tax related digest entries (for incomes, expenses, 
 		// asset sales, asset purchases, etc.), the tax payment is calculated
 		// See the comments in TaxInputCalc.m for further explanation regarding
 		// these dependencies.
 		[self.simParams.taxInputCalcs processDailyTaxPmts:processingParams];
 
-		if([currDayDigestEntries isEndDateForEstimatedTaxes])
-		{
-			// Advance all balances and accrue interest to the current date. This is needed so that
-			// all the estimated taxes can be included. 
-/*			[self advanceWorkingBalancesAndAccrueInterest:endOfYearResults 
-				advanceToDate:currentDate];
-
-			[self.simParams.workingBalanceMgr setAsideAccruedEstimatedTaxesForNextTaxPaymentAsOfDate:currentDate];
-*/
-		}
-		if([currDayDigestEntries isEstimatedTaxPaymentDay])
-		{
-		/*
-			double taxPaymentAmount = [self.workingBalanceMgr 
-					decrementNextEstimatedTaxPaymentAsOfDate:currentDate];
-			[self withdrawFundingForExpense:endOfYearResults 
-				andAmount:taxPaymentAmount andDate:currentDate];
-		*/
-		}
-
 		currentDate = [DateHelper nextDay:currentDate];
+		currDayIndex++;
 		[processingParams release];
-	} // for each day in the year
+	}
 
-	// Advance all the working balances to the end of this year. Although none of the current balances
-	// are changed, some interest might be accrued leading up to the end of the year. This interest
-	// needs to be included in the total interest for the year, so that taxes can be calculated.
-	NSDate *beginningOfNextYear = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
-	[self.simParams.workingBalanceMgr advanceBalancesToDate:beginningOfNextYear];
 
 	// Update the effective tax rates for the tax inputs. This needs to be done at the end of 
 	// processing the digest, since all the InputValDigestSummation objects referenced by the
 	// TaxInputCalcs will have been populated with income, interest, etc.
 	// TBD - Should the date passed be the end this year, or the beginning of next year.
+	NSDate *beginningOfNextYear = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
 	[self.simParams.taxInputCalcs updateEffectiveTaxRates:beginningOfNextYear];
 	
-	// Reset all the digest sums used to tally up taxable incomes, expenses, interest, etc.
-
 
 	endOfYearResults.totalEndOfYearBalance = 
 		[self.simParams.workingBalanceMgr totalCurrentNetBalance:beginningOfNextYear];
 	[self processEndOfYearInputResults:endOfYearResults];
 	[endOfYearResults logResults];
 
-	// Reset the digest sums after processing end of year results, since
-	// these digest sums are used copied out to the results.
-	[self.simParams.digestSums resetSums];
+	// Rewind the digest sums after processing end of year results, since
+	// these digest sums are copied out to the results. Rewinding the digest
+	// sums retains any interest which was carried over from the prior year.
+	[self.simParams.digestSums rewindSumsToStartDate];
 
 
 	return endOfYearResults;
@@ -329,7 +312,15 @@
 {
 	NSLog(@"Advancing digest to next year from last year start = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.currentYearDigestStartDate]);
-//	[self.simParams.workingBalanceMgr logCurrentBalances];
+
+	// Carry the balances forward from the prior year to the current. This
+	// will have the result of adding any interest from December 31st to
+	// the January 1st digest entry. We "snapshot" the digest sums after
+	// calculating this interest, so with multiple passes of digest calculations,
+	// we can rewind to the digest sums which include any interest carried over
+	// from 12/31 in the prior year.
+	[self.simParams.workingBalanceMgr carryBalancesForward:self.currentYearDigestStartDate];
+	[self.simParams.digestSums snapshotSumsAtStartDate];
 
 	EndOfYearDigestResult *endOfYearResults = [self doMultiPassDigestCalcs];
 	assert(endOfYearResults != nil);
@@ -337,8 +328,10 @@
 
 	// Advance the digest to the next year
 	self.currentYearDigestStartDate = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
-	[self.simParams.workingBalanceMgr carryBalancesForward:self.currentYearDigestStartDate];
 	[self.digestEntries resetEntriesAndAdvanceStartDate:self.currentYearDigestStartDate];
+		[self.simParams.digestSums resetSums];
+
+
 }
 
 - (id) init

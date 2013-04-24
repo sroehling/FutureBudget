@@ -121,11 +121,8 @@
 {
 	assert(processingParams!=nil);
 	
-	
-	
 	// This initial dailyTaxableAmount will include the processing of digest entries for everything
 	// except the tax payments themselves (e.g., expenses, income, account interest, etc.)
-	;
 	double totalAccruedTaxableIncomeCurrIter = [self.incomeCalcEntries dailyItemizedAmnt:processingParams.dayIndex];
 	double taxableIncomeCurrIter = totalAccruedTaxableIncomeCurrIter;
 	double taxDueCurrIter = taxableIncomeCurrIter * self.effectiveTaxRate;
