@@ -223,7 +223,7 @@
 	
 	newInput.loanCostGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
 		
-	newInput.origDate = [inputCreationHelper multiScenSimDateWithDefaultTodayButNoInitialVal];
+	newInput.origDate = [inputCreationHelper multiScenSimDateWithNoDefaultAndNoInitialVal];
 
 	// Interest
 	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
@@ -271,7 +271,7 @@
 
 	newInput.apprecRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
 
-	newInput.purchaseDate = [inputCreationHelper multiScenSimDateWithDefaultTodayButNoInitialVal];
+	newInput.purchaseDate = [inputCreationHelper multiScenSimDateWithNoDefaultAndNoInitialVal];
 	
 	newInput.saleDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 			
