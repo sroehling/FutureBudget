@@ -12,6 +12,7 @@
 #import "Account.h"
 #import "SectionInfo.h"
 #import "FormContext.h"
+#import "StringValidation.h"
 
 @implementation DeferredWithdrawalFormInfoCreator
 
@@ -49,13 +50,17 @@
 		
 	[formPopulator populateMultiScenBoolField:account.deferredWithdrawalsEnabled withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFER_WITHDRAWALS_LABEL")];
 	
+	NSString *withdrawalDateSubheader = [StringValidation nonEmptyString:self.account.name]?
+		[NSString stringWithFormat:
+			LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TABLE_SUBHEADER_FORMAT"),
+			self.account.name]:
+			LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME");
+			
 	[formPopulator populateMultiScenSimDate:account.deferredWithdrawalDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TITLE")
 		andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT__DEFERRED_WITHDRAW_DATE_TABLE_HEADER")
-		 andTableSubHeader:[NSString stringWithFormat:
-			LOCALIZED_STR(@"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TABLE_SUBHEADER_FORMAT"),
-			self.account.name]];
+		 andTableSubHeader:withdrawalDateSubheader];
 
 
 	return formPopulator.formInfo;

@@ -153,13 +153,18 @@
 
     sectionInfo = [formPopulator nextSection];
     sectionInfo.title = LOCALIZED_STR(@"INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE");
+	
+	NSString *startDateSubHeader = [StringValidation nonEmptyString:cashFlow.name]?
+		[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT"),
+			[cashFlow inlineInputType],cashFlow.name]:
+		[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME"),
+			[cashFlow inlineInputType]];
 
 	[self.formPopulator populateMultiScenSimDate:cashFlow.startDate 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TITLE")
 		andTableHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_HEADER_FORMAT"),[cashFlow inputTypeTitle]] 
-		andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT"),
-			[cashFlow inlineInputType],cashFlow.name]];
+		andTableSubHeader:startDateSubHeader];
 
 	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
 		[self.formPopulator populateRepeatFrequency:cashFlow.eventRepeatFrequency
@@ -175,13 +180,19 @@
         assert(repeatFreq != nil);
         if([repeatFreq  eventRepeatsMoreThanOnce])
         {
+			NSString *endDateSubtitle = [StringValidation nonEmptyString:cashFlow.name]?
+				[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT"),
+					[cashFlow inlineInputType],cashFlow.name]:
+				[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME"),
+					[cashFlow inlineInputType]];
+		
 			[self.formPopulator populateMultiScenSimEndDate:cashFlow.endDate 
 				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
 				andTitle:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_TITLE")
 				andTableHeader:[NSString 
 					stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT"),
 						[cashFlow inputTypeTitle]]
-				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT"),[cashFlow inlineInputType],cashFlow.name]
+				 andTableSubHeader:endDateSubtitle
 				andNeverEndFieldTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_LABEL")
 				andNeverEndFieldSubtitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE")
 				andNeverEndSectionTitle:LOCALIZED_STR(@"SIM_DATE_NEVER_ENDING_DATE_SECTION_TITLE")
@@ -468,14 +479,20 @@
 	[self.formPopulator populateMultiScenarioGrowthRate:account.contribGrowthRate 
 		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL")
 		andValueName:input.name];
+		
+	NSString *contribStartDateSubheader = [StringValidation nonEmptyString:account.name]?
+		[NSString stringWithFormat:
+			LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT"),
+			[account inlineInputType],account.name]:
+		[NSString stringWithFormat:
+			LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME"),
+			[account inlineInputType]];
 	
 	[self.formPopulator populateMultiScenSimDate:account.contribStartDate 
 		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL")  
 		andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE")
 		andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER") 
-		andTableSubHeader:[NSString stringWithFormat:
-			LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT"),
-			[account inlineInputType],account.name]];	
+		andTableSubHeader:contribStartDateSubheader];	
 
 	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
 		[self.formPopulator populateRepeatFrequency:account.contribRepeatFrequency
@@ -566,12 +583,16 @@
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_SECTION_TITLE")
         andHelpFile:@"loan" andAnchorWithinHelpFile:@"loan-origination"];
 	
+	NSString *loanOrigDateSubtitle = [StringValidation nonEmptyString:loan.name]?
+		[NSString stringWithFormat:
+			LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT"),loan.name]:
+			LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT_NO_NAME");
+	
 	[self.formPopulator populateMultiScenSimDate:loan.origDate 
 		andLabel:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_FIELD_LABEL")
 		andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_TABLE_HEADER") 
-		andTableSubHeader:[NSString stringWithFormat:
-			LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT"),loan.name]];
+		andTableSubHeader:loanOrigDateSubtitle];
 
 	[self.formPopulator populateMultiScenarioAmount:loan.loanCost 
 		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")
@@ -689,11 +710,15 @@
 	[formPopulator nextSectionWithTitle:
 		LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE")]; 
  
+	NSString *assetPurchaseDateSubheader = [StringValidation nonEmptyString:asset.name]?
+		[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT"),asset.name]:
+		LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME");
+ 
 	[self.formPopulator populateMultiScenSimDate:asset.purchaseDate 
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_FIELD_LABEL") 
 		andTitle:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TITLE")
 		andTableHeader:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_HEADER")
-		 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT"),asset.name]];
+		 andTableSubHeader:assetPurchaseDateSubheader];
 		 
 	[self.formPopulator populateMultiScenarioAmount:asset.cost 
 		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL")

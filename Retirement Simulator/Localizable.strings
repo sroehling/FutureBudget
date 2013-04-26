@@ -117,6 +117,7 @@
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TITLE" = "Deferred Withdrawal";
 "INPUT_ACCOUNT__DEFERRED_WITHDRAW_DATE_TABLE_HEADER" = "Deferred Account Withdrawal";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TABLE_SUBHEADER_FORMAT" = "The first withdrawal from the account %@ can occur on this date. Select and/or edit one of dates below to set the first withdrawal date.";
+"INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME" = "The first withdrawal from the account can occur on this date. Select and/or edit one of dates below to set the first withdrawal date.";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_SUBHEADER_FORMAT_NO_NAME" = "This first withdraw from %@ can occur on this date.";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_FIELD_LABEL" = "Defer Withdrawals Until";
 "INPUT_ACCOUNT_WITHDRAWAL_DEFER_DATE_SUBTITLE_FORMAT" = "Defer withdrawals until %@";
@@ -150,6 +151,8 @@
 "INPUT_ACCOUNT_TAX_DETAIL_SUBHEADER" = "Select any taxes which apply to the account. If an applicable tax is not listed, create the appropriate tax input first.";
 
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT" = "The first contribution to the %@ %@ occurs on this date. Select and/or edit one of dates below to set the contribution start date.";
+"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME" = "The first contribution to the %@ occurs on this date. Select and/or edit one of dates below to set the contribution start date.";
+
 
 "INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_TITLE" = "End Date";
 "INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_HEADER" = "Contribution End Date";
@@ -227,10 +230,14 @@
 "INPUT_CASH_FLOW_END_DATE_TABLE_TITLE" = "Stop Date";
 "INPUT_CASH_FLOW_END_DATE_TABLE_HEADER_FORMAT" = "%@ Stop Date";
 "INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT" = "After this date, no more occurences of the %@ %@ will occur. To set the end date, select and/or edit one of the dates below.";
+"INPUT_CASH_FLOW_END_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME" = "After this date, no more occurences of the %@ will occur. To set the end date, select and/or edit one of the dates below.";
+
 "INPUT_CASH_FLOW_START_DATE_TITLE" = "Start Date";
 "INPUT_CASH_FLOW_START_DATE_TABLE_HEADER_FORMAT" = "%@ Start Date";
 
 "INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT" = "This first occurence of the %@ %@ occurs on this date. Select and/or edit one of dates below to set the start date.";
+"INPUT_CASH_FLOW_START_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME" = "This first occurence of the %@ occurs on this date. Select and/or edit one of dates below to set the start date.";
+
 
 "INPUT_CASHFLOW_OCCURRENCES_SECTION_TITLE" = "Occurences";
 "INPUT_CASHFLOW_START_FIELD_LABEL" = "Start Date";
@@ -254,6 +261,8 @@
 "INPUT_LOAN_ORIG_DATE_FIELD_LABEL" = "Origination Date";
 "INPUT_LOAN_ORIG_DATE_TABLE_HEADER" = "Loan Origination Date";
 "INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT" = "The loan %@ originated (or is expected to originate) on this date. To set the origination date, select and/or edit one of the dates below.";
+"INPUT_LOAN_ORIG_DATE_SUBHEADER_FORMAT_NO_NAME" = "The loan originated (or is expected to originate) on this date. To set the origination date, select and/or edit one of the dates below.";
+
 "INPUT_LOAN_ORIG_DATE_DATE_SUBHEADER_FORMAT_NO_NAME" = "This %@ originates on this date.";
 "INPUT_LOAN_DOWN_PMT_SECTION_TITLE" = "Down Payment";
 "INPUT_LOAN_DOWN_PMT_ENABLED_LABEL" = "Make a Down Payment?";
@@ -294,6 +303,7 @@
 "INPUT_ASSET_PURCHASE_DATE_TITLE" = "Purchase Date";
 "INPUT_ASSET_PURCHASE_DATE_TABLE_HEADER" = "Asset Purchase Date";
 "INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT" = "This is the date the asset %@ was (or is expected to be) purchased. To set the purchase date, select and/or edit one of the dates below.";
+"INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME" = "This is the date the asset was (or is expected to be) purchased. To set the purchase date, select and/or edit one of the dates below.";
 "INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE" = "Purchase and Sale";
 "INPUT_ASSET_INPUT_LIST_FORMAT" = "Asset purchased for %@";
 "INPUT_ASSET_NEVER_SELL_FIELD_TITLE" = "Never Sell";
