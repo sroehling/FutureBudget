@@ -79,13 +79,28 @@
 			insertObject:FIXED_DATE_ENTITY_NAME];
 		newDateVal.date = (NSDate*)newValue;
 		[self.inputVal setValueForScenario:self.currentScen andInputValue:newDateVal];
+		
+		// If a value hasn't been set for the default scenario, set it to the first value.
+		InputValue *defaultValue = [self.inputVal findInputValueForDefaultScenario];
+		if(defaultValue == nil)
+		{
+			[self.inputVal setDefaultValue:newDateVal];
+		}
 	}
 }
 
 
 - (BOOL)fieldIsInitializedInParentObject
 {
-	return TRUE;
+	FixedDate *theDateVal = (FixedDate*)[self.inputVal findInputValueForScenarioOrDefault:self.currentScen];
+	if(theDateVal != nil)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
 
 -(void)dealloc

@@ -83,9 +83,9 @@
 	
 	newInput.amountGrowthRate = [inputCreationHelper multiScenDefaultGrowthRate];
 	
-	newInput.amount = [inputCreationHelper multiScenAmountWithWithDefaultButNoInitialVal:0.0];
+	newInput.amount = [inputCreationHelper multiScenAmountWithNoDefaultAndNoInitialVal];
 	    
-	newInput.startDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
+	newInput.startDate = [inputCreationHelper multiScenSimDateWithNoDefaultAndNoInitialVal];
     newInput.endDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
    	
 	newInput.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyMonthly];
@@ -117,7 +117,7 @@
 	newInput.deferredWithdrawalsEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	newInput.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
     
-	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefaultButNoInitialVal:0.0];
+	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
 	
 	TransferEndpointAcct *acctTransferEndpoint = 
 		(TransferEndpointAcct *)[self.dataModelController createDataModelObject:TRANSFER_ENDPOINT_ACCT_ENTITY_NAME];
@@ -216,7 +216,7 @@
 	newInput.loanEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
 	// Loan Cost
-	newInput.loanCost = [inputCreationHelper multiScenAmountWithWithDefaultButNoInitialVal:0.0];
+	newInput.loanCost = [inputCreationHelper multiScenAmountWithNoDefaultAndNoInitialVal];
 	
 		
 	newInput.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:DEFAULT_LOAN_DURATION_MONTHS];	
@@ -226,7 +226,7 @@
 	newInput.origDate = [inputCreationHelper multiScenSimDateWithDefaultTodayButNoInitialVal];
 
 	// Interest
-	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithDefaultButNoInitialVal:0.0];
+	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
 		
 	// Down Payment	
 		
@@ -247,8 +247,7 @@
 	// TBD - extraPmtFrequency doesn't 
 	// have any UI input - Should this change
 	newInput.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyMonthly];
-	
-	
+
 	newInput.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 			
 	return newInput;
@@ -268,9 +267,9 @@
 	
 	newInput.assetEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	
-	newInput.cost = [inputCreationHelper multiScenAmountWithWithDefaultButNoInitialVal:0.0];
+	newInput.cost = [inputCreationHelper multiScenAmountWithNoDefaultAndNoInitialVal];
 
-	newInput.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefaultButNoInitialVal:0.0];
+	newInput.apprecRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
 
 	newInput.purchaseDate = [inputCreationHelper multiScenSimDateWithDefaultTodayButNoInitialVal];
 	

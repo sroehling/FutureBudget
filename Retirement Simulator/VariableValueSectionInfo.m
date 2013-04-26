@@ -25,6 +25,7 @@
 #import "SectionHeaderWithSubtitle.h"
 #import "FormContext.h"
 #import "VariableValueFormInfoCreator.h"
+#import "UIHelper.h"
 
 
 @implementation VariableValueSectionInfo
@@ -58,25 +59,30 @@
 -(void)addButtonPressedInSectionHeader:(FormContext*)parentContext
 {
     NSLog(@"Add Variable Value");
-    
-    
-    VariableValue *newVariableValue = [self.varValRuntimeInfo.listMgr createNewValue];
-    [parentContext.dataModelController saveContextAndIgnoreErrors];
+	
+	// Only push the form to add the variable value if the first responder
+	// can (and is) resigned in the parent view. Asking for resignation of the
+	// first responder will cause validation & commit of any unfinished edits.
+	if([parentContext.parentController.view findAndAskForResignationOfFirstResponder])
+	{
+		VariableValue *newVariableValue = [self.varValRuntimeInfo.listMgr createNewValue];
+		[parentContext.dataModelController saveContextAndIgnoreErrors];
 
-	VariableValueFormInfoCreator *vvFormInfoCreator = 
-		[[[VariableValueFormInfoCreator alloc] initWithVariableValue:newVariableValue
-		andVarValueRuntimeInfo:self.varValRuntimeInfo] autorelease];
-		 
-    GenericFieldBasedTableAddViewController *controller =
-		[[[GenericFieldBasedTableAddViewController alloc]
-			initWithFormInfoCreator:vvFormInfoCreator
-			andNewObject:newVariableValue 
-			andDataModelController:parentContext.dataModelController] autorelease];
-    controller.popDepth =1;
-	controller.finshedAddingListener = varValRuntimeInfo.listMgr;
+		VariableValueFormInfoCreator *vvFormInfoCreator = 
+			[[[VariableValueFormInfoCreator alloc] initWithVariableValue:newVariableValue
+			andVarValueRuntimeInfo:self.varValRuntimeInfo] autorelease];
+			 
+		GenericFieldBasedTableAddViewController *controller =
+			[[[GenericFieldBasedTableAddViewController alloc]
+				initWithFormInfoCreator:vvFormInfoCreator
+				andNewObject:newVariableValue 
+				andDataModelController:parentContext.dataModelController] autorelease];
+		controller.popDepth =1;
+		controller.finshedAddingListener = varValRuntimeInfo.listMgr;
 
-    
-    [parentContext.parentController.navigationController pushViewController:controller animated:YES];
+		
+		[parentContext.parentController.navigationController pushViewController:controller animated:YES];
+	}
     
 }
 

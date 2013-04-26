@@ -114,17 +114,33 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 	}
 }
 
--(InputValue*)getDefaultValue
+-(InputValue*)findInputValueForDefaultScenario
 {
 	assert(self.sharedAppVals != nil);
 	
-
-	DefaultScenario *defaultScen = self.sharedAppVals.defaultScenario;
+	Scenario *defaultScen = [self sharedAppVals].defaultScenario;
 	assert(defaultScen != nil);
+	
 	ScenarioValue *defaultScenarioVal = [self findScenarioValueForScenario:defaultScen];
-	assert(defaultScenarioVal != nil);
-	return defaultScenarioVal.inputValue;
+	if(defaultScenarioVal != nil)
+	{
+		return defaultScenarioVal.inputValue;
+	}
+	else
+	{
+		return nil;
+	}
+	
 }
+
+
+-(InputValue*)getDefaultValue
+{
+	InputValue *defaultScenarioVal = [self findInputValueForDefaultScenario];
+	assert(defaultScenarioVal != nil);
+	return defaultScenarioVal;
+}
+
 
 -(InputValue*)findInputValueForScenarioOrDefault:(Scenario*)scenario
 {

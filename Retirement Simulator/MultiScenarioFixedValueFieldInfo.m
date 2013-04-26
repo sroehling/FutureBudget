@@ -78,14 +78,31 @@
 		FixedValue *newVal = (FixedValue*)[self.dataModelController 
 			insertObject:FIXED_VALUE_ENTITY_NAME];
 		newVal.value = (NSNumber*)newValue;
+		
 		[self.inputVal setValueForScenario:self.currentScen andInputValue:newVal];
+
+		// If a value hasn't been set for the default scenario, set it to the first value.
+		InputValue *defaultValue = [self.inputVal findInputValueForDefaultScenario];
+		if(defaultValue == nil)
+		{
+			[self.inputVal setDefaultValue:newVal];
+		}
+
 	}
 }
 
 
 - (BOOL)fieldIsInitializedInParentObject
 {
-	return TRUE;
+	FixedValue *theVal = (FixedValue*)[self.inputVal findInputValueForScenarioOrDefault:self.currentScen];
+	if(theVal != nil)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
 
 -(void)dealloc

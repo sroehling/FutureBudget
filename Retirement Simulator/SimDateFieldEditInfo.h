@@ -10,6 +10,7 @@
 
 #import "FieldEditInfo.h"
 #import "ManagedObjectFieldEditInfo.h"
+#import "DateFieldEditViewController.h"
 
 @class ValueSubtitleTableCell;
 @class SimDateRuntimeInfo;
@@ -21,13 +22,14 @@
 @class MultiScenarioInputValue;
 @class DataModelController;
 
-@interface SimDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
+@interface SimDateFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo,DateFieldEditViewDelegate> {
     @private
         FieldInfo *defaultValFieldInfo;
 		FieldInfo *defaultRelEndDateFieldInfo;
 		ValueSubtitleTableCell *dateCell;
 		SimDateSubtitleFormatter *subtitleFormatter;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
+		FormContext *parentContextForDateSelection;
 		bool showEndDates;
 }
 
@@ -36,6 +38,7 @@
 @property(nonatomic,retain) ValueSubtitleTableCell *dateCell;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 @property(nonatomic,retain) SimDateSubtitleFormatter *subtitleFormatter;
+@property(nonatomic,retain) FormContext *parentContextForDateSelection;
 	
 + (SimDateFieldEditInfo*)createForDataModelController:(DataModelController*)dataModelController 
 		andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultFixedDate:(FixedDate*)defaultFixedDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 

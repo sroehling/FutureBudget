@@ -29,6 +29,8 @@
 #import "SingleScenarioRelativeEndDateFieldInfo.h"
 #import "MultiScenarioRelativeEndDateFieldInfo.h"
 #import "FormContext.h"
+#import "FieldInfo.h"
+#import "DateFieldEditViewController.h"
 
 @implementation SimDateFieldEditInfo
 
@@ -37,6 +39,19 @@
 @synthesize varDateRuntimeInfo;
 @synthesize defaultRelEndDateFieldInfo;
 @synthesize subtitleFormatter;
+@synthesize parentContextForDateSelection;
+
+-(void)dealloc
+{
+	[varDateRuntimeInfo release];
+	[defaultValFieldInfo release];
+	[dateCell release];
+	[defaultRelEndDateFieldInfo release];
+	[subtitleFormatter release];
+	[parentContextForDateSelection release];
+	[super dealloc];
+}
+
 
 - (void)configureDateCell
 {
@@ -71,7 +86,6 @@
     if(self)
     {
         assert(theDefaultFieldInfo!=nil);
-        assert([theDefaultFieldInfo fieldIsInitializedInParentObject]);
         self.defaultValFieldInfo = theDefaultFieldInfo;
 		
 		self.varDateRuntimeInfo = theVarDateRuntimeInfo;
@@ -207,19 +221,61 @@
 - (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
     
-    SimDateFormInfoCreator *formInfoCreator = 
-        [[[SimDateFormInfoCreator alloc] initWithVariableDateFieldInfo:self.fieldInfo 
-          andDefaultValFieldInfo:self.defaultValFieldInfo 
+	if([self.defaultValFieldInfo fieldIsInitializedInParentObject])
+	{
+		SimDateFormInfoCreator *formInfoCreator =
+			[[[SimDateFormInfoCreator alloc] initWithVariableDateFieldInfo:self.fieldInfo 
+			  andDefaultValFieldInfo:self.defaultValFieldInfo 
+			  andVarDateRuntimeInfo:self.varDateRuntimeInfo
+			  andDoShowEndDates:showEndDates andDefaultRelEndDateFieldInfo:self.defaultRelEndDateFieldInfo] autorelease];
+		
+		SelectableObjectTableEditViewController *viewController = 
+		[[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:formInfoCreator 
+				andAssignedField:self.fieldInfo andDataModelController:parentContext.dataModelController] autorelease];
+		viewController.loadInEditModeIfAssignedFieldNotSet = TRUE;
+
+		return viewController;
+	}
+	else
+	{	
+		DateFieldEditViewController *dateController =
+			[[[DateFieldEditViewController alloc] initWithFieldInfo:self.defaultValFieldInfo
+			andDataModelController:parentContext.dataModelController] autorelease];
+		dateController.useModalDoneButtonToConfirmDateSelection = TRUE;
+		dateController.onlyFutureDates = FALSE; // TODO - support onlyFutureDates flag
+		dateController.delegate = self;
+		self.parentContextForDateSelection = parentContext;
+		return dateController;
+	}
+
+    
+}
+
+-(void)dateFieldEditViewDoneSelectingDate
+{
+	assert(self.parentContextForDateSelection != nil);
+
+	// After selecting the date, the default value is expected to be initialized. This also become the
+	// first value the date. The assignment below occurs in the same way as it does for the
+	// SelectableObjectTableViewController. When the 'managedObject' method is called on the
+	// defaultValFieldInfo, it returns the underlying FixedDateVal with which to do the assignment,
+	// rather than the NSDate which is used by the DateFieldEditViewController and is returned
+	// by getFieldVal (or set with setFieldVal).
+	assert([self.defaultValFieldInfo fieldIsInitializedInParentObject]);
+	[self.fieldInfo setFieldValue:[self.defaultValFieldInfo managedObject]];
+		
+	SimDateFormInfoCreator *formInfoCreator =
+		[[[SimDateFormInfoCreator alloc] initWithVariableDateFieldInfo:self.fieldInfo 
+		  andDefaultValFieldInfo:self.defaultValFieldInfo 
 		  andVarDateRuntimeInfo:self.varDateRuntimeInfo
 		  andDoShowEndDates:showEndDates andDefaultRelEndDateFieldInfo:self.defaultRelEndDateFieldInfo] autorelease];
-    
-    SelectableObjectTableEditViewController *viewController = 
-    [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:formInfoCreator 
-            andAssignedField:self.fieldInfo andDataModelController:parentContext.dataModelController] autorelease];
+	SelectableObjectTableEditViewController *viewController =
+		[[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:formInfoCreator 
+		andAssignedField:self.fieldInfo
+		andDataModelController:self.parentContextForDateSelection.dataModelController] autorelease];
 	viewController.loadInEditModeIfAssignedFieldNotSet = TRUE;
-
-    return viewController;
-    
+	
+	[self.parentContextForDateSelection.parentController.navigationController pushViewController:viewController animated:TRUE];
 }
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -235,15 +291,6 @@
     return self.dateCell;
 }
 
--(void)dealloc
-{
-	[varDateRuntimeInfo release];
-	[defaultValFieldInfo release];
-	[dateCell release];
-	[defaultRelEndDateFieldInfo release];
-	[subtitleFormatter release];
-	[super dealloc];
-}
 
 
 @end

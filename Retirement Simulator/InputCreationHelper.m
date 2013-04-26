@@ -112,6 +112,15 @@
 	return msAmount;
 }
 
+- (MultiScenarioAmount*)multiScenAmountWithNoDefaultAndNoInitialVal
+{
+	MultiScenarioAmount *msAmount = [self.dataModel createDataModelObject:MULTI_SCEN_AMOUNT_ENTITY_NAME];
+    msAmount.defaultFixedAmount = [self multiScenInputValue];
+	msAmount.amount = [self multiScenInputValue];
+	return msAmount;
+}
+
+
 
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal
 {
@@ -135,6 +144,18 @@
 	msGrowthRate.growthRate = [self multiScenInputValue];
 	
 			
+	return msGrowthRate;
+}
+
+
+- (MultiScenarioGrowthRate*)multiScenGrowthRateWithNoDefaultAndNoInitialVal
+{
+	MultiScenarioGrowthRate *msGrowthRate = 
+		[self.dataModel createDataModelObject:MULTI_SCEN_GROWTH_RATE_ENTITY_NAME];
+			
+    msGrowthRate.defaultFixedGrowthRate = [self multiScenInputValue];
+	msGrowthRate.growthRate = [self multiScenInputValue];
+	
 	return msGrowthRate;
 }
 
@@ -265,6 +286,20 @@
 	return msSimDate;
 
 }
+
+- (MultiScenarioSimDate*)multiScenSimDateWithNoDefaultAndNoInitialVal
+{
+	
+	MultiScenarioSimDate *msSimDate = 
+		[self.dataModel createDataModelObject:MULTI_SCEN_SIM_DATE_ENTITY_NAME];
+
+    msSimDate.defaultFixedSimDate = [self multiScenInputValue];
+	msSimDate.simDate = [self multiScenInputValue];
+
+	return msSimDate;
+
+}
+
 
 
 - (MultiScenarioSimDate*)multiScenSimDateWithDefaultToday

@@ -39,10 +39,12 @@
 
 - (MultiScenarioAmount*)multiScenAmountWithDefault:(double)defaultVal;
 - (MultiScenarioAmount*)multiScenAmountWithWithDefaultButNoInitialVal:(double)defaultVal;
+- (MultiScenarioAmount*)multiScenAmountWithNoDefaultAndNoInitialVal;
 
 
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal;
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefaultButNoInitialVal:(double)defaultVal;
+- (MultiScenarioGrowthRate*)multiScenGrowthRateWithNoDefaultAndNoInitialVal;
 - (MultiScenarioGrowthRate*)multiScenDefaultGrowthRate;
 
 - (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal;
@@ -60,6 +62,8 @@
 - (MultiScenarioSimDate*)multiScenSimDateWithDefaultToday;
 - (MultiScenarioSimDate*)multiScenSimDateWithDefaultTodayButNoInitialVal;
 - (MultiScenarioSimDate*)multiScenSimDateWithDefault:(NSDate*)defaultDate;
+- (MultiScenarioSimDate*)multiScenSimDateWithNoDefaultAndNoInitialVal;
+
 
 - (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefaultNeverEndDate;
 

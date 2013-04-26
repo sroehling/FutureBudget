@@ -114,8 +114,6 @@
 			andFieldPlaceholder:dsvValuePlaceholder 
 			andScenario:theScenario andInputVal:defaultFixedVal] autorelease];
 
-    assert([defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
-
     DateSensitiveValueFieldEditInfo *fieldEditInfo = [[[DateSensitiveValueFieldEditInfo alloc]
          initWithFieldInfo:fieldInfo andDefaultFixedValFieldInfo:defaultFixedValFieldInfo
           andValRuntimeInfo:varValRuntimeInfo
