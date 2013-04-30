@@ -148,6 +148,13 @@
 		initWithFieldInfo:fieldInfo andCustomValidator:uniqueNameValidator
 			andParentController:self.formContext.parentController
 			andImageNames:inputIcons andImageFieldInfo:imageFieldInfo] autorelease];
+			
+	// When first prompting for the name, make the name field the first
+	// responder.
+	if(![fieldInfo fieldIsInitializedInParentObject])
+	{
+		self.formInfo.firstResponder = fieldEditInfo.cell.textField;
+	}
 	
     [self.currentSection addFieldEditInfo:fieldEditInfo];
 
