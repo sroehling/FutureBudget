@@ -45,4 +45,6 @@ extern NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY;
 - (NSString*)label;
 - (BOOL)nameIsStaticLabel;
 
+- (NSString*) standaloneDescriptionWithNoName:(VariableValueRuntimeInfo*)valueRuntimeInfo;
+
 @end

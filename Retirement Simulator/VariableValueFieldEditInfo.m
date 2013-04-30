@@ -35,7 +35,7 @@
 {
 	self.varValueCell.caption.text = [self textLabel];
 	self.varValueCell.valueDescription.text = [self.variableVal valueDescription:self.varValRuntimeInfo];
-    self.varValueCell.valueSubtitle.text = [self.variableVal standaloneDescription:self.varValRuntimeInfo];
+    self.varValueCell.valueSubtitle.text = [self.variableVal standaloneDescriptionWithNoName:self.varValRuntimeInfo];
 
 }
 

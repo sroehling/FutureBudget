@@ -77,15 +77,40 @@ NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY = @"displayOrder";
 		displayStrFromStoredVal:self.startingValue andFormatter:valueRuntimeInfo.valueFormatter];
 	if([self.valueChanges count] == 0)
 	{
-		return [NSString stringWithFormat:@"%@ %@%@",valueRuntimeInfo.valueVerb,
+		return [NSString stringWithFormat:
+			LOCALIZED_STR(@"VARIABLE_VALUE_INLINE_DESCRIPTION_FORMAT_SINGLE_VALUE"),
+			valueRuntimeInfo.valueVerb,
 				startingValDesc,[valueRuntimeInfo inlinePeriodDesc]];
 	}
 	else
 	{
-		return [NSString stringWithFormat:@"initially %@ %@ (varies after)",valueRuntimeInfo.valueVerb,startingValDesc];
+		return [NSString stringWithFormat:
+			LOCALIZED_STR(@"VARIABLE_VALUE_INLINE_DESCRIPTION_FORMAT_MULTIPLE_VALUES"),
+			valueRuntimeInfo.valueVerb,startingValDesc];
 		
 	}
 }
+
+- (NSString*) standaloneDescriptionWithNoName:(VariableValueRuntimeInfo*)valueRuntimeInfo
+{
+	NSString *startingValDesc  =[[NumberHelper theHelper] 
+								 displayStrFromStoredVal:self.startingValue
+								 andFormatter:valueRuntimeInfo.valueFormatter];
+	if([self.valueChanges count] == 0)
+	{
+		return [NSString stringWithFormat:
+			LOCALIZED_STR(@"VARIABLE_VALUE_STANDALONE_DESCRIPTION_FORMAT_SINGLE_VALUE_NO_NAME"),
+				startingValDesc,[valueRuntimeInfo inlinePeriodDesc]];
+	}
+	else
+	{
+		return [NSString stringWithFormat:
+			LOCALIZED_STR(@"VARIABLE_VALUE_STANDALONE_DESCRIPTION_FORMAT_MULTIPLE_VALUES_NO_NAME"),
+			startingValDesc];
+		
+	}	
+}
+
 
 - (NSString*) standaloneDescription:(VariableValueRuntimeInfo*)valueRuntimeInfo
 {
@@ -94,12 +119,15 @@ NSString * const VARIABLE_VALUE_DISPLAY_ORDER_KEY = @"displayOrder";
 								 andFormatter:valueRuntimeInfo.valueFormatter];
 	if([self.valueChanges count] == 0)
 	{
-		return [NSString stringWithFormat:@"%@%@",
-				startingValDesc,[valueRuntimeInfo inlinePeriodDesc]];
+		return [NSString stringWithFormat:
+			LOCALIZED_STR(@"VARIABLE_VALUE_STANDALONE_DESCRIPTION_FORMAT_SINGLE_VALUE"),
+				startingValDesc,[valueRuntimeInfo inlinePeriodDesc],[self label]];
 	}
 	else
 	{
-		return [NSString stringWithFormat:@"Initially %@ (varies after)",startingValDesc];
+		return [NSString stringWithFormat:
+			LOCALIZED_STR(@"VARIABLE_VALUE_STANDALONE_DESCRIPTION_FORMAT_MULTIPLE_VALUES"),
+			startingValDesc,[self label]];
 		
 	}	
 }
