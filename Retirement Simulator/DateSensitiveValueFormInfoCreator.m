@@ -135,9 +135,6 @@
 		value sets the default and then the assigned.
 	*/
 	
-	// TODO - When the form is first shown, it is being initialized with the default value (typically $0), 
-	// which is confusing/misleading. There is also no selection initially, which makes initial setup
-	// of a date-sensitive value cumbersome.
 	
 	NumberFieldEditInfo *valueFieldEditInfo = 
 		[[[NumberFieldEditInfo alloc]initWithFieldInfo:self.defaultValFieldInfo

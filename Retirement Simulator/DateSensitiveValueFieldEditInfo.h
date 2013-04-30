@@ -11,18 +11,21 @@
 #import "ManagedObjectFieldEditInfo.h"
 #import "VariableValueRuntimeInfo.h"
 #import "FieldEditInfo.h"
+#import "GenericFieldBasedValuePromptTableViewController.h"
 
 @class ValueSubtitleTableCell;
 @class Scenario;
 @class MultiScenarioInputValue;
 @class FieldInfo;
 @class DataModelController;
+@class FormContext;
 
-@interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo> {
+@interface DateSensitiveValueFieldEditInfo : ManagedObjectFieldEditInfo <FieldEditInfo, GenericFieldBasedValuePromptTableViewDelegate> {
     @private 
 		FieldInfo *defaultFixedValFieldInfo;
 		VariableValueRuntimeInfo *varValRuntimeInfo;
 		ValueSubtitleTableCell *valueCell;
+		FormContext *parentContextForFirstValueEdit;
 		BOOL isForNewValue;
 
 }
@@ -37,6 +40,7 @@
 
 @property(nonatomic,retain) FieldInfo *defaultFixedValFieldInfo;
 @property(nonatomic,retain) ValueSubtitleTableCell *valueCell;
+@property(nonatomic,retain) FormContext *parentContextForFirstValueEdit;
 
 + (DateSensitiveValueFieldEditInfo*)createForObject:
 			(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andValRuntimeInfo:(VariableValueRuntimeInfo *)varValRuntimeInfo

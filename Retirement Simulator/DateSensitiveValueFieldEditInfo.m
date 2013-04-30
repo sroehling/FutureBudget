@@ -20,6 +20,13 @@
 #import "MultiScenarioInputValue.h"
 #import "MultiScenarioFixedValueFieldInfo.h"
 #import "FormContext.h"
+#import "NumberFieldEditInfo.h"
+#import "FormPopulator.h"
+#import "NumberFieldCell.h"
+#import "SectionInfo.h"
+#import "StaticFormInfoCreator.h"
+#import "GenericFieldBasedValuePromptTableViewController.h"
+
 
 @implementation DateSensitiveValueFieldEditInfo
 
@@ -27,6 +34,18 @@
 @synthesize defaultFixedValFieldInfo;
 @synthesize valueCell;
 @synthesize isForNewValue;
+@synthesize parentContextForFirstValueEdit;
+
+
+- (void) dealloc
+{
+    [varValRuntimeInfo release];
+    [defaultFixedValFieldInfo release];
+	[valueCell release];
+	[parentContextForFirstValueEdit release];
+    [super dealloc];
+}
+
 
 - (void) configureValueCell
 {
@@ -162,23 +181,88 @@
     return [dsValue valueDescription:self.varValRuntimeInfo];
 }
 
-- (UIViewController*)fieldEditController:(FormContext*)parentContext
-{    
-    DateSensitiveValueFormInfoCreator *dsvFormInfoCreator = 
-    [[[DateSensitiveValueFormInfoCreator alloc] initWithVariableValueFieldInfo:self.fieldInfo 
-        andDefaultValFieldInfo:self.defaultFixedValFieldInfo 
+
+-(SelectableObjectTableEditViewController*)viewControllerForDateSensitiveVal:(FormContext*)parentContext
+{
+	DateSensitiveValueFormInfoCreator *dsvFormInfoCreator = 
+	[[[DateSensitiveValueFormInfoCreator alloc] initWithVariableValueFieldInfo:self.fieldInfo 
+		andDefaultValFieldInfo:self.defaultFixedValFieldInfo 
 		andVarValRuntimeInfo:self.varValRuntimeInfo
 		andIsForNewValue:self.isForNewValue] autorelease];
 		
-    SelectableObjectTableEditViewController *dsValueController = 
-            [[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:dsvFormInfoCreator 
-                  andAssignedField:self.fieldInfo
+	SelectableObjectTableEditViewController *dsValueController = 
+			[[[SelectableObjectTableEditViewController alloc] initWithFormInfoCreator:dsvFormInfoCreator 
+				  andAssignedField:self.fieldInfo
 				  andDataModelController:parentContext.dataModelController] autorelease];
 	dsValueController.loadInEditModeIfAssignedFieldNotSet = self.isForNewValue?TRUE:FALSE;
-	      
-    return dsValueController;
+
+	return dsValueController;
 }
 
+
+- (UIViewController*)fieldEditController:(FormContext*)parentContext
+{
+
+	if([self.defaultFixedValFieldInfo fieldIsInitializedInParentObject])
+	{			  
+		return [self viewControllerForDateSensitiveVal:parentContext];
+	}
+	else
+	{
+		// If the amount field is uninitialized, show a dedicated popup to
+		// get the initial fixed amount value.
+		FormPopulator *formPopulator = [[[FormPopulator alloc]
+			initWithFormContext:parentContext] autorelease];
+		self.parentContextForFirstValueEdit = parentContext;
+			
+		formPopulator.formInfo.title = LOCALIZED_STR(self.varValRuntimeInfo.valueTitleKey);
+
+		[formPopulator nextSection];
+		NumberFieldEditInfo *valueFieldEditInfo =
+			[[[NumberFieldEditInfo alloc]initWithFieldInfo:self.defaultFixedValFieldInfo
+			 andNumberFormatter:self.varValRuntimeInfo.valueFormatter
+			 andValidator:self.varValRuntimeInfo.valueValidator] autorelease];
+		valueFieldEditInfo.isDefaultSelection = TRUE;
+		[formPopulator.currentSection addFieldEditInfo:valueFieldEditInfo];
+	 
+		formPopulator.formInfo.firstResponder = valueFieldEditInfo.numberCell.textField;
+		
+		StaticFormInfoCreator *fieldValFormInfoCreator = [[[StaticFormInfoCreator alloc]
+		initWithFormInfo:formPopulator.formInfo] autorelease];
+		
+		GenericFieldBasedValuePromptTableViewController *firstValueEditViewController =
+			[[[GenericFieldBasedValuePromptTableViewController alloc]
+			initWithFormInfoCreator:fieldValFormInfoCreator
+			andDataModelController:parentContext.dataModelController] autorelease];
+		firstValueEditViewController.delegate = self;
+		
+		
+		return firstValueEditViewController;
+
+	}
+
+}
+
+
+-(void)genericFieldBasedValuePromptTableViewDonePromptingForValues
+{
+	NSLog(@"Save complete for new value");
+	
+	assert([self.defaultFixedValFieldInfo fieldIsInitializedInParentObject]);
+	[self.fieldInfo setFieldValue:[self.defaultFixedValFieldInfo managedObject]];
+ 
+	assert(self.parentContextForFirstValueEdit != nil);
+	
+	SelectableObjectTableEditViewController *dsValueController =
+		[self viewControllerForDateSensitiveVal:self.parentContextForFirstValueEdit];
+
+	[self.parentContextForFirstValueEdit.parentController.navigationController
+		popViewControllerAnimated:FALSE];
+		 
+	[self.parentContextForFirstValueEdit.parentController.navigationController
+		pushViewController:dsValueController animated:FALSE];
+
+}
 
 
 - (CGFloat)cellHeightForWidth:(CGFloat)width
@@ -192,13 +276,6 @@
     return self.valueCell;
 }
 
-- (void) dealloc
-{
-    [varValRuntimeInfo release];
-    [defaultFixedValFieldInfo release];
-	[valueCell release];
-    [super dealloc];
-}
 
 
 @end
