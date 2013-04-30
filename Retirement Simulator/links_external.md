@@ -64,6 +64,8 @@
 [varReturn]:variableReturn.html
 [variableValueChange]:variableValueChange.html
 [variableValueStarting]:variableValueStartDate.html
+[variableDownPayment]:variableLoanDownPmt.html
+
 
 
 <!-- Dates Related -->

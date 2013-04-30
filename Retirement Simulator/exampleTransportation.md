@@ -9,7 +9,7 @@ Instructions:
 1. Create an [asset input][asset] to represent the vehicle's value and depreciation.
   * Set the __Purchase Date__ to the date you acquired the vehicle.	
   * Set the __Purchase Cost__ to the price originally paid for the vehicle.	
-  * Set the __Current Value__ to an estimate of the vehicle's current "used vehicle" value. This value is used as a starting value in the simulation and represents depreciation which has already occurred.
+  * Set the __Current Value__ to an estimate of the vehicle's current "used vehicle" value. This value is used as a starting value and represents depreciation which has already occurred.
 
 2. If there is an outstanding auto loan on the vehicle, create an associated [loan input][loan]. 
   * Set the __Amount Borrowed__, __Origination Date__, __Interest Rate__  and __Duration__ to the original terms of the loan. A payment will be calculated from these values. If the loan originated in the past, there is no need to provide an __Amount Borrowed Growth Rate__.

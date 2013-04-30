@@ -1,4 +1,4 @@
-## Single Amount
+## Fixed Amount
 
 Select this amount for an amount that is not expected to change over time, except for regular inflation. When a new input is created, a single amount is selected as the default. For example, a single amount should be used for inputs, such as regular monthly expenses or employment income.
 

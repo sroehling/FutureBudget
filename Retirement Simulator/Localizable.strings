@@ -126,7 +126,7 @@
 "INPUT_ACCOUNT_STARTING_BALANCE_LABEL" = "Current Balance";
 "INPUT_ACCOUNT_INPUT_LIST_DETAIL_FORMAT" = "Current balance of %@, %@";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE" = "Contribute Forever";
-"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE" = "Contribute through the end of simulation";
+"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE" = "Contribute through the end of results generation";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE" = "Contribute Forever";
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE" = "Start Date";
 "INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER" = "Contribution Start Date";
@@ -307,7 +307,7 @@
 "INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE" = "Purchase and Sale";
 "INPUT_ASSET_INPUT_LIST_FORMAT" = "Asset purchased for %@";
 "INPUT_ASSET_NEVER_SELL_FIELD_TITLE" = "Never Sell";
-"INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE" = "Own asset through the end of simulation";
+"INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE" = "Own asset through the end of results generation";
 "INPUT_ASSET_NEVER_SELL_SECTION_TITLE" = "Never Sell";
 "INPUT_ASSET_SELL_DATE_TABLE_TITLE" = "Asset Sale Date";
 "INPUT_ASSET_SELL_DATE_TABLE_SUBTITLE_FORMAT" = "Enter and/or select a date the asset %@ will be sold.";
@@ -472,7 +472,7 @@
 "SIM_DATE_NEVER_ENDING_DATE_LABEL" = "Never Ending";
 "NEVER_ENDING_DATE_END_DATE_PREFIX" = "and";
 "SIM_DATE_NEVER_ENDING_DATE_INLINE_LABEL" = "never ending";
-"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE" = "Repeat through the end of simulation";
+"SIM_DATE_NEVER_ENDING_DATE_SUBTITLE" = "Repeat through the end of results generation";
 
 
 "SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE" = "Stop After Start Date";

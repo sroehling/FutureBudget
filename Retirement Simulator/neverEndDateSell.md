@@ -1,6 +1,6 @@
 ## Never Sell
 
-Select to own the asset indefinitely after purchasing it.
+Select to own the asset indefinitely (through the [end of results generation][resultsTimeFrame]) after purchasing it.
 
 ### See Also
 

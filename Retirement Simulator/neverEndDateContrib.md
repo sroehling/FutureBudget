@@ -1,6 +1,6 @@
 ## Contribute Forever
 
-Select to continue account contributions through the end of simulation.
+Select to continue account contributions through the [end of results generation][resultsTimeFrame].
 
 ### See Also
 

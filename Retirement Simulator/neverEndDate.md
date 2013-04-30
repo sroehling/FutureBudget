@@ -1,6 +1,6 @@
 ## Continue Indefinitely
 
-Select this date for the event to occur indefinitely.
+Select this date for the event to occur indefinitely (through the [end of results generation][resultsTimeFrame]).
 
 ### See Also
 
