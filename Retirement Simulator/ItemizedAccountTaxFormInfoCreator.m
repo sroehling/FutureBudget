@@ -19,6 +19,7 @@
 #import "ItemizedTaxAmts.h"
 #import "ItemizedIncomeTaxAmtCreator.h"
 #import "ItemizedTaxAmtFieldEditInfo.h"
+#import "AccountDividendItemizedTaxAmt.h"
 #import "IncomeItemizedTaxAmt.h"
 #import "Account.h"
 #import "AccountContribItemizedTaxAmt.h"
@@ -28,6 +29,7 @@
 #import "ItemizedAccountContribTaxAmtCreator.h"
 #import "ItemizedAccountTaxAmtCreator.h"
 #import "ItemizedAccountWithdrawalTaxAmtCreator.h"
+#import "ItemizedAccountDividendTaxAmtCreator.h"
 #import "FormContext.h"
 #import "StringValidation.h"
 
@@ -38,6 +40,7 @@
 @synthesize showContributions;
 @synthesize showWithdrawal;
 @synthesize showInterest;
+@synthesize showDividend;
 
 
 -(id)initWithAcct:(Account*)theAccount andIsForNewObject:(BOOL)forNewObject
@@ -53,6 +56,7 @@
 		self.showInterest = FALSE;
 		self.showContributions = FALSE;
 		self.showWithdrawal = FALSE;
+		self.showDividend = FALSE;
 	}
 	return self;
 }
@@ -163,6 +167,21 @@
 			}
 		}
 
+		if(self.showDividend)
+		{
+			[formPopulator nextSectionWithTitle:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_TAXABLE_DIVIDEND_SECTION_HEADER")];
+			for(TaxInput *tax in inputs)
+			{
+				ItemizedTaxAmtsInfo *taxSourceInfo = [ItemizedTaxAmtsInfo taxSourceInfo:tax
+					usingDataModelController:parentContext.dataModelController];
+				[formPopulator populateItemizedTaxForTaxAmtsInfo:taxSourceInfo
+						andTaxAmt:[taxSourceInfo.fieldPopulator findItemizedAcctDividend:self.account]
+						andTaxAmtCreator:[[[ItemizedAccountDividendTaxAmtCreator alloc]
+					initWithFormContext:parentContext
+					andAcct:self.account andLabel:tax.name] autorelease]];
+			}
+		}
 
 	}
 

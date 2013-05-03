@@ -57,6 +57,7 @@
 @synthesize accountDeferredWithdrawalDate;
 @synthesize accountWithdrawalPriority;
 @synthesize accountInterestRate;
+@synthesize accountDividendRate;
 
 @synthesize loanDownPmtEnabled;
 @synthesize loanDownPmtPercent;
@@ -176,6 +177,9 @@
 			
 		if([self populateInputSet:self.accountInterestRate 
 			    withInput:msGrowthRate.accountInterestRate]) { return; }
+				
+		if([self populateInputSet:self.accountDividendRate
+				withInput:msGrowthRate.accountDividendRate]) { return; }
 			
 		if([self populateInputSet:self.assetApprecRate 
 			    withInput:msGrowthRate.assetApprecRate]) { return; }
@@ -289,6 +293,7 @@
 		// MultiScenarioGrowthRate inverse relationships		
 		self.accountContribGrowthRate = [[[NSMutableSet alloc] init] autorelease];
 		self.accountInterestRate = [[[NSMutableSet alloc] init] autorelease];
+		self.accountDividendRate = [[[NSMutableSet alloc] init] autorelease];
 		self.assetApprecRate = [[[NSMutableSet alloc] init] autorelease];
 		self.taxExemptionGrowthRate = [[[NSMutableSet alloc] init] autorelease];
 		self.taxStdDeductionGrowthRate = [[[NSMutableSet alloc] init] autorelease];
@@ -365,6 +370,7 @@
 	// MultiScenarioGrowthRate inverse relationships	
 	[accountContribGrowthRate release];
 	[accountInterestRate release];
+	[accountDividendRate release];
 	[assetApprecRate release];
 	[taxExemptionGrowthRate release];
 	[taxStdDeductionGrowthRate release];

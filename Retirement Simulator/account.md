@@ -14,6 +14,10 @@ withdrawals are taxed, or interest (returns) are [taxed][tax]. For example, the 
 taxed as income, the contributions to a [401Ks][example401K] are tax deductable, but withdrawals from a [Roth IRA][exampleRoth]
 are not taxed.
 
+### Dividends
+
+TBD
+
 ### Current Account Balances
 
 For each account, a current balance needs to be provided. This current balance provides a "snapshot" of the account as of the [start date][resultsTimeFrame] for calculating results.

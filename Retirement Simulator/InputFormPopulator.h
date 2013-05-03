@@ -89,6 +89,9 @@
 - (void)populateMultiScenarioInvestmentReturnRate:(MultiScenarioGrowthRate*)roiRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
+- (void)populateMultiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName;
 - (void)populateMultiScenarioApprecRate:(MultiScenarioGrowthRate*)apprecRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;

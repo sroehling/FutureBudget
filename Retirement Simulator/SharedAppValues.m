@@ -23,6 +23,7 @@
 #import "LoanDownPmtPercent.h"
 #import "CoreDataHelper.h"
 #import "TransferEndpointCash.h"
+#import "DividendRate.h"
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
@@ -40,6 +41,11 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 #define DEFAULT_ROI_MEDIUM 7.5
 #define DEFAULT_ROI_AGGRESSIVE 10.0
 #define DEFAULT_ROI_SAVINGS 1.0
+
+#define DEFAULT_DIVIDEND_RATE_NONE 0.0
+#define DEFAULT_DIVIDEND_RATE_LOW 2.5
+#define DEFAULT_DIVIDEND_RATE_MEDIUM 5.0
+#define DEFAULT_DIVIDEND_RATE_HIGH 7.5
 
 #define DEFAULT_LOAN_DOWN_PMT_NOTHING_DOWN 0.0
 #define DEFAULT_LOAN_DOWN_PMT_10PERC_DOWN 10.0
@@ -94,6 +100,19 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 		usingDataModelInterface:dataModelInterface andEntityName:INVESTMENT_RETURN_RATE_ENTITY_NAME
 		andDisplayOrder:displayOrder];
 }
+
+
++(void)createDefaultDividendRate:(double)yearlyDividendRate
+		withLabelStringFileKey:(NSString*)labelKey
+	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
+	andDisplayOrder:(NSUInteger)displayOrder
+{
+	return [SharedAppValues createDefaultVariableValue:yearlyDividendRate 
+		withLabelStringFileKey:labelKey 
+		usingDataModelInterface:dataModelInterface andEntityName:DIVIDEND_RATE_ENTITY_NAME
+		andDisplayOrder:displayOrder];
+}
+
 
 +(void)createDefaultLoanDownPmt:(double)downPmtPercent withLabelStringFileKey:(NSString*)labelKey
 	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
@@ -200,8 +219,25 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 	[SharedAppValues createDefaultLoanDownPmt:DEFAULT_LOAN_DOWN_PMT_20PERC_DOWN 
 		withLabelStringFileKey:@"DEFAULT_LOAN_DOWN_PMT_20PERC_DOWN" 
 		usingDataModelInterface:dataModelInterface
+		andDisplayOrder:3];		
+
+	[SharedAppValues createDefaultDividendRate:DEFAULT_DIVIDEND_RATE_NONE
+			withLabelStringFileKey:@"DEFAULT_DIVIDEND_NO_DIVIDEND_LABEL"
+			usingDataModelInterface:dataModelInterface
+		andDisplayOrder:1];
+	[SharedAppValues createDefaultDividendRate:DEFAULT_DIVIDEND_RATE_LOW
+			withLabelStringFileKey:@"DEFAULT_DIVIDEND_LOW_DIVIDEND_LABEL"
+			usingDataModelInterface:dataModelInterface
+		andDisplayOrder:2];
+	[SharedAppValues createDefaultDividendRate:DEFAULT_DIVIDEND_RATE_MEDIUM
+			withLabelStringFileKey:@"DEFAULT_DIVIDEND_MEDIUM_DIVIDEND_LABEL"
+			usingDataModelInterface:dataModelInterface
 		andDisplayOrder:3];
-	
+	[SharedAppValues createDefaultDividendRate:DEFAULT_DIVIDEND_RATE_HIGH
+			withLabelStringFileKey:@"DEFAULT_DIVIDEND_HIGH_DIVIDEND_LABEL"
+			usingDataModelInterface:dataModelInterface
+		andDisplayOrder:4];
+
 	FixedValue *theDeficitInterestRate = (FixedValue*)[dataModelInterface createDataModelObject:FIXED_VALUE_ENTITY_NAME];
 	theDeficitInterestRate.value = [NSNumber numberWithDouble:DEFAULT_DEFICIT_INTEREST_RATE];
 	sharedVals.deficitInterestRate = theDeficitInterestRate;

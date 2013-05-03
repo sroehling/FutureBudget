@@ -33,6 +33,7 @@
 		BOOL itemizeAccountContribs;
 		BOOL itemizeAccountWithdrawals;
 		BOOL itemizeAccountInterest;
+		BOOL itemizeAccountDividends;
 		BOOL itemizeLoanInterest;
 		BOOL itemizeAssetGains;
 		BOOL itemizedTaxesPaid;
@@ -55,6 +56,7 @@
 @property BOOL itemizeAccountContribs;
 @property BOOL itemizeAccountWithdrawals;
 @property BOOL itemizeAccountInterest;
+@property BOOL itemizeAccountDividends;
 @property BOOL itemizeLoanInterest;
 @property BOOL itemizeAssetGains;
 @property BOOL itemizeTaxesPaid;
@@ -72,6 +74,7 @@
 	andItemizeAccountContribs:(BOOL)doItemizeAcctContribs
 	andItemizeAccountWithdrawals:(BOOL)doItemizeAcctWithdrawals
 	andItemizeAccountInterest:(BOOL)doItemizeAcctInterest
+	andItemizeAccountDividends:(BOOL)doItemizeAcctDividend
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
 	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest
 	andItemizeTaxesPaid:(BOOL)doItemizeTaxesPaid;

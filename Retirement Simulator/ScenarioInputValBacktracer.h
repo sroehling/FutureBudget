@@ -43,6 +43,7 @@
 		// MultiScenarioGrowthRate inverse relationships
 		NSMutableSet *accountContribGrowthRate;
 		NSMutableSet *accountInterestRate;
+		NSMutableSet *accountDividendRate;
 		NSMutableSet *assetApprecRate;
 		NSMutableSet *taxExemptionGrowthRate;
 		NSMutableSet *taxStdDeductionGrowthRate;
@@ -98,6 +99,7 @@
 // MultiScenarioGrowthRate inverse relationships
 @property(nonatomic,retain) NSMutableSet *accountContribGrowthRate;
 @property(nonatomic,retain) NSMutableSet *accountInterestRate;
+@property(nonatomic,retain) NSMutableSet *accountDividendRate;
 @property(nonatomic,retain) NSMutableSet *assetApprecRate;
 @property(nonatomic,retain) NSMutableSet *taxExemptionGrowthRate;
 @property(nonatomic,retain) NSMutableSet *taxStdDeductionGrowthRate;

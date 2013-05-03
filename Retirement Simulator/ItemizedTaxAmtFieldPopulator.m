@@ -17,6 +17,7 @@
 #import "AssetGainItemizedTaxAmt.h"
 #import "LoanInterestItemizedTaxAmt.h"
 #import "TaxesPaidItemizedTaxAmt.h"
+#import "AccountDividendItemizedTaxAmt.h"
 #import "LocalizationHelper.h"
 
 #import "DataModelController.h"
@@ -36,6 +37,7 @@
 @synthesize itemizedIncomes;
 @synthesize itemizedExpenses;
 @synthesize itemizedAccountInterest;
+@synthesize itemizedAccountDividend;
 @synthesize itemizedAccountContribs;
 @synthesize itemizedAccountWithdrawals;
 @synthesize itemizedAssets;
@@ -60,6 +62,7 @@
 		self.itemizedIncomes = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedExpenses =  [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountInterest = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedAccountDividend = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountContribs = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountWithdrawals = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAssets = [[[NSMutableArray alloc] init] autorelease];
@@ -92,6 +95,12 @@
 {
 	assert(itemizedTaxAmt != nil);
 	[self.itemizedAccountInterest addObject:itemizedTaxAmt];
+}
+
+-(void)visitAccountDividendItemizedTaxAmt:(AccountDividendItemizedTaxAmt*)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedAccountDividend addObject:itemizedTaxAmt];
 }
 
 -(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt
@@ -260,6 +269,35 @@
 	return nil;
 }
 
+- (NSArray*)acctDividendNotAlreadyItemized
+{
+	NSArray *allAccounts = [self.dataModelController
+			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
+		
+	for(AccountDividendItemizedTaxAmt *itemizedDiv in self.itemizedAccountDividend)
+	{
+		[unItemizedAccounts removeObject:itemizedDiv.account];
+	}
+	
+	return unItemizedAccounts;
+}
+
+
+-(AccountDividendItemizedTaxAmt *)findItemizedAcctDividend:(Account*)account
+{
+	assert(account != nil);
+	for(AccountDividendItemizedTaxAmt *itemizedDiv in self.itemizedAccountDividend)
+	{
+		if(itemizedDiv.account == account)
+		{
+			return itemizedDiv;
+		}
+	}
+	return nil;
+}
+
+
 - (NSArray*)assetGainsNotAlreadyItemized
 {
 	NSArray *allAssets = [self.dataModelController
@@ -382,6 +420,23 @@
 			[acctNameList componentsJoinedByString:@","]]];
 	}
 
+	
+	if([self enabledItemizationCount:self.itemizedAccountDividend] > 0)
+	{
+		NSMutableArray *acctNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(AccountDividendItemizedTaxAmt *itemizedDiv in self.itemizedAccountDividend)
+		{
+			if([itemizedDiv.isEnabled boolValue])
+			{
+				[acctNameList addObject:itemizedDiv.account.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_DIVIDEND_TITLE"),
+			[acctNameList componentsJoinedByString:@","]]];
+	}
+
+
 	if([self enabledItemizationCount:self.itemizedLoans] > 0)
 	{
 		NSMutableArray *loanNameList = [[[NSMutableArray alloc] init] autorelease];
@@ -482,6 +537,8 @@
 	theCount += [self enabledItemizationCount:self.itemizedIncomes];
 	
 	theCount += [self enabledItemizationCount:self.itemizedAccountInterest];
+	
+	theCount += [self enabledItemizationCount:self.itemizedAccountDividend];
 
 	theCount += [self enabledItemizationCount:self.itemizedLoans];
 
@@ -522,6 +579,7 @@
 	[itemizedIncomes release];
 	[itemizedExpenses release];
 	[itemizedAccountInterest release];
+	[itemizedAccountDividend release];
 	[itemizedAccountContribs release];
 	[itemizedAccountWithdrawals release];
 	[itemizedAssets release];

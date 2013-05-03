@@ -122,7 +122,9 @@
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_FIELD_LABEL" = "Defer Withdrawals Until";
 "INPUT_ACCOUNT_WITHDRAWAL_DEFER_DATE_SUBTITLE_FORMAT" = "Defer withdrawals until %@";
 "INPUT_ACCOUNT_INTEREST_SECTION_TITLE" = "Interest";
+"INPUT_ACCOUNT_DIVIDEND_SECTION_TITLE" = "Dividends";
 "INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL" = "Interest/Return Rate";
+"INPUT_ACCOUNT_DIVIDEND_RATE_FIELD_LABEL" = "Dividend Rate";
 "INPUT_ACCOUNT_STARTING_BALANCE_LABEL" = "Current Balance";
 "INPUT_ACCOUNT_INPUT_LIST_DETAIL_FORMAT" = "Current balance of %@, %@";
 "INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE" = "Contribute Forever";
@@ -140,9 +142,11 @@
 "INPUT_ACCOUNT_CONTRIB_TAXES_FIELD_LABEL" = "Contributions' Tax Treatment";
 "INPUT_ACCOUNT_WITHDRAWAL_TAXES_FIELD_LABEL" = "Taxes on Withdrawals";
 "INPUT_ACCOUNT_INTEREST_TAXES_FIELD_LABEL" = "Taxes on Interest";
+"INPUT_ACCOUNT_DIVIDENDS_TAXES_FIELD_LABEL" = "Taxes on Dividends";
 "INPUT_ACCOUNT_TAXES_DEDUCTABLE_CONTRIBUTIONS_SECTION_HEADER" = "Deductable Contributions";
 "INPUT_ACCOUNT_TAXES_ADJUSTABLE_CONTRIBUTIONS_SECTION_HEADER" = "Contributions are Adjustments";
 "INPUT_ACCOUNT_TAXES_TAXABLE_INTEREST_SECTION_HEADER" = "Taxable Interest";
+"INPUT_ACCOUNT_TAXES_TAXABLE_DIVIDEND_SECTION_HEADER" = "Taxable Dividend";
 "INPUT_ACCOUNT_TAXES_CREDIT_CONTRIBUTIONS_SECTION_HEADER" = "Contributions are Credits";
 "INPUT_ACCOUNT_TAXES_TAXABLE_WITHDRAWALS_SECTION_HEADER" = "Taxable Withdrawals";
 "INPUT_ACCOUNT_ACCOUNT_TAXES_TITLE" = "Account Taxes";
@@ -178,6 +182,17 @@
 "DEFAULT_LOAN_DOWN_PMT_20PERC_DOWN" = "20 Percent Down";
 
 
+"SHARED_DIVIDEND_VALUE_TITLE" = "Dividend Rate";
+"SHARED_DIVIDEND_INLINE_VALUE_TITLE" = "dividend rate";
+"SHARED_DIVIDEND_TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
+"SHARED_DIVIDEND_VALUE_PROMPT" = "Enter a rate";
+"SHARED_DIVIDEND_PERIOD" = "every year";
+"SHARED_DIVIDEND_ACTION_VERB" = "yield";
+"DEFAULT_DIVIDEND_NO_DIVIDEND_LABEL" = "No Dividend";
+"DEFAULT_DIVIDEND_LOW_DIVIDEND_LABEL" = "Low Dividend";
+"DEFAULT_DIVIDEND_MEDIUM_DIVIDEND_LABEL" = "Medium Dividend";
+"DEFAULT_DIVIDEND_HIGH_DIVIDEND_LABEL" = "High Dividend";
+"DEFAULT_DIVIDEND_SMALL_DIVIDEND_LABEL" = "Small Dividend";
 
 "SHARED_APPREC_RATE_VALUE_TITLE" = "Appreciation Rate";
 "SHARED_APPREC_RATE_INLINE_VALUE_TITLE" = "appreciation percentage rate";
@@ -391,6 +406,7 @@
 "INPUT_TAX_ITEMIZED_TAXES_PAID_TITLE" = "Taxes Paid";
 "INPUT_TAX_ITEMIZED_EXPENSE_INLINE" = "expenses";
 "INPUT_TAX_ITEMIZED_ACCT_INTEREST_TITLE" = "Account Interest";
+"INPUT_TAX_ITEMIZED_ACCT_DIVIDEND_TITLE" = "Account Dividend";
 "INPUT_TAX_ITEMIZED_ACCT_INTEREST_INLINE" = "account interest";
 "INPUT_TAX_ITEMIZED_ACCT_CONTRIB_TITLE" = "Account Contributions";
 "INPUT_TAX_ITEMIZED_ACCT_CONTRIB_INLINE" = "account contributions";
@@ -522,9 +538,10 @@
 "WHAT_IF_AMOUNTS_TAX_STD_DEDUCTION" = "Tax Standard Deduction";
 "WHAT_IF_INVESTMENT_RETURN_FORM_TITLE" = "Returns";
 "WHAT_IF_INVESTMENT_RETURN_FIELD_CAPTION" = "Return on Investments";
-"WHAT_IF_INVESTMENT_RETURN_SUBTITLE" = "Change the expected appreciation or depreciation of assets, the interest rates on accounts, or the expected rate of return on investments.";
+"WHAT_IF_INVESTMENT_RETURN_SUBTITLE" = "Change the expected appreciation or depreciation of assets, the interest rates on accounts, or the expected rate of return or dividends for investments.";
 "WHAT_IF_RETURN_ASSET_APPRECIATION" = "Asset Appreciation";
-"WHAT_IF_RETURN_ACCOUNT_INTEREST" = "Savings Interest";
+"WHAT_IF_RETURN_ACCOUNT_INTEREST" = "Account Interest";
+"WHAT_IF_RETURN_ACCOUNT_DIVIDEND" = "Account Dividend";
 "WHAT_IF_GROWTH_RATE_FIELD_CAPTION" = "Growth and Interest Rates";
 "WHAT_IF_GROWTH_RATE_SUBTITLE" = "Change annual percentage growth or interest rates for incomes, expenses, transfers, loans, or savings contributions.";
 "WHAT_IF_GROWTH_RATE_FORM_TITLE" = "Rates";

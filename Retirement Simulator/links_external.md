@@ -80,6 +80,7 @@
 [neverEndDatePayoff]:neverEndDatePayoff.html
 [relEndDateSell]:relEndDateSell.html
 [neverEndDateSell]:neverEndDateSell.html
+[acctDividendRate]:account.html#dividends
 
 <!-- Tax Related -->
 [deduction]:tax.html#deductions

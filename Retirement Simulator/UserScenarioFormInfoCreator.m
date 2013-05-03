@@ -399,6 +399,18 @@
 				andValueName:acct.name];
 		}
 	}
+		
+	if([inputBacktrace.accountDividendRate count] > 0)
+	{
+		sectionInfo = [formPopulator
+			nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_RETURN_ACCOUNT_DIVIDEND")];
+		for(Account *acct in inputBacktrace.accountDividendRate)
+		{
+			[formPopulator populateMultiScenarioDividendReturnRate:acct.dividendRate
+				withLabel:acct.name
+				andValueName:acct.name];
+		}
+	}
 
 	if([inputBacktrace.assetApprecRate count] > 0)
 	{

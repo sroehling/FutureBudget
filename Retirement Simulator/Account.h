@@ -21,6 +21,10 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 @class MultiScenarioSimEndDate;
 @class ExpenseInput;
 @class TransferEndpointAcct;
+@class AccountDividendItemizedTaxAmt;
+@class AccountContribItemizedTaxAmt;
+@class AccountInterestItemizedTaxAmt;
+@class AccountWithdrawalItemizedTaxAmt;
 
 @interface Account : Input {
 @private
@@ -34,6 +38,7 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 @property(nonatomic,retain) MultiScenarioSimDate *contribStartDate;
 @property(nonatomic,retain) MultiScenarioSimEndDate *contribEndDate;
 @property (nonatomic, retain) MultiScenarioGrowthRate * interestRate;
+@property (nonatomic, retain) MultiScenarioGrowthRate *dividendRate;
 
 @property(nonatomic,retain) MultiScenarioInputValue *contribEnabled;
 
@@ -49,13 +54,43 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 // set can cause a withdrawal to occur. This is needed to support targeted
 // savings accounts, such as for health care, education, etc.
 @property (nonatomic, retain) NSSet* limitWithdrawalExpenses;
-- (void)addLimitWithdrawalExpensesObject:(ExpenseInput *)value;
-- (void)removeLimitWithdrawalExpensesObject:(ExpenseInput *)value;
 
 // Inverse Relationships
 @property (nonatomic, retain) NSSet* accountWithdrawalItemizedTaxAmt;
 @property (nonatomic, retain) NSSet* accountInterestItemizedTaxAmt;
 @property (nonatomic, retain) NSSet* accountContribItemizedTaxAmt;
 @property (nonatomic, retain) TransferEndpointAcct *acctTransferEndpointAcct;
+@property (nonatomic, retain) NSSet *accountDividendItemizedTaxAmt;
+
+@end
+
+
+@interface Account (CoreDataGeneratedAccessors)
+
+- (void)addLimitWithdrawalExpensesObject:(ExpenseInput *)value;
+- (void)removeLimitWithdrawalExpensesObject:(ExpenseInput *)value;
+- (void)addLimitWithdrawalExpenses:(NSSet *)values;
+- (void)removeLimitWithdrawalExpenses:(NSSet *)values;
+
+- (void)addAccountContribItemizedTaxAmtObject:(AccountContribItemizedTaxAmt *)value;
+- (void)removeAccountContribItemizedTaxAmtObject:(AccountContribItemizedTaxAmt *)value;
+- (void)addAccountContribItemizedTaxAmt:(NSSet *)values;
+- (void)removeAccountContribItemizedTaxAmt:(NSSet *)values;
+
+- (void)addAccountDividendItemizedTaxAmtObject:(AccountDividendItemizedTaxAmt *)value;
+- (void)removeAccountDividendItemizedTaxAmtObject:(AccountDividendItemizedTaxAmt *)value;
+- (void)addAccountDividendItemizedTaxAmt:(NSSet *)values;
+- (void)removeAccountDividendItemizedTaxAmt:(NSSet *)values;
+
+- (void)addAccountInterestItemizedTaxAmtObject:(AccountInterestItemizedTaxAmt *)value;
+- (void)removeAccountInterestItemizedTaxAmtObject:(AccountInterestItemizedTaxAmt *)value;
+- (void)addAccountInterestItemizedTaxAmt:(NSSet *)values;
+- (void)removeAccountInterestItemizedTaxAmt:(NSSet *)values;
+
+- (void)addAccountWithdrawalItemizedTaxAmtObject:(AccountWithdrawalItemizedTaxAmt *)value;
+- (void)removeAccountWithdrawalItemizedTaxAmtObject:(AccountWithdrawalItemizedTaxAmt *)value;
+- (void)addAccountWithdrawalItemizedTaxAmt:(NSSet *)values;
+- (void)removeAccountWithdrawalItemizedTaxAmt:(NSSet *)values;
+
 
 @end

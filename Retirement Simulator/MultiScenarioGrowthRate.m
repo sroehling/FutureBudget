@@ -18,6 +18,7 @@ NSString * const MULTI_SCEN_GROWTH_RATE_ENTITY_NAME = @"MultiScenarioGrowthRate"
 // Inverse relationships
 @dynamic accountContribGrowthRate;
 @dynamic accountInterestRate;
+@dynamic accountDividendRate;
 @dynamic assetApprecRate;
 @dynamic taxExemptionGrowthRate;
 @dynamic taxStdDeductionGrowthRate;

@@ -51,6 +51,8 @@
 #import "ItemizedLoanInterestTaxAmtCreator.h"
 #import "ItemizedAccountTaxAmtCreator.h"
 #import "ItemizedTaxesPaidTaxAmtCreator.h"
+#import "AccountDividendItemizedTaxAmt.h"
+#import "ItemizedAccountDividendTaxAmtCreator.h"
 
 #import "LocalizationHelper.h"
 #import "FormContext.h"
@@ -227,6 +229,51 @@
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:acctInterestFieldEditInfo];
+			}
+		}
+	}
+
+	if([self.itemizedTaxAmtsInfo itemizeAccountDividends])
+	{
+		NSArray *acctDivNotItemized = [fieldPopulator acctDividendNotAlreadyItemized];
+		if(([fieldPopulator.itemizedAccountDividend count] > 0) ||
+			([acctDivNotItemized count] > 0))
+		{
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
+				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_DIVIDEND_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
+
+			for(AccountDividendItemizedTaxAmt *itemizedAcctDiv in fieldPopulator.itemizedAccountDividend )
+			{
+				ItemizedAccountDividendTaxAmtCreator *itemizedAcctTaxDivCreator =
+					[[[ItemizedAccountDividendTaxAmtCreator alloc] 
+								initWithFormContext:parentContext 
+								andAcct:itemizedAcctDiv.account 
+								andLabel:itemizedAcctDiv.account.name] autorelease];
+				ItemizedTaxAmtFieldEditInfo *acctDivFieldEditInfo =
+					[[[ItemizedTaxAmtFieldEditInfo alloc] 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						andItemizedTaxAmtCreator:itemizedAcctTaxDivCreator
+					andItemizedTaxAmt:itemizedAcctDiv
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:acctDivFieldEditInfo];
+				
+			}
+			for(Account *unitemizedAcct in acctDivNotItemized)
+			{	
+				ItemizedAccountDividendTaxAmtCreator *itemizedAcctTaxDivCreator =
+					[[[ItemizedAccountDividendTaxAmtCreator alloc] initWithFormContext:parentContext
+						andAcct:unitemizedAcct
+						andLabel:unitemizedAcct.name] autorelease];
+				ItemizedTaxAmtFieldEditInfo *acctDivFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc]
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					andItemizedTaxAmtCreator:itemizedAcctTaxDivCreator
+					andItemizedTaxAmt:nil
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:acctDivFieldEditInfo];
 			}
 		}
 	}

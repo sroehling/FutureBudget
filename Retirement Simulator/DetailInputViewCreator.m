@@ -414,17 +414,37 @@
 		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_LABEL") 
 			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")];
 			
-	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE")];
 	
-	[self.formPopulator populateMultiScenarioInvestmentReturnRate:account.interestRate 
-		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")
-		andValueName:account.name];
-	ItemizedAccountTaxFormInfoCreator *acctTaxFormInfoCreator =
-			[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
-			andIsForNewObject:self.isForNewObject] autorelease];
-	acctTaxFormInfoCreator.showInterest = TRUE;
-	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_TAXES_FIELD_LABEL")
-		andFormInfoCreator:acctTaxFormInfoCreator andItemizedTaxAmtsInfo:account.accountInterestItemizedTaxAmt];
+	if(TRUE)
+	{
+		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_SECTION_TITLE")];
+		[self.formPopulator populateMultiScenarioInvestmentReturnRate:account.interestRate
+			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")
+			andValueName:account.name];
+		ItemizedAccountTaxFormInfoCreator *acctTaxFormInfoCreator =
+				[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
+				andIsForNewObject:self.isForNewObject] autorelease];
+		acctTaxFormInfoCreator.showInterest = TRUE;
+		[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_TAXES_FIELD_LABEL")
+			andFormInfoCreator:acctTaxFormInfoCreator
+			andItemizedTaxAmtsInfo:account.accountInterestItemizedTaxAmt];
+	}
+		
+	if(TRUE)
+	{
+		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDEND_SECTION_TITLE")
+				andHelpFile:@"account" andAnchorWithinHelpFile:@"dividends"];		
+		[self.formPopulator populateMultiScenarioDividendReturnRate:account.dividendRate
+			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDEND_RATE_FIELD_LABEL")
+			andValueName:account.name];
+		ItemizedAccountTaxFormInfoCreator *acctDividendTaxFormInfoCreator =
+				[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
+				andIsForNewObject:self.isForNewObject] autorelease];
+		acctDividendTaxFormInfoCreator.showDividend = TRUE;
+		[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDENDS_TAXES_FIELD_LABEL")
+			andFormInfoCreator:acctDividendTaxFormInfoCreator
+			andItemizedTaxAmtsInfo:account.accountDividendItemizedTaxAmt];
+	}
 		
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title =LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE");

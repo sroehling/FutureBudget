@@ -58,6 +58,11 @@
 		00160CA21402EBC9001D472F /* WorkingBalanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA11402EBC9001D472F /* WorkingBalanceTest.m */; };
 		00160CAA1406B366001D472F /* EndOfYearDigestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CA91406B365001D472F /* EndOfYearDigestResult.m */; };
 		00160CAD1406C9AD001D472F /* FiscalYearDigestEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */; };
+		0017F18F1732DE340064FAD8 /* fixedDividend.md in Resources */ = {isa = PBXBuildFile; fileRef = 0017F18E1732DE340064FAD8 /* fixedDividend.md */; };
+		0017F1911732DE450064FAD8 /* variableDividend.md in Resources */ = {isa = PBXBuildFile; fileRef = 0017F1901732DE450064FAD8 /* variableDividend.md */; };
+		0017F1941732DF3D0064FAD8 /* DividendRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017F1931732DF3D0064FAD8 /* DividendRate.m */; };
+		0017F19717330E520064FAD8 /* AccountDividendItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017F19617330E520064FAD8 /* AccountDividendItemizedTaxAmt.m */; };
+		0017F19A173311FA0064FAD8 /* ItemizedAccountDividendTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017F199173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.m */; };
 		001AE1C7171494C5000F461D /* example.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1BE171494C5000F461D /* example.md */; };
 		001AE1C8171494C5000F461D /* exampleEducation.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1BF171494C5000F461D /* exampleEducation.md */; };
 		001AE1C9171494C5000F461D /* exampleExpense.md in Resources */ = {isa = PBXBuildFile; fileRef = 001AE1C0171494C5000F461D /* exampleExpense.md */; };
@@ -659,6 +664,14 @@
 		00160CA91406B365001D472F /* EndOfYearDigestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearDigestResult.m; sourceTree = "<group>"; };
 		00160CAB1406C9A5001D472F /* FiscalYearDigestEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestEntries.h; sourceTree = "<group>"; };
 		00160CAC1406C9A6001D472F /* FiscalYearDigestEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestEntries.m; sourceTree = "<group>"; };
+		0017F18E1732DE340064FAD8 /* fixedDividend.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedDividend.md; sourceTree = "<group>"; };
+		0017F1901732DE450064FAD8 /* variableDividend.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableDividend.md; sourceTree = "<group>"; };
+		0017F1921732DF3D0064FAD8 /* DividendRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividendRate.h; sourceTree = "<group>"; };
+		0017F1931732DF3D0064FAD8 /* DividendRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividendRate.m; sourceTree = "<group>"; };
+		0017F19517330E520064FAD8 /* AccountDividendItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountDividendItemizedTaxAmt.h; sourceTree = "<group>"; };
+		0017F19617330E520064FAD8 /* AccountDividendItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountDividendItemizedTaxAmt.m; sourceTree = "<group>"; };
+		0017F198173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountDividendTaxAmtCreator.h; sourceTree = "<group>"; };
+		0017F199173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAccountDividendTaxAmtCreator.m; sourceTree = "<group>"; };
 		001AE1BE171494C5000F461D /* example.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.md; sourceTree = "<group>"; };
 		001AE1BF171494C5000F461D /* exampleEducation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleEducation.md; sourceTree = "<group>"; };
 		001AE1C0171494C5000F461D /* exampleExpense.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exampleExpense.md; sourceTree = "<group>"; };
@@ -1740,6 +1753,8 @@
 				002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */,
 				00142970154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.h */,
 				00142971154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m */,
+				0017F19517330E520064FAD8 /* AccountDividendItemizedTaxAmt.h */,
+				0017F19617330E520064FAD8 /* AccountDividendItemizedTaxAmt.m */,
 			);
 			name = "Itemized Tax Amounts";
 			sourceTree = "<group>";
@@ -1919,6 +1934,8 @@
 				005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */,
 				0014296C154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.h */,
 				0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */,
+				0017F198173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.h */,
+				0017F199173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.m */,
 			);
 			name = "Itemized Tax Amt Creators";
 			sourceTree = "<group>";
@@ -2128,6 +2145,8 @@
 				003085D41485531F00837D02 /* InvestmentReturnRate.m */,
 				003085D614855EB900837D02 /* AssetApprecRate.h */,
 				003085D714855EBA00837D02 /* AssetApprecRate.m */,
+				0017F1921732DF3D0064FAD8 /* DividendRate.h */,
+				0017F1931732DF3D0064FAD8 /* DividendRate.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -2894,6 +2913,8 @@
 				00DC49E214D70695006BDF61 /* fixedLoanDownPmt.md */,
 				00DC49F714D73EB8006BDF61 /* variableValueStartDate.md */,
 				00DC49F914D73F40006BDF61 /* variableValueChange.md */,
+				0017F18E1732DE340064FAD8 /* fixedDividend.md */,
+				0017F1901732DE450064FAD8 /* variableDividend.md */,
 			);
 			name = "Variable Values";
 			sourceTree = "<group>";
@@ -3299,6 +3320,8 @@
 				0042D47C1718ACB200575E70 /* sectionFeatures.md in Resources */,
 				0042D48317205DE200575E70 /* cash.md in Resources */,
 				0042D48417208BFF00575E70 /* sectionStartup.md in Resources */,
+				0017F18F1732DE340064FAD8 /* fixedDividend.md in Resources */,
+				0017F1911732DE450064FAD8 /* variableDividend.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3609,6 +3632,9 @@
 				0026D44E16EA62A600922D16 /* AccountWithdrawalOrderFormInfoCreator.m in Sources */,
 				0026D45116EA6D3200922D16 /* AccountWithdrawalOrderFieldEditInfo.m in Sources */,
 				0026D45416EA8EDE00922D16 /* AccountWithdrawalOrderInfo.m in Sources */,
+				0017F1941732DF3D0064FAD8 /* DividendRate.m in Sources */,
+				0017F19717330E520064FAD8 /* AccountDividendItemizedTaxAmt.m in Sources */,
+				0017F19A173311FA0064FAD8 /* ItemizedAccountDividendTaxAmtCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

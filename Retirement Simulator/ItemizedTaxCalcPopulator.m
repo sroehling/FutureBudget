@@ -34,6 +34,7 @@
 #import "Account.h"
 #import "AccountInterestItemizedTaxAmt.h"
 #import "AccountSimInfo.h"
+#import "AccountDividendItemizedTaxAmt.h"
 
 #import "LoanInput.h"
 #import "LoanSimInfo.h"
@@ -88,6 +89,19 @@
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.acctBal.accruedInterest] autorelease];
+}
+
+-(void)visitAccountDividendItemizedTaxAmt:(AccountDividendItemizedTaxAmt *)itemizedTaxAmt
+{
+	assert(0); // not implemented yet - need to define digest sums for dividend amounts
+
+/*
+	AccountSimInfo *simInfo = [self.simParams.acctInfo getSimInfo:itemizedTaxAmt.account];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.acctBal.accruedDividends] autorelease];
+*/
 }
 
 -(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt

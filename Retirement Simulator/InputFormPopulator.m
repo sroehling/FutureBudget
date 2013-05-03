@@ -76,6 +76,8 @@
 #import "AccountWithdrawalOrderInfo.h"
 #import "AccountWithdrawalOrderFieldEditInfo.h"
 
+#import "DividendRate.h"
+
 @implementation InputFormPopulator
 
 @synthesize inputScenario;
@@ -453,6 +455,54 @@
 
 
 }
+
+
+- (void)populateMultiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	assert([StringValidation nonEmptyString:valueLabel]);
+	assert(dividendRate != nil);
+
+	SharedEntityVariableValueListMgr *sharedDividendMgr =
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithDataModelController:self.formContext.dataModelController 
+		andEntity:DIVIDEND_RATE_ENTITY_NAME] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_DIVIDEND_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_DIVIDEND_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_DIVIDEND_INLINE_VALUE_TITLE")];
+	
+	VariableValueRuntimeInfo *dividendRateRuntimeInfo = [[[VariableValueRuntimeInfo alloc]
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[GrowthRateFieldValidator alloc] init] autorelease]
+		andValueTitle:@"SHARED_DIVIDEND_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_DIVIDEND_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_DIVIDEND_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_DIVIDEND_PERIOD") 
+		andListMgr:sharedDividendMgr
+		andSingleValHelpInfoFile:@"fixedDividend"
+		andVariableValHelpInfoFile:@"variableDividend"
+		andValuePromptKey:@"SHARED_DIVIDEND_VALUE_PROMPT"
+		andValueTypeTitle:valueLabel
+		andValueName:valueName
+		andTableSubtitle:tableSubtitle] autorelease];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+         createForDataModelController:self.formContext.dataModelController
+			andScenario:self.inputScenario andMultiScenFixedVal:dividendRate.growthRate 
+			andLabel:LOCALIZED_STR(@"SHARED_DIVIDEND_VALUE_TITLE") 
+		 andValRuntimeInfo:dividendRateRuntimeInfo 
+		 andDefaultFixedVal:dividendRate.defaultFixedGrowthRate
+		 andForNewVal:self.isForNewObject]];
+
+
+}
+
 
 
 - (void)populateMultiScenarioApprecRate:(MultiScenarioGrowthRate*)apprecRate

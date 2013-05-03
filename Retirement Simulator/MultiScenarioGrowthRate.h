@@ -30,6 +30,7 @@ extern NSString * const MULTI_SCEN_GROWTH_RATE_ENTITY_NAME;
 // Inverse relationships
 @property (nonatomic, retain) Account * accountContribGrowthRate;
 @property (nonatomic, retain) Account * accountInterestRate;
+@property (nonatomic, retain) Account * accountDividendRate;
 @property (nonatomic, retain) AssetInput * assetApprecRate;
 @property (nonatomic, retain) TaxInput * taxExemptionGrowthRate;
 @property (nonatomic, retain) TaxInput * taxStdDeductionGrowthRate;

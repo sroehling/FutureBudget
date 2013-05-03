@@ -469,6 +469,22 @@
 	
 	
 	inputs = [parentContext.dataModelController  
+					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator
+			nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_RETURN_ACCOUNT_DIVIDEND")];
+	
+		for(Account *acct in inputs)
+		{
+			[formPopulator populateMultiScenarioDividendReturnRate:acct.dividendRate
+				withLabel:acct.name
+				andValueName:acct.name];
+		}
+	}
+		
+	
+	inputs = [parentContext.dataModelController  
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{

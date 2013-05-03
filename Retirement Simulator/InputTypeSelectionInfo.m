@@ -118,6 +118,9 @@
 	newInput.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefaultToday];
     
 	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
+
+	newInput.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
 	
 	TransferEndpointAcct *acctTransferEndpoint = 
 		(TransferEndpointAcct *)[self.dataModelController createDataModelObject:TRANSFER_ENDPOINT_ACCT_ENTITY_NAME];

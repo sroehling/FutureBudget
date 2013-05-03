@@ -25,6 +25,7 @@
 		BOOL showContributions;
 		BOOL showWithdrawal;
 		BOOL showInterest;
+		BOOL showDividend;
 
 }
 
@@ -33,6 +34,7 @@
 @property BOOL showContributions;
 @property BOOL showWithdrawal;
 @property BOOL showInterest;
+@property BOOL showDividend;
 
 
 -(id)initWithAcct:(Account*)theAccount andIsForNewObject:(BOOL)forNewObject;

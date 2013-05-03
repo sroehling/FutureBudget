@@ -1,0 +1,3 @@
+## Variable Dividend Rate
+
+TBD

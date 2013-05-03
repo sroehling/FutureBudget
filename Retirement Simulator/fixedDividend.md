@@ -1,0 +1,3 @@
+## Fixed Dividend Rate
+
+TBD

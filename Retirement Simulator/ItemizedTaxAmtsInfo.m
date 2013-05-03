@@ -32,6 +32,7 @@
 @synthesize itemizeAccountContribs;
 @synthesize itemizeAccountWithdrawals;
 @synthesize itemizeAccountInterest;
+@synthesize itemizeAccountDividends;
 @synthesize itemizeLoanInterest;
 @synthesize itemizeAssetGains;
 @synthesize itemizeTaxesPaid;
@@ -51,6 +52,7 @@
 	andItemizeAccountContribs:(BOOL)doItemizeAcctContribs
 	andItemizeAccountWithdrawals:(BOOL)doItemizeAcctWithdrawals
 	andItemizeAccountInterest:(BOOL)doItemizeAcctInterest
+	andItemizeAccountDividends:(BOOL)doItemizeAcctDividend
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
 	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest
 	andItemizeTaxesPaid:(BOOL)doItemizeTaxesPaid
@@ -82,6 +84,7 @@
 		self.itemizeAccountContribs = doItemizeAcctContribs;
 		self.itemizeAccountWithdrawals = doItemizeAcctWithdrawals;
 		self.itemizeAccountInterest = doItemizeAcctInterest;
+		self.itemizeAccountDividends = doItemizeAcctDividend;
 		self.itemizeAssetGains = doItemizeAssetGains;
 		self.itemizeLoanInterest = doItemizeLoanInterest;
 		self.itemizeTaxesPaid = doItemizeTaxesPaid;
@@ -118,7 +121,8 @@
 			andItemizeExpenses:				FALSE 
 			andItemizeAccountContribs:		FALSE 
 			andItemizeAccountWithdrawals:	TRUE 
-			andItemizeAccountInterest:		TRUE 
+			andItemizeAccountInterest:		TRUE
+			andItemizeAccountDividends:		TRUE 
 			andItemizeAssetGains:			TRUE 
 			andItemizeLoanInterest:			FALSE
 			andItemizeTaxesPaid:			FALSE] autorelease];
@@ -142,6 +146,7 @@
 			andItemizeAccountContribs:		TRUE 
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
+			andItemizeAccountDividends:		FALSE
 			andItemizeAssetGains:			FALSE 
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			FALSE] autorelease];
@@ -165,6 +170,7 @@
 			andItemizeAccountContribs:		TRUE 
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
+			andItemizeAccountDividends:		FALSE
 			andItemizeAssetGains:			FALSE 
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			TRUE] autorelease];
@@ -187,6 +193,7 @@
 			andItemizeAccountContribs:		TRUE 
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
+			andItemizeAccountDividends:		FALSE
 			andItemizeAssetGains:			FALSE 
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			FALSE] autorelease];
