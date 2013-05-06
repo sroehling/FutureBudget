@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "DigestEntry.h"
 
+@class AccountSimInfo;
+
 @interface AccountDividendDigestEntry : NSObject <DigestEntry>
 {
-	@private
-		double dividendAmount;
+    @private
+		AccountSimInfo *acctSimInfo;
 }
 
-@property double dividendAmount;
+@property(nonatomic,retain) AccountSimInfo *acctSimInfo;
 
--(id)initWithDividendAmount:(double)theDividendAmount;
+-(id)initWithAcctSimInfo:(AccountSimInfo*)theSimInfo;
 
 @end

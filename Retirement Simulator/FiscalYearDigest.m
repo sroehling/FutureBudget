@@ -223,11 +223,7 @@
 	{
 		// Advance all the balances through the current day. This ensures any outstanding
 		// interest is accrued.
-//		NSDate *nextDay = [DateHelper nextDay:currentDate];
-//		if(![DateHelper sameYear:nextDay otherDate:currentDate])
-//		{
-			[self.simParams.workingBalanceMgr advanceBalancesToDate:currentDate];
-//		}
+		[self.simParams.workingBalanceMgr advanceBalancesToDate:currentDate];
 
 		DigestEntryCltn *currDayDigestEntries =
 			[self.digestEntries entriesForDayIndex:currDayIndex];

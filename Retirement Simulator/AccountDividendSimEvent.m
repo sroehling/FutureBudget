@@ -19,7 +19,6 @@
 @implementation AccountDividendSimEvent
 
 @synthesize acctSimInfo;
-@synthesize dividendAmount;
 
 - (void) dealloc
 {
@@ -31,18 +30,9 @@
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
-	NSString *formattedDivAmt = [[NumberHelper theHelper].currencyFormatter
-				stringFromNumber:[NSNumber numberWithDouble:self.dividendAmount]];
-   
-    NSLog(@"Doing account dividend event: %@ %@ %@",
-          self.acctSimInfo.account.name,
-          [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		  formattedDivAmt);
-		  
 	AccountDividendDigestEntry *divDigestEntry =
-		[[[AccountDividendDigestEntry alloc] initWithDividendAmount:self.dividendAmount] autorelease];
-	[digest.digestEntries addDigestEntry:divDigestEntry onDate:self.eventDate];
-		  
+		[[[AccountDividendDigestEntry alloc] initWithAcctSimInfo:self.acctSimInfo] autorelease];
+	[digest.digestEntries addDigestEntry:divDigestEntry onDate:self.eventDate];		  
 }
 
 

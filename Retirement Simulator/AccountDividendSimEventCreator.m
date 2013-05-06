@@ -40,9 +40,7 @@
 			andEventDate:eventDate] autorelease];
 	dividendEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM_LOW;
 	dividendEvent.acctSimInfo = self.acctSimInfo;
-	dividendEvent.dividendAmount = 10.0;
 	
-	// TODO - Calculate real dividend instead of dummied up one
 	
 	return dividendEvent;
 

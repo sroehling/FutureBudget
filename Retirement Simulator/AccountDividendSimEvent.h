@@ -14,10 +14,8 @@
 {
     @private
 		AccountSimInfo *acctSimInfo;
-		double dividendAmount;
 }
 
 @property(nonatomic,retain) AccountSimInfo *acctSimInfo;
-@property double dividendAmount;
 
 @end
