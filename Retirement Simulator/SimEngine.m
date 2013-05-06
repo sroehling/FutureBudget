@@ -28,8 +28,6 @@
 #import "AccountContribSimEventCreator.h"
 #import "SimInputHelper.h"
 
-#import "EstimatedTaxAccrualSimEventCreator.h"
-#import "EstimatedTaxPaymentSimEventCreator.h"
 #import "SimParams.h"
 #import "LoanPaymentSimEventCreator.h"
 #import "LoanEarlyPayoffSimEventCreator.h"
@@ -65,7 +63,7 @@
 #import "AccountSimInfo.h"
 
 #import "DataModelController.h"
-
+#import "AccountDividendSimEventCreator.h"
 #import "ProgressUpdateDelegate.h"
 
 #define UPDATE_SIM_PROGRESS_THRESHOLD 0.005
@@ -167,7 +165,11 @@
 					initWithAcctSimInfo:acctSimInfo]autorelease];
 			[self.eventCreators addObject:savingsEventCreator];
 		}
-		
+	
+		AccountDividendSimEventCreator *dividendEventCreator =
+			[[[AccountDividendSimEventCreator alloc] initWithAcctSimInfo:acctSimInfo
+				andSimStartDate:self.simParams.simStartDate] autorelease];
+			[self.eventCreators addObject:dividendEventCreator];
 		
 		[self.simParams.workingBalanceMgr.fundingSources addBalance:acctSimInfo.acctBal forInput:acct];
 	} // for each savings account
@@ -283,19 +285,6 @@
 	// is a deduction for taxes paid.
 	[self.simParams.taxInputCalcs configCalcEntries:self.simParams];
 	
-	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
-		initWithStartingMonth:3 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
-		initWithStartingMonth:5 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
-		initWithStartingMonth:8 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxAccrualSimEventCreator alloc] 
-		initWithStartingMonth:12 andStartingDay:31 andSimStartDate:self.simParams.simStartDate] autorelease]];
-
-	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:4 andStartingDay:15 andSimStartDate:self.simParams.simStartDate] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:6 andStartingDay:15 andSimStartDate:self.simParams.simStartDate] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:9 andStartingDay:15 andSimStartDate:self.simParams.simStartDate] autorelease]];
-	[self.eventCreators addObject:[[[EstimatedTaxPaymentSimEventCreator alloc] initWithStartingMonth:1 andStartingDay:15 andSimStartDate:self.simParams.simStartDate] autorelease]];
 }
 
 

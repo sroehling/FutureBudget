@@ -48,6 +48,8 @@ typedef enum
 + (EventRepeatFrequency*)createInDataModel:(id<DataModelInterface>)dataModel 
 	andPeriod:(EventPeriod)thePeriod andMultiplier:(int)theMultiplier;
 
++(NSDateComponents*)periodicDateComponentFromPeriod:(EventPeriod)periodEnum;
+
 @end
 
 

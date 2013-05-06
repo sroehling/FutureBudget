@@ -94,6 +94,8 @@
 -(void)visitAccountDividendItemizedTaxAmt:(AccountDividendItemizedTaxAmt *)itemizedTaxAmt
 {
 	assert(0); // not implemented yet - need to define digest sums for dividend amounts
+	
+	// TODO - Populate with information for account dividends
 
 /*
 	AccountSimInfo *simInfo = [self.simParams.acctInfo getSimInfo:itemizedTaxAmt.account];

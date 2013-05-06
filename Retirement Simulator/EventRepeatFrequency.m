@@ -13,6 +13,7 @@
 NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
 
 @implementation EventRepeatFrequency
+
 @dynamic period;
 @dynamic periodMultiplier;
 
@@ -144,6 +145,45 @@ NSString * const EVENT_REPEAT_FREQUENCY_ENTITY_NAME = @"EventRepeatFrequency";
     [repeatFrequency setPeriodWithPeriodEnum:thePeriod];
     repeatFrequency.periodMultiplier = [NSNumber numberWithInt:theMultiplier];
 	return repeatFrequency;
+
+}
+
++(NSDateComponents*)periodicDateComponentFromPeriod:(EventPeriod)periodEnum
+{
+	NSDateComponents *offsetComponents = [[[NSDateComponents alloc] init] autorelease];
+        
+	int periodMultiply = 1;
+                
+	switch (periodEnum) {
+		case kEventPeriodOnce:
+			assert(0); // not supported for periodic date component
+			break;
+		case kEventPeriodDay:
+			[offsetComponents setDay:periodMultiply];
+			break;
+		case kEventPeriodWeek:
+			[offsetComponents setWeek:periodMultiply];
+			break;
+		case kEventPeriodMonth:
+			[offsetComponents setMonth:periodMultiply];
+			break;
+		case kEventPeriodQuarter:
+			// Note the offsetsetComponents object doesn't work with 'setQuarter'; i.e.:
+			//		[offsetComponents setQuarter:periodMultiply];
+			// So, as a workaround, setting the offset
+			// to 3 months and using 'setMonth' is used.
+			[offsetComponents setMonth:3];
+			break;
+		case kEventPeriodYear:
+			[offsetComponents setYear:periodMultiply];
+			break;
+                
+		default:
+			assert(false); // shouldn't get here - invalid/unsupported enum found
+			break;
+	}
+
+	return offsetComponents;
 
 }
 

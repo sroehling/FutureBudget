@@ -8,20 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SimEventCreator.h"
+#import "PeriodicSimEventCreator.h"
 
 @class EventRepeater;
 @class SimEvent;
 
-@interface YearlySimEventCreator :  NSObject <SimEventCreator> {
-    @private
-		EventRepeater *yearlyEventRepeater;
-		NSDate *simStartDate;
+@interface YearlySimEventCreator :  PeriodicSimEventCreator {
 }
-
-@property(nonatomic,retain) EventRepeater *yearlyEventRepeater;
-@property(nonatomic,retain) NSDate *simStartDate;
-
-- (SimEvent*)createSimEventOnDate:(NSDate*)eventDate;
 
 - (id) initWithStartingMonth:(NSInteger)monthNum andStartingDay:(NSInteger)dayNum
 	andSimStartDate:(NSDate*)simStart;

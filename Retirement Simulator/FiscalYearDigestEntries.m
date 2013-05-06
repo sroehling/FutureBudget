@@ -89,19 +89,6 @@
 }
 
 
-- (void)markEndDateForEstimatedTaxAccrual:(NSDate*)taxEndDate
-{
-	DigestEntryCltn *theEntries = [self entriesForDate:taxEndDate];
-	[theEntries markAsEndDateForEstimatedTaxAccrual];
-}
-
-- (void)markDateForEstimatedTaxPayment:(NSDate*)taxPaymentDate
-{
-	DigestEntryCltn *theEntries = [self entriesForDate:taxPaymentDate];
-	[theEntries markAsEstimatedTaxPaymentDay];
-
-}
-
 - (void) dealloc
 {
 	[dailyDigestEntries release];

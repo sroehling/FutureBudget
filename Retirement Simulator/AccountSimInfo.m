@@ -40,6 +40,9 @@
 		[simParams.digestSums addDigestSum:self.acctBal.contribs];
 		[simParams.digestSums addDigestSum:self.acctBal.withdrawals];
 		[simParams.digestSums addDigestSum:self.acctBal.accruedInterest];
+		
+		// TODO - Add a digest sum for accrued dividends - Should these be another
+		// InterestBearingWorkingBalance?
 
 				
 		// Initialize the optional parameters of the working balance to setup

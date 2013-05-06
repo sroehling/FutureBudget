@@ -11,8 +11,6 @@
 @implementation DigestEntryCltn
 
 
-@synthesize isEndDateForEstimatedTaxes;
-@synthesize isEstimatedTaxPaymentDay;
 @synthesize digestEntries;
 
 -(id)init
@@ -34,23 +32,9 @@
 }
 
 
-
-- (void)markAsEndDateForEstimatedTaxAccrual
-{
-	isEndDateForEstimatedTaxes = TRUE;
-}
-
-- (void)markAsEstimatedTaxPaymentDay
-{
-	isEstimatedTaxPaymentDay = TRUE;
-}
-
 - (void)resetEntries
 {	
 	[self.digestEntries removeAllObjects];
-	
-	isEndDateForEstimatedTaxes = FALSE;
-	isEstimatedTaxPaymentDay = FALSE;
 }
 
 

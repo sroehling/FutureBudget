@@ -21,9 +21,6 @@
 
 -(void)addDigestEntry:(id<DigestEntry>)digestEntry onDate:(NSDate*)entryDate;
 
-- (void)markEndDateForEstimatedTaxAccrual:(NSDate*)taxEndDate;
-- (void)markDateForEstimatedTaxPayment:(NSDate*)taxPaymentDate;
-
 - (void)resetEntries;
 - (DigestEntryCltn*)entriesForDayIndex:(NSInteger)dayIndex;
 - (DigestEntryCltn*)entriesForDate:(NSDate*)eventDate;
