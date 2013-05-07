@@ -28,6 +28,9 @@
 		
 		EndOfYearInputResults *acctContribs;
 		double sumAcctContrib;
+
+		EndOfYearInputResults *acctDividends;
+		double sumAcctDividend;
 		
 		EndOfYearInputResults *acctWithdrawals;
 		double sumAcctWithdrawal;
@@ -68,6 +71,9 @@
 
 @property(nonatomic,retain) EndOfYearInputResults *acctWithdrawals;
 @property double sumAcctWithdrawal;
+
+@property(nonatomic,retain) EndOfYearInputResults *acctDividends;
+@property double sumAcctDividend;
 
 @property(nonatomic,retain) EndOfYearInputResults *incomes;
 @property double sumIncomes;

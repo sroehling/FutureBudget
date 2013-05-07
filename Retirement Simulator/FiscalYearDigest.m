@@ -106,6 +106,7 @@
 	double sumAcctBal = 0.0;
 	double sumAcctContrib = 0.0;
 	double sumAcctWithdrawal = 0.0;
+	double sumAcctDividend = 0.0;
 	for(AccountSimInfo *acctSimInfo in acctSimInfos)
 	{
 		double acctBal = [acctSimInfo.acctBal currentBalanceForDate:results.endDate];
@@ -119,10 +120,16 @@
 		double acctWithdrawal = [acctSimInfo.acctBal.withdrawals yearlyTotal];
 		[results.acctWithdrawals setResultForInput:acctSimInfo.account andValue:acctWithdrawal];
 		sumAcctWithdrawal += acctWithdrawal;
+		
+		double acctDividend = [acctSimInfo.dividendPayments yearlyTotal];
+		[results.acctDividends setResultForInput:acctSimInfo.account andValue:acctDividend];
+		sumAcctDividend += acctDividend;
+		
 	}
 	results.sumAcctBal = sumAcctBal;
 	results.sumAcctContrib = sumAcctContrib;
 	results.sumAcctWithdrawal = sumAcctWithdrawal;
+	results.sumAcctDividend = sumAcctDividend;
 	
 	NSArray *incomeSimInfos = [self.simParams.incomeInfo simInfos];
 	double sumIncome = 0.0;

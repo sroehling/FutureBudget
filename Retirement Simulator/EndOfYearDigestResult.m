@@ -31,10 +31,31 @@
 @synthesize sumAcctContrib;
 @synthesize acctWithdrawals;
 @synthesize sumAcctWithdrawal;
+@synthesize acctDividends;
+@synthesize sumAcctDividend;
+
 @synthesize simStartDateValueMultiplier;
 @synthesize taxesPaid;
 @synthesize sumTaxesPaid;
 @synthesize fullYearSimulated;
+
+- (void) dealloc
+{
+	[assetValues release];
+	[loanBalances release];
+	
+	[incomes release];
+	[expenses release];
+	
+	[acctBalances release];
+	[acctWithdrawals release];
+	[acctContribs release];
+	[acctDividends release];
+	
+	[taxesPaid release];
+	
+	[super dealloc];
+}
 
 -(id)initWithEndDate:(NSDate *)endOfYearDate andFullYearSimulated:(BOOL)theFullYearSimulated
 {
@@ -59,6 +80,9 @@
 		
 		self.acctWithdrawals = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumAcctWithdrawal = 0.0;
+
+		self.acctDividends = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumAcctDividend = 0.0;
 
 		self.incomes = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumIncomes = 0.0;
@@ -95,17 +119,5 @@
 
 }
 
-- (void) dealloc
-{
-	[assetValues release];
-	[loanBalances release];
-	[acctBalances release];
-	[incomes release];
-	[expenses release];
-	[acctWithdrawals release];
-	[acctContribs release];
-	[taxesPaid release];
-	[super dealloc];
-}
 
 @end

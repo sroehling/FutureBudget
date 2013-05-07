@@ -82,6 +82,8 @@
 #import "TransferEndpointCash.h"
 #import "TaxInputTypeSelectionInfo.h"
 
+#import "AcctDividendXYPlotDataGenerator.h"
+
 @implementation TestSimEngine
 
 @synthesize coreData;
@@ -1595,6 +1597,47 @@
 	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
 
 }
+
+
+-(void)testAccountDividend
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:2000.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0]; // 10% dividend each year
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	// The following results assume the dividend is reinvested, then the reinvested dividend also becomes part of the
+	// basis for calculatig the future dividends. The quarterly dividend is also assumed to be 1/4 of the yearly
+	// dividend, so 2.5% in this case.
+	AcctDividendXYPlotDataGenerator *acctDividendData =
+		[[[AcctDividendXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:103.81 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:114.59 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:126.48 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:139.61 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:154.11 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctDividendData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+
+
+
+}
+
 
 -(void)testAccountWithdraw
 {
