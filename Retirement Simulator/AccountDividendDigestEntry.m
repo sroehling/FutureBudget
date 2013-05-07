@@ -16,6 +16,7 @@
 #import "InterestBearingWorkingBalance.h"
 #import "DigestEntryProcessingParams.h"
 #import "DateHelper.h"
+#import "InputValDigestSummation.h"
 
 
 @implementation AccountDividendDigestEntry
@@ -45,8 +46,6 @@
 
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
-
-
 	double annualDividendRateAsOfEventDate =
 		[SimInputHelper multiScenValueAsOfDate:self.acctSimInfo.account.dividendRate.growthRate andDate:processingParams.currentDate andScenario:acctSimInfo.simParams.simScenario] / 100.0;
 
@@ -65,7 +64,12 @@
 
 	if(dividendAmount>0.0)
 	{
-		// TODO - Process the dividend amount with the appropriate working balances, etc.
+		// Re-invest the dividend back into the account.
+		[self.acctSimInfo.acctBal incrementBalance:dividendAmount
+				asOfDate:processingParams.currentDate];
+
+		// Keep a tally of dividend payment for tax purposes.
+		[self.acctSimInfo.dividendPayments adjustSum:dividendAmount onDay:processingParams.dayIndex];
 		
 	}
 

@@ -13,13 +13,24 @@
 #import "SimDate.h"
 #import "SimInputHelper.h"
 #import "MultiScenarioSimDate.h"
+#import "InputValDigestSummation.h"
 #import "InputValDigestSummations.h"
 
 @implementation AccountSimInfo
 	
 @synthesize account;
 @synthesize acctBal;
-@synthesize simParams;	
+@synthesize simParams;
+@synthesize dividendPayments;
+
+-(void)dealloc
+{
+	[account release];
+	[acctBal release];
+	[dividendPayments release];
+	[simParams release];
+	[super dealloc];
+}	
 	
 -(id)initWithAcct:(Account*)theAcct andSimParams:(SimParams *)theSimParams
 {
@@ -35,16 +46,15 @@
 		self.acctBal = [[[InterestBearingWorkingBalance alloc] initWithAcct:theAcct 
 				andSimParams:simParams] autorelease];
 				
+		self.dividendPayments = [[[InputValDigestSummation alloc] init] autorelease];
+				
 		// TBD - Is this the best place to populate the SimParam's digestSums for the 
 		// savings acct? Should it instead be done inside the WorkingBalance?
 		[simParams.digestSums addDigestSum:self.acctBal.contribs];
 		[simParams.digestSums addDigestSum:self.acctBal.withdrawals];
 		[simParams.digestSums addDigestSum:self.acctBal.accruedInterest];
+		[simParams.digestSums addDigestSum:self.dividendPayments];
 		
-		// TODO - Add a digest sum for accrued dividends - Should these be another
-		// InterestBearingWorkingBalance?
-
-				
 		// Initialize the optional parameters of the working balance to setup
 		// a deferred withdrawal date (if any) and list of expenses to limit the
 		// withdrawal to.		
@@ -70,11 +80,6 @@
 	return nil;
 }
 
--(void)dealloc
-{
-	[account release];
-	[acctBal release];
-	[super dealloc];
-}	
+
 	
 @end
