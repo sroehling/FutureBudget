@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class WorkingBalance;
+#import "WorkingBalance.h"
+
 @class BalanceAdjustment;
 @class Input;
-
-
 
 @interface WorkingBalanceCltn : NSObject {
     @private
@@ -22,15 +21,14 @@
 		
 }
 
-- (void)addBalance:(WorkingBalance*)workingBal forInput:(Input*)theInput;
-- (void)addBalance:(WorkingBalance*)workingBal;
-- (WorkingBalance*)getWorkingBalanceForInput:(Input*)theInput;
+- (void)addBalance:(id<WorkingBalance>)workingBal forInput:(Input*)theInput;
+- (void)addBalance:(id<WorkingBalance>)workingBal;
+- (id<WorkingBalance>)getWorkingBalanceForInput:(Input*)theInput;
 
 - (void)carryBalancesForward:(NSDate*)newDate;
 - (void)advanceBalancesToDate:(NSDate*)newDate;
 - (void) resetCurrentBalances;
-- (void)logCurrentBalances;
--(double)totalBalances:(NSDate*)currentDate;
+- (double)totalBalances:(NSDate*)currentDate;
 - (void)sortByWithdrawalOrder;
 
 @property(nonatomic,retain) NSMutableArray *workingBalList;

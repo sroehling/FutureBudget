@@ -18,6 +18,7 @@
 #import "AccountSimInfo.h"
 #import "InputSimInfoCltn.h"
 #import "InterestBearingWorkingBalance.h"
+#import "AccountWorkingBalance.h"
 #import "TransferEndpointAcct.h"
 #import "Account.h"
 
@@ -55,7 +56,7 @@
 	self.resolvedBalance =  acctInfo.acctBal;
 }
 
--(WorkingBalance*)resolveWorkingBalance:(TransferEndpoint*)endpoint
+-(id<WorkingBalance>)resolveWorkingBalance:(TransferEndpoint*)endpoint
 {
 	self.resolvedBalance = nil;
 	[endpoint acceptEndpointVisitor:self];

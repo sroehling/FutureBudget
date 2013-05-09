@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "WorkingBalance.h"
+#import "WorkingBalanceBaseImpl.h"
 
-@interface CashWorkingBalance : WorkingBalance {
+@interface CashWorkingBalance : WorkingBalanceBaseImpl {
 }
 
 - (id) initWithStartingBalance:(double)theStartBalance

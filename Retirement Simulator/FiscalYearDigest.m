@@ -26,6 +26,7 @@
 #import "InputValDigestSummations.h"
 #import "DigestEntry.h"
 #import "TaxInputCalcs.h"
+#import "AccountWorkingBalance.h"
 #import "SimParams.h"
 
 #import "AssetInput.h"
@@ -113,11 +114,11 @@
 		[results.acctBalances setResultForInput:acctSimInfo.account andValue:acctBal];
 		sumAcctBal += acctBal;
 		
-		double acctContrib = [acctSimInfo.acctBal.contribs yearlyTotal];
+		double acctContrib = [acctSimInfo.acctBal.overallBal.contribs yearlyTotal];
 		[results.acctContribs setResultForInput:acctSimInfo.account andValue:acctContrib];
 		sumAcctContrib += acctContrib;
 		
-		double acctWithdrawal = [acctSimInfo.acctBal.withdrawals yearlyTotal];
+		double acctWithdrawal = [acctSimInfo.acctBal.overallBal.withdrawals yearlyTotal];
 		[results.acctWithdrawals setResultForInput:acctSimInfo.account andValue:acctWithdrawal];
 		sumAcctWithdrawal += acctWithdrawal;
 		

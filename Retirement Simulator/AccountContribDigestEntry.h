@@ -9,19 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "DigestEntry.h"
 
-@class InterestBearingWorkingBalance;
+@class AccountSimInfo;
 
 
 @interface AccountContribDigestEntry : NSObject <DigestEntry> {
     @private
-		InterestBearingWorkingBalance *workingBalance;
+		AccountSimInfo *acctSimInfo;
+    @private
 		double contribAmount;
 }
 
-- (id) initWithWorkingBalance:(InterestBearingWorkingBalance*)theBalance 
+- (id) initWithAcctSimInfo:(AccountSimInfo*)theAcctSimInfo
 	andContribAmount:(double)theAmount;
 
-@property(nonatomic,retain) InterestBearingWorkingBalance *workingBalance;
+@property(nonatomic,retain) AccountSimInfo *acctSimInfo;
 @property double contribAmount;
 
 @end

@@ -21,6 +21,7 @@
 #import "ExpenseSimEventCreator.h"
 #import "LoanInput.h"
 #import "InterestBearingWorkingBalance.h"
+#import "AccountWorkingBalance.h"
 #import "IncomeSimEventCreator.h"
 #import "IncomeSimInfo.h"
 #import "Account.h"
@@ -301,10 +302,7 @@
 
 		
 	[self populateEventCreators];
-	
-	NSLog(@"Initial working balances ...");
-	[self.simParams.workingBalanceMgr logCurrentBalances];
-    
+	    
     // At the beginning of the simulation, iterate through the
     // event creators and have them create their first event.
     // After iteratig through the event list, we'll have a list

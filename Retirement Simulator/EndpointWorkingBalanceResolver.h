@@ -9,21 +9,21 @@
 #import <Foundation/Foundation.h>
 
 #import "TransferEndpointVisitor.h"
+#import "WorkingBalance.h"
 
 @class SimParams;
-@class WorkingBalance;
 @class TransferEndpoint;
 
 @interface EndpointWorkingBalanceResolver : NSObject <TransferEndpointVisitor> {
 	@private
 		SimParams *simParams;
-		WorkingBalance *resolvedBalance;
+		id<WorkingBalance> resolvedBalance;
 }
 
 @property(nonatomic,retain) SimParams *simParams;
-@property(nonatomic,retain) WorkingBalance *resolvedBalance;
+@property(nonatomic,retain) id<WorkingBalance> resolvedBalance;
 
 -(id)initWithSimParams:(SimParams*)theSimParams;
--(WorkingBalance*)resolveWorkingBalance:(TransferEndpoint*)endpoint;
+-(id<WorkingBalance>)resolveWorkingBalance:(TransferEndpoint*)endpoint;
 
 @end

@@ -65,8 +65,7 @@
 	if(dividendAmount>0.0)
 	{
 		// Re-invest the dividend back into the account.
-		[self.acctSimInfo.acctBal incrementBalance:dividendAmount
-				asOfDate:processingParams.currentDate];
+		[self.acctSimInfo addContribution:dividendAmount onDate:processingParams.currentDate];
 
 		// Keep a tally of dividend payment for tax purposes.
 		[self.acctSimInfo.dividendPayments adjustSum:dividendAmount onDay:processingParams.dayIndex];

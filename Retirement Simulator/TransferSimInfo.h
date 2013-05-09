@@ -8,26 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
+#import "WorkingBalance.h"
+
 @class TransferInput;
 @class SimParams;
 @class InputValDigestSummation;
-@class WorkingBalance;
 
 @interface TransferSimInfo : NSObject {
 	@private
 		TransferInput *transferInput;
 		SimParams *simParams;
 		InputValDigestSummation *digestSum;
-		WorkingBalance *fromWorkingBal;
-		WorkingBalance *toWorkingBal;
+		id<WorkingBalance> fromWorkingBal;
+		id<WorkingBalance> toWorkingBal;
 }
 
 
 @property(nonatomic,retain) SimParams *simParams;
 @property(nonatomic,retain) TransferInput *transferInput;
 @property(nonatomic,retain) InputValDigestSummation *digestSum;
-@property(nonatomic,retain) WorkingBalance *fromWorkingBal;
-@property(nonatomic,retain) WorkingBalance *toWorkingBal;
+@property(nonatomic,retain) id<WorkingBalance> fromWorkingBal;
+@property(nonatomic,retain) id<WorkingBalance> toWorkingBal;
 
 -(id)initWithTransferInput:(TransferInput*)theTransferInput 
 		andSimParams:(SimParams*)theSimParams;

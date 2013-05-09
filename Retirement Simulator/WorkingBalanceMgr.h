@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @class CashWorkingBalance;
-@class WorkingBalance;
 @class InterestBearingWorkingBalance;
 @class BalanceAdjustment;
 @class WorkingBalanceAdjustment;
@@ -65,9 +64,6 @@
 - (double) decrementBalanceFromFundingList:(double)expenseAmount  asOfDate:(NSDate*)newDate
 	forExpense:(ExpenseInput*)expense;
 - (double) decrementAvailableCashBalance:(double)expenseAmount asOfDate:(NSDate*)newDate;
-
-- (void)logCurrentBalances;
-
 
 
 @end

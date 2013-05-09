@@ -244,7 +244,7 @@
 		004CB03513FC4912000E87A9 /* CashWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03413FC490E000E87A9 /* CashWorkingBalance.m */; };
 		004CB03913FC831E000E87A9 /* AccountContribSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03813FC831B000E87A9 /* AccountContribSimEvent.m */; };
 		004CB03C13FC835A000E87A9 /* AccountContribSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03B13FC8357000E87A9 /* AccountContribSimEventCreator.m */; };
-		004CB03F13FD73F5000E87A9 /* WorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03E13FD73F4000E87A9 /* WorkingBalance.m */; };
+		004CB03F13FD73F5000E87A9 /* WorkingBalanceBaseImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB03E13FD73F4000E87A9 /* WorkingBalanceBaseImpl.m */; };
 		004CB04213FD772D000E87A9 /* InterestBearingWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04113FD772C000E87A9 /* InterestBearingWorkingBalance.m */; };
 		004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */; };
 		004CB04B13FEF452000E87A9 /* IntermediateVariableRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004CB04A13FEF433000E87A9 /* IntermediateVariableRate.m */; };
@@ -275,6 +275,7 @@
 		00590A2C1734618A00BBF045 /* AccountDividendSimEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A2B1734618700BBF045 /* AccountDividendSimEvent.m */; };
 		00590A2F1738156B00BBF045 /* AccountDividendDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A2E1738156900BBF045 /* AccountDividendDigestEntry.m */; };
 		00590A3417398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A3317398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.m */; };
+		00590A37173ABA5E00BBF045 /* AccountWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A36173ABA5C00BBF045 /* AccountWorkingBalance.m */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		005DAEEC1460635800D87907 /* AssetGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEB1460635800D87907 /* AssetGainItemizedTaxAmt.m */; };
@@ -941,8 +942,8 @@
 		004CB03813FC831B000E87A9 /* AccountContribSimEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountContribSimEvent.m; sourceTree = "<group>"; };
 		004CB03A13FC8355000E87A9 /* AccountContribSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountContribSimEventCreator.h; sourceTree = "<group>"; };
 		004CB03B13FC8357000E87A9 /* AccountContribSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountContribSimEventCreator.m; sourceTree = "<group>"; };
-		004CB03D13FD73F3000E87A9 /* WorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalance.h; sourceTree = "<group>"; };
-		004CB03E13FD73F4000E87A9 /* WorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalance.m; sourceTree = "<group>"; };
+		004CB03D13FD73F3000E87A9 /* WorkingBalanceBaseImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceBaseImpl.h; sourceTree = "<group>"; };
+		004CB03E13FD73F4000E87A9 /* WorkingBalanceBaseImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingBalanceBaseImpl.m; sourceTree = "<group>"; };
 		004CB04013FD772A000E87A9 /* InterestBearingWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestBearingWorkingBalance.h; sourceTree = "<group>"; };
 		004CB04113FD772C000E87A9 /* InterestBearingWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestBearingWorkingBalance.m; sourceTree = "<group>"; };
 		004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingBalanceMgr.h; sourceTree = "<group>"; };
@@ -1003,6 +1004,9 @@
 		00590A2E1738156900BBF045 /* AccountDividendDigestEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountDividendDigestEntry.m; sourceTree = "<group>"; };
 		00590A3217398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctDividendXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		00590A3317398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctDividendXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00590A35173ABA5B00BBF045 /* AccountWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountWorkingBalance.h; sourceTree = "<group>"; };
+		00590A36173ABA5C00BBF045 /* AccountWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountWorkingBalance.m; sourceTree = "<group>"; };
+		00590A38173AC4ED00BBF045 /* WorkingBalance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingBalance.h; sourceTree = "<group>"; };
 		005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedDateFieldInfo.h; sourceTree = "<group>"; };
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
@@ -1476,14 +1480,17 @@
 		00160CA714055EEC001D472F /* Working Balance */ = {
 			isa = PBXGroup;
 			children = (
+				00590A38173AC4ED00BBF045 /* WorkingBalance.h */,
 				00EC458B1423AF2300D65D17 /* WorkingBalanceCltn.h */,
 				00EC458C1423AF2500D65D17 /* WorkingBalanceCltn.m */,
-				004CB03D13FD73F3000E87A9 /* WorkingBalance.h */,
-				004CB03E13FD73F4000E87A9 /* WorkingBalance.m */,
+				004CB03D13FD73F3000E87A9 /* WorkingBalanceBaseImpl.h */,
+				004CB03E13FD73F4000E87A9 /* WorkingBalanceBaseImpl.m */,
 				004CB03313FC490C000E87A9 /* CashWorkingBalance.h */,
 				004CB03413FC490E000E87A9 /* CashWorkingBalance.m */,
 				004CB04013FD772A000E87A9 /* InterestBearingWorkingBalance.h */,
 				004CB04113FD772C000E87A9 /* InterestBearingWorkingBalance.m */,
+				00590A35173ABA5B00BBF045 /* AccountWorkingBalance.h */,
+				00590A36173ABA5C00BBF045 /* AccountWorkingBalance.m */,
 				004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */,
 				004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */,
 			);
@@ -3455,7 +3462,7 @@
 				004CB03513FC4912000E87A9 /* CashWorkingBalance.m in Sources */,
 				004CB03913FC831E000E87A9 /* AccountContribSimEvent.m in Sources */,
 				004CB03C13FC835A000E87A9 /* AccountContribSimEventCreator.m in Sources */,
-				004CB03F13FD73F5000E87A9 /* WorkingBalance.m in Sources */,
+				004CB03F13FD73F5000E87A9 /* WorkingBalanceBaseImpl.m in Sources */,
 				004CB04213FD772D000E87A9 /* InterestBearingWorkingBalance.m in Sources */,
 				004CB04813FD9AB4000E87A9 /* WorkingBalanceMgr.m in Sources */,
 				004CB04B13FEF452000E87A9 /* IntermediateVariableRate.m in Sources */,
@@ -3649,6 +3656,7 @@
 				00590A2C1734618A00BBF045 /* AccountDividendSimEvent.m in Sources */,
 				00590A2F1738156B00BBF045 /* AccountDividendDigestEntry.m in Sources */,
 				00590A3417398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.m in Sources */,
+				00590A37173ABA5E00BBF045 /* AccountWorkingBalance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,21 +9,28 @@
 #import "AccountContribDigestEntry.h"
 #import "DigestEntryProcessingParams.h"
 #import "WorkingBalanceMgr.h"
+#import "AccountSimInfo.h"
 #import "InterestBearingWorkingBalance.h"
 
 @implementation AccountContribDigestEntry
 
-@synthesize workingBalance;
+@synthesize acctSimInfo;
 @synthesize contribAmount;
 
-- (id) initWithWorkingBalance:(InterestBearingWorkingBalance*)theBalance 
+- (void) dealloc
+{
+	[acctSimInfo release];
+	[super dealloc];
+}
+
+- (id) initWithAcctSimInfo:(AccountSimInfo*)theAcctSimInfo
 	andContribAmount:(double)theAmount
 {
 	self = [super init];
 	if(self)
 	{
-		assert(theBalance != nil);
-		self.workingBalance = theBalance;
+		assert(theAcctSimInfo != nil);
+		self.acctSimInfo = theAcctSimInfo;
 		
 		assert(theAmount >= 0.0);
 		self.contribAmount = theAmount;
@@ -48,18 +55,12 @@
 			asOfDate:processingParams.currentDate];
 		if(actualContrib>0.0)
 		{
-			[self.workingBalance incrementBalance:actualContrib 
-					asOfDate:processingParams.currentDate];				
+			[self.acctSimInfo addContribution:actualContrib onDate:processingParams.currentDate];
 		}
 	}
 
 }
 
 
-- (void) dealloc
-{
-	[workingBalance release];
-	[super dealloc];
-}
 
 @end

@@ -26,6 +26,7 @@
 #import "Account.h"
 #import "AccountContribItemizedTaxAmt.h"
 #import "AccountWithdrawalItemizedTaxAmt.h"
+#import "AccountWorkingBalance.h"
 
 #import "AssetInput.h"
 #import "AssetSimInfo.h"
@@ -88,7 +89,8 @@
 	AccountSimInfo *simInfo = [self.simParams.acctInfo getSimInfo:itemizedTaxAmt.account];
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
-	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc andDigestSum:simInfo.acctBal.accruedInterest] autorelease];
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc
+		andDigestSum:simInfo.acctBal.overallBal.accruedInterest] autorelease];
 }
 
 -(void)visitAccountDividendItemizedTaxAmt:(AccountDividendItemizedTaxAmt *)itemizedTaxAmt
@@ -108,7 +110,7 @@
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
-		andDigestSum:simInfo.acctBal.contribs] autorelease];
+		andDigestSum:simInfo.acctBal.overallBal.contribs] autorelease];
 
 }
 
@@ -119,7 +121,7 @@
 	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
 	
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
-		andDigestSum:simInfo.acctBal.withdrawals] autorelease];
+		andDigestSum:simInfo.acctBal.overallBal.withdrawals] autorelease];
 
 }
 

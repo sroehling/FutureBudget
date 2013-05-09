@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "WorkingBalance.h"
+#import "WorkingBalanceBaseImpl.h"
 
 @class Account;
 @class DateSensitiveValue;
@@ -16,7 +16,7 @@
 @class InputValDigestSummation;
 @class SimParams;
 
-@interface InterestBearingWorkingBalance : WorkingBalance {
+@interface InterestBearingWorkingBalance : WorkingBalanceBaseImpl {
     @private
 		VariableRateCalculator *interestRateCalc;
 		InputValDigestSummation *accruedInterest;

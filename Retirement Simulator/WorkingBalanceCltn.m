@@ -11,6 +11,8 @@
 #import "CollectionHelper.h"
 #import "Input.h"
 
+NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY = @"withdrawPriority";
+
 @implementation WorkingBalanceCltn
 
 @synthesize workingBalList;
@@ -29,7 +31,7 @@
 	return self;
 }
 
-- (void)addBalance:(WorkingBalance*)workingBal
+- (void)addBalance:(id<WorkingBalance>)workingBal
 {
 	assert(workingBal != nil);
 	[self.workingBalList addObject:workingBal];
@@ -37,21 +39,21 @@
 
 }
 
-- (WorkingBalance*)findWorkingBalanceForInput:(Input*)theInput
+- (id<WorkingBalance>)findWorkingBalanceForInput:(Input*)theInput
 {
 	assert(theInput != nil);
 	return [self.inputWorkingBalMap objectForKey:[theInput objectID]];
 }
 
-- (WorkingBalance*)getWorkingBalanceForInput:(Input*)theInput
+- (id<WorkingBalance>)getWorkingBalanceForInput:(Input*)theInput
 {
-	WorkingBalance *workingBal = [self findWorkingBalanceForInput:theInput];
+	id<WorkingBalance> workingBal = [self findWorkingBalanceForInput:theInput];
 	assert(workingBal != nil);
 	return workingBal;
 }
 
 
-- (void)addBalance:(WorkingBalance*)workingBal forInput:(Input*)theInput
+- (void)addBalance:(id<WorkingBalance>)workingBal forInput:(Input*)theInput
 {
 	assert(theInput != nil);
 	assert(workingBal != nil);
@@ -70,7 +72,7 @@
 {
 	assert(newDate != nil);
 
-	for(WorkingBalance *workingBal in self.workingBalList)
+	for(id<WorkingBalance> workingBal in self.workingBalList)
 	{
 		assert(workingBal!=nil);
 		[workingBal carryBalanceForward:newDate];
@@ -90,7 +92,7 @@
 
 - (void)advanceBalancesToDate:(NSDate*)newDate
 {
-	for(WorkingBalance *workingBal in self.workingBalList)
+	for(id<WorkingBalance> workingBal in self.workingBalList)
 	{
 		assert(workingBal!=nil);
 		[workingBal advanceCurrentBalanceToDate:newDate];
@@ -99,25 +101,17 @@
 
 - (void) resetCurrentBalances
 {
-	for(WorkingBalance *workingBal in self.workingBalList)
+	for(id<WorkingBalance> workingBal in self.workingBalList)
 	{
 		assert(workingBal!=nil);
 		[workingBal resetCurrentBalance];
 	}
 }
 
-- (void)logCurrentBalances
-{
-	for(WorkingBalance *workingBal in self.workingBalList)
-	{
-		[workingBal logBalance];
-	}
-}
-
 -(double)totalBalances:(NSDate*)currentDate
 {
 	double totalBal = 0.0;
-	for(WorkingBalance *workingBal in self.workingBalList)
+	for(id<WorkingBalance> workingBal in self.workingBalList)
 	{
 		assert([workingBal currentBalanceForDate:currentDate]>=0.0);
 		totalBal += [workingBal currentBalanceForDate:currentDate];

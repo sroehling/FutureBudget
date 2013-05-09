@@ -2,68 +2,33 @@
 //  WorkingBalance.h
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 8/18/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Steve Roehling on 5/8/13.
+//
 //
 
 #import <Foundation/Foundation.h>
 
-@class BalanceAdjustment;
-@class WorkingBalanceAdjustment;
-@class InputValDigestSummation;
 @class ExpenseInput;
 
-#define WORKING_BALANCE_WITHDRAW_PRIORITY_MAX 0.0
+@protocol WorkingBalance <NSObject>
 
-extern NSString * const WORKING_BALANCE_WITHDRAWAL_PRIORITY_KEY;
-
-@interface WorkingBalance : NSObject {
-    @protected
-		NSDate *balanceStartDate;
-		double startingBalance;
-		double currentBalance;
-		NSDate *currentBalanceDate;
-		
-		double withdrawPriority;
-		NSDate *deferWithdrawalsUntil;
-		NSSet *limitWithdrawalsToExpense;
-		
-		InputValDigestSummation *contribs;
-		InputValDigestSummation *withdrawals;
+@property double withdrawPriority;
 
 
-}
-
-- (void) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
-
-- (double) decrementAvailableBalanceForNonExpense:(double)amount 
-		asOfDate:(NSDate*)newDate;
-- (double) decrementAvailableBalanceForExpense:(ExpenseInput*)expense andAmount:(double)amount asOfDate:(NSDate*)newDate;
-	
-- (double)zeroOutBalanceAsOfDate:(NSDate*)newDate;
-
-- (id) initWithStartingBalance:(double)theStartBalance 
-	andStartDate:(NSDate*)theStartDate andWithdrawPriority:(double)theWithdrawPriority;
-	
 - (void)resetCurrentBalance;
 - (void)advanceCurrentBalanceToDate:(NSDate*)newDate;
 - (void)carryBalanceForward:(NSDate*)newStartDate;
-
 - (double)currentBalanceForDate:(NSDate*)balanceDate;
 
-- (NSString*)balanceName;
-- (void)logBalance;
+-(BOOL)withdrawalsEnabledAsOfDate:(NSDate*)theDate;
 
-@property(nonatomic,retain) NSDate *balanceStartDate;
-@property(nonatomic,retain) NSDate *currentBalanceDate;
-@property(nonatomic,retain) NSDate *deferWithdrawalsUntil;
-@property(nonatomic,retain) NSSet *limitWithdrawalsToExpense;
+- (double) decrementAvailableBalanceForExpense:(ExpenseInput*)expense 
+	andAmount:(double)amount asOfDate:(NSDate*)newDate;
+-(double)decrementAvailableBalanceForNonExpense:(double)amount 
+	asOfDate:(NSDate *)newDate;
 
+- (void) incrementBalance:(double)amount asOfDate:(NSDate*)newDate;
 
-@property(readonly) double startingBalance;
-@property double withdrawPriority;
-
-@property(nonatomic,retain) InputValDigestSummation *contribs;
-@property(nonatomic,retain) InputValDigestSummation *withdrawals;
+-(NSString*)balanceName;
 
 @end

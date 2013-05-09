@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Account;
-@class InterestBearingWorkingBalance;
+@class AccountWorkingBalance;
 @class SimParams;
 @class InputValDigestSummation;
 
@@ -17,18 +17,21 @@
     @private
 		Account *account;
 
-		InterestBearingWorkingBalance *acctBal;
+		AccountWorkingBalance *acctBal;
+				
 		InputValDigestSummation *dividendPayments;
 
 		SimParams *simParams;
 }
 
 @property(nonatomic,retain) Account *account;
-@property(nonatomic,retain) InterestBearingWorkingBalance *acctBal;
+@property(nonatomic,retain) AccountWorkingBalance *acctBal;
 @property(nonatomic,retain) InputValDigestSummation *dividendPayments;
 
 @property(nonatomic,retain) SimParams *simParams;
 
 -(id)initWithAcct:(Account*)theAcct andSimParams:(SimParams *)theSimParams;
+
+-(void)addContribution:(double)contributionAmount onDate:(NSDate*)contributionDate;
 
 @end

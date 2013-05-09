@@ -10,7 +10,6 @@
 #import "DateHelper.h"
 #import "NumberHelper.h"
 #import "Account.h"
-#import "InterestBearingWorkingBalance.h"
 #import "FiscalYearDigest.h"
 #import "AccountContribDigestEntry.h"
 #import "FiscalYearDigestEntries.h"
@@ -34,7 +33,7 @@
 		  
 	AccountContribDigestEntry *acctContrib = 
 		[[[AccountContribDigestEntry alloc] 
-		initWithWorkingBalance:self.acctSimInfo.acctBal 
+		initWithAcctSimInfo:self.acctSimInfo
 		andContribAmount:self.contributionAmount] autorelease];
 	[digest.digestEntries addDigestEntry:acctContrib onDate:self.eventDate];
 }

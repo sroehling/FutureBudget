@@ -136,7 +136,7 @@ static const CGFloat kBalanceDecrementComparisonTolerance = 0.001;
 		
 	[self.fundingSources sortByWithdrawalOrder];	
 		
-	for(WorkingBalance *workingBal in self.fundingSources.workingBalList)
+	for(id<WorkingBalance> workingBal in self.fundingSources.workingBalList)
 	{
 		double amountDecremented;
 		if(expense != nil)
@@ -252,17 +252,6 @@ static const CGFloat kBalanceDecrementComparisonTolerance = 0.001;
 
 }
 
-- (void)logCurrentBalances
-{
-
-	[self.fundingSources logCurrentBalances];
-	[self.loanBalances logCurrentBalances];
-	[self.assetValues logCurrentBalances];
-	
-	[self.deficitBalance logBalance];
-	[self.accruedEstimatedTaxes logBalance];
-	[self.nextEstimatedTaxPayment logBalance];
-}
 
 - (void) dealloc
 {
