@@ -276,6 +276,8 @@
 		00590A2F1738156B00BBF045 /* AccountDividendDigestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A2E1738156900BBF045 /* AccountDividendDigestEntry.m */; };
 		00590A3417398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A3317398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.m */; };
 		00590A37173ABA5E00BBF045 /* AccountWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A36173ABA5C00BBF045 /* AccountWorkingBalance.m */; };
+		00590A3B173C0CD300BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A3A173C0CD200BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m */; };
+		00590A3E173C3E8000BBF045 /* AcctCapitalLossXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A3D173C3E7800BBF045 /* AcctCapitalLossXYPlotDataGenerator.m */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		005DAEEC1460635800D87907 /* AssetGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEB1460635800D87907 /* AssetGainItemizedTaxAmt.m */; };
@@ -1007,6 +1009,10 @@
 		00590A35173ABA5B00BBF045 /* AccountWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountWorkingBalance.h; sourceTree = "<group>"; };
 		00590A36173ABA5C00BBF045 /* AccountWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountWorkingBalance.m; sourceTree = "<group>"; };
 		00590A38173AC4ED00BBF045 /* WorkingBalance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingBalance.h; sourceTree = "<group>"; };
+		00590A39173C0CD000BBF045 /* AcctCapitalGainsXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctCapitalGainsXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00590A3A173C0CD200BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctCapitalGainsXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00590A3C173C3E7500BBF045 /* AcctCapitalLossXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctCapitalLossXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00590A3D173C3E7800BBF045 /* AcctCapitalLossXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctCapitalLossXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedDateFieldInfo.h; sourceTree = "<group>"; };
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
@@ -1663,6 +1669,10 @@
 				008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */,
 				00590A3217398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.h */,
 				00590A3317398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.m */,
+				00590A39173C0CD000BBF045 /* AcctCapitalGainsXYPlotDataGenerator.h */,
+				00590A3A173C0CD200BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m */,
+				00590A3C173C3E7500BBF045 /* AcctCapitalLossXYPlotDataGenerator.h */,
+				00590A3D173C3E7800BBF045 /* AcctCapitalLossXYPlotDataGenerator.m */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -3657,6 +3667,8 @@
 				00590A2F1738156B00BBF045 /* AccountDividendDigestEntry.m in Sources */,
 				00590A3417398C9D00BBF045 /* AcctDividendXYPlotDataGenerator.m in Sources */,
 				00590A37173ABA5E00BBF045 /* AccountWorkingBalance.m in Sources */,
+				00590A3B173C0CD300BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m in Sources */,
+				00590A3E173C3E8000BBF045 /* AcctCapitalLossXYPlotDataGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,7 @@
 
 @class Account;
 
-@interface AcctBalanceXYPlotDataGenerator : AcctResultGenerator <YearValXYPlotDataGenerator> {
+@interface AcctBalanceXYPlotDataGenerator : AcctResultGenerator {
 }
 
 @end

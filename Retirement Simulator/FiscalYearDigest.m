@@ -108,6 +108,8 @@
 	double sumAcctContrib = 0.0;
 	double sumAcctWithdrawal = 0.0;
 	double sumAcctDividend = 0.0;
+	double sumAcctCapitalGains = 0.0;
+	double sumAcctCapitalLoss = 0.0;
 	for(AccountSimInfo *acctSimInfo in acctSimInfos)
 	{
 		double acctBal = [acctSimInfo.acctBal currentBalanceForDate:results.endDate];
@@ -125,12 +127,22 @@
 		double acctDividend = [acctSimInfo.dividendPayments yearlyTotal];
 		[results.acctDividends setResultForInput:acctSimInfo.account andValue:acctDividend];
 		sumAcctDividend += acctDividend;
+
+		double acctCapGains = [acctSimInfo.acctBal.capitalGains yearlyTotal];
+		[results.acctCapitalGains setResultForInput:acctSimInfo.account andValue:acctCapGains];
+		sumAcctCapitalGains += acctCapGains;
 		
+		double acctCapLoss = [acctSimInfo.acctBal.capitalLosses yearlyTotal];
+		[results.acctCapitalLoss setResultForInput:acctSimInfo.account andValue:acctCapLoss];
+		sumAcctCapitalLoss += acctCapLoss;
+
 	}
 	results.sumAcctBal = sumAcctBal;
 	results.sumAcctContrib = sumAcctContrib;
 	results.sumAcctWithdrawal = sumAcctWithdrawal;
 	results.sumAcctDividend = sumAcctDividend;
+	results.sumAcctCapitalGains = sumAcctCapitalGains;
+	results.sumAcctCapitalLoss = sumAcctCapitalLoss;
 	
 	NSArray *incomeSimInfos = [self.simParams.incomeInfo simInfos];
 	double sumIncome = 0.0;

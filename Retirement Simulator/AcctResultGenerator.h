@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "YearValXYPlotDataGenerator.h"
+
 @class Account;
 
-@interface AcctResultGenerator : NSObject {
+@interface AcctResultGenerator : NSObject <YearValXYPlotDataGenerator> {
     @private
 		Account *account;
 }

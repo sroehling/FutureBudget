@@ -16,6 +16,7 @@
 #import "MultiScenarioSimDate.h"
 #import "SimParams.h"
 #import "InputValDigestSummations.h"
+#import "InputValDigestSummation.h"
 #import "NumberHelper.h"
 
 @implementation AccountWorkingBalance
@@ -24,14 +25,23 @@
 @synthesize costBasis;
 @synthesize limitWithdrawalsToExpense;
 @synthesize deferWithdrawalsUntil;
+@synthesize capitalGains;
+@synthesize capitalLosses;
+
 @synthesize withdrawPriority;
+
 
 -(void)dealloc
 {
 	[overallBal release];
 	[costBasis release];
+	
 	[deferWithdrawalsUntil release];
 	[limitWithdrawalsToExpense release];
+	
+	[capitalGains release];
+	[capitalLosses release];
+	
 	[super dealloc];
 }
 
@@ -52,12 +62,16 @@
 					
 		self.overallBal = [[[InterestBearingWorkingBalance alloc]
 			initWithStartingBalance:startingBal andInterestRate:theInterestRate
-			andWorkingBalanceName:@"TBD" andStartDate:theStartDate
+			andWorkingBalanceName:@"N/A" andStartDate:theStartDate
 			andWithdrawPriority:theWithdrawPriority] autorelease];
 
 		self.deferWithdrawalsUntil = deferUntil;
 		
 		self.limitWithdrawalsToExpense = limitedExpenses;
+
+		self.capitalGains = [[[InputValDigestSummation alloc] init] autorelease];
+		self.capitalLosses = [[[InputValDigestSummation alloc] init] autorelease];
+
 
 	}
 	return self;
@@ -78,7 +92,7 @@
 		self.overallBal = [[[InterestBearingWorkingBalance alloc]
 		     initWithAcct:theAcct andSimParams:simParams] autorelease];
 
-		double startingCostBasis = 0.0; // TODO - Add property to account for cost basis
+		double startingCostBasis = self.overallBal.startingBalance; // TODO - Add property to account for cost basis
 		self.costBasis = [[[CashWorkingBalance alloc]
 				initWithStartingBalance:startingCostBasis
 					andStartDate:simParams.simStartDate ] autorelease];
@@ -98,10 +112,16 @@
 
 		self.limitWithdrawalsToExpense = theAcct.limitWithdrawalExpenses;
 		
+		self.capitalGains = [[[InputValDigestSummation alloc] init] autorelease];
+		self.capitalLosses = [[[InputValDigestSummation alloc] init] autorelease];
+		
 		
 		[simParams.digestSums addDigestSum:self.overallBal.contribs];
 		[simParams.digestSums addDigestSum:self.overallBal.withdrawals];
 		[simParams.digestSums addDigestSum:self.overallBal.accruedInterest];
+		
+		[simParams.digestSums addDigestSum:self.capitalGains];
+		[simParams.digestSums addDigestSum:self.capitalLosses];
 
 
 	}
@@ -168,11 +188,39 @@
 	double decrementFromOverallAcctBal = 0.0;
 	if([self withdrawalsEnabledAsOfDate:newDate])
 	{
+	
+		double currentOverallBalanceBeforeDecrement =
+			[self.overallBal currentBalanceForDate:newDate];
+		double costBasisBeforeDecrement =
+			[self.costBasis currentBalanceForDate:newDate];
+		
+		double cumulativeGainOrLossAtTimeOfDecrement =
+			currentOverallBalanceBeforeDecrement - costBasisBeforeDecrement;
+	
+		double percentGainOrLossAtTimeOfDecrement =
+			cumulativeGainOrLossAtTimeOfDecrement / currentOverallBalanceBeforeDecrement;
+	
 		decrementFromOverallAcctBal =
 			[self.overallBal decrementAvailableBalanceForNonExpense:amount asOfDate:newDate];
-			
-		// TODO - Calculate reduction in cost basis
-		//double decrementFromCostBasis = ???;
+		
+		double capitalGainOrLoss = decrementFromOverallAcctBal * percentGainOrLossAtTimeOfDecrement;
+		
+		NSUInteger dayIndex = [DateHelper daysOffset:newDate vsEarlierDate:self.overallBal.balanceStartDate];
+		if(capitalGainOrLoss > 0.0)
+		{
+			[self.capitalGains adjustSum:capitalGainOrLoss onDay:dayIndex];
+		}
+		else if(capitalGainOrLoss < 0.0)
+		{
+			[self.capitalLosses adjustSum:(-1.0 * capitalGainOrLoss) onDay:dayIndex];
+		}
+		
+		// Decrement the outstanding cost basis by the overall withdrawal amount minus
+		// the capital gain or loss. Note that for a loss, the amount deducted could be greater
+		// than the actual withdrawal amount.
+		double costBasisAttributableToGainOrLoss = decrementFromOverallAcctBal - capitalGainOrLoss;
+		[self.costBasis decrementAvailableBalanceForNonExpense:costBasisAttributableToGainOrLoss asOfDate:newDate];
+		
 	}
 		
 	return decrementFromOverallAcctBal;

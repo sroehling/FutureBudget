@@ -668,6 +668,8 @@
 "RESULTS_ACCT_CONTRIB_DATA_LABEL_FORMAT" = "Account Contributions - %@";
 "RESULTS_ACCT_ALL_ACCT_CONTRIB_SUBTITLE" = "Yearly contributions to all accounts";
 "RESULTS_ACCT_DIVIDEND_DATA_LABEL_FORMAT" = "Account Dividends - %@";
+"RESULTS_ACCT_CAPITAL_GAINS_DATA_LABEL_FORMAT" = "Capital Gains - %@";
+"RESULTS_ACCT_CAPITAL_LOSS_DATA_LABEL_FORMAT" = "Capital Losses - %@";
 
 
 

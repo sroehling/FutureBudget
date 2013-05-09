@@ -10,7 +10,7 @@
 #import "AcctResultGenerator.h"
 #import "YearValXYPlotDataGenerator.h"
 
-@interface AcctDividendXYPlotDataGenerator : AcctResultGenerator <YearValXYPlotDataGenerator> {
+@interface AcctDividendXYPlotDataGenerator : AcctResultGenerator {
 }
 
 @end

@@ -83,6 +83,8 @@
 #import "TaxInputTypeSelectionInfo.h"
 
 #import "AcctDividendXYPlotDataGenerator.h"
+#import "AcctCapitalGainsXYPlotDataGenerator.h"
+#import "AcctCapitalLossXYPlotDataGenerator.h"
 
 @implementation TestSimEngine
 
@@ -1637,6 +1639,254 @@
 
 
 }
+
+-(void)testAccountCapitalGain
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Set the cash balance to 0.0, so the expense will trigger a withdrawal from the account.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+
+	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
+		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:227.86
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+}
+
+
+-(void)testAccountCapitalGainWithDividend
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Set the cash balance to 0.0, so the expense will trigger a withdrawal from the account.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:5.0]; // 5% dividend each year
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+
+	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	// The following results assume the dividend is reinvested, then the reinvested dividend also becomes part of the
+	// basis for calculatig the future dividends. The quarterly dividend is also assumed to be 1/4 of the yearly
+	// dividend, so 2.5% in this case.
+	//
+	// Note that the capital gain is a little bit lower than testAccountCapitalGain (without dividend).
+	// This is because the capital gains are averaged across the entire cost base. Since this
+	// test case includes a larger cost base, the capital gain from the same size sale of 2500 is
+	// a little bit smaller.
+	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
+		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:223.36
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+}
+
+-(void)testAccountCapitalGainWithLargeGain
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Set the cash balance to 0.0, so the expense will trigger a withdrawal from the account.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:100.0];
+
+
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+
+	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
+		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// The account realized a gain of 100% in the first year, so 1/2 of the $20K is now
+	// capital gains, while the other half is the cost basis. So, for a withdrawal of 2500,
+	// the proportion attributable to cost basis is 50% * 2500 = 1250.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1250.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+}
+
+
+
+-(void)testAccountCapitalLoss
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Set the cash balance to 0.0, so the expense will trigger a withdrawal from the account.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	// Account starts with 10,000 in cost basis and value, but loses 10% of the value each year.
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
+
+
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+
+	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctCapitalLossXYPlotDataGenerator *acctGainsData =
+		[[[AcctCapitalLossXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:277.78
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+}
+
+-(void)testAccountCapitalLossWithLargeLoss
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Set the cash balance to 0.0, so the expense will trigger a withdrawal from the account.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:-90.0];
+
+
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+
+	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:500];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctCapitalLossXYPlotDataGenerator *acctLossData =
+		[[[AcctCapitalLossXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// The account realized a loss of 90% in the first year, bringing the balance down to $1000.
+	// The withdrawal of $500 brings the balance down to $500. However, as a proportion of the
+	// cost basis, this results in 1/2 of of the $9000 loss being realized as a capital loss.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:4500.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctLossData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+}
+
 
 
 -(void)testAccountWithdraw

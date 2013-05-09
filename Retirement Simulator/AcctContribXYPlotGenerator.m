@@ -41,9 +41,4 @@
 		self.account.name];
 }
 
--(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
-{
-	return [simResults.acctsSimulated containsObject:self.account];
-}
-
 @end

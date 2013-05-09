@@ -14,6 +14,7 @@
 @class InterestBearingWorkingBalance;
 @class Account;
 @class DateSensitiveValue;
+@class InputValDigestSummation;
 @class SimParams;
 
 @interface AccountWorkingBalance : NSObject <WorkingBalance> {
@@ -25,7 +26,11 @@
 		// not adjusted for interest, so it can use the same type
 		// of working balance as the cash balance elsewhere in the
 		// simulator.
-		CashWorkingBalance *costBasis; // cost basis
+		CashWorkingBalance *costBasis;
+		
+		InputValDigestSummation *capitalGains;
+		InputValDigestSummation *capitalLosses;
+
 
 		NSDate *deferWithdrawalsUntil;
 		NSSet *limitWithdrawalsToExpense;
@@ -35,6 +40,8 @@
 }
 
 @property(nonatomic,retain) InterestBearingWorkingBalance *overallBal;
+@property(nonatomic,retain) InputValDigestSummation *capitalGains;
+@property(nonatomic,retain) InputValDigestSummation *capitalLosses;
 @property(nonatomic,retain) CashWorkingBalance *costBasis;
 @property(nonatomic,retain) NSDate *deferWithdrawalsUntil;
 @property(nonatomic,retain) NSSet *limitWithdrawalsToExpense;

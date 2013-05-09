@@ -33,6 +33,10 @@
 @synthesize sumAcctWithdrawal;
 @synthesize acctDividends;
 @synthesize sumAcctDividend;
+@synthesize acctCapitalGains;
+@synthesize sumAcctCapitalGains;
+@synthesize acctCapitalLoss;
+@synthesize sumAcctCapitalLoss;
 
 @synthesize simStartDateValueMultiplier;
 @synthesize taxesPaid;
@@ -51,6 +55,8 @@
 	[acctWithdrawals release];
 	[acctContribs release];
 	[acctDividends release];
+	[acctCapitalGains release];
+	[acctCapitalLoss release];
 	
 	[taxesPaid release];
 	
@@ -83,6 +89,12 @@
 
 		self.acctDividends = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumAcctDividend = 0.0;
+
+		self.acctCapitalGains = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumAcctCapitalGains = 0.0;
+
+		self.acctCapitalLoss = [[[EndOfYearInputResults alloc] init] autorelease];
+		self.sumAcctCapitalLoss = 0.0;
 
 		self.incomes = [[[EndOfYearInputResults alloc] init] autorelease];
 		self.sumIncomes = 0.0;

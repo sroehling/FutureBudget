@@ -1,12 +1,12 @@
 //
-//  AcctBalanceXYPlotDataGenerator.m
+//  AcctCapitalGainsXYPlotDataGenerator.m
 //  Retirement Simulator
 //
-//  Created by Steve Roehling on 12/9/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Steve Roehling on 5/9/13.
+//
 //
 
-#import "AcctBalanceXYPlotDataGenerator.h"
+#import "AcctCapitalGainsXYPlotDataGenerator.h"
 
 #import "YearValXYPlotDataGenerator.h"
 #import "YearValXYPlotData.h"
@@ -16,9 +16,8 @@
 #import "Account.h"
 #import "LocalizationHelper.h"
 
-@implementation AcctBalanceXYPlotDataGenerator
 
-
+@implementation AcctCapitalGainsXYPlotDataGenerator
 
 -(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults
 {
@@ -27,9 +26,9 @@
 	for(EndOfYearDigestResult *eoyResult in simResults.endOfYearResults)
 	{
 		NSInteger resultYear = [eoyResult yearNumber];
-		double acctBal = [eoyResult.acctBalances getResultForInput:self.account];
+		double capGains = [eoyResult.acctCapitalGains getResultForInput:self.account];
 		
-		[plotData addPlotDataPointForYear:resultYear andYVal:acctBal
+		[plotData addPlotDataPointForYear:resultYear andYVal:capGains
 			andSimStartValueMultiplier:eoyResult.simStartDateValueMultiplier];
 	}
 
@@ -38,8 +37,10 @@
 
 -(NSString*)dataLabel
 {
-	return [NSString stringWithFormat: LOCALIZED_STR(@"RESULTS_ACCT_BALANCE_DATA_LABEL_FORMAT"),
+	return [NSString stringWithFormat: LOCALIZED_STR(@"RESULTS_ACCT_CAPITAL_GAINS_DATA_LABEL_FORMAT"),
 		self.account.name];
 }
+
+
 
 @end
