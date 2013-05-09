@@ -194,33 +194,35 @@
 		double costBasisBeforeDecrement =
 			[self.costBasis currentBalanceForDate:newDate];
 		
-		double cumulativeGainOrLossAtTimeOfDecrement =
-			currentOverallBalanceBeforeDecrement - costBasisBeforeDecrement;
-	
-		double percentGainOrLossAtTimeOfDecrement =
-			cumulativeGainOrLossAtTimeOfDecrement / currentOverallBalanceBeforeDecrement;
-	
 		decrementFromOverallAcctBal =
 			[self.overallBal decrementAvailableBalanceForNonExpense:amount asOfDate:newDate];
-		
-		double capitalGainOrLoss = decrementFromOverallAcctBal * percentGainOrLossAtTimeOfDecrement;
-		
-		NSUInteger dayIndex = [DateHelper daysOffset:newDate vsEarlierDate:self.overallBal.balanceStartDate];
-		if(capitalGainOrLoss > 0.0)
+			
+		if(decrementFromOverallAcctBal > 0.0)
 		{
-			[self.capitalGains adjustSum:capitalGainOrLoss onDay:dayIndex];
-		}
-		else if(capitalGainOrLoss < 0.0)
-		{
-			[self.capitalLosses adjustSum:(-1.0 * capitalGainOrLoss) onDay:dayIndex];
-		}
+			double cumulativeGainOrLossAtTimeOfDecrement =
+				currentOverallBalanceBeforeDecrement - costBasisBeforeDecrement;
 		
-		// Decrement the outstanding cost basis by the overall withdrawal amount minus
-		// the capital gain or loss. Note that for a loss, the amount deducted could be greater
-		// than the actual withdrawal amount.
-		double costBasisAttributableToGainOrLoss = decrementFromOverallAcctBal - capitalGainOrLoss;
-		[self.costBasis decrementAvailableBalanceForNonExpense:costBasisAttributableToGainOrLoss asOfDate:newDate];
-		
+			double percentGainOrLossAtTimeOfDecrement =
+				cumulativeGainOrLossAtTimeOfDecrement / currentOverallBalanceBeforeDecrement;
+
+			double capitalGainOrLoss = decrementFromOverallAcctBal * percentGainOrLossAtTimeOfDecrement;
+			
+			NSUInteger dayIndex = [DateHelper daysOffset:newDate vsEarlierDate:self.overallBal.balanceStartDate];
+			if(capitalGainOrLoss > 0.0)
+			{
+				[self.capitalGains adjustSum:capitalGainOrLoss onDay:dayIndex];
+			}
+			else if(capitalGainOrLoss < 0.0)
+			{
+				[self.capitalLosses adjustSum:(-1.0 * capitalGainOrLoss) onDay:dayIndex];
+			}
+			
+			// Decrement the outstanding cost basis by the overall withdrawal amount minus
+			// the capital gain or loss. Note that for a loss, the amount deducted could be greater
+			// than the actual withdrawal amount.
+			double costBasisAttributableToGainOrLoss = decrementFromOverallAcctBal - capitalGainOrLoss;
+			[self.costBasis decrementAvailableBalanceForNonExpense:costBasisAttributableToGainOrLoss asOfDate:newDate];
+		}
 	}
 		
 	return decrementFromOverallAcctBal;
