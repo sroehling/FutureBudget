@@ -17,6 +17,8 @@
 @class LoanInterestItemizedTaxAmt;
 @class TaxesPaidItemizedTaxAmt;
 @class AccountDividendItemizedTaxAmt;
+@class AccountCapitalGainItemizedTaxAmt;
+@class AccountCapitalLossItemizedTaxAmt;
 
 @protocol ItemizedTaxAmtVisitor <NSObject>
 
@@ -25,10 +27,11 @@
 
 -(void)visitAccountInterestItemizedTaxAmt:(AccountInterestItemizedTaxAmt*)itemizedTaxAmt;
 -(void)visitAccountDividendItemizedTaxAmt:(AccountDividendItemizedTaxAmt*)itemizedTaxAmt;
--(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt*)
-	itemizedTaxAmt;
--(void)visitAccountWithdrawalItemizedTaxAmt:
-	(AccountWithdrawalItemizedTaxAmt*)itemizedTaxAmt;
+-(void)visitAccountCapitalGainItemizedTaxAmt:(AccountCapitalGainItemizedTaxAmt*)itemizedTaxAmt;
+-(void)visitAccountCapitalLossItemizedTaxAmt:(AccountCapitalLossItemizedTaxAmt*)itemizedTaxAmt;
+
+-(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt*)itemizedTaxAmt;
+-(void)visitAccountWithdrawalItemizedTaxAmt:(AccountWithdrawalItemizedTaxAmt*)itemizedTaxAmt;
 	
 -(void)visitAssetGainItemizedTaxAmt:
 	(AssetGainItemizedTaxAmt*)itemizedTaxAmt;

@@ -53,6 +53,10 @@
 #import "ItemizedTaxesPaidTaxAmtCreator.h"
 #import "AccountDividendItemizedTaxAmt.h"
 #import "ItemizedAccountDividendTaxAmtCreator.h"
+#import "ItemizedAccountCapitalGainTaxAmtCreator.h"
+#import "ItemizedAccountCapitalLossTaxAmtCreator.h"
+#import "AccountCapitalGainItemizedTaxAmt.h"
+#import "AccountCapitalLossItemizedTaxAmt.h"
 
 #import "LocalizationHelper.h"
 #import "FormContext.h"
@@ -274,6 +278,96 @@
 					andItemizedTaxAmt:nil
 					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
 				[formPopulator.currentSection addFieldEditInfo:acctDivFieldEditInfo];
+			}
+		}
+	}
+
+
+	if([self.itemizedTaxAmtsInfo itemizeAccountCapitalGains])
+	{
+		NSArray *acctCapGainNotItemized = [fieldPopulator acctCapitalGainNotAlreadyItemized];
+		if(([fieldPopulator.itemizedAccountCapitalGain count] > 0) ||
+			([acctCapGainNotItemized count] > 0))
+		{
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
+				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_CAPITAL_GAIN_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
+
+			for(AccountCapitalGainItemizedTaxAmt *itemizedCapGain in fieldPopulator.itemizedAccountCapitalGain )
+			{
+			
+				ItemizedAccountCapitalGainTaxAmtCreator *itemizedCapGainCreator = [[[ItemizedAccountCapitalGainTaxAmtCreator alloc]
+								initWithFormContext:parentContext
+								andAcct:itemizedCapGain.account
+								andLabel:itemizedCapGain.account.name] autorelease];
+				ItemizedTaxAmtFieldEditInfo *acctCapGainFieldEditInfo =
+					[[[ItemizedTaxAmtFieldEditInfo alloc] 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						andItemizedTaxAmtCreator:itemizedCapGainCreator
+					andItemizedTaxAmt:itemizedCapGain
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:acctCapGainFieldEditInfo];
+				
+			}
+			for(Account *unitemizedAcct in acctCapGainNotItemized)
+			{	
+				ItemizedAccountCapitalGainTaxAmtCreator *itemizedCapGainCreator =
+					[[[ItemizedAccountCapitalGainTaxAmtCreator alloc] initWithFormContext:parentContext
+					andAcct:unitemizedAcct
+					andLabel:unitemizedAcct.name] autorelease];
+				ItemizedTaxAmtFieldEditInfo *acctCapGainFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc]
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					andItemizedTaxAmtCreator:itemizedCapGainCreator
+					andItemizedTaxAmt:nil
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:acctCapGainFieldEditInfo];
+			}
+		}
+	}
+
+	if([self.itemizedTaxAmtsInfo itemizeAccountCapitalLosses])
+	{
+		NSArray *acctCapLossNotItemized = [fieldPopulator acctCapitalLossNotAlreadyItemized];
+		if(([fieldPopulator.itemizedAccountCapitalLoss count] > 0) ||
+			([acctCapLossNotItemized count] > 0))
+		{
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
+				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_CAPITAL_LOSS_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
+
+			for(AccountCapitalLossItemizedTaxAmt *itemizedCapLoss in fieldPopulator.itemizedAccountCapitalLoss )
+			{
+				ItemizedAccountCapitalLossTaxAmtCreator *itemizedContribCreator = [[[ItemizedAccountCapitalLossTaxAmtCreator alloc]
+								initWithFormContext:parentContext
+								andAcct:itemizedCapLoss.account
+								andLabel:itemizedCapLoss.account.name] autorelease];
+				ItemizedTaxAmtFieldEditInfo *acctCapLossFieldEditInfo =
+					[[[ItemizedTaxAmtFieldEditInfo alloc] 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						andItemizedTaxAmtCreator:itemizedContribCreator
+					andItemizedTaxAmt:itemizedCapLoss
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:acctCapLossFieldEditInfo];
+				
+			}
+			for(Account *unitemizedAcct in acctCapLossNotItemized)
+			{	
+				ItemizedAccountCapitalLossTaxAmtCreator *itemizedCapLossCreator =
+					[[[ItemizedAccountCapitalLossTaxAmtCreator alloc] initWithFormContext:parentContext
+					andAcct:unitemizedAcct
+					andLabel:unitemizedAcct.name] autorelease];
+				ItemizedTaxAmtFieldEditInfo *acctCapLossFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc]
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					andItemizedTaxAmtCreator:itemizedCapLossCreator
+					andItemizedTaxAmt:nil
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:acctCapLossFieldEditInfo];
 			}
 		}
 	}

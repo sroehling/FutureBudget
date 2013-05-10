@@ -33,6 +33,8 @@
 @synthesize itemizeAccountWithdrawals;
 @synthesize itemizeAccountInterest;
 @synthesize itemizeAccountDividends;
+@synthesize itemizeAccountCapitalGains;
+@synthesize itemizeAccountCapitalLosses;
 @synthesize itemizeLoanInterest;
 @synthesize itemizeAssetGains;
 @synthesize itemizeTaxesPaid;
@@ -53,6 +55,8 @@
 	andItemizeAccountWithdrawals:(BOOL)doItemizeAcctWithdrawals
 	andItemizeAccountInterest:(BOOL)doItemizeAcctInterest
 	andItemizeAccountDividends:(BOOL)doItemizeAcctDividend
+	andItemizeCapitalGains:(BOOL)doItemizeCapitalGains
+	andItemizeCapitalLosses:(BOOL)doItemizeCapitalLosses
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
 	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest
 	andItemizeTaxesPaid:(BOOL)doItemizeTaxesPaid
@@ -85,6 +89,9 @@
 		self.itemizeAccountWithdrawals = doItemizeAcctWithdrawals;
 		self.itemizeAccountInterest = doItemizeAcctInterest;
 		self.itemizeAccountDividends = doItemizeAcctDividend;
+		self.itemizeAccountCapitalGains = doItemizeCapitalGains;
+		self.itemizeAccountCapitalLosses = doItemizeCapitalLosses;
+		
 		self.itemizeAssetGains = doItemizeAssetGains;
 		self.itemizeLoanInterest = doItemizeLoanInterest;
 		self.itemizeTaxesPaid = doItemizeTaxesPaid;
@@ -122,7 +129,9 @@
 			andItemizeAccountContribs:		FALSE 
 			andItemizeAccountWithdrawals:	TRUE 
 			andItemizeAccountInterest:		TRUE
-			andItemizeAccountDividends:		TRUE 
+			andItemizeAccountDividends:		TRUE
+			andItemizeCapitalGains:			TRUE
+			andItemizeCapitalLosses:		FALSE
 			andItemizeAssetGains:			TRUE 
 			andItemizeLoanInterest:			FALSE
 			andItemizeTaxesPaid:			FALSE] autorelease];
@@ -147,6 +156,8 @@
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
 			andItemizeAccountDividends:		FALSE
+			andItemizeCapitalGains:			FALSE
+			andItemizeCapitalLosses:		FALSE
 			andItemizeAssetGains:			FALSE 
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			FALSE] autorelease];
@@ -171,6 +182,8 @@
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
 			andItemizeAccountDividends:		FALSE
+			andItemizeCapitalGains:			FALSE
+			andItemizeCapitalLosses:		TRUE
 			andItemizeAssetGains:			FALSE 
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			TRUE] autorelease];
@@ -194,6 +207,8 @@
 			andItemizeAccountWithdrawals:	FALSE 
 			andItemizeAccountInterest:		FALSE 
 			andItemizeAccountDividends:		FALSE
+			andItemizeCapitalGains:			FALSE
+			andItemizeCapitalLosses:		FALSE
 			andItemizeAssetGains:			FALSE 
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			FALSE] autorelease];

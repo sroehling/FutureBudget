@@ -278,6 +278,10 @@
 		00590A37173ABA5E00BBF045 /* AccountWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A36173ABA5C00BBF045 /* AccountWorkingBalance.m */; };
 		00590A3B173C0CD300BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A3A173C0CD200BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m */; };
 		00590A3E173C3E8000BBF045 /* AcctCapitalLossXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A3D173C3E7800BBF045 /* AcctCapitalLossXYPlotDataGenerator.m */; };
+		00590A41173D528A00BBF045 /* AccountCapitalLossItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A40173D528600BBF045 /* AccountCapitalLossItemizedTaxAmt.m */; };
+		00590A44173D528D00BBF045 /* AccountCapitalGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A43173D528C00BBF045 /* AccountCapitalGainItemizedTaxAmt.m */; };
+		00590A47173D61A900BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A46173D61A800BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m */; };
+		00590A4A173D62C100BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A49173D62C000BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		005DAEEC1460635800D87907 /* AssetGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEB1460635800D87907 /* AssetGainItemizedTaxAmt.m */; };
@@ -1013,6 +1017,14 @@
 		00590A3A173C0CD200BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctCapitalGainsXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00590A3C173C3E7500BBF045 /* AcctCapitalLossXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctCapitalLossXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		00590A3D173C3E7800BBF045 /* AcctCapitalLossXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctCapitalLossXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00590A3F173D528400BBF045 /* AccountCapitalLossItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCapitalLossItemizedTaxAmt.h; sourceTree = "<group>"; };
+		00590A40173D528600BBF045 /* AccountCapitalLossItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCapitalLossItemizedTaxAmt.m; sourceTree = "<group>"; };
+		00590A42173D528A00BBF045 /* AccountCapitalGainItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCapitalGainItemizedTaxAmt.h; sourceTree = "<group>"; };
+		00590A43173D528C00BBF045 /* AccountCapitalGainItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCapitalGainItemizedTaxAmt.m; sourceTree = "<group>"; };
+		00590A45173D61A700BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountCapitalGainTaxAmtCreator.h; sourceTree = "<group>"; };
+		00590A46173D61A800BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAccountCapitalGainTaxAmtCreator.m; sourceTree = "<group>"; };
+		00590A48173D62BE00BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountCapitalLossTaxAmtCreator.h; sourceTree = "<group>"; };
+		00590A49173D62C000BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAccountCapitalLossTaxAmtCreator.m; sourceTree = "<group>"; };
 		005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedDateFieldInfo.h; sourceTree = "<group>"; };
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
@@ -1777,6 +1789,10 @@
 				00142971154F47EF00B8AE5C /* TaxesPaidItemizedTaxAmt.m */,
 				0017F19517330E520064FAD8 /* AccountDividendItemizedTaxAmt.h */,
 				0017F19617330E520064FAD8 /* AccountDividendItemizedTaxAmt.m */,
+				00590A42173D528A00BBF045 /* AccountCapitalGainItemizedTaxAmt.h */,
+				00590A43173D528C00BBF045 /* AccountCapitalGainItemizedTaxAmt.m */,
+				00590A3F173D528400BBF045 /* AccountCapitalLossItemizedTaxAmt.h */,
+				00590A40173D528600BBF045 /* AccountCapitalLossItemizedTaxAmt.m */,
 			);
 			name = "Itemized Tax Amounts";
 			sourceTree = "<group>";
@@ -1958,6 +1974,10 @@
 				0014296D154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.m */,
 				0017F198173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.h */,
 				0017F199173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.m */,
+				00590A45173D61A700BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.h */,
+				00590A46173D61A800BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m */,
+				00590A48173D62BE00BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.h */,
+				00590A49173D62C000BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m */,
 			);
 			name = "Itemized Tax Amt Creators";
 			sourceTree = "<group>";
@@ -3669,6 +3689,10 @@
 				00590A37173ABA5E00BBF045 /* AccountWorkingBalance.m in Sources */,
 				00590A3B173C0CD300BBF045 /* AcctCapitalGainsXYPlotDataGenerator.m in Sources */,
 				00590A3E173C3E8000BBF045 /* AcctCapitalLossXYPlotDataGenerator.m in Sources */,
+				00590A41173D528A00BBF045 /* AccountCapitalLossItemizedTaxAmt.m in Sources */,
+				00590A44173D528D00BBF045 /* AccountCapitalGainItemizedTaxAmt.m in Sources */,
+				00590A47173D61A900BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m in Sources */,
+				00590A4A173D62C100BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

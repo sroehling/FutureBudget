@@ -421,6 +421,7 @@
 		[self.formPopulator populateMultiScenarioInvestmentReturnRate:account.interestRate
 			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL")
 			andValueName:account.name];
+			
 		ItemizedAccountTaxFormInfoCreator *acctTaxFormInfoCreator =
 				[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
 				andIsForNewObject:self.isForNewObject] autorelease];
@@ -428,6 +429,22 @@
 		[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_INTEREST_TAXES_FIELD_LABEL")
 			andFormInfoCreator:acctTaxFormInfoCreator
 			andItemizedTaxAmtsInfo:account.accountInterestItemizedTaxAmt];
+			
+		ItemizedAccountTaxFormInfoCreator *acctCapGainTaxFormInfoCreator =
+				[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
+				andIsForNewObject:self.isForNewObject] autorelease];
+		acctCapGainTaxFormInfoCreator.showCapGain = TRUE;
+		[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CAP_GAINS_TAXES_FIELD_LABEL")
+			andFormInfoCreator:acctCapGainTaxFormInfoCreator
+			andItemizedTaxAmtsInfo:account.accountDividendItemizedTaxAmt];
+	
+		ItemizedAccountTaxFormInfoCreator *acctCapLossTaxFormInfoCreator =
+				[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
+				andIsForNewObject:self.isForNewObject] autorelease];
+		acctCapLossTaxFormInfoCreator.showCapLoss = TRUE;
+		[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CAP_LOSS_TAXES_FIELD_LABEL")
+			andFormInfoCreator:acctCapLossTaxFormInfoCreator
+			andItemizedTaxAmtsInfo:account.accountDividendItemizedTaxAmt];
 	}
 		
 	if(TRUE)

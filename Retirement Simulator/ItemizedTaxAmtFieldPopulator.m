@@ -18,6 +18,8 @@
 #import "LoanInterestItemizedTaxAmt.h"
 #import "TaxesPaidItemizedTaxAmt.h"
 #import "AccountDividendItemizedTaxAmt.h"
+#import "AccountCapitalGainItemizedTaxAmt.h"
+#import "AccountCapitalLossItemizedTaxAmt.h"
 #import "LocalizationHelper.h"
 
 #import "DataModelController.h"
@@ -36,13 +38,40 @@
 
 @synthesize itemizedIncomes;
 @synthesize itemizedExpenses;
+
 @synthesize itemizedAccountInterest;
 @synthesize itemizedAccountDividend;
+@synthesize itemizedAccountCapitalGain;
+@synthesize itemizedAccountCapitalLoss;
 @synthesize itemizedAccountContribs;
 @synthesize itemizedAccountWithdrawals;
+
 @synthesize itemizedAssets;
 @synthesize itemizedLoans;
 @synthesize itemizedTaxesPaid;
+
+-(void)dealloc
+{
+	[itemizedTaxAmts release];
+	[dataModelController release];
+	
+	[itemizedIncomes release];
+	[itemizedExpenses release];
+	
+	[itemizedAccountInterest release];
+	[itemizedAccountDividend release];
+	[itemizedAccountCapitalGain release];
+	[itemizedAccountCapitalLoss release];
+	[itemizedAccountContribs release];
+	[itemizedAccountWithdrawals release];
+	
+	[itemizedAssets release];
+	[itemizedLoans release];
+	[itemizedTaxesPaid release];
+	
+	[super dealloc];
+}
+
 
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
@@ -64,6 +93,8 @@
 		self.itemizedAccountInterest = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountDividend = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountContribs = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedAccountCapitalGain = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedAccountCapitalLoss = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountWithdrawals = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAssets = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedLoans = [[[NSMutableArray alloc] init] autorelease];
@@ -101,6 +132,18 @@
 {
 	assert(itemizedTaxAmt != nil);
 	[self.itemizedAccountDividend addObject:itemizedTaxAmt];
+}
+
+-(void)visitAccountCapitalGainItemizedTaxAmt:(AccountCapitalGainItemizedTaxAmt*)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedAccountCapitalGain addObject:itemizedTaxAmt];
+}
+
+-(void)visitAccountCapitalLossItemizedTaxAmt:(AccountCapitalLossItemizedTaxAmt*)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedAccountCapitalLoss addObject:itemizedTaxAmt];
 }
 
 -(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt
@@ -297,6 +340,60 @@
 	return nil;
 }
 
+-(NSArray*)acctCapitalGainNotAlreadyItemized
+{
+	NSArray *allAccounts = [self.dataModelController
+			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
+		
+	for(AccountCapitalGainItemizedTaxAmt *itemizedGain in self.itemizedAccountCapitalGain)
+	{
+		[unItemizedAccounts removeObject:itemizedGain.account];
+	}
+	
+	return unItemizedAccounts;
+}
+
+-(AccountCapitalGainItemizedTaxAmt *)findItemizedAcctCapitalGain:(Account*)account
+{
+	assert(account != nil);
+	for(AccountCapitalGainItemizedTaxAmt *itemizedGain in self.itemizedAccountCapitalGain)
+	{
+		if(itemizedGain.account == account)
+		{
+			return itemizedGain;
+		}
+	}
+	return nil;
+}
+
+
+-(NSArray*)acctCapitalLossNotAlreadyItemized
+{
+	NSArray *allAccounts = [self.dataModelController
+			fetchSortedObjectsWithEntityName:ACCOUNT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedAccounts = [NSMutableArray arrayWithArray:allAccounts];	
+		
+	for(AccountCapitalLossItemizedTaxAmt *itemizedLoss in self.itemizedAccountCapitalLoss)
+	{
+		[unItemizedAccounts removeObject:itemizedLoss.account];
+	}
+	
+	return unItemizedAccounts;
+}
+
+-(AccountCapitalLossItemizedTaxAmt *)findItemizedAcctCapitalLoss:(Account*)account
+{
+	assert(account != nil);
+	for(AccountCapitalLossItemizedTaxAmt *itemizedLoss in self.itemizedAccountCapitalLoss)
+	{
+		if(itemizedLoss.account == account)
+		{
+			return itemizedLoss;
+		}
+	}
+	return nil;
+}
 
 - (NSArray*)assetGainsNotAlreadyItemized
 {
@@ -437,6 +534,37 @@
 	}
 
 
+	if([self enabledItemizationCount:self.itemizedAccountCapitalGain] > 0)
+	{
+		NSMutableArray *acctNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(AccountCapitalGainItemizedTaxAmt *itemizedGain in self.itemizedAccountCapitalGain)
+		{
+			if([itemizedGain.isEnabled boolValue])
+			{
+				[acctNameList addObject:itemizedGain.account.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_CAPITAL_GAIN_TITLE"),
+			[acctNameList componentsJoinedByString:@","]]];
+	}
+
+
+	if([self enabledItemizationCount:self.itemizedAccountCapitalLoss] > 0)
+	{
+		NSMutableArray *acctNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(AccountCapitalLossItemizedTaxAmt *itemizedLoss in self.itemizedAccountCapitalLoss)
+		{
+			if([itemizedLoss.isEnabled boolValue])
+			{
+				[acctNameList addObject:itemizedLoss.account.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ACCT_CAPITAL_LOSS_TITLE"),
+			[acctNameList componentsJoinedByString:@","]]];
+	}
+
 	if([self enabledItemizationCount:self.itemizedLoans] > 0)
 	{
 		NSMutableArray *loanNameList = [[[NSMutableArray alloc] init] autorelease];
@@ -539,6 +667,10 @@
 	theCount += [self enabledItemizationCount:self.itemizedAccountInterest];
 	
 	theCount += [self enabledItemizationCount:self.itemizedAccountDividend];
+	
+	theCount += [self enabledItemizationCount:self.itemizedAccountCapitalGain];
+	
+	theCount += [self enabledItemizationCount:self.itemizedAccountCapitalLoss];
 
 	theCount += [self enabledItemizationCount:self.itemizedLoans];
 
@@ -571,22 +703,5 @@
 }
 
 
--(void)dealloc
-{
-	[itemizedTaxAmts release];
-	[dataModelController release];
-	
-	[itemizedIncomes release];
-	[itemizedExpenses release];
-	[itemizedAccountInterest release];
-	[itemizedAccountDividend release];
-	[itemizedAccountContribs release];
-	[itemizedAccountWithdrawals release];
-	[itemizedAssets release];
-	[itemizedLoans release];
-	[itemizedTaxesPaid release];
-	
-	[super dealloc];
-}
 
 @end

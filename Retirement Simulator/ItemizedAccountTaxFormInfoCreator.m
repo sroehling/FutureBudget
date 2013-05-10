@@ -25,11 +25,16 @@
 #import "AccountContribItemizedTaxAmt.h"
 #import "AccountWithdrawalItemizedTaxAmt.h"
 #import "AccountInterestItemizedTaxAmt.h"
+#import "AccountCapitalLossItemizedTaxAmt.h"
+#import "AccountCapitalGainItemizedTaxAmt.h"
 
 #import "ItemizedAccountContribTaxAmtCreator.h"
 #import "ItemizedAccountTaxAmtCreator.h"
 #import "ItemizedAccountWithdrawalTaxAmtCreator.h"
 #import "ItemizedAccountDividendTaxAmtCreator.h"
+#import "ItemizedAccountCapitalGainTaxAmtCreator.h"
+#import "ItemizedAccountCapitalLossTaxAmtCreator.h"
+
 #import "FormContext.h"
 #import "StringValidation.h"
 
@@ -41,6 +46,8 @@
 @synthesize showWithdrawal;
 @synthesize showInterest;
 @synthesize showDividend;
+@synthesize showCapGain;
+@synthesize showCapLoss;
 
 
 -(id)initWithAcct:(Account*)theAccount andIsForNewObject:(BOOL)forNewObject
@@ -57,6 +64,8 @@
 		self.showContributions = FALSE;
 		self.showWithdrawal = FALSE;
 		self.showDividend = FALSE;
+		self.showCapGain = FALSE;
+		self.showCapLoss = FALSE;
 	}
 	return self;
 }
@@ -182,6 +191,41 @@
 					andAcct:self.account andLabel:tax.name] autorelease]];
 			}
 		}
+
+		if(self.showCapGain)
+		{
+			[formPopulator nextSectionWithTitle:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_TAXABLE_CAPITAL_GAINS_SECTION_HEADER")];
+			for(TaxInput *tax in inputs)
+			{
+				ItemizedTaxAmtsInfo *taxSourceInfo = [ItemizedTaxAmtsInfo taxSourceInfo:tax
+					usingDataModelController:parentContext.dataModelController];
+				[formPopulator populateItemizedTaxForTaxAmtsInfo:taxSourceInfo
+						andTaxAmt:[taxSourceInfo.fieldPopulator findItemizedAcctCapitalGain:self.account]
+						andTaxAmtCreator:[[[ItemizedAccountCapitalGainTaxAmtCreator alloc]
+					initWithFormContext:parentContext
+					andAcct:self.account andLabel:tax.name] autorelease]];
+			}
+		}
+
+
+		if(self.showCapLoss)
+		{
+			[formPopulator nextSectionWithTitle:
+					LOCALIZED_STR(@"INPUT_ACCOUNT_TAXES_TAXABLE_CAPITAL_LOSS_SECTION_HEADER")];
+			for(TaxInput *tax in inputs)
+			{
+				ItemizedTaxAmtsInfo *taxSourceInfo = [ItemizedTaxAmtsInfo taxSourceInfo:tax
+					usingDataModelController:parentContext.dataModelController];
+				[formPopulator populateItemizedTaxForTaxAmtsInfo:taxSourceInfo
+						andTaxAmt:[taxSourceInfo.fieldPopulator findItemizedAcctCapitalLoss:self.account]
+						andTaxAmtCreator:[[[ItemizedAccountCapitalLossTaxAmtCreator alloc]
+					initWithFormContext:parentContext
+					andAcct:self.account andLabel:tax.name] autorelease]];
+			}
+		}
+
+
 
 	}
 

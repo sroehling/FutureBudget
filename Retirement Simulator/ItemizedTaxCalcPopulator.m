@@ -36,6 +36,8 @@
 #import "AccountInterestItemizedTaxAmt.h"
 #import "AccountSimInfo.h"
 #import "AccountDividendItemizedTaxAmt.h"
+#import "AccountCapitalGainItemizedTaxAmt.h"
+#import "AccountCapitalLossItemizedTaxAmt.h"
 
 #import "LoanInput.h"
 #import "LoanSimInfo.h"
@@ -101,6 +103,26 @@
 	
 	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
 		andDigestSum:simInfo.dividendPayments] autorelease];
+}
+
+-(void)visitAccountCapitalGainItemizedTaxAmt:(AccountCapitalGainItemizedTaxAmt*)itemizedTaxAmt
+{
+	NSLog(@"Initializing capital gain tax amount: %@",itemizedTaxAmt.account.name);
+	AccountSimInfo *simInfo = [self.simParams.acctInfo getSimInfo:itemizedTaxAmt.account];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
+		andDigestSum:simInfo.acctBal.capitalGains] autorelease];
+}
+
+-(void)visitAccountCapitalLossItemizedTaxAmt:(AccountCapitalLossItemizedTaxAmt*)itemizedTaxAmt
+{
+	NSLog(@"Initializing capital loss tax amount: %@",itemizedTaxAmt.account.name);
+	AccountSimInfo *simInfo = [self.simParams.acctInfo getSimInfo:itemizedTaxAmt.account];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc 
+		andDigestSum:simInfo.acctBal.capitalLosses] autorelease];
 }
 
 -(void)visitAccountContribItemizedTaxAmt:(AccountContribItemizedTaxAmt *)itemizedTaxAmt

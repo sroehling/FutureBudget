@@ -44,6 +44,8 @@ NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME = @"input-icon-piggybank.png";
 @dynamic accountContribItemizedTaxAmt;
 @dynamic acctTransferEndpointAcct;
 @dynamic accountDividendItemizedTaxAmt;
+@dynamic accountCapitalGainItemizedTaxAmt;
+@dynamic accountCapitalLossItemizedTaxAmt;
 
 
 -(void)acceptInputVisitor:(id<InputVisitor>)inputVisitor

@@ -25,6 +25,8 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 @class AccountContribItemizedTaxAmt;
 @class AccountInterestItemizedTaxAmt;
 @class AccountWithdrawalItemizedTaxAmt;
+@class AccountCapitalGainItemizedTaxAmt;
+@class AccountCapitalLossItemizedTaxAmt;
 
 @interface Account : Input {
 @private
@@ -62,10 +64,23 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 @property (nonatomic, retain) TransferEndpointAcct *acctTransferEndpointAcct;
 @property (nonatomic, retain) NSSet *accountDividendItemizedTaxAmt;
 
+@property (nonatomic, retain) NSSet *accountCapitalGainItemizedTaxAmt;
+@property (nonatomic, retain) NSSet *accountCapitalLossItemizedTaxAmt;
 @end
 
 
 @interface Account (CoreDataGeneratedAccessors)
+
+- (void)addAccountCapitalGainItemizedTaxAmtObject:(AccountCapitalGainItemizedTaxAmt *)value;
+- (void)removeAccountCapitalGainItemizedTaxAmtObject:(AccountCapitalGainItemizedTaxAmt *)value;
+- (void)addAccountCapitalGainItemizedTaxAmt:(NSSet *)values;
+- (void)removeAccountCapitalGainItemizedTaxAmt:(NSSet *)values;
+
+- (void)addAccountCapitalLossItemizedTaxAmtObject:(AccountCapitalLossItemizedTaxAmt *)value;
+- (void)removeAccountCapitalLossItemizedTaxAmtObject:(AccountCapitalLossItemizedTaxAmt *)value;
+- (void)addAccountCapitalLossItemizedTaxAmt:(NSSet *)values;
+- (void)removeAccountCapitalLossItemizedTaxAmt:(NSSet *)values;
+
 
 - (void)addLimitWithdrawalExpensesObject:(ExpenseInput *)value;
 - (void)removeLimitWithdrawalExpensesObject:(ExpenseInput *)value;
