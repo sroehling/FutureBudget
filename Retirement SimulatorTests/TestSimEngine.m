@@ -85,6 +85,8 @@
 #import "AcctDividendXYPlotDataGenerator.h"
 #import "AcctCapitalGainsXYPlotDataGenerator.h"
 #import "AcctCapitalLossXYPlotDataGenerator.h"
+#import "AccountCapitalGainItemizedTaxAmt.h"
+#import "AccountCapitalLossItemizedTaxAmt.h"
 
 @implementation TestSimEngine
 
@@ -1657,16 +1659,39 @@
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
 
-	ExpenseInputTypeSelectionInfo *expenseCreator = 
-		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	// The withdrawal from the account needs to be setup as a transfer. Otherwise, the
+	// taxes paid will trigger a second withdrawal from the account, further increasing
+	// the capital gains paid! (A previous version of this test case used an expense, and
+	// the capital gains went from 227 to 233 and the taxes also went up. Also, having
+	// a transfer as opposed to an expense also increases test coverage, since the other
+	// test cases use expenses.
+	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
+		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
+	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
+	acctTransfer.toEndpoint = self.testAppVals.cash.transferEndpointCash;
 
-	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
-	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
-	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
-	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
-	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	TaxInputTypeSelectionInfo *taxCreator = 
+	[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+	andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	AccountCapitalGainItemizedTaxAmt *itemizedCapitalGain = [self.coreData insertObject:ACCOUNT_CAPITAL_GAIN_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedCapitalGain.account = acct01;
+	itemizedCapitalGain.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedCapitalGain];
+
 	
 	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
 	[simResults runSimulatorForResults];
@@ -1680,12 +1705,18 @@
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0
-		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0
-		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
 			andLabel:@"acct 01" withAdjustedVals:FALSE];
+			
+			
+	// Capital gains tax should be 25%
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:56.97 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"flatTax" withAdjustedVals:FALSE];
+		
 }
 
 
@@ -1810,36 +1841,79 @@
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
 
 
-	ExpenseInputTypeSelectionInfo *expenseCreator = 
-		[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	// Similar to the testCapitalGain test case, a transfer must be used instead of
+	// an expense. This is because there needs to be an income input to provide a gross
+	// income from which to deduct the capital loss. An expense input would cause the
+	// money for the expense to be withdrawn from the cash balance rather than the account.
+	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
+		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
+	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
+	acctTransfer.toEndpoint = self.testAppVals.cash.transferEndpointCash;
 
-	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
-	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
-	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
-
-	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
-	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
+	// The yearly income is 200, but the standard deduction is 100. This leaves a taxable income of
+	// 100 which is taxed at 25%. This means there should be $25 taxes paid each year.	
+	IncomeInputTypeSelectionInfo *incomeCreator = 
+		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+		
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	TaxInputTypeSelectionInfo *taxCreator = 
+	[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+	andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+
+
+	// Setup an income of $100 per year, but a capital loss as a deduction. The loss should reduce the
+	// taxable $25 of this $100 slightly.
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [NSNumber numberWithDouble:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	IncomeItemizedTaxAmt *itemizedIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedIncome.income = income01;
+	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
+
+	AccountCapitalLossItemizedTaxAmt *itemizedCapitalLoss = [self.coreData insertObject:ACCOUNT_CAPITAL_LOSS_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedCapitalLoss.account = acct01;
+	itemizedCapitalLoss.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedDeductions addItemizedAmtsObject:itemizedCapitalLoss];
+
 	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
 	[simResults runSimulatorForResults];
 	
-	AcctCapitalLossXYPlotDataGenerator *acctGainsData =
+	AcctCapitalLossXYPlotDataGenerator *acctLossData =
 		[[[AcctCapitalLossXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:277.78
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
-		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0
-		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0
-		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
+ 	[self checkPlotData:acctLossData withSimResults:simResults andExpectedVals:expected
 			andLabel:@"acct 01" withAdjustedVals:FALSE];
+			
+			
+	// Capital gains tax should be 25%
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:180.55 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:250.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:250.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"flatTax" withAdjustedVals:FALSE];
+			
 }
 
 -(void)testAccountCapitalLossWithLargeLoss
