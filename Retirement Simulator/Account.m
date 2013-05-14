@@ -15,12 +15,15 @@
 
 
 NSString * const ACCOUNT_STARTING_BALANCE_KEY = @"startingBalance";
+NSString * const ACCOUNT_COST_BASIS_KEY = @"costBasis";
 NSString * const ACCOUNT_ENTITY_NAME = @"Account";
 NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME = @"input-icon-piggybank.png";
 
 @implementation Account
 
 @dynamic startingBalance;
+@dynamic costBasis;
+
 @dynamic contribAmount;
 @dynamic contribGrowthRate;
 

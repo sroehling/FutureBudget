@@ -92,7 +92,7 @@
 		self.overallBal = [[[InterestBearingWorkingBalance alloc]
 		     initWithAcct:theAcct andSimParams:simParams] autorelease];
 
-		double startingCostBasis = self.overallBal.startingBalance; // TODO - Add property to account for cost basis
+		double startingCostBasis = [theAcct.costBasis doubleValue];
 		self.costBasis = [[[CashWorkingBalance alloc]
 				initWithStartingBalance:startingCostBasis
 					andStartDate:simParams.simStartDate ] autorelease];

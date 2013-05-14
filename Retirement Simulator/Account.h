@@ -11,6 +11,7 @@
 #import "Input.h"
 
 extern NSString * const ACCOUNT_STARTING_BALANCE_KEY;
+extern NSString * const ACCOUNT_COST_BASIS_KEY;
 extern NSString * const ACCOUNT_ENTITY_NAME;
 extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 
@@ -32,6 +33,7 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 @private
 }
 @property (nonatomic, retain) NSNumber * startingBalance;
+@property (nonatomic, retain) NSNumber * costBasis;
 
 
 @property(nonatomic,retain) MultiScenarioAmount *contribAmount;
@@ -66,6 +68,7 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 
 @property (nonatomic, retain) NSSet *accountCapitalGainItemizedTaxAmt;
 @property (nonatomic, retain) NSSet *accountCapitalLossItemizedTaxAmt;
+
 @end
 
 

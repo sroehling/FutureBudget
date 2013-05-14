@@ -411,9 +411,10 @@
 	 [formPopulator nextSection];
 
 	[self.formPopulator populateCurrencyField:account andValKey:ACCOUNT_STARTING_BALANCE_KEY
-		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_LABEL") 
+		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_LABEL")
 			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")];
-			
+	[self.formPopulator populateCurrencyField:account andValKey:ACCOUNT_COST_BASIS_KEY andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_COST_BASIS_LABEL")
+		andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_COST_BASIS_PLACEHOLDER")];
 	
 	if(TRUE)
 	{

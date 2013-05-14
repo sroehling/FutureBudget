@@ -1654,6 +1654,7 @@
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
 	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.costBasis = [NSNumber numberWithDouble:10000.0];
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
@@ -1719,6 +1720,123 @@
 		
 }
 
+-(void)testAccountCostBasis
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Set the cash balance to 0.0, so the expense will trigger a withdrawal from the account.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.costBasis = [NSNumber numberWithDouble:5000.0]; // Cost basis is 50% of starting balance
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+
+	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
+		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
+	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
+	acctTransfer.toEndpoint = self.testAppVals.cash.transferEndpointCash;
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
+		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1363.64
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+
+
+	AcctCapitalLossXYPlotDataGenerator *acctLossData =
+		[[[AcctCapitalLossXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctLossData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+
+			
+}
+
+
+-(void)testAccountCostBasisWithLoss
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Set the cash balance to 0.0, so the expense will trigger a withdrawal from the account.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.costBasis = [NSNumber numberWithDouble:20000.0]; // Cost basis is 200% of starting balance
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+
+
+	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
+		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
+	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
+	acctTransfer.toEndpoint = self.testAppVals.cash.transferEndpointCash;
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
+		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+	
+	
+	AcctCapitalLossXYPlotDataGenerator *acctLossData =
+		[[[AcctCapitalLossXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:2045.45
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+ 	[self checkPlotData:acctLossData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+				
+}
+
+
 
 -(void)testAccountCapitalGainWithDividend
 {
@@ -1732,6 +1850,7 @@
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
 	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.costBasis = [NSNumber numberWithDouble:10000.0];
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:5.0]; // 5% dividend each year
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
@@ -1788,6 +1907,7 @@
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
 	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.costBasis = [NSNumber numberWithDouble:10000.0];
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:100.0];
@@ -1835,6 +1955,7 @@
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
 	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.costBasis = [NSNumber numberWithDouble:10000.0];
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	// Account starts with 10,000 in cost basis and value, but loses 10% of the value each year.
@@ -1928,6 +2049,7 @@
 	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
 	acct01.name = @"Acct01";
 	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.costBasis = [NSNumber numberWithDouble:10000.0];
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:-90.0];
