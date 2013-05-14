@@ -3653,5 +3653,58 @@
 
 }
 
+- (void)testStartDateInMiddleOfYear {
+        
+	// All the other tests have a start date of 2012/01/01. However, the user can pick any start date,
+	// and having this start date in the middle of the year introduces interesting behavior w.r.t.
+	// the first year of results calculation, starting account balances, etc.
+	[self resetCoredData];
+	self.testAppVals.simStartDate = [DateHelper dateFromStr:@"2012-05-15"];
+
+	
+	
+    NSLog(@"Starting sim engine test ...");
+    	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:10000.0];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+
+	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctBalanceXYPlotDataGenerator *acctData = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// The contribution isn't included in the first year, since it happens before the simulation start date.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1200.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1200.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1200.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+  
+	
+	[self checkPlotData:acctData withSimResults:simResults andExpectedVals:expected
+		andLabel:@"acct01" withAdjustedVals:FALSE];
+ 
+	   
+    NSLog(@"... Done testing sim engine");
+    
+     
+}
+
+
 
 @end

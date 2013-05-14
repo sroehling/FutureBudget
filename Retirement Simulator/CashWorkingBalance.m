@@ -40,9 +40,16 @@
 - (void)advanceCurrentBalanceToDate:(NSDate*)newDate
 {
 	assert(newDate != nil);
-	assert([DateHelper dateIsEqualOrLater:newDate otherDate:self.currentBalanceDate]);
-	self.currentBalanceDate = newDate;
-	// NOTE - current balance is left unchanged
+	
+	// Advancing to the current date is a no-op if the newDate is before the current date.
+	// If the current date is in the future, then this working balance is typically for 
+	// an input such as a loan or asset which is originated or purchased in the future. 
+	if([DateHelper dateIsLater:newDate otherDate:self.currentBalanceDate])
+	{
+		self.currentBalanceDate = newDate;
+		// NOTE - current balance is left unchanged
+	}
+
 }
 
 - (bool)doTaxWithdrawals
