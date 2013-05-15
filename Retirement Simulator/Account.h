@@ -28,6 +28,7 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 @class AccountWithdrawalItemizedTaxAmt;
 @class AccountCapitalGainItemizedTaxAmt;
 @class AccountCapitalLossItemizedTaxAmt;
+@class MultiScenarioPercent;
 
 @interface Account : Input {
 @private
@@ -42,7 +43,9 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 @property(nonatomic,retain) MultiScenarioSimDate *contribStartDate;
 @property(nonatomic,retain) MultiScenarioSimEndDate *contribEndDate;
 @property (nonatomic, retain) MultiScenarioGrowthRate * interestRate;
+
 @property (nonatomic, retain) MultiScenarioGrowthRate *dividendRate;
+@property (nonatomic, retain) MultiScenarioPercent *dividendReinvestPercent;
 
 @property(nonatomic,retain) MultiScenarioInputValue *contribEnabled;
 
@@ -68,6 +71,8 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 
 @property (nonatomic, retain) NSSet *accountCapitalGainItemizedTaxAmt;
 @property (nonatomic, retain) NSSet *accountCapitalLossItemizedTaxAmt;
+
+
 
 @end
 

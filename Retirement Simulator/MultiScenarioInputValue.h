@@ -29,6 +29,7 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 @class MultiScenarioSimDate;
 @class DataModelController;
 @class MultiScenarioSimEndDate;
+@class MultiScenarioPercent;
 
 @interface MultiScenarioInputValue : NSManagedObject {
 	@private
@@ -62,6 +63,8 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 @property (nonatomic, retain) MultiScenarioSimEndDate * multiScenSimEndDateDefaultFixedSimDate;
 @property (nonatomic, retain) MultiScenarioSimEndDate * multiScenSimEndDateFixedRelativeEndDate;
 @property (nonatomic, retain) MultiScenarioSimEndDate * multiScenSimEndDateSimDate;
+@property (nonatomic, retain) MultiScenarioPercent *multiScenPercentFixed;
+@property (nonatomic, retain) MultiScenarioPercent *multiScenPercentPercent;
 
 
 -(void)setValueForScenario:(Scenario*)scenario andInputValue:(InputValue*)inputValue;

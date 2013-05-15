@@ -120,6 +120,7 @@
 	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
 
 	newInput.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	newInput.dividendReinvestPercent = [inputCreationHelper multiScenDivReinvestmentPercWithDefaultSharedVal];
 	
 	newInput.costBasis = [NSNumber numberWithDouble:0.0];
 	

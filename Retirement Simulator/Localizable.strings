@@ -126,6 +126,7 @@
 "INPUT_ACCOUNT_DIVIDEND_SECTION_TITLE" = "Dividends";
 "INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL" = "Interest/Return Rate";
 "INPUT_ACCOUNT_DIVIDEND_RATE_FIELD_LABEL" = "Dividend Rate";
+"INPUT_ACCOUNT_DIVIDED_REINVESTMENT_PERCENT_FIELD_LABEL" = "Dividend Reinvestment Percent";
 "INPUT_ACCOUNT_STARTING_BALANCE_LABEL" = "Current Balance";
 "INPUT_ACCOUNT_COST_BASIS_LABEL" = "Cost Basis";
 "INPUT_ACCOUNT_INPUT_LIST_DETAIL_FORMAT" = "Current balance of %@, %@";
@@ -219,6 +220,15 @@
 "SHARED_INTEREST_RATE_PERIOD" = "every year";
 "SHARED_INTEREST_RATE_ACTION_VERB" = "yield";
 
+
+"SHARED_DIV_REINVEST_VALUE_TITLE" = "Reinvestment Percentage";
+"SHARED_DIV_REINVEST_INLINE_VALUE_TITLE" = "reinvestment percentage";
+"SHARED_DIV_REINVEST_TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
+"SHARED_DIV_REINVEST_VALUE_PROMPT" = "Enter a percentage";
+"SHARED_DIV_REINVEST_PERIOD" = "of every dividend";
+"SHARED_DIV_REINVEST_ACTION_VERB" = "reinvest";
+"DEFAULT_DIVIDEND_REINVEST_ALL_LABEL" = "Reinvest All Dividends";
+"DEFAULT_DIVIDEND_REINVEST_NONE_LABEL" = "Don't Reinvest Dividends";
 
 
 "SHARED_LOAN_DOWN_PMT_VALUE_TITLE" = "Down Payment";
@@ -553,6 +563,7 @@
 "WHAT_IF_RETURN_ASSET_APPRECIATION" = "Asset Appreciation";
 "WHAT_IF_RETURN_ACCOUNT_INTEREST" = "Account Interest";
 "WHAT_IF_RETURN_ACCOUNT_DIVIDEND" = "Account Dividend";
+"WHAT_IF_ACCOUNT_DIVIDENT_REINVEST_PERCENT" = "Dividend Reinvestment";
 "WHAT_IF_GROWTH_RATE_FIELD_CAPTION" = "Growth and Interest Rates";
 "WHAT_IF_GROWTH_RATE_SUBTITLE" = "Change annual percentage growth or interest rates for incomes, expenses, transfers, loans, or savings contributions.";
 "WHAT_IF_GROWTH_RATE_FORM_TITLE" = "Rates";

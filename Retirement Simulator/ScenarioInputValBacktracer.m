@@ -19,6 +19,7 @@
 #import "LoanInput.h"
 #import "MultiScenarioAmount.h"
 #import "MultiScenarioGrowthRate.h"
+#import "MultiScenarioPercent.h"
 #import "MultiScenarioSimEndDate.h"
 #import "MultiScenarioSimDate.h"
 
@@ -58,6 +59,7 @@
 @synthesize accountWithdrawalPriority;
 @synthesize accountInterestRate;
 @synthesize accountDividendRate;
+@synthesize accountDividendReinvestPercent;
 
 @synthesize loanDownPmtEnabled;
 @synthesize loanDownPmtPercent;
@@ -232,6 +234,14 @@
 				withInput:msEndDate.loanEarlyPayoffDate]) { return; }
 	}
 	
+	// MultiScenarioPercent inverse relationships
+	if(msInputVal.multiScenPercentPercent != nil)
+	{
+		MultiScenarioPercent *msPercent = msInputVal.multiScenPercentPercent;
+		
+		if([self populateInputSet:self.accountDividendReinvestPercent
+			withInput:msPercent.accountDividendReinvestPercent]) { return; }
+	}
 
 	// MultiScenarioSimDate inverse relationships
 	if(msInputVal.multiScenSimDateSimDate != nil)
@@ -301,6 +311,9 @@
 		self.loanCostGrowthRate = [[[NSMutableSet alloc] init] autorelease];
 		self.loanExtraPmtGrowthRate = [[[NSMutableSet alloc] init] autorelease];
 		self.loanInterestRate = [[[NSMutableSet alloc] init] autorelease];
+		
+		// MultiScenarioPercent inverse relationships
+		self.accountDividendReinvestPercent = [[[NSMutableSet alloc] init] autorelease];
 		
 		// MultiScenarioSimEndDate inverse relationships
 		self.accountContribEndDate = [[[NSMutableSet alloc] init] autorelease];
@@ -378,6 +391,9 @@
 	[loanCostGrowthRate release];
 	[loanExtraPmtGrowthRate release];
 	[loanInterestRate release];
+	
+	// MultiScenarioPercent  inverse relationships
+	[accountDividendReinvestPercent release];
 
 	// MultiScenarioSimEndDate inverse relationships	
 	[accountContribEndDate release];

@@ -72,11 +72,13 @@
 #import "ItemizedTaxAmt.h"
 #import "ItemizedTaxAmts.h"
 #import "TaxInput.h"
+#import "MultiScenarioPercent.h"
 
 #import "AccountWithdrawalOrderInfo.h"
 #import "AccountWithdrawalOrderFieldEditInfo.h"
 
 #import "DividendRate.h"
+#import "DividendReinvestPercent.h"
 
 @implementation InputFormPopulator
 
@@ -642,6 +644,52 @@
 	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed
 		 andForNewVal:self.isForNewObject]];
 
+
+}
+
+- (void)populateMultiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	assert([StringValidation nonEmptyString:valueLabel]);
+	assert(multiScenPercent != nil);
+
+
+	SharedEntityVariableValueListMgr *sharedInterestRatesMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithDataModelController:self.formContext.dataModelController 
+		andEntity:DIVIDEND_REINVEST_PERCENT_ENTITY_NAME] autorelease];
+	
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_INTEREST_RATE_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_DIV_REINVEST_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_DIV_REINVEST_INLINE_VALUE_TITLE")];
+
+	VariableValueRuntimeInfo *divRuntimeInfo = [[[VariableValueRuntimeInfo alloc]
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueTitle:@"SHARED_DIV_REINVEST_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_DIV_REINVEST_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_DIV_REINVEST_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_DIV_REINVEST_PERIOD") 
+		andListMgr:sharedInterestRatesMgr
+		andSingleValHelpInfoFile:@"fixedDivReinvestPercent"
+		andVariableValHelpInfoFile:@"variableDivReinvestPercent"
+		andValuePromptKey:@"SHARED_DIV_REINVEST_VALUE_PROMPT"
+		andValueTypeTitle:valueLabel
+		andValueName:valueName
+		andTableSubtitle:tableSubtitle] autorelease];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+			createForDataModelController:self.formContext.dataModelController 
+			andScenario:self.inputScenario andMultiScenFixedVal:multiScenPercent.percent
+			andLabel:LOCALIZED_STR(@"SHARED_DIV_REINVEST_VALUE_TITLE") 
+		 andValRuntimeInfo:divRuntimeInfo 
+		 andDefaultFixedVal:multiScenPercent.defaultFixedPercent
+		 andForNewVal:self.isForNewObject]];
 
 }
 

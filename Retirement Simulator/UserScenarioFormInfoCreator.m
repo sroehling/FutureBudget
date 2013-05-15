@@ -412,6 +412,19 @@
 		}
 	}
 
+	if([inputBacktrace.accountDividendReinvestPercent count] > 0)
+	{
+		sectionInfo = [formPopulator
+			nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_ACCOUNT_DIVIDENT_REINVEST_PERCENT")];
+		for(Account *acct in inputBacktrace.accountDividendReinvestPercent)
+		{
+			[formPopulator populateMultiScenarioDividendReinvestPercent:acct.dividendReinvestPercent
+				withLabel:acct.name
+				andValueName:acct.name];
+		}
+	}
+
+
 	if([inputBacktrace.assetApprecRate count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];

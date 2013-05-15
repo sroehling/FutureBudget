@@ -31,6 +31,7 @@
 @class ItemizedTaxAmtsSelectionFormInfoCreator;
 @class StaticNavFieldEditInfo;
 @class Account;
+@class MultiScenarioPercent;
 
 
 
@@ -97,6 +98,9 @@
 	andValueName:(NSString*)valueName;
 -(void)populateLoanDownPmtPercent:(LoanInput*)loan 
 	withValueLabel:(NSString*)valueLabel
+	andValueName:(NSString*)valueName;
+- (void)populateMultiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
+	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
 	
 -(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(MultiScenarioInputValue*)repeatFreq

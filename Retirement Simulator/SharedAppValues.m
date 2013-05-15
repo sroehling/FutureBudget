@@ -24,6 +24,7 @@
 #import "CoreDataHelper.h"
 #import "TransferEndpointCash.h"
 #import "DividendRate.h"
+#import "DividendReinvestPercent.h"
 
 NSString * const SHARED_APP_VALUES_ENTITY_NAME = @"SharedAppValues";
 NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY = @"currentInputScenario";
@@ -70,10 +71,11 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 @dynamic deficitStartingBal;
 @dynamic filteredTags;
 @dynamic filteredTagsMatchAny;
+@dynamic defaultDividendReinvestPercent;
 
 
 
-+(void)createDefaultVariableValue:(double)startingVal withLabelStringFileKey:(NSString*)labelKey
++(VariableValue *)createDefaultVariableValue:(double)startingVal withLabelStringFileKey:(NSString*)labelKey
 	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface andEntityName:(NSString*)entityName
 	andDisplayOrder:(NSUInteger)displayOrder
 {
@@ -89,13 +91,15 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 	defaultVal.startingValue = [NSNumber numberWithDouble:startingVal];
 	defaultVal.displayOrder = [NSNumber numberWithUnsignedInteger:displayOrder];
 	
+	return defaultVal;
+	
 }
 
 +(void)createDefaultInvestmentReturn:(double)yearlyReturn withLabelStringFileKey:(NSString*)labelKey
 	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
 	andDisplayOrder:(NSUInteger)displayOrder
 {
-	return [SharedAppValues createDefaultVariableValue:yearlyReturn 
+	[SharedAppValues createDefaultVariableValue:yearlyReturn 
 		withLabelStringFileKey:labelKey 
 		usingDataModelInterface:dataModelInterface andEntityName:INVESTMENT_RETURN_RATE_ENTITY_NAME
 		andDisplayOrder:displayOrder];
@@ -107,18 +111,30 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
 	andDisplayOrder:(NSUInteger)displayOrder
 {
-	return [SharedAppValues createDefaultVariableValue:yearlyDividendRate 
+	[SharedAppValues createDefaultVariableValue:yearlyDividendRate 
 		withLabelStringFileKey:labelKey 
 		usingDataModelInterface:dataModelInterface andEntityName:DIVIDEND_RATE_ENTITY_NAME
 		andDisplayOrder:displayOrder];
 }
 
 
++(DividendReinvestPercent*)createDefaultDividendReinvestPercent:(double)percentReinvest
+		withLabelStringFileKey:(NSString*)labelKey
+	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
+	andDisplayOrder:(NSUInteger)displayOrder
+{
+	return (DividendReinvestPercent*)[SharedAppValues createDefaultVariableValue:percentReinvest
+		withLabelStringFileKey:labelKey 
+		usingDataModelInterface:dataModelInterface
+		andEntityName:DIVIDEND_REINVEST_PERCENT_ENTITY_NAME
+		andDisplayOrder:displayOrder];
+}
+
 +(void)createDefaultLoanDownPmt:(double)downPmtPercent withLabelStringFileKey:(NSString*)labelKey
 	usingDataModelInterface:(id<DataModelInterface>)dataModelInterface
 	andDisplayOrder:(NSUInteger)displayOrder
 {
-	return [SharedAppValues createDefaultVariableValue:downPmtPercent 
+	[SharedAppValues createDefaultVariableValue:downPmtPercent 
 		withLabelStringFileKey:labelKey 
 		usingDataModelInterface:dataModelInterface andEntityName:LOAN_DOWN_PMT_PERCENT_ENTITY_NAME
 		andDisplayOrder:displayOrder];
@@ -237,6 +253,15 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 			withLabelStringFileKey:@"DEFAULT_DIVIDEND_HIGH_DIVIDEND_LABEL"
 			usingDataModelInterface:dataModelInterface
 		andDisplayOrder:4];
+		
+	sharedVals.defaultDividendReinvestPercent =
+		[SharedAppValues createDefaultDividendReinvestPercent:100.0
+		withLabelStringFileKey:@"DEFAULT_DIVIDEND_REINVEST_ALL_LABEL"
+		usingDataModelInterface:dataModelInterface andDisplayOrder:1];
+	[SharedAppValues createDefaultDividendReinvestPercent:0.0
+		withLabelStringFileKey:@"DEFAULT_DIVIDEND_REINVEST_NONE_LABEL"
+		usingDataModelInterface:dataModelInterface andDisplayOrder:2];
+
 
 	FixedValue *theDeficitInterestRate = (FixedValue*)[dataModelInterface createDataModelObject:FIXED_VALUE_ENTITY_NAME];
 	theDeficitInterestRate.value = [NSNumber numberWithDouble:DEFAULT_DEFICIT_INTEREST_RATE];

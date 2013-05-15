@@ -282,6 +282,10 @@
 		00590A44173D528D00BBF045 /* AccountCapitalGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A43173D528C00BBF045 /* AccountCapitalGainItemizedTaxAmt.m */; };
 		00590A47173D61A900BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A46173D61A800BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m */; };
 		00590A4A173D62C100BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A49173D62C000BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m */; };
+		00590A4D1742E0AE00BBF045 /* MultiScenarioPercent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A4C1742E0AD00BBF045 /* MultiScenarioPercent.m */; };
+		00590A501742E74600BBF045 /* DividendReinvestPercent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A4F1742E74600BBF045 /* DividendReinvestPercent.m */; };
+		00590A521742EF4C00BBF045 /* fixedDivReinvestPercent.md in Resources */ = {isa = PBXBuildFile; fileRef = 00590A511742EF4C00BBF045 /* fixedDivReinvestPercent.md */; };
+		00590A541742EF7800BBF045 /* variableDivReinvestPercent.md in Resources */ = {isa = PBXBuildFile; fileRef = 00590A531742EF7700BBF045 /* variableDivReinvestPercent.md */; };
 		005AE72313C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */; };
 		005AE72913C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AE72813C65FD0001D99C6 /* MultiScenarioFixedValueFieldInfo.m */; };
 		005DAEEC1460635800D87907 /* AssetGainItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEEB1460635800D87907 /* AssetGainItemizedTaxAmt.m */; };
@@ -1025,6 +1029,12 @@
 		00590A46173D61A800BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAccountCapitalGainTaxAmtCreator.m; sourceTree = "<group>"; };
 		00590A48173D62BE00BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountCapitalLossTaxAmtCreator.h; sourceTree = "<group>"; };
 		00590A49173D62C000BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAccountCapitalLossTaxAmtCreator.m; sourceTree = "<group>"; };
+		00590A4B1742E0AC00BBF045 /* MultiScenarioPercent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioPercent.h; sourceTree = "<group>"; };
+		00590A4C1742E0AD00BBF045 /* MultiScenarioPercent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioPercent.m; sourceTree = "<group>"; };
+		00590A4E1742E74500BBF045 /* DividendReinvestPercent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividendReinvestPercent.h; sourceTree = "<group>"; };
+		00590A4F1742E74600BBF045 /* DividendReinvestPercent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividendReinvestPercent.m; sourceTree = "<group>"; };
+		00590A511742EF4C00BBF045 /* fixedDivReinvestPercent.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedDivReinvestPercent.md; sourceTree = "<group>"; };
+		00590A531742EF7700BBF045 /* variableDivReinvestPercent.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableDivReinvestPercent.md; sourceTree = "<group>"; };
 		005AE72113C5626B001D99C6 /* MultiScenarioFixedDateFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedDateFieldInfo.h; sourceTree = "<group>"; };
 		005AE72213C5626C001D99C6 /* MultiScenarioFixedDateFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioFixedDateFieldInfo.m; sourceTree = "<group>"; };
 		005AE72713C65FCF001D99C6 /* MultiScenarioFixedValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioFixedValueFieldInfo.h; sourceTree = "<group>"; };
@@ -1825,6 +1835,8 @@
 				00254FF1144E62F1000AB7B3 /* MultiScenarioSimDate.m */,
 				00254FF3144F22C2000AB7B3 /* MultiScenarioSimEndDate.h */,
 				00254FF4144F22C2000AB7B3 /* MultiScenarioSimEndDate.m */,
+				00590A4B1742E0AC00BBF045 /* MultiScenarioPercent.h */,
+				00590A4C1742E0AD00BBF045 /* MultiScenarioPercent.m */,
 			);
 			name = "Multi Scenario Values";
 			sourceTree = "<group>";
@@ -2189,6 +2201,8 @@
 				003085D714855EBA00837D02 /* AssetApprecRate.m */,
 				0017F1921732DF3D0064FAD8 /* DividendRate.h */,
 				0017F1931732DF3D0064FAD8 /* DividendRate.m */,
+				00590A4E1742E74500BBF045 /* DividendReinvestPercent.h */,
+				00590A4F1742E74600BBF045 /* DividendReinvestPercent.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -2969,6 +2983,8 @@
 				00DC49F914D73F40006BDF61 /* variableValueChange.md */,
 				0017F18E1732DE340064FAD8 /* fixedDividend.md */,
 				0017F1901732DE450064FAD8 /* variableDividend.md */,
+				00590A511742EF4C00BBF045 /* fixedDivReinvestPercent.md */,
+				00590A531742EF7700BBF045 /* variableDivReinvestPercent.md */,
 			);
 			name = "Variable Values";
 			sourceTree = "<group>";
@@ -3372,6 +3388,8 @@
 				0042D48417208BFF00575E70 /* sectionStartup.md in Resources */,
 				0017F18F1732DE340064FAD8 /* fixedDividend.md in Resources */,
 				0017F1911732DE450064FAD8 /* variableDividend.md in Resources */,
+				00590A521742EF4C00BBF045 /* fixedDivReinvestPercent.md in Resources */,
+				00590A541742EF7800BBF045 /* variableDivReinvestPercent.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3693,6 +3711,8 @@
 				00590A44173D528D00BBF045 /* AccountCapitalGainItemizedTaxAmt.m in Sources */,
 				00590A47173D61A900BBF045 /* ItemizedAccountCapitalGainTaxAmtCreator.m in Sources */,
 				00590A4A173D62C100BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m in Sources */,
+				00590A4D1742E0AE00BBF045 /* MultiScenarioPercent.m in Sources */,
+				00590A501742E74600BBF045 /* DividendReinvestPercent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -462,6 +462,11 @@
 		[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDENDS_TAXES_FIELD_LABEL")
 			andFormInfoCreator:acctDividendTaxFormInfoCreator
 			andItemizedTaxAmtsInfo:account.accountDividendItemizedTaxAmt];
+			
+		[self.formPopulator populateMultiScenarioDividendReinvestPercent:account.dividendReinvestPercent
+			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDED_REINVESTMENT_PERCENT_FIELD_LABEL")
+			andValueName:account.name];
+	
 	}
 		
 	SectionInfo *sectionInfo = [formPopulator nextSection];

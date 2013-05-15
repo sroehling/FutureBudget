@@ -21,7 +21,9 @@
 #import "MultiScenarioGrowthRate.h"
 #import "MultiScenarioSimDate.h"
 #import "MultiScenarioSimEndDate.h"
+#import "MultiScenarioPercent.h"
 #import "DataModelController.h"
+#import "DividendReinvestPercent.h"
 
 @implementation InputCreationHelper
 
@@ -120,7 +122,37 @@
 	return msAmount;
 }
 
+- (MultiScenarioPercent*)multiScenPercentWithDefault:(double)defaultVal
+{
+	assert(defaultVal >= 0.0);
+	assert(defaultVal <= 100.0);
 
+	MultiScenarioPercent *msPercent =
+		[self.dataModel createDataModelObject:MULTI_SCEN_PERCENT_ENTITY_NAME];
+		
+	msPercent.defaultFixedPercent = [self multiScenFixedValWithDefault:defaultVal];
+	msPercent.percent = [self multiScenInputValueWithDefaultFixedVal:msPercent.defaultFixedPercent];
+			
+			
+	return msPercent;
+}
+
+-(MultiScenarioPercent*)multiScenDivReinvestmentPercWithDefaultSharedVal
+{
+	MultiScenarioPercent *msPercent =
+		[self.dataModel createDataModelObject:MULTI_SCEN_PERCENT_ENTITY_NAME];
+
+	DividendReinvestPercent *defaultPerc = self.sharedAppVals.defaultDividendReinvestPercent;
+	assert(defaultPerc != nil);
+	
+	msPercent.defaultFixedPercent = [self multiScenFixedValWithDefault:100.0];
+			
+	MultiScenarioInputValue *msInputVal = [self multiScenInputValue];
+	[msInputVal setDefaultValue:defaultPerc];
+	msPercent.percent = msInputVal;
+
+	return msPercent;
+}
 
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithDefault:(double)defaultVal
 {

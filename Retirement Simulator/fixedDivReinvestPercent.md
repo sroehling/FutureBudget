@@ -1,0 +1,1 @@
+## Fixed Dividend Reinvestment Percent

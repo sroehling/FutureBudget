@@ -14,6 +14,7 @@
 @class MultiScenarioGrowthRate;
 @class MultiScenarioSimEndDate;
 @class FixedValue;
+@class MultiScenarioPercent;
 @class SharedAppValues;
 
 @class DataModelController;
@@ -47,6 +48,8 @@
 - (MultiScenarioGrowthRate*)multiScenGrowthRateWithNoDefaultAndNoInitialVal;
 - (MultiScenarioGrowthRate*)multiScenDefaultGrowthRate;
 
+- (MultiScenarioPercent*)multiScenPercentWithDefault:(double)defaultVal;
+
 - (MultiScenarioInputValue*)multiScenBoolValWithDefault:(BOOL)theDefaultVal;
 
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyOnce;
@@ -66,5 +69,8 @@
 
 
 - (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefaultNeverEndDate;
+
+- (MultiScenarioPercent*)multiScenPercentWithDefault:(double)defaultVal;
+-(MultiScenarioPercent*)multiScenDivReinvestmentPercWithDefaultSharedVal;
 
 @end

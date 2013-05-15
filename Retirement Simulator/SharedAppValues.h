@@ -22,6 +22,7 @@
 @class DataModelController;
 @class InflationRate;
 @class InputTag;
+@class DividendReinvestPercent;
 
 extern NSString * const SHARED_APP_VALUES_ENTITY_NAME;
 extern NSString * const SHARED_APP_VALUES_CURRENT_INPUT_SCENARIO_KEY;
@@ -53,6 +54,9 @@ extern NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY;
 @property(nonatomic,retain) NSNumber *deficitStartingBal;
 
 @property (nonatomic, retain) InflationRate * defaultInflationRate;
+@property (nonatomic, retain) DividendReinvestPercent *defaultDividendReinvestPercent;
+
+
 @property (nonatomic, retain) NSNumber * adjustResultsForSimStartDate;
 
 // InputTags used to narrow the list of Inputs shown

@@ -52,6 +52,10 @@
 		NSMutableSet *loanExtraPmtGrowthRate;
 		NSMutableSet *loanInterestRate;
 
+		// MultiScenarioPercent inverse relationships
+		NSMutableSet *accountDividendReinvestPercent;
+
+
 		// MultiScenarioSimEndDate inverse relationships
 		NSMutableSet *accountContribEndDate;
 		NSMutableSet *assetSaleDate;
@@ -107,6 +111,10 @@
 @property(nonatomic,retain) NSMutableSet *loanCostGrowthRate;
 @property(nonatomic,retain) NSMutableSet *loanExtraPmtGrowthRate;
 @property(nonatomic,retain) NSMutableSet *loanInterestRate;
+
+// MultiScenarioPercent inverse relationships
+@property(nonatomic,retain) NSMutableSet *accountDividendReinvestPercent;
+
 
 // MultiScenarioSimEndDate inverse relationships
 @property(nonatomic,retain) NSMutableSet *accountContribEndDate;

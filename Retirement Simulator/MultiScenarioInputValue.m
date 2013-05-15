@@ -48,6 +48,8 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 @dynamic multiScenSimEndDateDefaultFixedSimDate;
 @dynamic multiScenSimEndDateFixedRelativeEndDate;
 @dynamic multiScenSimEndDateSimDate;
+@dynamic multiScenPercentFixed;
+@dynamic multiScenPercentPercent;
 
 
 - (void)addScenarioValsObject:(ScenarioValue *)value {    
