@@ -1642,6 +1642,127 @@
 
 }
 
+-(void)testAccountDividendWithPartialReinvestment
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0]; // 10% dividend each year
+	acct01.dividendReinvestPercent = [inputCreationHelper multiScenPercentWithDefault:50.0]; // reinvest 50%, with the rest going to cash
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc]
+		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	// The following results assume the dividend is reinvested, then the reinvested dividend also becomes part of the
+	// basis for calculatig the future dividends. The quarterly dividend is also assumed to be 1/4 of the yearly
+	// dividend, so 2.5% in this case.
+	AcctDividendXYPlotDataGenerator *acctDividendData =
+		[[[AcctDividendXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:101.89 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:107.08 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:112.53 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:118.27 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:124.30 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctDividendData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+
+	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1050.95 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1104.49 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1160.75 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1219.89 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1282.03 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:acctData01 withSimResults:simResults andExpectedVals:expected andLabel:@"acct01" withAdjustedVals:FALSE];
+
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:50.95 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:104.49 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:160.75 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:219.89 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:282.03 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
+
+
+}
+
+
+-(void)testAccountDividendWithNoReinvestment
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0]; // 10% dividend each year
+	acct01.dividendReinvestPercent = [inputCreationHelper multiScenPercentWithDefault:0.0]; // reinvest 50%, with the rest going to cash
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc]
+		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	// The following results assume the dividend is reinvested, then the reinvested dividend also becomes part of the
+	// basis for calculatig the future dividends. The quarterly dividend is also assumed to be 1/4 of the yearly
+	// dividend, so 2.5% in this case.
+	AcctDividendXYPlotDataGenerator *acctDividendData =
+		[[[AcctDividendXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctDividendData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+
+	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+		
+	[self checkPlotData:acctData01 withSimResults:simResults andExpectedVals:expected andLabel:@"acct01" withAdjustedVals:FALSE];
+
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1200.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1300.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1400.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1500.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
+
+}
+
+
 -(void)testAccountCapitalGain
 {
 	[self resetCoredData];
