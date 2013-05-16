@@ -366,6 +366,17 @@
 "INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_TITLE" = "Payoff After Origination Date";
 "INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL" = "After Origination";
 
+"INPUT_LOAN_DEFER_PAYMENT_FIELD_LABEL" = "Deferred Payment";
+"INPUT_LOAN_DEFER_PAYMENT_TITLE" = "Deferred Payment Date";
+"INPUT_LOAN_DEFER_PAYMENT_TABLE_TITLE" = "Loan Deferred Payments";
+"INPUT_LOAN_DEFER_PAYMENT_TABLE_SUBTITLE_FORMAT" = "Enter and/or select a date payments will be deferred for %@";
+"INPUT_LOAN_DONT_DEFER_PAYMENT_FIELD_TITLE" = "Don't Defer Payment";
+"INPUT_LOAN_DONT_DEFER_PAYMENT_FIELD_SUBTITLE" = "Don't defer payments.";
+"INPUT_LOAN_DONT_DEFER_PAYMENT_SECTION_TITLE" = "Don't Defer Payment";
+"INPUT_LOAN_DEFER_PAYMENT_REL_END_DATE_SECTION_TITLE" = "Defer After Origination Date";
+"INPUT_LOAN_DEFER_PAYMENT_REL_END_DATE_FIELD_LABEL" = "After Origination";
+
+
 
 "INPUT_TAX_TITLE" = "Tax";
 "INPUT_TAX_SUBTITLE" = "Subtract from income, investment gains or asset gains";
@@ -596,6 +607,7 @@
 "WHAT_IF_DATES_ASSET_SALE" = "Asset Sale";
 "WHAT_IF_DATES_LOAN_ORIG" = "Loan Origination Date";
 "WHAT_IF_DATES_LOAN_PAYOFF" = "Early Loan Payoff";
+"WHAT_IF_DATES_LOAN_DEFER_PAYMENT" = "Deferred Loan Payments";
 "WHAT_IF_ACCOUNT_CONTRIB_START" = "Account Contributions Start";
 "WHAT_IF_ACCOUNT_CONTRIB_END" = "Account Contributions Stop";
 "WHAT_IF_ACCOUNT_DEFERRED_WITHDRAWAL" = "Defer Account Withdrawals";

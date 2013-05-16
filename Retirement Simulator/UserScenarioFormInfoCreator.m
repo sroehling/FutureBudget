@@ -682,6 +682,17 @@
 		}
 	}
 
+
+	if([inputBacktrace.loanDeferPayment count] > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_LOAN_DEFER_PAYMENT");
+		for(LoanInput *loan in inputBacktrace.loanDeferPayment)
+		{
+			[formPopulator populateLoanDeferPaymentDate:loan withFieldLabel:loan.name];
+		}
+	}
+
 	
 	return formPopulator.formInfo;
 	

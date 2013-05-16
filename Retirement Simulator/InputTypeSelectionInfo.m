@@ -255,6 +255,7 @@
 	newInput.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyMonthly];
 
 	newInput.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+	newInput.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 			
 	return newInput;
 }

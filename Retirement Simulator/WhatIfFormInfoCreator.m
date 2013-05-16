@@ -822,6 +822,20 @@
 				];
 		}
 	}
+
+	inputs = [parentContext.dataModelController  
+			fetchObjectsForEntityName:LOAN_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_DATES_LOAN_DEFER_PAYMENT");
+
+		for(LoanInput *loan in inputs)
+		{
+			[formPopulator populateLoanDeferPaymentDate:loan withFieldLabel:loan.name];
+		}
+	}
+
 	
 	inputs = [parentContext.dataModelController  
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];

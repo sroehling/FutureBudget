@@ -703,6 +703,11 @@
 				andRelEndDateHelpFile:@"relEndDatePayoff"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
 				];
+				
+	[formPopulator nextSection];
+	[self.formPopulator populateLoanDeferPaymentDate:loan
+		withFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_FIELD_LABEL")];
+				
 }
 
 - (void)visitAsset:(AssetInput*)asset

@@ -44,6 +44,7 @@ extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 
 @property (nonatomic, retain) MultiScenarioSimDate * origDate;
 @property(nonatomic,retain) MultiScenarioSimEndDate *earlyPayoffDate;
+@property (nonatomic, retain) MultiScenarioSimEndDate *deferredPaymentDate;
 
 @property (nonatomic, retain) MultiScenarioAmount * loanCost;
 @property (nonatomic, retain) MultiScenarioGrowthRate *loanCostGrowthRate;
@@ -58,6 +59,7 @@ extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 // originated in the past or will originate in the future.
 -(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario;
 -(BOOL)originationDateDefinedAndInThePastForScenario:(Scenario*)currentScenario;
+
 @end
 
 @interface LoanInput (CoreDataGeneratedAccessors)

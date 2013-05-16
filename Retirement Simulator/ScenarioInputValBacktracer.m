@@ -74,6 +74,7 @@
 @synthesize loanExtraPmtGrowthRate;
 @synthesize loanInterestRate;
 @synthesize loanEarlyPayoff;
+@synthesize loanDeferPayment;
 
 
 -(BOOL)populateInputSet:(NSMutableSet*)theSet withInput:(Input*)theInput
@@ -232,6 +233,9 @@
 
 		if([self populateInputSet:self.loanEarlyPayoff 
 				withInput:msEndDate.loanEarlyPayoffDate]) { return; }
+				
+		if([self populateInputSet:self.loanDeferPayment
+				withInput:msEndDate.loanDeferredPaymentDate]) { return; }
 	}
 	
 	// MultiScenarioPercent inverse relationships
@@ -320,6 +324,7 @@
 		self.assetSaleDate = [[[NSMutableSet alloc] init] autorelease];
 		self.cashFlowEndDate = [[[NSMutableSet alloc] init] autorelease];
 		self.loanEarlyPayoff = [[[NSMutableSet alloc] init] autorelease];
+		self.loanDeferPayment = [[[NSMutableSet alloc] init] autorelease];
 
 		// MultiScenarioSimDate inverse relationships
 		self.accountContribStartDate = [[[NSMutableSet alloc] init] autorelease];
@@ -400,6 +405,7 @@
 	[assetSaleDate release];
 	[cashFlowEndDate release];
 	[loanEarlyPayoff release];
+	[loanDeferPayment release];
 
 	// MultiScenarioSimDate inverse relationships
 	[accountContribStartDate  release];

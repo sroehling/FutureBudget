@@ -812,6 +812,24 @@
 
 }
 
+-(void)populateLoanDeferPaymentDate:(LoanInput*)loan withFieldLabel:(NSString*)fieldLabel
+{
+	[self populateMultiScenSimEndDate:loan.deferredPaymentDate
+		andLabel:fieldLabel
+		andTitle:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_TITLE")
+			andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_TABLE_TITLE")
+			andTableSubHeader:[NSString stringWithFormat:
+				LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_TABLE_SUBTITLE_FORMAT"),loan.name]
+				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_LOAN_DONT_DEFER_PAYMENT_FIELD_TITLE") 
+				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_LOAN_DONT_DEFER_PAYMENT_FIELD_SUBTITLE")
+				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_LOAN_DONT_DEFER_PAYMENT_SECTION_TITLE") 
+				andNeverEndHelpInfo:@"neverEndDateDeferPmt"
+				andRelEndDateSectionTitle:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_REL_END_DATE_SECTION_TITLE")
+				andRelEndDateHelpFile:@"relEndDateDeferPmt"
+				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_REL_END_DATE_FIELD_LABEL")
+				];
+}
+
 -(void)populateItemizedTaxForTaxAmtsInfo:(ItemizedTaxAmtsInfo*)itemizedTaxAmtsInfo
 	andTaxAmt:(ItemizedTaxAmt*)itemizedTaxAmt
 	andTaxAmtCreator:(id<ItemizedTaxAmtCreator>)taxAmtCreator

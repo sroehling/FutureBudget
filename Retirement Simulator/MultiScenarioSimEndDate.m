@@ -23,8 +23,6 @@ NSString * const MULTI_SCEN_SIM_END_DATE_SIM_DATE_KEY = @"simDate";
 @dynamic assetSaleDate;
 @dynamic cashFlowEndDate;
 @dynamic loanEarlyPayoffDate;
-
-
-
+@dynamic loanDeferredPaymentDate;
 
 @end

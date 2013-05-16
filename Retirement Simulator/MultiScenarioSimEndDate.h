@@ -38,6 +38,6 @@ extern NSString * const MULTI_SCEN_SIM_END_DATE_SIM_DATE_KEY;
 @property (nonatomic, retain) AssetInput * assetSaleDate;
 @property (nonatomic, retain) CashFlowInput * cashFlowEndDate;
 @property(nonatomic,retain) LoanInput *loanEarlyPayoffDate;
-
+@property (nonatomic, retain) LoanInput *loanDeferredPaymentDate;
 
 @end

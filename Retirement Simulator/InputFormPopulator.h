@@ -123,6 +123,7 @@
 	andRelEndDateSectionTitle:(NSString*)relEndDateSectionTitle
 	andRelEndDateHelpFile:(NSString*)relEndDateHelpFile
 	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel;
+-(void)populateLoanDeferPaymentDate:(LoanInput*)loan withFieldLabel:(NSString*)fieldLabel;
 	
 -(void)populateItemizedTaxForTaxAmtsInfo:(ItemizedTaxAmtsInfo*)itemizedTaxAmtsInfo
 	andTaxAmt:(ItemizedTaxAmt*)itemizedTaxAmt
