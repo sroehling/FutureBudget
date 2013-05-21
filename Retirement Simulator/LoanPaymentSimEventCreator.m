@@ -49,6 +49,7 @@
 
 - (void)resetSimEventCreation
 {
+	// createLoanPmtRepeater will start the payments one month after origination.
     self.eventRepeater = [self.loanInfo createLoanPmtRepeater];
 	
 	monthlyPayment = [self.loanInfo monthlyPayment];

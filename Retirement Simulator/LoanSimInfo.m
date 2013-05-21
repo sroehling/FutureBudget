@@ -32,75 +32,72 @@
 @synthesize extraPmtGrowthCalc;
 @synthesize simParams;
 
-
-- (EventRepeater*)createLoanEventRepeater
+-(void)dealloc
 {
-	// An event repeater is set up for monthly payments. It repeats indefinitely,
-	// because the principal reaching 0 is used to stop event repeating, not
-	// a fixed number of repetitions.
-	NSDate *resolvedStartDate = [self loanOrigDate];
-	
-	
-	NSDate *resolvedEndDate = self.simParams.simEndDate;
-	
-	NSLog(@"Loan origination date: date = %@",
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedStartDate]);
-
-	NSDateComponents *monthlyLoanPmtOffset = [[[NSDateComponents alloc] init] autorelease];
-	[monthlyLoanPmtOffset setMonth:1];
-	
-    EventRepeater *pmtRepeater = [[[EventRepeater alloc] 
-                     initWithRepeatOffset:monthlyLoanPmtOffset andRepeatOnce:FALSE 
-					andStartDate:resolvedStartDate andEndDate:resolvedEndDate] autorelease];
-	return pmtRepeater;
-
+	[loan release];
+	[loanBalance release];
+	[extraPmtGrowthCalc release];
+	[simParams release];
+	[super dealloc];
 }
 
-
-- (EventRepeater*)createLoanPmtRepeater
+-(NSDate*)earlyPayoffDate
 {
-	EventRepeater *pmtRepeater = [self createLoanEventRepeater];
-	assert(pmtRepeater != nil);
-	
-	// The first payment always happens one month after origination.
-	[pmtRepeater nextDate];
-
-	return pmtRepeater;	
+	assert(self.loan.earlyPayoffDate != nil);
+	return [SimInputHelper 
+			multiScenEndDate:self.loan.earlyPayoffDate.simDate 
+			withStartDate:self.loan.origDate.simDate 
+			andScenario:self.simParams.simScenario];
 }
 
-
-- (NSDate*)calcInterestStartDate
+-(bool)earlyPayoffAfterOrigination
 {
-	if([self loanOriginatesAfterSimStart])
+	if([DateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:[self loanOrigDate]])
 	{
-		// Loan originates in the the future w.r.t. the sim start date
-		return [self loanOrigDate];
+		return true;
 	}
 	else
 	{
-		EventRepeater *pmtRepeater = [self createLoanEventRepeater];
-		NSDate *paymentInterestStartDate = pmtRepeater.startDate;
+		return false;
+	}
+}
 
-		// Loan exists as of the start date. Interest starts on the last
-		// payment date before the sim start date.
-		NSDate *pmtDate = [pmtRepeater nextDate];
-		assert(pmtDate != nil);
-// TODO - Need to test for boundary case where first pmt is on the simulation start date.
-		while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
-		{
-			// If we get to here, the payment date is still before
-			// the start of simulation date. We keep on updating
-			// paymentInterestStartDate until the payment date is
-			// after the simulation start date.
-			paymentInterestStartDate = pmtDate;
-
-			pmtDate = [pmtRepeater nextDate];
-			assert(pmtDate != nil);
-			
-		}
-		return paymentInterestStartDate;
+- (bool)earlyPayoffAfterSimStart
+{
+	if([DateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:self.simParams.simStartDate])
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 
+}
+
+
+-(bool)loanOriginatesAfterSimStart;
+{
+	NSDate *loanOrigDate = [self loanOrigDate];
+		
+	if([DateHelper dateIsEqualOrLater:loanOrigDate otherDate:self.simParams.simStartDate])
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+
+
+-(NSDate*)loanOrigDate
+{
+	assert(self.loan.origDate != nil);
+	return [SimInputHelper multiScenFixedDate:self.loan.origDate.simDate
+			andScenario:simParams.simScenario];
 }
 
 - (double)loanOrigAmount
@@ -122,6 +119,64 @@
 	assert(origAmount >= 0.0);
 	return origAmount;
 }
+
+-(NSDate*)deferredPaymentDate
+{
+	NSDate *deferredPaymentDate = [SimInputHelper
+		multiScenEndDate:self.loan.deferredPaymentDate.simDate
+		withStartDate:self.loan.origDate.simDate andScenario:simParams.simScenario];
+	
+	return deferredPaymentDate;
+}
+
+
+-(double)loanTermMonths
+{
+	assert(loan.loanDuration != nil);
+	double termMonths = [SimInputHelper multiScenFixedVal:loan.loanDuration
+		andScenario:simParams.simScenario];
+	assert(termMonths > 0.0);
+	return termMonths;
+}
+
+
+
+- (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate
+{	
+
+	double extraPmtAsOfDate = 
+		[SimInputHelper multiScenValueAsOfDate:self.loan.extraPmtAmt.amount andDate:pmtDate
+				andScenario:simParams.simScenario];
+	
+	double extraPmtGrowthSinceSimStart = [self.extraPmtGrowthCalc valueMultiplierForDate:pmtDate];
+	
+	extraPmtAsOfDate = extraPmtAsOfDate * extraPmtGrowthSinceSimStart;
+		
+	return extraPmtAsOfDate;
+}
+
+
+- (EventRepeater*)createLoanEventRepeater
+{
+	// An event repeater is set up for monthly payments. It repeats indefinitely,
+	// because the principal reaching 0 is used to stop event repeating, not
+	// a fixed number of repetitions.
+	NSDate *resolvedStartDate = [self loanOrigDate];
+	NSDate *resolvedEndDate = self.simParams.simEndDate;
+	
+	NSLog(@"Loan origination date: date = %@",
+		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedStartDate]);
+
+	NSDateComponents *monthlyLoanPmtOffset = [[[NSDateComponents alloc] init] autorelease];
+	[monthlyLoanPmtOffset setMonth:1];
+	
+    EventRepeater *pmtRepeater = [[[EventRepeater alloc] 
+                     initWithRepeatOffset:monthlyLoanPmtOffset andRepeatOnce:FALSE 
+					andStartDate:resolvedStartDate andEndDate:resolvedEndDate] autorelease];
+	return pmtRepeater;
+
+}
+
 
 -(double)downPaymentPercent
 {
@@ -150,33 +205,6 @@
 }
 
 
--(bool)earlyPayoffAfterOrigination
-{
-	if([DateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:[self loanOrigDate]])
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-- (bool)earlyPayoffAfterSimStart
-{
-	if([DateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:self.simParams.simStartDate])
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-
-}
-
-
-
 - (double)startingBalanceAfterDownPayment
 {
 	double loanOrig = [self loanOrigAmount];
@@ -185,6 +213,88 @@
 	assert(startingBal >= 0.0);
 	return startingBal;
 }
+
+
+- (double)monthlyPayment
+{
+
+	// TODO - The code below calculates the monthly payment using the loan origination
+	// amount and the fixed interest rates as of the loan origination date.
+	double annualInterestRateAsOfLoanOrig = 
+		[SimInputHelper multiScenValueAsOfDate:self.loan.interestRate.growthRate 
+			andDate:[self loanOrigDate] andScenario:simParams.simScenario]/100.0;
+	assert(annualInterestRateAsOfLoanOrig >= 0.0);
+
+// TBD  Need to reconcile to 2 methods below for calculating the monthly payment.
+// Simply dividing by 12 seems to be the standard, the first (commented out) one is for the APY
+// and arguably more correct/precise.
+//		double monthlyInterestRateAsOfLoanOrig = [
+//			VariableRate annualRateToPerPeriodRate:annualInterestRateAsOfLoanOrig 
+//			andNumPeriods:12.0];
+
+	double monthlyInterestRateAsOfLoanOrig = annualInterestRateAsOfLoanOrig / 12.0;
+
+
+	// TODO - Adjust the payment amount if the payments are deferred.
+	double startingBal = [self startingBalanceAfterDownPayment];
+	
+	double payment = [VariableRate periodicPaymentForPrincipal:startingBal
+			andPeriodRate:monthlyInterestRateAsOfLoanOrig andNumPeriods:[self loanTermMonths]];
+	assert(payment >= 0.0);
+	
+	return payment;
+}
+
+
+
+
+- (EventRepeater*)createLoanPmtRepeater
+{
+	EventRepeater *pmtRepeater = [self createLoanEventRepeater];
+	assert(pmtRepeater != nil);
+	
+	// The first payment always happens one month after origination.
+	[pmtRepeater nextDate];
+
+	return pmtRepeater;	
+}
+
+
+- (NSDate*)calcInterestStartDate
+{
+	if([self loanOriginatesAfterSimStart])
+	{
+		// Loan originates in the the future w.r.t. the sim start date
+		return [self loanOrigDate];
+	}
+	else
+	{
+		// Loan originates in the past w.r.t. the sim start date.
+		EventRepeater *pmtRepeater = [self createLoanEventRepeater];
+		NSDate *paymentInterestStartDate = pmtRepeater.startDate;
+
+		// Loan exists as of the start date. Interest starts on the last
+		// payment date before the sim start date.
+		NSDate *pmtDate = [pmtRepeater nextDate];
+		assert(pmtDate != nil);
+// TODO - Need to test for boundary case where first pmt is on the simulation start date.
+		while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
+		{
+			// If we get to here, the payment date is still before
+			// the start of simulation date. We keep on updating
+			// paymentInterestStartDate until the payment date is
+			// after the simulation start date.
+			paymentInterestStartDate = pmtDate;
+
+			pmtDate = [pmtRepeater nextDate];
+			assert(pmtDate != nil);
+			
+		}
+		return paymentInterestStartDate;
+	}
+
+}
+
 
 -(double)simulatedStartingBalanceForPastLoanOrigination
 {
@@ -258,8 +368,9 @@
 		
 		if([self loanOriginatesAfterSimStart])
 		{
-			// Loan will occur in the future (w.r.t. to simulation start date):
-			// If the origination date is after the simulatiion start date, then the "starting balance"
+			// The loan will occur/originate in the future (w.r.t. to simulation start date):
+			//
+			// If the origination date is after the simulation start date, then the "starting balance"
 			// on the loan should be ignored. This is because the loan will start after the simulation
 			// start date, with a balance that is equal to the total amount borrowed.			
 			interestStartDate = [self loanOrigDate];
@@ -267,11 +378,12 @@
 		}
 		else
 		{
-			// Loan is existing as of the simulation start date:
+			// The loan is existing as of the simulation start date:
+			//
 			// In this case the simulation start date is after the origination date. So,
 			// we need to use the "starting balance" for the loan, to account for the all
 			// the prior payments already made on the loan (plus any extra payments, etc.)
-			// If a starting balance hasn't been provided by the user, then "simulat" the
+			// If a starting balance hasn't been provided by the user, then "simulate" the
 			// starting balance by computing payments and interest before the simulation
 			// start date.
 			interestStartDate = [self calcInterestStartDate];
@@ -308,90 +420,6 @@
 	return self;
 }
 
--(NSDate*)earlyPayoffDate
-{
-	assert(self.loan.earlyPayoffDate != nil);
-	return [SimInputHelper 
-			multiScenEndDate:self.loan.earlyPayoffDate.simDate 
-			withStartDate:self.loan.origDate.simDate 
-			andScenario:self.simParams.simScenario];
-}
-
-
--(NSDate*)loanOrigDate
-{
-	assert(self.loan.origDate != nil);
-	return [SimInputHelper multiScenFixedDate:self.loan.origDate.simDate
-			andScenario:simParams.simScenario];
-}
-
--(bool)loanOriginatesAfterSimStart;
-{
-	NSDate *loanOrigDate = [self loanOrigDate];
-		
-	if([DateHelper dateIsEqualOrLater:loanOrigDate otherDate:self.simParams.simStartDate])
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-
-}
-
-
-
--(double)loanTermMonths
-{
-	assert(loan.loanDuration != nil);
-	double termMonths = [SimInputHelper multiScenFixedVal:loan.loanDuration
-		andScenario:simParams.simScenario];
-	assert(termMonths > 0.0);
-	return termMonths;
-}
-
-- (double)monthlyPayment
-{
-	double annualInterestRateAsOfLoanOrig = 
-		[SimInputHelper multiScenValueAsOfDate:self.loan.interestRate.growthRate 
-			andDate:[self loanOrigDate] andScenario:simParams.simScenario]/100.0;
-	assert(annualInterestRateAsOfLoanOrig >= 0.0);
-
-// TBD  Need to reconcile to 2 methods below for calculating the monthly payment.
-// Simply dividing by 12 seems to be the standard, the first (commented out) one is for the APY
-// and arguably more correct/precise.
-//		double monthlyInterestRateAsOfLoanOrig = [
-//			VariableRate annualRateToPerPeriodRate:annualInterestRateAsOfLoanOrig 
-//			andNumPeriods:12.0];
-
-	double monthlyInterestRateAsOfLoanOrig = annualInterestRateAsOfLoanOrig / 12.0;
-
-
-	double startingBal = [self startingBalanceAfterDownPayment];
-	
-	double payment = [VariableRate periodicPaymentForPrincipal:startingBal
-			andPeriodRate:monthlyInterestRateAsOfLoanOrig andNumPeriods:[self loanTermMonths]];
-	assert(payment >= 0.0);
-	
-	return payment;
-}
-
-
-- (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate
-{	
-
-	double extraPmtAsOfDate = 
-		[SimInputHelper multiScenValueAsOfDate:self.loan.extraPmtAmt.amount andDate:pmtDate
-				andScenario:simParams.simScenario];
-	
-	double extraPmtGrowthSinceSimStart = [self.extraPmtGrowthCalc valueMultiplierForDate:pmtDate];
-	
-	extraPmtAsOfDate = extraPmtAsOfDate * extraPmtGrowthSinceSimStart;
-		
-	return extraPmtAsOfDate;
-}
-
 
 
 -(id)init
@@ -400,13 +428,5 @@
 	return nil;
 }
 
--(void)dealloc
-{
-	[loan release];
-	[loanBalance release];
-	[extraPmtGrowthCalc release];
-	[simParams release];
-	[super dealloc];
-}
 
 @end
