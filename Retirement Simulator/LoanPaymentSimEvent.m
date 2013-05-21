@@ -13,35 +13,33 @@
 #import "LoanPmtDigestEntry.h"
 #import "FiscalYearDigestEntries.h"
 #import "FiscalYearDigest.h"
-
+#import "LoanSimInfo.h"
 
 @implementation LoanPaymentSimEvent
 
-@synthesize loanBalance;
-@synthesize paymentAmt;
-
-
-
-- (void)doSimEvent:(FiscalYearDigest*)digest
-{
-	NSString *pmtAmount = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.paymentAmt]];
-				
-    NSLog(@"Doing loan payment event: %@  payment=%@",
-          [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		  pmtAmount);
-		  
-	LoanPmtDigestEntry *loanPmt = [[[LoanPmtDigestEntry alloc] 
-		initWithBalance:self.loanBalance andPayment:self.paymentAmt] autorelease];
-	[digest.digestEntries addDigestEntry:loanPmt onDate:self.eventDate];
-}
+@synthesize loanInfo;
+@synthesize pmtCalculator;
 
 
 - (void)dealloc
 {
-	[loanBalance release];
+	[loanInfo release];
+	[pmtCalculator release];
 	[super dealloc];
 }
+
+
+- (void)doSimEvent:(FiscalYearDigest*)digest
+{
+	assert(self.loanInfo != nil);
+			  
+	LoanPmtDigestEntry *loanPmt = [[[LoanPmtDigestEntry alloc] 
+		initWithLoanInfo:self.loanInfo andPmtCalculator:self.pmtCalculator] autorelease];
+		
+	[digest.digestEntries addDigestEntry:loanPmt onDate:self.eventDate];
+}
+
+
 
 
 @end

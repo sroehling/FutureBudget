@@ -13,6 +13,7 @@
 #import "SharedAppValues.h"
 #import "LoanPaymentSimEvent.h"
 #import "SimParams.h"
+#import "ExtraLoanPmtAmtCalculator.h"
 
 
 @implementation ExtraPaymentSimEventCreator
@@ -49,8 +50,10 @@
 		{
 			LoanPaymentSimEvent *pmtEvent = [[[LoanPaymentSimEvent alloc]initWithEventCreator:self 
 				andEventDate:nextPmtDate ] autorelease];
-			pmtEvent.paymentAmt = extraPayment;
-			pmtEvent.loanBalance = [self.loanInfo loanBalance];
+			
+			pmtEvent.loanInfo = self.loanInfo;
+			pmtEvent.pmtCalculator = [[[ExtraLoanPmtAmtCalculator alloc] init] autorelease];
+			
 			return pmtEvent;
 		}
 		else

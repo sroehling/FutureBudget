@@ -10,22 +10,32 @@
 #import "InterestBearingWorkingBalance.h"
 #import "DigestEntryProcessingParams.h"
 #import "WorkingBalanceMgr.h"
+#import "LoanSimInfo.h"
+#import "LoanPmtAmtCalculator.h"
 
 @implementation LoanPmtDigestEntry
 
-@synthesize loanBalance;
-@synthesize paymentAmt;
+@synthesize loanInfo;
+@synthesize pmtCalculator;
 
--(id)initWithBalance:(InterestBearingWorkingBalance*)theLoanBal andPayment:(double)thePayment
+- (void)dealloc
+{
+	[loanInfo release];
+	[pmtCalculator release];
+	[super dealloc];
+}
+
+
+-(id)initWithLoanInfo:(LoanSimInfo*)theLoanInfo andPmtCalculator:(id<LoanPmtAmtCalculator>)thePmtCalculator
 {
 	self = [super init];
 	if(self)
 	{
-		assert(theLoanBal != nil);
-		self.loanBalance = theLoanBal;
-	
-		assert(thePayment >= 0.0);
-		self.paymentAmt = thePayment;
+		assert(theLoanInfo != nil);
+		self.loanInfo = theLoanInfo;
+		
+		assert(thePmtCalculator != nil);
+		self.pmtCalculator = thePmtCalculator;
 	}
 	return self;
 }
@@ -38,7 +48,10 @@
 
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
-	double balancePaid = [self.loanBalance decrementAvailableBalanceForNonExpense:self.paymentAmt 
+
+	double paymentAmt = [self.pmtCalculator paymentAmtForLoanInfo:self.loanInfo andPmtDate:processingParams.currentDate];
+	
+	double balancePaid = [self.loanInfo.loanBalance decrementAvailableBalanceForNonExpense:paymentAmt
 		asOfDate:processingParams.currentDate];
 		
 	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:balancePaid 
@@ -46,10 +59,5 @@
 }
 
 
-- (void)dealloc
-{
-	[loanBalance release];
-	[super dealloc];
-}
 
 @end

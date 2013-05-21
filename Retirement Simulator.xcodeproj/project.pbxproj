@@ -268,6 +268,8 @@
 		005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
+		0057D4A2174BFDB8004968F8 /* ExtraLoanPmtAmtCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4A1174BFDB7004968F8 /* ExtraLoanPmtAmtCalculator.m */; };
+		0057D4A5174BFDE7004968F8 /* RegularPaymentAmtCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4A4174BFDE6004968F8 /* RegularPaymentAmtCalculator.m */; };
 		0057F42F14F81B2C006A2FA3 /* account.md in Resources */ = {isa = PBXBuildFile; fileRef = 0057F42E14F81B2C006A2FA3 /* account.md */; };
 		0058A80F14F830BB00F2DCEF /* income.md in Resources */ = {isa = PBXBuildFile; fileRef = 0058A80E14F830BB00F2DCEF /* income.md */; };
 		00590A261734537800BBF045 /* AccountDividendSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A251734537700BBF045 /* AccountDividendSimEventCreator.m */; };
@@ -1004,6 +1006,11 @@
 		005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeatFrequency.m; sourceTree = "<group>"; };
 		005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyEditViewController.h; sourceTree = "<group>"; };
 		005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyEditViewController.m; sourceTree = "<group>"; };
+		0057D49F174BFD09004968F8 /* LoanPmtAmtCalculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoanPmtAmtCalculator.h; sourceTree = "<group>"; };
+		0057D4A0174BFDB7004968F8 /* ExtraLoanPmtAmtCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraLoanPmtAmtCalculator.h; sourceTree = "<group>"; };
+		0057D4A1174BFDB7004968F8 /* ExtraLoanPmtAmtCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraLoanPmtAmtCalculator.m; sourceTree = "<group>"; };
+		0057D4A3174BFDE6004968F8 /* RegularPaymentAmtCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegularPaymentAmtCalculator.h; sourceTree = "<group>"; };
+		0057D4A4174BFDE6004968F8 /* RegularPaymentAmtCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularPaymentAmtCalculator.m; sourceTree = "<group>"; };
 		0057F42E14F81B2C006A2FA3 /* account.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = account.md; sourceTree = "<group>"; };
 		0058A80E14F830BB00F2DCEF /* income.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = income.md; sourceTree = "<group>"; };
 		00590A241734537600BBF045 /* AccountDividendSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountDividendSimEventCreator.h; sourceTree = "<group>"; };
@@ -2427,6 +2434,26 @@
 			name = "Simulator Inputs";
 			sourceTree = "<group>";
 		};
+		0057D49E174BF64B004968F8 /* Loan Payment */ = {
+			isa = PBXGroup;
+			children = (
+				0057D49F174BFD09004968F8 /* LoanPmtAmtCalculator.h */,
+				00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */,
+				00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */,
+				00EC458814225B9000D65D17 /* LoanPaymentSimEvent.h */,
+				00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */,
+				0086C0891428FCE400148785 /* ExtraPaymentSimEventCreator.h */,
+				0086C08A1428FCE400148785 /* ExtraPaymentSimEventCreator.m */,
+				00EC458514214C1E00D65D17 /* LoanPaymentSimEventCreator.h */,
+				00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */,
+				0057D4A0174BFDB7004968F8 /* ExtraLoanPmtAmtCalculator.h */,
+				0057D4A1174BFDB7004968F8 /* ExtraLoanPmtAmtCalculator.m */,
+				0057D4A3174BFDE6004968F8 /* RegularPaymentAmtCalculator.h */,
+				0057D4A4174BFDE6004968F8 /* RegularPaymentAmtCalculator.m */,
+			);
+			name = "Loan Payment";
+			sourceTree = "<group>";
+		};
 		00590A301738166700BBF045 /* Dividend */ = {
 			isa = PBXGroup;
 			children = (
@@ -3057,20 +3084,13 @@
 		00EC458414214B9C00D65D17 /* Loan */ = {
 			isa = PBXGroup;
 			children = (
+				0057D49E174BF64B004968F8 /* Loan Payment */,
 				0086C0861427D5E300148785 /* LoanSimInfo.h */,
 				0086C0871427D5E300148785 /* LoanSimInfo.m */,
-				00EC458514214C1E00D65D17 /* LoanPaymentSimEventCreator.h */,
-				00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */,
 				0086C07F14279A3B00148785 /* LoanOrigSimEventCreator.h */,
 				0086C08014279A3B00148785 /* LoanOrigSimEventCreator.m */,
-				0086C0891428FCE400148785 /* ExtraPaymentSimEventCreator.h */,
-				0086C08A1428FCE400148785 /* ExtraPaymentSimEventCreator.m */,
-				00EC458814225B9000D65D17 /* LoanPaymentSimEvent.h */,
-				00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */,
 				0099A163145784CA00E35AF9 /* LoanOrigSimEvent.h */,
 				0099A164145784CC00E35AF9 /* LoanOrigSimEvent.m */,
-				00EC458E1423C5AF00D65D17 /* LoanPmtDigestEntry.h */,
-				00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */,
 				008DD4B614B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.h */,
 				008DD4B714B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m */,
 				008DD4B914B3AB22000AAEA5 /* LoanEarlyPayoffSimEvent.h */,
@@ -3721,6 +3741,8 @@
 				00590A4A173D62C100BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m in Sources */,
 				00590A4D1742E0AE00BBF045 /* MultiScenarioPercent.m in Sources */,
 				00590A501742E74600BBF045 /* DividendReinvestPercent.m in Sources */,
+				0057D4A2174BFDB8004968F8 /* ExtraLoanPmtAmtCalculator.m in Sources */,
+				0057D4A5174BFDE7004968F8 /* RegularPaymentAmtCalculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

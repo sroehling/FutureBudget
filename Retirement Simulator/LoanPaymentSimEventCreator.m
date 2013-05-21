@@ -27,6 +27,7 @@
 #import "SimInputHelper.h"
 #import "LoanSimInfo.h"
 #import "SimParams.h"
+#import "RegularPaymentAmtCalculator.h"
 
 @implementation LoanPaymentSimEventCreator
 
@@ -67,8 +68,8 @@
 	{
 		LoanPaymentSimEvent *pmtEvent = [[[LoanPaymentSimEvent alloc]initWithEventCreator:self 
 			andEventDate:nextPmtDate ] autorelease];
-		pmtEvent.paymentAmt = monthlyPayment;
-		pmtEvent.loanBalance = [self.loanInfo loanBalance];
+		pmtEvent.loanInfo = self.loanInfo;
+		pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];
 		
 		return pmtEvent;
 	}

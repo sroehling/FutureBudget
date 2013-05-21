@@ -9,18 +9,20 @@
 #import <Foundation/Foundation.h>
 
 #import "DigestEntry.h"
+#import "LoanPmtAmtCalculator.h"
 
-@class InterestBearingWorkingBalance;
+@class LoanSimInfo;
 
 @interface LoanPmtDigestEntry : NSObject <DigestEntry> {
     @private
-		InterestBearingWorkingBalance *loanBalance;
-		double paymentAmt;
+		LoanSimInfo *loanInfo;
+		id<LoanPmtAmtCalculator> pmtCalculator;
+
 }
 
-@property(nonatomic,retain) InterestBearingWorkingBalance *loanBalance;
-@property double paymentAmt;
+@property(nonatomic,retain) LoanSimInfo *loanInfo;
+@property(nonatomic,retain) id<LoanPmtAmtCalculator> pmtCalculator;
 
--(id)initWithBalance:(InterestBearingWorkingBalance*)theLoanBal andPayment:(double)thePayment;
+-(id)initWithLoanInfo:(LoanSimInfo*)theLoanInfo andPmtCalculator:(id<LoanPmtAmtCalculator>)thePmtCalculator;
 
 @end
