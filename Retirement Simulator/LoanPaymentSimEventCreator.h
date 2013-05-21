@@ -18,7 +18,8 @@
     @private
         EventRepeater *eventRepeater;
 		LoanSimInfo *loanInfo;
-		double monthlyPayment;
+		
+		BOOL hasDeferredPayments;
 		
 }
 

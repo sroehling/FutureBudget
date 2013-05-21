@@ -1,3 +1,3 @@
-## Don't Defer Payments
+## Defer Payments Forever
 
-Select to begin loan payments on the origination date. This is the default selection.
+Select to defer payments forever. This selection would be appropriate for interest only loans.

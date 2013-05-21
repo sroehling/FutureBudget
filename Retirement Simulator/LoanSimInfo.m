@@ -129,6 +129,30 @@
 	return deferredPaymentDate;
 }
 
+-(BOOL)deferredPaymentDateEnabled
+{
+	// TODO - need a loan parameter to enable/disable deferred payments.
+	BOOL deferredPmtEnabled = FALSE;
+//	BOOL deferredPmtEnabled = [SimInputHelper multiScenBoolVal:loan.deferredPmtEnabled
+//				andScenario:simParams.simScenario];
+	return deferredPmtEnabled;
+}
+
+-(BOOL)beforeDeferredPaymentDate:(NSDate*)pmtDate
+{
+	NSDate *deferredPaymentDate = [self deferredPaymentDate];
+	
+	if([DateHelper dateIsLater:deferredPaymentDate otherDate:pmtDate])
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+
+}
+
 
 -(double)loanTermMonths
 {
@@ -138,8 +162,6 @@
 	assert(termMonths > 0.0);
 	return termMonths;
 }
-
-
 
 - (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate
 {	
@@ -236,6 +258,9 @@
 
 
 	// TODO - Adjust the payment amount if the payments are deferred.
+	// If an interest only payment is made while the loan is in deferrment,
+	// then the balance will be the same as the startingBal. Otherwise,
+	// The balance needs to be adjusted for interest until the deferment date.
 	double startingBal = [self startingBalanceAfterDownPayment];
 	
 	double payment = [VariableRate periodicPaymentForPrincipal:startingBal

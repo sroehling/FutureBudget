@@ -28,6 +28,7 @@
 #import "LoanSimInfo.h"
 #import "SimParams.h"
 #import "RegularPaymentAmtCalculator.h"
+#import "InterestOnlyPaymentAmtCalculator.h"
 
 @implementation LoanPaymentSimEventCreator
 
@@ -53,10 +54,6 @@
 	// createLoanPmtRepeater will start the payments one month after origination.
     self.eventRepeater = [self.loanInfo createLoanPmtRepeater];
 	
-	monthlyPayment = [self.loanInfo monthlyPayment];
-	assert(monthlyPayment >= 0.0);
-
-	
 }
 
 - (SimEvent*)nextSimEvent
@@ -69,7 +66,24 @@
 		LoanPaymentSimEvent *pmtEvent = [[[LoanPaymentSimEvent alloc]initWithEventCreator:self 
 			andEventDate:nextPmtDate ] autorelease];
 		pmtEvent.loanInfo = self.loanInfo;
-		pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];
+		
+		if([self.loanInfo deferredPaymentDateEnabled])
+		{
+			if([self.loanInfo beforeDeferredPaymentDate:nextPmtDate])
+			{				
+				pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];
+			}
+			else
+			{
+				pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];
+			}
+		}
+		else
+		{
+			pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];
+		}
+		
+		
 		
 		return pmtEvent;
 	}

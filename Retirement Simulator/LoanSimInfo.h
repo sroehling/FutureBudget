@@ -35,9 +35,13 @@
 
 -(double)downPaymentAmount;
 -(NSDate*)loanOrigDate;
+- (double)startingBalanceAfterDownPayment; // Starting balance on the date of loan origination
+
 -(NSDate*)earlyPayoffDate;
 -(bool)earlyPayoffAfterOrigination;
 - (bool)earlyPayoffAfterSimStart;
+-(BOOL)deferredPaymentDateEnabled;
+-(BOOL)beforeDeferredPaymentDate:(NSDate*)pmtDate;
 
 - (double)loanOrigAmount;
 
