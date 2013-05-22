@@ -51,11 +51,21 @@
 
 	double paymentAmt = [self.pmtCalculator paymentAmtForLoanInfo:self.loanInfo andPmtDate:processingParams.currentDate];
 	
-	double balancePaid = [self.loanInfo.loanBalance decrementAvailableBalanceForNonExpense:paymentAmt
-		asOfDate:processingParams.currentDate];
-		
-	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:balancePaid 
-		asOfDate:processingParams.currentDate];
+	if(paymentAmt > 0.0)
+	{
+		double balancePaid = [self.loanInfo.loanBalance decrementAvailableBalanceForNonExpense:paymentAmt
+			asOfDate:processingParams.currentDate];
+			
+		if(![self.pmtCalculator paymentIsSubsized])
+		{
+			// If the payment is subsidized, the balance of payment doesn't come out
+			// of the list of accounts, but instead is assumped to be paid by
+			// someone else. This is a special case for subsidized stafford school loans.
+			[processingParams.workingBalanceMgr decrementBalanceFromFundingList:balancePaid 
+				asOfDate:processingParams.currentDate];
+		}
+	}
+	
 }
 
 

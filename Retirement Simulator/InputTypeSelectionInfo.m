@@ -259,6 +259,8 @@
 	// Deferred Payments
 	
 	newInput.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	newInput.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	newInput.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 	newInput.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 			

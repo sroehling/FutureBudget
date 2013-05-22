@@ -16,4 +16,9 @@
 	return [loanInfo extraPmtAmountAsOfDate:paymentDate];
 }
 
+-(BOOL)paymentIsSubsized
+{
+	return FALSE;
+}
+
 @end

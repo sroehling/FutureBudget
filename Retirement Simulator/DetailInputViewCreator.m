@@ -709,6 +709,11 @@
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_ENABLED_LABEL")];
 	[self.formPopulator populateLoanDeferPaymentDate:loan
 		withFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_FIELD_LABEL")];
+	[self.formPopulator populateMultiScenBoolField:loan.deferredPaymentPayInterest
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_PAY_INTEREST")];
+	[self.formPopulator populateMultiScenBoolField:loan.deferredPaymentSubsizedInterest
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_INTEREST_SUBSIDIZED")];
+
 				
 }
 

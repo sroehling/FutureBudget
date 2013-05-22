@@ -271,6 +271,7 @@
 		0057D4A2174BFDB8004968F8 /* ExtraLoanPmtAmtCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4A1174BFDB7004968F8 /* ExtraLoanPmtAmtCalculator.m */; };
 		0057D4A5174BFDE7004968F8 /* RegularPaymentAmtCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4A4174BFDE6004968F8 /* RegularPaymentAmtCalculator.m */; };
 		0057D4AA174C0B01004968F8 /* InterestOnlyPaymentAmtCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4A9174C0B00004968F8 /* InterestOnlyPaymentAmtCalculator.m */; };
+		0057D4AD174D3800004968F8 /* NoPaymentAmtCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4AC174D37FD004968F8 /* NoPaymentAmtCalculator.m */; };
 		0057F42F14F81B2C006A2FA3 /* account.md in Resources */ = {isa = PBXBuildFile; fileRef = 0057F42E14F81B2C006A2FA3 /* account.md */; };
 		0058A80F14F830BB00F2DCEF /* income.md in Resources */ = {isa = PBXBuildFile; fileRef = 0058A80E14F830BB00F2DCEF /* income.md */; };
 		00590A261734537800BBF045 /* AccountDividendSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00590A251734537700BBF045 /* AccountDividendSimEventCreator.m */; };
@@ -1014,6 +1015,8 @@
 		0057D4A4174BFDE6004968F8 /* RegularPaymentAmtCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularPaymentAmtCalculator.m; sourceTree = "<group>"; };
 		0057D4A8174C0AFF004968F8 /* InterestOnlyPaymentAmtCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestOnlyPaymentAmtCalculator.h; sourceTree = "<group>"; };
 		0057D4A9174C0B00004968F8 /* InterestOnlyPaymentAmtCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestOnlyPaymentAmtCalculator.m; sourceTree = "<group>"; };
+		0057D4AB174D37F8004968F8 /* NoPaymentAmtCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPaymentAmtCalculator.h; sourceTree = "<group>"; };
+		0057D4AC174D37FD004968F8 /* NoPaymentAmtCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoPaymentAmtCalculator.m; sourceTree = "<group>"; };
 		0057F42E14F81B2C006A2FA3 /* account.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = account.md; sourceTree = "<group>"; };
 		0058A80E14F830BB00F2DCEF /* income.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = income.md; sourceTree = "<group>"; };
 		00590A241734537600BBF045 /* AccountDividendSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountDividendSimEventCreator.h; sourceTree = "<group>"; };
@@ -2455,6 +2458,8 @@
 				0057D4A4174BFDE6004968F8 /* RegularPaymentAmtCalculator.m */,
 				0057D4A8174C0AFF004968F8 /* InterestOnlyPaymentAmtCalculator.h */,
 				0057D4A9174C0B00004968F8 /* InterestOnlyPaymentAmtCalculator.m */,
+				0057D4AB174D37F8004968F8 /* NoPaymentAmtCalculator.h */,
+				0057D4AC174D37FD004968F8 /* NoPaymentAmtCalculator.m */,
 			);
 			name = "Loan Payment";
 			sourceTree = "<group>";
@@ -3765,6 +3770,7 @@
 				0057D4A2174BFDB8004968F8 /* ExtraLoanPmtAmtCalculator.m in Sources */,
 				0057D4A5174BFDE7004968F8 /* RegularPaymentAmtCalculator.m in Sources */,
 				0057D4AA174C0B01004968F8 /* InterestOnlyPaymentAmtCalculator.m in Sources */,
+				0057D4AD174D3800004968F8 /* NoPaymentAmtCalculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

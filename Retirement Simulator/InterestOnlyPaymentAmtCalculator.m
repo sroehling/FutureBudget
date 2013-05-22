@@ -12,6 +12,22 @@
 
 @implementation InterestOnlyPaymentAmtCalculator
 
+-(id)initWithSubsidizedInterestPayment:(BOOL)doSubsidizePayment
+{
+	self = [super init];
+	if(self)
+	{
+		subsizePayment = doSubsidizePayment;
+	}
+	return self;
+}
+
+-(id)init
+{
+	assert(0);
+	return nil;
+}
+
 -(double)paymentAmtForLoanInfo:(LoanSimInfo*)loanInfo andPmtDate:(NSDate*)paymentDate
 {
 	// Advance the balance to accrue any interest.
@@ -34,5 +50,9 @@
 	
 }
 
+-(BOOL)paymentIsSubsized
+{
+	return subsizePayment;
+}
 
 @end

@@ -47,7 +47,10 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 @property (nonatomic, retain) TaxInput * taxEnabled;
 @property (nonatomic, retain) CashFlowInput * cashFlowEnabled;
 @property (nonatomic, retain) CashFlowInput * cashFlowEventRepeatFrequency;
+
 @property (nonatomic, retain) LoanInput *loanDeferredPaymentEnabled;
+@property (nonatomic, retain) LoanInput *loanDeferredPaymentPayInterest;
+@property (nonatomic, retain) LoanInput *loanDeferredPaymentSubsizedInterest;
 @property (nonatomic, retain) LoanInput * loanDownPmtEnabled;
 @property (nonatomic, retain) LoanInput * loanDownPmtPercent;
 @property (nonatomic, retain) LoanInput * loanDownPmtPercentFixed;
@@ -55,6 +58,7 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 @property (nonatomic, retain) LoanInput * loanEnabled;
 @property (nonatomic, retain) LoanInput * loanExtraPmtEnabled;
 @property (nonatomic, retain) LoanInput * loanExtraPmtFrequency;
+
 @property (nonatomic, retain) MultiScenarioAmount * multiScenAmountAmount;
 @property (nonatomic, retain) MultiScenarioAmount * multiScenarioDefaultFixedAmount;
 @property (nonatomic, retain) MultiScenarioSimDate * multiScenSimDateDefaultSimDate;

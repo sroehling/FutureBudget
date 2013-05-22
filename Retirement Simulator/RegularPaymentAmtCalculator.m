@@ -17,5 +17,10 @@
 	return [loanInfo monthlyPayment];
 }
 
+-(BOOL)paymentIsSubsized
+{
+	return FALSE;
+}
+
 
 @end

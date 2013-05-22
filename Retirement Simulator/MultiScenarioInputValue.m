@@ -32,7 +32,10 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 @dynamic taxEnabled;
 @dynamic cashFlowEnabled;
 @dynamic cashFlowEventRepeatFrequency;
+
 @dynamic loanDeferredPaymentEnabled;
+@dynamic loanDeferredPaymentPayInterest;
+@dynamic loanDeferredPaymentSubsizedInterest;
 @dynamic loanDownPmtEnabled;
 @dynamic loanDownPmtPercent;
 @dynamic loanDownPmtPercentFixed;
@@ -40,6 +43,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 @dynamic loanEnabled;
 @dynamic loanExtraPmtEnabled;
 @dynamic loanExtraPmtFrequency;
+
 @dynamic multiScenAmountAmount;
 @dynamic multiScenarioDefaultFixedAmount;
 @dynamic multiScenGrowthRateDefaultFixedGrowthRate;

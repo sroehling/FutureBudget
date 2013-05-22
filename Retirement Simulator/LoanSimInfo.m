@@ -136,6 +136,19 @@
 	return deferredPmtEnabled;
 }
 
+-(BOOL)deferredPaymentPayInterestWhileInDeferrment
+{
+	return [SimInputHelper multiScenBoolVal:loan.deferredPaymentPayInterest
+				andScenario:simParams.simScenario];
+}
+
+-(BOOL)deferredPaymentInterestSubsidized
+{
+	return [SimInputHelper multiScenBoolVal:loan.deferredPaymentSubsizedInterest
+				andScenario:simParams.simScenario];
+}
+
+
 -(BOOL)beforeDeferredPaymentDate:(NSDate*)pmtDate
 {
 	NSDate *deferredPaymentDate = [self deferredPaymentDate];

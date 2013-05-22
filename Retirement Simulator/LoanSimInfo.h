@@ -41,6 +41,8 @@
 -(bool)earlyPayoffAfterOrigination;
 - (bool)earlyPayoffAfterSimStart;
 -(BOOL)deferredPaymentDateEnabled;
+-(BOOL)deferredPaymentPayInterestWhileInDeferrment;
+-(BOOL)deferredPaymentInterestSubsidized;
 -(BOOL)beforeDeferredPaymentDate:(NSDate*)pmtDate;
 
 - (double)loanOrigAmount;

@@ -13,5 +13,6 @@
 @protocol LoanPmtAmtCalculator <NSObject>
 
 -(double)paymentAmtForLoanInfo:(LoanSimInfo*)loanInfo andPmtDate:(NSDate*)paymentDate;
+-(BOOL)paymentIsSubsized;
 
 @end

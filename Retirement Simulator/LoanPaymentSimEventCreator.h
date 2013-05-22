@@ -20,6 +20,8 @@
 		LoanSimInfo *loanInfo;
 		
 		BOOL hasDeferredPayments;
+		BOOL payInterestUnderDeferrment;
+		BOOL interestSubsizedUnderDeferrment;
 		
 }
 

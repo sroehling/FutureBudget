@@ -11,5 +11,11 @@
 #import "LoanPmtAmtCalculator.h"
 
 @interface InterestOnlyPaymentAmtCalculator : NSObject <LoanPmtAmtCalculator>
+{
+	@private
+		BOOL subsizePayment;
+}
+
+-(id)initWithSubsidizedInterestPayment:(BOOL)doSubsidizePayment;
 
 @end
