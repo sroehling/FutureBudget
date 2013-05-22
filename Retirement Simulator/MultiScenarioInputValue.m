@@ -32,6 +32,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 @dynamic taxEnabled;
 @dynamic cashFlowEnabled;
 @dynamic cashFlowEventRepeatFrequency;
+@dynamic loanDeferredPaymentEnabled;
 @dynamic loanDownPmtEnabled;
 @dynamic loanDownPmtPercent;
 @dynamic loanDownPmtPercentFixed;

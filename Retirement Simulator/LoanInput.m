@@ -50,7 +50,10 @@ NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"input-icon-loan.png";
 @dynamic extraPmtGrowthRate;
 
 @dynamic earlyPayoffDate;
+
 @dynamic deferredPaymentDate;
+@dynamic deferredPaymentEnabled;
+
 
 // Inverse Relationship
 @dynamic loanInterestItemizedTaxAmts;

@@ -44,6 +44,8 @@ extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 
 @property (nonatomic, retain) MultiScenarioSimDate * origDate;
 @property(nonatomic,retain) MultiScenarioSimEndDate *earlyPayoffDate;
+
+@property (nonatomic, retain) MultiScenarioInputValue *deferredPaymentEnabled;
 @property (nonatomic, retain) MultiScenarioSimEndDate *deferredPaymentDate;
 
 @property (nonatomic, retain) MultiScenarioAmount * loanCost;

@@ -131,10 +131,8 @@
 
 -(BOOL)deferredPaymentDateEnabled
 {
-	// TODO - need a loan parameter to enable/disable deferred payments.
-	BOOL deferredPmtEnabled = FALSE;
-//	BOOL deferredPmtEnabled = [SimInputHelper multiScenBoolVal:loan.deferredPmtEnabled
-//				andScenario:simParams.simScenario];
+	BOOL deferredPmtEnabled = [SimInputHelper multiScenBoolVal:loan.deferredPaymentEnabled
+				andScenario:simParams.simScenario];
 	return deferredPmtEnabled;
 }
 

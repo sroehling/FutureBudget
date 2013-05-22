@@ -47,6 +47,7 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 @property (nonatomic, retain) TaxInput * taxEnabled;
 @property (nonatomic, retain) CashFlowInput * cashFlowEnabled;
 @property (nonatomic, retain) CashFlowInput * cashFlowEventRepeatFrequency;
+@property (nonatomic, retain) LoanInput *loanDeferredPaymentEnabled;
 @property (nonatomic, retain) LoanInput * loanDownPmtEnabled;
 @property (nonatomic, retain) LoanInput * loanDownPmtPercent;
 @property (nonatomic, retain) LoanInput * loanDownPmtPercentFixed;

@@ -704,7 +704,9 @@
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
 				];
 				
-	[formPopulator nextSection];
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_SECTION_TITLE")];
+	[self.formPopulator populateMultiScenBoolField:loan.deferredPaymentEnabled
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_ENABLED_LABEL")];
 	[self.formPopulator populateLoanDeferPaymentDate:loan
 		withFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_FIELD_LABEL")];
 				
