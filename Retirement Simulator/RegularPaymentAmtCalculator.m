@@ -11,10 +11,10 @@
 
 @implementation RegularPaymentAmtCalculator
 
+
 -(double)paymentAmtForLoanInfo:(LoanSimInfo*)loanInfo andPmtDate:(NSDate*)paymentDate
 {
-	// TODO - This will need to be expanded to work with deferred dates. 
-	return [loanInfo monthlyPayment];
+	return loanInfo.currentMonthlyPayment;
 }
 
 -(BOOL)paymentIsSubsized

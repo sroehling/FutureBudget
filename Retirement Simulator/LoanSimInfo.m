@@ -31,6 +31,7 @@
 @synthesize loanBalance;
 @synthesize extraPmtGrowthCalc;
 @synthesize simParams;
+@synthesize currentMonthlyPayment;
 
 -(void)dealloc
 {
@@ -247,38 +248,43 @@
 	return startingBal;
 }
 
-
-- (double)monthlyPayment
+-(double)monthlyPaymentForPmtCalcDate:(NSDate*)pmtCalcDate andStartingBal:(double)startingBal
 {
-
-	// TODO - The code below calculates the monthly payment using the loan origination
-	// amount and the fixed interest rates as of the loan origination date.
-	double annualInterestRateAsOfLoanOrig = 
+	double annualInterestRateAsOfLoanPmtCalcDate =
 		[SimInputHelper multiScenValueAsOfDate:self.loan.interestRate.growthRate 
-			andDate:[self loanOrigDate] andScenario:simParams.simScenario]/100.0;
-	assert(annualInterestRateAsOfLoanOrig >= 0.0);
+			andDate:pmtCalcDate andScenario:simParams.simScenario]/100.0;
+	assert(annualInterestRateAsOfLoanPmtCalcDate >= 0.0);
 
 // TBD  Need to reconcile to 2 methods below for calculating the monthly payment.
 // Simply dividing by 12 seems to be the standard, the first (commented out) one is for the APY
 // and arguably more correct/precise.
-//		double monthlyInterestRateAsOfLoanOrig = [
+//		double annualInterestRateAsOfLoanPmtCalcDate = [
 //			VariableRate annualRateToPerPeriodRate:annualInterestRateAsOfLoanOrig 
 //			andNumPeriods:12.0];
 
-	double monthlyInterestRateAsOfLoanOrig = annualInterestRateAsOfLoanOrig / 12.0;
-
-
-	// TODO - Adjust the payment amount if the payments are deferred.
-	// If an interest only payment is made while the loan is in deferrment,
-	// then the balance will be the same as the startingBal. Otherwise,
-	// The balance needs to be adjusted for interest until the deferment date.
-	double startingBal = [self startingBalanceAfterDownPayment];
+	double monthlyInterestRateAsOfPmtCalcDate = annualInterestRateAsOfLoanPmtCalcDate / 12.0;
+	
+	assert(startingBal >= 0.0);
 	
 	double payment = [VariableRate periodicPaymentForPrincipal:startingBal
-			andPeriodRate:monthlyInterestRateAsOfLoanOrig andNumPeriods:[self loanTermMonths]];
+			andPeriodRate:monthlyInterestRateAsOfPmtCalcDate andNumPeriods:[self loanTermMonths]];
 	assert(payment >= 0.0);
 	
 	return payment;
+
+	
+}
+
+
+- (double)monthlyPaymentForPaymentsStartingAtLoanOrig
+{
+
+	double startingBal = [self startingBalanceAfterDownPayment];
+	NSDate *pmtCalcDate = [self loanOrigDate];
+	
+	double monthlyPmt = [self monthlyPaymentForPmtCalcDate:pmtCalcDate andStartingBal:startingBal];
+	
+	return monthlyPmt;
 }
 
 
@@ -360,7 +366,7 @@
 	double balanceAsOfLastPaymentBeforeSimStart = [loanBalanceBeforeSimStart currentBalanceForDate:loanOrigDate];
 	
 	EventRepeater *pmtRepeater = [self createLoanPmtRepeater];
-	double monthlyPmt = [self monthlyPayment];
+	double monthlyPmt = [self monthlyPaymentForPaymentsStartingAtLoanOrig];
 
 	// Loan exists as of the start date. Interest starts on the last
 	// payment date before the sim start date.
@@ -450,7 +456,9 @@
 		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator
 			createVariableRateCalc:loan.extraPmtGrowthRate.growthRate
 			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario
-			andUseLoanAnnualRates:false];					
+			andUseLoanAnnualRates:false];
+			
+		self.currentMonthlyPayment = [self monthlyPaymentForPaymentsStartingAtLoanOrig]; // default
 		
 	}
 	return self;

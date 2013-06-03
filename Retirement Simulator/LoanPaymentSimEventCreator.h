@@ -22,7 +22,7 @@
 		BOOL hasDeferredPayments;
 		BOOL payInterestUnderDeferrment;
 		BOOL interestSubsizedUnderDeferrment;
-		
+		BOOL firstPaymentMadeUnderDeferrment;
 }
 
 @property(nonatomic,retain) EventRepeater *eventRepeater;

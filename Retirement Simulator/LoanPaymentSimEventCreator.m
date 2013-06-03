@@ -30,6 +30,7 @@
 #import "RegularPaymentAmtCalculator.h"
 #import "InterestOnlyPaymentAmtCalculator.h"
 #import "NoPaymentAmtCalculator.h"
+#import "FirstDeferredPaymentAmtCalculator.h"
 
 @implementation LoanPaymentSimEventCreator
 
@@ -59,6 +60,8 @@
 	interestSubsizedUnderDeferrment = [self.loanInfo deferredPaymentInterestSubsidized];
 	payInterestUnderDeferrment = [self.loanInfo deferredPaymentPayInterestWhileInDeferrment];
 	
+	firstPaymentMadeUnderDeferrment = FALSE;
+		
 }
 
 - (SimEvent*)nextSimEvent
@@ -88,12 +91,22 @@
 			}
 			else
 			{
-				pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];
+				if(!firstPaymentMadeUnderDeferrment)
+				{
+					pmtEvent.pmtCalculator = [[[FirstDeferredPaymentAmtCalculator alloc] init] autorelease];;
+					firstPaymentMadeUnderDeferrment = TRUE;
+				}
+				else
+				{
+					pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];;
+				}
+							
+				
 			}
 		}
 		else
 		{
-			pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];
+			pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc]init] autorelease];
 		}
 		
 		

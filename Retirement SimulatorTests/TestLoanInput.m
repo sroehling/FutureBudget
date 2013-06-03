@@ -110,7 +110,7 @@
 
 	[self checkDate:pmtDate vsExpected:expctedPmtDateStr inContext:context];
 	
-	double paymentAmount = [loanInfo monthlyPayment];
+	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
 	
 	NSLog(@"Balance before pmt: %0.2f",[loanInfo.loanBalance currentBalanceForDate:pmtDate]);
 	[loanInfo.loanBalance decrementAvailableBalanceForNonExpense:paymentAmount asOfDate:pmtDate];
@@ -134,7 +134,7 @@
 	
 	// Cross-checked with MS Excel using the function "=PMT(10%/12,12,100,0,0)"
 
-	double paymentAmount = [loanInfo monthlyPayment];
+	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
 
 	[self checkValue:paymentAmount vsExpected:8.79 
 		inContext:@"testSimpleLoan:monthly payment"];
@@ -228,7 +228,7 @@
 	
 	// Cross-checked with MS Excel using the function "=PMT(10%/12,12,100,0,0)"
 
-	double paymentAmount = [loanInfo monthlyPayment];
+	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
 
 	[self checkValue:paymentAmount vsExpected:8.79 
 		inContext:@"testLoanWithoutExplicitStartingBalance:monthly payment"];

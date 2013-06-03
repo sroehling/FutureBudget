@@ -20,6 +20,8 @@
 		SimParams *simParams;
 		InterestBearingWorkingBalance *loanBalance;
 		VariableRateCalculator *extraPmtGrowthCalc;
+		
+		double currentMonthlyPayment;
 
 }
 
@@ -31,6 +33,15 @@
 @property(nonatomic,retain) InterestBearingWorkingBalance *loanBalance;
 @property(nonatomic,retain) VariableRateCalculator *extraPmtGrowthCalc;
 @property(nonatomic,retain) SimParams *simParams;
+
+// This property is initialized and updated during simulation to contain the
+// current monthly payment. By default, the current monthly payment is set
+// in LoanPaymentSimEventCreator to be the monthly payment based upon the
+// loan origination amount. However, it may also be updated in
+// FirstDeferredPaymentAmtCalculator to reflect the payment based upon the
+// loan balance as of the first deferred payment (possibly including any accrued
+// interest between the time of origination and the first payment).
+@property double currentMonthlyPayment;
 
 
 -(double)downPaymentAmount;
@@ -48,7 +59,10 @@
 - (double)loanOrigAmount;
 
 - (EventRepeater*)createLoanPmtRepeater;
-- (double)monthlyPayment;
+
+- (double)monthlyPaymentForPaymentsStartingAtLoanOrig;
+-(double)monthlyPaymentForPmtCalcDate:(NSDate*)pmtCalcDate andStartingBal:(double)startingBal;
+
 - (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate;
 
 -(double)simulatedStartingBalanceForPastLoanOrigination;
