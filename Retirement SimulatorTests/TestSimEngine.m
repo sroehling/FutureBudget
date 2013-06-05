@@ -1202,6 +1202,94 @@
 
 }
 
+-(void)testLoanWithDeferredPaymentAndNoPaymentOfInterestWhileInDeferrment
+{
+	[self resetCoredData];
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	
+	
+	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
+	// payment needs to be include the interest.
+	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
+	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// Interest is not paid in the first year, so the balance will increase by 10%
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1104.41 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:768.44 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:397.29 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01" withAdjustedVals:FALSE];
+}
+
+-(void)testLoanWithDeferredPaymentAndPaymentOfInterestWhileInDeferrment
+{
+	[self resetCoredData];
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	
+	
+	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
+	// payment needs to be include the interest.
+	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
+	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// Interest is paid in the first year, so the balance will not increase by 10%
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// At the end of 2013, there's a little bit of unpaid interest on the account. This is paid off
+	// before calculating the regular payment at the beginning of 2014.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1008.22 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:695.60 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:359.63 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01" withAdjustedVals:FALSE];
+}
+
 
 -(void)testAccount
 {

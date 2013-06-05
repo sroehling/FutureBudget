@@ -273,4 +273,36 @@
 }
 
 
+- (void)testDeferredPaymentAmount
+{	
+	LoanInput *theLoan  = [self createTestLoanWithLoanCost:100
+		andDuration:12 andInterestRate:10 andDownPmtPercent:0 andExtraPmtAmt:0];
+		
+		
+	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"] andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"] 
+		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 
+			andDeficitRate:self.testAppVals.deficitInterestRate andDeficitBalance:0.0
+		andInflationRate:testAppVals.defaultInflationRate] autorelease];	
+	LoanSimInfo *loanInfo = [[[LoanSimInfo alloc] initWithLoan:theLoan andSimParams:simParams] autorelease];
+	
+	
+	// Cross-checked with MS Excel using the function "=PMT(10%/12,12,100,0,0)"
+	
+	// Test the lower-level method used to calculate the monthly payments for both payments starting on
+	// the origination date or on the deferred date.
+
+	double paymentAmount = [loanInfo monthlyPaymentForPmtCalcDate:[DateHelper dateFromStr:@"2013-01-01"]
+			andStartingBal:100.0];
+
+	[self checkValue:paymentAmount vsExpected:8.79
+		inContext:@"testSimpleLoan:monthly payment"];
+	
+	[self checkValue:[loanInfo loanOrigAmount] vsExpected:100 
+		inContext:@"testSimpleLoan:origination amount"];
+
+	[self checkValue:[loanInfo downPaymentAmount] vsExpected:0 
+		inContext:@"testSimpleLoan:down pmt amount"];
+
+}
+
 @end

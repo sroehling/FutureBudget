@@ -7,6 +7,7 @@
 //
 
 #import "FirstDeferredPaymentAmtCalculator.h"
+#import "InterestOnlyPaymentAmtCalculator.h"
 #import "LoanSimInfo.h"
 #import "InterestBearingWorkingBalance.h"
 
@@ -18,11 +19,27 @@
 	// The first payment calculator has the side effect of updating the current monthly
 	// payment for the loan, based upon the current loan balance.
 	[loanInfo.loanBalance advanceCurrentBalanceToDate:paymentDate];
-	double balanceAsOfFirstPaymentDate = [loanInfo.loanBalance currentBalanceForDate:paymentDate];
-	loanInfo.currentMonthlyPayment = [loanInfo monthlyPaymentForPmtCalcDate:paymentDate
-		andStartingBal:balanceAsOfFirstPaymentDate];
 
-	return loanInfo.currentMonthlyPayment;
+
+	double lastInterestPayment = 0.0;
+	if([loanInfo deferredPaymentPayInterestWhileInDeferrment])
+	{
+		InterestOnlyPaymentAmtCalculator *interestPaymentForLastTimeIncrementBeforeFirstDeferredPayment
+			= [[[InterestOnlyPaymentAmtCalculator alloc]
+					initWithSubsidizedInterestPayment:FALSE] autorelease];
+		lastInterestPayment =
+			[interestPaymentForLastTimeIncrementBeforeFirstDeferredPayment paymentAmtForLoanInfo:loanInfo andPmtDate:paymentDate];
+		
+	}
+
+	double balanceAsOfFirstPaymentDate = [loanInfo.loanBalance currentBalanceForDate:paymentDate];
+	double balanceForCalculatingFirstPayment = balanceAsOfFirstPaymentDate - lastInterestPayment;
+	assert(balanceAsOfFirstPaymentDate >= 0.0);
+
+	loanInfo.currentMonthlyPayment = [loanInfo monthlyPaymentForPmtCalcDate:paymentDate
+		andStartingBal:balanceForCalculatingFirstPayment];
+
+	return loanInfo.currentMonthlyPayment + lastInterestPayment;
 }
 
 -(BOOL)paymentIsSubsized
