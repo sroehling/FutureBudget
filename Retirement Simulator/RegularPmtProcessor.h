@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LoanPmtAmtCalculator.h"
+#import "LoanPmtProcessor.h"
 
-@interface RegularPaymentAmtCalculator : NSObject <LoanPmtAmtCalculator>
+@interface RegularPmtProcessor : NSObject <LoanPmtProcessor>
 
 @end

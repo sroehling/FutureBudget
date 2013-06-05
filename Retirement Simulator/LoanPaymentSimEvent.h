@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 
 #import "SimEvent.h"
-#import "LoanPmtAmtCalculator.h"
+#import "LoanPmtProcessor.h"
 
 @class LoanSimInfo;
 
 @interface LoanPaymentSimEvent : SimEvent {
     @private
 		LoanSimInfo *loanInfo;
-		id<LoanPmtAmtCalculator> pmtCalculator;
+		id<LoanPmtProcessor> pmtProcessor;
 
 }
 
 @property(nonatomic,retain) LoanSimInfo *loanInfo;
-@property(nonatomic,retain) id<LoanPmtAmtCalculator> pmtCalculator;
+@property(nonatomic,retain) id<LoanPmtProcessor> pmtProcessor;
 
 @end

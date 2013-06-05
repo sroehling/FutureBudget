@@ -6,11 +6,13 @@
 //
 //
 
-#import "InterestOnlyPaymentAmtCalculator.h"
+#import "InterestOnlyPmtProcessor.h"
 #import "LoanSimInfo.h"
 #import "InterestBearingWorkingBalance.h"
+#import "LoanPmtHelper.h"
+#import "DigestEntryProcessingParams.h"
 
-@implementation InterestOnlyPaymentAmtCalculator
+@implementation InterestOnlyPmtProcessor
 
 -(id)initWithSubsidizedInterestPayment:(BOOL)doSubsidizePayment
 {
@@ -27,6 +29,8 @@
 	assert(0);
 	return nil;
 }
+
+
 
 -(double)paymentAmtForLoanInfo:(LoanSimInfo*)loanInfo andPmtDate:(NSDate*)paymentDate
 {
@@ -50,9 +54,14 @@
 	
 }
 
--(BOOL)paymentIsSubsized
+-(void)processPmtForLoanInfo:(LoanSimInfo*)loanInfo andProcessingParams:(DigestEntryProcessingParams*)processingParams
 {
-	return subsizePayment;
+	double pmtAmount = [self paymentAmtForLoanInfo:loanInfo andPmtDate:processingParams.currentDate];
+
+	[LoanPmtHelper decrementLoanPayment:pmtAmount forLoanInfo:loanInfo
+		andProcessingParams:processingParams andSubsidizedPmt:subsizePayment];
+
 }
+
 
 @end

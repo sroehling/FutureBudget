@@ -13,7 +13,7 @@
 #import "SharedAppValues.h"
 #import "LoanPaymentSimEvent.h"
 #import "SimParams.h"
-#import "ExtraLoanPmtAmtCalculator.h"
+#import "ExtraLoanPmtProcessor.h"
 
 
 @implementation ExtraPaymentSimEventCreator
@@ -52,7 +52,7 @@
 				andEventDate:nextPmtDate ] autorelease];
 			
 			pmtEvent.loanInfo = self.loanInfo;
-			pmtEvent.pmtCalculator = [[[ExtraLoanPmtAmtCalculator alloc] init] autorelease];
+			pmtEvent.pmtProcessor = [[[ExtraLoanPmtProcessor alloc] init] autorelease];
 			
 			return pmtEvent;
 		}

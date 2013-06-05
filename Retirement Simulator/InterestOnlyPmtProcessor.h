@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LoanPmtAmtCalculator.h"
+#import "LoanPmtProcessor.h"
 
-@interface InterestOnlyPaymentAmtCalculator : NSObject <LoanPmtAmtCalculator>
+@interface InterestOnlyPmtProcessor : NSObject <LoanPmtProcessor>
 {
 	@private
 		BOOL subsizePayment;

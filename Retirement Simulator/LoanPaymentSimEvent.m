@@ -18,13 +18,13 @@
 @implementation LoanPaymentSimEvent
 
 @synthesize loanInfo;
-@synthesize pmtCalculator;
+@synthesize pmtProcessor;
 
 
 - (void)dealloc
 {
 	[loanInfo release];
-	[pmtCalculator release];
+	[pmtProcessor release];
 	[super dealloc];
 }
 
@@ -34,7 +34,7 @@
 	assert(self.loanInfo != nil);
 			  
 	LoanPmtDigestEntry *loanPmt = [[[LoanPmtDigestEntry alloc] 
-		initWithLoanInfo:self.loanInfo andPmtCalculator:self.pmtCalculator] autorelease];
+		initWithLoanInfo:self.loanInfo andPmtProcessor:self.pmtProcessor] autorelease];
 		
 	[digest.digestEntries addDigestEntry:loanPmt onDate:self.eventDate];
 }

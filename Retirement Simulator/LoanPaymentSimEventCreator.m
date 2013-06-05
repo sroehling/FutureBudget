@@ -27,10 +27,10 @@
 #import "SimInputHelper.h"
 #import "LoanSimInfo.h"
 #import "SimParams.h"
-#import "RegularPaymentAmtCalculator.h"
-#import "InterestOnlyPaymentAmtCalculator.h"
-#import "NoPaymentAmtCalculator.h"
-#import "FirstDeferredPaymentAmtCalculator.h"
+#import "RegularPmtProcessor.h"
+#import "InterestOnlyPmtProcessor.h"
+#import "NoPmtProcessor.h"
+#import "FirstDeferredPmtProcessor.h"
 
 @implementation LoanPaymentSimEventCreator
 
@@ -81,24 +81,24 @@
 			{
 				if(payInterestUnderDeferrment)
 				{
-					pmtEvent.pmtCalculator = [[[InterestOnlyPaymentAmtCalculator alloc]
+					pmtEvent.pmtProcessor = [[[InterestOnlyPmtProcessor alloc]
 						initWithSubsidizedInterestPayment:interestSubsizedUnderDeferrment] autorelease];
 				}
 				else
 				{
-					pmtEvent.pmtCalculator = [[[NoPaymentAmtCalculator alloc] init] autorelease];
+					pmtEvent.pmtProcessor = [[[NoPmtProcessor alloc] init] autorelease];
 				}
 			}
 			else
 			{
 				if(!firstPaymentMadeUnderDeferrment)
 				{
-					pmtEvent.pmtCalculator = [[[FirstDeferredPaymentAmtCalculator alloc] init] autorelease];;
+					pmtEvent.pmtProcessor = [[[FirstDeferredPmtProcessor alloc] init] autorelease];;
 					firstPaymentMadeUnderDeferrment = TRUE;
 				}
 				else
 				{
-					pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc] init] autorelease];;
+					pmtEvent.pmtProcessor = [[[RegularPmtProcessor alloc] init] autorelease];;
 				}
 							
 				
@@ -106,7 +106,7 @@
 		}
 		else
 		{
-			pmtEvent.pmtCalculator = [[[RegularPaymentAmtCalculator alloc]init] autorelease];
+			pmtEvent.pmtProcessor = [[[RegularPmtProcessor alloc]init] autorelease];
 		}
 		
 		

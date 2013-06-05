@@ -11,22 +11,22 @@
 #import "DigestEntryProcessingParams.h"
 #import "WorkingBalanceMgr.h"
 #import "LoanSimInfo.h"
-#import "LoanPmtAmtCalculator.h"
+#import "LoanPmtProcessor.h"
 
 @implementation LoanPmtDigestEntry
 
 @synthesize loanInfo;
-@synthesize pmtCalculator;
+@synthesize pmtProcessor;
 
 - (void)dealloc
 {
 	[loanInfo release];
-	[pmtCalculator release];
+	[pmtProcessor release];
 	[super dealloc];
 }
 
 
--(id)initWithLoanInfo:(LoanSimInfo*)theLoanInfo andPmtCalculator:(id<LoanPmtAmtCalculator>)thePmtCalculator
+-(id)initWithLoanInfo:(LoanSimInfo*)theLoanInfo andPmtProcessor:(id<LoanPmtProcessor>)thePmtProcessor
 {
 	self = [super init];
 	if(self)
@@ -34,8 +34,8 @@
 		assert(theLoanInfo != nil);
 		self.loanInfo = theLoanInfo;
 		
-		assert(thePmtCalculator != nil);
-		self.pmtCalculator = thePmtCalculator;
+		assert(thePmtProcessor != nil);
+		self.pmtProcessor = thePmtProcessor;
 	}
 	return self;
 }
@@ -48,24 +48,7 @@
 
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
-
-	double paymentAmt = [self.pmtCalculator paymentAmtForLoanInfo:self.loanInfo andPmtDate:processingParams.currentDate];
-	
-	if(paymentAmt > 0.0)
-	{
-		double balancePaid = [self.loanInfo.loanBalance decrementAvailableBalanceForNonExpense:paymentAmt
-			asOfDate:processingParams.currentDate];
-			
-		if(![self.pmtCalculator paymentIsSubsized])
-		{
-			// If the payment is subsidized, the balance of payment doesn't come out
-			// of the list of accounts, but instead is assumped to be paid by
-			// someone else. This is a special case for subsidized stafford school loans.
-			[processingParams.workingBalanceMgr decrementBalanceFromFundingList:balancePaid 
-				asOfDate:processingParams.currentDate];
-		}
-	}
-	
+	[self.pmtProcessor processPmtForLoanInfo:self.loanInfo andProcessingParams:processingParams];	
 }
 
 
