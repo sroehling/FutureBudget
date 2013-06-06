@@ -1245,9 +1245,12 @@
 	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01" withAdjustedVals:FALSE];
 }
 
--(void)testLoanWithDeferredPaymentAndPaymentOfInterestWhileInDeferrment
+-(void)testLoanWithDeferredPaymentAndPaymentOfInterestAndUnSubsidizedInterest
 {
 	[self resetCoredData];
+
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+
 
 	LoanInputTypeSelctionInfo *loanCreator = 
 		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
@@ -1288,7 +1291,89 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	
 	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01" withAdjustedVals:FALSE];
+	
+	
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// The loan is taken in the first year, increasing the cash balance from 1000 to 2000
+	// However, in 2013, approximately 10% interest is payed, even though the loan
+	// is in deferrment until 2014.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1908.49 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Repayment starts in 2014, so the payments in 2014 include both principal and
+	// interest.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1512.79 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1125.59 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Payments are deferred until 2016. Since the interest is subsidized, the balance stays the same.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:749.72 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
+	
 }
+
+
+-(void)testLoanWithDeferredPaymentAndPaymentOfInterestAndSubsidizedInterest
+{
+	[self resetCoredData];
+
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:2000.0];
+
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	
+	
+	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
+	// payment needs to be include the interest.
+	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2016-01-01"]];
+	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// Interest is paid in the first year, so the balance will not increase by 10%
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// At the end of 2013, there's a little bit of unpaid interest on the account. This is paid off
+	// before calculating the regular payment at the beginning of 2014.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1000.82 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1000.82 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1000.82 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:690.78 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01" withAdjustedVals:FALSE];
+
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	// The loan is taken in the first year, increasing the cash balance from 2000 to 3000
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:3000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:3000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:3000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:3000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Payments are deferred until 2016. Since the interest is subsidized, the balance stays the same.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:2612.79 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
+
+
+}
+
 
 
 -(void)testAccount
