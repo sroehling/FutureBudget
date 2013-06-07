@@ -374,11 +374,66 @@
 	NSDate *pmtDate = [pmtRepeater nextDate];
 	assert(pmtDate != nil);
 	
+	BOOL hasDeferredPayments = [self deferredPaymentDateEnabled];
+	BOOL payInterestUnderDeferrment = [self deferredPaymentPayInterestWhileInDeferrment];
+	BOOL firstDeferredPaymentMade = FALSE;
+	
 // TODO - Need to test for boundary case where first pmt is on the simulation start date.
 	while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
 	{
 		[loanBalanceBeforeSimStart carryBalanceForward:pmtDate];
-		[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:monthlyPmt asOfDate:pmtDate];
+		
+		if(hasDeferredPayments)
+		{
+			if([self beforeDeferredPaymentDate:pmtDate])
+			{
+				if(payInterestUnderDeferrment)
+				{
+				
+					// Note, in this case, there is no need to handle subsidized interest
+					// because at the beginning of simulation, the cash balances are
+					// expected to have any subsidized interest payments (or lack-thereof)
+					// included ("baked into") the starting balances.
+				
+					double currBalance = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
+					assert(currBalance >= startingBalAtLoanOrig);
+					double accruedInterest = currBalance - startingBalAtLoanOrig;
+					[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:accruedInterest
+						asOfDate:pmtDate];
+				}
+				// Else, let the interest accrue while in deferrment
+			}
+			else
+			{
+				if(!firstDeferredPaymentMade)
+				{
+					if(payInterestUnderDeferrment)
+					{
+						// Pay the last increment of interest.
+						double currBalance = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
+						assert(currBalance >= startingBalAtLoanOrig);
+						double accruedInterest = currBalance - startingBalAtLoanOrig;
+						[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:accruedInterest
+							asOfDate:pmtDate];
+					}
+					// Set the regular payment amount based upon the balance as of the first deferred
+					// payment date.
+					double balanceAsOfFirstPaymentDate = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
+					monthlyPmt = [self monthlyPaymentForPmtCalcDate:pmtDate
+						andStartingBal:balanceAsOfFirstPaymentDate];
+					self.currentMonthlyPayment = monthlyPmt;
+
+					firstDeferredPaymentMade = TRUE;
+				}
+				[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:monthlyPmt asOfDate:pmtDate];
+			}
+		}
+		else
+		{
+			[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:monthlyPmt asOfDate:pmtDate];
+		}
+		
+		
 		balanceAsOfLastPaymentBeforeSimStart = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
 
 		pmtDate = [pmtRepeater nextDate];
@@ -401,7 +456,11 @@
 		assert(theParams != nil);
 		self.simParams = theParams;
 		
-		
+		// The currentMonthlyPayment is referenced for regular loan payments. This property is
+		// referenced for digest processing of regular loan payments. In the event of
+		// deferred loan payments, it may be updated to reflect the loan payment as of the
+		// first deferred loan payment, rather than the loan payment as of the origination.
+		self.currentMonthlyPayment = [self monthlyPaymentForPaymentsStartingAtLoanOrig]; // default
 		
 		// The working balance is setup with a "starting date for interest" (interestStartDate). This
 		// date is either the loan origination date, or the last payment date before the start of simulation
@@ -458,7 +517,6 @@
 			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario
 			andUseLoanAnnualRates:false];
 			
-		self.currentMonthlyPayment = [self monthlyPaymentForPaymentsStartingAtLoanOrig]; // default
 		
 	}
 	return self;

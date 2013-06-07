@@ -91,14 +91,21 @@
 			}
 			else
 			{
-				if(!firstPaymentMadeUnderDeferrment)
+				if([self.loanInfo beforeDeferredPaymentDate:self.loanInfo.simParams.simStartDate])
 				{
-					pmtEvent.pmtProcessor = [[[FirstDeferredPmtProcessor alloc] init] autorelease];;
-					firstPaymentMadeUnderDeferrment = TRUE;
+					if(!firstPaymentMadeUnderDeferrment)
+					{
+						pmtEvent.pmtProcessor = [[[FirstDeferredPmtProcessor alloc] init] autorelease];;
+						firstPaymentMadeUnderDeferrment = TRUE;
+					}
+					else
+					{
+						pmtEvent.pmtProcessor = [[[RegularPmtProcessor alloc] init] autorelease];;
+					}
 				}
 				else
 				{
-					pmtEvent.pmtProcessor = [[[RegularPmtProcessor alloc] init] autorelease];;
+						pmtEvent.pmtProcessor = [[[RegularPmtProcessor alloc] init] autorelease];;
 				}
 							
 				

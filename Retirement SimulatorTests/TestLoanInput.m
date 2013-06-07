@@ -78,6 +78,14 @@
 	
 	theLoan.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 
+	// Deferred Payments
+	
+	theLoan.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	theLoan.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	theLoan.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+
+	theLoan.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+
 
 	return theLoan;
 
