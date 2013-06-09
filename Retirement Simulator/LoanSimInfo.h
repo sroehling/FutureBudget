@@ -13,6 +13,7 @@
 @class EventRepeater;
 @class VariableRateCalculator;
 @class SimParams;
+@class LoanSimConfigParams;
 
 @interface LoanSimInfo : NSObject {
     @private
@@ -65,6 +66,6 @@
 
 - (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate;
 
--(double)simulatedStartingBalanceForPastLoanOrigination;
+-(LoanSimConfigParams*)configParamsForLoanOrigination;
 
 @end

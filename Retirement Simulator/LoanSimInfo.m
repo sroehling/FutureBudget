@@ -24,6 +24,7 @@
 #import "MultiScenarioSimEndDate.h"
 #import "DigestEntryProcessingParams.h"
 #import "InputValDigestSummations.h"
+#import "LoanSimConfigParams.h"
 
 @implementation LoanSimInfo
 
@@ -301,55 +302,51 @@
 	return pmtRepeater;	
 }
 
-
-- (NSDate*)calcInterestStartDate
+-(LoanSimConfigParams*)configParamsForLoanOrigination
 {
-	if([self loanOriginatesAfterSimStart])
-	{
-		// Loan originates in the the future w.r.t. the sim start date
-		return [self loanOrigDate];
-	}
-	else
-	{
-		// Loan originates in the past w.r.t. the sim start date.
-		EventRepeater *pmtRepeater = [self createLoanEventRepeater];
-		NSDate *paymentInterestStartDate = pmtRepeater.startDate;
 
-		// Loan exists as of the start date. Interest starts on the last
-		// payment date before the sim start date.
-		NSDate *pmtDate = [pmtRepeater nextDate];
-		assert(pmtDate != nil);
-// TODO - Need to test for boundary case where first pmt is on the simulation start date.
-		while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
-		{
-			// If we get to here, the payment date is still before
-			// the start of simulation date. We keep on updating
-			// paymentInterestStartDate until the payment date is
-			// after the simulation start date.
-			paymentInterestStartDate = pmtDate;
-
-			pmtDate = [pmtRepeater nextDate];
-			assert(pmtDate != nil);
-			
-		}
-		return paymentInterestStartDate;
-	}
-
-}
-
-
--(double)simulatedStartingBalanceForPastLoanOrigination
-{
+	EventRepeater *pmtRepeater = [self createLoanPmtRepeater];
 	double startingBalAtLoanOrig = [self startingBalanceAfterDownPayment];
 	NSDate *loanOrigDate = [self loanOrigDate];
+
+	// Start with a default configuration
+	LoanSimConfigParams *configParams = [[[LoanSimConfigParams alloc] init] autorelease];
+	configParams.monthlyPmt = [self monthlyPaymentForPaymentsStartingAtLoanOrig];
+	configParams.interestStartDate = [self loanOrigDate];
+	configParams.startingBal = [self startingBalanceAfterDownPayment];
 	
+	
+	if([self loanOriginatesAfterSimStart])
+	{
+			// The loan will occur/originate in the future (w.r.t. to simulation start date):
+			//
+			// If the origination date is after the simulation start date, then the "starting balance"
+			// on the loan should be ignored. This is because the loan will start after the simulation
+			// start date, with a balance that is equal to the total amount borrowed.
+			//
+			// In this case, we can return the configuration parameters with their defaults.
+			return configParams;
+	}
+
+	// If we drop through to here, the loan is existing as of the simulation start date:
+	//
+	// In this case the simulation start date is after the origination date. So,
+	// we need to use the "starting balance" for the loan, to account for the all
+	// the prior payments already made on the loan (plus any extra payments, etc.)
+	// If a starting balance hasn't been provided by the user, then "simulate" the
+	// starting balance by computing payments and interest before the simulation
+	// start date.
+
+
+
 	// If early payoff is enabled and is before the sim start, then
 	// the starting balance is always 0.0, since the loan was paid
 	// off before the simulation start.
 	if([self earlyPayoffAfterOrigination] &&
 			(![self earlyPayoffAfterSimStart]))
 	{
-		return 0.0;
+		configParams.startingBal = 0.0;
+		return configParams;
 	}
 
 	
@@ -363,11 +360,9 @@
 	InterestBearingWorkingBalance *loanBalanceBeforeSimStart = [[[InterestBearingWorkingBalance alloc]
 		initWithStartingBalance:startingBalAtLoanOrig andInterestRateCalc:interestRateCalc 
 		andWorkingBalanceName:self.loan.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
-	double balanceAsOfLastPaymentBeforeSimStart = [loanBalanceBeforeSimStart currentBalanceForDate:loanOrigDate];
+	configParams.startingBal = [loanBalanceBeforeSimStart currentBalanceForDate:loanOrigDate];
 	
-	EventRepeater *pmtRepeater = [self createLoanPmtRepeater];
-	double monthlyPmt = [self monthlyPaymentForPaymentsStartingAtLoanOrig];
-
+	
 	// Loan exists as of the start date. Interest starts on the last
 	// payment date before the sim start date.
 	
@@ -381,6 +376,9 @@
 // TODO - Need to test for boundary case where first pmt is on the simulation start date.
 	while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
 	{
+	
+
+	
 		[loanBalanceBeforeSimStart carryBalanceForward:pmtDate];
 		
 		if(hasDeferredPayments)
@@ -419,29 +417,41 @@
 					// Set the regular payment amount based upon the balance as of the first deferred
 					// payment date.
 					double balanceAsOfFirstPaymentDate = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
-					monthlyPmt = [self monthlyPaymentForPmtCalcDate:pmtDate
+					configParams.monthlyPmt = [self monthlyPaymentForPmtCalcDate:pmtDate
 						andStartingBal:balanceAsOfFirstPaymentDate];
-					self.currentMonthlyPayment = monthlyPmt;
 
 					firstDeferredPaymentMade = TRUE;
 				}
-				[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:monthlyPmt asOfDate:pmtDate];
+				[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:configParams.monthlyPmt asOfDate:pmtDate];
 			}
 		}
 		else
 		{
-			[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:monthlyPmt asOfDate:pmtDate];
+			[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:configParams.monthlyPmt asOfDate:pmtDate];
 		}
 		
-		
-		balanceAsOfLastPaymentBeforeSimStart = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
+		// If we get to here, the payment date is still before
+		// the start of simulation date. We keep on updating/advancing
+		// configParams.interestStartDate until the payment date is
+		// after the simulation start date. We also advance the starting
+		// balance configParams.startingBal to correspond with the
+		// interest start date.
+		configParams.interestStartDate = pmtDate;
+		configParams.startingBal = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
 
 		pmtDate = [pmtRepeater nextDate];
 		assert(pmtDate != nil);
 		
 	}
 
-	return balanceAsOfLastPaymentBeforeSimStart;
+	if(self.loan.startingBalance != nil)
+	{
+		// If an explicit 
+		configParams.startingBal = [self.loan.startingBalance doubleValue];
+	}
+
+
+	return configParams;
 }
 
 
@@ -455,60 +465,26 @@
 		
 		assert(theParams != nil);
 		self.simParams = theParams;
+
+
+		LoanSimConfigParams *loanConfig = [self configParamsForLoanOrigination];
+		assert(loanConfig.monthlyPmt >= 0.0);
+		assert(loanConfig.interestStartDate != nil);
+		assert(loanConfig.startingBal >= 0.0);
 		
 		// The currentMonthlyPayment is referenced for regular loan payments. This property is
 		// referenced for digest processing of regular loan payments. In the event of
 		// deferred loan payments, it may be updated to reflect the loan payment as of the
 		// first deferred loan payment, rather than the loan payment as of the origination.
-		self.currentMonthlyPayment = [self monthlyPaymentForPaymentsStartingAtLoanOrig]; // default
-		
-		// The working balance is setup with a "starting date for interest" (interestStartDate). This
-		// date is either the loan origination date, or the last payment date before the start of simulation
-		NSDate *interestStartDate;
-		double startingLoanBalance = 0.0;
-		
-		if([self loanOriginatesAfterSimStart])
-		{
-			// The loan will occur/originate in the future (w.r.t. to simulation start date):
-			//
-			// If the origination date is after the simulation start date, then the "starting balance"
-			// on the loan should be ignored. This is because the loan will start after the simulation
-			// start date, with a balance that is equal to the total amount borrowed.			
-			interestStartDate = [self loanOrigDate];
-			startingLoanBalance = [self startingBalanceAfterDownPayment];
-		}
-		else
-		{
-			// The loan is existing as of the simulation start date:
-			//
-			// In this case the simulation start date is after the origination date. So,
-			// we need to use the "starting balance" for the loan, to account for the all
-			// the prior payments already made on the loan (plus any extra payments, etc.)
-			// If a starting balance hasn't been provided by the user, then "simulate" the
-			// starting balance by computing payments and interest before the simulation
-			// start date.
-			interestStartDate = [self calcInterestStartDate];
-			if(self.loan.startingBalance == nil)
-			{
-				startingLoanBalance = [self simulatedStartingBalanceForPastLoanOrigination];
-			}
-			else
-			{
-				startingLoanBalance = [self.loan.startingBalance doubleValue];
-			}
-		}
-		
-		assert(interestStartDate != nil);
-		assert(startingLoanBalance >= 0.0);
-		
+		self.currentMonthlyPayment = loanConfig.monthlyPmt;
+
 		// Setup the working balance for the loan principal.
-// TBD - should the start date be interest start date or simulation start
 		VariableRateCalculator *interestRateCalc = [DateSensitiveValueVariableRateCalculatorCreator 
 			createVariableRateCalc:self.loan.interestRate.growthRate 
-			andStartDate:interestStartDate andScenario:simParams.simScenario 
+			andStartDate:loanConfig.interestStartDate andScenario:simParams.simScenario 
 			andUseLoanAnnualRates:true];				
 		self.loanBalance = [[[InterestBearingWorkingBalance alloc] 
-			initWithStartingBalance:startingLoanBalance andInterestRateCalc:interestRateCalc 
+			initWithStartingBalance:loanConfig.startingBal andInterestRateCalc:interestRateCalc 
 			andWorkingBalanceName:self.loan.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 		[simParams.digestSums addDigestSum:self.loanBalance.accruedInterest];
 			

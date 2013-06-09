@@ -21,6 +21,7 @@
 #import "InputCreationHelper.h"
 
 #import "LoanSimInfo.h"
+#import "LoanSimConfigParams.h"
 
 
 @implementation TestLoanInput
@@ -229,7 +230,8 @@
 		
 	LoanSimInfo *loanInfo = [[[LoanSimInfo alloc] initWithLoan:theLoan andSimParams:simParams] autorelease];
 	
-	double simulatedStartingBalance = [loanInfo simulatedStartingBalanceForPastLoanOrigination];
+	LoanSimConfigParams *configParams = [loanInfo configParamsForLoanOrigination];
+	double simulatedStartingBalance = configParams.startingBal;
 	[self checkValue:simulatedStartingBalance vsExpected:51.26
 		inContext:@"testLoanWithoutExplicitStartingBalance: Simulated Starting Balance (after 6 prior payments"];
 
