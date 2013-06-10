@@ -621,7 +621,7 @@
 
 	VariableValueRuntimeInfo *downPmtVarValRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
-		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueValidator:[[[UpTo100PercentFieldValidator alloc] init] autorelease]
 		andValueTitle:@"SHARED_LOAN_DOWN_PMT_VALUE_TITLE"
 		andInlineValueTitleKey:@"SHARED_LOAN_DOWN_PMT_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"SHARED_LOAN_DOWN_PMT_ACTION_VERB")
@@ -668,7 +668,7 @@
 
 	VariableValueRuntimeInfo *divRuntimeInfo = [[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
-		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueValidator:[[[UpTo100PercentFieldValidator alloc] init] autorelease]
 		andValueTitle:@"SHARED_DIV_REINVEST_VALUE_TITLE"
 		andInlineValueTitleKey:@"SHARED_DIV_REINVEST_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"SHARED_DIV_REINVEST_ACTION_VERB")
@@ -683,7 +683,7 @@
 		
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
+        [DateSensitiveValueFieldEditInfo
 			createForDataModelController:self.formContext.dataModelController 
 			andScenario:self.inputScenario andMultiScenFixedVal:multiScenPercent.percent
 			andLabel:LOCALIZED_STR(@"SHARED_DIV_REINVEST_VALUE_TITLE") 
