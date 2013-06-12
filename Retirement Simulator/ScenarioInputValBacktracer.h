@@ -23,7 +23,6 @@
 		NSMutableSet *loanDuration;
 		NSMutableSet *loanEnabled;
 		NSMutableSet *loanExtraPmtEnabled;
-		NSMutableSet *loanExtraPmtFrequency;
 	
 		NSMutableSet *cashFlowEnabled;
 		NSMutableSet *cashFlowRepeatFrequency;
@@ -84,7 +83,6 @@
 @property(nonatomic,retain) NSMutableSet *loanDuration;
 @property(nonatomic,retain) NSMutableSet *loanEnabled;
 @property(nonatomic,retain) NSMutableSet *loanExtraPmtEnabled;
-@property(nonatomic,retain) NSMutableSet *loanExtraPmtFrequency;
 
 @property(nonatomic,retain) NSMutableSet *cashFlowEnabled;
 @property(nonatomic,retain) NSMutableSet *cashFlowRepeatFrequency;

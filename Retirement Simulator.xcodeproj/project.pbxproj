@@ -268,7 +268,6 @@
 		005731EF13787AFD008D13C1 /* CashFlowSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731EE13787AFD008D13C1 /* CashFlowSimEventCreator.m */; };
 		005731F51379AFC0008D13C1 /* EventRepeatFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F41379AFC0008D13C1 /* EventRepeatFrequency.m */; };
 		005731F91379D42B008D13C1 /* RepeatFrequencyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */; };
-		0057D4A2174BFDB8004968F8 /* ExtraLoanPmtProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4A1174BFDB7004968F8 /* ExtraLoanPmtProcessor.m */; };
 		0057D4A5174BFDE7004968F8 /* RegularPmtProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4A4174BFDE6004968F8 /* RegularPmtProcessor.m */; };
 		0057D4AA174C0B01004968F8 /* InterestOnlyPmtProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4A9174C0B00004968F8 /* InterestOnlyPmtProcessor.m */; };
 		0057D4AD174D3800004968F8 /* NoPmtProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0057D4AC174D37FD004968F8 /* NoPmtProcessor.m */; };
@@ -349,7 +348,6 @@
 		0086C08114279A3B00148785 /* LoanOrigSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08014279A3B00148785 /* LoanOrigSimEventCreator.m */; };
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
-		0086C08B1428FCE400148785 /* ExtraPaymentSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08A1428FCE400148785 /* ExtraPaymentSimEventCreator.m */; };
 		0086C08E14294B4200148785 /* TestLoanInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08D14294B4200148785 /* TestLoanInput.m */; };
 		0086C092142956D500148785 /* SimParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C091142956D500148785 /* SimParams.m */; };
 		0086C09C142B968D00148785 /* AssetInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C09B142B968D00148785 /* AssetInput.m */; };
@@ -1013,8 +1011,6 @@
 		005731F61379D42B008D13C1 /* RepeatFrequencyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFrequencyEditViewController.h; sourceTree = "<group>"; };
 		005731F71379D42B008D13C1 /* RepeatFrequencyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFrequencyEditViewController.m; sourceTree = "<group>"; };
 		0057D49F174BFD09004968F8 /* LoanPmtProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoanPmtProcessor.h; sourceTree = "<group>"; };
-		0057D4A0174BFDB7004968F8 /* ExtraLoanPmtProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraLoanPmtProcessor.h; sourceTree = "<group>"; };
-		0057D4A1174BFDB7004968F8 /* ExtraLoanPmtProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraLoanPmtProcessor.m; sourceTree = "<group>"; };
 		0057D4A3174BFDE6004968F8 /* RegularPmtProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegularPmtProcessor.h; sourceTree = "<group>"; };
 		0057D4A4174BFDE6004968F8 /* RegularPmtProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularPmtProcessor.m; sourceTree = "<group>"; };
 		0057D4A8174C0AFF004968F8 /* InterestOnlyPmtProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestOnlyPmtProcessor.h; sourceTree = "<group>"; };
@@ -1153,8 +1149,6 @@
 		0086C08414279B7D00148785 /* SimInputHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimInputHelper.m; sourceTree = "<group>"; };
 		0086C0861427D5E300148785 /* LoanSimInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanSimInfo.h; sourceTree = "<group>"; };
 		0086C0871427D5E300148785 /* LoanSimInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanSimInfo.m; sourceTree = "<group>"; };
-		0086C0891428FCE400148785 /* ExtraPaymentSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraPaymentSimEventCreator.h; sourceTree = "<group>"; };
-		0086C08A1428FCE400148785 /* ExtraPaymentSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraPaymentSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08C14294B4200148785 /* TestLoanInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLoanInput.h; sourceTree = "<group>"; };
 		0086C08D14294B4200148785 /* TestLoanInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLoanInput.m; sourceTree = "<group>"; };
 		0086C090142956D500148785 /* SimParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimParams.h; sourceTree = "<group>"; };
@@ -2463,8 +2457,6 @@
 				00EC458F1423C5B000D65D17 /* LoanPmtDigestEntry.m */,
 				00EC458814225B9000D65D17 /* LoanPaymentSimEvent.h */,
 				00EC458914225B9100D65D17 /* LoanPaymentSimEvent.m */,
-				0086C0891428FCE400148785 /* ExtraPaymentSimEventCreator.h */,
-				0086C08A1428FCE400148785 /* ExtraPaymentSimEventCreator.m */,
 				00EC458514214C1E00D65D17 /* LoanPaymentSimEventCreator.h */,
 				00EC458614214C1E00D65D17 /* LoanPaymentSimEventCreator.m */,
 			);
@@ -2501,8 +2493,6 @@
 				006F086B175ED5410097AD1D /* LoanPmtHelper.h */,
 				006F086C175ED5410097AD1D /* LoanPmtHelper.m */,
 				0057D49F174BFD09004968F8 /* LoanPmtProcessor.h */,
-				0057D4A0174BFDB7004968F8 /* ExtraLoanPmtProcessor.h */,
-				0057D4A1174BFDB7004968F8 /* ExtraLoanPmtProcessor.m */,
 				0057D4A3174BFDE6004968F8 /* RegularPmtProcessor.h */,
 				0057D4A4174BFDE6004968F8 /* RegularPmtProcessor.m */,
 				0057D4A8174C0AFF004968F8 /* InterestOnlyPmtProcessor.h */,
@@ -3622,7 +3612,6 @@
 				0086C08114279A3B00148785 /* LoanOrigSimEventCreator.m in Sources */,
 				0086C08514279B7D00148785 /* SimInputHelper.m in Sources */,
 				0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */,
-				0086C08B1428FCE400148785 /* ExtraPaymentSimEventCreator.m in Sources */,
 				0086C092142956D500148785 /* SimParams.m in Sources */,
 				0086C09C142B968D00148785 /* AssetInput.m in Sources */,
 				0086C0A4142BC12A00148785 /* AssetValue.m in Sources */,
@@ -3805,7 +3794,6 @@
 				00590A4A173D62C100BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m in Sources */,
 				00590A4D1742E0AE00BBF045 /* MultiScenarioPercent.m in Sources */,
 				00590A501742E74600BBF045 /* DividendReinvestPercent.m in Sources */,
-				0057D4A2174BFDB8004968F8 /* ExtraLoanPmtProcessor.m in Sources */,
 				0057D4A5174BFDE7004968F8 /* RegularPmtProcessor.m in Sources */,
 				0057D4AA174C0B01004968F8 /* InterestOnlyPmtProcessor.m in Sources */,
 				0057D4AD174D3800004968F8 /* NoPmtProcessor.m in Sources */,

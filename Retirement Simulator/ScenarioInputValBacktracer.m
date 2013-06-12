@@ -67,7 +67,6 @@
 @synthesize loanOrigDate;
 @synthesize loanEnabled;
 @synthesize loanExtraPmtEnabled;
-@synthesize loanExtraPmtFrequency;
 @synthesize loanCost;
 @synthesize loanExtraPmtAmt;
 @synthesize loanCostGrowthRate;
@@ -126,14 +125,11 @@
 	if([self populateInputSet:self.loanExtraPmtEnabled 
 		      withInput:msInputVal.loanExtraPmtEnabled]) { return; }
 		
-	if([self populateInputSet:self.loanExtraPmtFrequency 
-		      withInput:msInputVal.loanExtraPmtFrequency]) { return; }
-		
+
 	if([self populateInputSet:self.cashFlowRepeatFrequency 
 		      withInput:msInputVal.cashFlowEventRepeatFrequency]) { return; }
 		
 	
-
 	if([self populateInputSet:self.cashFlowEnabled 
 		      withInput:msInputVal.cashFlowEnabled]) { return; }
 	
@@ -287,7 +283,6 @@
 		self.loanDuration = [[[NSMutableSet alloc] init] autorelease];
 		self.loanEnabled = [[[NSMutableSet alloc] init] autorelease];
 		self.loanExtraPmtEnabled = [[[NSMutableSet alloc] init] autorelease];
-		self.loanExtraPmtFrequency = [[[NSMutableSet alloc] init] autorelease];
 
 		self.cashFlowEnabled = [[[NSMutableSet alloc] init] autorelease];
 		self.taxEnabled = [[[NSMutableSet alloc] init] autorelease];
@@ -368,7 +363,6 @@
 	[loanDuration release];
 	[loanEnabled release];
 	[loanExtraPmtEnabled release];
-	[loanExtraPmtFrequency release];
 
 
 	[cashFlowEnabled release];

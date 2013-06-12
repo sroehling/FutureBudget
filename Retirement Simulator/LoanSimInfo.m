@@ -180,16 +180,33 @@
 
 - (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate
 {	
-
-	double extraPmtAsOfDate = 
-		[SimInputHelper multiScenValueAsOfDate:self.loan.extraPmtAmt.amount andDate:pmtDate
-				andScenario:simParams.simScenario];
-	
-	double extraPmtGrowthSinceSimStart = [self.extraPmtGrowthCalc valueMultiplierForDate:pmtDate];
-	
-	extraPmtAsOfDate = extraPmtAsOfDate * extraPmtGrowthSinceSimStart;
+	if([SimInputHelper multiScenBoolVal:loan.extraPmtEnabled
+				andScenario:simParams.simScenario])
+	{
+		double extraPmtAsOfDate = 
+			[SimInputHelper multiScenValueAsOfDate:self.loan.extraPmtAmt.amount andDate:pmtDate
+					andScenario:simParams.simScenario];
 		
-	return extraPmtAsOfDate;
+		double extraPmtGrowthSinceSimStart = [self.extraPmtGrowthCalc valueMultiplierForDate:pmtDate];
+		
+		extraPmtAsOfDate = extraPmtAsOfDate * extraPmtGrowthSinceSimStart;
+		
+		assert(extraPmtAsOfDate >= 0.0);
+			
+		return extraPmtAsOfDate;
+	}
+	else
+	{
+		return 0.0;
+	}
+
+}
+
+-(double)totalMonthlyPmtAsOfDate:(NSDate*)pmtDate
+{
+	double extraPayment = [self extraPmtAmountAsOfDate:pmtDate];
+	double totalPayment = self.currentMonthlyPayment + extraPayment;
+	return totalPayment;
 }
 
 

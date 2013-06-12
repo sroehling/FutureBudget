@@ -35,7 +35,6 @@ extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 
 @property (nonatomic, retain) MultiScenarioGrowthRate * interestRate;
 @property (nonatomic, retain) MultiScenarioInputValue * extraPmtEnabled;
-@property (nonatomic, retain) MultiScenarioInputValue * extraPmtFrequency;
 @property (nonatomic, retain) MultiScenarioAmount * extraPmtAmt;
 @property (nonatomic, retain) MultiScenarioGrowthRate * extraPmtGrowthRate;
 @property (nonatomic, retain) MultiScenarioInputValue * downPmtEnabled;

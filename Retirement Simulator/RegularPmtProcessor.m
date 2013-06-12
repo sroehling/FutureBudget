@@ -17,9 +17,11 @@
 -(void)processPmtForLoanInfo:(LoanSimInfo*)loanInfo andProcessingParams:(DigestEntryProcessingParams*)processingParams
 {
 
-	[loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:processingParams.currentDate];
+	NSDate *pmtDate = processingParams.currentDate;
 
-	[LoanPmtHelper decrementLoanPayment:loanInfo.currentMonthlyPayment
+	[loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
+	
+	[LoanPmtHelper decrementLoanPayment:[loanInfo totalMonthlyPmtAsOfDate:pmtDate]
 		forLoanInfo:loanInfo andProcessingParams:processingParams];
 }
 

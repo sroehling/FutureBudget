@@ -45,8 +45,6 @@ NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"input-icon-loan.png";
 @dynamic extraPmtAmt;
 @dynamic loanCost;
 
-@dynamic extraPmtFrequency;
-
 @dynamic extraPmtGrowthRate;
 
 @dynamic earlyPayoffDate;

@@ -66,6 +66,7 @@
 -(double)monthlyPaymentForPmtCalcDate:(NSDate*)pmtCalcDate andStartingBal:(double)startingBal;
 
 - (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate;
+-(double)totalMonthlyPmtAsOfDate:(NSDate*)pmtDate; // Total monthly payment plus extra payment (if any)
 
 -(LoanSimConfigParams*)configParamsForLoanOrigination;
 

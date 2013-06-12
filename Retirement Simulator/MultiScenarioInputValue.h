@@ -57,7 +57,6 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 @property (nonatomic, retain) LoanInput * loanDuration;
 @property (nonatomic, retain) LoanInput * loanEnabled;
 @property (nonatomic, retain) LoanInput * loanExtraPmtEnabled;
-@property (nonatomic, retain) LoanInput * loanExtraPmtFrequency;
 
 @property (nonatomic, retain) MultiScenarioAmount * multiScenAmountAmount;
 @property (nonatomic, retain) MultiScenarioAmount * multiScenarioDefaultFixedAmount;

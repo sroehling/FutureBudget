@@ -76,7 +76,6 @@
 	theLoan.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	theLoan.extraPmtAmt = [inputCreationHelper multiScenAmountWithDefault:extraPmt];
 	theLoan.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	theLoan.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	
 	theLoan.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 

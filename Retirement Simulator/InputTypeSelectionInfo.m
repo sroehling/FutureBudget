@@ -250,10 +250,6 @@
 	newInput.extraPmtAmt = [inputCreationHelper multiScenAmountWithDefault:0.0];
 	newInput.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	// TBD - extraPmtFrequency doesn't 
-	// have any UI input - Should this change
-	newInput.extraPmtFrequency = [inputCreationHelper multiScenarioRepeatFrequencyMonthly];
-
 	newInput.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 	
 	// Deferred Payments
