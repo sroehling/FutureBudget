@@ -48,6 +48,7 @@
 #import "TaxesPaidItemizedTaxAmt.h"
 
 #import "InterestBearingWorkingBalance.h"
+#import "PeriodicInterestBearingWorkingBalance.h"
 
 
 @implementation ItemizedTaxCalcPopulator

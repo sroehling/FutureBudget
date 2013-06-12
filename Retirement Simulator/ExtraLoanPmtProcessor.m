@@ -16,6 +16,8 @@
 -(void)processPmtForLoanInfo:(LoanSimInfo*)loanInfo andProcessingParams:(DigestEntryProcessingParams*)processingParams
 {
 
+	// TBD - Need to ensure the balance has been advanced to the current date.
+
 	double pmtAmount = [loanInfo extraPmtAmountAsOfDate:processingParams.currentDate];
 
 	[LoanPmtHelper decrementLoanPayment:pmtAmount forLoanInfo:loanInfo andProcessingParams:processingParams];

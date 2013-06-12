@@ -21,6 +21,7 @@
 #import "ExpenseSimEventCreator.h"
 #import "LoanInput.h"
 #import "InterestBearingWorkingBalance.h"
+#import "PeriodicInterestBearingWorkingBalance.h"
 #import "AccountWorkingBalance.h"
 #import "IncomeSimEventCreator.h"
 #import "IncomeSimInfo.h"

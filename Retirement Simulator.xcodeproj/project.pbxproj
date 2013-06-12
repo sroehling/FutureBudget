@@ -381,6 +381,7 @@
 		0095E96E13B8E93B000555AC /* EventRepeaterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E96D13B8E93A000555AC /* EventRepeaterTest.m */; };
 		0095E97513B92794000555AC /* NeverEndDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E97413B92794000555AC /* NeverEndDate.m */; };
 		0095E98D13BA9A9F000555AC /* SharedAppValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095E98C13BA9A90000555AC /* SharedAppValues.m */; };
+		0098766617667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0098766517667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.m */; };
 		0099A1411455D03400E35AF9 /* ItemizedTaxCalcPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1401455D03400E35AF9 /* ItemizedTaxCalcPopulator.m */; };
 		0099A1441455D1AA00E35AF9 /* TaxInputCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1431455D1AA00E35AF9 /* TaxInputCalc.m */; };
 		0099A1471455D61C00E35AF9 /* InputSimInfoCltn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0099A1461455D61B00E35AF9 /* InputSimInfoCltn.m */; };
@@ -1213,6 +1214,8 @@
 		0095E98313BA3532000555AC /* SimDateVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateVisitor.h; sourceTree = "<group>"; };
 		0095E98B13BA9A7D000555AC /* SharedAppValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedAppValues.h; sourceTree = "<group>"; };
 		0095E98C13BA9A90000555AC /* SharedAppValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedAppValues.m; sourceTree = "<group>"; };
+		0098766417667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriodicInterestBearingWorkingBalance.h; sourceTree = "<group>"; };
+		0098766517667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriodicInterestBearingWorkingBalance.m; sourceTree = "<group>"; };
 		0099A13F1455D03400E35AF9 /* ItemizedTaxCalcPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxCalcPopulator.h; sourceTree = "<group>"; };
 		0099A1401455D03400E35AF9 /* ItemizedTaxCalcPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxCalcPopulator.m; sourceTree = "<group>"; };
 		0099A1421455D1AA00E35AF9 /* TaxInputCalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxInputCalc.h; sourceTree = "<group>"; };
@@ -1251,6 +1254,7 @@
 		00A254C61476D137004F63E3 /* GrowthRateFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowthRateFieldValidator.m; sourceTree = "<group>"; };
 		00A254C81476D703004F63E3 /* PositiveNumberValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositiveNumberValidator.h; sourceTree = "<group>"; };
 		00A254C91476D704004F63E3 /* PositiveNumberValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositiveNumberValidator.m; sourceTree = "<group>"; };
+		00A2D971176785A800951F86 /* MonthlyMortgageInterestCalculation.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = MonthlyMortgageInterestCalculation.xlsx; sourceTree = "<group>"; };
 		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1547,6 +1551,8 @@
 				00590A36173ABA5C00BBF045 /* AccountWorkingBalance.m */,
 				004CB04613FD9AB0000E87A9 /* WorkingBalanceMgr.h */,
 				004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */,
+				0098766417667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.h */,
+				0098766517667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.m */,
 			);
 			name = "Working Balance";
 			sourceTree = "<group>";
@@ -2761,6 +2767,14 @@
 			name = Expense;
 			sourceTree = "<group>";
 		};
+		00A2D96F1767853E00951F86 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				00A2D971176785A800951F86 /* MonthlyMortgageInterestCalculation.xlsx */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
@@ -2833,6 +2847,7 @@
 		00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				00A2D96F1767853E00951F86 /* Documentation */,
 				00F217D2140F073300FA73AA /* CoreData.framework */,
 				0025777313B438E000D15232 /* Test Helper Code */,
 				00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */,
@@ -3797,6 +3812,7 @@
 				0057D4B0175D1147004968F8 /* FirstDeferredPmtProcessor.m in Sources */,
 				006F086D175ED5420097AD1D /* LoanPmtHelper.m in Sources */,
 				0068F106176287D800DED899 /* LoanSimConfigParams.m in Sources */,
+				0098766617667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

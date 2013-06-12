@@ -12,6 +12,7 @@
 #import "WorkingBalanceMgr.h"
 #import "LoanSimInfo.h"
 #import "LoanPmtProcessor.h"
+#import "PeriodicInterestBearingWorkingBalance.h"
 
 @implementation LoanPmtDigestEntry
 
@@ -48,7 +49,7 @@
 
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
-	[self.pmtProcessor processPmtForLoanInfo:self.loanInfo andProcessingParams:processingParams];	
+	[self.pmtProcessor processPmtForLoanInfo:self.loanInfo andProcessingParams:processingParams];
 }
 
 

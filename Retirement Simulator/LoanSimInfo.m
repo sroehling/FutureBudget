@@ -25,6 +25,8 @@
 #import "DigestEntryProcessingParams.h"
 #import "InputValDigestSummations.h"
 #import "LoanSimConfigParams.h"
+#import "PeriodicInterestBearingWorkingBalance.h"
+#import "MultiScenarioInputValue.h"
 
 @implementation LoanSimInfo
 
@@ -352,14 +354,16 @@
 	
 	// TBD - What do we do about extra payments?
 	
-	VariableRateCalculator *interestRateCalc = [DateSensitiveValueVariableRateCalculatorCreator 
-		createVariableRateCalc:self.loan.interestRate.growthRate 
-		andStartDate:loanOrigDate andScenario:self.simParams.simScenario
-		andUseLoanAnnualRates:true];
-				
-	InterestBearingWorkingBalance *loanBalanceBeforeSimStart = [[[InterestBearingWorkingBalance alloc]
-		initWithStartingBalance:startingBalAtLoanOrig andInterestRateCalc:interestRateCalc 
-		andWorkingBalanceName:self.loan.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
+	DateSensitiveValue *loanInterestRate = (DateSensitiveValue*)[
+			self.loan.interestRate.growthRate
+			getValueForScenarioOrDefault:simParams.simScenario];
+	
+	PeriodicInterestBearingWorkingBalance *loanBalanceBeforeSimStart =
+		[[[PeriodicInterestBearingWorkingBalance alloc]
+			initWithStartingBalance:startingBalAtLoanOrig andInterestRate:loanInterestRate
+			andWorkingBalanceName:self.loan.name
+			andStartDate:loanOrigDate ] autorelease];
+	
 	configParams.startingBal = [loanBalanceBeforeSimStart currentBalanceForDate:loanOrigDate];
 	
 	
@@ -376,11 +380,10 @@
 // TODO - Need to test for boundary case where first pmt is on the simulation start date.
 	while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
 	{
-	
-
-	
 		[loanBalanceBeforeSimStart carryBalanceForward:pmtDate];
-		
+		double balanceBeforeAddingPeriodInterest = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
+		[loanBalanceBeforeSimStart advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
+
 		if(hasDeferredPayments)
 		{
 			if([self beforeDeferredPaymentDate:pmtDate])
@@ -396,6 +399,7 @@
 					double currBalance = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
 					assert(currBalance >= startingBalAtLoanOrig);
 					double accruedInterest = currBalance - startingBalAtLoanOrig;
+					
 					[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:accruedInterest
 						asOfDate:pmtDate];
 				}
@@ -405,20 +409,10 @@
 			{
 				if(!firstDeferredPaymentMade)
 				{
-					if(payInterestUnderDeferrment)
-					{
-						// Pay the last increment of interest.
-						double currBalance = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
-						assert(currBalance >= startingBalAtLoanOrig);
-						double accruedInterest = currBalance - startingBalAtLoanOrig;
-						[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:accruedInterest
-							asOfDate:pmtDate];
-					}
 					// Set the regular payment amount based upon the balance as of the first deferred
 					// payment date.
-					double balanceAsOfFirstPaymentDate = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
 					configParams.monthlyPmt = [self monthlyPaymentForPmtCalcDate:pmtDate
-						andStartingBal:balanceAsOfFirstPaymentDate];
+						andStartingBal:balanceBeforeAddingPeriodInterest];
 
 					firstDeferredPaymentMade = TRUE;
 				}
@@ -479,13 +473,16 @@
 		self.currentMonthlyPayment = loanConfig.monthlyPmt;
 
 		// Setup the working balance for the loan principal.
-		VariableRateCalculator *interestRateCalc = [DateSensitiveValueVariableRateCalculatorCreator 
-			createVariableRateCalc:self.loan.interestRate.growthRate 
-			andStartDate:loanConfig.interestStartDate andScenario:simParams.simScenario 
-			andUseLoanAnnualRates:true];				
-		self.loanBalance = [[[InterestBearingWorkingBalance alloc] 
-			initWithStartingBalance:loanConfig.startingBal andInterestRateCalc:interestRateCalc 
-			andWorkingBalanceName:self.loan.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
+			
+		DateSensitiveValue *loanInterestRate = (DateSensitiveValue*)[
+			self.loan.interestRate.growthRate
+			getValueForScenarioOrDefault:simParams.simScenario];
+	
+		self.loanBalance = [[[PeriodicInterestBearingWorkingBalance alloc]
+			initWithStartingBalance:loanConfig.startingBal andInterestRate:loanInterestRate
+			andWorkingBalanceName:self.loan.name
+			andStartDate:loanConfig.interestStartDate ] autorelease];
+			
 		[simParams.digestSums addDigestSum:self.loanBalance.accruedInterest];
 			
 		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator

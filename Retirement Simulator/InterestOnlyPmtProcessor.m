@@ -8,7 +8,7 @@
 
 #import "InterestOnlyPmtProcessor.h"
 #import "LoanSimInfo.h"
-#import "InterestBearingWorkingBalance.h"
+#import "PeriodicInterestBearingWorkingBalance.h"
 #import "LoanPmtHelper.h"
 #import "DigestEntryProcessingParams.h"
 
@@ -56,6 +56,8 @@
 
 -(void)processPmtForLoanInfo:(LoanSimInfo*)loanInfo andProcessingParams:(DigestEntryProcessingParams*)processingParams
 {
+	[loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:processingParams.currentDate];
+
 	double pmtAmount = [self paymentAmtForLoanInfo:loanInfo andPmtDate:processingParams.currentDate];
 
 	[LoanPmtHelper decrementLoanPayment:pmtAmount forLoanInfo:loanInfo

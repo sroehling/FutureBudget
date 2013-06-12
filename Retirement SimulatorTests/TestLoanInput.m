@@ -19,6 +19,7 @@
 #import "EventRepeater.h"
 #import "DefaultScenario.h"
 #import "InputCreationHelper.h"
+#import "PeriodicInterestBearingWorkingBalance.h"
 
 #import "LoanSimInfo.h"
 #import "LoanSimConfigParams.h"
@@ -113,7 +114,7 @@
 }
 
 - (void)checkPmt:(LoanSimInfo*)loanInfo andPmtRepeater:(EventRepeater*)pmtRepeater
-	expectedPmtDate:(NSString*)expctedPmtDateStr inContext:(NSString*)context
+	expectedPmtDate:(NSString*)expctedPmtDateStr inContext:(NSString*)context andExpectedBalAfterPmt:(double)expectedBal
 {
     NSDate *pmtDate = [pmtRepeater nextDateOnOrAfterDate:loanInfo.simParams.simStartDate];
 
@@ -121,9 +122,16 @@
 	
 	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
 	
+	[loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
+	
 	NSLog(@"Balance before pmt: %0.2f",[loanInfo.loanBalance currentBalanceForDate:pmtDate]);
 	[loanInfo.loanBalance decrementAvailableBalanceForNonExpense:paymentAmount asOfDate:pmtDate];
-	NSLog(@"Balance after pmt: %0.2f",[loanInfo.loanBalance currentBalanceForDate:pmtDate]);
+	
+	double balAfterPmt = [loanInfo.loanBalance currentBalanceForDate:pmtDate];
+	
+	NSLog(@"Balance after pmt: %0.2f",balAfterPmt);
+	
+	[self checkValue:balAfterPmt vsExpected:expectedBal inContext:context];
 
 }
 
@@ -141,7 +149,9 @@
 	LoanSimInfo *loanInfo = [[[LoanSimInfo alloc] initWithLoan:theLoan andSimParams:simParams] autorelease];
 	
 	
-	// Cross-checked with MS Excel using the function "=PMT(10%/12,12,100,0,0)"
+	// The payment amount has been cross-checked with MS Excel using the function "=PMT(10%/12,12,100,0,0)"
+	// The loan amortization below has also been cross-checked/verified against spreadsheet
+	// amortization.
 
 	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
 
@@ -160,37 +170,37 @@
 	EventRepeater *pmtRepeater = [loanInfo createLoanPmtRepeater];
 	
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-02-01" inContext:@"testSimpleLoan: pmt 1"];
+		expectedPmtDate:@"2012-02-01" inContext:@"testSimpleLoan: pmt 1" andExpectedBalAfterPmt:92.04];
 
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-03-01" inContext:@"testSimpleLoan: pmt 2"];
+		expectedPmtDate:@"2012-03-01" inContext:@"testSimpleLoan: pmt 2" andExpectedBalAfterPmt:84.02];
 
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-04-01" inContext:@"testSimpleLoan: pmt 3"];
+		expectedPmtDate:@"2012-04-01" inContext:@"testSimpleLoan: pmt 3" andExpectedBalAfterPmt:75.93];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-05-01" inContext:@"testSimpleLoan: pmt 4"];
+		expectedPmtDate:@"2012-05-01" inContext:@"testSimpleLoan: pmt 4" andExpectedBalAfterPmt:67.77];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-06-01" inContext:@"testSimpleLoan: pmt 5"];
+		expectedPmtDate:@"2012-06-01" inContext:@"testSimpleLoan: pmt 5" andExpectedBalAfterPmt:59.54];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-07-01" inContext:@"testSimpleLoan: pmt 6"];
+		expectedPmtDate:@"2012-07-01" inContext:@"testSimpleLoan: pmt 6" andExpectedBalAfterPmt:51.24];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-08-01" inContext:@"testSimpleLoan: pmt 7"];
+		expectedPmtDate:@"2012-08-01" inContext:@"testSimpleLoan: pmt 7" andExpectedBalAfterPmt:42.88];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-09-01" inContext:@"testSimpleLoan: pmt 8"];
+		expectedPmtDate:@"2012-09-01" inContext:@"testSimpleLoan: pmt 8" andExpectedBalAfterPmt:34.45];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-10-01" inContext:@"testSimpleLoan: pmt 9"];
+		expectedPmtDate:@"2012-10-01" inContext:@"testSimpleLoan: pmt 9" andExpectedBalAfterPmt:25.94];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-11-01" inContext:@"testSimpleLoan: pmt 10"];
+		expectedPmtDate:@"2012-11-01" inContext:@"testSimpleLoan: pmt 10" andExpectedBalAfterPmt:17.37];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-12-01" inContext:@"testSimpleLoan: pmt 11"];
+		expectedPmtDate:@"2012-12-01" inContext:@"testSimpleLoan: pmt 11" andExpectedBalAfterPmt:8.72];
 		
 	// Working balances accrue digest results in yearly increments, indexed by 
 	// a "day index" from 0 to 365. Therefore, when testing with working balances,
@@ -199,7 +209,7 @@
 	[loanInfo.loanBalance carryBalanceForward:[DateHelper dateFromStr:@"2013-01-01"]];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2013-01-01" inContext:@"testSimpleLoan: pmt 12"];
+		expectedPmtDate:@"2013-01-01" inContext:@"testSimpleLoan: pmt 12" andExpectedBalAfterPmt:0.0];
 
 		
 }
@@ -232,11 +242,13 @@
 	
 	LoanSimConfigParams *configParams = [loanInfo configParamsForLoanOrigination];
 	double simulatedStartingBalance = configParams.startingBal;
-	[self checkValue:simulatedStartingBalance vsExpected:51.26
+	[self checkValue:simulatedStartingBalance vsExpected:51.24
 		inContext:@"testLoanWithoutExplicitStartingBalance: Simulated Starting Balance (after 6 prior payments"];
 
 	
-	// Cross-checked with MS Excel using the function "=PMT(10%/12,12,100,0,0)"
+	// The monthly payment has been cross-checked with MS Excel using the function "=PMT(10%/12,12,100,0,0)"
+	// The loan amortization has also been cross-checked against excel
+	// (MonthlyMortgageInterestCalculation.xlsx)
 
 	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
 
@@ -255,28 +267,28 @@
 	EventRepeater *pmtRepeater = [loanInfo createLoanPmtRepeater];
 
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-01-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 1"];
+		expectedPmtDate:@"2012-01-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 1" andExpectedBalAfterPmt:42.88];
 	
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-02-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 1"];
+		expectedPmtDate:@"2012-02-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 1" andExpectedBalAfterPmt:34.45];
 
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-03-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 2"];
+		expectedPmtDate:@"2012-03-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 2" andExpectedBalAfterPmt:25.94];
 
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-04-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 3"];
+		expectedPmtDate:@"2012-04-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 3" andExpectedBalAfterPmt:17.37];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-05-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 4"];
+		expectedPmtDate:@"2012-05-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 4" andExpectedBalAfterPmt:8.72];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-06-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 5"];
+		expectedPmtDate:@"2012-06-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 5" andExpectedBalAfterPmt:0.0];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-07-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 6"];
+		expectedPmtDate:@"2012-07-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 6" andExpectedBalAfterPmt:0.0];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
-		expectedPmtDate:@"2012-08-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 7"];
+		expectedPmtDate:@"2012-08-01" inContext:@"testLoanWithoutExplicitStartingBalance: pmt 7" andExpectedBalAfterPmt:0.0];
 		
 		
 		

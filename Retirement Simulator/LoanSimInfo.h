@@ -10,6 +10,7 @@
 
 @class LoanInput;
 @class InterestBearingWorkingBalance;
+@class PeriodicInterestBearingWorkingBalance;
 @class EventRepeater;
 @class VariableRateCalculator;
 @class SimParams;
@@ -19,7 +20,7 @@
     @private
 		LoanInput *loan;
 		SimParams *simParams;
-		InterestBearingWorkingBalance *loanBalance;
+		PeriodicInterestBearingWorkingBalance *loanBalance;
 		VariableRateCalculator *extraPmtGrowthCalc;
 		
 		double currentMonthlyPayment;
@@ -31,7 +32,7 @@
 -(bool)loanOriginatesAfterSimStart;
 
 @property(nonatomic,retain) LoanInput *loan;
-@property(nonatomic,retain) InterestBearingWorkingBalance *loanBalance;
+@property(nonatomic,retain) PeriodicInterestBearingWorkingBalance *loanBalance;
 @property(nonatomic,retain) VariableRateCalculator *extraPmtGrowthCalc;
 @property(nonatomic,retain) SimParams *simParams;
 
