@@ -973,6 +973,125 @@
 }
 
 
+-(void)testLoanWithEarlyPayoffAndProratedInterest
+{
+	[self resetCoredData];
+
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:10000.0];
+
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+	// These results have been cross-checked against spreadsheet calculations in:
+	// MonthlyMortgageInterestCalculation.xlsx
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:10000.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	// Use a high interest rate, so the prorated interest amount is easily discerned.
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:12.0];
+	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
+			[DateHelper dateFromStr:@"2014-01-01"]];
+
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] 
+		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:7314.84 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:4030.14 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01" withAdjustedVals:FALSE];
+
+
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:16346.43 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:12360.71 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:8308.10 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:8308.10 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:8308.10 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
+
+	
+}
+
+-(void)testLoanWithEarlyPayoffAndProratedInterestEndOfMonth
+{
+	[self resetCoredData];
+
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:10000.0];
+
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+	// These results have been cross-checked against spreadsheet calculations in:
+	// MonthlyMortgageInterestCalculation.xlsx
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:10000.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	// Use a high interest rate, so the prorated interest amount is easily discerned.
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:12.0];
+	
+	// The payoff happens right before the regular payment on 06/15, so the the amount of interest should
+	// be almost the entire amount for the month. This test is almost identical to the testLoanWithEarlyPayoffAndProratedInterest,
+	// but the payment happens in the middle of the year, which also further tests the logic for advancing the
+	// start date for prorated interest calculation (within the PeriodicInterestBearingWorkingBalance class).
+	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
+			[DateHelper dateFromStr:@"2014-06-14"]];
+
+
+
+	SimResultsController *simResults = [[[SimResultsController alloc] 
+		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:7314.84 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:4030.14 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:loanData withSimResults:simResults andExpectedVals:expected andLabel:@"loan01" withAdjustedVals:FALSE];
+
+
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:16346.43 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:12360.71 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:8133.47 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:8133.47 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:8133.47 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
+
+	
+}
+
 
 -(void)testLoanWithDownPayment
 {

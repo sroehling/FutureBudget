@@ -19,6 +19,8 @@
 @property(nonatomic,retain) NSDate *startDate;
 
 - (id)initWithRates:(NSMutableSet*)rates andStartDate:(NSDate*)theStart;
+- (id)initWithSingleAnnualRate:(double)theRate andStartDate:(NSDate*)theStart;
+
 - (double) valueMultiplierForDay:(unsigned int)daysOffsetFromStart;
 - (double)valueMultiplierForDate:(NSDate*)theDate;
 - (double)valueMultiplierBetweenStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;

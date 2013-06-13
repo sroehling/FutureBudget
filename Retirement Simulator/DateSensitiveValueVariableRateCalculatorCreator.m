@@ -19,6 +19,7 @@
 #import "IntermediateVariableRate.h"
 #import "CollectionHelper.h"
 #import "MultiScenarioInputValue.h"
+#import "LoanPmtHelper.h"
 
 @implementation DateSensitiveValueVariableRateCalculatorCreator
 
@@ -61,21 +62,14 @@
 	// greater than -100%; e.g. doesn't make sense to have a -200% annual rate.
 	double annualRateUserInput = [annualRateInput doubleValue];
 	assert(annualRateUserInput >= -100.0);
-	double unadjustedAnnualRate = annualRateUserInput/100.0;
 
 	if(self.useLoanAnnualRates)
 	{
-		// The conventional way (at least what is seen in on-line loan calculators
-		// and Excel) to calculate the interest rate for a loan is to divide the 
-		// annual rate by 12, then take that as the actual interest over the period.
-		// However, this value, when compounded annually, is slightly more than the 
-		// given as an input for the yearly rate.
-		double monthlyRate = unadjustedAnnualRate / 12.0;
-		double adjustedRate = pow(1.0+monthlyRate, 12.0)-1.0;
-		return adjustedRate;
+		return [LoanPmtHelper annualizedPeriodicLoanInterestRate:annualRateUserInput];
 	}
 	else
 	{
+		double unadjustedAnnualRate = annualRateUserInput/100.0;
 		return unadjustedAnnualRate;
 	}
 }

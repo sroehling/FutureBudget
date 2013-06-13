@@ -20,11 +20,20 @@
 		id<ValueAsOfCalculator> interestRateCalc;
 		InputValDigestSummation *accruedInterest;
 		NSString *workingBalanceName;
+		
+		// The dates below track the date the period was
+		// advanced. startingPeriodInterestStartDate is setup to
+		// support reseting the balance, which occurs for
+		// multi-pass digest processing which occurs for the simulation.
+		NSDate *periodInterestStartDate;
+		NSDate *startingPeriodInterestStartDate;
 }
 
 @property(nonatomic,retain )id<ValueAsOfCalculator> interestRateCalc;
 @property(nonatomic,retain ) NSString *workingBalanceName;
 @property(nonatomic,retain) InputValDigestSummation *accruedInterest;
+@property(nonatomic,retain) NSDate *periodInterestStartDate;
+@property(nonatomic,retain) NSDate *startingPeriodInterestStartDate;
 
 - (id) initWithStartingBalance:(double)theStartBalance
 	andInterestRate:(DateSensitiveValue*)theInterestRate

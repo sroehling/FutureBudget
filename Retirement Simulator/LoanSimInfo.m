@@ -27,6 +27,7 @@
 #import "LoanSimConfigParams.h"
 #import "PeriodicInterestBearingWorkingBalance.h"
 #import "MultiScenarioInputValue.h"
+#import "LoanPmtHelper.h"
 
 @implementation LoanSimInfo
 
@@ -270,29 +271,19 @@
 
 -(double)monthlyPaymentForPmtCalcDate:(NSDate*)pmtCalcDate andStartingBal:(double)startingBal
 {
+	assert(startingBal >= 0.0);
+
 	double annualInterestRateAsOfLoanPmtCalcDate =
 		[SimInputHelper multiScenValueAsOfDate:self.loan.interestRate.growthRate 
-			andDate:pmtCalcDate andScenario:simParams.simScenario]/100.0;
-	assert(annualInterestRateAsOfLoanPmtCalcDate >= 0.0);
-
-// TBD  Need to reconcile to 2 methods below for calculating the monthly payment.
-// Simply dividing by 12 seems to be the standard, the first (commented out) one is for the APY
-// and arguably more correct/precise.
-//		double annualInterestRateAsOfLoanPmtCalcDate = [
-//			VariableRate annualRateToPerPeriodRate:annualInterestRateAsOfLoanOrig 
-//			andNumPeriods:12.0];
-
-	double monthlyInterestRateAsOfPmtCalcDate = annualInterestRateAsOfLoanPmtCalcDate / 12.0;
-	
-	assert(startingBal >= 0.0);
+			andDate:pmtCalcDate andScenario:simParams.simScenario];
+	double monthlyInterestRateAsOfPmtCalcDate =
+		[LoanPmtHelper monthlyPeriodicLoanInterestRate:annualInterestRateAsOfLoanPmtCalcDate];
 	
 	double payment = [VariableRate periodicPaymentForPrincipal:startingBal
 			andPeriodRate:monthlyInterestRateAsOfPmtCalcDate andNumPeriods:[self loanTermMonths]];
 	assert(payment >= 0.0);
 	
 	return payment;
-
-	
 }
 
 

@@ -34,6 +34,16 @@
 	return self;
 }
 
+- (id)initWithSingleAnnualRate:(double)theRate andStartDate:(NSDate*)theStart
+{
+	NSMutableSet *varRates = [[[NSMutableSet alloc] init] autorelease];
+	VariableRate *varRate = [[[VariableRate alloc]
+		initWithAnnualRate:theRate andDaysSinceStart:0] autorelease];
+	[varRates addObject:varRate];
+	
+	return [self initWithRates:varRates andStartDate:theStart];
+}
+
 - (id) init 
 {
 	assert(0); // must call init above.

@@ -19,4 +19,8 @@
 +(void)decrementLoanPayment:(double)pmtAmt forLoanInfo:(LoanSimInfo*)loanInfo
 	andProcessingParams:(DigestEntryProcessingParams*)processingParams andSubsidizedPmt:(BOOL)paymentIsSubsidized;
 
++(double)annualizedPeriodicLoanInterestRate:(double)annualRateEnteredByUser;
++(double)monthlyPeriodicLoanInterestRate:(double)annualRateEnteredByUser;
+
+
 @end
