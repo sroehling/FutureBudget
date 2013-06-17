@@ -26,6 +26,7 @@ NSString * const ASSET_INPUT_DEFAULT_ICON_NAME = @"input-icon-moneybag.png";
 @dynamic purchaseDate;
 @dynamic saleDate;
 @dynamic assetGainItemizedTaxAmts;
+@dynamic assetLossItemizedTaxAmts;
 
 
 

@@ -345,6 +345,9 @@
 		0075843014E20CCB00184BD5 /* ItemizedLoanTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842F14E20CC700184BD5 /* ItemizedLoanTaxFormInfoCreator.m */; };
 		007CB04C16A5C0820034D013 /* scenario-icon-scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 007CB04A16A5C0820034D013 /* scenario-icon-scale.png */; };
 		007CB04D16A5C0820034D013 /* scenario-icon-scale@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007CB04B16A5C0820034D013 /* scenario-icon-scale@2x.png */; };
+		007D0CD5176F69F800D1CD7B /* AssetLossItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D0CD4176F69F800D1CD7B /* AssetLossItemizedTaxAmt.m */; };
+		007D0CD8176F6FE500D1CD7B /* ItemizedAssetLossTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D0CD7176F6FE500D1CD7B /* ItemizedAssetLossTaxAmtCreator.m */; };
+		007D0CDB176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D0CDA176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.m */; };
 		0086C08114279A3B00148785 /* LoanOrigSimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08014279A3B00148785 /* LoanOrigSimEventCreator.m */; };
 		0086C08514279B7D00148785 /* SimInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C08414279B7D00148785 /* SimInputHelper.m */; };
 		0086C0881427D5E300148785 /* LoanSimInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086C0871427D5E300148785 /* LoanSimInfo.m */; };
@@ -1143,6 +1146,12 @@
 		0075842F14E20CC700184BD5 /* ItemizedLoanTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanTaxFormInfoCreator.m; sourceTree = "<group>"; };
 		007CB04A16A5C0820034D013 /* scenario-icon-scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scenario-icon-scale.png"; sourceTree = "<group>"; };
 		007CB04B16A5C0820034D013 /* scenario-icon-scale@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scenario-icon-scale@2x.png"; sourceTree = "<group>"; };
+		007D0CD3176F69F800D1CD7B /* AssetLossItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetLossItemizedTaxAmt.h; sourceTree = "<group>"; };
+		007D0CD4176F69F800D1CD7B /* AssetLossItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetLossItemizedTaxAmt.m; sourceTree = "<group>"; };
+		007D0CD6176F6FE500D1CD7B /* ItemizedAssetLossTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAssetLossTaxAmtCreator.h; sourceTree = "<group>"; };
+		007D0CD7176F6FE500D1CD7B /* ItemizedAssetLossTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAssetLossTaxAmtCreator.m; sourceTree = "<group>"; };
+		007D0CD9176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAssetLossTaxFormInfoCreator.h; sourceTree = "<group>"; };
+		007D0CDA176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAssetLossTaxFormInfoCreator.m; sourceTree = "<group>"; };
 		0086C07F14279A3B00148785 /* LoanOrigSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanOrigSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08014279A3B00148785 /* LoanOrigSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanOrigSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08314279B7D00148785 /* SimInputHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimInputHelper.h; sourceTree = "<group>"; };
@@ -1795,6 +1804,8 @@
 				0075842C14E1E0EB00184BD5 /* ItemizedExpenseTaxFormInfoCreator.m */,
 				0075842E14E20CC300184BD5 /* ItemizedLoanTaxFormInfoCreator.h */,
 				0075842F14E20CC700184BD5 /* ItemizedLoanTaxFormInfoCreator.m */,
+				007D0CD9176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.h */,
+				007D0CDA176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.m */,
 			);
 			name = "Itemizations List";
 			sourceTree = "<group>";
@@ -1817,6 +1828,8 @@
 				006D3A69145F5B8D004AF798 /* AccountWithdrawalItemizedTaxAmt.m */,
 				005DAEEA1460635800D87907 /* AssetGainItemizedTaxAmt.h */,
 				005DAEEB1460635800D87907 /* AssetGainItemizedTaxAmt.m */,
+				007D0CD3176F69F800D1CD7B /* AssetLossItemizedTaxAmt.h */,
+				007D0CD4176F69F800D1CD7B /* AssetLossItemizedTaxAmt.m */,
 				005DAEF114609A0F00D87907 /* LoanInterestItemizedTaxAmt.h */,
 				005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */,
 				002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */,
@@ -2006,6 +2019,8 @@
 				006D3A6F145F6001004AF798 /* ItemizedAccountWithdrawalTaxAmtCreator.m */,
 				005DAEEE1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.h */,
 				005DAEEF1460675500D87907 /* ItemizedAssetGainTaxAmtCreator.m */,
+				007D0CD6176F6FE500D1CD7B /* ItemizedAssetLossTaxAmtCreator.h */,
+				007D0CD7176F6FE500D1CD7B /* ItemizedAssetLossTaxAmtCreator.m */,
 				005DAEF414609AC500D87907 /* ItemizedLoanInterestTaxAmtCreator.h */,
 				005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */,
 				0014296C154F442300B8AE5C /* ItemizedTaxesPaidTaxAmtCreator.h */,
@@ -3801,6 +3816,9 @@
 				006F086D175ED5420097AD1D /* LoanPmtHelper.m in Sources */,
 				0068F106176287D800DED899 /* LoanSimConfigParams.m in Sources */,
 				0098766617667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.m in Sources */,
+				007D0CD5176F69F800D1CD7B /* AssetLossItemizedTaxAmt.m in Sources */,
+				007D0CD8176F6FE500D1CD7B /* ItemizedAssetLossTaxAmtCreator.m in Sources */,
+				007D0CDB176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

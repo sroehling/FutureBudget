@@ -352,11 +352,16 @@
 "INPUT_ASSET_SALE_REL_END_DATE_SECTION_TITLE" = "Sell After Purchase Date";
 "INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL" = "After Purchase Date";
 "INPUT_ASSET_TAXABLE_GAIN_SECTION_TITLE" = "Taxable Gains";
+"INPUT_ASSET_DEDUCTABLE_ASSET_LOSSES_SECTION_TITLE" = "Deductable Losses";
 "INPUT_ASSET_TAXES_TITLE" = "Asset Taxes";
 "INPUT_ASSET_TAXES_FIELD_TITLE" = "Taxes on Gains When Sold";
+"INPUT_ASSET_LOSS_TAXES_FIELD_TITLE" = "Deduction on Losses When Sold";
 "INPUT_ASSET_TAX_DETAIL_HEADER_FORMAT" = "Taxable Gains for %@";
+"INPUT_ASSET_LOSS_TAX_DETAIL_HEADER_FORMAT" = "Deductable Losses for %@";
 "INPUT_ASSET_TAX_DETAIL_HEADER_NAME_UNDEFINED" = "Taxable Gains";
+"INPUT_ASSET_LOSS_TAX_DETAIL_HEADER_NAME_UNDEFINED" = "Deductable Losses";
 "INPUT_ASSET_TAX_DETAIL_SUBHEADER" = "Select any taxes which apply to gains from an asset sale. If an applicable tax is not listed, create the appropriate tax input first.";
+"INPUT_ASSET_LOSS_TAX_DETAIL_SUBHEADER" = "Select any tax deductions which apply to losses from an asset sale. If an applicable tax is not listed, create the appropriate tax input first.";
 
 
 
@@ -449,6 +454,7 @@
 "INPUT_TAX_ITEMIZED_ACCT_WITHDRAWAL_TITLE" = "Account Withdrawals";
 "INPUT_TAX_ITEMIZED_ACCT_WITHDRAWAL_INLINE" = "account withdrawal";
 "INPUT_TAX_ITEMIZED_ASSET_GAIN_TITLE" = "Asset Gain";
+"INPUT_TAX_ITEMIZED_ASSET_LOSS_TITLE" = "Asset Loss";
 "INPUT_TAX_ITEMIZED_ASSET_GAIN_INLINE" = "asset gain";
 "INPUT_TAX_ITEMIZED_LOAN_INTEREST_TITLE" = "Loan Interest";
 "INPUT_TAX_ITEMIZED_LOAN_INTEREST_INLINE" = "loan interest";

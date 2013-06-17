@@ -40,6 +40,7 @@
 		NSMutableArray *itemizedAccountContribs;
 		NSMutableArray *itemizedAccountWithdrawals;
 		NSMutableArray *itemizedAssets;
+		NSMutableArray *itemizedAssetLosses;
 		NSMutableArray *itemizedLoans;
 		NSMutableArray *itemizedTaxesPaid;
 }
@@ -58,6 +59,7 @@
 @property(nonatomic,retain) NSMutableArray *itemizedAccountContribs;
 @property(nonatomic,retain) NSMutableArray *itemizedAccountWithdrawals;
 @property(nonatomic,retain) NSMutableArray *itemizedAssets;
+@property(nonatomic,retain) NSMutableArray *itemizedAssetLosses;
 @property(nonatomic,retain) NSMutableArray *itemizedLoans;
 @property(nonatomic,retain) NSMutableArray *itemizedTaxesPaid;
 
@@ -72,7 +74,10 @@
 - (NSArray*)acctDividendNotAlreadyItemized;
 - (NSArray*)acctCapitalGainNotAlreadyItemized;
 - (NSArray*)acctCapitalLossNotAlreadyItemized;
+
 - (NSArray*)assetGainsNotAlreadyItemized;
+- (NSArray*)assetLossesNotAlreadyItemized;
+
 - (NSArray*)loanInterestNotAlreadyItemized;
 - (NSArray*)taxesPaidNotAlreadyItemizedExcluding:(TaxInput*)taxToExclude;
 
@@ -89,6 +94,7 @@
 
 
 -(AssetGainItemizedTaxAmt *)findItemizedAssetGain:(AssetInput*)asset;
+-(AssetLossItemizedTaxAmt *)findItemizedAssetLoss:(AssetInput*)asset;
 
 -(LoanInterestItemizedTaxAmt *)findItemizedLoanInterest:(LoanInput*)loan;
 

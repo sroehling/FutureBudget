@@ -76,6 +76,7 @@
 #import "DateHelper.h"
 #import "MultiScenarioInputValue.h"
 #import "InputTagsFieldEditInfo.h"
+#import "ItemizedAssetLossTaxFormInfoCreator.h"
 
 @implementation DetailInputViewCreator
 
@@ -793,10 +794,17 @@
 				andRelEndDateHelpFile:@"relEndDateSell"
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_SALE_REL_END_DATE_FIELD_LABEL")
 				];
+				
  	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_TAXES_FIELD_TITLE")
 			andFormInfoCreator:[[[ItemizedAssetTaxFormInfoCreator alloc] initWithAsset:asset
 				andIsForNewObject:self.isForNewObject] autorelease]
 			andItemizedTaxAmtsInfo:asset.assetGainItemizedTaxAmts];
+			
+	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ASSET_LOSS_TAXES_FIELD_TITLE")
+			andFormInfoCreator:[[[ItemizedAssetLossTaxFormInfoCreator alloc] initWithAsset:asset
+				andIsForNewObject:self.isForNewObject] autorelease]
+			andItemizedTaxAmtsInfo:asset.assetLossItemizedTaxAmts];
+		
 
 }
 

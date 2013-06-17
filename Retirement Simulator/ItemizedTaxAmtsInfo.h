@@ -38,6 +38,7 @@
 		BOOL itemizeAccountCapitalLosses;
 		BOOL itemizeLoanInterest;
 		BOOL itemizeAssetGains;
+		BOOL itemizeAssetLosses;
 		BOOL itemizedTaxesPaid;
 		
 }
@@ -64,6 +65,7 @@
 
 @property BOOL itemizeLoanInterest;
 @property BOOL itemizeAssetGains;
+@property BOOL itemizeAssetLosses;
 @property BOOL itemizeTaxesPaid;
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
@@ -83,6 +85,7 @@
 	andItemizeCapitalGains:(BOOL)doItemizeCapitalGains
 	andItemizeCapitalLosses:(BOOL)doItemizeCapitalLosses
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
+	andItemizeAssetLosses:(BOOL)doItemizeAssetLosses
 	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest
 	andItemizeTaxesPaid:(BOOL)doItemizeTaxesPaid;
 	

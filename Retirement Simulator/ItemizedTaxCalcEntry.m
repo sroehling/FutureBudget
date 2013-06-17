@@ -16,6 +16,7 @@
 @synthesize digestSum;
 @synthesize applicableTaxPerc;
 @synthesize zeroOutNegativeVals;
+@synthesize invertVals;
 
 -(id)initWithTaxPerc:(double)taxPerc andDigestSum:(InputValDigestSummation*)theSum
 {
@@ -30,6 +31,7 @@
 		self.applicableTaxPerc = taxPerc;
 		
 		zeroOutNegativeVals = FALSE;
+		invertVals = FALSE;
 		
 	}
 	return self;
@@ -46,6 +48,12 @@
 
 	double yearlyTotal = digestSum.yearlyTotal;
 	
+	if(self.invertVals)
+	{
+		yearlyTotal *= -1.0;
+	}
+
+
 	if(self.zeroOutNegativeVals && (yearlyTotal < 0.0))
 	{
 		yearlyTotal = 0.0;
@@ -60,6 +68,11 @@
 	assert(dayIndex < MAX_DAYS_IN_YEAR);
 	
 	double dailySum = [self.digestSum dailySum:dayIndex];
+	
+	if(self.invertVals)
+	{
+		dailySum *= -1.0;
+	}
 	
 	if(self.zeroOutNegativeVals && (dailySum < 0.0))
 	{

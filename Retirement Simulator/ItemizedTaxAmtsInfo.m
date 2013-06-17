@@ -37,6 +37,7 @@
 @synthesize itemizeAccountCapitalLosses;
 @synthesize itemizeLoanInterest;
 @synthesize itemizeAssetGains;
+@synthesize itemizeAssetLosses;
 @synthesize itemizeTaxesPaid;
 @synthesize anchorWithinHelpFile;
 
@@ -58,6 +59,7 @@
 	andItemizeCapitalGains:(BOOL)doItemizeCapitalGains
 	andItemizeCapitalLosses:(BOOL)doItemizeCapitalLosses
 	andItemizeAssetGains:(BOOL)doItemizeAssetGains
+	andItemizeAssetLosses:(BOOL)doItemizeAssetLosses
 	andItemizeLoanInterest:(BOOL)doItemizeLoanInterest
 	andItemizeTaxesPaid:(BOOL)doItemizeTaxesPaid
 {
@@ -93,6 +95,7 @@
 		self.itemizeAccountCapitalLosses = doItemizeCapitalLosses;
 		
 		self.itemizeAssetGains = doItemizeAssetGains;
+		self.itemizeAssetLosses = doItemizeAssetLosses;
 		self.itemizeLoanInterest = doItemizeLoanInterest;
 		self.itemizeTaxesPaid = doItemizeTaxesPaid;
 		
@@ -132,7 +135,8 @@
 			andItemizeAccountDividends:		TRUE
 			andItemizeCapitalGains:			TRUE
 			andItemizeCapitalLosses:		FALSE
-			andItemizeAssetGains:			TRUE 
+			andItemizeAssetGains:			TRUE
+			andItemizeAssetLosses:			FALSE
 			andItemizeLoanInterest:			FALSE
 			andItemizeTaxesPaid:			FALSE] autorelease];
 }
@@ -159,6 +163,7 @@
 			andItemizeCapitalGains:			FALSE
 			andItemizeCapitalLosses:		FALSE
 			andItemizeAssetGains:			FALSE 
+			andItemizeAssetLosses:			FALSE
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			FALSE] autorelease];
 }
@@ -185,6 +190,7 @@
 			andItemizeCapitalGains:			FALSE
 			andItemizeCapitalLosses:		TRUE
 			andItemizeAssetGains:			FALSE 
+			andItemizeAssetLosses:			TRUE
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			TRUE] autorelease];
 }
@@ -210,6 +216,7 @@
 			andItemizeCapitalGains:			FALSE
 			andItemizeCapitalLosses:		FALSE
 			andItemizeAssetGains:			FALSE 
+			andItemizeAssetLosses:			FALSE
 			andItemizeLoanInterest:			TRUE
 			andItemizeTaxesPaid:			FALSE] autorelease];
 }

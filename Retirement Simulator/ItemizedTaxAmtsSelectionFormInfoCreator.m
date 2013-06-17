@@ -57,6 +57,8 @@
 #import "ItemizedAccountCapitalLossTaxAmtCreator.h"
 #import "AccountCapitalGainItemizedTaxAmt.h"
 #import "AccountCapitalLossItemizedTaxAmt.h"
+#import "ItemizedAssetLossTaxAmtCreator.h"
+#import "AssetLossItemizedTaxAmt.h"
 
 #import "LocalizationHelper.h"
 #import "FormContext.h"
@@ -507,6 +509,51 @@
 			}
 		}
 	}
+
+
+	if([self.itemizedTaxAmtsInfo itemizeAssetLosses])
+	{
+		NSArray *assetNotItemized = [fieldPopulator assetLossesNotAlreadyItemized];
+		if(([fieldPopulator.itemizedAssetLosses count] > 0) ||
+			([assetNotItemized count] > 0))
+		{
+			[formPopulator nextSectionWithTitle:[NSString stringWithFormat:
+				self.itemizedTaxAmtsInfo.itemSectionTitleFormat,
+				LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ASSET_LOSS_TITLE")]
+				andHelpFile:self.itemizedTaxAmtsInfo.itemHelpInfoFile];
+
+			for(AssetLossItemizedTaxAmt *itemizedAssetLoss in fieldPopulator.itemizedAssetLosses )
+			{
+				ItemizedTaxAmtFieldEditInfo *assetLossFieldEditInfo =
+					[[[ItemizedTaxAmtFieldEditInfo alloc] 
+						initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+						andItemizedTaxAmtCreator:
+							[[[ItemizedAssetLossTaxAmtCreator alloc]
+								initWithFormContext:parentContext
+									andAsset:itemizedAssetLoss.asset
+									andLabel:itemizedAssetLoss.asset.name] autorelease]
+					andItemizedTaxAmt:itemizedAssetLoss
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:assetLossFieldEditInfo];
+				
+			}
+			for(AssetInput *unitemizedAsset in assetNotItemized)
+			{	
+				ItemizedTaxAmtFieldEditInfo *assetLossFieldEditInfo = [[[ItemizedTaxAmtFieldEditInfo alloc]
+					initWithDataModelController:parentContext.dataModelController 
+						andItemizedTaxAmts:self.itemizedTaxAmtsInfo.itemizedTaxAmts 
+					andItemizedTaxAmtCreator:
+						[[[ItemizedAssetLossTaxAmtCreator alloc] initWithFormContext:parentContext
+							andAsset:unitemizedAsset
+							andLabel:unitemizedAsset.name] autorelease]
+					andItemizedTaxAmt:nil
+					andItemizedTaxAmtsInfo:self.itemizedTaxAmtsInfo andIsForNewObject:self.isForNewObject] autorelease];
+				[formPopulator.currentSection addFieldEditInfo:assetLossFieldEditInfo];
+			}
+		}
+	}
+
 	
 	if([self.itemizedTaxAmtsInfo itemizeLoanInterest])
 	{

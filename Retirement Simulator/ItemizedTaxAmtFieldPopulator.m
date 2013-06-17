@@ -15,6 +15,7 @@
 #import "AccountContribItemizedTaxAmt.h"
 #import "AccountInterestItemizedTaxAmt.h"
 #import "AssetGainItemizedTaxAmt.h"
+#import "AssetLossItemizedTaxAmt.h"
 #import "LoanInterestItemizedTaxAmt.h"
 #import "TaxesPaidItemizedTaxAmt.h"
 #import "AccountDividendItemizedTaxAmt.h"
@@ -47,6 +48,7 @@
 @synthesize itemizedAccountWithdrawals;
 
 @synthesize itemizedAssets;
+@synthesize itemizedAssetLosses;
 @synthesize itemizedLoans;
 @synthesize itemizedTaxesPaid;
 
@@ -66,6 +68,8 @@
 	[itemizedAccountWithdrawals release];
 	
 	[itemizedAssets release];
+	[itemizedAssetLosses release];
+	
 	[itemizedLoans release];
 	[itemizedTaxesPaid release];
 	
@@ -97,6 +101,7 @@
 		self.itemizedAccountCapitalLoss = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAccountWithdrawals = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedAssets = [[[NSMutableArray alloc] init] autorelease];
+		self.itemizedAssetLosses = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedLoans = [[[NSMutableArray alloc] init] autorelease];
 		self.itemizedTaxesPaid = [[[NSMutableArray alloc] init] autorelease];
 		
@@ -162,6 +167,12 @@
 {
 	assert(itemizedTaxAmt != nil);
 	[self.itemizedAssets addObject:itemizedTaxAmt];
+}
+
+-(void)visitAssetLossItemizedTaxAmt:(AssetLossItemizedTaxAmt *)itemizedTaxAmt
+{
+	assert(itemizedTaxAmt != nil);
+	[self.itemizedAssetLosses addObject:itemizedTaxAmt];
 }
 
 -(void)visitLoanInterestItemizedTaxAmt:(LoanInterestItemizedTaxAmt *)itemizedTaxAmt
@@ -409,6 +420,21 @@
 	return unItemizedAssets;
 }
 
+- (NSArray*)assetLossesNotAlreadyItemized
+{
+	NSArray *allAssets = [self.dataModelController
+			fetchSortedObjectsWithEntityName:ASSET_INPUT_ENTITY_NAME sortKey:INPUT_NAME_KEY];
+	NSMutableArray *unItemizedAssets = [NSMutableArray arrayWithArray:allAssets];	
+		
+	for(AssetLossItemizedTaxAmt *itemizedAsset in self.itemizedAssetLosses)
+	{
+		[unItemizedAssets removeObject:itemizedAsset.asset];
+	}
+	
+	return unItemizedAssets;
+}
+
+
 
 - (NSArray*)taxesPaidNotAlreadyItemizedExcluding:(TaxInput*)taxToExclude
 {
@@ -430,6 +456,19 @@
 {
 	assert(asset != nil);
 	for(AssetGainItemizedTaxAmt *itemizedAsset in self.itemizedAssets)
+	{
+		if(itemizedAsset.asset == asset)
+		{
+			return itemizedAsset;
+		}
+	}
+	return nil;
+}
+
+-(AssetLossItemizedTaxAmt *)findItemizedAssetLoss:(AssetInput*)asset
+{
+	assert(asset != nil);
+	for(AssetLossItemizedTaxAmt *itemizedAsset in self.itemizedAssetLosses)
 	{
 		if(itemizedAsset.asset == asset)
 		{
@@ -595,6 +634,21 @@
 			[assetNameList componentsJoinedByString:@","]]];
 	}
 	
+	if([self enabledItemizationCount:self.itemizedAssetLosses] > 0)
+	{
+		NSMutableArray *assetNameList = [[[NSMutableArray alloc] init] autorelease];
+		for(AssetLossItemizedTaxAmt *itemizedAsset in self.itemizedAssetLosses)
+		{
+			if([itemizedAsset.isEnabled boolValue])
+			{
+				[assetNameList addObject:itemizedAsset.asset.name];
+			}
+		}
+		[listOfListsOfItemizations addObject:[NSString stringWithFormat:@"%@:%@",
+			LOCALIZED_STR(@"INPUT_TAX_ITEMIZED_ASSET_LOSS_TITLE"),
+			[assetNameList componentsJoinedByString:@","]]];
+	}
+	
 	if([self enabledItemizationCount:self.itemizedExpenses] > 0)
 	{
 		NSMutableArray *expenseNameList = [[[NSMutableArray alloc] init] autorelease];
@@ -675,6 +729,8 @@
 	theCount += [self enabledItemizationCount:self.itemizedLoans];
 
 	theCount += [self enabledItemizationCount:self.itemizedAssets];
+	
+	theCount += [self enabledItemizationCount:self.itemizedAssetLosses];
 	
 	theCount += [self enabledItemizationCount:self.itemizedExpenses];
 	

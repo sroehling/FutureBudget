@@ -31,6 +31,7 @@
 #import "AssetInput.h"
 #import "AssetSimInfo.h"
 #import "AssetGainItemizedTaxAmt.h"
+#import "AssetLossItemizedTaxAmt.h"
 
 #import "Account.h"
 #import "AccountInterestItemizedTaxAmt.h"
@@ -160,6 +161,21 @@
 		
 	// Any asset losses are zeroed out for purposes of computing taxes.
 	self.calcEntry.zeroOutNegativeVals = TRUE;
+}
+
+-(void)visitAssetLossItemizedTaxAmt:(AssetLossItemizedTaxAmt *)itemizedTaxAmt
+{
+	AssetSimInfo *simInfo = [self.simParams.assetInfo
+		getSimInfo:itemizedTaxAmt.asset];
+	double taxPerc = [self resolveTaxablePercent:itemizedTaxAmt];
+	
+	self.calcEntry = [[[ItemizedTaxCalcEntry alloc] initWithTaxPerc:taxPerc
+		andDigestSum:simInfo.sumGainsLosses] autorelease];
+		
+	// The taxable amount is the sum of negative values.
+	self.calcEntry.zeroOutNegativeVals = TRUE;
+	self.calcEntry.invertVals = TRUE;
+
 }
 
 -(void)visitLoanInterestItemizedTaxAmt:(LoanInterestItemizedTaxAmt *)itemizedTaxAmt
