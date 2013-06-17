@@ -40,6 +40,8 @@
 	andWorkingBalanceName:(NSString*)wbName
 	andStartDate:(NSDate*)theStartDate;
 
-- (void)advanceCurrentBalanceToNextPeriodOnDate:(NSDate*)newDate;
+// Advance to the next periodic payment, and return the interest
+// accrued in the last period.
+- (double)advanceCurrentBalanceToNextPeriodOnDate:(NSDate*)newDate;
 
 @end

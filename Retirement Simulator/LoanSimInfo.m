@@ -188,6 +188,7 @@
 			[SimInputHelper multiScenValueAsOfDate:self.loan.extraPmtAmt.amount andDate:pmtDate
 					andScenario:simParams.simScenario];
 		
+		assert(self.extraPmtGrowthCalc != nil);
 		double extraPmtGrowthSinceSimStart = [self.extraPmtGrowthCalc valueMultiplierForDate:pmtDate];
 		
 		extraPmtAsOfDate = extraPmtAsOfDate * extraPmtGrowthSinceSimStart;
@@ -390,7 +391,9 @@
 	{
 		[loanBalanceBeforeSimStart carryBalanceForward:pmtDate];
 		double balanceBeforeAddingPeriodInterest = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
-		[loanBalanceBeforeSimStart advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
+		double accruedInterest = [loanBalanceBeforeSimStart advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
+		
+		double extraPmtAmount = [self extraPmtAmountAsOfDate:pmtDate];
 
 		if(hasDeferredPayments)
 		{
@@ -403,15 +406,19 @@
 					// because at the beginning of simulation, the cash balances are
 					// expected to have any subsidized interest payments (or lack-thereof)
 					// included ("baked into") the starting balances.
-				
-					double currBalance = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
-					assert(currBalance >= startingBalAtLoanOrig);
-					double accruedInterest = currBalance - startingBalAtLoanOrig;
+					double totalPmtAmount = accruedInterest + extraPmtAmount;
 					
-					[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:accruedInterest
+					[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:totalPmtAmount
 						asOfDate:pmtDate];
 				}
-				// Else, let the interest accrue while in deferrment
+				else
+				{
+					// Let the interest accrue while in deferrment, but still process the extra payment (if any)
+					
+					[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:extraPmtAmount
+						asOfDate:pmtDate];
+				
+				}
 			}
 			else
 			{
@@ -424,12 +431,17 @@
 
 					firstDeferredPaymentMade = TRUE;
 				}
-				[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:configParams.monthlyPmt asOfDate:pmtDate];
+				
+				double totalPmtAmount = configParams.monthlyPmt + extraPmtAmount;
+				
+				[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:totalPmtAmount asOfDate:pmtDate];
 			}
 		}
 		else
 		{
-			[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:configParams.monthlyPmt asOfDate:pmtDate];
+			double totalPmtAmount = configParams.monthlyPmt + extraPmtAmount;
+		
+			[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:totalPmtAmount asOfDate:pmtDate];
 		}
 		
 		// If we get to here, the payment date is still before
@@ -467,7 +479,13 @@
 		
 		assert(theParams != nil);
 		self.simParams = theParams;
-
+		
+		// self.extraPmtGrowthCalc is referenced inside configParamsForLoanOrigination,
+		// so we need to allocate it *before* calling configParamsForLoanOrigination.
+		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator
+			createVariableRateCalc:loan.extraPmtGrowthRate.growthRate
+			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario
+			andUseLoanAnnualRates:false];
 
 		LoanSimConfigParams *loanConfig = [self configParamsForLoanOrigination];
 		assert(loanConfig.monthlyPmt >= 0.0);
@@ -493,10 +511,6 @@
 			
 		[simParams.digestSums addDigestSum:self.loanBalance.accruedInterest];
 			
-		self.extraPmtGrowthCalc	= [DateSensitiveValueVariableRateCalculatorCreator
-			createVariableRateCalc:loan.extraPmtGrowthRate.growthRate
-			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario
-			andUseLoanAnnualRates:false];
 			
 		
 	}

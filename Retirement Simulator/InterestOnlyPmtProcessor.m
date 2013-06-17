@@ -31,37 +31,24 @@
 }
 
 
-
--(double)paymentAmtForLoanInfo:(LoanSimInfo*)loanInfo andPmtDate:(NSDate*)paymentDate
-{
-	// Advance the balance to accrue any interest.
-	[loanInfo.loanBalance advanceCurrentBalanceToDate:paymentDate];
-	
-	double currBalance = [loanInfo.loanBalance currentBalanceForDate:paymentDate];
-	
-	double startingBal = [loanInfo startingBalanceAfterDownPayment];
-	
-	
-	if(currBalance > startingBal)
-	{
-		double unpaidInterest = currBalance - startingBal;
-		return unpaidInterest;
-	}
-	else
-	{
-		return 0.0;
-	}
-	
-}
-
 -(void)processPmtForLoanInfo:(LoanSimInfo*)loanInfo andProcessingParams:(DigestEntryProcessingParams*)processingParams
 {
-	[loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:processingParams.currentDate];
+	NSDate *pmtDate = processingParams.currentDate;
 
-	double pmtAmount = [self paymentAmtForLoanInfo:loanInfo andPmtDate:processingParams.currentDate];
+	double interestPmtAmount = [loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
 
-	[LoanPmtHelper decrementLoanPayment:pmtAmount forLoanInfo:loanInfo
+	[LoanPmtHelper decrementLoanPayment:interestPmtAmount forLoanInfo:loanInfo
 		andProcessingParams:processingParams andSubsidizedPmt:subsizePayment];
+		
+	// Even if the loan is in deferment, extra payments can be made. This supports scenarios where
+	// a little bit of money will be paid on the principle each month, even if a full interest
+	// and/or principle payment is not made.
+	//
+	// Note: this portion of the payment needs to be processed separately from the interest only payment,
+	// since the interest only payment may be subsidized, while the extra payment is not.
+	[LoanPmtHelper decrementLoanPayment:[loanInfo extraPmtAmountAsOfDate:pmtDate]
+		forLoanInfo:loanInfo andProcessingParams:processingParams];
+	
 
 }
 

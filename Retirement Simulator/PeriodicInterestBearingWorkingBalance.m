@@ -73,7 +73,7 @@
 
 }
 
-- (void)advanceCurrentBalanceToNextPeriodOnDate:(NSDate*)newDate
+- (double)advanceCurrentBalanceToNextPeriodOnDate:(NSDate*)newDate
 {		
 		double monthlyPeriodicRate = [LoanPmtHelper monthlyPeriodicLoanInterestRate:
 			[self.interestRateCalc valueAsOfDate:newDate]];
@@ -88,6 +88,9 @@
 		self.currentBalanceDate = newDate;
 		
 		self.periodInterestStartDate = newDate;
+		
+		assert(interestAmount >= 0.0);
+		return interestAmount;
 }
 
 
