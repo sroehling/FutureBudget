@@ -11,6 +11,8 @@
 #import "PeriodicInterestBearingWorkingBalance.h"
 #import "LoanPmtHelper.h"
 #import "DigestEntryProcessingParams.h"
+#import "WorkingBalanceMgr.h"
+#import "PeriodicInterestPaymentResult.h"
 
 @implementation InterestOnlyPmtProcessor
 
@@ -34,20 +36,31 @@
 -(void)processPmtForLoanInfo:(LoanSimInfo*)loanInfo andProcessingParams:(DigestEntryProcessingParams*)processingParams
 {
 	NSDate *pmtDate = processingParams.currentDate;
-
-	double interestPmtAmount = [loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
-
-	[LoanPmtHelper decrementLoanPayment:interestPmtAmount forLoanInfo:loanInfo
-		andProcessingParams:processingParams andSubsidizedPmt:subsizePayment];
 		
+	PeriodicInterestPaymentResult *pmtResult = [loanInfo.loanBalance decrementInterestOnlyPaymentOnDate:pmtDate
+			withExtraPmtAmount:[loanInfo extraPmtAmountAsOfDate:pmtDate]];
+			
+	if((!subsizePayment) && (pmtResult.interestPaid > 0.0))
+	{
+		// If the payment is subsidized, the balance of payment doesn't come out
+		// of the list of accounts, but instead is assumped to be paid by
+		// someone else. This is a special case for subsidized stafford school loans.
+		[processingParams.workingBalanceMgr decrementBalanceFromFundingList:pmtResult.interestPaid 
+				asOfDate:processingParams.currentDate];
+	}
+
 	// Even if the loan is in deferment, extra payments can be made. This supports scenarios where
 	// a little bit of money will be paid on the principle each month, even if a full interest
 	// and/or principle payment is not made.
 	//
 	// Note: this portion of the payment needs to be processed separately from the interest only payment,
 	// since the interest only payment may be subsidized, while the extra payment is not.
-	[LoanPmtHelper decrementLoanPayment:[loanInfo extraPmtAmountAsOfDate:pmtDate]
-		forLoanInfo:loanInfo andProcessingParams:processingParams];
+	if(pmtResult.extraPaymentPaid > 0.0)
+	{
+		[processingParams.workingBalanceMgr decrementBalanceFromFundingList:pmtResult.extraPaymentPaid 
+				asOfDate:processingParams.currentDate];
+	}
+
 	
 
 }

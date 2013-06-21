@@ -11,6 +11,7 @@
 #import "LoanPmtHelper.h"
 #import "PeriodicInterestBearingWorkingBalance.h"
 #import "DigestEntryProcessingParams.h"
+#import "WorkingBalanceMgr.h"
 
 @implementation RegularPmtProcessor
 
@@ -19,10 +20,13 @@
 
 	NSDate *pmtDate = processingParams.currentDate;
 
-	[loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
+	double actualPmtAmt = [loanInfo.loanBalance decrementPeriodicPaymentOnDate:pmtDate
+		withExtraPmtAmount:[loanInfo extraPmtAmountAsOfDate:pmtDate]];
+			
+	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:actualPmtAmt 
+				asOfDate:pmtDate];
 	
-	[LoanPmtHelper decrementLoanPayment:[loanInfo totalMonthlyPmtAsOfDate:pmtDate]
-		forLoanInfo:loanInfo andProcessingParams:processingParams];
+	
 }
 
 @end

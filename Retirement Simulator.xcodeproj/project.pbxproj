@@ -324,7 +324,6 @@
 		006572D314338E500062C00C /* DeferredWithdrawalFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D214338E500062C00C /* DeferredWithdrawalFieldEditInfo.m */; };
 		006572D6143393120062C00C /* DeferredWithdrawalFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */; };
 		006572DA1434F7A30062C00C /* WhatIfFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */; };
-		0068F106176287D800DED899 /* LoanSimConfigParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0068F105176287D700DED899 /* LoanSimConfigParams.m */; };
 		006B012D16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B012C16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m */; };
 		006B012F16DE742400416F54 /* taxPresets.md in Resources */ = {isa = PBXBuildFile; fileRef = 006B012E16DE742400416F54 /* taxPresets.md */; };
 		006B087114C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */; };
@@ -343,6 +342,7 @@
 		0075842A14E1DE0800184BD5 /* ItemizedAssetTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842914E1DE0500184BD5 /* ItemizedAssetTaxFormInfoCreator.m */; };
 		0075842D14E1E0EE00184BD5 /* ItemizedExpenseTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842C14E1E0EB00184BD5 /* ItemizedExpenseTaxFormInfoCreator.m */; };
 		0075843014E20CCB00184BD5 /* ItemizedLoanTaxFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075842F14E20CC700184BD5 /* ItemizedLoanTaxFormInfoCreator.m */; };
+		00779A58177232050040CAD7 /* PeriodicInterestPaymentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00779A57177232050040CAD7 /* PeriodicInterestPaymentResult.m */; };
 		007CB04C16A5C0820034D013 /* scenario-icon-scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 007CB04A16A5C0820034D013 /* scenario-icon-scale.png */; };
 		007CB04D16A5C0820034D013 /* scenario-icon-scale@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007CB04B16A5C0820034D013 /* scenario-icon-scale@2x.png */; };
 		007D0CD5176F69F800D1CD7B /* AssetLossItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D0CD4176F69F800D1CD7B /* AssetLossItemizedTaxAmt.m */; };
@@ -1107,8 +1107,6 @@
 		006572D5143393110062C00C /* DeferredWithdrawalFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredWithdrawalFormInfoCreator.m; sourceTree = "<group>"; };
 		006572D81434F7A30062C00C /* WhatIfFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatIfFormInfoCreator.h; sourceTree = "<group>"; };
 		006572D91434F7A30062C00C /* WhatIfFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatIfFormInfoCreator.m; sourceTree = "<group>"; };
-		0068F104176287D700DED899 /* LoanSimConfigParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanSimConfigParams.h; sourceTree = "<group>"; };
-		0068F105176287D700DED899 /* LoanSimConfigParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanSimConfigParams.m; sourceTree = "<group>"; };
 		006B012B16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxInputBlankOrPresetFormInfoCreator.h; sourceTree = "<group>"; };
 		006B012C16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputBlankOrPresetFormInfoCreator.m; sourceTree = "<group>"; };
 		006B012E16DE742400416F54 /* taxPresets.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxPresets.md; sourceTree = "<group>"; };
@@ -1144,6 +1142,8 @@
 		0075842C14E1E0EB00184BD5 /* ItemizedExpenseTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedExpenseTaxFormInfoCreator.m; sourceTree = "<group>"; };
 		0075842E14E20CC300184BD5 /* ItemizedLoanTaxFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedLoanTaxFormInfoCreator.h; sourceTree = "<group>"; };
 		0075842F14E20CC700184BD5 /* ItemizedLoanTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanTaxFormInfoCreator.m; sourceTree = "<group>"; };
+		00779A56177232050040CAD7 /* PeriodicInterestPaymentResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriodicInterestPaymentResult.h; sourceTree = "<group>"; };
+		00779A57177232050040CAD7 /* PeriodicInterestPaymentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriodicInterestPaymentResult.m; sourceTree = "<group>"; };
 		007CB04A16A5C0820034D013 /* scenario-icon-scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scenario-icon-scale.png"; sourceTree = "<group>"; };
 		007CB04B16A5C0820034D013 /* scenario-icon-scale@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scenario-icon-scale@2x.png"; sourceTree = "<group>"; };
 		007D0CD3176F69F800D1CD7B /* AssetLossItemizedTaxAmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetLossItemizedTaxAmt.h; sourceTree = "<group>"; };
@@ -1556,6 +1556,8 @@
 				004CB04713FD9AB2000E87A9 /* WorkingBalanceMgr.m */,
 				0098766417667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.h */,
 				0098766517667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.m */,
+				00779A56177232050040CAD7 /* PeriodicInterestPaymentResult.h */,
+				00779A57177232050040CAD7 /* PeriodicInterestPaymentResult.m */,
 			);
 			name = "Working Balance";
 			sourceTree = "<group>";
@@ -3159,8 +3161,6 @@
 		00EC458414214B9C00D65D17 /* Loan */ = {
 			isa = PBXGroup;
 			children = (
-				0068F104176287D700DED899 /* LoanSimConfigParams.h */,
-				0068F105176287D700DED899 /* LoanSimConfigParams.m */,
 				0086C0861427D5E300148785 /* LoanSimInfo.h */,
 				0086C0871427D5E300148785 /* LoanSimInfo.m */,
 				0057D4A6174C05B5004968F8 /* Origination */,
@@ -3814,11 +3814,11 @@
 				0057D4AD174D3800004968F8 /* NoPmtProcessor.m in Sources */,
 				0057D4B0175D1147004968F8 /* FirstDeferredPmtProcessor.m in Sources */,
 				006F086D175ED5420097AD1D /* LoanPmtHelper.m in Sources */,
-				0068F106176287D800DED899 /* LoanSimConfigParams.m in Sources */,
 				0098766617667E80005E1A9E /* PeriodicInterestBearingWorkingBalance.m in Sources */,
 				007D0CD5176F69F800D1CD7B /* AssetLossItemizedTaxAmt.m in Sources */,
 				007D0CD8176F6FE500D1CD7B /* ItemizedAssetLossTaxAmtCreator.m in Sources */,
 				007D0CDB176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.m in Sources */,
+				00779A58177232050040CAD7 /* PeriodicInterestPaymentResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

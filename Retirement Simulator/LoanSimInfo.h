@@ -14,7 +14,6 @@
 @class EventRepeater;
 @class VariableRateCalculator;
 @class SimParams;
-@class LoanSimConfigParams;
 
 @interface LoanSimInfo : NSObject {
     @private
@@ -22,9 +21,6 @@
 		SimParams *simParams;
 		PeriodicInterestBearingWorkingBalance *loanBalance;
 		VariableRateCalculator *extraPmtGrowthCalc;
-		
-		double currentMonthlyPayment;
-
 }
 
 -(id)initWithLoan:(LoanInput*)theLoan andSimParams:(SimParams*)theParams;
@@ -36,18 +32,10 @@
 @property(nonatomic,retain) VariableRateCalculator *extraPmtGrowthCalc;
 @property(nonatomic,retain) SimParams *simParams;
 
-// This property is initialized and updated during simulation to contain the
-// current monthly payment. By default, the current monthly payment is set
-// in LoanPaymentSimEventCreator to be the monthly payment based upon the
-// loan origination amount. However, it may also be updated in
-// FirstDeferredPaymentAmtCalculator to reflect the payment based upon the
-// loan balance as of the first deferred payment (possibly including any accrued
-// interest between the time of origination and the first payment).
-@property double currentMonthlyPayment;
-
 
 -(double)downPaymentAmount;
 -(NSDate*)loanOrigDate;
+-(double)loanTermMonths;
 - (double)startingBalanceAfterDownPayment; // Starting balance on the date of loan origination
 
 -(NSDate*)earlyPayoffDate;
@@ -62,12 +50,6 @@
 
 - (EventRepeater*)createLoanPmtRepeater;
 
-- (double)monthlyPaymentForPaymentsStartingAtLoanOrig;
--(double)monthlyPaymentForPmtCalcDate:(NSDate*)pmtCalcDate andStartingBal:(double)startingBal;
-
 - (double)extraPmtAmountAsOfDate:(NSDate*)pmtDate;
--(double)totalMonthlyPmtAsOfDate:(NSDate*)pmtDate; // Total monthly payment plus extra payment (if any)
-
--(LoanSimConfigParams*)configParamsForLoanOrigination;
 
 @end

@@ -23,6 +23,7 @@
 @synthesize withdrawPriority;
 @synthesize contribs;
 @synthesize withdrawals;
+@synthesize currentBalance;
 
 
 - (id) initWithStartingBalance:(double)theStartBalance 

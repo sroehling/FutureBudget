@@ -24,7 +24,6 @@
 #import "MultiScenarioSimEndDate.h"
 #import "DigestEntryProcessingParams.h"
 #import "InputValDigestSummations.h"
-#import "LoanSimConfigParams.h"
 #import "PeriodicInterestBearingWorkingBalance.h"
 #import "MultiScenarioInputValue.h"
 #import "LoanPmtHelper.h"
@@ -35,7 +34,6 @@
 @synthesize loanBalance;
 @synthesize extraPmtGrowthCalc;
 @synthesize simParams;
-@synthesize currentMonthlyPayment;
 
 -(void)dealloc
 {
@@ -204,13 +202,6 @@
 
 }
 
--(double)totalMonthlyPmtAsOfDate:(NSDate*)pmtDate
-{
-	double extraPayment = [self extraPmtAmountAsOfDate:pmtDate];
-	double totalPayment = self.currentMonthlyPayment + extraPayment;
-	return totalPayment;
-}
-
 
 - (EventRepeater*)createLoanEventRepeater
 {
@@ -299,9 +290,6 @@
 	return monthlyPmt;
 }
 
-
-
-
 - (EventRepeater*)createLoanPmtRepeater
 {
 	EventRepeater *pmtRepeater = [self createLoanEventRepeater];
@@ -313,20 +301,22 @@
 	return pmtRepeater;	
 }
 
--(LoanSimConfigParams*)configParamsForLoanOrigination
+-(PeriodicInterestBearingWorkingBalance*)configLoanBalance
 {
 
-	EventRepeater *pmtRepeater = [self createLoanPmtRepeater];
-	double startingBalAtLoanOrig = [self startingBalanceAfterDownPayment];
-	NSDate *loanOrigDate = [self loanOrigDate];
+	// Start with a default configuration	
+	DateSensitiveValue *loanInterestRate = (DateSensitiveValue*)[
+		self.loan.interestRate.growthRate
+		getValueForScenarioOrDefault:simParams.simScenario];
 
-	// Start with a default configuration
-	LoanSimConfigParams *configParams = [[[LoanSimConfigParams alloc] init] autorelease];
-	configParams.monthlyPmt = [self monthlyPaymentForPaymentsStartingAtLoanOrig];
-	configParams.interestStartDate = [self loanOrigDate];
-	configParams.startingBal = [self startingBalanceAfterDownPayment];
-	
-	
+	PeriodicInterestBearingWorkingBalance *loanBalanceBeforeSimStart =
+		[[[PeriodicInterestBearingWorkingBalance alloc]
+			initWithStartingBalance:[self startingBalanceAfterDownPayment]
+			andInterestRate:loanInterestRate
+			andWorkingBalanceName:self.loan.name
+			andStartDate: [self loanOrigDate]
+			andNumPeriods:[self loanTermMonths]] autorelease];
+
 	if([self loanOriginatesAfterSimStart])
 	{
 			// The loan will occur/originate in the future (w.r.t. to simulation start date):
@@ -336,7 +326,8 @@
 			// start date, with a balance that is equal to the total amount borrowed.
 			//
 			// In this case, we can return the configuration parameters with their defaults.
-			return configParams;
+			
+			return loanBalanceBeforeSimStart;			
 	}
 
 	// If we drop through to here, the loan is existing as of the simulation start date:
@@ -349,36 +340,19 @@
 	// start date.
 
 
-
 	// If early payoff is enabled and is before the sim start, then
 	// the starting balance is always 0.0, since the loan was paid
 	// off before the simulation start.
 	if([self earlyPayoffAfterOrigination] &&
 			(![self earlyPayoffAfterSimStart]))
-	{
-		configParams.startingBal = 0.0;
-		return configParams;
+	{		
+		return [[[PeriodicInterestBearingWorkingBalance alloc] initWithExplicitStartingBalance:0.0
+				andOtherBalance:loanBalanceBeforeSimStart] autorelease];			
 	}
-
-	
-	// TBD - What do we do about extra payments?
-	
-	DateSensitiveValue *loanInterestRate = (DateSensitiveValue*)[
-			self.loan.interestRate.growthRate
-			getValueForScenarioOrDefault:simParams.simScenario];
-	
-	PeriodicInterestBearingWorkingBalance *loanBalanceBeforeSimStart =
-		[[[PeriodicInterestBearingWorkingBalance alloc]
-			initWithStartingBalance:startingBalAtLoanOrig andInterestRate:loanInterestRate
-			andWorkingBalanceName:self.loan.name
-			andStartDate:loanOrigDate ] autorelease];
-	
-	configParams.startingBal = [loanBalanceBeforeSimStart currentBalanceForDate:loanOrigDate];
-	
 	
 	// Loan exists as of the start date. Interest starts on the last
 	// payment date before the sim start date.
-	
+	EventRepeater *pmtRepeater = [self createLoanPmtRepeater];	
 	NSDate *pmtDate = [pmtRepeater nextDate];
 	assert(pmtDate != nil);
 	
@@ -386,13 +360,10 @@
 	BOOL payInterestUnderDeferrment = [self deferredPaymentPayInterestWhileInDeferrment];
 	BOOL firstDeferredPaymentMade = FALSE;
 	
-// TODO - Need to test for boundary case where first pmt is on the simulation start date.
 	while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
 	{
 		[loanBalanceBeforeSimStart carryBalanceForward:pmtDate];
-		double balanceBeforeAddingPeriodInterest = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
-		double accruedInterest = [loanBalanceBeforeSimStart advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
-		
+				
 		double extraPmtAmount = [self extraPmtAmountAsOfDate:pmtDate];
 
 		if(hasDeferredPayments)
@@ -401,57 +372,36 @@
 			{
 				if(payInterestUnderDeferrment)
 				{
-				
 					// Note, in this case, there is no need to handle subsidized interest
 					// because at the beginning of simulation, the cash balances are
 					// expected to have any subsidized interest payments (or lack-thereof)
-					// included ("baked into") the starting balances.
-					double totalPmtAmount = accruedInterest + extraPmtAmount;
-					
-					[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:totalPmtAmount
-						asOfDate:pmtDate];
+					// included ("baked into") the starting balances.					
+					[loanBalanceBeforeSimStart decrementInterestOnlyPaymentOnDate:pmtDate withExtraPmtAmount:extraPmtAmount];
 				}
 				else
 				{
 					// Let the interest accrue while in deferrment, but still process the extra payment (if any)
-					
-					[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:extraPmtAmount
-						asOfDate:pmtDate];
-				
+					[loanBalanceBeforeSimStart skippedPaymentOnDate:pmtDate withExtraPmtAmount:extraPmtAmount];
 				}
 			}
 			else
 			{
 				if(!firstDeferredPaymentMade)
 				{
-					// Set the regular payment amount based upon the balance as of the first deferred
-					// payment date.
-					configParams.monthlyPmt = [self monthlyPaymentForPmtCalcDate:pmtDate
-						andStartingBal:balanceBeforeAddingPeriodInterest];
-
+					[loanBalanceBeforeSimStart decrementFirstNonDeferredPeriodicPaymentOnDate:pmtDate
+						withExtraPmtAmount:extraPmtAmount];
 					firstDeferredPaymentMade = TRUE;
 				}
-				
-				double totalPmtAmount = configParams.monthlyPmt + extraPmtAmount;
-				
-				[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:totalPmtAmount asOfDate:pmtDate];
+				else
+				{
+					[loanBalanceBeforeSimStart decrementPeriodicPaymentOnDate:pmtDate withExtraPmtAmount:extraPmtAmount];
+				}
 			}
 		}
 		else
 		{
-			double totalPmtAmount = configParams.monthlyPmt + extraPmtAmount;
-		
-			[loanBalanceBeforeSimStart decrementAvailableBalanceForNonExpense:totalPmtAmount asOfDate:pmtDate];
+			[loanBalanceBeforeSimStart decrementPeriodicPaymentOnDate:pmtDate withExtraPmtAmount:extraPmtAmount];
 		}
-		
-		// If we get to here, the payment date is still before
-		// the start of simulation date. We keep on updating/advancing
-		// configParams.interestStartDate until the payment date is
-		// after the simulation start date. We also advance the starting
-		// balance configParams.startingBal to correspond with the
-		// interest start date.
-		configParams.interestStartDate = pmtDate;
-		configParams.startingBal = [loanBalanceBeforeSimStart currentBalanceForDate:pmtDate];
 
 		pmtDate = [pmtRepeater nextDate];
 		assert(pmtDate != nil);
@@ -460,12 +410,20 @@
 
 	if(self.loan.startingBalance != nil)
 	{
-		// If an explicit 
-		configParams.startingBal = [self.loan.startingBalance doubleValue];
+		// If an explicit starting balance has been provided,
+		// configure the loan balance with this explicit balance, but
+		// with all the other loan balance parameters the same as (copied from)
+		// what was simulated before the simulation start.
+		return [[[PeriodicInterestBearingWorkingBalance alloc]
+			initWithExplicitStartingBalance:[self.loan.startingBalance doubleValue]
+			andOtherBalance:loanBalanceBeforeSimStart] autorelease];			
+	}
+	else
+	{
+		return [[[PeriodicInterestBearingWorkingBalance alloc]
+			initWithOtherBalance:loanBalanceBeforeSimStart] autorelease];
 	}
 
-
-	return configParams;
 }
 
 
@@ -486,28 +444,8 @@
 			createVariableRateCalc:loan.extraPmtGrowthRate.growthRate
 			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario
 			andUseLoanAnnualRates:false];
-
-		LoanSimConfigParams *loanConfig = [self configParamsForLoanOrigination];
-		assert(loanConfig.monthlyPmt >= 0.0);
-		assert(loanConfig.interestStartDate != nil);
-		assert(loanConfig.startingBal >= 0.0);
-		
-		// The currentMonthlyPayment is referenced for regular loan payments. This property is
-		// referenced for digest processing of regular loan payments. In the event of
-		// deferred loan payments, it may be updated to reflect the loan payment as of the
-		// first deferred loan payment, rather than the loan payment as of the origination.
-		self.currentMonthlyPayment = loanConfig.monthlyPmt;
-
-		// Setup the working balance for the loan principal.
-			
-		DateSensitiveValue *loanInterestRate = (DateSensitiveValue*)[
-			self.loan.interestRate.growthRate
-			getValueForScenarioOrDefault:simParams.simScenario];
 	
-		self.loanBalance = [[[PeriodicInterestBearingWorkingBalance alloc]
-			initWithStartingBalance:loanConfig.startingBal andInterestRate:loanInterestRate
-			andWorkingBalanceName:self.loan.name
-			andStartDate:loanConfig.interestStartDate ] autorelease];
+		self.loanBalance = [self configLoanBalance];
 			
 		[simParams.digestSums addDigestSum:self.loanBalance.accruedInterest];
 			

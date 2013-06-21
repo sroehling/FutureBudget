@@ -22,7 +22,6 @@
 #import "PeriodicInterestBearingWorkingBalance.h"
 
 #import "LoanSimInfo.h"
-#import "LoanSimConfigParams.h"
 
 
 @implementation TestLoanInput
@@ -118,17 +117,14 @@
     NSDate *pmtDate = [pmtRepeater nextDateOnOrAfterDate:loanInfo.simParams.simStartDate];
 
 	[self checkDate:pmtDate vsExpected:expctedPmtDateStr inContext:context];
-	
-	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
-	
-	[loanInfo.loanBalance advanceCurrentBalanceToNextPeriodOnDate:pmtDate];
-	
+
+	double actualPaymentAmount = [loanInfo.loanBalance decrementPeriodicPaymentOnDate:pmtDate withExtraPmtAmount:0.0];
+
 	NSLog(@"Balance before pmt: %0.2f",[loanInfo.loanBalance currentBalanceForDate:pmtDate]);
-	[loanInfo.loanBalance decrementAvailableBalanceForNonExpense:paymentAmount asOfDate:pmtDate];
 	
 	double balAfterPmt = [loanInfo.loanBalance currentBalanceForDate:pmtDate];
 	
-	NSLog(@"Balance after pmt: %0.2f",balAfterPmt);
+	NSLog(@"Balance after pmt: %0.2f, actual pmt = %0.2f",balAfterPmt,actualPaymentAmount);
 	
 	[self checkValue:balAfterPmt vsExpected:expectedBal inContext:context];
 
@@ -141,7 +137,7 @@
 		andDuration:12 andInterestRate:10 andDownPmtPercent:0 andExtraPmtAmt:0];
 		
 		
-	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"] andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"] 
+	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"] andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"]
 		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 
 			andDeficitRate:self.testAppVals.deficitInterestRate andDeficitBalance:0.0
 		andInflationRate:testAppVals.defaultInflationRate] autorelease];	
@@ -152,7 +148,7 @@
 	// The loan amortization below has also been cross-checked/verified against spreadsheet
 	// amortization.
 
-	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
+	double paymentAmount = [loanInfo.loanBalance currPeriodicPayment];
 
 	[self checkValue:paymentAmount vsExpected:8.79 
 		inContext:@"testSimpleLoan:monthly payment"];
@@ -239,8 +235,7 @@
 		
 	LoanSimInfo *loanInfo = [[[LoanSimInfo alloc] initWithLoan:theLoan andSimParams:simParams] autorelease];
 	
-	LoanSimConfigParams *configParams = [loanInfo configParamsForLoanOrigination];
-	double simulatedStartingBalance = configParams.startingBal;
+	double simulatedStartingBalance = [loanInfo.loanBalance currentBalance];
 	[self checkValue:simulatedStartingBalance vsExpected:51.24
 		inContext:@"testLoanWithoutExplicitStartingBalance: Simulated Starting Balance (after 6 prior payments"];
 
@@ -249,7 +244,7 @@
 	// The loan amortization has also been cross-checked against excel
 	// (MonthlyMortgageInterestCalculation.xlsx)
 
-	double paymentAmount = [loanInfo monthlyPaymentForPaymentsStartingAtLoanOrig];
+	double paymentAmount = [loanInfo.loanBalance currPeriodicPayment];
 
 	[self checkValue:paymentAmount vsExpected:8.79 
 		inContext:@"testLoanWithoutExplicitStartingBalance:monthly payment"];
@@ -312,8 +307,7 @@
 	// Test the lower-level method used to calculate the monthly payments for both payments starting on
 	// the origination date or on the deferred date.
 
-	double paymentAmount = [loanInfo monthlyPaymentForPmtCalcDate:[DateHelper dateFromStr:@"2013-01-01"]
-			andStartingBal:100.0];
+	double paymentAmount = [loanInfo.loanBalance currPeriodicPayment];
 
 	[self checkValue:paymentAmount vsExpected:8.79
 		inContext:@"testSimpleLoan:monthly payment"];

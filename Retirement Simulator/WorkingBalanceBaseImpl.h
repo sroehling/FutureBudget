@@ -57,6 +57,7 @@
 
 
 @property(readonly) double startingBalance;
+@property double currentBalance;
 @property double withdrawPriority;
 
 @property(nonatomic,retain) InputValDigestSummation *contribs;
