@@ -157,6 +157,20 @@
 	return nextDateOnOrAfter;
 }
 
++(EventRepeater*)monthlyEventRepeaterWithStartDate:(NSDate*)startDate
+	andEndDate:(NSDate*)endDate
+{
+
+	NSDateComponents *monthlyOffset = [[[NSDateComponents alloc] init] autorelease];
+	[monthlyOffset setMonth:1];
+	
+    EventRepeater *monthlyRepeater = [[[EventRepeater alloc]
+                     initWithRepeatOffset:monthlyOffset andRepeatOnce:FALSE 
+					andStartDate:startDate andEndDate:endDate] autorelease];
+	return monthlyRepeater;
+
+}
+
 
 -(void)dealloc {
     [dateFormatter release];

@@ -140,11 +140,11 @@
 {
 	double monthlyPeriodicRate = [LoanPmtHelper monthlyPeriodicLoanInterestRate:
 			[self.interestRateCalc valueAsOfDate:pmtDate]];
-	if((monthlyPeriodicRate != currMonthlyPeriodicRate) || doForceUpdate)
+	if((monthlyPeriodicRate != self.currMonthlyPeriodicRate) || doForceUpdate)
 	{
-		currMonthlyPeriodicRate = monthlyPeriodicRate;
-		self.currPeriodicPayment = [VariableRate periodicPaymentForPrincipal:currentBalance
-			andPeriodRate:startingMonthlyPeriodicRate andNumPeriods:self.currRemainingPeriods];
+		self.currMonthlyPeriodicRate = monthlyPeriodicRate;
+		self.currPeriodicPayment = [VariableRate periodicPaymentForPrincipal:self.currentBalance
+			andPeriodRate:self.currMonthlyPeriodicRate andNumPeriods:self.currRemainingPeriods];
 	}
 
 }
@@ -167,7 +167,6 @@
 		self.currentBalance = newBalance;
 		self.currentBalanceDate = newDate;
 		self.currPeriodInterestStartDate = newDate;
-		[self updateCurrentPeriodicRateAndPaymentAsOfDate:newDate andForceUpdate:FALSE];
 
 		
 		if(doDecrementPeriods)
@@ -197,9 +196,11 @@
 
 -(double)decrementPeriodicPaymentOnDate:(NSDate*)pmtDate withExtraPmtAmount:(double)extraPmt
 {
+	[self updateCurrentPeriodicRateAndPaymentAsOfDate:pmtDate andForceUpdate:FALSE];
+
 	[self advanceCurrentBalanceToNextPeriodOnDate:pmtDate andDecrementRemainingPeriods:TRUE];
 
-	double totalPmt = currPeriodicPayment + extraPmt;
+	double totalPmt = self.currPeriodicPayment + extraPmt;
 	
 	double actualPmtAmt = [self decrementAvailableBalanceForNonExpense:totalPmt asOfDate:pmtDate];
 			
@@ -208,7 +209,6 @@
 
 -(double)decrementFirstNonDeferredPeriodicPaymentOnDate:(NSDate*)pmtDate withExtraPmtAmount:(double)extraPmt
 {
-
 	[self advanceCurrentBalanceToDate:pmtDate];
 	
 	// Use the balance *leading into* the first payment to calculate the monthly payment.
@@ -233,6 +233,8 @@
 -(PeriodicInterestPaymentResult*)decrementInterestOnlyPaymentOnDate:(NSDate*)pmtDate
 	withExtraPmtAmount:(double)extraPmt
 {
+	[self updateCurrentPeriodicRateAndPaymentAsOfDate:pmtDate andForceUpdate:FALSE];
+
 	double periodInterest = [self advanceCurrentBalanceToNextPeriodOnDate:pmtDate andDecrementRemainingPeriods:FALSE];
 	
 	double actualPeriodInterestPaid = 0.0;
@@ -258,6 +260,9 @@
 
 -(double)skippedPaymentOnDate:(NSDate*)pmtDate withExtraPmtAmount:(double)extraPmt
 {
+
+	[self updateCurrentPeriodicRateAndPaymentAsOfDate:pmtDate andForceUpdate:FALSE];
+
 	[self advanceCurrentBalanceToNextPeriodOnDate:pmtDate andDecrementRemainingPeriods:FALSE];
 
 	double actualExtraPmtPaid = 0.0;
@@ -309,7 +314,7 @@
 	
 	// Reset the period interst start date to the one set via carryBalanceForward
 	// at the start of the year.
-	self.currPeriodInterestStartDate = self.startingPeriodInterestStartDate;
+	self.currPeriodInterestStartDate = self.self.startingPeriodInterestStartDate;
 	self.currRemainingPeriods = self.startingNumRemainingPeriods;
 	self.currMonthlyPeriodicRate = self.startingMonthlyPeriodicRate;
 	self.currPeriodicPayment = self.startingPeriodicPayment;

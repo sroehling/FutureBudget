@@ -12,9 +12,14 @@
 #import "DataModelController.h"
 #import "WorkingBalance.h"
 #import "DateHelper.h"
+#import "VariableValue.h"
 #import "FixedValue.h"
 #import "InterestBearingWorkingBalance.h"
 #import "WorkingBalanceMgr.h"
+#import "PeriodicInterestBearingWorkingBalance.h"
+#import "TestCoreDataObjects.h"
+#import "EventRepeater.h"
+#import "PeriodicInterestPaymentResult.h"
 
 
 @implementation WorkingBalanceTest
@@ -284,5 +289,381 @@
 	[interestBal advanceCurrentBalanceToDate:advanceDate];
 }
 
+-(void)checkPeriodicPaymentForWorkingBal:(PeriodicInterestBearingWorkingBalance*)workingBal
+	WithEventRepeater:(EventRepeater*)pmtRepeater
+	andExpectedPmtAmount:(double)expectedPmt andExpectedBal:(double)expectedBal
+{
+	NSDate *pmtDate = [pmtRepeater nextDate];
+	assert(pmtDate != nil);
+	
+	double actualPmtAmount = [workingBal decrementPeriodicPaymentOnDate:pmtDate withExtraPmtAmount:0.0];
+	
+	STAssertEqualsWithAccuracy(actualPmtAmount, expectedPmt, 0.01,
+	@"checkPeriodicPaymentForWorkingBal: Expecting %0.2f, got %0.2f for working balance = %@ after decrement",
+						   expectedPmt,actualPmtAmount,workingBal.workingBalanceName);
+
+	
+	[self checkCurrentBalance:workingBal withExpectedBalance:expectedBal andDate:pmtDate];
+	
+	NSLog(@"checkPeriodicPaymentForWorkingBal: date=%@ balance=%@, got pmt=%0.2f, got bal=%0.02f",
+			[[DateHelper theHelper].mediumDateFormatter stringFromDate:pmtDate],
+			workingBal.workingBalanceName,actualPmtAmount,[workingBal currentBalance]);
+		
+}
+
+-(void)checkFirstNonDeferredPeriodicPaymentForWorkingBal:(PeriodicInterestBearingWorkingBalance*)workingBal
+	WithEventRepeater:(EventRepeater*)pmtRepeater
+	andExpectedPmtAmount:(double)expectedPmt andExpectedBal:(double)expectedBal
+{
+	NSDate *pmtDate = [pmtRepeater nextDate];
+	assert(pmtDate != nil);
+	
+	double actualPmtAmount = [workingBal decrementFirstNonDeferredPeriodicPaymentOnDate:pmtDate
+		withExtraPmtAmount:0.0];
+	
+	STAssertEqualsWithAccuracy(actualPmtAmount, expectedPmt, 0.01,
+	@"checkPeriodicPaymentForWorkingBal: Expecting %0.2f, got %0.2f for working balance = %@ after decrement",
+						   expectedPmt,actualPmtAmount,workingBal.workingBalanceName);
+
+	
+	[self checkCurrentBalance:workingBal withExpectedBalance:expectedBal andDate:pmtDate];
+	
+	NSLog(@"checkPeriodicPaymentForWorkingBal: date=%@ balance=%@, got pmt=%0.2f, got bal=%0.02f",
+			[[DateHelper theHelper].mediumDateFormatter stringFromDate:pmtDate],
+			workingBal.workingBalanceName,actualPmtAmount,[workingBal currentBalance]);
+		
+}
+
+-(void)checkDeferredPeriodicPaymentForWorkingBal:(PeriodicInterestBearingWorkingBalance*)workingBal
+	WithEventRepeater:(EventRepeater*)pmtRepeater andExpectedBal:(double)expectedBal
+{
+	NSDate *pmtDate = [pmtRepeater nextDate];
+	assert(pmtDate != nil);
+	
+	[workingBal skippedPaymentOnDate:pmtDate withExtraPmtAmount:0.0];
+	
+	[self checkCurrentBalance:workingBal withExpectedBalance:expectedBal andDate:pmtDate];
+	
+	NSLog(@"checkPeriodicPaymentForWorkingBal: date=%@, balance=%@, got bal=%0.02f",
+			[[DateHelper theHelper].mediumDateFormatter stringFromDate:pmtDate],
+			workingBal.workingBalanceName,[workingBal currentBalance]);
+		
+}
+
+-(void)checkInterestOnlyPeriodicPaymentForWorkingBal:(PeriodicInterestBearingWorkingBalance*)workingBal
+	WithEventRepeater:(EventRepeater*)pmtRepeater andExpectedInterst:(double)expectedInterestAmt
+	andExpectedBal:(double)expectedBal
+{
+	NSDate *pmtDate = [pmtRepeater nextDate];
+	assert(pmtDate != nil);
+	
+	PeriodicInterestPaymentResult *interestPmtResult =
+		[workingBal decrementInterestOnlyPaymentOnDate:pmtDate withExtraPmtAmount:0.0];
+
+	STAssertEqualsWithAccuracy(interestPmtResult.interestPaid, expectedInterestAmt, 0.01,
+	@"checkPeriodicPaymentForWorkingBal: Expecting %0.2f, got %0.2f for interest only payment = %@ after decrement",
+						   expectedInterestAmt,interestPmtResult.interestPaid,workingBal.workingBalanceName);
+
+	
+	[self checkCurrentBalance:workingBal withExpectedBalance:expectedBal andDate:pmtDate];
+	
+	NSLog(@"checkInterestOnlyPeriodicPaymentForWorkingBal: date=%@, balance=%@, got bal=%0.02f",
+			[[DateHelper theHelper].mediumDateFormatter stringFromDate:pmtDate],
+			workingBal.workingBalanceName,[workingBal currentBalance]);
+		
+}
+
+
+
+- (void)testPeriodicInterestBearingBal
+{
+	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-01-01"]];
+	NSDate *endDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2016-01-01"]];
+	double startingBal = 1000.0;
+	
+	// Start out with extra payment of 0.0, but change it to be 10 at the same time
+	// deferred payments begin.
+	VariableValue *variableInterest = (VariableValue*)[self.coreData
+		createDataModelObject:VARIABLE_VALUE_ENTITY_NAME];
+	variableInterest.startingValue = [NSNumber numberWithDouble:5.0];
+	variableInterest.name = @"Test";
+
+	[variableInterest addValueChangesObject:
+		[TestCoreDataObjects createTestValueChange:self.coreData andDate:@"2013-12-31" andVal:10.0]];
+
+	PeriodicInterestBearingWorkingBalance *workingBal = [[[PeriodicInterestBearingWorkingBalance alloc] initWithStartingBalance:startingBal andInterestRate:variableInterest andWorkingBalanceName:@"testPeriodicInterestBearingBal" andStartDate:startDate andNumPeriods:24] autorelease];
+	
+	[self checkCurrentBalance:workingBal withExpectedBalance:startingBal andDate:startDate];
+
+	EventRepeater *pmtRepeater = [EventRepeater monthlyEventRepeaterWithStartDate:startDate andEndDate:endDate];
+	[pmtRepeater nextDate]; // payments start one month after starDate
+	
+	// The results below are validated/cross-checked in the Spreadsheet MonthlyMortgageInterestCalculation.xls,
+	// in the "ARM UT 1" tab.
+	
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:960.30];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:920.43];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:880.39];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:840.19];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:799.82];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:759.28];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:718.57];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:677.69];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:636.64];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:595.42];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:554.03];
+		
+	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2014-01-01"]];
+		
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:513.51];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:472.64];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:431.43];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:389.88];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:347.99];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:305.74];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:263.14];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:220.19];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:176.88];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:133.21];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:89.17];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:44.77];
+		
+	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2015-01-01"]];
+		
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:0.0];
+	
+
+
+}
+
+- (void)testPeriodicInterestBearingBalWithDeferredPayment
+{
+	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-01-01"]];
+	NSDate *endDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2016-01-01"]];
+	double startingBal = 1000.0;
+	
+	// Start out with extra payment of 0.0, but change it to be 10 at the same time
+	// deferred payments begin.
+	VariableValue *variableInterest = (VariableValue*)[self.coreData
+		createDataModelObject:VARIABLE_VALUE_ENTITY_NAME];
+	variableInterest.startingValue = [NSNumber numberWithDouble:5.0];
+	variableInterest.name = @"Test";
+	[variableInterest addValueChangesObject:
+		[TestCoreDataObjects createTestValueChange:self.coreData andDate:@"2013-04-30" andVal:7.5]];
+	[variableInterest addValueChangesObject:
+		[TestCoreDataObjects createTestValueChange:self.coreData andDate:@"2014-03-30" andVal:10.0]];
+
+	PeriodicInterestBearingWorkingBalance *workingBal = [[[PeriodicInterestBearingWorkingBalance alloc] initWithStartingBalance:startingBal andInterestRate:variableInterest andWorkingBalanceName:@"testPeriodicInterestBearingBal" andStartDate:startDate andNumPeriods:24] autorelease];
+	
+	[self checkCurrentBalance:workingBal withExpectedBalance:startingBal andDate:startDate];
+
+	EventRepeater *pmtRepeater = [EventRepeater monthlyEventRepeaterWithStartDate:startDate andEndDate:endDate];
+	[pmtRepeater nextDate]; // payments start one month after starDate
+	
+	// The results below are validated/cross-checked in the Spreadsheet MonthlyMortgageInterestCalculation.xls,
+	// in the "ARM UT 2" tab.
+	[self checkDeferredPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+			andExpectedBal:1004.17];
+	[self checkDeferredPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+			andExpectedBal:1008.35];
+	[self checkDeferredPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+			andExpectedBal:1012.55];
+	
+	[self checkFirstNonDeferredPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:973.32];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:933.83];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:894.11];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:854.13];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:813.90];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:773.43];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:732.70];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:691.71];
+
+	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2014-01-01"]];
+
+
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:650.47];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:608.97];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.56 andExpectedBal:567.21];
+		
+	// Rate adjustment to 10%
+		
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:525.72];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:483.88];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:441.70];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:399.16];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:356.26];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:313.01];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:269.40];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:225.43];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:181.09];
+
+	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2015-01-01"]];
+
+
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:136.38];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:91.30];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:45.84];
+		
+		
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:46.22 andExpectedBal:0.0];
+	
+
+
+}
+
+
+- (void)testPeriodicInterestBearingBalWithInterestOnlyPayment
+{
+	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-10-01"]];
+	NSDate *endDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2016-01-01"]];
+	double startingBal = 1000.0;
+	
+	// Start out with extra payment of 0.0, but change it to be 10 at the same time
+	// deferred payments begin.
+	VariableValue *variableInterest = (VariableValue*)[self.coreData
+		createDataModelObject:VARIABLE_VALUE_ENTITY_NAME];
+	variableInterest.startingValue = [NSNumber numberWithDouble:5.0];
+	variableInterest.name = @"Test";
+	
+	// Change the intest amount to 7.5%, then back again. The amount of interest paid should adjust
+	// accordingly for the interest only payments.
+	[variableInterest addValueChangesObject:
+		[TestCoreDataObjects createTestValueChange:self.coreData andDate:@"2012-11-15" andVal:7.5]];
+	[variableInterest addValueChangesObject:
+		[TestCoreDataObjects createTestValueChange:self.coreData andDate:@"2012-12-15" andVal:5.0]];
+
+	[variableInterest addValueChangesObject:
+		[TestCoreDataObjects createTestValueChange:self.coreData andDate:@"2013-12-31" andVal:10.0]];
+
+	PeriodicInterestBearingWorkingBalance *workingBal = [[[PeriodicInterestBearingWorkingBalance alloc] initWithStartingBalance:startingBal andInterestRate:variableInterest andWorkingBalanceName:@"testPeriodicInterestBearingBal" andStartDate:startDate andNumPeriods:24] autorelease];
+	
+	[self checkCurrentBalance:workingBal withExpectedBalance:startingBal andDate:startDate];
+
+	EventRepeater *pmtRepeater = [EventRepeater monthlyEventRepeaterWithStartDate:startDate andEndDate:endDate];
+	[pmtRepeater nextDate]; // payments start one month after starDate
+	
+	// The results below are validated/cross-checked in the Spreadsheet MonthlyMortgageInterestCalculation.xls,
+	// in the "ARM UT 1" tab.
+	[self checkInterestOnlyPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedInterst:4.17 andExpectedBal:1000.0];
+		
+	// The interest rate switches to 7.5% on 11/15/2012, so the amount of interest paid
+	// should adjust accordingly.
+	[self checkInterestOnlyPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedInterst:6.25 andExpectedBal:1000.0];
+
+	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2013-01-01"]];
+
+	// The interest rate changes back to 
+	[self checkInterestOnlyPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedInterst:4.17 andExpectedBal:1000.0];
+
+
+	[self checkFirstNonDeferredPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:960.30];	
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:920.43];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:880.39];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:840.19];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:799.82];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:759.28];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:718.57];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:677.69];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:636.64];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:595.42];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:43.87 andExpectedBal:554.03];
+		
+	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2014-01-01"]];
+		
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:513.51];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:472.64];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:431.43];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:389.88];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:347.99];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:305.74];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:263.14];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:220.19];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:176.88];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:133.21];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:89.17];
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:44.77];
+		
+	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2015-01-01"]];
+		
+	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
+		andExpectedPmtAmount:45.15 andExpectedBal:0.0];
+	
+
+
+}
 
 @end

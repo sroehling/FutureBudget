@@ -213,13 +213,10 @@
 	
 	NSLog(@"Loan origination date: date = %@",
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedStartDate]);
-
-	NSDateComponents *monthlyLoanPmtOffset = [[[NSDateComponents alloc] init] autorelease];
-	[monthlyLoanPmtOffset setMonth:1];
 	
-    EventRepeater *pmtRepeater = [[[EventRepeater alloc] 
-                     initWithRepeatOffset:monthlyLoanPmtOffset andRepeatOnce:FALSE 
-					andStartDate:resolvedStartDate andEndDate:resolvedEndDate] autorelease];
+    EventRepeater *pmtRepeater =
+		[EventRepeater monthlyEventRepeaterWithStartDate:resolvedStartDate andEndDate:resolvedEndDate];
+	
 	return pmtRepeater;
 
 }

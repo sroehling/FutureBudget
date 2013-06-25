@@ -27,6 +27,11 @@
          andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
 - (id) initWithRepeatOffset:(NSDateComponents*)theRepeatOffset andRepeatOnce:(bool)doRepeatOnce
 	 andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
+
+// Helper method for allocating a monthly repeater.
++(EventRepeater*)monthlyEventRepeaterWithStartDate:(NSDate*)startDate
+	andEndDate:(NSDate*)endDate;
+
 - (void)reset;
 - (NSDate*)nextDate;
 - (NSDate*)nextDateOnOrAfterDate:(NSDate*)minimumDate;
