@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Retirement_SimulatorAppDelegate.h"
+#import "AppDelegate.h"
 #import "DataModelController.h"
 
 #import "InputListFormInfoCreator.h"
@@ -30,11 +30,23 @@
 #import "FormPopulator.h"
 #import "FormContext.h"
 
-@implementation Retirement_SimulatorAppDelegate
+@implementation AppDelegate
 
 @synthesize window=_window;
 @synthesize tabBarController=_tabBarController;
 @synthesize passcodeValidator;
+@synthesize currentPlanDmc;
+
+- (void)dealloc
+{
+    [_window release];
+    [_tabBarController release];
+	[passcodeValidator release];
+	[currentPlanDmc release];
+	
+    [super dealloc];
+}
+
 
 -(void)configWithMainTabBarController
 {
@@ -81,20 +93,18 @@
     // the app was throwing exceptions with a message "The persistent cache of 
     // section information does not match the current configuration."
     [NSFetchedResultsController deleteCacheWithName:nil];
+	
+	self.currentPlanDmc = [AppHelper appDataModelControllerForPlanName:LOCALIZED_STR(@"DEFAULT_MASTER_PLAN_NAME")];
     
-	[SharedAppValues initFromDatabase];
+	[SharedAppValues initFromDatabase:self.currentPlanDmc];
 	
-	DataModelController *topLevelDataModelController = 
-		[[[DataModelController alloc]init] autorelease];
-
-	
-	[SimResultsController initSingletonFromDataModelController:topLevelDataModelController];
+	[SimResultsController initSingletonFromDataModelController:self.currentPlanDmc];
 	
 	// navBarController is the color used in the navigation bar for all the tabbed views.
 	UIColor *navBarControllerColor = [ColorHelper navBarTintColor];
 
 	UIViewController *inputController = [[[InputListTableViewController alloc]
-		initWithDataModelController:topLevelDataModelController] autorelease];
+		initWithDataModelController:self.currentPlanDmc] autorelease];
 	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
 	inputNavController.title = [AppHelper generatingLaunchScreen]?
 			@"":LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
@@ -106,7 +116,7 @@
 	StartingValsFormInfoCreator *startingValsFormInfoCreator = 
 		[[[StartingValsFormInfoCreator alloc] init] autorelease];
 	UIViewController *startingValsController = [[[GenericFieldBasedTableEditViewController alloc]
-		initWithFormInfoCreator:startingValsFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
+		initWithFormInfoCreator:startingValsFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
 	UINavigationController *startingValsNavController = 
 		[[[UINavigationController alloc] initWithRootViewController:startingValsController] autorelease];
 	startingValsNavController.title = [AppHelper generatingLaunchScreen]?
@@ -117,7 +127,7 @@
 	ResultsListFormInfoCreator *resultsListFormInfoCreator = 
 		[[[ResultsListFormInfoCreator alloc] init] autorelease];
 	UIViewController *resultsController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:resultsListFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
+		initWithFormInfoCreator:resultsListFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
 	UINavigationController *resultsNavController = [[[UINavigationController alloc] 
 		initWithRootViewController:resultsController] autorelease];
 	resultsNavController.title = [AppHelper generatingLaunchScreen]?
@@ -128,7 +138,7 @@
 	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
 		[[[WhatIfFormInfoCreator alloc] init] autorelease];
 	UIViewController *whatIfController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:whatIfFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
+		initWithFormInfoCreator:whatIfFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
 	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
 	whatIfNavController.title = [AppHelper generatingLaunchScreen]?
 			@"":LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
@@ -139,7 +149,7 @@
 	MoreFormInfoCreator *moreFormInfoCreator = 
 		[[[MoreFormInfoCreator alloc] init] autorelease];
 	UIViewController *moreViewController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:moreFormInfoCreator andDataModelController:topLevelDataModelController] autorelease];
+		initWithFormInfoCreator:moreFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
 	UINavigationController *moreNavController = [[[UINavigationController alloc] initWithRootViewController:moreViewController] autorelease];
 	moreNavController.title = [AppHelper generatingLaunchScreen]?
 			@"":LOCALIZED_STR(@"MORE_VIEW_TITLE");
@@ -208,13 +218,6 @@
      */
 }
 
-- (void)dealloc
-{
-    [_window release];
-    [_tabBarController release];
-	[passcodeValidator release];
-    [super dealloc];
-}
 
 
 #pragma mark PasscodeValidationDelegate

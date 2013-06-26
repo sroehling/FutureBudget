@@ -273,13 +273,9 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 	return sharedVals;
 }
 
-+(void)initFromDatabase
++(void)initFromDatabase:(DataModelController*)dmcForInit
 {
     NSLog(@"Initializing database with default data ...");
-    
-	
-	DataModelController *dmcForInit = [[[DataModelController alloc] init] autorelease];
-	
     
     if(![dmcForInit entitiesExistForEntityName:SHARED_APP_VALUES_ENTITY_NAME])
 	{

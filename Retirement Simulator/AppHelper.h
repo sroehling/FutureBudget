@@ -10,8 +10,15 @@
 
 extern NSString * const FINSIM_APP_ID;
 
+@class DataModelController;
+@class AppDelegate;
 
 @interface AppHelper : NSObject
+
++(DataModelController*)appDataModelControllerForPlanName:(NSString*)planName;
++(DataModelController*)subDataModelControllerForCurrentPlan;
+
++(AppDelegate*)theAppDelegate;
 
 +(BOOL)generatingLaunchScreen;
 

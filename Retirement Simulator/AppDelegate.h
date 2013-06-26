@@ -10,18 +10,23 @@
 #import "PTPasscodeViewController.h"
 
 #import "PasscodeValidator.h"
+@class DataModelController;
 
-@interface Retirement_SimulatorAppDelegate : NSObject 
+@interface AppDelegate : NSObject 
 	<UIApplicationDelegate,UITabBarControllerDelegate,PasscodeValidationDelegate> {
 		
 	@private
 		PasscodeValidator *passcodeValidator;
+		
+		DataModelController *currentPlanDmc;
+
 		
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property(nonatomic,retain) PasscodeValidator *passcodeValidator;
+@property(nonatomic,retain) DataModelController *currentPlanDmc;
 
 
 @end

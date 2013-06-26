@@ -68,7 +68,8 @@ extern NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY;
 -(NSDate*)beginningOfSimStartDate;
 
 +(SharedAppValues*)createWithDataModelInterface:(id<DataModelInterface>)dataModelInterface;
-+(void)initFromDatabase;
++(void)initFromDatabase:(DataModelController*)dmcForInit;
+
 +(SharedAppValues*)getUsingDataModelController:(DataModelController*)dataModelController;
 
 @end

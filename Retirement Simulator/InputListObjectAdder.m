@@ -14,6 +14,7 @@
 #import "DataModelController.h"
 #import "FormContext.h"
 #import "TableViewHelper.h"
+#import "AppHelper.h"
 #import "Input.h"
 
 @implementation InputListObjectAdder
@@ -35,7 +36,8 @@
 	// the new object are kept isolated from other changes, and can
 	// be saved all at once when the new input has been fully populated
 	// and validated.
-	self.dmcForNewInputs = [[[DataModelController alloc] init] autorelease];
+	self.dmcForNewInputs = [AppHelper subDataModelControllerForCurrentPlan];
+	
 	self.currentContext = parentContext;
 
 	InputTypeSelectionFormInfoCreator *inputSelectionFormInfoCreator =
