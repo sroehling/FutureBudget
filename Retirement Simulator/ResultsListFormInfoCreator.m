@@ -48,7 +48,6 @@
 @implementation ResultsListFormInfoCreator
 
 @synthesize simProgressHUD;
-@synthesize simResultsController;
 @synthesize simResultsCompleteDelegate;
 
 -(id)init
@@ -56,14 +55,13 @@
 	self = [super init];
 	if(self)
 	{
-		self.simResultsController = [SimResultsController theSimResultsController];
 	}
 	return self;
 }
 
 -(BOOL)needsToPreprocessFormData
 {
-	if(self.simResultsController.resultsOutOfDate)
+	if([SimResultsController theSimResultsController].resultsOutOfDate)
 	{
 		return TRUE;
 	}
@@ -92,7 +90,7 @@
 	
 	// Show the HUD while the provided method executes in a new thread
 	[self.simProgressHUD showWhileExecuting:@selector(runSimulatorForResults:) 
-			onTarget:self.simResultsController withObject:self animated:YES];
+			onTarget:[SimResultsController theSimResultsController] withObject:self animated:YES];
 }
 
 - (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
@@ -106,10 +104,12 @@
 	SectionInfo *sectionInfo = [formPopulator nextSection];
 	sectionInfo.title = LOCALIZED_STR(@"RESULTS_SUMMARY_SECTION_TITLE");
 	
+	SimResultsController *simResultsController = [SimResultsController theSimResultsController];
+	
 	if(true)
 	{
 		ResultsViewInfo *netWorthViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController
 			andViewTitle:LOCALIZED_STR(@"RESULTS_SUMMARY_NET_WORTH_TITLE")] autorelease];
 		ResultsViewFactory *netWorthViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:netWorthViewInfo
@@ -124,7 +124,7 @@
 
 
 		ResultsViewInfo *cashBalViewInfo = [[[ResultsViewInfo alloc]
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")] autorelease];
 		ResultsViewFactory *cashBalViewFactory =
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:cashBalViewInfo
@@ -138,7 +138,7 @@
 		[sectionInfo addFieldEditInfo:cashBalFieldEditInfo];
 
 		ResultsViewInfo *deficitBalViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")] autorelease];
 		ResultsViewFactory *deficitBalViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:deficitBalViewInfo
@@ -159,7 +159,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allIncomeViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_TITLE")] autorelease];
 		ResultsViewFactory *allAcctViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allIncomeViewInfo
@@ -172,10 +172,10 @@
 				andSubViewFactory:allAcctViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allIncomeFieldEditInfo];
 		
-		for(IncomeInput *income in self.simResultsController.incomesSimulated)
+		for(IncomeInput *income in simResultsController.incomesSimulated)
 		{
 			ResultsViewInfo *incomeViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
+				initWithSimResultsController:simResultsController 
 				andViewTitle:income.name] autorelease];
 			ResultsViewFactory *incomeViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:incomeViewInfo
@@ -196,7 +196,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allExpenseViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_TITLE")] autorelease];
 		ResultsViewFactory *allExpenseViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allExpenseViewInfo
@@ -209,10 +209,10 @@
 				andSubViewFactory:allExpenseViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allExpenseFieldEditInfo];
 		
-		for(ExpenseInput *expense in self.simResultsController.expensesSimulated)
+		for(ExpenseInput *expense in simResultsController.expensesSimulated)
 		{
 			ResultsViewInfo *expenseViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
+				initWithSimResultsController:simResultsController 
 				andViewTitle:expense.name] autorelease];
 			ResultsViewFactory *expenseViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:expenseViewInfo
@@ -233,7 +233,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allAssetsViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_ASSET_ALL_ASSET_TITLE")] autorelease];
 		ResultsViewFactory *allAssetsViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAssetsViewInfo
@@ -248,10 +248,10 @@
 		
 		
 		
-		for(AssetInput *asset in self.simResultsController.assetsSimulated)
+		for(AssetInput *asset in simResultsController.assetsSimulated)
 		{
 			ResultsViewInfo *assetViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
+				initWithSimResultsController:simResultsController 
 				andViewTitle:asset.name] autorelease];
 			ResultsViewFactory *assetViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:assetViewInfo
@@ -271,7 +271,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allLoanViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_LOAN_ALL_LOAN_TITLE")] autorelease];
 		ResultsViewFactory *allLoanViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allLoanViewInfo
@@ -285,10 +285,10 @@
 		[sectionInfo addFieldEditInfo:allLoanFieldEditInfo];
 		
 		
-		for(LoanInput *loan in self.simResultsController.loansSimulated)
+		for(LoanInput *loan in simResultsController.loansSimulated)
 		{
 			ResultsViewInfo *loanViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
+				initWithSimResultsController:simResultsController 
 				andViewTitle:loan.name] autorelease];
 			ResultsViewFactory *loanViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:loanViewInfo
@@ -309,7 +309,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allAcctViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
 		ResultsViewFactory *allAcctViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAcctViewInfo
@@ -322,10 +322,10 @@
 				andSubViewFactory:allAcctViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allAcctFieldEditInfo];
 		
-		for(Account *acct in self.simResultsController.acctsSimulated)
+		for(Account *acct in simResultsController.acctsSimulated)
 		{
 			ResultsViewInfo *acctViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
+				initWithSimResultsController:simResultsController 
 				andViewTitle:acct.name] autorelease];
 			ResultsViewFactory *acctViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:acctViewInfo
@@ -347,7 +347,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allAcctContribViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
 		ResultsViewFactory *allAcctContribViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAcctContribViewInfo
@@ -360,10 +360,10 @@
 				andSubViewFactory:allAcctContribViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allAcctContribFieldEditInfo];
 		
-		for(Account *acct in self.simResultsController.acctsSimulated)
+		for(Account *acct in simResultsController.acctsSimulated)
 		{
 			ResultsViewInfo *acctContribViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
+				initWithSimResultsController:simResultsController 
 				andViewTitle:acct.name] autorelease];
 			ResultsViewFactory *acctContribViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:acctContribViewInfo
@@ -385,7 +385,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allAcctWithdrawViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
 		ResultsViewFactory *allAcctWithdrawViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAcctWithdrawViewInfo
@@ -398,10 +398,10 @@
 				andSubViewFactory:allAcctWithdrawViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allAcctWithdrawFieldEditInfo];
 		
-		for(Account *acct in self.simResultsController.acctsSimulated)
+		for(Account *acct in simResultsController.acctsSimulated)
 		{
 			ResultsViewInfo *acctWithdrawViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
+				initWithSimResultsController:simResultsController 
 				andViewTitle:acct.name] autorelease];
 			ResultsViewFactory *acctWithdrawViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:acctWithdrawViewInfo
@@ -426,7 +426,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allTaxesViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:self.simResultsController 
+			initWithSimResultsController:simResultsController 
 			andViewTitle:LOCALIZED_STR(@"RESULTS_TAXES_ALL_TAXES_TITLE")] autorelease];
 		ResultsViewFactory *allTaxesViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allTaxesViewInfo
@@ -439,10 +439,10 @@
 				andSubViewFactory:allTaxesViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allTaxesFieldEditInfo];
 		
-		for(TaxInput *tax in self.simResultsController.taxesSimulated)
+		for(TaxInput *tax in simResultsController.taxesSimulated)
 		{
 			ResultsViewInfo *taxViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:self.simResultsController 
+				initWithSimResultsController:simResultsController 
 				andViewTitle:tax.name] autorelease];
 			ResultsViewFactory *taxViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:taxViewInfo
@@ -465,7 +465,6 @@
 
 -(void)dealloc
 {
-	[simResultsController release];
 	[simProgressHUD release];
 	[super dealloc];
 }

@@ -18,6 +18,9 @@
 #import "BoolFieldEditInfo.h"
 #import "PasscodeFieldInfo.h"
 #import "RateAppFieldEditInfo.h"
+#import "PlanListViewFactory.h"
+#import "StaticNavFieldEditInfo.h"
+#import "AppHelper.h"
 
 @implementation MoreFormInfoCreator
 
@@ -27,6 +30,18 @@
 		initWithFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"MORE_VIEW_TITLE");
+	
+	[formPopulator nextSection];
+	PlanListViewFactory *planListViewFactory = [[[PlanListViewFactory alloc] init] autorelease];
+		
+	StaticNavFieldEditInfo *planListFieldEditInfo =
+		[[[StaticNavFieldEditInfo alloc]
+			initWithCaption:LOCALIZED_STR(@"PLAN_LIST_FIELD_NAME")
+			andSubtitle:nil
+			andContentDescription:[AppHelper currentPlanName]
+			andSubViewFactory:planListViewFactory] autorelease];
+	[formPopulator.currentSection addFieldEditInfo:planListFieldEditInfo];
+
 	
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"MORE_HELP_SECTION_TITLE")];
 

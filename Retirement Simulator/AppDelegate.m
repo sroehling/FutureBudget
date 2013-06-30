@@ -29,6 +29,7 @@
 
 #import "FormPopulator.h"
 #import "FormContext.h"
+#import "StringValidation.h"
 
 @implementation AppDelegate
 
@@ -37,13 +38,27 @@
 @synthesize passcodeValidator;
 @synthesize currentPlanDmc;
 
+@synthesize inputViewController;
+@synthesize startingValsController;
+@synthesize resultsController;
+@synthesize whatIfController;
+@synthesize moreController;
+
 - (void)dealloc
 {
     [_window release];
+
     [_tabBarController release];
 	[passcodeValidator release];
+	
 	[currentPlanDmc release];
 	
+	[inputViewController release];
+	[startingValsController release];
+	[resultsController release];
+	[whatIfController release];
+	[moreController release];
+		
     [super dealloc];
 }
 
@@ -87,6 +102,163 @@
 
 }
 
+-(GenericFieldBasedTableEditViewController*)startingValsControllerForCurrentPlan
+{
+	StartingValsFormInfoCreator *startingValsFormInfoCreator = 
+		[[[StartingValsFormInfoCreator alloc] init] autorelease];
+	GenericFieldBasedTableEditViewController *theStartingValsController = [[[GenericFieldBasedTableEditViewController alloc]
+		initWithFormInfoCreator:startingValsFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
+		
+	return theStartingValsController;
+}
+
+-(GenericFieldBasedTableViewController*)resultsControllerForCurrentPlan
+{
+	ResultsListFormInfoCreator *resultsListFormInfoCreator = 
+		[[[ResultsListFormInfoCreator alloc] init] autorelease];
+	GenericFieldBasedTableViewController *theResultsController = [[[GenericFieldBasedTableViewController alloc]
+		initWithFormInfoCreator:resultsListFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
+	
+	return theResultsController;
+}
+
+-(GenericFieldBasedTableViewController*)whatIfControllerForCurrentPlan
+{
+	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
+		[[[WhatIfFormInfoCreator alloc] init] autorelease];
+	GenericFieldBasedTableViewController *theWhatIfController = [[[GenericFieldBasedTableViewController alloc]
+		initWithFormInfoCreator:whatIfFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
+	return theWhatIfController;
+}
+
+-(GenericFieldBasedTableViewController*)moreControllerForCurrentPlan
+{
+	MoreFormInfoCreator *moreFormInfoCreator = 
+		[[[MoreFormInfoCreator alloc] init] autorelease];
+	GenericFieldBasedTableViewController *theMoreViewController = [[[GenericFieldBasedTableViewController alloc]
+		initWithFormInfoCreator:moreFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
+	return theMoreViewController;
+}
+
+-(InputListTableViewController*)inputControllerForCurrentPlan
+{
+	InputListTableViewController *inputController = [[[InputListTableViewController alloc]
+		initWithDataModelController:self.currentPlanDmc] autorelease];
+		
+	return inputController;
+}
+
+-(void)populateTabBarController
+{
+
+	assert(self.currentPlanDmc != nil);
+
+	// navBarController is the color used in the navigation bar for all the tabbed views.
+	UIColor *navBarControllerColor = [ColorHelper navBarTintColor];
+
+	self.inputViewController = [self inputControllerForCurrentPlan];
+	UINavigationController *inputNavController = [[[UINavigationController alloc]
+		initWithRootViewController:self.inputViewController] autorelease];
+	inputNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
+	inputNavController.tabBarItem.image = [UIImage imageNamed:@"piggy.png"];
+	inputNavController.navigationBar.tintColor = navBarControllerColor;
+
+	self.startingValsController = [self startingValsControllerForCurrentPlan];
+	UINavigationController *startingValsNavController =
+		[[[UINavigationController alloc] initWithRootViewController:
+			self.startingValsController] autorelease];
+	startingValsNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE");
+	startingValsNavController.tabBarItem.image = [UIImage imageNamed:@"clock.png"];
+	startingValsNavController.navigationBar.tintColor = navBarControllerColor;
+
+	self.resultsController = [self resultsControllerForCurrentPlan];
+	UINavigationController *resultsNavController = [[[UINavigationController alloc]
+		initWithRootViewController:self.resultsController] autorelease];
+	resultsNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
+	resultsNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
+	resultsNavController.navigationBar.tintColor = navBarControllerColor;
+	
+	self.whatIfController = [self whatIfControllerForCurrentPlan];
+	UINavigationController *whatIfNavController = [[[UINavigationController alloc]
+		initWithRootViewController:self.whatIfController] autorelease];
+	whatIfNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
+	whatIfNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
+	whatIfNavController.navigationBar.tintColor = navBarControllerColor;
+	
+	self.moreController = [self moreControllerForCurrentPlan];
+	UINavigationController *moreNavController = [[[UINavigationController alloc]
+		initWithRootViewController:self.moreController] autorelease];
+	moreNavController.title = [AppHelper generatingLaunchScreen]?
+			@"":LOCALIZED_STR(@"MORE_VIEW_TITLE");
+	moreNavController.tabBarItem = [[[UITabBarItem alloc] 
+		initWithTabBarSystemItem:UITabBarSystemItemMore tag:0] autorelease];
+	moreNavController.navigationBar.tintColor = navBarControllerColor;	
+	
+	self.tabBarController.viewControllers =
+		[NSArray arrayWithObjects:
+			inputNavController,
+			startingValsNavController,
+			resultsNavController,
+			whatIfNavController,
+			moreNavController, 
+			nil]; 
+}
+
+-(void)initCurrentPlan
+{
+	NSString *currentPlanName = [AppHelper currentPlanName];
+	
+	if([StringValidation nonEmptyString:currentPlanName])
+	{
+		self.currentPlanDmc = [AppHelper openPlanForPlanName:currentPlanName];
+	}
+	else
+	{
+		NSString *defaultPlanName = LOCALIZED_STR(@"DEFAULT_MASTER_PLAN_NAME");
+		
+		[AppHelper setCurrentPlanName:defaultPlanName];
+		
+		self.currentPlanDmc = [AppHelper openPlanForPlanName:defaultPlanName];
+	}
+	[SimResultsController initSingletonFromDataModelController:self.currentPlanDmc];
+
+}
+
+-(void)changeCurrentPlan:(NSString*)newPlanName
+{
+	assert([StringValidation nonEmptyString:newPlanName]);
+	
+	[AppHelper setCurrentPlanName:newPlanName];
+	
+	self.currentPlanDmc = [AppHelper openPlanForPlanName:newPlanName];
+	
+	[SimResultsController initSingletonFromDataModelController:self.currentPlanDmc];
+
+	
+	// Update the dataModelController ("file handle" for the current plan) for
+	// all the top level views. If any of the views are showing a sub-view, they also need to be popped
+	// to the root level view.
+	self.inputViewController.dataModelController = self.currentPlanDmc;
+	[self.inputViewController.navigationController popToViewController:self.inputViewController animated:FALSE];
+	
+	self.startingValsController.dataModelController = self.currentPlanDmc;
+	[self.startingValsController.navigationController popToViewController:self.startingValsController animated:FALSE];
+	
+	self.resultsController.dataModelController = self.currentPlanDmc;
+	[self.resultsController.navigationController popToViewController:self.resultsController animated:FALSE];
+	
+	self.whatIfController.dataModelController = self.currentPlanDmc;
+	[self.whatIfController.navigationController popToViewController:self.whatIfController animated:FALSE];
+	
+	// Don't pop the more view controller, since the plan/budget list is a sub ViewController,
+	// and we don't want to interrupt the editing of the plan list.
+	self.moreController.dataModelController = self.currentPlanDmc;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Delete the persistent cache of information for results controllers: Otherwise,
@@ -94,85 +266,14 @@
     // section information does not match the current configuration."
     [NSFetchedResultsController deleteCacheWithName:nil];
 	
-	self.currentPlanDmc = [AppHelper appDataModelControllerForPlanName:LOCALIZED_STR(@"DEFAULT_MASTER_PLAN_NAME")];
-    
-	[SharedAppValues initFromDatabase:self.currentPlanDmc];
+	[self initCurrentPlan];
 	
-	[SimResultsController initSingletonFromDataModelController:self.currentPlanDmc];
-	
-	// navBarController is the color used in the navigation bar for all the tabbed views.
-	UIColor *navBarControllerColor = [ColorHelper navBarTintColor];
+	[self populateTabBarController];
 
-	UIViewController *inputController = [[[InputListTableViewController alloc]
-		initWithDataModelController:self.currentPlanDmc] autorelease];
-	UINavigationController *inputNavController = [[[UINavigationController alloc] initWithRootViewController:inputController] autorelease];
-	inputNavController.title = [AppHelper generatingLaunchScreen]?
-			@"":LOCALIZED_STR(@"INPUT_NAV_CONTROLLER_BUTTON_TITLE");
-	inputNavController.tabBarItem.image = [UIImage imageNamed:@"piggy.png"];
-	inputNavController.navigationBar.tintColor = navBarControllerColor;
-
-
-	
-	StartingValsFormInfoCreator *startingValsFormInfoCreator = 
-		[[[StartingValsFormInfoCreator alloc] init] autorelease];
-	UIViewController *startingValsController = [[[GenericFieldBasedTableEditViewController alloc]
-		initWithFormInfoCreator:startingValsFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
-	UINavigationController *startingValsNavController = 
-		[[[UINavigationController alloc] initWithRootViewController:startingValsController] autorelease];
-	startingValsNavController.title = [AppHelper generatingLaunchScreen]?
-			@"":LOCALIZED_STR(@"STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE");
-	startingValsNavController.tabBarItem.image = [UIImage imageNamed:@"clock.png"];
-	startingValsNavController.navigationBar.tintColor = navBarControllerColor;
-
-	ResultsListFormInfoCreator *resultsListFormInfoCreator = 
-		[[[ResultsListFormInfoCreator alloc] init] autorelease];
-	UIViewController *resultsController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:resultsListFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
-	UINavigationController *resultsNavController = [[[UINavigationController alloc] 
-		initWithRootViewController:resultsController] autorelease];
-	resultsNavController.title = [AppHelper generatingLaunchScreen]?
-			@"":LOCALIZED_STR(@"RESULTS_NAV_CONTROLLER_BUTTON_TITLE");
-	resultsNavController.tabBarItem.image = [UIImage imageNamed:@"graph.png"];
-	resultsNavController.navigationBar.tintColor = navBarControllerColor;
-	
-	WhatIfFormInfoCreator *whatIfFormInfoCreator = 
-		[[[WhatIfFormInfoCreator alloc] init] autorelease];
-	UIViewController *whatIfController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:whatIfFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
-	UINavigationController *whatIfNavController = [[[UINavigationController alloc] initWithRootViewController:whatIfController] autorelease];
-	whatIfNavController.title = [AppHelper generatingLaunchScreen]?
-			@"":LOCALIZED_STR(@"WHAT_IF_NAV_CONTROLLER_BUTTON_TITLE");
-	whatIfNavController.tabBarItem.image = [UIImage imageNamed:@"scales.png"];
-	whatIfNavController.navigationBar.tintColor = navBarControllerColor;
-
-	
-	MoreFormInfoCreator *moreFormInfoCreator = 
-		[[[MoreFormInfoCreator alloc] init] autorelease];
-	UIViewController *moreViewController = [[[GenericFieldBasedTableViewController alloc]
-		initWithFormInfoCreator:moreFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
-	UINavigationController *moreNavController = [[[UINavigationController alloc] initWithRootViewController:moreViewController] autorelease];
-	moreNavController.title = [AppHelper generatingLaunchScreen]?
-			@"":LOCALIZED_STR(@"MORE_VIEW_TITLE");
-	moreNavController.tabBarItem = [[[UITabBarItem alloc] 
-		initWithTabBarSystemItem:UITabBarSystemItemMore tag:0] autorelease];
-	moreNavController.navigationBar.tintColor = navBarControllerColor;	
-	
-	
-	self.tabBarController.viewControllers =
-		[NSArray arrayWithObjects:
-			inputNavController, 
-			startingValsNavController,
-			resultsNavController, 
-			whatIfNavController,
-			moreNavController, 
-			nil]; 
-		
-    
 	self.passcodeValidator = [[[PasscodeValidator alloc] initWithDelegate:self] autorelease];
 	[self configureReviewAppPrompt];
 		
     [self.window makeKeyAndVisible];
-    
     
     return YES;
 }

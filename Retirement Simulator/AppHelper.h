@@ -9,17 +9,22 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const FINSIM_APP_ID;
+extern NSString * const PLAN_DATA_FILE_EXTENSION;
 
 @class DataModelController;
 @class AppDelegate;
 
 @interface AppHelper : NSObject
 
-+(DataModelController*)appDataModelControllerForPlanName:(NSString*)planName;
++(DataModelController*)openPlanForPlanName:(NSString*)planName;
+
 +(DataModelController*)subDataModelControllerForCurrentPlan;
 
 +(AppDelegate*)theAppDelegate;
 
 +(BOOL)generatingLaunchScreen;
+
++(void)setCurrentPlanName:(NSString*)planName;
++(NSString*)currentPlanName;
 
 @end

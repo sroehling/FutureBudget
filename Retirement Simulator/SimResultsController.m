@@ -158,7 +158,10 @@ static SimResultsController *theSimResultsControllerSingleton;
 +(void)initSingleton:(SimResultsController*)theSimResultsCtrl
 {
 	assert(theSimResultsCtrl != nil);
-	assert(theSimResultsControllerSingleton == nil);
+	if(theSimResultsControllerSingleton != nil)
+	{
+		[theSimResultsControllerSingleton release];
+	}
 	[theSimResultsCtrl retain];
 	theSimResultsControllerSingleton = theSimResultsCtrl;
 }
