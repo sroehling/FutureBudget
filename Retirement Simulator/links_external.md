@@ -41,6 +41,7 @@
 [milestone]:milestoneDate.html
 [tags]:inputTags.html
 [withdrawPriority]:account.html#withdrawal-order
+[budgetList]:budgetList.html
 
 <!-- Startup (simulation setup) -->
 [deficit]:deficit.html
