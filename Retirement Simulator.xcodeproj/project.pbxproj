@@ -454,7 +454,7 @@
 		00CB5E7014927E7700C4654A /* IncomeXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E6F14927E6500C4654A /* IncomeXYPlotDataGenerator.m */; };
 		00CB5E731492AF2400C4654A /* AllExpenseXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */; };
 		00CB5E761492AF4300C4654A /* ExpenseXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */; };
-		00D071C917809F640099E3C2 /* planList.md in Resources */ = {isa = PBXBuildFile; fileRef = 00D071C817809F640099E3C2 /* planList.md */; };
+		00D071C917809F640099E3C2 /* budgetList.md in Resources */ = {isa = PBXBuildFile; fileRef = 00D071C817809F640099E3C2 /* budgetList.md */; };
 		00D6845514CDC99700E3AC9F /* MoreFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */; };
 		00D6846B14CE004800E3AC9F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00D6846C14CE004800E3AC9F /* Localizable.strings */; };
 		00D8D263148DD3D300B0314D /* MultiScenarioRelativeEndDateFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D262148DD3D200B0314D /* MultiScenarioRelativeEndDateFieldInfo.m */; };
@@ -1342,7 +1342,7 @@
 		00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00CB5E741492AF3C00C4654A /* ExpenseXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
-		00D071C817809F640099E3C2 /* planList.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = planList.md; sourceTree = "<group>"; };
+		00D071C817809F640099E3C2 /* budgetList.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = budgetList.md; sourceTree = "<group>"; };
 		00D6845314CDC99700E3AC9F /* MoreFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreFormInfoCreator.h; sourceTree = "<group>"; };
 		00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreFormInfoCreator.m; sourceTree = "<group>"; };
 		00D6846C14CE004800E3AC9F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -1589,7 +1589,7 @@
 			name = Taxes;
 			sourceTree = "<group>";
 		};
-		00197EF4177C9F8C0094E46B /* Multiple Plans */ = {
+		00197EF4177C9F8C0094E46B /* Multiple Plans/Budgets */ = {
 			isa = PBXGroup;
 			children = (
 				00197EF5177C9FDB0094E46B /* PlanListViewController.h */,
@@ -1597,7 +1597,7 @@
 				00197EF8177CA2DF0094E46B /* PlanListViewFactory.h */,
 				00197EF9177CA2DF0094E46B /* PlanListViewFactory.m */,
 			);
-			name = "Multiple Plans";
+			name = "Multiple Plans/Budgets";
 			sourceTree = "<group>";
 		};
 		001AE1BD1714949D000F461D /* Examples */ = {
@@ -2008,7 +2008,7 @@
 				0057F42E14F81B2C006A2FA3 /* account.md */,
 				0058A80E14F830BB00F2DCEF /* income.md */,
 				001AE1D21715DDD0000F461D /* transfer.md */,
-				00D071C817809F640099E3C2 /* planList.md */,
+				00D071C817809F640099E3C2 /* budgetList.md */,
 			);
 			name = "Key Features";
 			sourceTree = "<group>";
@@ -3012,7 +3012,7 @@
 		00D6845114CDC96A00E3AC9F /* More View */ = {
 			isa = PBXGroup;
 			children = (
-				00197EF4177C9F8C0094E46B /* Multiple Plans */,
+				00197EF4177C9F8C0094E46B /* Multiple Plans/Budgets */,
 				00D6846D14CE04D000E3AC9F /* Help Pages */,
 				00D6845314CDC99700E3AC9F /* MoreFormInfoCreator.h */,
 				00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */,
@@ -3508,7 +3508,7 @@
 				00590A541742EF7800BBF045 /* variableDivReinvestPercent.md in Resources */,
 				00590A561745432400BBF045 /* neverEndDateDeferPmt.md in Resources */,
 				00590A581745438E00BBF045 /* relEndDateDeferPmt.md in Resources */,
-				00D071C917809F640099E3C2 /* planList.md in Resources */,
+				00D071C917809F640099E3C2 /* budgetList.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

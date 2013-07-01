@@ -124,7 +124,7 @@ NSUInteger const MAX_PLAN_NAME_LENGTH = 32;
 	
 	self.tableView.tableHeaderView = [[[TableHeaderWithHelpFlipView alloc]
 		initWithHeader:LOCALIZED_STR(@"PLAN_LIST_TABLE_TITLE")
-		andSubHeader:LOCALIZED_STR(@"PLAN_LIST_TABLE_SUBTITLE") andHelpFile:@"planList"
+		andSubHeader:LOCALIZED_STR(@"PLAN_LIST_TABLE_SUBTITLE") andHelpFile:@"budgetList"
 		andAnchorWithinHelpFile:nil andParentController:self] autorelease];
 
 	self.addButton = [[[UIBarButtonItem alloc]   
