@@ -93,7 +93,7 @@
 
 -(void)configureReviewAppPrompt
 {
-	[Appirater setAppId:FINSIM_APP_ID];
+	[Appirater setAppId:FUTURE_BUDGET_APP_ID];
     [Appirater setDaysUntilPrompt:2];
     [Appirater setUsesUntilPrompt:5];
     [Appirater setSignificantEventsUntilPrompt:-1];

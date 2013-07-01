@@ -16,8 +16,7 @@
 NSString * const APP_DATA_DATA_MODEL_NAME = @"DataModel";
 NSString * const PLAN_DATA_FILE_EXTENSION = @"sqlite";
 
-// TODO - Plug in real APP ID
-NSString * const FINSIM_APP_ID = @"572539748";
+NSString * const FUTURE_BUDGET_APP_ID = @"668648687";
 
 NSString * const CURRENT_PLAN_NAME_KEY = @"CURRENT_PLAN_FILE_NAME";
 

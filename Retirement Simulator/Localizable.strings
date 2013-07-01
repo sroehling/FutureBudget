@@ -768,7 +768,7 @@
 "MORE_HELP_SECTION_TITLE" = "Help";
 "MORE_EXAMPLES_TITLE" = "Examples";
 "MORE_EXAMPLES_SUBTITLE" = "Suggestions for setting up inputs and scenarios for common examples, such as housing and education.";
-"HELP_ABOUT" = "About FinSim";
+"HELP_ABOUT" = "About FutureBudget";
 "MORE_APP_INFO_SECTION_TITLE" = "Information";
 "HELP_GETTING_STARTED" = "Getting Started";
 
@@ -788,8 +788,8 @@
 
 /* This string is also defined in ResultraGenericLib. The ones here overrides the
   more generic strings given the library */
-"PASSCODE_ENTRY_PROMPT" = "Enter a passcode for FinSim";
-"PASSCODE_VERIFY_PROMPT" = "Enter your FinSim passcode";
+"PASSCODE_ENTRY_PROMPT" = "Enter a passcode for FutureBudget";
+"PASSCODE_VERIFY_PROMPT" = "Enter your FutureBudget passcode";
 
 
 

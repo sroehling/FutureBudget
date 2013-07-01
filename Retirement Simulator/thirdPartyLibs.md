@@ -1,6 +1,6 @@
 ## 3rd Party Libraries
 
-The FinSim software incorporates under license a number of 
+The FutureBudget software incorporates under license a number of 
 third party software libraries.
 The following is a list of these libraries and 
 the copyrights and associated conditions 

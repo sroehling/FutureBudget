@@ -1,4 +1,4 @@
-# FinSim App Store Information
+# FutureBudget App Store Information
 
 The information below is for the app store submission.
 
@@ -36,7 +36,7 @@ While most financial planning/budgeting apps are based on more general or "canne
 * What will happen if salary increases don't keep up with expected inflation?
 • Have a little fun - what would happen if you got an unexpected inheritance from a long lost uncle?
 
-Formulating specific inputs for FutureBudget will not only prompt some critical thinking about your financial future, but FutureBudget will also be able to generate results which are relavent and throught provoking. Changes to some inputs may have little impact on the results, while a 1 or 2 percent change in expected investment returns could dramatically impact long term results.
+Formulating specific inputs for FutureBudget will not only prompt some critical thinking about your financial future, but FutureBudget will also be able to generate results which are relavent and thought provoking. Changes to some inputs may have little impact on the results, while a 1 or 2 percent change in expected investment returns could dramatically impact long term results.
 
 Features: 
 

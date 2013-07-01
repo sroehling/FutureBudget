@@ -1,6 +1,6 @@
 # Getting Started
 
-Basically, the steps to work with FinSim include:
+Basically, the steps to work with FutureBudget include:
 
 1. In the **Inputs** tab, make a list of incomes, expenses and other inputs 
    matching your current and future financial assumptions.

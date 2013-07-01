@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const FINSIM_APP_ID;
+extern NSString * const FUTURE_BUDGET_APP_ID;
 extern NSString * const PLAN_DATA_FILE_EXTENSION;
 
 @class DataModelController;
