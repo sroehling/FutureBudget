@@ -1265,21 +1265,21 @@
 		00A254C81476D703004F63E3 /* PositiveNumberValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositiveNumberValidator.h; sourceTree = "<group>"; };
 		00A254C91476D704004F63E3 /* PositiveNumberValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositiveNumberValidator.m; sourceTree = "<group>"; };
 		00A2D971176785A800951F86 /* MonthlyMortgageInterestCalculation.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = MonthlyMortgageInterestCalculation.xlsx; sourceTree = "<group>"; };
-		00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retirement Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A36BD1136C6CAE008A5C4C /* FutureBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutureBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A36BD5136C6CAE008A5C4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00A36BD7136C6CAE008A5C4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00A36BD9136C6CAE008A5C4C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		00A36BDD136C6CAE008A5C4C /* Retirement Simulator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Retirement Simulator-Info.plist"; sourceTree = "<group>"; };
+		00A36BDD136C6CAE008A5C4C /* FutureBudget-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FutureBudget-Info.plist"; sourceTree = "<group>"; };
 		00A36BDF136C6CAE008A5C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		00A36BE1136C6CAE008A5C4C /* Retirement Simulator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Retirement Simulator-Prefix.pch"; sourceTree = "<group>"; };
+		00A36BE1136C6CAE008A5C4C /* FutureBudget-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FutureBudget-Prefix.pch"; sourceTree = "<group>"; };
 		00A36BE2136C6CAE008A5C4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		00A36BE4136C6CAE008A5C4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		00A36BE5136C6CAE008A5C4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		00A36BE8136C6CAE008A5C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		00A36BFB136C6CAE008A5C4C /* Retirement SimulatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Retirement SimulatorTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		00A36C03136C6CAE008A5C4C /* Retirement SimulatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Retirement SimulatorTests-Info.plist"; sourceTree = "<group>"; };
+		00A36BFB136C6CAE008A5C4C /* FutureBudgetTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutureBudgetTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A36C03136C6CAE008A5C4C /* FutureBudgetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FutureBudgetTests-Info.plist"; sourceTree = "<group>"; };
 		00A36C05136C6CAE008A5C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Retirement SimulatorTests-Prefix.pch"; sourceTree = "<group>"; };
+		00A36C07136C6CAE008A5C4C /* FutureBudgetTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FutureBudgetTests-Prefix.pch"; sourceTree = "<group>"; };
 		00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Retirement_SimulatorTests.h; sourceTree = "<group>"; };
 		00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorTests.m; sourceTree = "<group>"; };
 		00A8A3181545F595003C6D73 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -1462,6 +1462,9 @@
 		00F217D2140F073300FA73AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
+		00F543941781E6A0007AEC16 /* AppStoreLargeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppStoreLargeIcon.png; path = ../AppStoreLargeIcon.png; sourceTree = "<group>"; };
+		00F543951781EB1B007AEC16 /* AppScreenshot1_35inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppScreenshot1_35inch.png; path = ../AppScreenshot1_35inch.png; sourceTree = "<group>"; };
+		00F543961781EB1B007AEC16 /* AppScreenshot1_4inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppScreenshot1_4inch.png; path = ../AppScreenshot1_4inch.png; sourceTree = "<group>"; };
 		00FF1926147C0BEF000787B5 /* SimDateSubtitleFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateSubtitleFormatter.h; sourceTree = "<group>"; };
 		00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateSubtitleFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1991,9 +1994,13 @@
 		002E7B65167A2DB100713684 /* App Store */ = {
 			isa = PBXGroup;
 			children = (
+				00F543951781EB1B007AEC16 /* AppScreenshot1_35inch.png */,
+				00F543961781EB1B007AEC16 /* AppScreenshot1_4inch.png */,
+				00F543941781E6A0007AEC16 /* AppStoreLargeIcon.png */,
 				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
 			);
 			name = "App Store";
+			path = "Retirement Simulator";
 			sourceTree = "<group>";
 		};
 		002FAE9A14D3105900AE2B41 /* Key Features */ = {
@@ -2807,8 +2814,9 @@
 			children = (
 				00EF7A3516A8619F0006F805 /* App Icons */,
 				00A9CAC916A60EA600AF69B2 /* Launch Images */,
-				00A36BDB136C6CAE008A5C4C /* Retirement Simulator */,
-				00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */,
+				002E7B65167A2DB100713684 /* App Store */,
+				00A36BDB136C6CAE008A5C4C /* FutureBudget Source */,
+				00A36C01136C6CAE008A5C4C /* FutureBudget Tests */,
 				00A36BD4136C6CAE008A5C4C /* Frameworks */,
 				00A36BD2136C6CAE008A5C4C /* Products */,
 				00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */,
@@ -2819,8 +2827,8 @@
 		00A36BD2136C6CAE008A5C4C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */,
-				00A36BFB136C6CAE008A5C4C /* Retirement SimulatorTests.octest */,
+				00A36BD1136C6CAE008A5C4C /* FutureBudget.app */,
+				00A36BFB136C6CAE008A5C4C /* FutureBudgetTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2841,10 +2849,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		00A36BDB136C6CAE008A5C4C /* Retirement Simulator */ = {
+		00A36BDB136C6CAE008A5C4C /* FutureBudget Source */ = {
 			isa = PBXGroup;
 			children = (
-				002E7B65167A2DB100713684 /* App Store */,
 				00D6848614CF61FB00E3AC9F /* 3rdParty */,
 				004F5D7613731A4F00E0C4A3 /* Data Model */,
 				0010A58A13D15C5D0096A20F /* Starting Values */,
@@ -2855,6 +2862,7 @@
 				004F5D6E1373170C00E0C4A3 /* Application */,
 				00A36BDC136C6CAE008A5C4C /* Supporting Files */,
 			);
+			name = "FutureBudget Source";
 			path = "Retirement Simulator";
 			sourceTree = "<group>";
 		};
@@ -2863,15 +2871,15 @@
 			children = (
 				00A0CE8316727DB800CDFD78 /* markdown.css */,
 				00D6846C14CE004800E3AC9F /* Localizable.strings */,
-				00A36BDD136C6CAE008A5C4C /* Retirement Simulator-Info.plist */,
+				00A36BDD136C6CAE008A5C4C /* FutureBudget-Info.plist */,
 				00A36BDE136C6CAE008A5C4C /* InfoPlist.strings */,
-				00A36BE1136C6CAE008A5C4C /* Retirement Simulator-Prefix.pch */,
+				00A36BE1136C6CAE008A5C4C /* FutureBudget-Prefix.pch */,
 				00A36BE2136C6CAE008A5C4C /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		00A36C01136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
+		00A36C01136C6CAE008A5C4C /* FutureBudget Tests */ = {
 			isa = PBXGroup;
 			children = (
 				00A2D96F1767853E00951F86 /* Documentation */,
@@ -2909,15 +2917,16 @@
 				0026D3FE16E6512200922D16 /* TestTaxBracket.h */,
 				0026D3FF16E6512200922D16 /* TestTaxBracket.m */,
 			);
+			name = "FutureBudget Tests";
 			path = "Retirement SimulatorTests";
 			sourceTree = "<group>";
 		};
 		00A36C02136C6CAE008A5C4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				00A36C03136C6CAE008A5C4C /* Retirement SimulatorTests-Info.plist */,
+				00A36C03136C6CAE008A5C4C /* FutureBudgetTests-Info.plist */,
 				00A36C04136C6CAE008A5C4C /* InfoPlist.strings */,
-				00A36C07136C6CAE008A5C4C /* Retirement SimulatorTests-Prefix.pch */,
+				00A36C07136C6CAE008A5C4C /* FutureBudgetTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -3204,9 +3213,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00A36BD0136C6CAE008A5C4C /* Retirement Simulator */ = {
+		00A36BD0136C6CAE008A5C4C /* FutureBudget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00A36C0E136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement Simulator" */;
+			buildConfigurationList = 00A36C0E136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "FutureBudget" */;
 			buildPhases = (
 				00A36BCD136C6CAE008A5C4C /* Sources */,
 				00A36BCE136C6CAE008A5C4C /* Frameworks */,
@@ -3219,14 +3228,14 @@
 				003611A5166800C800A6FB76 /* PBXTargetDependency */,
 				00C3DCAC1667EFF800F1F490 /* PBXTargetDependency */,
 			);
-			name = "Retirement Simulator";
+			name = FutureBudget;
 			productName = "Retirement Simulator";
-			productReference = 00A36BD1136C6CAE008A5C4C /* Retirement Simulator.app */;
+			productReference = 00A36BD1136C6CAE008A5C4C /* FutureBudget.app */;
 			productType = "com.apple.product-type.application";
 		};
-		00A36BFA136C6CAE008A5C4C /* Retirement SimulatorTests */ = {
+		00A36BFA136C6CAE008A5C4C /* FutureBudgetTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00A36C11136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement SimulatorTests" */;
+			buildConfigurationList = 00A36C11136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "FutureBudgetTests" */;
 			buildPhases = (
 				00A36BF6136C6CAE008A5C4C /* Sources */,
 				00A36BF7136C6CAE008A5C4C /* Frameworks */,
@@ -3238,9 +3247,9 @@
 			dependencies = (
 				00A36C00136C6CAE008A5C4C /* PBXTargetDependency */,
 			);
-			name = "Retirement SimulatorTests";
+			name = FutureBudgetTests;
 			productName = "Retirement SimulatorTests";
-			productReference = 00A36BFB136C6CAE008A5C4C /* Retirement SimulatorTests.octest */;
+			productReference = 00A36BFB136C6CAE008A5C4C /* FutureBudgetTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -3251,7 +3260,7 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = 00A36BCB136C6CAD008A5C4C /* Build configuration list for PBXProject "Retirement Simulator" */;
+			buildConfigurationList = 00A36BCB136C6CAD008A5C4C /* Build configuration list for PBXProject "FutureBudget" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3273,8 +3282,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				00A36BD0136C6CAE008A5C4C /* Retirement Simulator */,
-				00A36BFA136C6CAE008A5C4C /* Retirement SimulatorTests */,
+				00A36BD0136C6CAE008A5C4C /* FutureBudget */,
+				00A36BFA136C6CAE008A5C4C /* FutureBudgetTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3879,7 +3888,7 @@
 		};
 		00A36C00136C6CAE008A5C4C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00A36BD0136C6CAE008A5C4C /* Retirement Simulator */;
+			target = 00A36BD0136C6CAE008A5C4C /* FutureBudget */;
 			targetProxy = 00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */;
 		};
 		00C3DCAC1667EFF800F1F490 /* PBXTargetDependency */ = {
@@ -3970,15 +3979,15 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Retirement Simulator/Retirement Simulator-Prefix.pch";
+				GCC_PREFIX_HEADER = "Retirement Simulator/FutureBudget-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "Retirement Simulator/Retirement Simulator-Info.plist";
+				INFOPLIST_FILE = "Retirement Simulator/FutureBudget-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FutureBudget;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3989,15 +3998,15 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Retirement Simulator/Retirement Simulator-Prefix.pch";
+				GCC_PREFIX_HEADER = "Retirement Simulator/FutureBudget-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "Retirement Simulator/Retirement Simulator-Info.plist";
+				INFOPLIST_FILE = "Retirement Simulator/FutureBudget-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FutureBudget;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4007,15 +4016,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Retirement Simulator.app/Retirement Simulator";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FutureBudget.app/FutureBudget";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Retirement SimulatorTests/Retirement SimulatorTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Retirement SimulatorTests/FutureBudgetTests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "Retirement SimulatorTests/Retirement SimulatorTests-Info.plist";
+				INFOPLIST_FILE = "Retirement SimulatorTests/FutureBudgetTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
@@ -4024,7 +4033,7 @@
 					"-framework",
 					SenTestingKit,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FutureBudgetTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -4034,15 +4043,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Retirement Simulator.app/Retirement Simulator";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FutureBudget.app/FutureBudget";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Retirement SimulatorTests/Retirement SimulatorTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Retirement SimulatorTests/FutureBudgetTests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "Retirement SimulatorTests/Retirement SimulatorTests-Info.plist";
+				INFOPLIST_FILE = "Retirement SimulatorTests/FutureBudgetTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
@@ -4051,7 +4060,7 @@
 					"-framework",
 					SenTestingKit,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FutureBudgetTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -4060,7 +4069,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00A36BCB136C6CAD008A5C4C /* Build configuration list for PBXProject "Retirement Simulator" */ = {
+		00A36BCB136C6CAD008A5C4C /* Build configuration list for PBXProject "FutureBudget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00A36C0C136C6CAE008A5C4C /* Debug */,
@@ -4069,7 +4078,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00A36C0E136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement Simulator" */ = {
+		00A36C0E136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "FutureBudget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00A36C0F136C6CAE008A5C4C /* Debug */,
@@ -4078,7 +4087,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00A36C11136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "Retirement SimulatorTests" */ = {
+		00A36C11136C6CAE008A5C4C /* Build configuration list for PBXNativeTarget "FutureBudgetTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00A36C12136C6CAE008A5C4C /* Debug */,

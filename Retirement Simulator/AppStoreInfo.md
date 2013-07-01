@@ -4,7 +4,7 @@ The information below is for the app store submission.
 
 ## SKU Number
 
-FINSIM_2012_0001
+FUTUREBUDGET_2013_0001
 
 ## Version Number
 
@@ -12,7 +12,7 @@ FINSIM_2012_0001
 
 ## Copyright:
 
-2012 Resultra, LLC
+2013 Resultra, LLC
 
 ## Primary Category: 
 
@@ -24,9 +24,9 @@ Finance
 
 ## Description
 
-FinSim will help you plan for your financial future by flexibly evaluating different longer term budgeting and investing what-if scenarios. 
+FutureBudget will help you plan for your financial future by flexibly evaluating different longer term budgeting and investing what-if scenarios. 
 
-While most financial planning/budgeting apps are based on more general or "canned" inputs, FinSim works with specific assumptions about both current and future incomes, expenses and investments. By supporting specific inputs, FinSim flexibly supports many types of scenarios; for example:
+While most financial planning/budgeting apps are based on more general or "canned" inputs, FutureBudget works with specific assumptions about both current and future incomes, expenses and investments. By supporting specific inputs, FutureBudget flexibly supports many types of scenarios; for example:
 
 • After retirment, lower the expected return rate for an investment portfolio.
 • Future one-time expenses or incomes, such as a wedding or new car purchase.
@@ -34,9 +34,9 @@ While most financial planning/budgeting apps are based on more general or "canne
 • Send the kids to public or private schools.
 • After the kids move out or you retire, lower certain household expenses.
 * What will happen if salary increases don't keep up with expected inflation?
-• Have a little fun - what would happen if you won the lottery or got an unexpected inheritance from a long lost uncle?
+• Have a little fun - what would happen if you got an unexpected inheritance from a long lost uncle?
 
-Formulating specific inputs for FinSim will not only prompt some critical thinking about your financial future, but FinSim will also be able to generate results which are relavent and throught provoking. Changes to some inputs may have little impact on the results, while a 1 or 2 percent change in expected investment returns could dramatically impact long term results.
+Formulating specific inputs for FutureBudget will not only prompt some critical thinking about your financial future, but FutureBudget will also be able to generate results which are relavent and throught provoking. Changes to some inputs may have little impact on the results, while a 1 or 2 percent change in expected investment returns could dramatically impact long term results.
 
 Features: 
 
@@ -47,11 +47,11 @@ Features:
 
 ## Keywords
 
-simulator, planning, budget, simulation
+budget, budgeting, planning, retirement, simulation, expenses, investment, loans
 
 ## Support URL
 
-http://finsim.resultra.com/support
+http://futurebudget.resultra.com/support
 
 ## Support Email Address
 
@@ -59,7 +59,7 @@ support@resultra.com
 
 ## Marketing URL
 
-http://finsim.resultra.com
+http://futurebudget.resultra.com
 
 ## Review Notes
 
