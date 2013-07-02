@@ -49,11 +49,11 @@ const CGFloat YEARVAL_RESULTS_CELL_HEIGHT = 28.0;
 	
 	[year setFrame:CGRectMake(YEARVAL_RESULTS_CELL_YEAR_LEFT_OFFSET, 0, 
 			YEARVAL_RESULTS_CELL_COLUMN_WIDTH, YEARVAL_RESULTS_CELL_HEIGHT)];
-	year.textAlignment = UITextAlignmentCenter;
+	year.textAlignment = NSTextAlignmentCenter;
 	
 	[value setFrame:CGRectMake(YEARVAL_RESULTS_CELL_VALUE_LEFT_OFFSET, 0, 
 			100.0, YEARVAL_RESULTS_CELL_HEIGHT)];
-	value.textAlignment = UITextAlignmentRight;
+	value.textAlignment = NSTextAlignmentRight;
 	
 		
 }

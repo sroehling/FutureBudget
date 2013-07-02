@@ -149,7 +149,7 @@
 		cell = [[[StaticNameFieldCell alloc] init] autorelease];
     }    
     cell.staticName.text = [self.itemizedTaxAmtCreator itemLabel];
-	cell.staticName.textAlignment = UITextAlignmentLeft;
+	cell.staticName.textAlignment = NSTextAlignmentLeft;
 	
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;

@@ -90,7 +90,7 @@
 		cell = [[[StaticNameFieldCell alloc] init] autorelease];
     }    
     cell.staticName.text = self.expense.name;
-	cell.staticName.textAlignment = UITextAlignmentLeft;
+	cell.staticName.textAlignment = NSTextAlignmentLeft;
 	
 	if(true)
 	{

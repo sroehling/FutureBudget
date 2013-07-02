@@ -452,7 +452,7 @@
 {
 	
 	self.valColLabel.text = [self.plotDataGenerator dataLabel];
-	self.valColLabel.textAlignment = UITextAlignmentCenter;
+	self.valColLabel.textAlignment = NSTextAlignmentCenter;
 	
 	CGSize maxSize = CGSizeMake(YEARVAL_RESULTS_CELL_COLUMN_WIDTH, 300);
 	CGSize valueSize = [self.valColLabel.text sizeWithFont:self.valColLabel.font
@@ -469,7 +469,7 @@
 		YEARVAL_RESULTS_CELL_YEAR_LEFT_OFFSET, valueSize.height/2.0 - yearColLabel.frame.size.height/2.0, 
 		YEARVAL_RESULTS_CELL_COLUMN_WIDTH, yearColLabel.frame.size.height)];
 	self.yearColLabel.text = LOCALIZED_STR(@"RESULTS_YEAR_X_AXIS_TITLE");
-	self.yearColLabel.textAlignment = UITextAlignmentCenter;
+	self.yearColLabel.textAlignment = NSTextAlignmentCenter;
 
 		
 	[self.headerView setFrame:CGRectMake(0, 0, tableView.contentSize.width, valueSize.height)];

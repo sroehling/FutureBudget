@@ -3982,6 +3982,7 @@
 				GCC_PREFIX_HEADER = "Retirement Simulator/FutureBudget-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Retirement Simulator/FutureBudget-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
@@ -4001,6 +4002,7 @@
 				GCC_PREFIX_HEADER = "Retirement Simulator/FutureBudget-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Retirement Simulator/FutureBudget-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
