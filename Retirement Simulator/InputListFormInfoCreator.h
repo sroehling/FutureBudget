@@ -20,7 +20,7 @@
 }
 
 @property(nonatomic,assign) id<InputListHeaderDelegate> headerDelegate;
-@property(nonatomic,assign) TableHeaderWithDisclosure *tableHeader;
+@property(nonatomic,retain) TableHeaderWithDisclosure *tableHeader;
 
 -(void)configureHeader:(DataModelController*)dataModelController;
 

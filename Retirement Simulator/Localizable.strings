@@ -21,7 +21,7 @@
 "CONFIRM_PLAN_DELETE_BUTTON_TITLE" = "Ok";
 "PLAN_LIST_TITLE" = "Budgets";
 "PLAN_LIST_TABLE_TITLE" = "Budget List";
-"PLAN_LIST_TABLE_SUBTITLE" = "To load different budget, select from the list below. Or, edit the list to create, rename, or delete budgets.";
+"PLAN_LIST_TABLE_SUBTITLE" = "To load a different budget, select from the list below. Or, edit the list to create, rename, or delete budgets.";
 
 
 "DURATION_FIELD_SINGLE_YEAR" = "Year";
