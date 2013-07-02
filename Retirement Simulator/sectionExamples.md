@@ -1,3 +1,3 @@
 # Examples
 
-The following show how FutureBudget can be setup for some common examples
+The following describe how FutureBudget can be setup for some common examples.

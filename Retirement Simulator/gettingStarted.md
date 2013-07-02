@@ -23,7 +23,7 @@ These approaches allow you to get some results quickly, but continue to dig deep
 
 ## Learn the App using a "Sandbox" Budget
 
-In the **More** tab, there is an option to create and select from [multiple budgets][budgetList]. When you're first learning the app, you could try out the app's features using the "Master" budget which is created when the FutureBudget app first launches; you could then create another budget later with real inputs. Or, you could create and select a budget called "Sandbox" (or similar) right away, then re-select the "Master" budget later when you're ready to create some real inputs.
+In the **More** tab, there is an option to create and select from [multiple budgets][budgetList]. When you're first learning the app, you could try out the app's features using the "Master" budget, which is created when the FutureBudget app first launches; you could then create another budget later with real inputs. Or, you could create and select a budget called "Sandbox" (or similar) right away, then re-select the "Master" budget later when you're ready to create some real inputs.
 
 ## More Advanced Inputs and Features
 

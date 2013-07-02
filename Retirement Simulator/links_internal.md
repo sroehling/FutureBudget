@@ -60,7 +60,7 @@
 [varApprecRate]:variableApprecRate.html
 [variableInflation]:#variable-growth-rate
 [variableAmount]:#variable-amount
-[variableInterest]:variableInterest.html
+[variableInterest]:#variable-interest-rate
 [varReturn]:#variable-return-rate
 [variableValueChange]:variableValueChange.html
 [variableValueStarting]:variableValueStartDate.html

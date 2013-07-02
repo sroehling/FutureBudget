@@ -1,6 +1,6 @@
 ## Budget List
 
-When the FutureBudget app first opens, a single/main "Master" budget is created. However, 
+When the FutureBudget app first opens, a single "Master" budget is created. However, 
 there are some reasons to create more than one budget, and switch between them as appropriate.
 
 When you're first learning the app, you may want to create a "sandbox" budget to

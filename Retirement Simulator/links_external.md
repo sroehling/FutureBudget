@@ -68,7 +68,6 @@
 [variableDownPayment]:variableLoanDownPmt.html
 
 
-
 <!-- Dates Related -->
 [fixedDate]:fixedDate.html
 [relEndDate]:relEndDate.html

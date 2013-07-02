@@ -34,5 +34,6 @@ variableAmount.md
 variableReturn.md
 variableApprecRate.md
 variableInflation.md
+variableInterest.md
 
 links_internal.md
