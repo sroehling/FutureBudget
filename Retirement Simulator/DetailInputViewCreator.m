@@ -77,6 +77,8 @@
 #import "MultiScenarioInputValue.h"
 #import "InputTagsFieldEditInfo.h"
 #import "ItemizedAssetLossTaxFormInfoCreator.h"
+#import "BoolFieldCell.h"
+#import "BoolFieldShowHideCondition.h"
 
 @implementation DetailInputViewCreator
 
@@ -509,72 +511,77 @@
 	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_TAXES_FIELD_LABEL")
 		andFormInfoCreator:acctWithdTaxFormInfoCreator andItemizedTaxAmtsInfo:account.accountWithdrawalItemizedTaxAmt];
 
+	if(TRUE)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
+			
+		BoolFieldShowHideCondition *showHideAcctContribCondition =
+			[self.formPopulator
+				populateConditionalFieldVisibilityMultiScenBoolField:account.contribEnabled withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL")];
 
-	sectionInfo = [formPopulator nextSection];
-    sectionInfo.title = LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE");
+		[self.formPopulator populateMultiScenarioAmount:account.contribAmount withValueTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL")
+			andValueName:account.name withShowHideCondition:showHideAcctContribCondition];
+		  
+		[self.formPopulator populateMultiScenarioGrowthRate:account.contribGrowthRate 
+			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL")
+			andValueName:input.name withShowHideCondition:showHideAcctContribCondition];
+			
+		NSString *contribStartDateSubheader = [StringValidation nonEmptyString:account.name]?
+			[NSString stringWithFormat:
+				LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT"),
+				[account inlineInputType],account.name]:
+			[NSString stringWithFormat:
+				LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME"),
+				[account inlineInputType]];
 		
-		
-	[self.formPopulator populateMultiScenBoolField:account.contribEnabled 
-			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL")];
-		
-	[self.formPopulator populateMultiScenarioAmount:account.contribAmount withValueTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL")
-		andValueName:account.name];
-	  
-	[self.formPopulator populateMultiScenarioGrowthRate:account.contribGrowthRate 
-		withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL")
-		andValueName:input.name];
-		
-	NSString *contribStartDateSubheader = [StringValidation nonEmptyString:account.name]?
-		[NSString stringWithFormat:
-			LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT"),
-			[account inlineInputType],account.name]:
-		[NSString stringWithFormat:
-			LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME"),
-			[account inlineInputType]];
-	
-	[self.formPopulator populateMultiScenSimDate:account.contribStartDate 
-		andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL")  
-		andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE")
-		andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER") 
-		andTableSubHeader:contribStartDateSubheader];	
+		[self.formPopulator populateMultiScenSimDate:account.contribStartDate 
+			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_START_FIELD_LABEL")  
+			andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TITLE")
+			andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_START_DATE_TABLE_HEADER") 
+			andTableSubHeader:contribStartDateSubheader
+			andShowHideCondition:showHideAcctContribCondition];
 
-	RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
-		[self.formPopulator populateRepeatFrequency:account.contribRepeatFrequency
-			andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")];
- 
-	   // Only display (and prompt for) and end date when/if the repeat frequency is set to something other
-    // than "Once", such that an end date is needed. TBD - Should the end date in this case default to 
-    // "Plan end date".
-	if([repeatFrequencyInfo.fieldInfo fieldIsInitializedInParentObject])	
-    {
-        EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)[repeatFrequencyInfo.fieldInfo getFieldValue];
-        assert(repeatFreq != nil);
-        if([repeatFreq  eventRepeatsMoreThanOnce])
-        {
-			[self.formPopulator populateMultiScenSimEndDate:account.contribEndDate 
-				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
-				andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_TITLE")
-				andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_HEADER")
-				 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_SUBHEADER_FORMAT"),account.name]
+		RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = 
+			[self.formPopulator populateRepeatFrequency:account.contribRepeatFrequency
+				andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_REPEAT_FIELD_LABEL")
+				andShowHideCondition:showHideAcctContribCondition];
+	 
+		// Only display (and prompt for) and end date when/if the repeat frequency is set to something other
+		// than "Once", such that an end date is needed. TBD - Should the end date in this case default to 
+		// "Plan end date".
+		if([repeatFrequencyInfo.fieldInfo fieldIsInitializedInParentObject])	
+		{
+			EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)[repeatFrequencyInfo.fieldInfo getFieldValue];
+			assert(repeatFreq != nil);
+			if([repeatFreq  eventRepeatsMoreThanOnce])
+			{
+				[self.formPopulator populateMultiScenSimEndDate:account.contribEndDate 
+					andLabel:LOCALIZED_STR(@"INPUT_CASHFLOW_END_FIELD_LABEL") 
+					andTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_TITLE")
+					andTableHeader:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_HEADER")
+					 andTableSubHeader:[NSString stringWithFormat:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_END_DATE_TABLE_SUBHEADER_FORMAT"),account.name]
 
-				andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE")
-				andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE")
-				andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE") 
-				andNeverEndHelpInfo:@"neverEndDateContrib"
-				andRelEndDateSectionTitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE")
-				andRelEndDateHelpFile:@"relEndDateContrib"
-				andRelEndDateFieldLabel:LOCALIZED_STR(@"RELATIVE_END_DATE_FIELD_LABEL")];
-        }
-        
-    }
+					andNeverEndFieldTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_TITLE")
+					andNeverEndFieldSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_FIELD_SUBTITLE")
+					andNeverEndSectionTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_NEVER_END_SECTION_TITLE") 
+					andNeverEndHelpInfo:@"neverEndDateContrib"
+					andRelEndDateSectionTitle:LOCALIZED_STR(@"SIM_DATE_RELATIVE_ENDING_DATE_SECTION_TITLE")
+					andRelEndDateHelpFile:@"relEndDateContrib"
+					andRelEndDateFieldLabel:LOCALIZED_STR(@"RELATIVE_END_DATE_FIELD_LABEL")
+					andShowHideCondition:showHideAcctContribCondition];
+			}
+			
+		}
 
-	ItemizedAccountTaxFormInfoCreator *acctContribTaxFormInfoCreator =
-			[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
-			andIsForNewObject:self.isForNewObject] autorelease];
-	acctContribTaxFormInfoCreator.showContributions = TRUE;
-	[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_TAXES_FIELD_LABEL")
-		andFormInfoCreator:acctContribTaxFormInfoCreator andItemizedTaxAmtsInfo:account.accountContribItemizedTaxAmt];
-
+		ItemizedAccountTaxFormInfoCreator *acctContribTaxFormInfoCreator =
+				[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
+				andIsForNewObject:self.isForNewObject] autorelease];
+		acctContribTaxFormInfoCreator.showContributions = TRUE;
+		[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_CONTRIB_TAXES_FIELD_LABEL")
+			andFormInfoCreator:acctContribTaxFormInfoCreator andItemizedTaxAmtsInfo:account.accountContribItemizedTaxAmt
+			andShowHideCondition:showHideAcctContribCondition];
+	}
 
 }
 
@@ -596,7 +603,7 @@
 			// Discretionary Expenses
 			@"input-icon-loan-college.png",
 			@"input-icon-loan-business.png",
-		nil];		
+		nil];
 	
 	[self.formPopulator populateInputNameField:loan withIconList:iconNames];
 	[self.formPopulator populateNoteFieldInParentObj:loan
@@ -669,25 +676,19 @@
 		
 			 
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_SECTION_TITLE")];
-
-
-	[self.formPopulator populateMultiScenBoolField:loan.downPmtEnabled 
+	BoolFieldShowHideCondition *showOrHideDownPaymentFieldsCondition = [self.formPopulator populateConditionalFieldVisibilityMultiScenBoolField:loan.downPmtEnabled
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_ENABLED_LABEL")];
-	
-	[self.formPopulator populateLoanDownPmtPercent:loan withValueLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") andValueName:loan.name];
+	[self.formPopulator populateLoanDownPmtPercent:loan withValueLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") andValueName:loan.name
+		andShowHideCondition:showOrHideDownPaymentFieldsCondition];
 
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_SECTION_TITLE")];
-
-	[self.formPopulator populateMultiScenBoolField:loan.extraPmtEnabled 
+	BoolFieldShowHideCondition *showOrHideExtraPaymentFieldsCondition = [self.formPopulator populateConditionalFieldVisibilityMultiScenBoolField:loan.extraPmtEnabled
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_ENABLED_LABEL")];
-	
 	[self.formPopulator populateMultiScenarioAmount:loan.extraPmtAmt 
 		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_AMT_AMOUNT_FIELD_LABEL")
-		andValueName:loan.name];
-	  
+		andValueName:loan.name withShowHideCondition:showOrHideExtraPaymentFieldsCondition];
 	[self.formPopulator populateMultiScenarioGrowthRate:loan.extraPmtGrowthRate withLabel:LOCALIZED_STR(@"INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL")
-			andValueName:loan.name];  
-
+			andValueName:loan.name withShowHideCondition:showOrHideExtraPaymentFieldsCondition];
 		
 	[formPopulator nextSection];
 	[self.formPopulator populateMultiScenSimEndDate:loan.earlyPayoffDate 
@@ -705,15 +706,20 @@
 				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL")
 				];
 				
+				
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_SECTION_TITLE")];
-	[self.formPopulator populateMultiScenBoolField:loan.deferredPaymentEnabled
+	BoolFieldShowHideCondition *showOrHideDeferredPaymentFieldsCondition = [self.formPopulator
+			populateConditionalFieldVisibilityMultiScenBoolField:loan.deferredPaymentEnabled
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_ENABLED_LABEL")];
 	[self.formPopulator populateLoanDeferPaymentDate:loan
-		withFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_FIELD_LABEL")];
+		withFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_FIELD_LABEL")
+		withShowHideCondition:showOrHideDeferredPaymentFieldsCondition];
 	[self.formPopulator populateMultiScenBoolField:loan.deferredPaymentPayInterest
-			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_PAY_INTEREST")];
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_PAY_INTEREST")
+			andShowHideCondition:showOrHideDeferredPaymentFieldsCondition];
 	[self.formPopulator populateMultiScenBoolField:loan.deferredPaymentSubsizedInterest
-			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_INTEREST_SUBSIDIZED")];
+			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_INTEREST_SUBSIDIZED")
+			andShowHideCondition:showOrHideDeferredPaymentFieldsCondition];
 
 				
 }

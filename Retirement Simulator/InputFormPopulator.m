@@ -79,6 +79,8 @@
 
 #import "DividendRate.h"
 #import "DividendReinvestPercent.h"
+#import "BoolFieldShowHideCondition.h"
+#import "BoolFieldCell.h"
 
 @implementation InputFormPopulator
 
@@ -164,8 +166,10 @@
 
 }
 
--(void)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label
-	andSubtitle:(NSString*)subTitle // subTitle is optional and can be nil for no subtitle
+// Multi Scenario Boolean Field methods
+
+-(BoolFieldEditInfo*)multiScenBoolFieldEditInfo:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label
+	andSubtitle:(NSString*)subTitle
 {
 	assert(boolVal != nil);
 	assert([StringValidation nonEmptyString:label]);
@@ -178,15 +182,56 @@
 	BoolFieldEditInfo *boolFieldEditInfo = 
 		[[[BoolFieldEditInfo alloc] initWithFieldInfo:boolFieldInfo andSubtitle:subTitle] autorelease];
 		
+	return boolFieldEditInfo;
+}
+
+-(BoolFieldEditInfo *)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label
+	andSubtitle:(NSString*)subTitle // subTitle is optional and can be nil for no subtitle
+{
+	BoolFieldEditInfo *boolFieldEditInfo = [self multiScenBoolFieldEditInfo:boolVal
+			withLabel:label andSubtitle:subTitle];
+		
 	assert(self.currentSection != nil);
 	[self.currentSection addFieldEditInfo:boolFieldEditInfo];
+	
+	return boolFieldEditInfo;
+}
+
+-(BoolFieldEditInfo *)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label
+{
+	return [self populateMultiScenBoolField:boolVal withLabel:label andSubtitle:nil];
+}
+
+
+-(BoolFieldShowHideCondition *)populateConditionalFieldVisibilityMultiScenBoolField:
+		(MultiScenarioInputValue*)boolVal
+		withLabel:(NSString*)label
+{
+	BoolFieldEditInfo *boolFieldEditInfo =
+		[self populateMultiScenBoolField:boolVal withLabel:label andSubtitle:nil];
+
+	BoolFieldShowHideCondition *showOrHideFieldsCondition =
+		[[[BoolFieldShowHideCondition alloc] initWithFieldInfo:boolFieldEditInfo.fieldInfo] autorelease];
+		
+	[self.formInfo
+		listenToFieldShowHideChangeTrigger:boolFieldEditInfo.boolCell.boolFieldChangedTrigger];
+	
+	return showOrHideFieldsCondition;
+	
 }
 
 -(void)populateMultiScenBoolField:(MultiScenarioInputValue*)boolVal withLabel:(NSString*)label
+	andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
 {
-	[self populateMultiScenBoolField:boolVal withLabel:label andSubtitle:nil];
-}
+	BoolFieldEditInfo *boolFieldEditInfo = [self multiScenBoolFieldEditInfo:boolVal
+			withLabel:label andSubtitle:nil];
+			
+	assert(self.currentSection != nil);
+			
+	[self.currentSection addConditionallyShownFieldEditInfo:boolFieldEditInfo
+		withShowHideCondition:showHideCondition];
 
+}
 
 -(void)populateMultiScenFixedValField:(MultiScenarioInputValue*)inputVal
 	andValLabel:(NSString*)label andPrompt:(NSString*)prompt 
@@ -309,7 +354,7 @@
 }
 
 
--(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
+-(DateSensitiveValueFieldEditInfo*)multiScenAmountFieldEditInfoForAmount:(MultiScenarioAmount*)theAmount 
 	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
 {
 	assert(theAmount != nil);
@@ -319,15 +364,38 @@
 		createForDataModelController:self.formContext.dataModelController 
 		andMultiScenarioAmount:theAmount withValueTitle:valueTitle andValueName:valueName];
 		
-	assert(self.currentSection != nil);
-	[self.currentSection addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
+	DateSensitiveValueFieldEditInfo *amountFieldEditInfo = [DateSensitiveValueFieldEditInfo 
 	  createForDataModelController:self.formContext.dataModelController
 	  andScenario:self.inputScenario andMultiScenFixedVal:theAmount.amount
 		andLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE")
 	  andValRuntimeInfo:amountRuntimeInfo
 	  andDefaultFixedVal:theAmount.defaultFixedAmount
-	  andForNewVal:self.isForNewObject]];
+	  andForNewVal:self.isForNewObject];
+
+	return amountFieldEditInfo;
+}
+
+-(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
+{
+	DateSensitiveValueFieldEditInfo *amountFieldEditInfo =
+		[self multiScenAmountFieldEditInfoForAmount:theAmount
+		withValueTitle:valueTitle andValueName:valueName];
+	
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:amountFieldEditInfo];
+}
+
+-(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
+	withShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+	DateSensitiveValueFieldEditInfo *amountFieldEditInfo =
+		[self multiScenAmountFieldEditInfoForAmount:theAmount
+		withValueTitle:valueTitle andValueName:valueName];
+	assert(self.currentSection != nil);
+	[self.currentSection addConditionallyShownFieldEditInfo:amountFieldEditInfo
+		withShowHideCondition:showHideCondition];
 }
 
 -(VariableValueRuntimeInfo*)inflationRateRuntimInfoWithValueLabel:(NSString*)valueLabel
@@ -364,8 +432,7 @@
 
 }
 
-
--(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
+-(DateSensitiveValueFieldEditInfo*)multiScenarioGrowthRateFieldInfo:(MultiScenarioGrowthRate*)growthRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName
 {
@@ -373,20 +440,45 @@
 	assert([StringValidation nonEmptyString:valueLabel]);
 	assert(growthRate != nil);
 		
-	VariableValueRuntimeInfo *grRuntimeInfo = [self inflationRateRuntimInfoWithValueLabel:valueLabel 
+	VariableValueRuntimeInfo *grRuntimeInfo =
+		[self inflationRateRuntimInfoWithValueLabel:valueLabel
 		andValueName:valueName];
-
-	assert(self.currentSection != nil);
-	
-	[self.currentSection addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
+		
+	DateSensitiveValueFieldEditInfo *fieldEditInfo = [DateSensitiveValueFieldEditInfo
          createForDataModelController:self.formContext.dataModelController
 			andScenario:self.inputScenario andMultiScenFixedVal:growthRate.growthRate
 			andLabel:LOCALIZED_STR(@"INPUT_INFLATION_RATE_VALUE_TITLE")  
 		 andValRuntimeInfo:grRuntimeInfo 
 		 andDefaultFixedVal:growthRate.defaultFixedGrowthRate
-		 andForNewVal:self.isForNewObject]];
- 
+		 andForNewVal:self.isForNewObject];
+
+	return fieldEditInfo;
+}
+
+
+-(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	DateSensitiveValueFieldEditInfo *fieldEditInfo =
+		[self multiScenarioGrowthRateFieldInfo:growthRate withLabel:valueLabel andValueName:valueName];
+
+	assert(self.currentSection != nil);
+	
+	[self.currentSection addFieldEditInfo:fieldEditInfo];
+}
+
+-(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName withShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+	DateSensitiveValueFieldEditInfo *fieldEditInfo =
+		[self multiScenarioGrowthRateFieldInfo:growthRate withLabel:valueLabel andValueName:valueName];
+
+	assert(self.currentSection != nil);
+	
+	[self.currentSection addConditionallyShownFieldEditInfo:fieldEditInfo
+		withShowHideCondition:showHideCondition];
 }
 
 
@@ -604,10 +696,10 @@
 
 }
 
--(void)populateLoanDownPmtPercent:(LoanInput*)loan withValueLabel:(NSString*)valueLabel
+-(DateSensitiveValueFieldEditInfo*)loanDownPmtPercentFieldEditInfo:(LoanInput*)loan
+	withValueLabel:(NSString*)valueLabel
 	andValueName:(NSString*)valueName
 {
-
 	SharedEntityVariableValueListMgr *sharedDownPmtMgr = 
 	[[[SharedEntityVariableValueListMgr alloc] 
 		initWithDataModelController:self.formContext.dataModelController 
@@ -634,17 +726,33 @@
 		andValueName:valueName
 		andTableSubtitle:tableSubtitle] autorelease];
 	
-		
-    [self.currentSection addFieldEditInfo:
-	 [DateSensitiveValueFieldEditInfo 
+	DateSensitiveValueFieldEditInfo *fieldEditInfo = [DateSensitiveValueFieldEditInfo
 	  createForDataModelController:self.formContext.dataModelController
 	  andScenario:self.inputScenario andMultiScenFixedVal:loan.multiScenarioDownPmtPercent
 	  andLabel:LOCALIZED_STR(@"INPUT_LOAN_DOWN_PMT_PERCENT_FIELD_LABEL") 
 	  andValRuntimeInfo:downPmtVarValRuntimeInfo
 	  andDefaultFixedVal:loan.multiScenarioDownPmtPercentFixed
-		 andForNewVal:self.isForNewObject]];
+		 andForNewVal:self.isForNewObject];
+		
+    return fieldEditInfo;
 
+}
 
+-(void)populateLoanDownPmtPercent:(LoanInput*)loan withValueLabel:(NSString*)valueLabel
+	andValueName:(NSString*)valueName
+{
+	DateSensitiveValueFieldEditInfo *fieldEditInfo =
+		[self loanDownPmtPercentFieldEditInfo:loan withValueLabel:valueLabel andValueName:valueName];
+		
+    [self.currentSection addFieldEditInfo:fieldEditInfo];
+}
+
+-(void)populateLoanDownPmtPercent:(LoanInput*)loan withValueLabel:(NSString*)valueLabel
+	andValueName:(NSString*)valueName andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+	DateSensitiveValueFieldEditInfo *fieldEditInfo =
+		[self loanDownPmtPercentFieldEditInfo:loan withValueLabel:valueLabel andValueName:valueName];
+	[self.currentSection addConditionallyShownFieldEditInfo:fieldEditInfo withShowHideCondition:showHideCondition];
 }
 
 - (void)populateMultiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
@@ -708,6 +816,20 @@
 	return repeatFrequencyInfo;
 }
 
+-(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(MultiScenarioInputValue*)repeatFreq
+	andLabel:(NSString*)label andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+	assert(repeatFreq != nil);
+	assert([StringValidation nonEmptyString:label]);
+	
+    RepeatFrequencyFieldEditInfo *repeatFrequencyInfo = [RepeatFrequencyFieldEditInfo 
+		createForScenario:self.inputScenario andRepeatFreq:repeatFreq andLabel:label];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addConditionallyShownFieldEditInfo:repeatFrequencyInfo withShowHideCondition:showHideCondition];
+	return repeatFrequencyInfo;
+}
+
 
 -(void)populateMultiScenarioDuration:(MultiScenarioInputValue*)duration 
 	andLabel:(NSString*)label andPlaceholder:(NSString*)placeholder
@@ -730,7 +852,7 @@
 	[self.currentSection addFieldEditInfo:durationFieldEditInfo];
 }
 
--(void)populateMultiScenSimDate:(MultiScenarioSimDate*)multiScenSimDate 
+-(SimDateFieldEditInfo *)multiScenSimDateFieldEditInfo:(MultiScenarioSimDate*)multiScenSimDate
 	andLabel:(NSString*)label andTitle:(NSString*)title
 	andTableHeader:(NSString*)tableHeader andTableSubHeader:(NSString*)tableSubHeader
 {
@@ -755,12 +877,31 @@
 			andDefaultValue:multiScenSimDate.defaultFixedSimDate 
 			andVarDateRuntimeInfo:simDateInfo andShowEndDates:supportEndDates
 			andDefaultRelEndDate:nil];
+			
+	return simDateFieldEditInfo;
+}
+
+-(void)populateMultiScenSimDate:(MultiScenarioSimDate*)multiScenSimDate 
+	andLabel:(NSString*)label andTitle:(NSString*)title
+	andTableHeader:(NSString*)tableHeader andTableSubHeader:(NSString*)tableSubHeader
+{			
+	SimDateFieldEditInfo *simDateFieldEditInfo = [self multiScenSimDateFieldEditInfo:multiScenSimDate andLabel:label andTitle:title andTableHeader:tableHeader andTableSubHeader:tableSubHeader];
 		
     [self.currentSection addFieldEditInfo:simDateFieldEditInfo];
 
 }
 
--(void)populateMultiScenSimEndDate:(MultiScenarioSimEndDate*)multiScenSimEndDate 
+-(void)populateMultiScenSimDate:(MultiScenarioSimDate*)multiScenSimDate 
+	andLabel:(NSString*)label andTitle:(NSString*)title
+	andTableHeader:(NSString*)tableHeader andTableSubHeader:(NSString*)tableSubHeader
+	andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+	SimDateFieldEditInfo *simDateFieldEditInfo = [self multiScenSimDateFieldEditInfo:multiScenSimDate andLabel:label andTitle:title andTableHeader:tableHeader andTableSubHeader:tableSubHeader];
+
+	[self.currentSection addConditionallyShownFieldEditInfo:simDateFieldEditInfo withShowHideCondition:showHideCondition];
+}
+
+-(SimDateFieldEditInfo*)multiScenSimEndDateFieldEditInfo:(MultiScenarioSimEndDate*)multiScenSimEndDate
 	andLabel:(NSString*)label andTitle:(NSString*)title 
 	andTableHeader:(NSString*)tableHeader andTableSubHeader:(NSString*)tableSubHeader
 	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
@@ -808,13 +949,70 @@
 			andVarDateRuntimeInfo:simDateInfo andShowEndDates:doSupportNeverEndDates
 			andDefaultRelEndDate:multiScenSimEndDate.defaultFixedRelativeEndDate];
 
+
+	return simDateFieldEditInfo;
+}
+
+-(void)populateMultiScenSimEndDate:(MultiScenarioSimEndDate*)multiScenSimEndDate 
+	andLabel:(NSString*)label andTitle:(NSString*)title 
+	andTableHeader:(NSString*)tableHeader andTableSubHeader:(NSString*)tableSubHeader
+	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
+	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
+	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
+	andNeverEndHelpInfo:(NSString*)neverEndHelpFile
+	andRelEndDateSectionTitle:(NSString*)relEndDateSectionTitle
+	andRelEndDateHelpFile:(NSString*)relEndDateHelpFile
+	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel
+{			
+			
+	SimDateFieldEditInfo *simDateFieldEditInfo = [self multiScenSimEndDateFieldEditInfo:multiScenSimEndDate 
+		andLabel:label andTitle:title 
+		andTableHeader:tableHeader andTableSubHeader:tableSubHeader
+		andNeverEndFieldTitle:neverEndFieldTitle
+		andNeverEndFieldSubtitle:neverEndFieldSubTitle
+		andNeverEndSectionTitle:neverEndSectionTitle
+		andNeverEndHelpInfo:neverEndHelpFile
+		andRelEndDateSectionTitle:relEndDateSectionTitle
+		andRelEndDateHelpFile:relEndDateHelpFile
+		andRelEndDateFieldLabel:relEndDateFieldLabel];
+
     [self.currentSection addFieldEditInfo:simDateFieldEditInfo];
 
 }
 
--(void)populateLoanDeferPaymentDate:(LoanInput*)loan withFieldLabel:(NSString*)fieldLabel
+-(void)populateMultiScenSimEndDate:(MultiScenarioSimEndDate*)multiScenSimEndDate 
+	andLabel:(NSString*)label andTitle:(NSString*)title 
+	andTableHeader:(NSString*)tableHeader andTableSubHeader:(NSString*)tableSubHeader
+	andNeverEndFieldTitle:(NSString*)neverEndFieldTitle
+	andNeverEndFieldSubtitle:(NSString*)neverEndFieldSubTitle
+	andNeverEndSectionTitle:(NSString*)neverEndSectionTitle
+	andNeverEndHelpInfo:(NSString*)neverEndHelpFile
+	andRelEndDateSectionTitle:(NSString*)relEndDateSectionTitle
+	andRelEndDateHelpFile:(NSString*)relEndDateHelpFile
+	andRelEndDateFieldLabel:(NSString*)relEndDateFieldLabel
+	andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{			
+			
+	SimDateFieldEditInfo *simDateFieldEditInfo = [self multiScenSimEndDateFieldEditInfo:multiScenSimEndDate 
+		andLabel:label andTitle:title 
+		andTableHeader:tableHeader andTableSubHeader:tableSubHeader
+		andNeverEndFieldTitle:neverEndFieldTitle
+		andNeverEndFieldSubtitle:neverEndFieldSubTitle
+		andNeverEndSectionTitle:neverEndSectionTitle
+		andNeverEndHelpInfo:neverEndHelpFile
+		andRelEndDateSectionTitle:relEndDateSectionTitle
+		andRelEndDateHelpFile:relEndDateHelpFile
+		andRelEndDateFieldLabel:relEndDateFieldLabel];
+
+    [self.currentSection addConditionallyShownFieldEditInfo:simDateFieldEditInfo
+		withShowHideCondition:showHideCondition];
+
+}
+
+-(SimDateFieldEditInfo*)loanDeferSimDateFieldEditInfo:(LoanInput*)loan withFieldLabel:(NSString*)fieldLabel
 {
-	[self populateMultiScenSimEndDate:loan.deferredPaymentDate
+	SimDateFieldEditInfo *fieldEditInfo =
+		[self multiScenSimEndDateFieldEditInfo:loan.deferredPaymentDate
 		andLabel:fieldLabel
 		andTitle:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_TITLE")
 			andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_TABLE_TITLE")
@@ -826,8 +1024,25 @@
 				andNeverEndHelpInfo:@"neverEndDateDeferPmt"
 				andRelEndDateSectionTitle:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_REL_END_DATE_SECTION_TITLE")
 				andRelEndDateHelpFile:@"relEndDateDeferPmt"
-				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_REL_END_DATE_FIELD_LABEL")
-				];
+				andRelEndDateFieldLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PAYMENT_REL_END_DATE_FIELD_LABEL")];
+	return fieldEditInfo;
+}
+
+
+-(void)populateLoanDeferPaymentDate:(LoanInput*)loan withFieldLabel:(NSString*)fieldLabel
+{
+	SimDateFieldEditInfo *fieldEditInfo = [self loanDeferSimDateFieldEditInfo:loan withFieldLabel:fieldLabel];
+	
+	[self.currentSection addFieldEditInfo:fieldEditInfo];
+}
+
+-(void)populateLoanDeferPaymentDate:(LoanInput*)loan withFieldLabel:(NSString*)fieldLabel
+	withShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+	SimDateFieldEditInfo *fieldEditInfo = [self loanDeferSimDateFieldEditInfo:loan withFieldLabel:fieldLabel];
+	
+	[self.currentSection addConditionallyShownFieldEditInfo:fieldEditInfo
+		withShowHideCondition:showHideCondition];
 }
 
 -(void)populateItemizedTaxForTaxAmtsInfo:(ItemizedTaxAmtsInfo*)itemizedTaxAmtsInfo
@@ -971,6 +1186,19 @@
 		[self createItemizedTaxSelectionFieldEditInfoWithFieldLabel:fieldLabel andFormInfoCreator:formInfoCreator andItemizedTaxAmtsInfo:itemizedTaxAmts];
 		
 	[self.currentSection addFieldEditInfo:fieldEditInfo];
+
+}
+
+-(void)populateItemizedTaxSelectionWithFieldLabel:(NSString*)fieldLabel
+	andFormInfoCreator:(id<FormInfoCreator>)formInfoCreator
+	andItemizedTaxAmtsInfo:(NSSet*)itemizedTaxAmts
+	andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+
+	StaticNavFieldEditInfo *fieldEditInfo =
+		[self createItemizedTaxSelectionFieldEditInfoWithFieldLabel:fieldLabel andFormInfoCreator:formInfoCreator andItemizedTaxAmtsInfo:itemizedTaxAmts];
+		
+	[self.currentSection addConditionallyShownFieldEditInfo:fieldEditInfo withShowHideCondition:showHideCondition];
 
 }
 
