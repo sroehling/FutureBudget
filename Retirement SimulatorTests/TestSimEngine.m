@@ -2469,6 +2469,7 @@
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0]; // 10% dividend each year
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	
 	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
@@ -2487,7 +2488,22 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:154.11 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[self checkPlotData:acctDividendData withSimResults:simResults andExpectedVals:expected
 			andLabel:@"acct 01" withAdjustedVals:FALSE];
+			
+	// Re-run the simulator with dividends disabled for the account. This should result in a $0 dividend payout.
 
+	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	[simResults runSimulatorForResults];
+
+	acctDividendData =
+		[[[AcctDividendXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctDividendData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
 
 
 }
@@ -2509,6 +2525,7 @@
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0]; // 10% dividend each year
 	acct01.dividendReinvestPercent = [inputCreationHelper multiScenPercentWithDefault:50.0]; // reinvest 50%, with the rest going to cash
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	
 	SimResultsController *simResults = [[[SimResultsController alloc]
@@ -2570,6 +2587,7 @@
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0]; // 10% dividend each year
 	acct01.dividendReinvestPercent = [inputCreationHelper multiScenPercentWithDefault:0.0]; // reinvest 50%, with the rest going to cash
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	
 	SimResultsController *simResults = [[[SimResultsController alloc]
@@ -2825,6 +2843,7 @@
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:5.0]; // 5% dividend each year
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 
 	ExpenseInputTypeSelectionInfo *expenseCreator = 
@@ -2856,6 +2875,29 @@
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:223.36
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:acctGainsData withSimResults:simResults andExpectedVals:expected
+			andLabel:@"acct 01" withAdjustedVals:FALSE];
+			
+	
+	// Re-run with the dividend disabled. The capital gains should now be $0.
+	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	[simResults runSimulatorForResults];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+		
+	// 223.36 when dividend enabled, but 227.86 when disabled
+	// (same as testAccountCapitalGain). Without the dividend,
+	// there is a smaller cost basis with which to calculate the capital gain.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:227.86
+		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+		
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0

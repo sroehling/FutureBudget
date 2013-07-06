@@ -122,6 +122,7 @@
 "INPUT_ACCOUNT_CONTRIB_AMOUNT_SECTION_TITLE" = "Contributions";
 "INPUT_ACCOUNT_CONTRIB_AMOUNT_FIELD_LABEL" = "Contribution Amount";
 "INPUT_ACCOUNT_CONTRIB_ENABLED_LABEL" = "Enable Contribution?";
+"INPUT_ACCOUNT_DIVIDEND_ENABLED_LABEL" = "Enable Dividends?";
 "INPUT_ACCOUNT_GROWTH_RATE_FIELD_LABEL" = "Contribution Growth Rate";
 "INPUT_ACCOUNT_WITHDRAWALS_SECTION_TITLE" = "Withdrawals";
 "INPUT_ACCOUNT_WITHDRAWAL_PRIORITY_LABEL" = "Withdrawal Order";
@@ -568,6 +569,7 @@
 "WHAT_IF_ACCOUNT_DEFERRED_WITHDRAWALS" = "Deferred Withdrawals";
 "WHAT_IF_ENABLED_SUBTITLE" = "Enable or disable incomes, expenses, transfers, asset purchases, savings contributions, etc.";
 "WHAT_IF_ENABLED_ACCOUNT_CONTRIBS" = "Account Contributions";
+"WHAT_IF_ENABLED_ACCOUNT_DIVIDENDS" = "Account Dividends";
 "WHAT_IF_ENABLED_LOAN" = "Loans";
 "WHAT_IF_ENABLED_LOAN_DOWN_PMT" = "Loan Down Payment";
 "WHAT_IF_ENABLED_LOAN_EXTRA_PMT" = "Extra Loan Payments";

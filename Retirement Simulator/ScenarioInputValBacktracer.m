@@ -49,6 +49,7 @@
 @synthesize assetSaleDate;
 
 @synthesize accountContribEnabled;
+@synthesize accountDividendEnabled;
 @synthesize accountContribStartDate;
 @synthesize accountContribEndDate;
 @synthesize accountContribRepeatFrequency;
@@ -100,6 +101,9 @@
 	
 	if([self populateInputSet:self.accountContribEnabled 
 		      withInput:msInputVal.accountContribEnabled]) { return; }
+			 
+	if([self populateInputSet:self.accountDividendEnabled
+			withInput:msInputVal.accountDividendEnabled]) { return; }
 				
 	if([self populateInputSet:self.accountContribRepeatFrequency 
 		      withInput:msInputVal.accountContribRepeatFrequency]) { return; }
@@ -274,6 +278,7 @@
 
 		// MultiScenarioInputValue inverse relationships
 		self.accountContribEnabled = [[[NSMutableSet alloc] init] autorelease];
+		self.accountDividendEnabled = [[[NSMutableSet alloc] init] autorelease];
 		self.accountContribRepeatFrequency = [[[NSMutableSet alloc] init] autorelease];
 		self.accountDeferredWithdrawalsEnabled = [[[NSMutableSet alloc] init] autorelease];
 		self.accountWithdrawalPriority = [[[NSMutableSet alloc] init] autorelease];
@@ -354,6 +359,7 @@
 	
 	// MultiScenarioInputValue inverse relationships
 	[accountContribEnabled release];
+	[accountDividendEnabled release];
 	[accountContribRepeatFrequency release];
 	[accountDeferredWithdrawalsEnabled release];
 	[accountWithdrawalPriority release];

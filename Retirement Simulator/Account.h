@@ -44,6 +44,7 @@ extern NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME;
 @property(nonatomic,retain) MultiScenarioSimEndDate *contribEndDate;
 @property (nonatomic, retain) MultiScenarioGrowthRate * interestRate;
 
+@property (nonatomic, retain) MultiScenarioInputValue *dividendEnabled;
 @property (nonatomic, retain) MultiScenarioGrowthRate *dividendRate;
 @property (nonatomic, retain) MultiScenarioPercent *dividendReinvestPercent;
 

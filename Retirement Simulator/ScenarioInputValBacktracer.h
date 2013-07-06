@@ -14,6 +14,7 @@
     @private
 		// MultiScenarioInputValue inverse relationships
 		NSMutableSet *accountContribEnabled;
+		NSMutableSet *accountDividendEnabled;
 		NSMutableSet *accountContribRepeatFrequency;
 		NSMutableSet *accountDeferredWithdrawalsEnabled;
 		NSMutableSet *accountWithdrawalPriority;
@@ -74,6 +75,7 @@
 }
 
 @property(nonatomic,retain) NSMutableSet *accountContribEnabled;
+@property(nonatomic,retain) NSMutableSet *accountDividendEnabled;
 @property(nonatomic,retain) NSMutableSet *accountContribRepeatFrequency;
 @property(nonatomic,retain) NSMutableSet *accountDeferredWithdrawalsEnabled;
 @property(nonatomic,retain) NSMutableSet *accountWithdrawalPriority;

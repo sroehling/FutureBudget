@@ -135,6 +135,16 @@
 		}
 	}
 	
+	if([inputBacktrace.accountDividendEnabled count] > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_ENABLED_ACCOUNT_DIVIDENDS");
+		for(Account *acct in inputBacktrace.accountDividendEnabled)
+		{
+			[formPopulator populateMultiScenBoolField:acct.dividendEnabled withLabel:acct.name];
+		}
+	}
+	
 	if([inputBacktrace.accountContribRepeatFrequency count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];

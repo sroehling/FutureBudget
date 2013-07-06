@@ -43,6 +43,7 @@ extern NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME;
 @property (nonatomic, retain) Account * accountContribRepeatFrequency;
 @property (nonatomic, retain) Account * accountDeferredWithdrawalsEnabled;
 @property (nonatomic, retain) Account * accountWithdrawalPriority;
+@property (nonatomic, retain) Account * accountDividendEnabled;
 @property (nonatomic, retain) AssetInput * assetEnabled;
 @property (nonatomic, retain) TaxInput * taxEnabled;
 @property (nonatomic, retain) CashFlowInput * cashFlowEnabled;

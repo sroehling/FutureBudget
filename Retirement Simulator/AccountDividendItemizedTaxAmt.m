@@ -9,6 +9,7 @@
 #import "AccountDividendItemizedTaxAmt.h"
 #import "Account.h"
 #import "ItemizedTaxAmtVisitor.h"
+#import "SimInputHelper.h"
 
 NSString * const ACCOUNT_DIVIDEND_ITEMIZED_TAX_AMT_ENTITY_NAME = @"AccountDividendItemizedTaxAmt";
 
@@ -28,7 +29,8 @@ NSString * const ACCOUNT_DIVIDEND_ITEMIZED_TAX_AMT_ENTITY_NAME = @"AccountDivide
 	assert(self.account != nil);
 	if([self.isEnabled boolValue])
 	{
-		return TRUE;
+		return [SimInputHelper multiScenBoolVal:self.account.dividendEnabled
+				andScenario:theScenario];
 	}
 	else
 	{

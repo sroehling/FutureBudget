@@ -167,10 +167,14 @@
 			[self.eventCreators addObject:savingsEventCreator];
 		}
 	
-		AccountDividendSimEventCreator *dividendEventCreator =
-			[[[AccountDividendSimEventCreator alloc] initWithAcctSimInfo:acctSimInfo
-				andSimStartDate:self.simParams.simStartDate] autorelease];
-			[self.eventCreators addObject:dividendEventCreator];
+		if([SimInputHelper multiScenBoolVal:acct.dividendEnabled
+				andScenario:simParams.simScenario])
+		{
+			AccountDividendSimEventCreator *dividendEventCreator =
+				[[[AccountDividendSimEventCreator alloc] initWithAcctSimInfo:acctSimInfo
+					andSimStartDate:self.simParams.simStartDate] autorelease];
+				[self.eventCreators addObject:dividendEventCreator];
+		}
 		
 		[self.simParams.workingBalanceMgr.fundingSources addBalance:acctSimInfo.acctBal forInput:acct];
 	} // for each savings account

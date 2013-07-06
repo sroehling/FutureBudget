@@ -105,9 +105,14 @@
 - (void)populateMultiScenarioInvestmentReturnRate:(MultiScenarioGrowthRate*)roiRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
+
 - (void)populateMultiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
+- (void)populateMultiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition;
+
 - (void)populateMultiScenarioApprecRate:(MultiScenarioGrowthRate*)apprecRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
@@ -120,10 +125,12 @@
 	andValueName:(NSString*)valueName
 	andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition;
 
-
 - (void)populateMultiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
+- (void)populateMultiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition;
 	
 -(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(MultiScenarioInputValue*)repeatFreq
 	andLabel:(NSString*)label;

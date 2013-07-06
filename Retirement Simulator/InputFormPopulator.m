@@ -550,8 +550,7 @@
 
 }
 
-
-- (void)populateMultiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
+-(DateSensitiveValueFieldEditInfo *)multiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName
 {
@@ -584,19 +583,42 @@
 		andValueName:valueName
 		andTableSubtitle:tableSubtitle] autorelease];
 		
-	assert(self.currentSection != nil);
-	[self.currentSection addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo 
+	DateSensitiveValueFieldEditInfo *fieldEditInfo = [DateSensitiveValueFieldEditInfo
          createForDataModelController:self.formContext.dataModelController
 			andScenario:self.inputScenario andMultiScenFixedVal:dividendRate.growthRate 
 			andLabel:LOCALIZED_STR(@"SHARED_DIVIDEND_VALUE_TITLE") 
 		 andValRuntimeInfo:dividendRateRuntimeInfo 
 		 andDefaultFixedVal:dividendRate.defaultFixedGrowthRate
-		 andForNewVal:self.isForNewObject]];
-
+		 andForNewVal:self.isForNewObject];
+		
+	return fieldEditInfo;
 
 }
 
+
+- (void)populateMultiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	DateSensitiveValueFieldEditInfo *fieldEditInfo =
+		[self multiScenarioDividendReturnRate:dividendRate
+		withLabel:valueLabel andValueName:valueName];
+	
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:fieldEditInfo];
+}
+
+- (void)populateMultiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+	DateSensitiveValueFieldEditInfo *fieldEditInfo =
+		[self multiScenarioDividendReturnRate:dividendRate
+		withLabel:valueLabel andValueName:valueName];
+	
+	assert(self.currentSection != nil);
+	[self.currentSection addConditionallyShownFieldEditInfo:fieldEditInfo withShowHideCondition:showHideCondition];
+}
 
 
 - (void)populateMultiScenarioApprecRate:(MultiScenarioGrowthRate*)apprecRate
@@ -755,7 +777,7 @@
 	[self.currentSection addConditionallyShownFieldEditInfo:fieldEditInfo withShowHideCondition:showHideCondition];
 }
 
-- (void)populateMultiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
+-(DateSensitiveValueFieldEditInfo*)multiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName
 {
@@ -789,17 +811,42 @@
 		andValueName:valueName
 		andTableSubtitle:tableSubtitle] autorelease];
 		
-	assert(self.currentSection != nil);
-	[self.currentSection addFieldEditInfo:
-        [DateSensitiveValueFieldEditInfo
+	DateSensitiveValueFieldEditInfo *fieldEditInfo = [DateSensitiveValueFieldEditInfo
 			createForDataModelController:self.formContext.dataModelController 
 			andScenario:self.inputScenario andMultiScenFixedVal:multiScenPercent.percent
 			andLabel:LOCALIZED_STR(@"SHARED_DIV_REINVEST_VALUE_TITLE") 
 		 andValRuntimeInfo:divRuntimeInfo 
 		 andDefaultFixedVal:multiScenPercent.defaultFixedPercent
-		 andForNewVal:self.isForNewObject]];
+		 andForNewVal:self.isForNewObject];
+		
+	return fieldEditInfo;
+}
+
+
+- (void)populateMultiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	DateSensitiveValueFieldEditInfo *fieldEditInfo =
+		[self multiScenarioDividendReinvestPercent:multiScenPercent withLabel:valueLabel andValueName:valueName];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:fieldEditInfo];
 
 }
+
+- (void)populateMultiScenarioDividendReinvestPercent:(MultiScenarioPercent*)multiScenPercent
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName andShowHideCondition:(id<FieldShowHideCondition>)showHideCondition
+{
+	DateSensitiveValueFieldEditInfo *fieldEditInfo =
+		[self multiScenarioDividendReinvestPercent:multiScenPercent withLabel:valueLabel andValueName:valueName];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addConditionallyShownFieldEditInfo:fieldEditInfo withShowHideCondition:showHideCondition];
+
+}
+
 
 -(RepeatFrequencyFieldEditInfo*)populateRepeatFrequency:(MultiScenarioInputValue*)repeatFreq
 	andLabel:(NSString*)label

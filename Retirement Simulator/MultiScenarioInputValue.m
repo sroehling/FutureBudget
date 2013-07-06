@@ -27,6 +27,7 @@ NSString * const MULTI_SCENARIO_INPUT_VALUE_ENTITY_NAME = @"MultiScenarioInputVa
 @dynamic accountContribEnabled;
 @dynamic accountContribRepeatFrequency;
 @dynamic accountDeferredWithdrawalsEnabled;
+@dynamic accountDividendEnabled;
 @dynamic accountWithdrawalPriority;
 @dynamic assetEnabled;
 @dynamic taxEnabled;

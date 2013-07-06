@@ -119,6 +119,7 @@
     
 	newInput.interestRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
 
+	newInput.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	newInput.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	newInput.dividendReinvestPercent = [inputCreationHelper multiScenDivReinvestmentPercWithDefaultSharedVal];
 	

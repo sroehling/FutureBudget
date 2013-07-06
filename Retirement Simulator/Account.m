@@ -35,6 +35,8 @@ NSString * const ACCOUNT_INPUT_DEFAULT_ICON_NAME = @"input-icon-piggybank.png";
 @dynamic deferredWithdrawalsEnabled;
 @dynamic deferredWithdrawalDate;
 @dynamic interestRate;
+
+@dynamic dividendEnabled;
 @dynamic dividendRate;
 @dynamic dividendReinvestPercent;
 

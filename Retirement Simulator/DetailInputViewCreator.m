@@ -454,21 +454,27 @@
 	if(TRUE)
 	{
 		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDEND_SECTION_TITLE")
-				andHelpFile:@"account" andAnchorWithinHelpFile:@"dividends"];		
+				andHelpFile:@"account" andAnchorWithinHelpFile:@"dividends"];
+				
+		BoolFieldShowHideCondition *showHideAcctDividend =
+			[self.formPopulator
+				populateConditionalFieldVisibilityMultiScenBoolField:account.dividendEnabled withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDEND_ENABLED_LABEL")];
+								
 		[self.formPopulator populateMultiScenarioDividendReturnRate:account.dividendRate
 			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDEND_RATE_FIELD_LABEL")
-			andValueName:account.name];
+			andValueName:account.name andShowHideCondition:showHideAcctDividend];
 		ItemizedAccountTaxFormInfoCreator *acctDividendTaxFormInfoCreator =
 				[[[ItemizedAccountTaxFormInfoCreator alloc] initWithAcct:account
 				andIsForNewObject:self.isForNewObject] autorelease];
 		acctDividendTaxFormInfoCreator.showDividend = TRUE;
 		[formPopulator populateItemizedTaxSelectionWithFieldLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDENDS_TAXES_FIELD_LABEL")
 			andFormInfoCreator:acctDividendTaxFormInfoCreator
-			andItemizedTaxAmtsInfo:account.accountDividendItemizedTaxAmt];
+			andItemizedTaxAmtsInfo:account.accountDividendItemizedTaxAmt
+			andShowHideCondition:showHideAcctDividend];
 			
 		[self.formPopulator populateMultiScenarioDividendReinvestPercent:account.dividendReinvestPercent
 			withLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_DIVIDED_REINVESTMENT_PERCENT_FIELD_LABEL")
-			andValueName:account.name];
+			andValueName:account.name andShowHideCondition:showHideAcctDividend];
 	
 	}
 		
