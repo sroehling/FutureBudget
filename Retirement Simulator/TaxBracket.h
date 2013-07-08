@@ -13,6 +13,7 @@ extern NSString * const TAX_BRACKET_ENTITY_NAME;
 
 @class MultiScenarioGrowthRate, TaxBracketEntry;
 @class TaxInput;
+@class Scenario;
 
 @interface TaxBracket : NSManagedObject {
 @private
@@ -26,6 +27,6 @@ extern NSString * const TAX_BRACKET_ENTITY_NAME;
 
 
 - (void)addTaxBracketEntriesObject:(TaxBracketEntry *)value;
-- (NSString*)taxBracketSummary;
+- (NSString*)taxBracketSummaryForScenario:(Scenario*)scenario andDate:(NSDate*)dateForRates;
 
 @end

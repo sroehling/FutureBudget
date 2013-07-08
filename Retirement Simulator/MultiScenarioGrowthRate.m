@@ -27,5 +27,6 @@ NSString * const MULTI_SCEN_GROWTH_RATE_ENTITY_NAME = @"MultiScenarioGrowthRate"
 @dynamic loanExtraPmtGrowthRate;
 @dynamic loanInterestRate;
 @dynamic taxBracketCutoffGrowthRate;
+@dynamic taxBracketEntryTaxPercent;
 
 @end

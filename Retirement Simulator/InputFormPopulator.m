@@ -81,6 +81,7 @@
 #import "DividendReinvestPercent.h"
 #import "BoolFieldShowHideCondition.h"
 #import "BoolFieldCell.h"
+#import "TaxRate.h"
 
 @implementation InputFormPopulator
 
@@ -717,6 +718,52 @@
 		 andForNewVal:self.isForNewObject]];
 
 }
+
+- (void)populateMultiScenarioTaxRate:(MultiScenarioGrowthRate*)taxRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName
+{
+	assert([StringValidation nonEmptyString:valueLabel]);
+	assert(taxRate != nil);
+
+	SharedEntityVariableValueListMgr *sharedInterestRatesMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithDataModelController:self.formContext.dataModelController 
+		andEntity:TAX_RATE_ENTITY_NAME] autorelease];
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_TAX_RATE_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_TAX_RATE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_TAX_RATE_INLINE_VALUE_TITLE")];
+
+	
+	VariableValueRuntimeInfo *taxRateRuntimeInfo = [[[VariableValueRuntimeInfo alloc]
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+		andValueTitle:@"SHARED_TAX_RATE_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_TAX_RATE_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_TAX_RATE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_TAX_RATE_PERIOD") 
+		andListMgr:sharedInterestRatesMgr
+		andSingleValHelpInfoFile:@"fixedTaxRate"
+		andVariableValHelpInfoFile:@"variableTaxRate"
+		andValuePromptKey:@"SHARED_TAX_RATE_VALUE_PROMPT"
+		andValueTypeTitle:valueLabel
+		andValueName:valueName
+		andTableSubtitle:tableSubtitle] autorelease];
+		
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:
+        [DateSensitiveValueFieldEditInfo 
+			createForDataModelController:self.formContext.dataModelController 
+			andScenario:self.inputScenario andMultiScenFixedVal:taxRate.growthRate
+			andLabel:LOCALIZED_STR(@"SHARED_TAX_RATE_VALUE_TITLE") 
+		 andValRuntimeInfo:taxRateRuntimeInfo 
+		 andDefaultFixedVal:taxRate.defaultFixedGrowthRate
+		 andForNewVal:self.isForNewObject]];
+
+}
+
 
 -(DateSensitiveValueFieldEditInfo*)loanDownPmtPercentFieldEditInfo:(LoanInput*)loan
 	withValueLabel:(NSString*)valueLabel

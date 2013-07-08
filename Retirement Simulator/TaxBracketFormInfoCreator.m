@@ -21,18 +21,22 @@
 #import "TaxBracketEntry.h"
 #import "FormContext.h"
 #import "CollectionHelper.h"
+#import "SimInputHelper.h"
+#import "SharedAppValues.h"
+#import "MultiScenarioGrowthRate.h"
 
 @implementation TaxBracketFormInfoCreator
 
 @synthesize taxBracket;
 
--(id)initWithTaxBracket:(TaxBracket *)theTaxBracket
+-(id)initWithTaxBracket:(TaxBracket *)theTaxBracket andIsForNewObject:(BOOL)bracketIsForNewObject
 {
 	self = [super init];
 	if(self)
 	{
 		assert(theTaxBracket != nil);
 		self.taxBracket = theTaxBracket;
+		isForNewObject = bracketIsForNewObject;
 	}
 	return self;
 }
@@ -40,7 +44,7 @@
 - (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {	
     InputFormPopulator *formPopulator = 
-		[[[InputFormPopulator alloc] initForNewObject:FALSE
+		[[[InputFormPopulator alloc] initForNewObject:isForNewObject
 			andFormContext:parentContext] autorelease];
     
     formPopulator.formInfo.title = LOCALIZED_STR(@"TAX_BRACKET_FORM_TITLE");
@@ -61,7 +65,13 @@
 				initWithTaxBracketEntry:taxBracketEntry andIsNewEntry:FALSE] autorelease];
 		
 		NSString *cutoffAmountStr = [[NumberHelper theHelper] displayStrFromStoredVal:taxBracketEntry.cutoffAmount andFormatter:[NumberHelper theHelper].currencyFormatter];
-		NSString *percentTaxStr = [[NumberHelper theHelper] displayStrFromStoredVal:taxBracketEntry.taxPercent andFormatter:[NumberHelper theHelper].percentFormatter];
+		
+		
+		SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:parentContext.dataModelController];
+		double storedTaxRate = [SimInputHelper multiScenValueAsOfDate:taxBracketEntry.taxPercent.growthRate
+				andDate:sharedAppVals.simStartDate andScenario:formPopulator.inputScenario];
+		NSNumber *storedTaxPerc = [NSNumber numberWithDouble:storedTaxRate];
+		NSString *percentTaxStr = [[NumberHelper theHelper] displayStrFromStoredVal:storedTaxPerc andFormatter:[NumberHelper theHelper].percentFormatter];
 
 		NSString *bracketEntryCaption = [NSString stringWithFormat:LOCALIZED_STR(@"TAX_BRACKET_ENTRY_LIST_FORMAT"),cutoffAmountStr];
 		StaticNavFieldEditInfo *taxBracketEntryFieldEditInfo = 

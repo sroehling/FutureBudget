@@ -14,10 +14,11 @@
 @interface TaxBracketFormInfoCreator : NSObject <FormInfoCreator>  {
     @private
 		TaxBracket *taxBracket;
+		BOOL isForNewObject;
 }
 
 @property(nonatomic,retain) TaxBracket *taxBracket;
 
--(id)initWithTaxBracket:(TaxBracket*)theTaxBracket;
+-(id)initWithTaxBracket:(TaxBracket *)theTaxBracket andIsForNewObject:(BOOL)bracketIsForNewObject;
 
 @end

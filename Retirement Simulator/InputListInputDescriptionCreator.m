@@ -263,7 +263,8 @@
 	}
 				
 	self.generatedDesc = [NSString stringWithFormat:LOCALIZED_STR(@"INPUT_LIST_TAX_SUBTITLE_FORMAT"),
-		[tax.taxBracket taxBracketSummary],itemizationSubtitle];
+		[tax.taxBracket taxBracketSummaryForScenario:self.sharedAppVals.currentInputScenario
+				andDate:self.sharedAppVals.simStartDate],itemizationSubtitle];
 }
 
 - (NSString*)descripionForInput:(Input*)theInput

@@ -84,6 +84,7 @@
 
 
 -(void)updateEffectiveTaxRate:(NSDate*)currentDate
+	andLastDayOfTaxYear:(NSDate*)lastDayOfTaxYear
 {
 	double grossIncome = [self.incomeCalcEntries calcTotalYearlyItemizedAmt];
 	assert(grossIncome >= 0.0);
@@ -114,7 +115,7 @@
 	
 	self.effectiveTaxRate = [self.taxBracketCalc calcEffectiveTaxRateForGrossIncome:grossIncome 
 		andTaxableIncome:taxableIncome withCredits:credits andSimParams:self.simParams 
-			andCurrentDate:currentDate];
+			andCurrentDate:currentDate andLastDayOfTaxYear:lastDayOfTaxYear];
 }
 
 -(void)processDailyTaxPmt:(DigestEntryProcessingParams*)processingParams

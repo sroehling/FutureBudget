@@ -48,13 +48,15 @@
 {
 	TaxBracketEntry *taxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
 	taxEntry.cutoffAmount = [NSNumber numberWithDouble:cutoff];
-	taxEntry.taxPercent = [NSNumber numberWithDouble:taxPercent];
+					
+	taxEntry.taxPercent = [self.taxCreator.inputCreationHelper multiScenGrowthRateWithDefault:taxPercent];;
 	[taxInput.taxBracket addTaxBracketEntriesObject:taxEntry];
 }
 
 -(void)checkTaxBracketSummary:(TaxInput*)taxInput andExpectedSummary:(NSString*)expectedSummary
 {
-	NSString *actualSummary = [taxInput.taxBracket taxBracketSummary];
+	NSString *actualSummary = [taxInput.taxBracket taxBracketSummaryForScenario:self.sharedAppVals.currentInputScenario
+		andDate:self.sharedAppVals.simStartDate];
 	
 	NSLog(@"Tax Bracket Summary %@",actualSummary);
 	

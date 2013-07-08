@@ -277,8 +277,10 @@
 	// processing the digest, since all the InputValDigestSummation objects referenced by the
 	// TaxInputCalcs will have been populated with income, interest, etc.
 	// TBD - Should the date passed be the end this year, or the beginning of next year.
+	NSDate *endOfYear = [DateHelper endOfYear:self.currentYearDigestStartDate];
 	NSDate *beginningOfNextYear = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
-	[self.simParams.taxInputCalcs updateEffectiveTaxRates:beginningOfNextYear];
+	[self.simParams.taxInputCalcs updateEffectiveTaxRates:beginningOfNextYear
+		andLastDayOfTaxYear:endOfYear];
 	
 
 	endOfYearResults.totalEndOfYearBalance = 

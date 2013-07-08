@@ -9,7 +9,6 @@
 #import "TaxBracketEntry.h"
 
 NSString * const TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_KEY = @"cutoffAmount";
-NSString * const TAX_BRACKET_ENTRY_TAX_PERCENT_KEY = @"taxPercent";
 NSString * const TAX_BRACKET_ENTRY_ENTITY_NAME = @"TaxBracketEntry";
 
 @implementation TaxBracketEntry

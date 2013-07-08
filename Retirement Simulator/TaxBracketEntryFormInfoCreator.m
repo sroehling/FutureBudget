@@ -13,6 +13,7 @@
 #import "TaxBracketEntry.h"
 #import "LocalizationHelper.h"
 #import "FormContext.h"
+#import "MultiScenarioGrowthRate.h"
 
 
 @implementation TaxBracketEntryFormInfoCreator
@@ -49,10 +50,10 @@
 		andLabel:LOCALIZED_STR(@"TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_LABEL") 
 		andPlaceholder:LOCALIZED_STR(@"TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_PLACEHOLDER")];
 
-	[formPopulator populatePercentField:self.taxBracketEntry 
-		andValKey:TAX_BRACKET_ENTRY_TAX_PERCENT_KEY 
-			andLabel:LOCALIZED_STR(@"TAX_BRACKET_ENTRY_TAX_PERCENT_LABEL") 
-			andPlaceholder:LOCALIZED_STR(@"TAX_BRACKET_ENTRY_TAX_PERCENT_PLACEHOLDER")];
+	[formPopulator populateMultiScenarioTaxRate:self.taxBracketEntry.taxPercent
+		withLabel:LOCALIZED_STR(@"TAX_BRACKET_ENTRY_TAX_PERCENT_LABEL") 
+		andValueName:nil];
+
 		
 	return formPopulator.formInfo;
 	

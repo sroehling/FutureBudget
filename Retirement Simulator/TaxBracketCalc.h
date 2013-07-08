@@ -24,6 +24,7 @@
 
 -(double)calcEffectiveTaxRateForGrossIncome:(double)grossIncome 
 	andTaxableIncome:(double)taxableIncome withCredits:(double)creditAmount
-	andSimParams:(SimParams*)simParams andCurrentDate:(NSDate*)currentDate;
+	andSimParams:(SimParams*)simParams andCurrentDate:(NSDate*)currentDate
+	andLastDayOfTaxYear:(NSDate*)lastDayTaxYear;
 
 @end

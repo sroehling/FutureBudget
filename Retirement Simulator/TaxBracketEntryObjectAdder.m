@@ -13,6 +13,8 @@
 #import "GenericFieldBasedTableAddViewController.h"
 #import "FinishedAddingTaxBracketEntryListener.h"
 #import "FormContext.h"
+#import "InputCreationHelper.h"
+#import "SharedAppValues.h"
 
 
 @implementation TaxBracketEntryObjectAdder
@@ -38,8 +40,14 @@
 -(void)addObjectFromTableView:(FormContext*)parentContext
 {
 
+	SharedAppValues *sharedAppVals = [SharedAppValues
+			getUsingDataModelController:parentContext.dataModelController];
+	InputCreationHelper *inputCreationHelper =
+		[[[InputCreationHelper alloc] initWithDataModelController:parentContext.dataModelController andSharedAppVals:sharedAppVals] autorelease];
+
 	TaxBracketEntry *taxBracketEntry = [self.dataModelController 
 							  insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	taxBracketEntry.taxPercent = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
 
 	TaxBracketEntryFormInfoCreator *taxBracketEntryFormInfoCreator
 		= [[[TaxBracketEntryFormInfoCreator alloc] 

@@ -13,6 +13,10 @@
 #import "SimInputHelper.h"
 #import "SimParams.h"
 #import "MultiScenarioGrowthRate.h"
+#import "DateSensitiveValue.h"
+#import "MultiScenarioInputValue.h"
+#import "ValueAsOfCalculatorCreator.h"
+#import "SimInputHelper.h"
 
 @implementation TaxBracketCalc
 
@@ -42,6 +46,7 @@
 -(double)calcEffectiveTaxRateForGrossIncome:(double)grossIncome 
 	andTaxableIncome:(double)taxableIncome withCredits:(double)creditAmount
 	andSimParams:(SimParams*)simParams andCurrentDate:(NSDate*)currentDate
+	andLastDayOfTaxYear:(NSDate*)lastDayTaxYear
 {
 	// TODO - We definitely need a unit test of this method
 	assert(taxableIncome >= 0.0);
@@ -68,8 +73,12 @@
 
 			double currCutoffAmount = unadjustedCutoffAmount * cutoffAmountMultiplier;
 			
+			// We determine the tax rate based upon the last day of the tax year (Dec 31st), while
+			// the cutoffAmountMultiplier includes any adjustment to include the last day of the tax year.
+			double enteredTaxRatePercent = [SimInputHelper multiScenValueAsOfDate:taxBracketEntry.taxPercent.growthRate
+					andDate:lastDayTaxYear andScenario:simParams.simScenario];
 			assert(currCutoffAmount >= prevCutoffAmount);
-			double currRate = [taxBracketEntry.taxPercent doubleValue]/100.0;
+			double currRate = enteredTaxRatePercent/100.0;
 			assert(currRate >= 0.0);
 			assert(currRate <= 1.0);
 			

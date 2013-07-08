@@ -845,14 +845,18 @@
 	// Tax Bracket Section
 	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_TAX_BRACKET_SECTION_TITLE")
 		andHelpFile:@"tax" andAnchorWithinHelpFile:@"tax-rates"];
+		
+	Scenario *currentScenario = self.formPopulator.inputScenario;
+	SharedAppValues *sharedAppVals = [SharedAppValues getUsingDataModelController:self.formPopulator.formContext.dataModelController];
+	NSDate *simStartDate = sharedAppVals.simStartDate;
 	
 	
 	TaxBracketFormInfoCreator *taxBracketFormInfoCreator =
-		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket] autorelease];
+		[[[TaxBracketFormInfoCreator alloc] initWithTaxBracket:tax.taxBracket andIsForNewObject:self.isForNewObject] autorelease];
 	// TODO - Add a subtitle which summarizes the tax bracket
 	StaticNavFieldEditInfo *taxRatesFieldEditInfo = [[[StaticNavFieldEditInfo alloc]
 		initWithCaption:LOCALIZED_STR(@"INPUT_TAX_RATES_FIELD_LABEL")
-			andSubtitle:[tax.taxBracket taxBracketSummary]
+			andSubtitle:[tax.taxBracket taxBracketSummaryForScenario:currentScenario andDate:simStartDate]
 			andContentDescription:nil andSubFormInfoCreator:taxBracketFormInfoCreator] autorelease];
 	[formPopulator.currentSection addFieldEditInfo:taxRatesFieldEditInfo];
 	

@@ -106,6 +106,10 @@
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;
 
+- (void)populateMultiScenarioTaxRate:(MultiScenarioGrowthRate*)taxRate
+	withLabel:(NSString*)valueLabel 
+	andValueName:(NSString*)valueName;
+
 - (void)populateMultiScenarioDividendReturnRate:(MultiScenarioGrowthRate*)dividendRate
 	withLabel:(NSString*)valueLabel 
 	andValueName:(NSString*)valueName;

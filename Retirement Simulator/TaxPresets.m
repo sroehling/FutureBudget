@@ -11,6 +11,8 @@
 #import "TaxBracketEntry.h"
 #import "TaxBracket.h"
 #import "DataModelController.h"
+#import "InputCreationHelper.h"
+#import "SharedAppValues.h"
 
 NSString *const TAX_PRESET_PRESET_NAME_PLIST_KEY = @"PRESET_NAME";
 NSString *const TAX_PRESET_PRESET_DESCRIPTION_PLIST_KEY = @"PRESET_DESCRIPTION";
@@ -58,6 +60,10 @@ static NSString *const TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_PLIST_KEY = @"CUTOFF_AMOU
 	assert(imageName != nil);
 	taxInput.iconImageName = imageName;
 	
+	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc]
+		initWithDataModelController:dmcForPresetInputCreation
+		andSharedAppVals:[SharedAppValues getUsingDataModelController:dmcForPresetInputCreation]] autorelease];
+	
  
 	NSArray *taxBracketEntries = [presetPlistInfo objectForKey:TAX_BRACKET_PLIST_KEY];
 	for(NSDictionary *taxBracketEntry in taxBracketEntries)
@@ -67,7 +73,8 @@ static NSString *const TAX_BRACKET_ENTRY_CUTOFF_AMOUNT_PLIST_KEY = @"CUTOFF_AMOU
 		
 		TaxBracketEntry *presetTaxBracketEntry = [dmcForPresetInputCreation insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
 		presetTaxBracketEntry.cutoffAmount = cutoffAmount;
-		presetTaxBracketEntry.taxPercent = percentTax;
+				
+		presetTaxBracketEntry.taxPercent = [inputCreationHelper multiScenGrowthRateWithDefault:[percentTax doubleValue]];
 	
 		[taxInput.taxBracket addTaxBracketEntriesObject:presetTaxBracketEntry];
 

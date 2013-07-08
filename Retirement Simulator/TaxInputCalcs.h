@@ -24,7 +24,8 @@
 -(void)addTaxInputCalc:(TaxInputCalc*)theTaxInputCalc;
 -(void)configCalcEntries:(SimParams*)theSimParams;
 
--(void)updateEffectiveTaxRates:(NSDate*)currentDate;
+-(void)updateEffectiveTaxRates:(NSDate*)currentDate
+	andLastDayOfTaxYear:(NSDate*)lastDayOfTaxYear;
 -(void)processDailyTaxPmts:(DigestEntryProcessingParams*)processingParams;
 
 

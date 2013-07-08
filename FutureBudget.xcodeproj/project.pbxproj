@@ -301,6 +301,9 @@
 		005DAEF314609A1100D87907 /* LoanInterestItemizedTaxAmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF214609A1000D87907 /* LoanInterestItemizedTaxAmt.m */; };
 		005DAEF614609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */; };
 		005EF4DF14C9DB84001F3D36 /* UpTo100PercentFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */; };
+		005EF68E178A30EF00F0591F /* fixedTaxRate.md in Resources */ = {isa = PBXBuildFile; fileRef = 005EF68D178A30EF00F0591F /* fixedTaxRate.md */; };
+		005EF690178A311200F0591F /* variableTaxRate.md in Resources */ = {isa = PBXBuildFile; fileRef = 005EF68F178A311200F0591F /* variableTaxRate.md */; };
+		005EF693178A32F500F0591F /* TaxRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 005EF692178A32F500F0591F /* TaxRate.m */; };
 		005F8AF9167B877D00148BBE /* AppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 005F8AF8167B877D00148BBE /* AppHelper.m */; };
 		005F8AFB167B8BF900148BBE /* thirdPartyLibs.md in Resources */ = {isa = PBXBuildFile; fileRef = 005F8AFA167B8BF900148BBE /* thirdPartyLibs.md */; };
 		005F8AFD167B8C2900148BBE /* about.md in Resources */ = {isa = PBXBuildFile; fileRef = 005F8AFC167B8C2900148BBE /* about.md */; };
@@ -1078,6 +1081,10 @@
 		005DAEF514609AC600D87907 /* ItemizedLoanInterestTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedLoanInterestTaxAmtCreator.m; sourceTree = "<group>"; };
 		005EF4DD14C9DB83001F3D36 /* UpTo100PercentFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpTo100PercentFieldValidator.h; sourceTree = "<group>"; };
 		005EF4DE14C9DB83001F3D36 /* UpTo100PercentFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpTo100PercentFieldValidator.m; sourceTree = "<group>"; };
+		005EF68D178A30EF00F0591F /* fixedTaxRate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixedTaxRate.md; sourceTree = "<group>"; };
+		005EF68F178A311200F0591F /* variableTaxRate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableTaxRate.md; sourceTree = "<group>"; };
+		005EF691178A32F500F0591F /* TaxRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxRate.h; sourceTree = "<group>"; };
+		005EF692178A32F500F0591F /* TaxRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxRate.m; sourceTree = "<group>"; };
 		005F8AF7167B877D00148BBE /* AppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppHelper.h; sourceTree = "<group>"; };
 		005F8AF8167B877D00148BBE /* AppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppHelper.m; sourceTree = "<group>"; };
 		005F8AFA167B8BF900148BBE /* thirdPartyLibs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = thirdPartyLibs.md; sourceTree = "<group>"; };
@@ -2273,6 +2280,8 @@
 				0017F1931732DF3D0064FAD8 /* DividendRate.m */,
 				00590A4E1742E74500BBF045 /* DividendReinvestPercent.h */,
 				00590A4F1742E74600BBF045 /* DividendReinvestPercent.m */,
+				005EF691178A32F500F0591F /* TaxRate.h */,
+				005EF692178A32F500F0591F /* TaxRate.m */,
 			);
 			name = "Date Sensitive Value";
 			sourceTree = "<group>";
@@ -3123,6 +3132,8 @@
 				0017F1901732DE450064FAD8 /* variableDividend.md */,
 				00590A511742EF4C00BBF045 /* fixedDivReinvestPercent.md */,
 				00590A531742EF7700BBF045 /* variableDivReinvestPercent.md */,
+				005EF68D178A30EF00F0591F /* fixedTaxRate.md */,
+				005EF68F178A311200F0591F /* variableTaxRate.md */,
 			);
 			name = "Variable Values";
 			sourceTree = "<group>";
@@ -3518,6 +3529,8 @@
 				00590A561745432400BBF045 /* neverEndDateDeferPmt.md in Resources */,
 				00590A581745438E00BBF045 /* relEndDateDeferPmt.md in Resources */,
 				00D071C917809F640099E3C2 /* budgetList.md in Resources */,
+				005EF68E178A30EF00F0591F /* fixedTaxRate.md in Resources */,
+				005EF690178A311200F0591F /* variableTaxRate.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3852,6 +3865,7 @@
 				00779A58177232050040CAD7 /* PeriodicInterestPaymentResult.m in Sources */,
 				00197EF7177C9FDB0094E46B /* PlanListViewController.m in Sources */,
 				00197EFA177CA2DF0094E46B /* PlanListViewFactory.m in Sources */,
+				005EF693178A32F500F0591F /* TaxRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

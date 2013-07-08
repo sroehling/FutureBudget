@@ -44,11 +44,12 @@
 }
 
 -(void)updateEffectiveTaxRates:(NSDate*)currentDate
+	andLastDayOfTaxYear:(NSDate*)lastDayOfTaxYear;
 {
 	assert(currentDate != nil);
 	for(TaxInputCalc *taxInputCalc in self.taxInputCalcs)
 	{
-		[taxInputCalc updateEffectiveTaxRate:currentDate];
+		[taxInputCalc updateEffectiveTaxRate:currentDate andLastDayOfTaxYear:lastDayOfTaxYear];
 	}
 }
 

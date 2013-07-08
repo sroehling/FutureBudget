@@ -239,6 +239,14 @@
 "SHARED_INTEREST_RATE_ACTION_VERB" = "yield";
 
 
+"SHARED_TAX_RATE_VALUE_TITLE" = "Tax Rate";
+"SHARED_TAX_RATE_INLINE_VALUE_TITLE" = "tax percentage rate";
+"SHARED_TAX_RATE_TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
+"SHARED_TAX_RATE_VALUE_PROMPT" = "Enter a rate";
+"SHARED_TAX_RATE_PERIOD" = "every year";
+"SHARED_TAX_RATE_ACTION_VERB" = "tax";
+
+
 "SHARED_DIV_REINVEST_VALUE_TITLE" = "Reinvestment Percentage";
 "SHARED_DIV_REINVEST_INLINE_VALUE_TITLE" = "reinvestment percentage";
 "SHARED_DIV_REINVEST_TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";

@@ -12,6 +12,8 @@
 #import "LocalizationHelper.h"
 #import "NumberHelper.h"
 #import "CollectionHelper.h"
+#import "Scenario.h"
+#import "SimInputHelper.h"
 
 NSString * const TAX_BRACKET_ENTITY_NAME = @"TaxBracket";
 
@@ -58,7 +60,7 @@ NSString * const TAX_BRACKET_ENTITY_NAME = @"TaxBracket";
 }
 
 
-- (NSString*)taxBracketSummary
+- (NSString*)taxBracketSummaryForScenario:(Scenario*)scenario andDate:(NSDate*)dateForRates
 {
 
 	if(self.taxBracketEntries.count == 0)
@@ -70,8 +72,13 @@ NSString * const TAX_BRACKET_ENTITY_NAME = @"TaxBracket";
 		TaxBracketEntry *singleEntry = [[self.taxBracketEntries allObjects] lastObject];
 		assert(singleEntry != nil);
 
+
+		double rateAsOfSimStartDate = [SimInputHelper multiScenValueAsOfDate:singleEntry.taxPercent.growthRate
+											andDate:dateForRates andScenario:scenario];
+		NSNumber *storedTaxPerc = [NSNumber numberWithDouble:rateAsOfSimStartDate];
+		
 		NSString *taxPercDisp  =[[NumberHelper theHelper]
-			displayStrFromStoredVal:singleEntry.taxPercent
+			displayStrFromStoredVal:storedTaxPerc
 			andFormatter:[NumberHelper theHelper].percentFormatter];
 
 		if([singleEntry.cutoffAmount doubleValue] <= 0.0)
@@ -90,8 +97,12 @@ NSString * const TAX_BRACKET_ENTITY_NAME = @"TaxBracket";
 			NSString *amountSummary = [[NumberHelper theHelper]
 				displayStrFromStoredVal:singleEntry.cutoffAmount
 				andFormatter:[NumberHelper theHelper].currencyFormatter];
+				
+			rateAsOfSimStartDate = [SimInputHelper multiScenValueAsOfDate:singleEntry.taxPercent.growthRate
+									andDate:dateForRates andScenario:scenario];	
+			NSNumber *storedTaxPerc = [NSNumber numberWithDouble:rateAsOfSimStartDate];
 			NSString *percentSummary = [[NumberHelper theHelper]
-				displayStrFromStoredVal:singleEntry.taxPercent
+				displayStrFromStoredVal:storedTaxPerc
 				andFormatter:[NumberHelper theHelper].percentFormatter];
 				
 			NSString *singleBracketSummary = [NSString stringWithFormat:
@@ -134,8 +145,11 @@ NSString * const TAX_BRACKET_ENTITY_NAME = @"TaxBracket";
 			TaxBracketEntry *secondEntry = [allTaxBracketEntries objectAtIndex:0];
 			assert(secondEntry != nil);
 
+			double rateAsOfSimStartDate = [SimInputHelper multiScenValueAsOfDate:firstEntry.taxPercent.growthRate
+												andDate:dateForRates andScenario:scenario];
+			NSNumber *storedTaxPerc = [NSNumber numberWithDouble:rateAsOfSimStartDate];
 			initialPercentSummary = [[NumberHelper theHelper]
-				displayStrFromStoredVal:firstEntry.taxPercent
+				displayStrFromStoredVal:storedTaxPerc
 				andFormatter:[NumberHelper theHelper].percentFormatter];
 			initialAmountSummary = [[NumberHelper theHelper]
 				displayStrFromStoredVal:secondEntry.cutoffAmount
@@ -152,8 +166,11 @@ NSString * const TAX_BRACKET_ENTITY_NAME = @"TaxBracket";
 		// Concatenate together summaries of the remaining tax bracket entries.
 		for(TaxBracketEntry *taxBracketEntry in allTaxBracketEntries)
 		{
+			double rateAsOfSimStartDate = [SimInputHelper multiScenValueAsOfDate:taxBracketEntry.taxPercent.growthRate
+													andDate:dateForRates andScenario:scenario];
+			NSNumber *storedTaxPerc = [NSNumber numberWithDouble:rateAsOfSimStartDate];
 			NSString *percentSummary = [[NumberHelper theHelper]
-				displayStrFromStoredVal:taxBracketEntry.taxPercent
+				displayStrFromStoredVal:storedTaxPerc
 				andFormatter:[NumberHelper theHelper].percentFormatter];
 			NSString *amountSummary = [[NumberHelper theHelper]
 				displayStrFromStoredVal:taxBracketEntry.cutoffAmount
