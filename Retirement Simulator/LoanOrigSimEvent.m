@@ -36,8 +36,6 @@
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
-	// TODO - Need to store this somewhere else, for complete tracking of expenses.
-	InputValDigestSummation *digestSum = [[[InputValDigestSummation alloc] init] autorelease];	  
 	
 	double downPmtAmount = [self.loanInfo downPaymentAmount];
 				
@@ -45,15 +43,16 @@
 	{
 		ExpenseDigestEntry *downPmtExpense =
 			[[[ExpenseDigestEntry alloc] initWithAmount:downPmtAmount 
-				andCashFlowSummation:digestSum] autorelease];
+				andCashFlowSummation:self.loanInfo.downPaymentSum] autorelease];
 		[digest.digestEntries addDigestEntry:downPmtExpense onDate:self.eventDate];
 	}
 	
 	double totalAmtBorrowed = [self.loanInfo loanOrigAmount];
 	
+	
 	IncomeDigestEntry *receiveMoneyForLoan  = 
 		[[[IncomeDigestEntry alloc] initWithAmount:totalAmtBorrowed
-		andCashFlowSummation:digestSum] autorelease];
+		andCashFlowSummation:self.loanInfo.originationSum] autorelease];
 	[digest.digestEntries addDigestEntry:receiveMoneyForLoan onDate:self.eventDate];
 	
 		  

@@ -12,6 +12,7 @@
 #import "AssetSimInfo.h"
 #import "InterestBearingWorkingBalance.h"
 #import "WorkingBalanceMgr.h"
+#import "InputValDigestSummation.h"
 
 @implementation AssetPurchaseDigestEntry
 
@@ -19,6 +20,9 @@
 {
 	
 	double purchaseCost = [self.assetInfo purchaseCost];
+	
+	// Tally the purchase cost for the purpose of tracking cash flow
+	[self.assetInfo.assetPurchaseExpense adjustSum:purchaseCost onDay:processingParams.dayIndex];
 	
 	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:purchaseCost 
 		asOfDate:processingParams.currentDate];

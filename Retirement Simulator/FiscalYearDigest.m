@@ -83,6 +83,10 @@
 -(void)processEndOfYearInputResults:(EndOfYearDigestResult*)results
 {
 
+	// A single cash flow value is tallied across all the results. This represents a
+	// summation of inflow minus outflow of money.
+	double sumCashFlow = 0.0;
+
 	NSArray *assetSimInfos = [self.simParams.assetInfo simInfos];
 	double sumAssetVal = 0.0;
 	for(AssetSimInfo *assetSimInfo in assetSimInfos)
@@ -90,6 +94,9 @@
 		double assetVal = [assetSimInfo.assetValue currentBalanceForDate:results.endDate];
 		[results.assetValues setResultForInput:assetSimInfo.asset andValue:assetVal];
 		sumAssetVal += assetVal;
+		
+		sumCashFlow += [assetSimInfo.assetSaleIncome yearlyTotal];
+		sumCashFlow -= [assetSimInfo.assetPurchaseExpense yearlyTotal];
 	}
 	results.sumAssetVals = sumAssetVal;
 	
@@ -100,6 +107,11 @@
 		double loanBal = [loanSimInfo.loanBalance currentBalanceForDate:results.endDate];
 		[results.loanBalances setResultForInput:loanSimInfo.loan andValue:loanBal];
 		sumLoanBal += loanBal;
+		
+		sumCashFlow += [loanSimInfo.originationSum yearlyTotal];		
+		sumCashFlow -= [loanSimInfo.paymentSum yearlyTotal];
+		sumCashFlow -= [loanSimInfo.downPaymentSum yearlyTotal];
+			
 	}
 	results.sumLoanBal = sumLoanBal;
 	
@@ -135,6 +147,8 @@
 		double acctCapLoss = [acctSimInfo.acctBal.capitalLosses yearlyTotal];
 		[results.acctCapitalLoss setResultForInput:acctSimInfo.account andValue:acctCapLoss];
 		sumAcctCapitalLoss += acctCapLoss;
+		
+		sumCashFlow += [acctSimInfo.dividendPayouts yearlyTotal];
 
 	}
 	results.sumAcctBal = sumAcctBal;
@@ -153,6 +167,7 @@
 		sumIncome += incomeAmt;
 	}
 	results.sumIncomes = sumIncome;
+	sumCashFlow += sumIncome;
 
 	NSArray *expenseSimInfos = [self.simParams.expenseInfo simInfos];
 	double sumExpense = 0.0;
@@ -163,6 +178,7 @@
 		sumExpense += expenseAmt;
 	}
 	results.sumExpense = sumExpense;
+	sumCashFlow -= sumExpense;
 	
 	results.cashBal = [self.simParams.workingBalanceMgr.cashWorkingBalance currentBalanceForDate:results.endDate];
 	results.deficitBal = [self.simParams.workingBalanceMgr.deficitBalance currentBalanceForDate:results.endDate];
@@ -180,8 +196,10 @@
 		sumTaxesPaid += taxesPaid;
 	}
 	results.sumTaxesPaid = sumTaxesPaid;
+	sumCashFlow -= sumTaxesPaid;
 	
 	
+	results.cashFlow = sumCashFlow;
 	
 	double futureValueMultiplier = [self.adjustValueForInflationCalculator  
 		valueMultiplierBetweenStartDate:self.simParams.simStartDate andEndDate:results.endDate];

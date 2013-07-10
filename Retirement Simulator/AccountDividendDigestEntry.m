@@ -82,10 +82,20 @@
 		}
 		if(dividendPayoutPercAsOfEventDate > 0.0)
 		{
+		
+			// Track dividend payout as a digest sum, so that overall cash
+			// flow can be tracked.
+			double dividendPayoutAmount = dividendAmount * dividendPayoutPercAsOfEventDate;
+			
+			// Keep a tally of the dividend amount which is payed out as income. This
+			// is used for tracking cash flow.
+			[self.acctSimInfo.dividendPayouts adjustSum:dividendPayoutAmount
+					onDay:processingParams.dayIndex];
+		
 			// If the reinvestment % is less than 100%, then payout the remainder
 			// to the cash balance
 			[processingParams.workingBalanceMgr
-				incrementCashBalance:(dividendAmount * dividendPayoutPercAsOfEventDate)
+				incrementCashBalance:dividendPayoutAmount
 				asOfDate:processingParams.currentDate];
 		}
 

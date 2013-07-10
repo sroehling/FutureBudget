@@ -13,6 +13,7 @@
 #import "DigestEntryProcessingParams.h"
 #import "LoanPmtHelper.h"
 #import "WorkingBalanceMgr.h"
+#import "InputValDigestSummation.h"
 
 @implementation FirstDeferredPmtProcessor
 
@@ -32,6 +33,10 @@
 	
 	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:actualPmtAmt 
 				asOfDate:paymentDate];
+	
+	// Track the payment amount, for tracking cash flow.
+	[loanInfo.paymentSum adjustSum:actualPmtAmt onDay:processingParams.dayIndex];
+			
 }
 
 @end

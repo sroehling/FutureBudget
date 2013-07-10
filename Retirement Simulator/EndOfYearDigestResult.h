@@ -49,7 +49,7 @@
 		double sumTaxesPaid;
 		
 		double cashBal;
-		
+		double cashFlow;
 		double deficitBal;
 		
 		// This multiplier will take the unadjusted results, given 
@@ -95,7 +95,7 @@
 @property double sumTaxesPaid;
 
 @property double cashBal;
-
+@property double cashFlow;
 @property double deficitBal;
 
 @property double simStartDateValueMultiplier;

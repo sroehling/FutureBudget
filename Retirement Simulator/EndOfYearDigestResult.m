@@ -26,6 +26,7 @@
 @synthesize expenses;
 @synthesize sumExpense;
 @synthesize cashBal;
+@synthesize cashFlow;
 @synthesize deficitBal;
 @synthesize acctContribs;
 @synthesize sumAcctContrib;
@@ -106,7 +107,7 @@
 		self.sumTaxesPaid = 0.0;
 		
 		self.cashBal = 0.0;
-		
+		self.cashFlow = 0.0;
 		self.deficitBal = 0.0;
 		
 		self.fullYearSimulated = theFullYearSimulated;

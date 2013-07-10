@@ -23,12 +23,14 @@
 @synthesize acctBal;
 @synthesize simParams;
 @synthesize dividendPayments;
+@synthesize dividendPayouts;
 
 -(void)dealloc
 {
 	[account release];
 	[acctBal release];
 	[dividendPayments release];
+	[dividendPayouts release];
 	[simParams release];
 	[super dealloc];
 }	
@@ -48,10 +50,13 @@
 				andSimParams:simParams] autorelease];
 
 		self.dividendPayments = [[[InputValDigestSummation alloc] init] autorelease];
+		self.dividendPayouts = [[[InputValDigestSummation alloc] init] autorelease];
 				
-		// TBD - Is this the best place to populate the SimParam's digestSums for the 
-		// savings acct? Should it instead be done inside the WorkingBalance?
+		// Populate the SimParam's digestSums for the 
+		// savings acct. This will cause the digest sums to be reset when
+		// there are multiple passes of digest calculation in a year.
 		[simParams.digestSums addDigestSum:self.dividendPayments];
+		[simParams.digestSums addDigestSum:self.dividendPayouts];
 		
 
 

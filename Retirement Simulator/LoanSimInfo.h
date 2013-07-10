@@ -13,6 +13,7 @@
 @class PeriodicInterestBearingWorkingBalance;
 @class EventRepeater;
 @class VariableRateCalculator;
+@class InputValDigestSummation;
 @class SimParams;
 
 @interface LoanSimInfo : NSObject {
@@ -21,6 +22,10 @@
 		SimParams *simParams;
 		PeriodicInterestBearingWorkingBalance *loanBalance;
 		VariableRateCalculator *extraPmtGrowthCalc;
+		InputValDigestSummation *downPaymentSum;
+		InputValDigestSummation *paymentSum;
+		InputValDigestSummation *originationSum;
+		
 }
 
 -(id)initWithLoan:(LoanInput*)theLoan andSimParams:(SimParams*)theParams;
@@ -32,6 +37,9 @@
 @property(nonatomic,retain) VariableRateCalculator *extraPmtGrowthCalc;
 @property(nonatomic,retain) SimParams *simParams;
 
+@property(nonatomic,retain) InputValDigestSummation *downPaymentSum;
+@property(nonatomic,retain) InputValDigestSummation *paymentSum;
+@property(nonatomic,retain) InputValDigestSummation *originationSum;
 
 -(double)downPaymentAmount;
 -(NSDate*)loanOrigDate;

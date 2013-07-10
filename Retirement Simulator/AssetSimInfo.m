@@ -32,6 +32,24 @@
 @synthesize purchaseDate;
 @synthesize saleDate;
 @synthesize sumGainsLosses;
+@synthesize assetSaleIncome;
+@synthesize assetPurchaseExpense;
+
+- (void)dealloc
+{
+	[assetValue release];
+	[asset release];
+	[simParams release];
+	[purchaseDate release];
+	[saleDate release];
+	
+	[sumGainsLosses release];
+	[assetSaleIncome release];
+	[assetPurchaseExpense release];
+	
+	[super dealloc];
+}
+
 
 
 -(id)initWithAsset:(AssetInput*)theAsset andSimParams:(SimParams*)theSimParams
@@ -46,7 +64,12 @@
 		self.asset = theAsset;
 		
 		self.sumGainsLosses = [[[InputValDigestSummation alloc] init] autorelease];
+		self.assetSaleIncome = [[[InputValDigestSummation alloc] init] autorelease];
+		self.assetPurchaseExpense = [[[InputValDigestSummation alloc] init] autorelease];
+		
 		[theSimParams.digestSums addDigestSum:self.sumGainsLosses];
+		[theSimParams.digestSums addDigestSum:self.assetSaleIncome];
+		[theSimParams.digestSums addDigestSum:self.assetPurchaseExpense];
 		
 		self.purchaseDate = [SimInputHelper 
 			multiScenFixedDate:self.asset.purchaseDate.simDate 
@@ -107,8 +130,11 @@
 
 -(void)processSale:(DigestEntryProcessingParams*)processingParams
 {
+	// Record the asset sale for tracking cash flow
 	double saleValue = [self.assetValue 
 		zeroOutBalanceAsOfDate:processingParams.currentDate];
+	[self.assetSaleIncome adjustSum:saleValue onDay:processingParams.dayIndex];
+	
 	double purchaseCost  = [self purchaseCost];
 	
 	// gainOrLoss could be negative if the asset depreciated and is worth
@@ -167,15 +193,5 @@
 	return nil;
 }
 
-- (void)dealloc
-{
-	[assetValue release];
-	[asset release];
-	[simParams release];
-	[purchaseDate release];
-	[saleDate release];
-	[sumGainsLosses release];
-	[super dealloc];
-}
 
 @end

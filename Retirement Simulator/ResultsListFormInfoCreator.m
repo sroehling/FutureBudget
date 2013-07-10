@@ -33,6 +33,7 @@
 #import "ExpenseInput.h"
 
 #import "CashBalXYPlotDataGenerator.h"
+#import "CashFlowXYPlotDataGenerator.h"
 #import "DeficitBalXYPlotDataGenerator.h"
 #import "AllAcctContribXYPlotDataGenerator.h"
 #import "AcctContribXYPlotGenerator.h"
@@ -42,6 +43,7 @@
 #import "TaxesPaidXYPlotDataGenerator.h"
 #import "TaxInput.h"
 #import "FormContext.h"
+#import "YearValXYPlotDataGenerator.h"
 
 #import "MBProgressHUD.h"
 
@@ -93,6 +95,28 @@
 			onTarget:[SimResultsController theSimResultsController] withObject:self animated:YES];
 }
 
+-(void)populateXYPlotDataResults:(FormPopulator*)formPopulator
+	andPlotDataGenerator:(id<YearValXYPlotDataGenerator>)plotDataGen
+	andResultsTitle:(NSString*)title andResultsSubtitle:(NSString*)subTitle
+{
+	ResultsViewInfo *resultsViewInfo = [[[ResultsViewInfo alloc]
+		initWithSimResultsController:[SimResultsController theSimResultsController]
+		andViewTitle:title] autorelease];
+
+	ResultsViewFactory *resultsViewFactory =
+		[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:resultsViewInfo
+			andPlotDataGenerator:plotDataGen] autorelease];
+			
+	StaticNavFieldEditInfo *resultsFieldEditInfo =
+		[[[StaticNavFieldEditInfo alloc] 
+			initWithCaption:title
+			andSubtitle:subTitle
+			andContentDescription:nil
+			andSubViewFactory:resultsViewFactory] autorelease];
+			
+	[formPopulator.currentSection addFieldEditInfo:resultsFieldEditInfo];
+}
+
 - (FormInfo*)createFormInfoWithContext:(FormContext*)parentContext
 {
 
@@ -120,8 +144,13 @@
 				andSubtitle:LOCALIZED_STR(@"RESULTS_SUMMARY_NET_WORTH_SUBTITLE") 
 				andContentDescription:nil
 				andSubViewFactory:netWorthViewFactory] autorelease];
-		[sectionInfo addFieldEditInfo:netWorthFieldEditInfo];		
+		[sectionInfo addFieldEditInfo:netWorthFieldEditInfo];
 
+
+		[self populateXYPlotDataResults:formPopulator
+			andPlotDataGenerator:[[[CashFlowXYPlotDataGenerator alloc] init] autorelease]
+			andResultsTitle:LOCALIZED_STR(@"RESULTS_SUMMARY_CASH_FLOW_TITLE")
+			andResultsSubtitle:LOCALIZED_STR(@"RESULTS_SUMMARY_CASH_FLOW_SUBTITLE")];
 
 		ResultsViewInfo *cashBalViewInfo = [[[ResultsViewInfo alloc]
 			initWithSimResultsController:simResultsController 

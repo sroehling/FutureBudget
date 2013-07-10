@@ -13,6 +13,7 @@
 #import "DigestEntryProcessingParams.h"
 #import "WorkingBalanceMgr.h"
 #import "PeriodicInterestPaymentResult.h"
+#import "InputValDigestSummation.h"
 
 @implementation InterestOnlyPmtProcessor
 
@@ -36,6 +37,9 @@
 -(void)processPmtForLoanInfo:(LoanSimInfo*)loanInfo andProcessingParams:(DigestEntryProcessingParams*)processingParams
 {
 	NSDate *pmtDate = processingParams.currentDate;
+	
+	// Track interest and/or extra payment amounts as an expense, for keeping a summation of overall cash flow
+
 		
 	PeriodicInterestPaymentResult *pmtResult = [loanInfo.loanBalance decrementInterestOnlyPaymentOnDate:pmtDate
 			withExtraPmtAmount:[loanInfo extraPmtAmountAsOfDate:pmtDate]];
@@ -45,8 +49,12 @@
 		// If the payment is subsidized, the balance of payment doesn't come out
 		// of the list of accounts, but instead is assumped to be paid by
 		// someone else. This is a special case for subsidized stafford school loans.
-		[processingParams.workingBalanceMgr decrementBalanceFromFundingList:pmtResult.interestPaid 
+		[processingParams.workingBalanceMgr
+				decrementBalanceFromFundingList:pmtResult.interestPaid
 				asOfDate:processingParams.currentDate];
+
+		// Track interest-only payments, for keeping track of overall cash flow
+		[loanInfo.paymentSum adjustSum:pmtResult.interestPaid onDay:processingParams.dayIndex];
 	}
 
 	// Even if the loan is in deferment, extra payments can be made. This supports scenarios where
@@ -57,8 +65,12 @@
 	// since the interest only payment may be subsidized, while the extra payment is not.
 	if(pmtResult.extraPaymentPaid > 0.0)
 	{
-		[processingParams.workingBalanceMgr decrementBalanceFromFundingList:pmtResult.extraPaymentPaid 
+		[processingParams.workingBalanceMgr
+				decrementBalanceFromFundingList:pmtResult.extraPaymentPaid
 				asOfDate:processingParams.currentDate];
+				
+		// Track extra payments, for keeping track of overall cash flow
+		[loanInfo.paymentSum adjustSum:pmtResult.extraPaymentPaid onDay:processingParams.dayIndex];
 	}
 
 	

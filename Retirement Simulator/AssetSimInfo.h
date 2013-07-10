@@ -19,7 +19,10 @@
 		AssetInput *asset;
 		InterestBearingWorkingBalance *assetValue;
 		SimParams *simParams;
+		
 		InputValDigestSummation *sumGainsLosses;
+		InputValDigestSummation *assetSaleIncome;
+		InputValDigestSummation *assetPurchaseExpense;
 		
 		NSDate *purchaseDate;
 		NSDate *saleDate;
@@ -31,7 +34,10 @@
 @property(nonatomic,retain) SimParams *simParams;
 @property(nonatomic,retain) NSDate *purchaseDate;
 @property(nonatomic,retain) NSDate *saleDate;
+
 @property(nonatomic,retain) InputValDigestSummation *sumGainsLosses;
+@property(nonatomic,retain) InputValDigestSummation *assetSaleIncome;
+@property(nonatomic,retain) InputValDigestSummation *assetPurchaseExpense;
 
 -(bool)purchasedAfterSimStart;
 - (bool)soldAfterSimStart;

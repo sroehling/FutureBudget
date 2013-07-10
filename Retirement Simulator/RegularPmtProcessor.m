@@ -12,6 +12,7 @@
 #import "PeriodicInterestBearingWorkingBalance.h"
 #import "DigestEntryProcessingParams.h"
 #import "WorkingBalanceMgr.h"
+#import "InputValDigestSummation.h"
 
 @implementation RegularPmtProcessor
 
@@ -22,6 +23,9 @@
 
 	double actualPmtAmt = [loanInfo.loanBalance decrementPeriodicPaymentOnDate:pmtDate
 		withExtraPmtAmount:[loanInfo extraPmtAmountAsOfDate:pmtDate]];
+		
+	// Track payment amounts as an expense, for keeping a summation of overall cash flow
+	[loanInfo.paymentSum adjustSum:actualPmtAmt onDay:processingParams.dayIndex];
 			
 	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:actualPmtAmt 
 				asOfDate:pmtDate];

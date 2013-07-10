@@ -27,6 +27,7 @@
 #import "PeriodicInterestBearingWorkingBalance.h"
 #import "MultiScenarioInputValue.h"
 #import "LoanPmtHelper.h"
+#import "InputValDigestSummation.h"
 
 @implementation LoanSimInfo
 
@@ -34,6 +35,10 @@
 @synthesize loanBalance;
 @synthesize extraPmtGrowthCalc;
 @synthesize simParams;
+@synthesize downPaymentSum;
+@synthesize paymentSum;
+@synthesize originationSum;
+
 
 -(void)dealloc
 {
@@ -41,6 +46,11 @@
 	[loanBalance release];
 	[extraPmtGrowthCalc release];
 	[simParams release];
+
+	[downPaymentSum release];
+	[paymentSum release];
+	[originationSum release];
+	
 	[super dealloc];
 }
 
@@ -434,6 +444,15 @@
 		
 		assert(theParams != nil);
 		self.simParams = theParams;
+		
+		self.downPaymentSum = [[[InputValDigestSummation alloc] init] autorelease];
+		self.paymentSum = [[[InputValDigestSummation alloc] init] autorelease];
+		self.originationSum = [[[InputValDigestSummation alloc] init] autorelease];
+		
+		[self.simParams.digestSums addDigestSum:self.downPaymentSum];
+		[self.simParams.digestSums addDigestSum:self.paymentSum];
+		[self.simParams.digestSums addDigestSum:self.originationSum];
+
 		
 		// self.extraPmtGrowthCalc is referenced inside configParamsForLoanOrigination,
 		// so we need to allocate it *before* calling configParamsForLoanOrigination.

@@ -11,6 +11,7 @@
 #import "InterestBearingWorkingBalance.h"
 #import "DigestEntryProcessingParams.h"
 #import "WorkingBalanceMgr.h"
+#import "InputValDigestSummation.h"
 
 
 @implementation LoanEarlyPayoffDigestEntry
@@ -38,6 +39,8 @@
 -(void)processDigestEntry:(DigestEntryProcessingParams*)processingParams
 {
 	double balancePaid = [self.loanInfo.loanBalance zeroOutBalanceAsOfDate:processingParams.currentDate];
+	
+	[self.loanInfo.paymentSum adjustSum:balancePaid onDay:processingParams.dayIndex];
 		
 	[processingParams.workingBalanceMgr decrementBalanceFromFundingList:balancePaid 
 		asOfDate:processingParams.currentDate];

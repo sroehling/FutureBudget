@@ -289,13 +289,10 @@
     // Reset the event list
 	self.eventList = [[[SimEventList alloc] init] autorelease];
 	
-
-	
 	NSDate *simStartDate = [self.sharedAppVals beginningOfSimStartDate];
 	self.simParams = [[[SimParams alloc] 
 			initWithSharedAppVals:self.sharedAppVals] autorelease];
 
-		
 	[self populateEventCreators];
 	    
     // At the beginning of the simulation, iterate through the

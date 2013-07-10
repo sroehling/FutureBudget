@@ -20,6 +20,11 @@
 		AccountWorkingBalance *acctBal;
 				
 		InputValDigestSummation *dividendPayments;
+		
+		// Portion of dividend which is not reinvested.
+		// This is used for tallying up the overall cash flow.
+		InputValDigestSummation *dividendPayouts;
+		
 
 		SimParams *simParams;
 }
@@ -27,6 +32,7 @@
 @property(nonatomic,retain) Account *account;
 @property(nonatomic,retain) AccountWorkingBalance *acctBal;
 @property(nonatomic,retain) InputValDigestSummation *dividendPayments;
+@property(nonatomic,retain) InputValDigestSummation *dividendPayouts;
 
 @property(nonatomic,retain) SimParams *simParams;
 
