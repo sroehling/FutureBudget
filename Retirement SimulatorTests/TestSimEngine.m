@@ -91,6 +91,7 @@
 #import "TestCoreDataObjects.h"
 #import "TaxBracketEntry.h"
 #import "MultiScenarioGrowthRate.h"
+#import "CashFlowXYPlotDataGenerator.h"
 
 @implementation TestSimEngine
 
@@ -4795,6 +4796,367 @@
      
 }
 
+
+- (void)testCashFlow {
+        
+ 	[self resetCoredData];
+   
+    NSLog(@"Starting sim engine test ...");
+    	
+	IncomeInputTypeSelectionInfo *incomeCreator = 
+		[[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+		
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
+
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with income" withAdjustedVals:FALSE];
+
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+	[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+	andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+		
+		
+	// Add an expense - this should reduce the cash flow by $50 each year.
+	
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:50.0];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	[simResults runSimulatorForResults];
+
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with expense" withAdjustedVals:FALSE];
+
+    
+    // Add an asset purchase and sale. In the first year, when the asset is purchased, the cash flow should be reduced by the amount
+	// of the sale ($25). However, selling the asset should increase the cash flow.
+     
+	AssetInputTypeSelectionInfo *assetCreator = 
+		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+		
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:25.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-06-15"]];
+
+	[simResults runSimulatorForResults];
+
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:75.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with asset" withAdjustedVals:FALSE];
+
+	// Add taxes - taxes paid should reduce the cash flow by the amount of taxes paid ($10 per year)
+
+	TaxInputTypeSelectionInfo *taxCreator = 
+		[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+		
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	flatTax.taxBracket.cutoffGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	
+	IncomeItemizedTaxAmt *itemizedIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedIncome.income = income01;
+	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
+
+	[simResults runSimulatorForResults];
+
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:40.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:15.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:65.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:40.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:40.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with taxes" withAdjustedVals:FALSE];
+	
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Add a loan to the mix.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	[simResults runSimulatorForResults];
+
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	// Loan originates on 12/15/2012, so the origination amount should appear in the cash flow for 2012
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:400.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// There are 12 $10 payments in 2013, so the cash flow should increase by $120 versus the test above ($15-$120=-$105)
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:-105.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Another 12 payments in 2014, so the cash flow is $65-$120=-$55
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:-55.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Final 12 payments in 2015, so the cash flow is $40-$120=-$55
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:-80.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:40.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with loan" withAdjustedVals:FALSE];
+
+	// Add an account with a dividend payout
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0]; // 10% dividend each year
+	acct01.dividendReinvestPercent = [inputCreationHelper multiScenPercentWithDefault:0.0]; // don't reinvest the money each year, so the dividend is payed out (and increases cash flow).
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+
+	[simResults runSimulatorForResults];
+
+	// The results should be the same as for the loan data, but the cash flow is increased by $100.
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:500.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:-5.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:45.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:20.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:140.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with dividend" withAdjustedVals:FALSE];
+
+
+}
+
+-(void)testLoanCashFlowWithExtraPayments
+{
+
+	[self resetCoredData];
+	
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	loan01.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.extraPmtAmt = [inputCreationHelper multiScenAmountWithDefault:10.0];
+	loan01.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
+
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// The loan originates in the first year, so 720 is added to the cash flow
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:720.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// In the first and second years, there are 12 regular payments of $20, with an extra payment of $10,
+	// so ($10+$20)*12 = -$360 cash flow.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:-360.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:-360.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with income" withAdjustedVals:FALSE];
+	
+	
+
+
+}
+
+
+-(void)testLoanCashFlowWithEarlyPayoff
+{
+
+	[self resetCoredData];
+	
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:600.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:60];	
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
+			[DateHelper dateFromStr:@"2015-01-15"]];
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
+
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// The loan originates in the first year, so 720 is added to the cash flow
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:600.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:-120.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:-120.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Early payoff happens in January, 2015, so the remaining balance is subtracted from the cash flow.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:-360.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow loan early payoff" withAdjustedVals:FALSE];
+	
+
+}
+
+-(void)testLoanCashFlowWithDeferredPayment
+{
+
+	[self resetCoredData];
+	
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+			
+	
+	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
+	// payment needs to be include the interest.
+	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
+	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+
+		
+
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
+
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// The loan originates in the first year, so 720 is added to the cash flow
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:360.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	// The loan is deferred through 2013. Interest payments are (.10/12) * 360 * 12 = $36
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:-36.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Regular payments start in 2014. The monthly payment is $11.62, totalling $139.39 over 12 months (with rounding).
+	// This was cross-checked using the PMT function in excel.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:-139.39 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	// Early payoff happens in January, 2015, so the remaining balance is subtracted from the cash flow.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:-139.39 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:-139.39 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow loan deferred payment" withAdjustedVals:FALSE];
+	
+
+}
+
+
+-(void)testLoanWithDownPaymentCashFlow
+{
+
+	[self resetCoredData];
+	
+		self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+
+
+	LoanInputTypeSelctionInfo *loanCreator = 
+		[[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+			andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	loan01.downPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+	
+	loan01.multiScenarioDownPmtPercentFixed = [inputCreationHelper multiScenFixedValWithDefault:50.0];
+	loan01.multiScenarioDownPmtPercent = [inputCreationHelper multiScenInputValueWithDefaultFixedVal:
+		loan01.multiScenarioDownPmtPercentFixed];
+		
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
+
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	// The loan origination is $720, but a 50% down payment is given. So, overall, only $360 is received in 2012, since
+	// $360 is paid in down payment.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:360.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:-120.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:-120.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:-120.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow loan down payment" withAdjustedVals:FALSE];
+	
+}
 
 
 @end
