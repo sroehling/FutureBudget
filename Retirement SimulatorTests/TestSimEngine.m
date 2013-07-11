@@ -92,6 +92,7 @@
 #import "TaxBracketEntry.h"
 #import "MultiScenarioGrowthRate.h"
 #import "CashFlowXYPlotDataGenerator.h"
+#import "CumulativeCashFlowXYPlotDataGenerator.h"
 
 @implementation TestSimEngine
 
@@ -4818,6 +4819,9 @@
 	[simResults runSimulatorForResults];
 	
 	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
+	CumulativeCashFlowXYPlotDataGenerator *cumCashFlowData =
+		[[[CumulativeCashFlowXYPlotDataGenerator alloc] init] autorelease];
+
 
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
@@ -4827,13 +4831,22 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	
 	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with income" withAdjustedVals:FALSE];
+	
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:200.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:300.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:400.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:500.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cumCashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cumulative cash flow with income" withAdjustedVals:FALSE];
 
-	ExpenseInputTypeSelectionInfo *expenseCreator = 
-	[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
-	andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 		
 		
 	// Add an expense - this should reduce the cash flow by $50 each year.
+	ExpenseInputTypeSelectionInfo *expenseCreator = 
+	[[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
+	andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:50.0];
@@ -4964,6 +4977,16 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:140.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
 	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow with dividend" withAdjustedVals:FALSE];
+	
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:500.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:495.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:540.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:560.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:700.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cumCashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cumulative cash flow with income" withAdjustedVals:FALSE];
+	
 
 
 }

@@ -44,6 +44,7 @@
 #import "TaxInput.h"
 #import "FormContext.h"
 #import "YearValXYPlotDataGenerator.h"
+#import "CumulativeCashFlowXYPlotDataGenerator.h"
 
 #import "MBProgressHUD.h"
 
@@ -151,6 +152,12 @@
 			andPlotDataGenerator:[[[CashFlowXYPlotDataGenerator alloc] init] autorelease]
 			andResultsTitle:LOCALIZED_STR(@"RESULTS_SUMMARY_CASH_FLOW_TITLE")
 			andResultsSubtitle:LOCALIZED_STR(@"RESULTS_SUMMARY_CASH_FLOW_SUBTITLE")];
+
+		[self populateXYPlotDataResults:formPopulator
+			andPlotDataGenerator:[[[CumulativeCashFlowXYPlotDataGenerator alloc] init] autorelease]
+			andResultsTitle:LOCALIZED_STR(@"RESULTS_SUMMARY_CUMULATIVE_CASH_FLOW_TITLE")
+			andResultsSubtitle:LOCALIZED_STR(@"RESULTS_SUMMARY_CUMULATIVE_CASH_FLOW_SUBTITLE")];
+
 
 		ResultsViewInfo *cashBalViewInfo = [[[ResultsViewInfo alloc]
 			initWithSimResultsController:simResultsController 

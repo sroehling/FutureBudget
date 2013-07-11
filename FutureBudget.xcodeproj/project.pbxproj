@@ -442,6 +442,7 @@
 		00BC35BE140C588300D79F78 /* YearlySimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35BD140C588300D79F78 /* YearlySimEventCreator.m */; };
 		00BC35C8140D42DD00D79F78 /* SimEventList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35C7140D42DD00D79F78 /* SimEventList.m */; };
 		00BC35CB140DA3B600D79F78 /* EventListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35CA140DA3B600D79F78 /* EventListTest.m */; };
+		00C012AD178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C012AC178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m */; };
 		00C3DCC81667F0CF00F1F490 /* ResultraGenericLibResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00C3DCAA1667EFDB00F1F490 /* ResultraGenericLibResources.bundle */; };
 		00C3DCC91667F0EE00F1F490 /* libResultraGenericLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C3DCA61667EFDB00F1F490 /* libResultraGenericLib.a */; };
 		00C3DCCB1667F15A00F1F490 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C3DCCA1667F15A00F1F490 /* Security.framework */; };
@@ -1326,6 +1327,8 @@
 		00BC35C7140D42DD00D79F78 /* SimEventList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimEventList.m; sourceTree = "<group>"; };
 		00BC35C9140DA3B400D79F78 /* EventListTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListTest.h; sourceTree = "<group>"; };
 		00BC35CA140DA3B600D79F78 /* EventListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListTest.m; sourceTree = "<group>"; };
+		00C012AB178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CumulativeCashFlowXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00C012AC178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CumulativeCashFlowXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResultraGenericLib.xcodeproj; path = ../ResultraGenericLib/ResultraGenericLib.xcodeproj; sourceTree = "<group>"; };
 		00C3DCCA1667F15A00F1F490 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		00C3DCCC1667F1C600F1F490 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -3028,6 +3031,8 @@
 				00AF8600149A81D200AE734B /* DeficitBalXYPlotDataGenerator.m */,
 				007EE907178E01AF0035FB86 /* CashFlowXYPlotDataGenerator.h */,
 				007EE908178E01AF0035FB86 /* CashFlowXYPlotDataGenerator.m */,
+				00C012AB178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.h */,
+				00C012AC178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m */,
 			);
 			name = "Results Data Generators";
 			sourceTree = "<group>";
@@ -3872,6 +3877,7 @@
 				00197EFA177CA2DF0094E46B /* PlanListViewFactory.m in Sources */,
 				005EF693178A32F500F0591F /* TaxRate.m in Sources */,
 				007EE909178E01AF0035FB86 /* CashFlowXYPlotDataGenerator.m in Sources */,
+				00C012AD178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
