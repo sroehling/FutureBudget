@@ -45,6 +45,7 @@
 #import "FormContext.h"
 #import "YearValXYPlotDataGenerator.h"
 #import "CumulativeCashFlowXYPlotDataGenerator.h"
+#import "RelativeNetWorthXYPlotDataGenerator.h"
 
 #import "MBProgressHUD.h"
 
@@ -147,6 +148,10 @@
 				andSubViewFactory:netWorthViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:netWorthFieldEditInfo];
 
+		[self populateXYPlotDataResults:formPopulator
+			andPlotDataGenerator:[[[RelativeNetWorthXYPlotDataGenerator alloc] init] autorelease]
+			andResultsTitle:LOCALIZED_STR(@"RESULTS_SUMMARY_RELATIVE_NET_WORTH_TITLE")
+			andResultsSubtitle:LOCALIZED_STR(@"RESULTS_SUMMARY_RELATIVE_NET_WORTH_SUBTITLE")];
 
 		[self populateXYPlotDataResults:formPopulator
 			andPlotDataGenerator:[[[CashFlowXYPlotDataGenerator alloc] init] autorelease]

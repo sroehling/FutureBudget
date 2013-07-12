@@ -77,6 +77,7 @@
 #import "AccountWithdrawalItemizedTaxAmt.h"
 
 #import "NetWorthXYPlotDataGenerator.h"
+#import "RelativeNetWorthXYPlotDataGenerator.h"
 #import "TransferInput.h"
 #import "TransferEndpointAcct.h"
 #import "TransferEndpointCash.h"
@@ -524,6 +525,14 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:231.06 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:231.06 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Net worth with asset" withAdjustedVals:FALSE];
+	
+	RelativeNetWorthXYPlotDataGenerator *relNetWorthData = [[[RelativeNetWorthXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:109.71 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:121.00 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.35 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:relNetWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Relative net worth with asset" withAdjustedVals:FALSE];
 
 }
 
@@ -1564,7 +1573,18 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:529.71 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:57.78 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
-	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Net worth" withAdjustedVals:FALSE];
+	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Net worth with loan" withAdjustedVals:FALSE];
+
+
+	
+	RelativeNetWorthXYPlotDataGenerator *relNetWorthData = [[[RelativeNetWorthXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:-470.29 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:-471.93 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:relNetWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Relative net worth with loan" withAdjustedVals:FALSE];
+
 
 }
 

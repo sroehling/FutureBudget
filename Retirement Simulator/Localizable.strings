@@ -711,12 +711,15 @@
 "RESULTS_PROGRESS_LABEL" = "Calculating Results";
 "RESULTS_NAV_CONTROLLER_BUTTON_TITLE" = "Results";
 "RESULTS_NET_WORTH_DATA_LABEL" = "Net Worth";
+"RESULTS_RELATIVE_NET_WORTH_DATA_LABEL" = "Relative Net Worth";
 "RESULTS_CASH_FLOW_DATA_LABEL" = "Cash Flow";
 "RESULTS_CUMULATIVE_CASH_FLOW_DATA_LABEL" = "Cumulative Cash Flow";
 "RESULTS_YEAR_X_AXIS_TITLE" = "End of Year";
 "RESULTS_SUMMARY_SECTION_TITLE" = "Summary";
 "RESULTS_SUMMARY_NET_WORTH_TITLE" = "Net Worth";
 "RESULTS_SUMMARY_NET_WORTH_SUBTITLE" = "Plot total assets and account balances minus debts.";
+"RESULTS_SUMMARY_RELATIVE_NET_WORTH_TITLE" = "Relative Net Worth";
+"RESULTS_SUMMARY_RELATIVE_NET_WORTH_SUBTITLE" = "Change in net worth from year to year.";
 "RESULTS_SUMMARY_CASH_FLOW_TITLE" = "Cash Flow";
 "RESULTS_SUMMARY_CASH_FLOW_SUBTITLE" = "For all inputs, money received minus money spent.";
 "RESULTS_SUMMARY_CUMULATIVE_CASH_FLOW_TITLE" = "Cumulative Cash Flow";
