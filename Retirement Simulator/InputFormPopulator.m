@@ -399,6 +399,27 @@
 		withShowHideCondition:showHideCondition];
 }
 
+-(void)populateMultiScenarioLoanOrigAmount:(MultiScenarioAmount*)theAmount
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
+{
+	VariableValueRuntimeInfo *amountRuntimeInfo = [VariableValueRuntimeInfo 
+		createForDataModelController:self.formContext.dataModelController 
+		andMultiScenarioAmount:theAmount withValueTitle:valueTitle andValueName:valueName
+		andTableSubtitle:LOCALIZED_STR(@"INPUT_LOAN_COST_AMOUNT_TABLE_SUBTITLE")];
+		
+	DateSensitiveValueFieldEditInfo *amountFieldEditInfo = [DateSensitiveValueFieldEditInfo 
+	  createForDataModelController:self.formContext.dataModelController
+	  andScenario:self.inputScenario andMultiScenFixedVal:theAmount.amount
+		andLabel:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_VALUE_TITLE")
+	  andValRuntimeInfo:amountRuntimeInfo
+	  andDefaultFixedVal:theAmount.defaultFixedAmount
+	  andForNewVal:self.isForNewObject];
+
+	
+	assert(self.currentSection != nil);
+	[self.currentSection addFieldEditInfo:amountFieldEditInfo];
+}
+
 -(VariableValueRuntimeInfo*)inflationRateRuntimInfoWithValueLabel:(NSString*)valueLabel
 	andValueName:(NSString*)valueName
 {

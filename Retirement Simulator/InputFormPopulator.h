@@ -87,6 +87,9 @@
 -(void)populateMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
 	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
 	withShowHideCondition:(id<FieldShowHideCondition>)showHideCondition;
+
+-(void)populateMultiScenarioLoanOrigAmount:(MultiScenarioAmount*)theAmount
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName;
 	
 -(void)populateMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
 	withLabel:(NSString*)valueLabel 

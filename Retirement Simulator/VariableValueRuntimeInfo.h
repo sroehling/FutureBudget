@@ -79,6 +79,10 @@
 	
 +(VariableValueRuntimeInfo*)createForDataModelController:(DataModelController*)dataModelController 
 	andMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
-	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName;	
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName;
++(VariableValueRuntimeInfo*)createForDataModelController:(DataModelController*)dataModelController 
+	andMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
+	andTableSubtitle:(NSString*)theTableSubtitle;
 
 @end

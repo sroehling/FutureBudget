@@ -651,7 +651,7 @@
 		andTableHeader:LOCALIZED_STR(@"INPUT_LOAN_ORIG_DATE_TABLE_HEADER") 
 		andTableSubHeader:loanOrigDateSubtitle];
 
-	[self.formPopulator populateMultiScenarioAmount:loan.loanCost 
+	[self.formPopulator populateMultiScenarioLoanOrigAmount:loan.loanCost
 		withValueTitle:LOCALIZED_STR(@"INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL")
 		andValueName:loan.name];
 

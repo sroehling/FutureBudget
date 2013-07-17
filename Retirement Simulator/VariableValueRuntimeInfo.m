@@ -242,11 +242,10 @@
 
 }
 
-
-
 +(VariableValueRuntimeInfo*)createForDataModelController:(DataModelController*)dataModelController 
 	andMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
 	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
+	andTableSubtitle:(NSString*)theTableSubtitle
 {
 	assert(theAmount != nil);
 	assert([StringValidation nonEmptyString:valueTitle]);
@@ -254,13 +253,6 @@
 	MultiScenarioAmountVariableValueListMgr *variableValueMgr = 
 		[[[MultiScenarioAmountVariableValueListMgr alloc] initWithDataModelController:dataModelController 
 		andMultiScenarioAmount:theAmount] autorelease];
-		
-		
-	NSString *theTableSubtitle = [NSString 
-	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
-	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
-	 @"",
-	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
 						
 	VariableValueRuntimeInfo *amountRuntimeInfo = 
 		[[[VariableValueRuntimeInfo alloc]
@@ -278,6 +270,23 @@
 		 autorelease];
 		 
 	return amountRuntimeInfo;
+}
+
+
+
++(VariableValueRuntimeInfo*)createForDataModelController:(DataModelController*)dataModelController 
+	andMultiScenarioAmount:(MultiScenarioAmount*)theAmount 
+	withValueTitle:(NSString*)valueTitle andValueName:(NSString*)valueName
+{		
+		
+	NSString *theTableSubtitle = [NSString 
+	 stringWithFormat:LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_TABLE_SUBTITLE_FORMAT"),
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE"),
+	 @"",
+	 LOCALIZED_STR(@"INPUT_CASH_FLOW_AMOUNT_INLINE_VALUE_TITLE")];
+		
+	return [VariableValueRuntimeInfo createForDataModelController:dataModelController andMultiScenarioAmount:theAmount withValueTitle:valueTitle andValueName:valueName andTableSubtitle:theTableSubtitle];
+		 
 }
 
 

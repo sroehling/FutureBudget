@@ -367,7 +367,7 @@
 		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_AMOUNTS_LOAN_COST");
 		for(LoanInput *loan in inputBacktrace.loanCost)
 		{
-			[formPopulator populateMultiScenarioAmount:loan.loanCost 
+			[formPopulator populateMultiScenarioLoanOrigAmount:loan.loanCost 
 				withValueTitle:loan.name
 				andValueName:loan.name];
 		}

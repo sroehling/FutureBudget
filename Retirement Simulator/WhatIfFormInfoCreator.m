@@ -394,7 +394,7 @@
 
 		for(LoanInput *loan in inputs)
 		{
-			[formPopulator populateMultiScenarioAmount:loan.loanCost 
+			[formPopulator populateMultiScenarioLoanOrigAmount:loan.loanCost 
 				withValueTitle:loan.name
 				andValueName:loan.name]; 
 		}

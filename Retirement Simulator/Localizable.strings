@@ -334,6 +334,8 @@
 "INPUT_LOAN_INTEREST_RATE_FIELD_LABEL" = "Annual Interest Rate";
 "INPUT_LOAN_INTEREST_RATE_INLINE_LABEL" = "interest rate";
 "INPUT_LOAN_LOAN_COST_AMT_FIELD_LABEL" = "Amount Borrowed";
+"INPUT_LOAN_COST_AMOUNT_TABLE_SUBTITLE" = "Enter a single, fixed amount to borrow. Or, select a variable amount, which can be readily selected from for different scenarios.";
+
 "INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL" = "Amount Borrowed Growth Rate";
 "INPUT_LOAN_EXTRA_PMT_GROWTH_RATE_FIELD_LABEL" = "Extra Payment Growth Rate";
 "INPUT_LOAN_INPUT_LIST_FORMAT" = "Borrow %@ on %@, %@";
