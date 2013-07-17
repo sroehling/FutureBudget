@@ -29,3 +29,13 @@ Loan origination parameters include the following:
 ### Interest Rate
 
 A loan's interest rate is the yearly interest rate used to calculate the monthly periodic payment and interest. A fixed value can be used for loans with a fixed rate, or a [variable interest rate][variableInterest] can be used for loans or adjustable rate mortages (ARMs), whose rate may adjust over time.
+
+### Deferred Payments
+
+By default, deferred payments are disabled, meaning regular payments (principle and interest) start one month after the origination date. With deferred payments, regular payments are delayed until the deferall date (deferred payment date). 
+
+Deferred payments can be used for student loans, where payments don't start until after graduation. Similarly, deferred payments can be used for interest only loans, where regular payments are deferred indefinitely, but an interest-only payment is made each month.
+
+If payments are deferred, there is an option to pay interest while regular payments are deferred. If interest is not paid while regular payments are deferred, then any upaid interest will be added to the principal balance, and the regular payment amount will increase when regular payments start. 
+
+There is a second option for subsidized interest. If the interest is subsidized, the assumption is money to pay the interest will not be withdrawn from your cash or account balances. This option is intended to represent subsidized student loans, where the government pays the interest while a loan is in deferrment.  

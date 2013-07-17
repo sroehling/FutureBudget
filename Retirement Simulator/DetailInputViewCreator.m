@@ -713,7 +713,8 @@
 				];
 				
 				
-	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_SECTION_TITLE")];
+	[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_SECTION_TITLE")
+		andHelpFile:@"loan" andAnchorWithinHelpFile:@"deferred-payments"];
 	BoolFieldShowHideCondition *showOrHideDeferredPaymentFieldsCondition = [self.formPopulator
 			populateConditionalFieldVisibilityMultiScenBoolField:loan.deferredPaymentEnabled
 			withLabel:LOCALIZED_STR(@"INPUT_LOAN_DEFER_PMT_ENABLED_LABEL")];

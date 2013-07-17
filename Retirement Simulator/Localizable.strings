@@ -401,7 +401,7 @@
 "INPUT_LOAN_PAYOFF_REL_END_DATE_SECTION_TITLE" = "Payoff After Origination Date";
 "INPUT_LOAN_PAYOFF_REL_END_DATE_FIELD_LABEL" = "After Origination";
 
-"INPUT_LOAN_DEFER_PAYMENT_FIELD_LABEL" = "Deferred Payment";
+"INPUT_LOAN_DEFER_PAYMENT_FIELD_LABEL" = "Deferral Date";
 "INPUT_LOAN_DEFER_PAYMENT_TITLE" = "Deferred Payment Date";
 "INPUT_LOAN_DEFER_PAYMENT_TABLE_TITLE" = "Loan Deferred Payments";
 "INPUT_LOAN_DEFER_PAYMENT_TABLE_SUBTITLE_FORMAT" = "Enter and/or select a date payments will be deferred for %@";

@@ -90,4 +90,5 @@
 [taxRate]:tax.html#tax-rates
 
 [loanOrig]:loan.html#loan-origination
+[deferPmt]:loan.html#deferred-payments
 

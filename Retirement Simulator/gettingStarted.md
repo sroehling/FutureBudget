@@ -10,8 +10,12 @@ Basically, the steps to work with FutureBudget include:
 3. Select the **Results** tab to see a number of charts and tables showing 
    forecasted financial results over time.
 
-The steps above would be repeated as new inputs are added or existing ones are changed. Consistent with the 
-steps outlined above, below are more specific suggestions for getting started.
+The steps above would be repeated as new inputs are added or existing ones are changed. 
+
+Once some inputs have been created, the **What If** tab provides a convenient way to review and change related values across multiple inputs. For example, the amounts for different expenses can be reviewed and updated together.
+
+Consistent with the 
+steps outlined above, below are additional suggestions for getting started.
 
 ## Start with Simplifying Assumptions and Basic Inputs 
 
