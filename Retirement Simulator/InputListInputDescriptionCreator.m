@@ -67,20 +67,30 @@
 }
 
 
--(NSString*)formattedCashFlowAmount:(CashFlowInput *)cashFlow
+-(NSString*)formattedMultiScenarioAmount:(MultiScenarioAmount*)multiScenAmount
 {
-	VariableValueRuntimeInfo *varValRuntimeInfo = [VariableValueRuntimeInfo 
-		createForDataModelController:self.dataModelController
-		andMultiScenarioAmount:cashFlow.amount 
-		withValueTitle:LOCALIZED_STR(@"INPUT_CASHFLOW_AMOUNT_AMOUNT_FIELD_LABEL")
-		andValueName:cashFlow.name];
-
+	VariableValueRuntimeInfo *varValRuntimeInfo = 
+		[VariableValueRuntimeInfo createForDataModelController:self.dataModelController 
+		andMultiScenarioAmount:multiScenAmount
+		// Title and name are not needed, since the amount is only displayed inline
+		withValueTitle:@"N/A" andValueName:@"N/A"];
 	DateSensitiveValue *amount = (DateSensitiveValue*)
-			[cashFlow.amount.amount getValueForCurrentOrDefaultScenario];
+			[multiScenAmount.amount getValueForCurrentOrDefaultScenario];
 	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
-	
 	return amountDisplay;
+}
 
+-(NSString*)formattedMultiScenarioGrowthRate:(MultiScenarioGrowthRate*)growthRate
+	andInput:(Input*)theInput
+{
+	DateSensitiveValue *amountGrowthRate = (DateSensitiveValue*)
+			[growthRate.growthRate getValueForCurrentOrDefaultScenario];
+	
+	NSString *growthRateDesc = [amountGrowthRate
+		inlineDescription:[VariableValueRuntimeInfo
+		createForSharedInflationRateWithDataModelController:self.dataModelController andInput:theInput]];
+		
+	return growthRateDesc;
 }
 
 -(NSString*)formattedMultiScenarioInputDate:(MultiScenarioSimDate*)cashFlowDate
@@ -103,6 +113,17 @@
 	return growthRateDesc;
 }
 
+-(NSString *)formattedSimEndDate:(MultiScenarioSimEndDate*)simEndDate
+{
+	SimDate *endDate = (SimDate*)[simEndDate.simDate getValueForCurrentOrDefaultScenario];
+	NSString *endDateDisplay = [endDate 
+			inlineDescription:[DateHelper theHelper].mediumDateFormatter];;
+			
+	NSString *endDateDesc = [NSString stringWithFormat:@" %@ %@",endDate.endDatePrefix,endDateDisplay];
+	
+	return endDateDesc;
+
+}
 
 -(NSString*)formattedCashFlowRepeatFreq:(CashFlowInput*)cashFlow
 {
@@ -112,12 +133,7 @@
 	NSString *untilDesc = @"";
 	if([repeatFreq eventRepeatsMoreThanOnce])
 	{
-		SimDate *endDate = (SimDate*)[cashFlow.endDate.simDate
-			getValueForCurrentOrDefaultScenario];
-	    NSString *endDateDisplay = [endDate 
-				inlineDescription:[DateHelper theHelper].mediumDateFormatter];;
-				
-		untilDesc = [NSString stringWithFormat:@" %@ %@",endDate.endDatePrefix,endDateDisplay];
+		untilDesc = [self formattedSimEndDate:cashFlow.endDate];
 	}
 	
 	NSString *repeatFreqDesc = [NSString stringWithFormat:@"%@%@",
@@ -128,7 +144,7 @@
 
 -(NSString*)incomeOrExpenseDesc:(CashFlowInput *)cashFlow
 {
-	NSString *amountDisplay = [self formattedCashFlowAmount:cashFlow];
+	NSString *amountDisplay = [self formattedMultiScenarioAmount:cashFlow.amount];
 	
 	NSString *startDateDisplay = [self formattedMultiScenarioInputDate:cashFlow.startDate];
 
@@ -157,7 +173,7 @@
 
 - (void)visitTransfer:(TransferInput *)transfer
 {
-	NSString *amountDisplay = [self formattedCashFlowAmount:transfer];
+	NSString *amountDisplay = [self formattedMultiScenarioAmount:transfer.amount];
 	
 	NSString *startDateDisplay = [self formattedMultiScenarioInputDate:transfer.startDate];
 
@@ -232,19 +248,23 @@
 }
 
 
+
 - (void)visitAsset:(AssetInput*)asset
 {
-	VariableValueRuntimeInfo *varValRuntimeInfo = 
-		[VariableValueRuntimeInfo createForDataModelController:self.dataModelController 
-		andMultiScenarioAmount:asset.cost 
-		withValueTitle:LOCALIZED_STR(@"INPUT_ASSET_COST_FIELD_LABEL") andValueName:asset.name];
-	DateSensitiveValue *amount = (DateSensitiveValue*)
-			[asset.cost.amount getValueForCurrentOrDefaultScenario];
-	NSString *amountDisplay = [amount inlineDescription:varValRuntimeInfo];
+	NSString *amountDisplay = [self formattedMultiScenarioAmount:asset.cost];
+	NSString *purchaseDateDisplay = [self formattedMultiScenarioInputDate:asset.purchaseDate];
+	NSString *sellDateDisplay = [self formattedSimEndDate:asset.saleDate];
+	
+	
+	DateSensitiveValue *apprecRate = (DateSensitiveValue*)
+		[asset.apprecRate.growthRate getValueForCurrentOrDefaultScenario];
+	NSString *apprecRateDisplay = [apprecRate inlineDescription:
+		[VariableValueRuntimeInfo createForAssetAppreciationRateWithDataModelController:
+		dataModelController withLabel:@"N/A" andValueName:@"N/A"]];
 
 	self.generatedDesc = [NSString 
 		stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_INPUT_LIST_FORMAT"),
-			amountDisplay];
+			amountDisplay,purchaseDateDisplay,sellDateDisplay,apprecRateDisplay];
 }
 
 - (void)visitTax:(TaxInput *)tax

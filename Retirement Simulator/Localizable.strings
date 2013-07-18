@@ -373,7 +373,7 @@
 "INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT" = "This is the date the asset %@ was (or is expected to be) purchased. To set the purchase date, select and/or edit one of the dates below.";
 "INPUT_ASSET_PURCHASE_DATE_TABLE_SUBHEADER_FORMAT_NO_NAME" = "This is the date the asset was (or is expected to be) purchased. To set the purchase date, select and/or edit one of the dates below.";
 "INPUT_ASSET_PURCHASE_SALE_SECTION_TITLE" = "Purchase and Sale";
-"INPUT_ASSET_INPUT_LIST_FORMAT" = "Asset purchased for %@";
+"INPUT_ASSET_INPUT_LIST_FORMAT" = "Purchase for %@ on %@, own %@, %@.";
 "INPUT_ASSET_NEVER_SELL_FIELD_TITLE" = "Never Sell";
 "INPUT_ASSET_NEVER_SELL_FIELD_SUBTITLE" = "Own asset through the end of results generation";
 "INPUT_ASSET_NEVER_SELL_SECTION_TITLE" = "Never Sell";

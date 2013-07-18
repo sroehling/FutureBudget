@@ -22,6 +22,7 @@
 #import "PercentFieldValidator.h"
 #import "PositiveAmountValidator.h"
 #import "GrowthRateFieldValidator.h"
+#import "AssetApprecRate.h"
 
 @implementation VariableValueRuntimeInfo
 
@@ -142,6 +143,42 @@
     
 	return interestRuntimeInfo;
     
+}
+
+
++ (VariableValueRuntimeInfo*)createForAssetAppreciationRateWithDataModelController:
+    (DataModelController*)dataModelController
+	withLabel:(NSString*)valueLabel
+	andValueName:(NSString*)valueName
+
+{
+	SharedEntityVariableValueListMgr *sharedApprecMgr = 
+	[[[SharedEntityVariableValueListMgr alloc] 
+		initWithDataModelController:dataModelController 
+		andEntity:ASSET_APPREC_RATE_ENTITY_NAME] autorelease];
+	
+	NSString *tableSubtitle = [NSString 
+			stringWithFormat:LOCALIZED_STR(@"SHARED_APPREC_RATE_TABLE_SUBTITLE_FORMAT"),
+			LOCALIZED_STR(@"SHARED_APPREC_RATE_INLINE_VALUE_TITLE"),
+			LOCALIZED_STR(@"SHARED_APPREC_RATE_INLINE_VALUE_TITLE")];
+
+	
+	VariableValueRuntimeInfo *apprecRateRuntimeInfo = [[[VariableValueRuntimeInfo alloc] 
+		initWithFormatter:[NumberHelper theHelper].percentFormatter 
+		andValueValidator:[[[GrowthRateFieldValidator alloc] init] autorelease]
+		andValueTitle:@"SHARED_APPREC_RATE_VALUE_TITLE"
+		andInlineValueTitleKey:@"SHARED_APPREC_RATE_INLINE_VALUE_TITLE"
+		andValueVerb:LOCALIZED_STR(@"SHARED_APPREC_RATE_ACTION_VERB")
+		andPeriodDesc:LOCALIZED_STR(@"SHARED_APPREC_RATE_PERIOD") 
+		andListMgr:sharedApprecMgr
+		andSingleValHelpInfoFile:@"fixedApprec"
+		andVariableValHelpInfoFile:@"variableApprecRate"
+		andValuePromptKey:@"SHARED_APPREC_RATE_VALUE_PROMPT"
+		andValueTypeTitle:valueLabel
+		andValueName:valueName
+		andTableSubtitle:tableSubtitle] autorelease];
+		
+	return apprecRateRuntimeInfo;
 }
 
 

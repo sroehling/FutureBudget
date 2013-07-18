@@ -73,6 +73,11 @@
 + (VariableValueRuntimeInfo*)createForLoanInterestRateWithDataModelController:
     (DataModelController*)dataModelController andInput:(Input*)theInput;
 
++ (VariableValueRuntimeInfo*)createForAssetAppreciationRateWithDataModelController:
+    (DataModelController*)dataModelController
+	withLabel:(NSString*)valueLabel
+	andValueName:(NSString*)valueName;
+
 
 + (VariableValueRuntimeInfo*)createForVariableAmount:(Input*)theInput
 	andVariableValListMgr:(id<VariableValueListMgr>)listMgr;
