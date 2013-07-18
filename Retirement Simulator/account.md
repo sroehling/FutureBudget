@@ -22,6 +22,12 @@ TBD
 
 For each account, a current balance needs to be provided. This current balance provides a "snapshot" of the account as of the [start date][resultsTimeFrame] for calculating results.
 
+### Cost Basis
+
+The cost basis represents the total amount originally invested or deposited into the account, and can also include commissions or fees. 
+
+The cost basis is only used when capital gains taxes are associated with the account. If capital gains taxes are not associated with the account, a value doesn't need to be provided.
+
 ### Withdrawal Order
 
 Relative to (versus) other accounts, an account's withdrawal order determines the order in which money will be withdrawn from accounts to pay expenses. 

@@ -115,6 +115,7 @@
 
 "INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER" = "Enter a balance";
 "INPUT_ACCOUNT_COST_BASIS_PLACEHOLDER" = "Enter a cost basis";
+"INPUT_ACCOUNT_COST_BASIS_FIELD_SUBTITLE" = "Total amount originally invested/deposited into the account.";
 
 
 "INPUT_ACCOUNT_TITLE" = "Account";
@@ -166,6 +167,7 @@
 "INPUT_ACCOUNT_DIVIDENDS_TAXES_FIELD_LABEL" = "Taxes on Dividends";
 "INPUT_ACCOUNT_CAP_GAINS_TAXES_FIELD_LABEL" = "Taxes on Capital Gains";
 "INPUT_ACCOUNT_CAP_LOSS_TAXES_FIELD_LABEL" = "Tax Treatment of Capital Losses";
+"INPUT_ACCOUNT_BALANCE_SECTION_TITLE" = "Balance and Cost Basis";
 
 
 "INPUT_ACCOUNT_TAXES_DEDUCTABLE_CONTRIBUTIONS_SECTION_HEADER" = "Deductable Contributions";

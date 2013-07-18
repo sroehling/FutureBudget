@@ -411,13 +411,15 @@
 	[self.formPopulator.currentSection addFieldEditInfo:
 			[[[InputTagsFieldEditInfo alloc] initWithInput:account] autorelease]];
 	
-	 [formPopulator nextSection];
+	 [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ACCOUNT_BALANCE_SECTION_TITLE")
+		andHelpFile:@"account" andAnchorWithinHelpFile:@"current-account-balances"];
 
 	[self.formPopulator populateCurrencyField:account andValKey:ACCOUNT_STARTING_BALANCE_KEY
 		andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_LABEL")
 			andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_STARTING_BALANCE_PLACEHOLDER")];
 	[self.formPopulator populateCurrencyField:account andValKey:ACCOUNT_COST_BASIS_KEY andLabel:LOCALIZED_STR(@"INPUT_ACCOUNT_COST_BASIS_LABEL")
-		andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_COST_BASIS_PLACEHOLDER")];
+		andPlaceholder:LOCALIZED_STR(@"INPUT_ACCOUNT_COST_BASIS_PLACEHOLDER")
+		andSubtitle:LOCALIZED_STR(@"INPUT_ACCOUNT_COST_BASIS_FIELD_SUBTITLE")];
 	
 	if(TRUE)
 	{
