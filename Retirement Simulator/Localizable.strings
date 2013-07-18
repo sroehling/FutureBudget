@@ -29,7 +29,7 @@
 "DURATION_FIELD_SINGLE_MONTH" = "Month";
 "DURATION_FIELD_MULTPLE_MONTHS" = "Months";
 
-"INPUT_LIST_TITLE" = "Budget Inputs";
+"INPUT_LIST_TITLE" = "Inputs";
 "INPUT_LIST_SECTION_TITLE_EXPENSES" = "Expenses";
 "INPUT_LIST_SECTION_TITLE_INCOMES" = "Incomes";
 "INPUT_LIST_SECTION_TITLE_ACCOUNTS" = "Savings and Investment Accounts";
@@ -43,7 +43,7 @@
 "INPUT_LIST_NEW_INPUT_TABLE_SUBTITLE" = "From the list below, select which type of input to be created.";
 "INPUT_LIST_TAG_FILTER_TABLE_HEADER" = "Filter Inputs by Tag";
 "INPUT_LIST_TAG_FILTER_TABLE_SUBHEADER" = "Select tags to narrow which inputs are shown, or leave all tags unselected to show all inputs. Tap on the edit button to create new or change existing tags.";
-"INPUT_LIST_TAGS_HEADER_ALL_INPUTS" = "All Inputs";
+"INPUT_LIST_TAGS_HEADER_ALL_INPUTS" = "All Budget Inputs";
 "INPUT_LIST_TAGS_HEADER_FILTERED_INPUTS" = "Show Inputs with Tag(s):";
 "INPUT_LIST_TAGS_HEADER_MATCH_ANY_TAG_FORMAT" = "or %@";
 "INPUT_LIST_ADVANCED_INPUTS_SECTION_HEADER" = "More Advanced Inputs";
