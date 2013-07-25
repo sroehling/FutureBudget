@@ -20,6 +20,7 @@ NSString * const MULTI_SCEN_GROWTH_RATE_ENTITY_NAME = @"MultiScenarioGrowthRate"
 @dynamic accountInterestRate;
 @dynamic accountDividendRate;
 @dynamic assetApprecRate;
+@dynamic assetApprecRateBeforePurchase;
 @dynamic taxExemptionGrowthRate;
 @dynamic taxStdDeductionGrowthRate;
 @dynamic cashFlowAmountGrowthRate;

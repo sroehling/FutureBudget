@@ -33,6 +33,7 @@ extern NSString * const MULTI_SCEN_GROWTH_RATE_ENTITY_NAME;
 @property (nonatomic, retain) Account * accountInterestRate;
 @property (nonatomic, retain) Account * accountDividendRate;
 @property (nonatomic, retain) AssetInput * assetApprecRate;
+@property (nonatomic, retain) AssetInput *assetApprecRateBeforePurchase;
 @property (nonatomic, retain) TaxInput * taxExemptionGrowthRate;
 @property (nonatomic, retain) TaxInput * taxStdDeductionGrowthRate;
 @property (nonatomic, retain) CashFlowInput * cashFlowAmountGrowthRate;

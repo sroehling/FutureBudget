@@ -281,6 +281,7 @@
 	newInput.cost = [inputCreationHelper multiScenAmountWithNoDefaultAndNoInitialVal];
 
 	newInput.apprecRate = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
+    newInput.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithNoDefaultAndNoInitialVal];
 
 	newInput.purchaseDate = [inputCreationHelper multiScenSimDateWithNoDefaultAndNoInitialVal];
 	

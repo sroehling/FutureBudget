@@ -773,7 +773,12 @@
 		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
 		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
 
-	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRate 
+	[formPopulator nextSectionWithTitle:
+        LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_SECTION_NAME")];
+	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRateBeforePurchase
+               withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_PRE_PURCHASE_APPREC_RATE_FIELD_LABEL")
+                andValueName:asset.name];
+	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRate
 		withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL")
 			andValueName:asset.name];
 

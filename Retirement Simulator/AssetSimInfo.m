@@ -34,6 +34,7 @@
 @synthesize sumGainsLosses;
 @synthesize assetSaleIncome;
 @synthesize assetPurchaseExpense;
+@synthesize beforeAndAfterPurchaseRateCalc;
 
 - (void)dealloc
 {
@@ -46,6 +47,8 @@
 	[sumGainsLosses release];
 	[assetSaleIncome release];
 	[assetPurchaseExpense release];
+    
+    [beforeAndAfterPurchaseRateCalc release];
 	
 	[super dealloc];
 }
@@ -94,13 +97,25 @@
 		{
 			startingAssetValue = [SimInputHelper doubleVal:asset.startingValue];
 		}
-		VariableRateCalculator *apprecCalc = [DateSensitiveValueVariableRateCalculatorCreator 
+
+		// Create a "compound appreciation" calculator which has a different
+        // appreciation rate before and after the asset purchase.
+        VariableRateCalculator *apprecCalcBeforePurchase = [DateSensitiveValueVariableRateCalculatorCreator
+             createVariableRateCalc:self.asset.apprecRateBeforePurchase.growthRate
+             andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario
+             andUseLoanAnnualRates:false];
+
+		VariableRateCalculator *apprecCalcAfterPurchase = [DateSensitiveValueVariableRateCalculatorCreator
 			createVariableRateCalc:self.asset.apprecRate.growthRate 
 			andStartDate:self.simParams.simStartDate andScenario:simParams.simScenario 
 			andUseLoanAnnualRates:false];
-		// TODO - Need to figure out where to handle taxableProceeds
+        
+        self.beforeAndAfterPurchaseRateCalc =
+            [apprecCalcBeforePurchase intersectWithVarRateCalc:apprecCalcAfterPurchase
+                                               usingCutoffDate:self.purchaseDate];
+        
 		self.assetValue = [[[InterestBearingWorkingBalance alloc] 
-			initWithStartingBalance:startingAssetValue andInterestRateCalc:apprecCalc 
+			initWithStartingBalance:startingAssetValue andInterestRateCalc:self.beforeAndAfterPurchaseRateCalc 
 			andWorkingBalanceName:self.asset.name andWithdrawPriority:WORKING_BALANCE_WITHDRAW_PRIORITY_MAX] autorelease];
 
 	}
@@ -112,10 +127,13 @@
 	double cost;
 	if([self purchasedAfterSimStart])
 	{
+        double unadjustedPurchasePrice = [SimInputHelper multiScenValueAsOfDate:self.asset.cost.amount
+                                       andDate:[self purchaseDate] andScenario:self.simParams.simScenario];
+        
+        double apprecDeprecMultiplier = [self.beforeAndAfterPurchaseRateCalc valueMultiplierForDate:[self purchaseDate]];
+        
 		// If the purchase is in the future, then we adjust it's price for the appreciation rate.
-		cost = [SimInputHelper multiScenRateAdjustedValueAsOfDate:self.asset.cost.amount 
-			andMultiScenRate:self.asset.apprecRate.growthRate asOfDate:[self purchaseDate] 
-			sinceDate:self.simParams.simStartDate forScenario:self.simParams.simScenario];
+        cost = unadjustedPurchasePrice * apprecDeprecMultiplier;
 	}
 	else
 	{

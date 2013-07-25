@@ -45,6 +45,7 @@
 		NSMutableSet *accountInterestRate;
 		NSMutableSet *accountDividendRate;
 		NSMutableSet *assetApprecRate;
+        NSMutableSet *assetApprecRateBeforePurchase;
 		NSMutableSet *taxExemptionGrowthRate;
 		NSMutableSet *taxStdDeductionGrowthRate;
 		NSMutableSet *cashFlowAmountGrowthRate;
@@ -106,6 +107,8 @@
 @property(nonatomic,retain) NSMutableSet *accountInterestRate;
 @property(nonatomic,retain) NSMutableSet *accountDividendRate;
 @property(nonatomic,retain) NSMutableSet *assetApprecRate;
+@property(nonatomic,retain) NSMutableSet *assetApprecRateBeforePurchase;
+
 @property(nonatomic,retain) NSMutableSet *taxExemptionGrowthRate;
 @property(nonatomic,retain) NSMutableSet *taxStdDeductionGrowthRate;
 @property(nonatomic,retain) NSMutableSet *cashFlowAmountGrowthRate;

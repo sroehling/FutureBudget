@@ -247,7 +247,17 @@
 
 }
 
+-(NSString*)formattedApprecRate:(MultiScenarioGrowthRate*)apprecRate
+{
+	DateSensitiveValue *apprecRateForCurrScenario = (DateSensitiveValue*)
+        [apprecRate.growthRate getValueForCurrentOrDefaultScenario];
 
+	NSString *apprecRateDisplay = [apprecRateForCurrScenario inlineDescription:
+         [VariableValueRuntimeInfo createForAssetAppreciationRateWithDataModelController:
+          dataModelController withLabel:@"N/A" andValueName:@"N/A"]];
+
+    return apprecRateDisplay;
+}
 
 - (void)visitAsset:(AssetInput*)asset
 {
@@ -255,16 +265,13 @@
 	NSString *purchaseDateDisplay = [self formattedMultiScenarioInputDate:asset.purchaseDate];
 	NSString *sellDateDisplay = [self formattedSimEndDate:asset.saleDate];
 	
-	
-	DateSensitiveValue *apprecRate = (DateSensitiveValue*)
-		[asset.apprecRate.growthRate getValueForCurrentOrDefaultScenario];
-	NSString *apprecRateDisplay = [apprecRate inlineDescription:
-		[VariableValueRuntimeInfo createForAssetAppreciationRateWithDataModelController:
-		dataModelController withLabel:@"N/A" andValueName:@"N/A"]];
+	NSString *apprecRateBeforePurchaseDisplay = [self formattedApprecRate:asset.apprecRateBeforePurchase];
+	NSString *apprecRateAfterPurchaseDisplay = [self formattedApprecRate:asset.apprecRate];
 
 	self.generatedDesc = [NSString 
 		stringWithFormat:LOCALIZED_STR(@"INPUT_ASSET_INPUT_LIST_FORMAT"),
-			amountDisplay,purchaseDateDisplay,sellDateDisplay,apprecRateDisplay];
+			amountDisplay,purchaseDateDisplay,sellDateDisplay,apprecRateBeforePurchaseDisplay,
+                          apprecRateAfterPurchaseDisplay];
 }
 
 - (void)visitTax:(TaxInput *)tax

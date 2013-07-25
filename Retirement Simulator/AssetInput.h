@@ -30,6 +30,7 @@ extern NSString * const ASSET_INPUT_DEFAULT_ICON_NAME;
 @property (nonatomic, retain) MultiScenarioSimEndDate * saleDate;
 @property (nonatomic, retain) MultiScenarioAmount * cost;
 @property (nonatomic, retain) MultiScenarioGrowthRate * apprecRate;
+@property (nonatomic, retain) MultiScenarioGrowthRate *apprecRateBeforePurchase;
 @property (nonatomic, retain) MultiScenarioInputValue * assetEnabled;
 @property (nonatomic, retain) NSSet *assetGainItemizedTaxAmts;
 @property (nonatomic, retain) NSSet *assetLossItemizedTaxAmts;

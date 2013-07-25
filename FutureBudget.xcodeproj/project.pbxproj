@@ -3284,7 +3284,7 @@
 		00A36BC8136C6CAD008A5C4C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = 00A36BCB136C6CAD008A5C4C /* Build configuration list for PBXProject "FutureBudget" */;
 			compatibilityVersion = "Xcode 3.2";

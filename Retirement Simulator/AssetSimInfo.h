@@ -13,6 +13,7 @@
 @class SimParams;
 @class InputValDigestSummation;
 @class DigestEntryProcessingParams;
+@class VariableRateCalculator;
 
 @interface AssetSimInfo : NSObject {
 	@private
@@ -23,6 +24,8 @@
 		InputValDigestSummation *sumGainsLosses;
 		InputValDigestSummation *assetSaleIncome;
 		InputValDigestSummation *assetPurchaseExpense;
+    
+        VariableRateCalculator *beforeAndAfterPurchaseRateCalc;
 		
 		NSDate *purchaseDate;
 		NSDate *saleDate;
@@ -38,6 +41,7 @@
 @property(nonatomic,retain) InputValDigestSummation *sumGainsLosses;
 @property(nonatomic,retain) InputValDigestSummation *assetSaleIncome;
 @property(nonatomic,retain) InputValDigestSummation *assetPurchaseExpense;
+@property(nonatomic,retain) VariableRateCalculator *beforeAndAfterPurchaseRateCalc;
 
 -(bool)purchasedAfterSimStart;
 - (bool)soldAfterSimStart;

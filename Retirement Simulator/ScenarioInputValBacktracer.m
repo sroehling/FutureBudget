@@ -45,6 +45,7 @@
 @synthesize assetEnabled;
 @synthesize assetCost;
 @synthesize assetApprecRate;
+@synthesize assetApprecRateBeforePurchase;
 @synthesize assetPurchaseDate;
 @synthesize assetSaleDate;
 
@@ -186,7 +187,10 @@
 			
 		if([self populateInputSet:self.assetApprecRate 
 			    withInput:msGrowthRate.assetApprecRate]) { return; }
-			
+	
+		if([self populateInputSet:self.assetApprecRateBeforePurchase
+                        withInput:msGrowthRate.assetApprecRate]) { return; }
+		
 		if([self populateInputSet:self.taxExemptionGrowthRate 
 			    withInput:msGrowthRate.taxExemptionGrowthRate]) { return; }
 			
@@ -309,6 +313,7 @@
 		self.accountInterestRate = [[[NSMutableSet alloc] init] autorelease];
 		self.accountDividendRate = [[[NSMutableSet alloc] init] autorelease];
 		self.assetApprecRate = [[[NSMutableSet alloc] init] autorelease];
+        self.assetApprecRateBeforePurchase = [[[NSMutableSet alloc] init] autorelease];
 		self.taxExemptionGrowthRate = [[[NSMutableSet alloc] init] autorelease];
 		self.taxStdDeductionGrowthRate = [[[NSMutableSet alloc] init] autorelease];
 		self.cashFlowAmountGrowthRate = [[[NSMutableSet alloc] init] autorelease];
@@ -390,6 +395,7 @@
 	[accountInterestRate release];
 	[accountDividendRate release];
 	[assetApprecRate release];
+    [assetApprecRateBeforePurchase release];
 	[taxExemptionGrowthRate release];
 	[taxStdDeductionGrowthRate release];
 	[cashFlowAmountGrowthRate release];

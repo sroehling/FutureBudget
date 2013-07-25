@@ -447,6 +447,18 @@
 		}
 	}
 
+    if([inputBacktrace.assetApprecRateBeforePurchase count] > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_RETURN_PRE_PURCHASE_ASSET_APPRECIATION");
+		for(AssetInput *asset in inputBacktrace.assetApprecRateBeforePurchase)
+		{
+			[formPopulator populateMultiScenarioApprecRate:asset.apprecRateBeforePurchase
+                                                 withLabel:asset.name
+                                              andValueName:asset.name]; 
+		}
+	}
+
 	if([inputBacktrace.taxExemptionGrowthRate count] > 0)
 	{
 		sectionInfo = [formPopulator nextSection];

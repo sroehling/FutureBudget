@@ -25,4 +25,7 @@
 - (double)valueMultiplierForDate:(NSDate*)theDate;
 - (double)valueMultiplierBetweenStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate;
 
+- (VariableRateCalculator*)intersectWithVarRateCalc:(VariableRateCalculator*)otherVarRateCalc
+                                    usingCutoffDate:(NSDate*)cutoffDateOtherRateCalc;
+
 @end

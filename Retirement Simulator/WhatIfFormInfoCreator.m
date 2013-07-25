@@ -483,6 +483,21 @@
 		}
 	}
 		
+    inputs = [parentContext.dataModelController
+              fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];
+	if([inputs count]  > 0)
+	{
+		sectionInfo = [formPopulator nextSection];
+		sectionInfo.title = LOCALIZED_STR(@"WHAT_IF_RETURN_PRE_PURCHASE_ASSET_APPRECIATION");
+		
+		for(AssetInput *asset in inputs)
+		{
+			[formPopulator populateMultiScenarioApprecRate:asset.apprecRateBeforePurchase
+                                                 withLabel:asset.name
+                                              andValueName:asset.name];
+		}
+	}
+
 	
 	inputs = [parentContext.dataModelController  
 		fetchObjectsForEntityName:ASSET_INPUT_ENTITY_NAME];

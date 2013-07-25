@@ -495,6 +495,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
@@ -550,6 +551,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
@@ -606,6 +608,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2014-01-02"]];	
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2016-01-02"]];
@@ -640,6 +643,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:2000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-15"]];	
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-15"]];
@@ -676,6 +680,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
@@ -698,6 +703,45 @@
 
 }
 
+-(void)testAppreciatingThenDepreciatingAsset
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    
+	AssetInputTypeSelectionInfo *assetCreator =
+    [[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                               andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+    
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
+    
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+    
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+    
+	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+ 
+    // Purchase happens at the end of 2012 (before which it appreciates 10%), then depreciates 10%/year thereafter.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1100 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:990 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:891 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    
+	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
+	
+	
+    
+    
+}
+
 
 -(void)testAssetAppreciationWithTaxes
 {
@@ -712,6 +756,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
@@ -775,6 +820,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
@@ -848,6 +894,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-50.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:-50.0];
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
 	
@@ -2217,6 +2264,7 @@
 	asset01.name = @"Asset01";
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-15"]];	
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-15"]];
@@ -4896,6 +4944,7 @@
 	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:25.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-06-15"]];
 

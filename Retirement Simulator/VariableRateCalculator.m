@@ -17,6 +17,13 @@
 @synthesize variableRates;
 @synthesize startDate;
 
+- (void) dealloc
+{
+	[variableRates release];
+	[startDate release];
+	[super dealloc];
+}
+
 - (id)initWithRates:(NSMutableSet*)rates andStartDate:(NSDate *)theStart
 {
 	self = [super init];
@@ -174,12 +181,93 @@
 	return multiplierBetweenDates;
 } 
 
-
-- (void) dealloc
+-(NSUInteger)daysSinceStart:(NSDate*)timeAfterStart
 {
-	[variableRates release];
-	[startDate release];
-	[super dealloc];
+    assert([DateHelper dateIsEqualOrLater:timeAfterStart otherDate:self.startDate]);
+    NSTimeInterval secondsVsStart = [timeAfterStart timeIntervalSinceDate:self.startDate];
+    NSUInteger daysVsStart = floor(secondsVsStart/SECONDS_PER_DAY);
+    return daysVsStart;
 }
+
+
+- (VariableRateCalculator*)intersectWithVarRateCalc:(VariableRateCalculator*)otherVarRateCalc
+                                    usingCutoffDate:(NSDate*)cutoffDateOtherRateCalc
+{
+    // This method is constrained to work with calculator with equal start dates.
+    assert([DateHelper dateIsEqual:self.startDate otherDate:otherVarRateCalc.startDate]);
+    
+    assert(cutoffDateOtherRateCalc != nil);
+    
+    if([DateHelper dateIsEqualOrLater:self.startDate otherDate:cutoffDateOtherRateCalc])
+    {
+        // The cutoff date is before the start date. In this case, the rate calculations from
+        // otherVarRateCalc are always used.
+        return otherVarRateCalc;
+    }
+    else
+    {
+        // The cutoff date is after the start date.
+        
+        NSUInteger cutoffDaysSinceStart = [self daysSinceStart:cutoffDateOtherRateCalc];
+        
+        NSMutableSet *intersectRates = [[[NSMutableSet alloc] init] autorelease];
+  
+        assert(self.variableRates.count > 0);
+        
+        // (1) All the VariableValue objects *before* the cutoff date are taken from self, including
+        //     the starting value.
+        NSUInteger selfVarRateIndex = 0;
+        VariableRate *selfVarRate = (VariableRate*)[self.variableRates objectAtIndex:selfVarRateIndex];
+        assert(selfVarRate != nil);
+        
+        for(VariableRate *selfVarRate in self.variableRates)
+        {
+            if(selfVarRate.daysSinceStart < cutoffDaysSinceStart)
+            {
+                [intersectRates addObject:selfVarRate];
+            }
+        }
+        
+        
+        // (2) The most recent (last) value before the cutoff date in otherVarRateCalc is inserted
+        //     as the new rate as of the cutoff date. In other words, step back through the array
+        //     to find the first VariableRate whose daysSinceStart property is less than or equal to
+        //     the cutoff date, then create rateAsOfCutoff to set the rate for the cutoff date.
+        NSUInteger otherVarRateIndex = otherVarRateCalc.variableRates.count-1;
+        assert(otherVarRateCalc.variableRates.count > 0);
+        VariableRate *otherVarRate = (VariableRate*)[otherVarRateCalc.variableRates objectAtIndex:otherVarRateIndex];
+        assert(otherVarRate != nil);
+        while((otherVarRate.daysSinceStart > cutoffDaysSinceStart) &&
+              (otherVarRateIndex > 0))
+        {
+            otherVarRateIndex --;
+            otherVarRate = (VariableRate*)[otherVarRateCalc.variableRates objectAtIndex:otherVarRateIndex];
+            assert(otherVarRate != nil);
+        }
+        assert(otherVarRate.daysSinceStart <= cutoffDaysSinceStart);
+        VariableRate *rateAsOfCutoff = [[[VariableRate alloc]
+            initWithDailyRate:otherVarRate.dailyRate andDaysSinceStart:cutoffDaysSinceStart]autorelease];
+        [intersectRates addObject:rateAsOfCutoff];
+        
+        
+        // (3) Any remaining values changes in otherVarRateCalc are inserted after the cutoff date.
+        otherVarRateIndex++;
+        while(otherVarRateIndex < otherVarRateCalc.variableRates.count)
+        {
+            otherVarRate = (VariableRate*)[otherVarRateCalc.variableRates objectAtIndex:otherVarRateIndex];
+            assert(otherVarRate != nil);
+            assert(otherVarRate.daysSinceStart > cutoffDaysSinceStart);
+            [intersectRates addObject:otherVarRate];
+            otherVarRateIndex++;
+        }
+        
+        return [[[VariableRateCalculator alloc] initWithRates:intersectRates
+                    andStartDate:self.startDate] autorelease];
+     }
+    
+    
+    
+}
+
 
 @end
