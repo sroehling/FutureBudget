@@ -364,8 +364,8 @@
 "INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL" = "Appreciation Rate";
 "INPUT_ASSET_VALUE_APPREC_RATE_SECTION_NAME" = "Appreciation and Depreciation";
 
-"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL" = "Post-Purchase";
-"INPUT_ASSET_VALUE_PRE_PURCHASE_APPREC_RATE_FIELD_LABEL" = "Pre-Purchase";
+"INPUT_ASSET_VALUE_APPREC_RATE_FIELD_LABEL" = "After Purchase";
+"INPUT_ASSET_VALUE_PRE_PURCHASE_APPREC_RATE_FIELD_LABEL" = "Before Purchase";
 "INPUT_ASSET_SALE_DATE_FIELD_LABEL" = "Sale Date";
 "INPUT_ASSET_SALE_DATE_TITLE" =  "Sale Date";
 "INPUT_ASSET_SALE_DATE_SUBHEADER_FORMAT" = "This is the date a sale of %@ %@ is expected to occur";
@@ -616,8 +616,8 @@
 "WHAT_IF_INVESTMENT_RETURN_FORM_TITLE" = "Returns";
 "WHAT_IF_INVESTMENT_RETURN_FIELD_CAPTION" = "Return on Investments";
 "WHAT_IF_INVESTMENT_RETURN_SUBTITLE" = "Change the expected appreciation or depreciation of assets, the interest rates on accounts, or the expected rate of return or dividends for investments.";
-"WHAT_IF_RETURN_ASSET_APPRECIATION" = "Post Purchase Appreciation";
-"WHAT_IF_RETURN_PRE_PURCHASE_ASSET_APPRECIATION" = "Pre-Purchase Appreciation";
+"WHAT_IF_RETURN_ASSET_APPRECIATION" = "After Purchase Appreciation";
+"WHAT_IF_RETURN_PRE_PURCHASE_ASSET_APPRECIATION" = "Before Purchase Appreciation";
 "WHAT_IF_RETURN_ACCOUNT_INTEREST" = "Account Interest";
 "WHAT_IF_RETURN_ACCOUNT_DIVIDEND" = "Account Dividend";
 "WHAT_IF_ACCOUNT_DIVIDENT_REINVEST_PERCENT" = "Dividend Reinvestment";

@@ -774,7 +774,9 @@
 		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
 
 	[formPopulator nextSectionWithTitle:
-        LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_SECTION_NAME")];
+        LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_SECTION_NAME")
+        andHelpFile:@"asset" andAnchorWithinHelpFile:@"appreciation-and-depreciation"];
+    
 	[self.formPopulator populateMultiScenarioApprecRate:asset.apprecRateBeforePurchase
                withLabel:LOCALIZED_STR(@"INPUT_ASSET_VALUE_PRE_PURCHASE_APPREC_RATE_FIELD_LABEL")
                 andValueName:asset.name];
