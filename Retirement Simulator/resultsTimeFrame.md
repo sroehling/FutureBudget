@@ -1,6 +1,6 @@
-## Results Time Frame
+## Forecast Time Frame
 
-Results will be calculated between the __Start Date__ and __Stop Date__.
+Forecast results will be calculated between the __Start Date__ and __Stop Date__.
 
 The values for account balances, loan balances, asset values and the [cash balance][cash] should
 be entered as of the start date. So, if the start date is changed, 

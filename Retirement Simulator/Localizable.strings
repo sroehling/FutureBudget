@@ -686,18 +686,18 @@
 
 "STARTING_VALS_NAV_CONTROLLER_BUTTON_TITLE" = "Startup";
 "STARTUP_VALUES_VIEW_TITLE" = "Startup";
-"STARTUP_VALS_TABLE_TITLE" = "Startup Values for Results Generation";
-"STARTUP_VALS_TABLE_SUBTITLE" = "The values below include a timeframe for results generation, starting/current values for inputs, and adjustments for inflation.";
+"STARTUP_VALS_TABLE_TITLE" = "Startup Values for Forecast Generation";
+"STARTUP_VALS_TABLE_SUBTITLE" = "The values below include a timeframe for forecast results generation, starting/current values for inputs, and adjustments for inflation.";
 "STARTUP_VALUES_STARTING_BALANCES_SECTION_TITLE" = "Starting Balances";
 "STARTUP_VALUES_STARTING_BALANCES_SECTION_SUBTITLE" = "Enter balances as of the start date";
 "STARTUP_VALS_START_DATE_LABEL" = "Start Date";
 "STARTUP_VALS_START_DATE_PLACEHOLDER" = "Enter a date";
-"STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Results Time Frame";
+"STARTUP_VALUES_START_DATE_SECTION_TITLE" = "Forecast Time Frame";
 "STARTUP_VALUES_CURRENT_ASSET_VALUES" = "Current Asset Values";
 "STARTUP_VALUES_OUTSTANDING_LOAN_BALANCES_SECTION_TITLE" = "Outstanding Loan Balances";
 
 "SIM_END_DATE_TABLE_TITLE" = "End Date";
-"SIM_END_DATE_TABLE_HEADER" = "Results End Date";
+"SIM_END_DATE_TABLE_HEADER" = "Forecast End Date";
 "SIM_END_DATE_TABLE_SUBTITLE" = "This is the date the calculation of results will end. Enter a date for as long as you need to plan for.";
 
 
@@ -718,7 +718,7 @@
 "RELATIVE_END_DATE_END_DATE_PREFIX" = "for";
 
 "RESULTS_PROGRESS_LABEL" = "Calculating Results";
-"RESULTS_NAV_CONTROLLER_BUTTON_TITLE" = "Results";
+"RESULTS_NAV_CONTROLLER_BUTTON_TITLE" = "Forecast";
 "RESULTS_NET_WORTH_DATA_LABEL" = "Net Worth";
 "RESULTS_RELATIVE_NET_WORTH_DATA_LABEL" = "Relative Net Worth";
 "RESULTS_CASH_FLOW_DATA_LABEL" = "Cash Flow";

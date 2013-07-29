@@ -33,5 +33,5 @@ from the scenario list in the __What If__ tab.
 The currently selected scenario also determines which set of values
 will be used in the results. A way to compare scenarios is to 
 go to the scenario list in the __What If__ tab, then toggle
-back and forth to the __Results__ tab with different scenarios
+back and forth to the __Forecast__ tab with different scenarios
 selected.

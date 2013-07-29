@@ -7,7 +7,7 @@ Basically, the steps to work with FutureBudget include:
 2. Select the **Startup** tab to review (and update, if necessary) the starting 
    (current) balances for accounts and loans. This tab also includes a timeframe to 
    generate results and whether or not to adjust results for expected inflation.
-3. Select the **Results** tab to see a number of charts and tables showing 
+3. Select the **Forecast** tab to see a number of charts and tables showing
    forecasted financial results over time.
 
 The steps above would be repeated as new inputs are added or existing ones are changed. 
