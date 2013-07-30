@@ -2702,6 +2702,178 @@
 
 }
 
+-(void)testAccountWithdrawalTaxWithTransfer
+{
+    
+    // Test that with transfers, if the account is setup to be taxed, the transfer will also count as a tax.
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Set the cash balance to 0.0, so the expense will trigger a withdrawal from the account.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:10000.0];
+	acct01.costBasis = [NSNumber numberWithDouble:10000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.dividendRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+    
+    
+	// The withdrawal from the account needs to be setup as a transfer. Otherwise, the
+	// taxes paid will trigger a second withdrawal from the account, further increasing
+	// the capital gains paid! (A previous version of this test case used an expense, and
+	// the capital gains went from 227 to 233 and the taxes also went up. Also, having
+	// a transfer as opposed to an expense also increases test coverage, since the other
+	// test cases use expenses.
+	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
+                                                        initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
+	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
+	acctTransfer.toEndpoint = self.testAppVals.cash.transferEndpointCash;
+    
+	
+	TaxInputTypeSelectionInfo *taxCreator =
+	[[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                             andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+    
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [inputCreationHelper multiScenGrowthRateWithDefault:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+
+	AccountWithdrawalItemizedTaxAmt *taxableWithdrawal = [self.coreData insertObject:ACCOUNT_WITHDRAWAL_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	taxableWithdrawal.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
+	taxableWithdrawal.account  = acct01;
+	
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:taxableWithdrawal];
+    
+   
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctWithdrawalXYPlotDataGenerator *acctWithdrawalData = [[[AcctWithdrawalXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:2500.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:acctWithdrawalData withSimResults:simResults andExpectedVals:expected andLabel:@"acct01 withdrawals" withAdjustedVals:FALSE];
+	
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:625.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"taxable withdrawals" withAdjustedVals:FALSE];
+    
+}
+
+-(void)testDeductableContributionWithTransfer
+{
+	[self resetCoredData];
+	
+	
+	// In this test there is income of $200/year, which is taxed at 25%. However, there is also a $100 tax deductable
+	// contribution (which is made as a transfer) to acct01, which reduces that tax liability to $100. Of the remaining $100, $25 tax should be paid.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+    
+	IncomeInputTypeSelectionInfo *incomeCreator =
+    [[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                                andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.name = @"Acct01";
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.withdrawalPriority = [inputCreationHelper multiScenFixedValWithDefault:1.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+    
+    // Use a transfer instead of the regular account contribution to fund the account. This
+    // transfer should be deductable just like the contribution.
+    
+ 	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
+                                                        initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
+	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-15"]];
+    acctTransfer.endDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
+	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	acctTransfer.fromEndpoint = self.testAppVals.cash.transferEndpointCash;
+	acctTransfer.toEndpoint = acct01.acctTransferEndpointAcct;
+   
+    
+	TaxInputTypeSelectionInfo *taxCreator =
+    [[[TaxInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                             andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	TaxInput *flatTax = (TaxInput*)[taxCreator createInput];
+	TaxBracketEntry *flatTaxEntry = [self.coreData insertObject:TAX_BRACKET_ENTRY_ENTITY_NAME];
+	flatTaxEntry.cutoffAmount = [NSNumber numberWithDouble:0.0];
+	flatTaxEntry.taxPercent = [inputCreationHelper multiScenGrowthRateWithDefault:25.0];
+	[flatTax.taxBracket addTaxBracketEntriesObject:flatTaxEntry];
+	flatTax.stdDeductionAmt = [self.inputCreationHelper multiScenAmountWithDefault:0.0];
+	flatTax.stdDeductionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+    
+    
+	AccountContribItemizedTaxAmt *deductableContrib = [self.coreData insertObject:ACCOUNT_CONTRIB_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	deductableContrib.account = acct01;
+	deductableContrib.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedDeductions addItemizedAmtsObject:deductableContrib];
+    
+	IncomeItemizedTaxAmt *itemizedIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	itemizedIncome.income = income01;
+	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
+	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
+    
+    
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+    
+	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    // Transfers and associated deductions don't start until 2013
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"deductable contribs" withAdjustedVals:FALSE];
+    
+	AcctContribXYPlotGenerator *acctContribData = [[[AcctContribXYPlotGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+ 	[self checkPlotData:acctContribData withSimResults:simResults andExpectedVals:expected andLabel:@"account contribs" withAdjustedVals:FALSE];
+
+ 	AcctBalanceXYPlotDataGenerator *acctBalData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1200.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1300.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:1400.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+ 	[self checkPlotData:acctBalData01 withSimResults:simResults andExpectedVals:expected andLabel:@"account balance" withAdjustedVals:FALSE];
+   
+    
+    
+}
 
 -(void)testAccountCapitalGain
 {
@@ -4645,16 +4817,15 @@
 	flatTax.stdDeductionGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
-	AccountContribItemizedTaxAmt *deductableWithdrawal = [self.coreData insertObject:ACCOUNT_CONTRIB_ITEMIZED_TAX_AMT_ENTITY_NAME];
-	deductableWithdrawal.account = acct01;
-	deductableWithdrawal.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];	
-	[flatTax.itemizedDeductions addItemizedAmtsObject:deductableWithdrawal];
+	AccountContribItemizedTaxAmt *deductableContrib = [self.coreData insertObject:ACCOUNT_CONTRIB_ITEMIZED_TAX_AMT_ENTITY_NAME];
+	deductableContrib.account = acct01;
+	deductableContrib.multiScenarioApplicablePercent = [inputCreationHelper multiScenFixedValWithDefault:100.0];	
+	[flatTax.itemizedDeductions addItemizedAmtsObject:deductableContrib];
 
 	IncomeItemizedTaxAmt *itemizedIncome = [self.coreData insertObject:INCOME_ITEMIZED_TAX_AMT_ENTITY_NAME];
 	itemizedIncome.income = income01;
 	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
-
 
 	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
 	[simResults runSimulatorForResults];
@@ -4667,6 +4838,15 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:25.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[self checkPlotData:flatTaxData withSimResults:simResults andExpectedVals:expected andLabel:@"deductable contribs" withAdjustedVals:FALSE];
+
+	AcctContribXYPlotGenerator *acctContribData = [[[AcctContribXYPlotGenerator alloc] initWithAccount:acct01] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+ 	[self checkPlotData:acctContribData withSimResults:simResults andExpectedVals:expected andLabel:@"account contribs" withAdjustedVals:FALSE];
 
 }
 

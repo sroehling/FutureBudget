@@ -28,8 +28,11 @@ NSString * const ACCOUNT_CONTRIB_ITEMIZED_TAX_AMT_ENTITY_NAME = @"AccountContrib
 	assert(self.account != nil);
 	if([self.isEnabled boolValue])
 	{
-		return [SimInputHelper multiScenBoolVal:self.account.contribEnabled
-				andScenario:theScenario];
+        // Contributions can happen into an account from either regular contributions or from transfers into
+        // the account. Not consideriong transfers into the account, the boolean value of
+        // self.account.contribEnabled would be used. However, since account transfers can
+        // be considered, the result is always true if the account is enabled.
+        return TRUE;
 	}
 	else
 	{
