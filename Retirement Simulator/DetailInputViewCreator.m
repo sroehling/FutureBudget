@@ -766,12 +766,15 @@
 			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
 	
 	
-	[formPopulator nextSectionWithTitle:
-			LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")];
-
-	[self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
-		andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL") 
-		andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
+    if([asset purchaseDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
+    {
+        [formPopulator nextSectionWithTitle:
+         LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")];
+        
+        [self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY
+                andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL")
+                andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
+    }
 
 	[formPopulator nextSectionWithTitle:
         LOCALIZED_STR(@"INPUT_ASSET_VALUE_APPREC_RATE_SECTION_NAME")

@@ -11,6 +11,9 @@
 #import "VariableValue.h"
 #import "LocalizationHelper.h"
 #import "InputVisitor.h"
+#import "DateHelper.h"
+#import "SimInputHelper.h"
+#import "MultiScenarioSimDate.h"
 
 NSString * const ASSET_INPUT_ENTITY_NAME = @"AssetInput";
 NSString * const INPUT_ASSET_STARTING_VALUE_KEY = @"startingValue";
@@ -46,6 +49,30 @@ NSString * const ASSET_INPUT_DEFAULT_ICON_NAME = @"input-icon-moneybag.png";
 -(NSString*)inputTypeTitle
 {
 	return LOCALIZED_STR(@"INPUT_ASSET_TITLE");
+}
+
+-(BOOL)purchaseDateDefinedAndInThePastForScenario:(Scenario*)currentScenario
+{
+    if([self.purchaseDate.simDate
+        findInputValueForScenarioOrDefault:currentScenario] != nil)
+    {
+        NSDate *currentScenarioPurchaseDate =
+            [SimInputHelper multiScenFixedDate:self.purchaseDate.simDate
+                        andScenario:currentScenario];
+        if([DateHelper dateIsLater:[DateHelper today] otherDate:currentScenarioPurchaseDate])
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+    else
+    {
+        return FALSE;
+    }
+    
 }
 
 @end

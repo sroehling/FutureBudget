@@ -5,10 +5,12 @@ An asset input represents property owned, such as a [house][exampleHomeOwnership
 ### Current Asset Value
 
 An [asset][asset]'s current value provides a "snapshot" of the asset as of the
-[start date][resultsTimeFrame] for calculating results. If the purchase date of the asset is before the [start date][resultsTimeFrame], 
-the current value provides an estimate of the asset's value as of this start date. 
+[start date][resultsTimeFrame] for calculating forecast results. If the purchase date of the asset is before the [start date][resultsTimeFrame], 
+the current value provides an estimate of the asset's value as of this start date. If a current value is not provided, the asset value
+as of the start date will be estimated as the original purchase price along with any appreciation or depreciation (see below) between the purchase date and start date.
+
 However, if the purchase date is after the start date 
-(e.g., for an asset you plan to purchase in the future), a current value is not needed.
+(e.g., for an house or car you plan to purchase in the future), a current value is not needed.
 
 ### Appreciation and Depreciation
 

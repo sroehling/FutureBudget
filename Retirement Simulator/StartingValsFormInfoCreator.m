@@ -102,9 +102,14 @@
 			andHelpFile:@"asset" andAnchorWithinHelpFile:@"current-asset-value"];
 		for(AssetInput *asset in assets)
 		{
-			[formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY 
-				andLabel:asset.name
-				andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
+            // Only show the (explicit) starting asset value if the purchase date is in the past
+            if([asset purchaseDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
+            {
+                [formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY
+                                            andLabel:asset.name
+                                      andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
+               
+            }
 		}
 
 	}

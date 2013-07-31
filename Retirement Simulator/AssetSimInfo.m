@@ -95,7 +95,26 @@
 		}
 		else
 		{
-			startingAssetValue = [SimInputHelper doubleVal:asset.startingValue];
+            // Asset was purchased before the simulation start.
+            // So, if startingValue is not provided (i.e., is nil),
+            // then estimate it, based upon the purchase price.
+            if(asset.startingValue != nil)
+            {
+                // An explicit starting value has been provided, use it directly.
+                startingAssetValue = [SimInputHelper doubleVal:asset.startingValue];
+            }
+            else
+            {
+                // Estimate the purchase price, based upon the appreciation/depreciation rate
+                // after the purchase, but before the simulation start.
+                double purchaseMultiplierFromPurchaseDateToSimStart =
+                    [SimInputHelper multiScenVariableRateMultiplier:self.asset.apprecRate.growthRate
+                    sinceStartDate:self.purchaseDate asOfDate:self.simParams.simStartDate andScenario:simParams.simScenario];
+                double purchaseCostAppreciatedDepreciatedToSimStart =
+                    [self purchaseCost] * purchaseMultiplierFromPurchaseDateToSimStart;
+                startingAssetValue = purchaseCostAppreciatedDepreciatedToSimStart;
+                
+            }
 		}
 
 		// Create a "compound appreciation" calculator which has a different

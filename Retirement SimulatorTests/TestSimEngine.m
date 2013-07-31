@@ -593,7 +593,45 @@
 
 }
 
-
+-(void)testAssetPurchasedBeforeSimStartAndWithNoExplicitStartingValue
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    
+	AssetInputTypeSelectionInfo *assetCreator =
+    [[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                               andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+    
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:5.0];
+    
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	
+	// If the asset purchase date is before the simulation start, 'startingValue' is
+	// used as a baseline value to use as te asset's value going into the simulation.
+    // If no starting value is provided, then the starting vaule is estimated based appreciation/depreciation
+    // rate.
+	asset01.startingValue = nil;
+    
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+    
+	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+    // Although no starting value is provided, there is a 10% appreciation rate after purchase.
+    // So, given this appreciation rate, the asset will have 2 years of 10% appreciation by the end of 2012.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1210 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1331 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1464.1 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    
+	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
+}
 
 -(void)testFutureAsset
 {

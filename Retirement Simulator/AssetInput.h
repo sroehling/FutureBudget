@@ -21,6 +21,7 @@ extern NSString * const ASSET_INPUT_DEFAULT_ICON_NAME;
 @class MultiScenarioAmount;
 @class AssetGainItemizedTaxAmt;
 @class AssetLossItemizedTaxAmt;
+@class Scenario;
 
 @interface AssetInput : Input {
 @private
@@ -34,6 +35,8 @@ extern NSString * const ASSET_INPUT_DEFAULT_ICON_NAME;
 @property (nonatomic, retain) MultiScenarioInputValue * assetEnabled;
 @property (nonatomic, retain) NSSet *assetGainItemizedTaxAmts;
 @property (nonatomic, retain) NSSet *assetLossItemizedTaxAmts;
+
+-(BOOL)purchaseDateDefinedAndInThePastForScenario:(Scenario*)currentScenario;
 
 @end
 
