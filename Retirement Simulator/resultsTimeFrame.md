@@ -2,7 +2,7 @@
 
 Forecast results will be calculated between the __Start Date__ and __Stop Date__.
 
-The values for account balances, loan balances, asset values and the [cash balance][cash] should
+The values for [account balances][currentBal], [loan balances][outstandingLoanBal], [asset values][currentAssetVals] and the [cash balance][cash] should
 be entered as of the start date. So, if the start date is changed, 
 the [current balances][currentBal], [current asset values][currentAssetVals], 
 [outstanding loan balances][outstandingLoanBal], and [deficit balance][deficit] should also be 

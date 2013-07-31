@@ -768,9 +768,8 @@
 	
     if([asset purchaseDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
     {
-        [formPopulator nextSectionWithTitle:
-         LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")];
-        
+ 		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")
+                                andHelpFile:@"asset" andAnchorWithinHelpFile:@"current-asset-value"];       
         [self.formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY
                 andLabel:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_LABEL")
                 andPlaceholder:LOCALIZED_STR(@"INPUT_ASSET_STARTING_VALUE_PLACEHOLDER")];
