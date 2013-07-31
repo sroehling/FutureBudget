@@ -16,7 +16,7 @@ are not taxed.
 
 ### Dividends
 
-TBD
+For investment accounts, account inputs support a dividend rate, which is an estimate of the payments made to shareholders. The dividend rate is the yearly estimated dividend payment as a percentage of the account balance.
 
 ### Current Account Balances
 
