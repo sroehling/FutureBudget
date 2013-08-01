@@ -499,7 +499,8 @@
 
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
-
+    
+    
 	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
 	[simResults runSimulatorForResults];
 
@@ -534,6 +535,48 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.35 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[self checkPlotData:relNetWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"Relative net worth with asset" withAdjustedVals:FALSE];
+}
+
+-(void)testCombinedAssetVals
+{
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    
+	AssetInputTypeSelectionInfo *assetCreator =
+    [[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                               andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+    
+	AssetInput *asset01 = (AssetInput*)[assetCreator createInput];
+	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+    
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+    
+    // asset02 is identical to asset01, and is used to test AllAssetValueXYPlotDataGenerator
+ 	AssetInput *asset02 = (AssetInput*)[assetCreator createInput];
+	asset02.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
+	asset02.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+	asset02.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+    
+	asset02.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	asset02.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+   
+    
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+    	
+   
+    AllAssetValueXYPlotDataGenerator *allAssetData = [[[AllAssetValueXYPlotDataGenerator alloc] init] autorelease];
+ 	NSMutableArray *expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:2420.00 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:2662.00 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:allAssetData withSimResults:simResults andExpectedVals:expected andLabel:@"all asset values" withAdjustedVals:FALSE];
 
 }
 
@@ -638,6 +681,9 @@
 	[self resetCoredData];
     
     NSLog(@"Starting sim engine test ...");
+    
+    self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:10000.0];
+
     	
 	AssetInputTypeSelectionInfo *assetCreator = 
 		[[[AssetInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper 
@@ -648,8 +694,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2014-01-02"]];	
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2016-01-02"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2016-01-01"]];
 
 	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
 	[simResults runSimulatorForResults];
@@ -663,7 +709,21 @@
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 
 	[self checkPlotData:assetData withSimResults:simResults andExpectedVals:expected andLabel:@"asset01" withAdjustedVals:FALSE];
+
+	// Money to purchase the asset should come from cash funds cash funds
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:10000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:10000.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    // asset purchased at the beginning of 2014, which will decrease the cash balance for the value of the asset at that time (1210).
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:8789.68 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:8789.68 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    // asset sold at the beginning of 2016, which should increase the cash balance for the sale price
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:10254.17 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
+	
+    
 
 }
 
@@ -2228,6 +2288,65 @@
 	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
 
 }
+
+-(void)testAccountWithInterestAndNetWorth
+{
+	[self resetCoredData];
+	
+	SavingsAccountTypeSelectionInfo *acctCreator = [[[SavingsAccountTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// Account contributions will only occur if there is a balance of cash to draw from. So,
+	// for testing purposes, we initialize the cash balance so that contributions will occur.
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:1000.0];
+	
+	SavingsAccount *acct01 = (SavingsAccount*)[acctCreator createInput];
+	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
+	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
+    
+	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
+	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
+    	
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+	
+	AcctBalanceXYPlotDataGenerator *acctData = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:1210.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:1440.97 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:1695.04 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    // Contributions stopped in 2014, so 2015 only includes interest
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:1864.54 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:2051.53 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:acctData withSimResults:simResults andExpectedVals:expected andLabel:@"acct01" withAdjustedVals:FALSE];
+	    
+    
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:900.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:800.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:700.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:700.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:700.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:FALSE];
+
+    
+ 	NetWorthXYPlotDataGenerator *netWorthData = [[[NetWorthXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init] autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:2110.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:2240.97 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:2395.04 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:2564.54 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:2751.53 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[self checkPlotData:netWorthData withSimResults:simResults andExpectedVals:expected andLabel:@"net worth with account interest" withAdjustedVals:FALSE];
+   
+    
+}
+
 
 -(void)testAccountWithLimitedWithdrawalsSimple
 {
