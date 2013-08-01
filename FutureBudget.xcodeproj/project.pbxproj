@@ -704,6 +704,7 @@
 		0017F19617330E520064FAD8 /* AccountDividendItemizedTaxAmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountDividendItemizedTaxAmt.m; sourceTree = "<group>"; };
 		0017F198173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountDividendTaxAmtCreator.h; sourceTree = "<group>"; };
 		0017F199173311F90064FAD8 /* ItemizedAccountDividendTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAccountDividendTaxAmtCreator.m; sourceTree = "<group>"; };
+		0018A4C617AAEDE30062C9C9 /* TestSimEngineTestCoverage.ods */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestSimEngineTestCoverage.ods; sourceTree = "<group>"; };
 		00197EF5177C9FDB0094E46B /* PlanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanListViewController.h; sourceTree = "<group>"; };
 		00197EF6177C9FDB0094E46B /* PlanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanListViewController.m; sourceTree = "<group>"; };
 		00197EF8177CA2DF0094E46B /* PlanListViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanListViewFactory.h; sourceTree = "<group>"; };
@@ -1606,6 +1607,17 @@
 				0052E2071459B03300FEC4E2 /* TaxInputCalcs.m */,
 			);
 			name = Taxes;
+			sourceTree = "<group>";
+		};
+		0018A4CB17AAEDF20062C9C9 /* Sim Engine Integration Tests */ = {
+			isa = PBXGroup;
+			children = (
+				004F5D891374566200E0C4A3 /* TestSimEngine.h */,
+				004F5D8A1374566200E0C4A3 /* TestSimEngine.m */,
+				0018A4C617AAEDE30062C9C9 /* TestSimEngineTestCoverage.ods */,
+				00A2D971176785A800951F86 /* MonthlyMortgageInterestCalculation.xlsx */,
+			);
+			name = "Sim Engine Integration Tests";
 			sourceTree = "<group>";
 		};
 		00197EF4177C9F8C0094E46B /* Multiple Plans/Budgets */ = {
@@ -2819,14 +2831,6 @@
 			name = Expense;
 			sourceTree = "<group>";
 		};
-		00A2D96F1767853E00951F86 /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				00A2D971176785A800951F86 /* MonthlyMortgageInterestCalculation.xlsx */,
-			);
-			name = Documentation;
-			sourceTree = "<group>";
-		};
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
@@ -2900,14 +2904,12 @@
 		00A36C01136C6CAE008A5C4C /* FutureBudget Tests */ = {
 			isa = PBXGroup;
 			children = (
-				00A2D96F1767853E00951F86 /* Documentation */,
+				0018A4CB17AAEDF20062C9C9 /* Sim Engine Integration Tests */,
 				00F217D2140F073300FA73AA /* CoreData.framework */,
 				0025777313B438E000D15232 /* Test Helper Code */,
 				00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */,
 				00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */,
 				00A36C02136C6CAE008A5C4C /* Supporting Files */,
-				004F5D891374566200E0C4A3 /* TestSimEngine.h */,
-				004F5D8A1374566200E0C4A3 /* TestSimEngine.m */,
 				004F5D8C13745ADB00E0C4A3 /* TestSimEventCreator.h */,
 				004F5D8D13745ADC00E0C4A3 /* TestSimEventCreator.m */,
 				004F5D9513749AB300E0C4A3 /* TestSimEvent.h */,
