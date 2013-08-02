@@ -14,8 +14,17 @@ The steps above would be repeated as new inputs are added or existing ones are c
 
 Once some inputs have been created, the **What If** tab provides a convenient way to review and change related values across multiple inputs. For example, the amounts for different expenses can be reviewed and updated together.
 
-Consistent with the 
-steps outlined above, below are additional suggestions for getting started.
+When using the app, help information is also available wherever you see the help button: ![help button](buttonhelp-doc.png "Help Button"). Tap on this button for more information about particular topics.
+
+<!--- Note that buttonhelp-doc.png is the same image as buttonhelp.png stored in ResultraLib. However, in the library
+it is stored in a bundle resource, which is not accessable from the markdown/html help pages.
+-->
+
+Consistent with the above, below are additional suggestions for getting started. 
+
+## Learn the App using a "Sandbox" Budget
+
+In the **More** tab, there is an option to create and select from [multiple budgets][budgetList]. When you're first learning the app, you could try out the app's features using the "Master" budget, which is created when the FutureBudget app first launches; you could then create another budget later with real inputs. Or, you could create and select a budget called "Sandbox" (or similar) right away, then re-select the "Master" budget later when you're ready to create some real inputs.
 
 ## Start with Simplifying Assumptions and Basic Inputs 
 
@@ -24,10 +33,6 @@ When first getting started, a recommendation is to start with some more general 
 Many budgeting scenarios can also be initially represented with only basic [income][income] and [expense][expense] inputs. For example, rather than initially splitting [employment income][employmentIncomeExample] based upon all the different taxes and employment related benefits, a single "Take Home Pay" expense can be created.
 
 These approaches allow you to get some results quickly, but continue to dig deeper and add more details later. This is also a good way to become familiar with the app's basic functions.
-
-## Learn the App using a "Sandbox" Budget
-
-In the **More** tab, there is an option to create and select from [multiple budgets][budgetList]. When you're first learning the app, you could try out the app's features using the "Master" budget, which is created when the FutureBudget app first launches; you could then create another budget later with real inputs. Or, you could create and select a budget called "Sandbox" (or similar) right away, then re-select the "Master" budget later when you're ready to create some real inputs.
 
 ## More Advanced Inputs and Features
 

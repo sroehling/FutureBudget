@@ -424,6 +424,7 @@
 		00A36C09136C6CAE008A5C4C /* Retirement_SimulatorTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */; };
 		00A36C0B136C6CAE008A5C4C /* Retirement_SimulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */; };
 		00A8A3191545F595003C6D73 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A8A3181545F595003C6D73 /* StoreKit.framework */; };
+		00A9C0D317AC52F800DB8F6C /* buttonhelp-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9C0D217AC52F800DB8F6C /* buttonhelp-doc.png */; };
 		00A9CAC416A60DCC00AF69B2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9CAC316A60DCC00AF69B2 /* Default-568h@2x.png */; };
 		00A9CAC616A60E6A00AF69B2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9CAC516A60E6A00AF69B2 /* Default.png */; };
 		00A9CAC816A60E9E00AF69B2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9CAC716A60E9E00AF69B2 /* Default@2x.png */; };
@@ -1296,6 +1297,7 @@
 		00A36C08136C6CAE008A5C4C /* Retirement_SimulatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Retirement_SimulatorTests.h; sourceTree = "<group>"; };
 		00A36C0A136C6CAE008A5C4C /* Retirement_SimulatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Retirement_SimulatorTests.m; sourceTree = "<group>"; };
 		00A8A3181545F595003C6D73 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		00A9C0D217AC52F800DB8F6C /* buttonhelp-doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonhelp-doc.png"; sourceTree = "<group>"; };
 		00A9CAC316A60DCC00AF69B2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		00A9CAC516A60E6A00AF69B2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		00A9CAC716A60E9E00AF69B2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -2951,6 +2953,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		00A9C0CD17AC52E200DB8F6C /* Getting Started */ = {
+			isa = PBXGroup;
+			children = (
+				00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */,
+				00A9C0D217AC52F800DB8F6C /* buttonhelp-doc.png */,
+			);
+			name = "Getting Started";
+			sourceTree = "<group>";
+		};
 		00A9CAC916A60EA600AF69B2 /* Launch Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -3060,12 +3071,12 @@
 		00D6846D14CE04D000E3AC9F /* Help Pages */ = {
 			isa = PBXGroup;
 			children = (
+				00A9C0CD17AC52E200DB8F6C /* Getting Started */,
 				0042D47F1719AF7900575E70 /* Markdown Links */,
 				0042D4781718AC1B00575E70 /* Self-contained User Guide */,
 				001AE1BD1714949D000F461D /* Examples */,
 				002FAEA614D38F0A00AE2B41 /* Context Help */,
 				002FAE9A14D3105900AE2B41 /* Key Features */,
-				00899D7F14D1DCEC00CBFE6F /* gettingStarted.md */,
 			);
 			name = "Help Pages";
 			sourceTree = "<group>";
@@ -3548,6 +3559,7 @@
 				00D071C917809F640099E3C2 /* budgetList.md in Resources */,
 				005EF68E178A30EF00F0591F /* fixedTaxRate.md in Resources */,
 				005EF690178A311200F0591F /* variableTaxRate.md in Resources */,
+				00A9C0D317AC52F800DB8F6C /* buttonhelp-doc.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
