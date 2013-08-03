@@ -24,7 +24,7 @@ Finance
 
 ## Description
 
-By flexibly evaluating longer term (yearly) budgeting and/or investing scenarios, FutureBudget helps you plan and forecast your financial future. FutureBudget will not only encourage critical thinking about your finances, but will also help you learn about the time-value of money, keeping up with inflation, and other important concepts.
+By flexibly evaluating longer term (yearly) budgeting and/or investing scenarios, FutureBudget helps you plan and forecast your financial future. FutureBudget will help you gain insights into and critically think about your finances. FutureBudget will also help you learn about the time-value of money, keeping up with inflation, and other important concepts.
 
 To work with FutureBudget, you input a list of specific assumptions about current and future incomes, expenses, assets, loans, accounts, and taxes. Each FutureBudget input also has numerous parameters for longer term, detailed budgeting. For example, expenses can occur repeatedly or once, start and stop at any point in the future, or their amounts can change over time. Based upon these inputs, FutureBudget  generates a forecast showing how these assumptions play out over time and with expected inflation. 
 
