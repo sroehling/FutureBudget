@@ -26,7 +26,7 @@ Finance
 
 By flexibly evaluating longer term (yearly) budgeting and/or investing scenarios, FutureBudget helps you plan and forecast your financial future. FutureBudget will not only encourage critical thinking about your finances, but will also help you learn about the time-value of money, keeping up with inflation, and other important concepts.
 
-To work with FutureBudget, you input specific assumptions about current and future incomes, expenses, assets, loans, accounts, and taxes. Each FutureBudget input also has numerous parameters for longer term, detailed budgeting. For example, expenses can occur repeatedly or once, start and stop at any point in the future, or their amounts can change over time. Based upon these inputs, FutureBudget  generates a forecast showing how these assumptions play out over time and with expected inflation. 
+To work with FutureBudget, you input a list of specific assumptions about current and future incomes, expenses, assets, loans, accounts, and taxes. Each FutureBudget input also has numerous parameters for longer term, detailed budgeting. For example, expenses can occur repeatedly or once, start and stop at any point in the future, or their amounts can change over time. Based upon these inputs, FutureBudget  generates a forecast showing how these assumptions play out over time and with expected inflation. 
 
 FutureBudget also lets you start with more general inputs, then add more detail later. For example, a single "expense" can initially be provided for all monthly bills, then broken into individual expenses later. Similarly, you could start with a single effective tax rate, then provide a detailed tax bracket later.
 
@@ -55,7 +55,7 @@ For more information and examples, be sure to check out the app's web site.
 
 ## Keywords
 
-budget, budgeting, planning, retirement, simulation, expenses, investment, loans
+budget, budgeting, planning, forecast, retirement, simulation, expenses, investment, loans
 
 ## Support URL
 
