@@ -87,11 +87,6 @@
     return TRUE;
 }
 
-- (void)disableFieldAccess
-{
-    // no-op
-    // TBD - should this be a no-op
-}
 
 - (NSManagedObject*) managedObject
 {
