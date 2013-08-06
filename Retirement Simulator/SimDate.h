@@ -24,7 +24,7 @@ extern NSString * const SIM_DATE_DATE_KEY;
 @property (nonatomic, retain) NSDate *date;
 
 // Inverse Relationships
-@property (nonatomic, retain) DateSensitiveValueChange * dateSensitiveValueChangeStartDate;
+@property (nonatomic, retain) NSSet *dateSensitiveValueChangeStartDate;
 @property (nonatomic, retain) SharedAppValues * sharedAppValsSimEndDate;
 
 @property BOOL isSelectedForSelectableObjectTableView;
@@ -34,5 +34,14 @@ extern NSString * const SIM_DATE_DATE_KEY;
 
 - (void)acceptVisitor:(id<SimDateVisitor>)visitor;
 - (NSDate*)endDateWithStartDate:(NSDate*)startDate;
+
+@end
+
+@interface SimDate (CoreDataGeneratedAccessors)
+
+- (void)addDateSensitiveValueChangeStartDateObject:(DateSensitiveValueChange *)value;
+- (void)removeDateSensitiveValueChangeStartDateObject:(DateSensitiveValueChange *)value;
+- (void)addDateSensitiveValueChangeStartDate:(NSSet *)values;
+- (void)removeDateSensitiveValueChangeStartDate:(NSSet *)values;
 
 @end
