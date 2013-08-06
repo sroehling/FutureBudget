@@ -920,6 +920,7 @@
 		0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueFieldInfo.m; sourceTree = "<group>"; };
 		003CFD1113C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectScenarioTableHeaderButtonDelegate.h; sourceTree = "<group>"; };
 		003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectScenarioTableHeaderButtonDelegate.m; sourceTree = "<group>"; };
+		003F84EF17B1599200977E32 /* FutureBudgetManualUITesting.ods */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureBudgetManualUITesting.ods; sourceTree = "<group>"; };
 		003FFA3916D5348200B83067 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		003FFA3A16D5348300B83067 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		003FFA3D16D537CE00B83067 /* InputListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListTableViewController.h; sourceTree = "<group>"; };
@@ -2906,6 +2907,7 @@
 		00A36C01136C6CAE008A5C4C /* FutureBudget Tests */ = {
 			isa = PBXGroup;
 			children = (
+				003F84EF17B1599200977E32 /* FutureBudgetManualUITesting.ods */,
 				0018A4CB17AAEDF20062C9C9 /* Sim Engine Integration Tests */,
 				00F217D2140F073300FA73AA /* CoreData.framework */,
 				0025777313B438E000D15232 /* Test Helper Code */,
