@@ -15,9 +15,11 @@
 @interface UserScenarioFormInfoCreator : NSObject <FormInfoCreator> {
     @private
 		UserScenario *userScen;
+        BOOL editNameAsFirstResponder; // optional - default is FALSE
 }
 
 @property(nonatomic,retain) UserScenario *userScen;
+@property BOOL editNameAsFirstResponder;
 
 -(id)initWithUserScenario:(UserScenario*)theScenario;
 

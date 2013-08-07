@@ -27,6 +27,8 @@
 	newScenario.iconImageName = SCENARIO_DEFAULT_ICON_IMAGE_NAME;
 	UserScenarioFormInfoCreator *scenarioFormCreator = 
 		[[[UserScenarioFormInfoCreator alloc] initWithUserScenario:newScenario] autorelease];
+    // Since the scenario is being created, the name field is setup as the first responder.
+    scenarioFormCreator.editNameAsFirstResponder = TRUE;
 
     GenericFieldBasedTableAddViewController *controller = [[[GenericFieldBasedTableAddViewController alloc]
 		initWithFormInfoCreator:scenarioFormCreator

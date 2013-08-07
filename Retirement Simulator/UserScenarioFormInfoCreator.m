@@ -11,6 +11,7 @@
 #import "LocalizationHelper.h"
 #import "UserScenario.h"
 #import "NameFieldEditInfo.h"
+#import "NameFieldCell.h"
 #import "ManagedObjectFieldInfo.h"
 #import "SectionInfo.h"
 
@@ -38,6 +39,7 @@
 @implementation UserScenarioFormInfoCreator
 
 @synthesize userScen;
+@synthesize editNameAsFirstResponder;
 
 -(id)initWithUserScenario:(UserScenario*)theScenario
 {
@@ -45,6 +47,7 @@
 	if(self)
 	{
 		self.userScen = theScenario;
+        self.editNameAsFirstResponder = FALSE;
 	}
 	return self;
 }
@@ -112,6 +115,11 @@
 	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo
 		andCustomValidator:scenNameValidator andParentController:parentContext.parentController
 		andImageNames:imageNames andImageFieldInfo:imageFieldInfo] autorelease];
+    
+    if(self.editNameAsFirstResponder && ![fieldInfo fieldIsInitializedInParentObject])
+    {
+        formPopulator.formInfo.firstResponder = fieldEditInfo.cell.textField;        
+    }
 	
     [sectionInfo addFieldEditInfo:fieldEditInfo];
 	

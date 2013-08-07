@@ -19,6 +19,7 @@
 #import "LocalizationHelper.h"
 #import "ManagedObjectFieldInfo.h"
 #import "NameFieldEditInfo.h"
+#import "NameFieldCell.h"
 #import "DataModelController.h"
 #import "FormContext.h"
 #import "MilestoneDateNameValidator.h"
@@ -44,7 +45,7 @@
 	return nil;
 }
 
-- (void)populateForMilestoneDate:(MilestoneDate*)milestoneDate
+- (void)populateForMilestoneDate:(MilestoneDate*)milestoneDate andIsNewMilestone:(BOOL)isNewMilestone
 {
     self.formInfo.title = LOCALIZED_STR(@"MILESTONE_DATE_FORM_TITLE");
     
@@ -56,6 +57,14 @@
 	
 	NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] initWithFieldInfo:fieldInfo
 		andCustomValidator:nameValidator] autorelease];
+    
+    if(isNewMilestone && ![fieldInfo fieldIsInitializedInParentObject])
+    {
+        // When first prompting for a milestone date, make the milestone name the first responder.
+        self.formInfo.firstResponder = fieldEditInfo.cell.textField;        
+    }
+    
+    
     [sectionInfo addFieldEditInfo:fieldEditInfo];
 	
 	
@@ -69,7 +78,7 @@
 
 - (UIViewController*)milestoneDateAddViewController:(MilestoneDate*)milestoneDate
 {
-    [self populateForMilestoneDate:milestoneDate];
+    [self populateForMilestoneDate:milestoneDate andIsNewMilestone:TRUE];
 
 // TODO - Allocate a new DataModelController, so that additons to milestone dates
 // can be kept separate from other changes. This will also ensure any additions to 
@@ -86,7 +95,7 @@
 
 - (UIViewController*)milestoneDateEditViewController:(MilestoneDate*)milestoneDate
 {
-    [self populateForMilestoneDate:milestoneDate];
+    [self populateForMilestoneDate:milestoneDate andIsNewMilestone:FALSE];
 	
     UIViewController *controller = [[[GenericFieldBasedTableEditViewController alloc] 
 		initWithFormInfoCreator:[StaticFormInfoCreator createWithFormInfo:self.formInfo]
