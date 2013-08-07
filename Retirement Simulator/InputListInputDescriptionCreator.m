@@ -39,6 +39,7 @@
 #import "ItemizedTaxAmts.h"
 #import "ItemizedTaxAmtsInfo.h"
 #import "ItemizedTaxAmtFieldPopulator.h"
+#import "AssetSaleDateFormatter.h"
 
 
 @implementation InputListInputDescriptionCreator 
@@ -124,6 +125,22 @@
 	return endDateDesc;
 
 }
+
+-(NSString *)formattedAssetSaleDate:(MultiScenarioSimEndDate*)simEndDate
+{
+	SimDate *endDate = (SimDate*)[simEndDate.simDate getValueForCurrentOrDefaultScenario];
+    
+    AssetSaleDateFormatter *dateFormatter =
+    [[[AssetSaleDateFormatter alloc] init] autorelease];
+    
+	NSString *endDateDisplay = [dateFormatter formatSimDate:endDate];
+    
+	NSString *endDateDesc = [NSString stringWithFormat:@" %@ %@",endDate.endDatePrefix,endDateDisplay];
+	
+	return endDateDesc;
+    
+}
+
 
 -(NSString*)formattedCashFlowRepeatFreq:(CashFlowInput*)cashFlow
 {
@@ -263,7 +280,8 @@
 {
 	NSString *amountDisplay = [self formattedMultiScenarioAmount:asset.cost];
 	NSString *purchaseDateDisplay = [self formattedMultiScenarioInputDate:asset.purchaseDate];
-	NSString *sellDateDisplay = [self formattedSimEndDate:asset.saleDate];
+    
+ 	NSString *sellDateDisplay = [self formattedAssetSaleDate:asset.saleDate];
 	
 	NSString *apprecRateBeforePurchaseDisplay = [self formattedApprecRate:asset.apprecRateBeforePurchase];
 	NSString *apprecRateAfterPurchaseDisplay = [self formattedApprecRate:asset.apprecRate];
