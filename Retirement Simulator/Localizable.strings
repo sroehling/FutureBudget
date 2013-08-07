@@ -141,7 +141,7 @@
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_SUBHEADER_FORMAT_NO_NAME" = "This first withdraw from %@ can occur on this date.";
 "INPUT_ACCOUNT_DEFERRED_WITHDRAW_DATE_FIELD_LABEL" = "Defer Withdrawals Until";
 "INPUT_ACCOUNT_WITHDRAWAL_DEFER_DATE_SUBTITLE_FORMAT" = "Defer withdrawals until %@";
-"INPUT_ACCOUNT_INTEREST_SECTION_TITLE" = "Interest";
+"INPUT_ACCOUNT_INTEREST_SECTION_TITLE" = "Interest/Returns";
 "INPUT_ACCOUNT_DIVIDEND_SECTION_TITLE" = "Dividends";
 "INPUT_ACCOUNT_INTEREST_RATE_FIELD_LABEL" = "Interest/Return Rate";
 "INPUT_ACCOUNT_DIVIDEND_RATE_FIELD_LABEL" = "Dividend Rate";
@@ -513,13 +513,13 @@
 
 "INPUT_INFLATION_RATE_VALUE_TITLE" = "Growth Rate";
 "INPUT_INFLATION_RATE_INLINE_VALUE_TITLE" = "growth rate";
-"INPUT_INFLATION_RATE_ACTION_VERB" = "increase amount";
+"INPUT_INFLATION_RATE_ACTION_VERB" = "change amount";
 "INPUT_INFLATION_RATE_PERIOD" = "every year";
 "INPUT_INFLATION_RATE_DATE_SENSITIVE_VALUE_VARIABLE_SUBTITLE_FORMAT" = "These growth rates can be shared by multiple inputs and can change over time";
 "INPUT_INFLATION_RATE_VALUE_PROMPT" = "Enter a Rate";
 "INPUT_INFLATION_RATE__TABLE_SUBTITLE_FORMAT" = "Enter a single, fixed %@. Or, select a variable %@, which can change over time and/or be shared by other inputs.";
 "DEFAULT_INFLATION_RATE_LABEL" = "Default Inflation Rate";
-"DEFAULT_INFLATION_RATE_GROWTH_RATE_FIELD_LABEL" = "Yearly Increase";
+"DEFAULT_INFLATION_RATE_GROWTH_RATE_FIELD_LABEL" = "Yearly Change";
 
 "DATE_SENSITIVE_VALUE_SINGLE_VALUE_TITLE_FORMAT" = "Fixed %@";
 "DATE_SENSITIVE_VALUE_VARIABLE_TITLE_FORMAT" = "Variable %@";
