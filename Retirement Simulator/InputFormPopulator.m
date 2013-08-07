@@ -736,7 +736,7 @@
 	
 	VariableValueRuntimeInfo *taxRateRuntimeInfo = [[[VariableValueRuntimeInfo alloc]
 		initWithFormatter:[NumberHelper theHelper].percentFormatter 
-		andValueValidator:[[[PercentFieldValidator alloc] init] autorelease]
+        andValueValidator:[[[UpTo100PercentFieldValidator alloc] init] autorelease]
 		andValueTitle:@"SHARED_TAX_RATE_VALUE_TITLE"
 		andInlineValueTitleKey:@"SHARED_TAX_RATE_INLINE_VALUE_TITLE"
 		andValueVerb:LOCALIZED_STR(@"SHARED_TAX_RATE_ACTION_VERB")
