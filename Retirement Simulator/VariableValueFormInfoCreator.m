@@ -22,6 +22,7 @@
 #import "NameFieldEditInfo.h"
 #import "StaticNameFieldEditInfo.h"
 #import "FormContext.h"
+#import "NameFieldCell.h"
 
 @implementation VariableValueFormInfoCreator
 
@@ -79,6 +80,12 @@
 		ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc] initWithManagedObject:self.variableValue andFieldKey:@"name" andFieldLabel:LOCALIZED_STR(@"VARIABLE_VALUE_NAME_LABEL") andFieldPlaceholder:varValueNamePlaceholder] autorelease];
 		NameFieldEditInfo *fieldEditInfo = [[[NameFieldEditInfo alloc] 
 				initWithFieldInfo:fieldInfo] autorelease];
+        
+        if(![fieldInfo fieldIsInitializedInParentObject])
+        {
+            formPopulator.formInfo.firstResponder = fieldEditInfo.cell.textField;
+        }
+        
 		[sectionInfo addFieldEditInfo:fieldEditInfo];
 	}
 	
