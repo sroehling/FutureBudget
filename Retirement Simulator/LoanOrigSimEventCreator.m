@@ -57,6 +57,7 @@
 		LoanOrigSimEvent *origEvent = [[[LoanOrigSimEvent alloc] initWithEventCreator:self 
 			andEventDate:[self.loanInfo loanOrigDate] 
 			andLoanInfo:self.loanInfo] autorelease];
+        origEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_LOAN_ORIG;
 		return origEvent;
 	}
 	else

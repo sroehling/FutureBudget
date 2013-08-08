@@ -27,7 +27,7 @@
         self.eventDate = theEventDate;
         self.originatingEventCreator = eventCreator;
 		
-		tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM;
+		tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM; // Default
     }
     return self;
 

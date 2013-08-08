@@ -116,7 +116,7 @@
 			pmtEvent.pmtProcessor = [[[RegularPmtProcessor alloc]init] autorelease];
 		}
 		
-		
+		pmtEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_LOAN_PMT;
 		
 		return pmtEvent;
 	}

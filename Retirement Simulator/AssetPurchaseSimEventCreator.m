@@ -41,6 +41,7 @@
 			AssetPurchaseSimEvent *purchaseEvent = 
 				[[[AssetPurchaseSimEvent alloc]initWithAssetSimInfo:self.assetSimInfo andSimEventCreator:self 
 					andEventDate:[self.assetSimInfo purchaseDate]] autorelease];
+            purchaseEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_ASSET_PURCHASE;
 			return purchaseEvent;
 		}
 		else

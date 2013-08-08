@@ -106,6 +106,7 @@
 			andEventDate:nextDate ] autorelease];
 		contribEvent.acctSimInfo = self.acctSimInfo;
 		contribEvent.contributionAmount = growthAdjustedContributionAmount;
+        contribEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_ACCT_CONTRIB;
 
 		return contribEvent;
 		       

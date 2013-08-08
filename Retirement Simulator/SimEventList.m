@@ -8,6 +8,7 @@
 
 #import "SimEventList.h"
 #import "SimEvent.h"
+#import "DateHelper.h"
 
 
 @implementation SimEventList
@@ -53,24 +54,29 @@
                 nextEventToProcess = candidateEvent;
 				nextEventIndex = eventIndex;
             }
-// TODO - For comparison purposes, need to keep the granularity of the comparison at the day level, then use tie breaking priority.
-            else if([[candidateEvent eventDate] compare:[nextEventToProcess eventDate]] == NSOrderedAscending )
+            
+            // For comparison purposes, keep the granularity of the comparison at the day level,
+            // then use tie breaking priority.
+            
+            else if([DateHelper dateIsLaterWithDayResolution:[nextEventToProcess eventDate]
+                                otherDate:[candidateEvent eventDate]])
             {
-				// The date/time of candidateEvent is sooner than the nextEventToProcess
+  				// The date  of candidateEvent is earlier/sooner than the nextEventToProcess
 				nextEventToProcess = candidateEvent;
-				nextEventIndex = eventIndex;
-             }
-			else if([[candidateEvent eventDate] compare:[nextEventToProcess eventDate]] == NSOrderedSame)
-			{
-				if(candidateEvent.tieBreakPriority > nextEventToProcess.tieBreakPriority)
+				nextEventIndex = eventIndex;              
+            }
+            else if([DateHelper dateIsEqual:[candidateEvent eventDate] otherDate:[nextEventToProcess eventDate]])
+            {
+ 				if(candidateEvent.tieBreakPriority > nextEventToProcess.tieBreakPriority)
 				{
-					// The date/time of candidateEvent is the same as nextEventToProcess,
+					// The date of candidateEvent is the same as nextEventToProcess,
 					// but candidateEvent has a higher tie break priority, so should occur first
 					nextEventToProcess = candidateEvent;
 					nextEventIndex = eventIndex;
 				}
-			}
-			
+               
+            }
+            
 		}
      } // If there's event's left to process
 	if(nextEventToProcess != nil)

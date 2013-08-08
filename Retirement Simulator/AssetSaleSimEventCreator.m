@@ -40,6 +40,7 @@
 				[[[AssetSaleSimEvent alloc]initWithAssetSimInfo:self.assetSimInfo 
 					andSimEventCreator:self 
 					andEventDate:[self.assetSimInfo saleDate]] autorelease];
+            saleEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_ASSET_SALE;
 			return saleEvent;
 		}
 		else

@@ -91,6 +91,49 @@
 	
 }
 
+-(NSDate*)tieBreakDateFromString:(NSString*)dateStrWithHour
+{
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc]init] autorelease];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd-HH"];
+	NSDate *theDate = [dateFormatter dateFromString:dateStrWithHour];
+	assert(theDate != nil);
+	return theDate;
+}
+
+
+- (void)testEventListWithTieBreakAndDayResolution
+{
+	[self.eventList removeAllEvents];
+    
+	[self addEvent:[self tieBreakDateFromString:@"2011-01-01-02"]
+      withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_LOW andLabel:@"D1_PL"];
+
+    // Even if event comes later in the day, it should be normalized to the same day
+    // and the event with higher priority should come first.
+	[self addEvent:[self tieBreakDateFromString:@"2011-01-01-09"]
+      withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_HIGHEST andLabel:@"D1_PH"];
+    
+    // Two event with the same tie break priority should happen on the same day.
+	[self addEvent:[self tieBreakDateFromString:@"2011-01-01-04"]
+      withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_LOW andLabel:@"D1_PL"];
+    
+    // The event with medium priority happens at the same time as the 2nd event
+    // with a low priority, but it should come before both events with low
+    // priority.
+    [self addEvent:[self tieBreakDateFromString:@"2011-01-01-04"]
+      withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM andLabel:@"D1_PM"];
+
+    
+	[self checkNextEvent:@"D1_PH"];
+	[self checkNextEvent:@"D1_PM"];
+	[self checkNextEvent:@"D1_PL"];
+	[self checkNextEvent:@"D1_PL"];
+    
+	[self checkLastEvent];
+	
+}
+
+
 -(void)dealloc
 {
 	[eventList release];

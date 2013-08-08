@@ -41,6 +41,8 @@
 		initWithEventCreator:self andEventDate:theDate] autorelease];
 	transferEvent.transferInfo = self.transferInfo;
 	transferEvent.transferAmount = cashFlowAmount;
+    
+    transferEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_TRANSFER;
 	
 	return transferEvent;
 }

@@ -21,6 +21,7 @@
 {	
 	ExpenseSimEvent *expenseEvent = [[[ExpenseSimEvent alloc]initWithEventCreator:self 
 			andEventDate:theDate andAmount:cashFlowAmount andExpenseInfo:self.expenseInfo] autorelease];
+    expenseEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_EXPENSE;
 
 	return expenseEvent;
 }

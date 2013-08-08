@@ -23,6 +23,8 @@
 			andEventDate:theDate ] autorelease];
 	incomeEvent.incomeInfo = self.incomeInfo;
 	incomeEvent.incomeAmount = cashFlowAmount;
+    
+    incomeEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_INCOME;
 
 	return incomeEvent;
 }

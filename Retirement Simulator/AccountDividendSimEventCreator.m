@@ -38,7 +38,7 @@
 	AccountDividendSimEvent *dividendEvent =
 		[[[AccountDividendSimEvent alloc] initWithEventCreator:self
 			andEventDate:eventDate] autorelease];
-	dividendEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM_LOW;
+	dividendEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_ACCT_DIVIDEND;
 	dividendEvent.acctSimInfo = self.acctSimInfo;
 	
 	

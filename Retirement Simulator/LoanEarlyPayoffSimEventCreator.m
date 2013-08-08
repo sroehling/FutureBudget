@@ -49,6 +49,7 @@
 			LoanEarlyPayoffSimEvent *payoffEvent = [[[LoanEarlyPayoffSimEvent alloc] 
 				initWithLoanInfo:self.loanInfo 
 				andEventCreator:self andEventDate:self.loanInfo.earlyPayoffDate] autorelease];
+            payoffEvent.tieBreakPriority = SIM_EVENT_TIE_BREAK_PRIORITY_LOAN_PMT;
 			return payoffEvent;
 		}
 		else
