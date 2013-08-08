@@ -33,6 +33,7 @@
 @synthesize parentVariableVal;
 @synthesize valRuntimeInfo;
 @synthesize valueChange;
+@synthesize promptForDateWhenFirstEditingStartDate;
 
 -(id)initForValueChange:(DateSensitiveValueChange*)theValueChange
 						   andVariableValRuntimeInfo:(VariableValueRuntimeInfo*)theValRuntimeInfo
@@ -48,6 +49,7 @@
 		self.valueChange = theValueChange;
 		self.valRuntimeInfo = theValRuntimeInfo;
 		self.parentVariableVal = theVarValue;
+        self.promptForDateWhenFirstEditingStartDate = FALSE;
 	}
 	return self;
 }
@@ -78,6 +80,7 @@
 		andDefaultFixedDate:self.valueChange.defaultFixedStartDate 
 			andVarDateRuntimeInfo:varDateInfo andShowEndDates:FALSE
 		andDefaultRelEndDateKey:nil];
+    simDateFieldEditInfo.promptForDateWhenFirstEditing = self.promptForDateWhenFirstEditingStartDate;
 		
 	[formPopulator.currentSection addFieldEditInfo:simDateFieldEditInfo];
 

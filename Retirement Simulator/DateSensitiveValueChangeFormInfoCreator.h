@@ -19,11 +19,13 @@
 		VariableValue *parentVariableVal;
 		VariableValueRuntimeInfo *valRuntimeInfo;
 		DateSensitiveValueChange *valueChange;
+        BOOL promptForDateWhenFirstEditingStartDate; // optional, defaults to FALSE
 }
 
 @property(nonatomic,retain) VariableValue *parentVariableVal;
 @property(nonatomic,retain) VariableValueRuntimeInfo *valRuntimeInfo;
 @property(nonatomic,retain) DateSensitiveValueChange *valueChange;
+@property BOOL promptForDateWhenFirstEditingStartDate;
 
 -(id)initForValueChange:(DateSensitiveValueChange*)theValueChange
 						   andVariableValRuntimeInfo:(VariableValueRuntimeInfo*)theValRuntimeInfo

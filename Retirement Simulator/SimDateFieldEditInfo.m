@@ -40,6 +40,7 @@
 @synthesize defaultRelEndDateFieldInfo;
 @synthesize subtitleFormatter;
 @synthesize parentContextForDateSelection;
+@synthesize promptForDateWhenFirstEditing;
 
 -(void)dealloc
 {
@@ -103,6 +104,8 @@
 		self.dateCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		self.dateCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		[self configureDateCell];
+        
+        self.promptForDateWhenFirstEditing = FALSE;
     }
     return self;
 }
@@ -220,8 +223,21 @@
 
 - (UIViewController*)fieldEditController:(FormContext*)parentContext
 {
-    
-	if([self.defaultValFieldInfo fieldIsInitializedInParentObject])
+ 
+    if(promptForDateWhenFirstEditing || (![self.defaultValFieldInfo fieldIsInitializedInParentObject]))
+    {
+        self.promptForDateWhenFirstEditing = FALSE;
+ 		DateFieldEditViewController *dateController =
+        [[[DateFieldEditViewController alloc] initWithFieldInfo:self.defaultValFieldInfo
+                                         andDataModelController:parentContext.dataModelController] autorelease];
+		dateController.useModalDoneButtonToConfirmDateSelection = TRUE;
+		dateController.onlyFutureDates = FALSE; // TODO - support onlyFutureDates flag
+		dateController.delegate = self;
+		self.parentContextForDateSelection = parentContext;
+		return dateController;
+       
+    }
+	else
 	{
 		SimDateFormInfoCreator *formInfoCreator =
 			[[[SimDateFormInfoCreator alloc] initWithVariableDateFieldInfo:self.fieldInfo 
@@ -235,17 +251,6 @@
 		viewController.loadInEditModeIfAssignedFieldNotSet = TRUE;
 
 		return viewController;
-	}
-	else
-	{	
-		DateFieldEditViewController *dateController =
-			[[[DateFieldEditViewController alloc] initWithFieldInfo:self.defaultValFieldInfo
-			andDataModelController:parentContext.dataModelController] autorelease];
-		dateController.useModalDoneButtonToConfirmDateSelection = TRUE;
-		dateController.onlyFutureDates = FALSE; // TODO - support onlyFutureDates flag
-		dateController.delegate = self;
-		self.parentContextForDateSelection = parentContext;
-		return dateController;
 	}
 
     

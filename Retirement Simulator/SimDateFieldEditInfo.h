@@ -30,6 +30,8 @@
 		SimDateSubtitleFormatter *subtitleFormatter;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
 		FormContext *parentContextForDateSelection;
+    
+        BOOL promptForDateWhenFirstEditing; // optional - defaults to FALSE
 		bool showEndDates;
 }
 
@@ -39,6 +41,7 @@
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 @property(nonatomic,retain) SimDateSubtitleFormatter *subtitleFormatter;
 @property(nonatomic,retain) FormContext *parentContextForDateSelection;
+@property BOOL promptForDateWhenFirstEditing;
 	
 + (SimDateFieldEditInfo*)createForDataModelController:(DataModelController*)dataModelController 
 		andObject:(NSManagedObject*)obj andKey:(NSString*)key andLabel:(NSString*)label andDefaultFixedDate:(FixedDate*)defaultFixedDate andVarDateRuntimeInfo:(SimDateRuntimeInfo*)theVarDateRuntimeInfo 

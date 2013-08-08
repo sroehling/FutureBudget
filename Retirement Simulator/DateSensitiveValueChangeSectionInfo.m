@@ -72,6 +72,7 @@
 	DateSensitiveValueChangeFormInfoCreator *formInfoCreator = 
 		[[[DateSensitiveValueChangeFormInfoCreator alloc] initForValueChange:valueChange 
 		andVariableValRuntimeInfo:variableValRuntimeInfo andParentVariableValue:self.variableVal] autorelease];
+    formInfoCreator.promptForDateWhenFirstEditingStartDate = TRUE;
 
     GenericFieldBasedTableAddViewController *controller = 
 		[[[GenericFieldBasedTableAddViewController alloc] 
