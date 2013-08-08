@@ -24,11 +24,11 @@ Finance
 
 ## Description
 
-FutureBudget helps you plan and forecast your financial future by flexibly evaluating longer term budgeting and/or investing scenarios. FutureBudget will help you gain insights into and critically think about your finances, and will also help you learn about the time-value of money, keeping up with inflation, and other important concepts.
+FutureBudget helps you plan and forecast your financial future by flexibly evaluating longer term budgeting and/or investing scenarios. FutureBudget will help you gain insights into and critically think about your finances, and will also help you learn about the time-value of money, keeping up with inflation, positive cash flow, and other important concepts.
 
 To work with FutureBudget, you input a list of current and future expected incomes, expenses, assets, loans, accounts, and taxes. Each FutureBudget input also has numerous parameters for longer term, detailed budgeting. For example, expenses can occur repeatedly or once, start and stop at any point in the future, or their amounts can change over time. Based upon these inputs, FutureBudget  generates a forecast showing how these assumptions play out over time and with expected inflation.
 
-FutureBudget also lets you start with more general inputs, then add more detail later. For example, a single "expense" can be provided for all monthly bills, then broken into individual expenses later. Similarly, you could start with a single effective tax rate, then provide a detailed tax bracket later.
+FutureBudget also lets you start with more general inputs, then add more detail later. For example, a single "expense" can be provided for all monthly bills, then broken into individual expenses later. Similarly, you could start with a single effective tax rate, then provide a more detailed tax bracket later.
 
 Many financial planning or budgeting apps are based on a fixed set of "canned" inputs. Other apps only work with a single type of input, such as loans. However, FutureBudget is more general purpose and flexible; it lets you dig deeper and provide as many different inputs as needed, and tailor these inputs to your unique assumptions. FutureBudget can then generate a forecast which is more customized and complete. For example, given the appropriate inputs, FutureBudget has the flexibility to evaluate the following:
 
@@ -42,7 +42,7 @@ Many financial planning or budgeting apps are based on a fixed set of "canned" i
 
 FutureBudget is not intended to replace financial apps providing day-by-day tracking of spending, links with bank accounts, etc. However, with its flexibility and emphasis on detailed budgeting assumptions and forecasts, FutureBudget should be an excellent addition to your financial toolbox and a complement to other financial apps.
 
-Some useful FutureBudget features include: 
+Some useful features include:
 
 • Multiple budgets - perfect for learning the app with a "sandbox budget", evaluating a specific financial event in a stand-alone "mini budget", or helping others with budgeting.
 • Multiple scenarios - make changes to input values separately from the main/baseline scenario.
@@ -55,7 +55,7 @@ For more information and examples, be sure to visit the app's web site.
 
 ## Keywords
 
-budget, budgeting, planning, forecast, retirement, simulation, expenses, investment, loans
+budget, budgeting, planning, forecast, modeling, retirement, simulation, expenses, investment, loans
 
 ## Support URL
 
