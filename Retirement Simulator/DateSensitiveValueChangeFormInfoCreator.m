@@ -68,15 +68,12 @@
 	
 	SimDateRuntimeInfo *varDateInfo = [SimDateRuntimeInfo createForDateSensitiveValue:valRuntimeInfo 
 				andVariableValue:self.parentVariableVal];
-    
-    NSString *dateChangeFieldLabel = [NSString stringWithFormat:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL_FORMAT"),
-                                      LOCALIZED_STR(valRuntimeInfo.valueTitleKey)];
-	
+    	
 	SimDateFieldEditInfo *simDateFieldEditInfo = [SimDateFieldEditInfo 
 		createForDataModelController:parentContext.dataModelController 
 		andObject:self.valueChange 
 		andKey:DATE_SENSITIVE_VALUE_CHANGE_START_DATE_KEY
-		andLabel:dateChangeFieldLabel
+		andLabel:LOCALIZED_STR(@"VALUE_CHANGE_VALUE_CHANGE_START_DATE_LABEL")
 		andDefaultFixedDate:self.valueChange.defaultFixedStartDate 
 			andVarDateRuntimeInfo:varDateInfo andShowEndDates:FALSE
 		andDefaultRelEndDateKey:nil];
