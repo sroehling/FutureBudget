@@ -37,6 +37,12 @@
 	return LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_BALANCE_DATA_LABEL");
 }
 
+-(NSString*)dataYearlyUnitLabel
+{
+    return LOCALIZED_STR(@"RESULTS_YEAR_UNIT_LABEL_END_OF_YEAR");
+}
+
+
 -(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
 {
 	return TRUE;

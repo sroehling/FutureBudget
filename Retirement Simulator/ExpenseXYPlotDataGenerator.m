@@ -60,6 +60,12 @@
 		expense.name];
 }
 
+-(NSString*)dataYearlyUnitLabel
+{
+    return LOCALIZED_STR(@"RESULTS_YEAR_UNIT_LABEL_YEARLY_TOTAL");
+}
+
+
 -(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
 {
 	return [simResults.expensesSimulated containsObject:self.expense];

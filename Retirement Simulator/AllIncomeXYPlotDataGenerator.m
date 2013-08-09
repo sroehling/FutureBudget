@@ -42,6 +42,12 @@
 	return LOCALIZED_STR(@"RESULTS_INCOME_ALL_DATA_LABEL");
 }
 
+-(NSString*)dataYearlyUnitLabel
+{
+    return LOCALIZED_STR(@"RESULTS_YEAR_UNIT_LABEL_YEARLY_TOTAL");
+}
+
+
 
 
 @end

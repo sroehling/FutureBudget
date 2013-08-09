@@ -214,7 +214,7 @@
 		// Axes
 		CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
 		CPTXYAxis *x = axisSet.xAxis;
-		x.title = LOCALIZED_STR(@"RESULTS_YEAR_X_AXIS_TITLE");
+		x.title = [self.plotDataGenerator dataYearlyUnitLabel];
 		x.majorIntervalLength = CPTDecimalFromString(@"5");
 		x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(minYRange);
 		x.minorTicksPerInterval = 5;
@@ -468,7 +468,7 @@
 	[self.yearColLabel setFrame:CGRectMake(
 		YEARVAL_RESULTS_CELL_YEAR_LEFT_OFFSET, valueSize.height/2.0 - yearColLabel.frame.size.height/2.0, 
 		YEARVAL_RESULTS_CELL_COLUMN_WIDTH, yearColLabel.frame.size.height)];
-	self.yearColLabel.text = LOCALIZED_STR(@"RESULTS_YEAR_X_AXIS_TITLE");
+	self.yearColLabel.text = [self.plotDataGenerator dataYearlyUnitLabel];
 	self.yearColLabel.textAlignment = NSTextAlignmentCenter;
 
 		

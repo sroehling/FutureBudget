@@ -15,6 +15,7 @@
 
 -(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults;
 -(NSString*)dataLabel;
+-(NSString*)dataYearlyUnitLabel;
 -(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults;
 
 @end

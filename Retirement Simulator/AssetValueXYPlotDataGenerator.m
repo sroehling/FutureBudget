@@ -59,6 +59,12 @@
 		assetInput.name];
 }
 
+-(NSString*)dataYearlyUnitLabel
+{
+    return LOCALIZED_STR(@"RESULTS_YEAR_UNIT_LABEL_END_OF_YEAR");
+}
+
+
 -(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
 {
 	return [simResults.assetsSimulated containsObject:self.assetInput];

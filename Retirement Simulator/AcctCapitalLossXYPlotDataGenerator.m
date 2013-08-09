@@ -41,5 +41,10 @@
 		self.account.name];
 }
 
+-(NSString*)dataYearlyUnitLabel
+{
+    return LOCALIZED_STR(@"RESULTS_YEAR_UNIT_LABEL_YEARLY_TOTAL");
+}
+
 
 @end

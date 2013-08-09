@@ -42,4 +42,9 @@
 	return LOCALIZED_STR(@"RESULTS_NET_WORTH_DATA_LABEL");
 }
 
+-(NSString*)dataYearlyUnitLabel
+{
+    return LOCALIZED_STR(@"RESULTS_YEAR_UNIT_LABEL_END_OF_YEAR");
+}
+
 @end

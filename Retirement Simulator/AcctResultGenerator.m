@@ -50,6 +50,13 @@
 	return nil;
 }
 
+-(NSString*)dataYearlyUnitLabel
+{
+	assert(0); //must be overridden
+	return nil;
+}
+
+
 -(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
 {
 	return [simResults.acctsSimulated containsObject:self.account];
