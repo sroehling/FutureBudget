@@ -924,6 +924,8 @@
 		003F84EF17B1599200977E32 /* FutureBudgetManualUITesting.ods */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureBudgetManualUITesting.ods; sourceTree = "<group>"; };
 		003F84F517B2EFC600977E32 /* AssetSaleDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSaleDateFormatter.h; sourceTree = "<group>"; };
 		003F84F617B2EFC600977E32 /* AssetSaleDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSaleDateFormatter.m; sourceTree = "<group>"; };
+		003F84FF17B58C3400977E32 /* AppScreenShotsDocumentsFolder.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = AppScreenShotsDocumentsFolder.zip; sourceTree = "<group>"; };
+		003F850017B58C5900977E32 /* AppScreenShotsREADME.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = AppScreenShotsREADME.rtf; sourceTree = "<group>"; };
 		003FFA3916D5348200B83067 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		003FFA3A16D5348300B83067 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		003FFA3D16D537CE00B83067 /* InputListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListTableViewController.h; sourceTree = "<group>"; };
@@ -2028,6 +2030,8 @@
 		002E7B65167A2DB100713684 /* App Store */ = {
 			isa = PBXGroup;
 			children = (
+				003F850017B58C5900977E32 /* AppScreenShotsREADME.rtf */,
+				003F84FF17B58C3400977E32 /* AppScreenShotsDocumentsFolder.zip */,
 				00F543951781EB1B007AEC16 /* AppScreenshot1_35inch.png */,
 				00F543961781EB1B007AEC16 /* AppScreenshot1_4inch.png */,
 				00F543941781E6A0007AEC16 /* AppStoreLargeIcon.png */,
