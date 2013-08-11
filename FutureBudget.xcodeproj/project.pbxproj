@@ -926,6 +926,16 @@
 		003F84F617B2EFC600977E32 /* AssetSaleDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSaleDateFormatter.m; sourceTree = "<group>"; };
 		003F84FF17B58C3400977E32 /* AppScreenShotsDocumentsFolder.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = AppScreenShotsDocumentsFolder.zip; sourceTree = "<group>"; };
 		003F850017B58C5900977E32 /* AppScreenShotsREADME.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = AppScreenShotsREADME.rtf; sourceTree = "<group>"; };
+		003F850F17B7D2FD00977E32 /* AppScreenshot5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot5.png; sourceTree = "<group>"; };
+		003F851017B7D2FD00977E32 /* AppScreenshot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot3.png; sourceTree = "<group>"; };
+		003F851117B7D2FD00977E32 /* AppScreenshot4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot4.png; sourceTree = "<group>"; };
+		003F851217B7D2FE00977E32 /* AppScreenshot5_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot5_iPhone5.png; sourceTree = "<group>"; };
+		003F851317B7D2FF00977E32 /* AppScreenshot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot2.png; sourceTree = "<group>"; };
+		003F851417B7D30000977E32 /* AppScreenshot4_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot4_iPhone5.png; sourceTree = "<group>"; };
+		003F851517B7D30000977E32 /* AppScreenshot2_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot2_iPhone5.png; sourceTree = "<group>"; };
+		003F851617B7D30200977E32 /* AppScreenshot3_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot3_iPhone5.png; sourceTree = "<group>"; };
+		003F851717B7D30300977E32 /* AppScreenshot1_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot1_iPhone5.png; sourceTree = "<group>"; };
+		003F851817B7D30300977E32 /* AppScreenshot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppScreenshot1.png; sourceTree = "<group>"; };
 		003FFA3916D5348200B83067 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		003FFA3A16D5348300B83067 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		003FFA3D16D537CE00B83067 /* InputListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputListTableViewController.h; sourceTree = "<group>"; };
@@ -1488,8 +1498,6 @@
 		00F42095137B510A00980A88 /* EventRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventRepeater.h; sourceTree = "<group>"; };
 		00F42096137B510A00980A88 /* EventRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventRepeater.m; sourceTree = "<group>"; };
 		00F543941781E6A0007AEC16 /* AppStoreLargeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppStoreLargeIcon.png; path = ../AppStoreLargeIcon.png; sourceTree = "<group>"; };
-		00F543951781EB1B007AEC16 /* AppScreenshot1_35inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppScreenshot1_35inch.png; path = ../AppScreenshot1_35inch.png; sourceTree = "<group>"; };
-		00F543961781EB1B007AEC16 /* AppScreenshot1_4inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppScreenshot1_4inch.png; path = ../AppScreenshot1_4inch.png; sourceTree = "<group>"; };
 		00FF1926147C0BEF000787B5 /* SimDateSubtitleFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimDateSubtitleFormatter.h; sourceTree = "<group>"; };
 		00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimDateSubtitleFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2030,12 +2038,20 @@
 		002E7B65167A2DB100713684 /* App Store */ = {
 			isa = PBXGroup;
 			children = (
+				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
 				003F850017B58C5900977E32 /* AppScreenShotsREADME.rtf */,
 				003F84FF17B58C3400977E32 /* AppScreenShotsDocumentsFolder.zip */,
-				00F543951781EB1B007AEC16 /* AppScreenshot1_35inch.png */,
-				00F543961781EB1B007AEC16 /* AppScreenshot1_4inch.png */,
+				003F851817B7D30300977E32 /* AppScreenshot1.png */,
+				003F851317B7D2FF00977E32 /* AppScreenshot2.png */,
+				003F851017B7D2FD00977E32 /* AppScreenshot3.png */,
+				003F851117B7D2FD00977E32 /* AppScreenshot4.png */,
+				003F850F17B7D2FD00977E32 /* AppScreenshot5.png */,
+				003F851717B7D30300977E32 /* AppScreenshot1_iPhone5.png */,
+				003F851517B7D30000977E32 /* AppScreenshot2_iPhone5.png */,
+				003F851617B7D30200977E32 /* AppScreenshot3_iPhone5.png */,
+				003F851417B7D30000977E32 /* AppScreenshot4_iPhone5.png */,
+				003F851217B7D2FE00977E32 /* AppScreenshot5_iPhone5.png */,
 				00F543941781E6A0007AEC16 /* AppStoreLargeIcon.png */,
-				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
 			);
 			name = "App Store";
 			path = "Retirement Simulator";
