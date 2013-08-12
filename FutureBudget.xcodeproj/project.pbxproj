@@ -810,6 +810,7 @@
 		0026D45316EA8EDD00922D16 /* AccountWithdrawalOrderInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountWithdrawalOrderInfo.m; sourceTree = "<group>"; };
 		002BE66814698CC9002E6162 /* ItemizedTaxAmts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmts.h; sourceTree = "<group>"; };
 		002BE66914698CC9002E6162 /* ItemizedTaxAmts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmts.m; sourceTree = "<group>"; };
+		002DF9D417B97B330062BC8E /* userGuideHeader.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = userGuideHeader.latex; sourceTree = "<group>"; };
 		002E7B66167A2DD700713684 /* AppStoreInfo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppStoreInfo.md; sourceTree = "<group>"; };
 		002FAE9B14D3111E00AE2B41 /* milestoneDate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = milestoneDate.md; sourceTree = "<group>"; };
 		002FAE9F14D32B3F00AE2B41 /* scenario.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario.md; sourceTree = "<group>"; };
@@ -2178,6 +2179,7 @@
 		0042D4781718AC1B00575E70 /* Self-contained User Guide */ = {
 			isa = PBXGroup;
 			children = (
+				002DF9D417B97B330062BC8E /* userGuideHeader.latex */,
 				0042D4791718AC5500575E70 /* sectionExamples.md */,
 				0042D47A1718AC7900575E70 /* sectionInputs.md */,
 				0042D47B1718ACB100575E70 /* sectionFeatures.md */,

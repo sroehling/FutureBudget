@@ -62,6 +62,3 @@ Using the __Defer Withdrawals__ setting in the [account input][account], Roth IR
 accounts can also be configured with deferred withdrawals. A [milestone date][milestone] 
 can also be setup for the deferred withdrawal date; such a milestone date
 could be shared by other accounts, such as 401Ks] or other Roth IRAs.
-
-### Brokerage Account
-
