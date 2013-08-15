@@ -187,7 +187,7 @@
 	inputs = [parentContext.dataModelController fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME];
 	if([inputs count] > 0)
 	{
-		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_ENABLED_TRANSFER")];
+		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_ENABLED_TRANSFER")];
 		for(TransferInput *transfer in inputs)
 		{
 			[formPopulator populateMultiScenBoolField:transfer.cashFlowEnabled withLabel:transfer.name];
@@ -360,7 +360,7 @@
 		fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME];
 	if([inputs count] > 0)
 	{
-		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_AMOUNTS_TRANSFER")];
+		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_AMOUNTS_TRANSFER")];
 		for(TransferInput *transfer in inputs)
 		{
 			[formPopulator populateMultiScenarioAmount:transfer.amount
@@ -472,7 +472,7 @@
 					fetchObjectsForEntityName:ACCOUNT_ENTITY_NAME];
 	if([inputs count]  > 0)
 	{
-		sectionInfo = [formPopulator
+		[formPopulator
 			nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_RETURN_ACCOUNT_DIVIDEND")];
 	
 		for(Account *acct in inputs)
@@ -569,7 +569,7 @@
 	fetchObjectsForEntityName:TRANSFER_INPUT_ENTITY_NAME];
 	if([inputs count] > 0)
 	{
-		sectionInfo = [formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_TRANSFER")];
+		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_GROWTH_RATE_TRANSFER")];
 		for(TransferInput *transfer in inputs)
 		{
 			[formPopulator populateMultiScenarioGrowthRate:transfer.amountGrowthRate 

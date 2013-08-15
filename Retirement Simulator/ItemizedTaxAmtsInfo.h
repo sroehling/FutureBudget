@@ -39,7 +39,6 @@
 		BOOL itemizeLoanInterest;
 		BOOL itemizeAssetGains;
 		BOOL itemizeAssetLosses;
-		BOOL itemizedTaxesPaid;
 		
 }
 

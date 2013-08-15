@@ -315,14 +315,14 @@
 	assert([StringValidation nonEmptyString:placeholder]);
 	
 	
-	ManagedObjectFieldInfo *fieldInfo = [[ManagedObjectFieldInfo alloc] 
+	ManagedObjectFieldInfo *fieldInfo = [[[ManagedObjectFieldInfo alloc]
               initWithManagedObject:parentObj andFieldKey:valKey andFieldLabel:label
-										 andFieldPlaceholder:placeholder];
-    NumberFieldEditInfo *currencyFieldEditInfo = [[NumberFieldEditInfo alloc] 
+										 andFieldPlaceholder:placeholder] autorelease];
+    NumberFieldEditInfo *currencyFieldEditInfo = [[[NumberFieldEditInfo alloc]
 		initWithFieldInfo:fieldInfo
 		andNumberFormatter:[NumberHelper theHelper].currencyFormatter
 		andValidator:[[[PositiveAmountValidator alloc] init] autorelease]
-		andSubtitle:subTitle];
+		andSubtitle:subTitle] autorelease];
 
 	
 	assert(self.currentSection != nil);

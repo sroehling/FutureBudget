@@ -420,7 +420,7 @@
 		
 	if([inputBacktrace.accountDividendRate count] > 0)
 	{
-		sectionInfo = [formPopulator
+		[formPopulator
 			nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_RETURN_ACCOUNT_DIVIDEND")];
 		for(Account *acct in inputBacktrace.accountDividendRate)
 		{
@@ -432,7 +432,7 @@
 
 	if([inputBacktrace.accountDividendReinvestPercent count] > 0)
 	{
-		sectionInfo = [formPopulator
+		[formPopulator
 			nextSectionWithTitle:LOCALIZED_STR(@"WHAT_IF_ACCOUNT_DIVIDENT_REINVEST_PERCENT")];
 		for(Account *acct in inputBacktrace.accountDividendReinvestPercent)
 		{

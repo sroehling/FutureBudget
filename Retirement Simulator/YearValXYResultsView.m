@@ -83,7 +83,7 @@
 			[UIImage imageNamed:@"bar-graph-icon"],
 			[UIImage imageNamed:@"results-table-icon"], 
 			nil]; 
-		self.resultsTypeSelection =[[UISegmentedControl alloc] initWithItems:itemArray]; 
+		self.resultsTypeSelection =[[[UISegmentedControl alloc] initWithItems:itemArray] autorelease];
 		self.resultsTypeSelection.tintColor = [UIColor darkGrayColor];
 		self.resultsTypeSelection.frame = CGRectMake(0,0,100,YEARXYVAL_RESULTS_TYPE_SELECTOR_HEIGHT); 
 		self.resultsTypeSelection.segmentedControlStyle =UISegmentedControlStyleBar; 
@@ -157,7 +157,7 @@
 
 
 		// Create graph from theme
-		CPTXYGraph *graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+		CPTXYGraph *graph = [[[CPTXYGraph alloc] initWithFrame:CGRectZero] autorelease];
 		CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
 		[graph applyTheme:theme];
 		graphView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
