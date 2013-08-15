@@ -25,7 +25,7 @@ extern NSString * const DATE_SENSITIVE_VALUE_CHANGE_NEW_VALUE_KEY;
 }
 @property (nonatomic, retain) SimDate * startDate;
 @property(nonatomic,retain) FixedDate *defaultFixedStartDate;
-@property (nonatomic, retain) NSNumber * newValue;
+@property (nonatomic, retain) NSNumber * valueAfterChange;
 
 // Inverse property
 @property (nonatomic, retain) VariableValue * variableValueValueChange;

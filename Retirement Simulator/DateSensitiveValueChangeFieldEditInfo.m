@@ -31,7 +31,7 @@
 {
 	self.valChangeCell.caption.text = 
 		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate.date];
-	self.valChangeCell.valueDescription.text = [[NumberHelper theHelper] displayStrFromStoredVal:self.valChange.newValue andFormatter:self.varValInfo.valueFormatter];;
+	self.valChangeCell.valueDescription.text = [[NumberHelper theHelper] displayStrFromStoredVal:self.valChange.valueAfterChange andFormatter:self.varValInfo.valueFormatter];;
 
 }
 
@@ -79,7 +79,7 @@ andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewContr
 
 - (NSString*)detailTextLabel
 {
-	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:self.valChange.newValue andFormatter:self.varValInfo.valueFormatter];
+	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:self.valChange.valueAfterChange andFormatter:self.varValInfo.valueFormatter];
 	return [NSString stringWithFormat:@"%@ - %@",
 			[self.varValInfo.valueFormatter stringFromNumber:displayVal],
 			[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate.date] ];

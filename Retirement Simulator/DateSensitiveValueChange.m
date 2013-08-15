@@ -17,7 +17,7 @@ NSString * const DATE_SENSITIVE_VALUE_CHANGE_NEW_VALUE_KEY = @"newValue";
 @implementation DateSensitiveValueChange
 @dynamic startDate;
 @dynamic defaultFixedStartDate;
-@dynamic newValue;
+@dynamic valueAfterChange;
 
 // Inverse property
 @dynamic variableValueValueChange;

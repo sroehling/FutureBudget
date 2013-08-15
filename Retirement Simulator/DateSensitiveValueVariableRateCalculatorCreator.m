@@ -94,7 +94,7 @@
 	for(DateSensitiveValueChange *valChange in variableVal.valueChanges)
 	{
 		NSTimeInterval secondsVsStart = [valChange.startDate.date timeIntervalSinceDate:self.startDate];
-		annualRate = [self adjustedAnnualRate:valChange.newValue];
+		annualRate = [self adjustedAnnualRate:valChange.valueAfterChange];
 		[intermediateRates addObject:[[[IntermediateVariableRate alloc]
 			initWithAnnualRate:annualRate andSecondsVsStart:secondsVsStart] autorelease]];		
 	}

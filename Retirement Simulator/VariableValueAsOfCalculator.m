@@ -50,7 +50,7 @@
 		{		
 			// theAsOfDate is after (or the same as) the date on the value change
 			// (i.e., the value change happens before theAsOfDate)
-			currVal = valChange.newValue;
+			currVal = valChange.valueAfterChange;
 		}
 		else
 		{

@@ -69,7 +69,7 @@
 	fixedStartDate.date = dateObj;
 	
 	valChange.startDate = fixedStartDate;
-	valChange.newValue = [NSNumber numberWithDouble:val];
+	valChange.valueAfterChange = [NSNumber numberWithDouble:val];
 	return valChange;
 }
 
