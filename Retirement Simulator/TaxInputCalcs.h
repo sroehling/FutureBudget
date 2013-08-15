@@ -28,5 +28,6 @@
 	andLastDayOfTaxYear:(NSDate*)lastDayOfTaxYear;
 -(void)processDailyTaxPmts:(DigestEntryProcessingParams*)processingParams;
 
+-(BOOL)taxesInputsExist;
 
 @end

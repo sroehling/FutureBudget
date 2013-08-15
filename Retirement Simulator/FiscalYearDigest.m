@@ -256,8 +256,14 @@
 	
 	NSDate *currentDate = self.currentYearDigestStartDate;
 	
+    // Setup a date for comparing for comparing against to stop the digest
+    // processing for the current year. The method 'timeIntervalSinceDate' will
+    // return < 0 while the currentDate has not advanced into the next year. This
+    // turned out to be about 50% more efficient than using the DateHelper methods.
+    NSDate *beginningOfNextDigestYear = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
+    
 	int currDayIndex=0;
-	while([DateHelper sameYear:currentDate otherDate:self.currentYearDigestStartDate])
+    while([currentDate timeIntervalSinceDate:beginningOfNextDigestYear] < 0)
 	{
 		// Advance all the balances through the current day. This ensures any outstanding
 		// interest is accrued.
@@ -325,7 +331,17 @@
 	// However, as this information can't be summed up until the end of the year, the
 	// first pass includes an effectiveTaxRate of 0%. At the end of the first pass, the 
 	// effectieTaxRates are updated to include this information.
-	[self processDigest];
+	EndOfYearDigestResult *firstPassResults = [self processDigest];
+    
+    if(![self.simParams.taxInputCalcs taxesInputsExist])
+    {
+        // The only reason (at this time) of doing 3 passes of digest processing
+        // is to support a heuristic for progressively updating the effective tax
+        // rate for processing the daily tax payments (see [self processDigest])
+        // So, if no taxes have been defined, the first pass results can be returned,
+        // resulting in a performance improvement.
+        return firstPassResults;
+    }
 
 	//-------------------------------------------------------------------------------------
 	// In the second pass, an effectiveTaxRate based upon the sum of everything in the 

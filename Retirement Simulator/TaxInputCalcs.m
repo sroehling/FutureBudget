@@ -61,6 +61,11 @@
 	}
 }
 
+-(BOOL)taxesInputsExist
+{
+    return (self.taxInputCalcs.count > 0)?TRUE:FALSE;
+}
+
 -(void)dealloc
 {
 	[taxInputCalcs release];
