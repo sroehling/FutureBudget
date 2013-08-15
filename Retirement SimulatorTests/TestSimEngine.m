@@ -94,6 +94,7 @@
 #import "MultiScenarioGrowthRate.h"
 #import "CashFlowXYPlotDataGenerator.h"
 #import "CumulativeCashFlowXYPlotDataGenerator.h"
+#import "TotalDebtXYPlotDataGenerator.h"
 
 @implementation TestSimEngine
 
@@ -5586,6 +5587,123 @@
 	[self checkPlotData:cashFlowData withSimResults:simResults andExpectedVals:expected andLabel:@"cash flow loan down payment" withAdjustedVals:FALSE];
 	
 }
+
+
+-(void)testTotalDebtAndLoanPaymentsSubtractFromDeficit
+{
+	[self resetCoredData];
+    
+    // This test is primarily intended to test the Total Debt data. However, part of the test also
+    // draws down the money received from loan origination, then ensures that loan payments trigger the
+    // accrual of a deficit.
+    
+    
+    self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:0.0];
+	
+	self.testAppVals.deficitInterestRate = [inputCreationHelper fixedValueForValue:0.0];
+
+    
+	LoanInputTypeSelctionInfo *loanCreator =
+    [[[LoanInputTypeSelctionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                             andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+	
+	// In this test, we create a 0% interest loan over 36 months. This tests that the values
+	// given as input to the loan carry through properly to the end results. Testing of loans
+	// with interest is done in separate unit tests.
+    
+	LoanInput *loan01 = (LoanInput*)[loanCreator createInput];
+	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360.0];
+	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+    
+    
+	LoanInput *loan02 = (LoanInput*)[loanCreator createInput];
+	loan02.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
+	loan02.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
+	loan02.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+	loan02.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+    
+
+     ExpenseInputTypeSelectionInfo *expenseCreator =
+     [[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+     andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+    
+    // When the loans first originate, the money will be deposited into the Cash balance.
+    // Unless we spend the loan money on something, the cash balance will be used to pay the loan payments,
+    // instead of running a deficit. So, expense01 is designed to spend the loan origination right away. 
+     ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+     expense01.amount = [inputCreationHelper multiScenAmountWithDefault:1080.0]; // = 720 + 360
+     expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-16"]];
+     expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
+     expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+    
+    
+    // After using expense01 to draw down the cash balance accrued from originating the loans, every loan payment
+    // will increase the deficit by the same amount of the loan payment, so the total debt when summing the deficit
+    // and all loan balances will remain constant. By introducing income01, the accrued deficit will be paid
+    // down by $100/year, so the total debt should also decrease by this amount.
+    IncomeInputTypeSelectionInfo *incomeCreator =
+    [[[IncomeInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                                andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+    
+	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
+	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-6-15"]];
+	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+
+    
+    
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+
+    
+    // loan01 has a $10/month payment, and loan02 has a $20/month payment
+    // Yearly payments: loan01=$120, loan02=$240, so loan debt decreases by $360 each year (except for the first year, which only has 11 pmts).
+    // Expected: balances: loan01=250, loan02=500
+    AllLoanBalanceXYPlotDataGenerator *allLoansData = [[[AllLoanBalanceXYPlotDataGenerator alloc] init] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:750.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:390.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:30.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:allLoansData withSimResults:simResults andExpectedVals:expected andLabel:@"all loans" withAdjustedVals:FALSE];
+
+    
+    DeficitBalXYPlotDataGenerator *deficitData= [[[DeficitBalXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:230.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:490.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:750.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:680.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:580.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    
+	[self checkPlotData:deficitData withSimResults:simResults andExpectedVals:expected andLabel:@"deficit balances" withAdjustedVals:FALSE];
+
+    
+	TotalDebtXYPlotDataGenerator *totalDebtData = [[[TotalDebtXYPlotDataGenerator alloc] init] autorelease];
+	expected = [[[NSMutableArray alloc]init]autorelease];
+    
+    // See the commment above regarding income01 - Basically, the overall debt will decrease by $100 each year,
+    // since the loan payments are accruing a deficit in the same amount as the payment, but income01 reduces the
+    // deficit by $100/year (e.g., otherwise, in 2012, the total debt would be $1080, which is the total originating
+    // loan balance).
+ 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:980.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:880.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:780.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:680.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:580.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:totalDebtData withSimResults:simResults andExpectedVals:expected andLabel:@"total debt" withAdjustedVals:FALSE];
+	
+
+}
+
 
 
 @end

@@ -441,6 +441,7 @@
 		00AF85FA1499314200AE734B /* YearValPlotDataVal.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF85F91499314000AE734B /* YearValPlotDataVal.m */; };
 		00AF85FE149A6C5700AE734B /* CashBalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF85FD149A6C5300AE734B /* CashBalXYPlotDataGenerator.m */; };
 		00AF8601149A81DA00AE734B /* DeficitBalXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8600149A81D200AE734B /* DeficitBalXYPlotDataGenerator.m */; };
+		00B4468617BD47CC00093381 /* TotalDebtXYPlotDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4468517BD47CB00093381 /* TotalDebtXYPlotDataGenerator.m */; };
 		00BC35BE140C588300D79F78 /* YearlySimEventCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35BD140C588300D79F78 /* YearlySimEventCreator.m */; };
 		00BC35C8140D42DD00D79F78 /* SimEventList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35C7140D42DD00D79F78 /* SimEventList.m */; };
 		00BC35CB140DA3B600D79F78 /* EventListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BC35CA140DA3B600D79F78 /* EventListTest.m */; };
@@ -1342,6 +1343,8 @@
 		00AF85FD149A6C5300AE734B /* CashBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashBalXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00AF85FF149A81CA00AE734B /* DeficitBalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeficitBalXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		00AF8600149A81D200AE734B /* DeficitBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeficitBalXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00B4468417BD47CB00093381 /* TotalDebtXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalDebtXYPlotDataGenerator.h; sourceTree = "<group>"; };
+		00B4468517BD47CB00093381 /* TotalDebtXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalDebtXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00BC35BC140C588300D79F78 /* YearlySimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearlySimEventCreator.h; sourceTree = "<group>"; };
 		00BC35BD140C588300D79F78 /* YearlySimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearlySimEventCreator.m; sourceTree = "<group>"; };
 		00BC35C6140D42DD00D79F78 /* SimEventList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEventList.h; sourceTree = "<group>"; };
@@ -3088,6 +3091,8 @@
 				00C012AC178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m */,
 				00C012AE179061AB003269D5 /* RelativeNetWorthXYPlotDataGenerator.h */,
 				00C012AF179061AB003269D5 /* RelativeNetWorthXYPlotDataGenerator.m */,
+				00B4468417BD47CB00093381 /* TotalDebtXYPlotDataGenerator.h */,
+				00B4468517BD47CB00093381 /* TotalDebtXYPlotDataGenerator.m */,
 			);
 			name = "Results Data Generators";
 			sourceTree = "<group>";
@@ -3936,6 +3941,7 @@
 				00C012AD178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m in Sources */,
 				00C012B0179061AB003269D5 /* RelativeNetWorthXYPlotDataGenerator.m in Sources */,
 				003F84F717B2EFC600977E32 /* AssetSaleDateFormatter.m in Sources */,
+				00B4468617BD47CC00093381 /* TotalDebtXYPlotDataGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

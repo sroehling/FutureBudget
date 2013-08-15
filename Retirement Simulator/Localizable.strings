@@ -728,7 +728,7 @@
 "RESULTS_YEAR_UNIT_LABEL_YEARLY_TOTAL" = "Yearly Total";
 "RESULTS_SUMMARY_SECTION_TITLE" = "Summary";
 "RESULTS_SUMMARY_NET_WORTH_TITLE" = "Net Worth";
-"RESULTS_SUMMARY_NET_WORTH_SUBTITLE" = "Plot total assets and account balances minus debts.";
+"RESULTS_SUMMARY_NET_WORTH_SUBTITLE" = "Total assets and account balances minus debts.";
 "RESULTS_SUMMARY_RELATIVE_NET_WORTH_TITLE" = "Relative Net Worth";
 "RESULTS_SUMMARY_RELATIVE_NET_WORTH_SUBTITLE" = "Change in net worth from year to year.";
 "RESULTS_SUMMARY_CASH_FLOW_TITLE" = "Cash Flow";
@@ -736,16 +736,21 @@
 "RESULTS_SUMMARY_CUMULATIVE_CASH_FLOW_TITLE" = "Cumulative Cash Flow";
 "RESULTS_SUMMARY_CUMULATIVE_CASH_FLOW_SUBTITLE" = "For all inputs, money received minus money spent, and summed up over time.";
 
+"RESULTS_SUMMARY_TOTAL_DEBT_DATA_LABEL" = "Total Debt";
+"RESULTS_SUMMARY_TOTAL_DEBT_TITLE" = "Total Debt";
+"RESULTS_SUMMARY_TOTAL_DEBT_SUBTITLE" = "Sum of loan balances and deficit.";
+
+
 "RESULTS_ASSET_SECTION_TITLE" = "Asset Values";
 "RESULTS_ASSET_ALL_ASSET_TITLE" = "All Assets";
 "RESULTS_ASSETS_ALL_ASSET_DATA_LABEL" = "All Asset Values";
 "RESULTS_ASSET_DATA_LABEL_FORMAT" = "Asset Value - %@";
-"RESULTS_ASSET_ALL_ASSET_SUBTITLE" = "Plot the total value of all purchased assets";
+"RESULTS_ASSET_ALL_ASSET_SUBTITLE" = "Total value of all purchased assets";
 "RESULTS_LOAN_ALL_BALANCES_DATA_LABEL" = "All Loan Balances";
 "RESULTS_LOAN_BALANCE_DATA_LABEL_FORMAT" = "Loan Balance - %@";
 "RESULTS_LOAN_SECTION_TITLE" = "Loan Balances";
 "RESULTS_LOAN_ALL_LOAN_TITLE" = "All Loans";
-"RESULTS_LOAN_ALL_LOAN_SUBTITLE" = "Plot the outstanding balances of all loans";
+"RESULTS_LOAN_ALL_LOAN_SUBTITLE" = "Total outstanding balances of all loans";
 "RESULTS_ADJUSTED_FOR_INFLATION_FOOTER" = "Results adjusted for inflation";
 "RESULTS_NOT_ADJUSTED_FOR_INFLATION_FOOTER" = "Results not adjusted for inflation";
 
@@ -753,7 +758,7 @@
 "RESULTS_ACCT_ALL_ACCT_BALANCE_DATA_LABEL" = "All Account Balances";
 "RESULTS_ACCT_BALANCE_DATA_LABEL_FORMAT" = "Account Balance - %@";
 "RESULTS_ACCT_ALL_ACCT_TITLE" = "All Accounts";
-"RESULTS_ACCT_ALL_ACCT_SUBTITLE" = "Plot the outstanding balances for all accounts";
+"RESULTS_ACCT_ALL_ACCT_SUBTITLE" = "Total outstanding balances for all accounts";
 
 "RESULTS_ACCT_CONTRIB_SECTION_TITLE" = "Account Contributions";
 "RESULTS_ACCT_ALL_ACCT_CONTRIB_DATA_LABEL" = "All Account Contributions";
@@ -774,12 +779,12 @@
 "RESULTS_INCOME_ALL_DATA_LABEL" = "All Incomes";
 "RESULTS_INCOME_DATA_LABEL_FORMAT" = "Income - %@";
 "RESULTS_INCOME_ALL_INCOME_TITLE" = "All Incomes";
-"RESULTS_INCOME_ALL_INCOME_SUBTITLE" = "Plot yearly gross income from all sources";
+"RESULTS_INCOME_ALL_INCOME_SUBTITLE" = "Yearly income from all sources";
 "RESULTS_EXPENSE_SECTION_TITLE" = "Expenses";
 "RESULTS_EXPENSES_ALL_DATA_LABEL" = "All Expenses";
 "RESULTS_EXPENSES_DATA_LABEL_FORMAT" = "Expense - %@";
 "RESULTS_EXPENSE_ALL_EXPENSE_TITLE" = "All Expenses";
-"RESULTS_EXPENSE_ALL_EXPENSE_SUBTITLE" = "Plot yearly total expenses";
+"RESULTS_EXPENSE_ALL_EXPENSE_SUBTITLE" = "Total yearly expenses";
 
 "RESULTS_CASH_BALANCE_DATA_LABEL" = "Cash";
 "RESULTS_CASH_BALANCE_TITLE" = "Cash";
@@ -792,7 +797,7 @@
 "RESULTS_TAXES_SECTION_TITLE" = "Taxes";
 "RESULTS_TAXES_ALL_TAXES_PAID_DATA_LABEL" = "All Taxes";
 "RESULTS_TAXES_ALL_TAXES_TITLE" = "All Taxes";
-"RESULTS_TAXES_ALL_TAXES_SUBTITLE" = "Plot all taxes paid";
+"RESULTS_TAXES_ALL_TAXES_SUBTITLE" = "Yearly total of all taxes paid";
 "RESULTS_TAXES_PAID_DATA_LABEL_FORMAT" = "Taxes - %@";
 
 "MORE_VIEW_TITLE" = "More";

@@ -46,6 +46,7 @@
 #import "YearValXYPlotDataGenerator.h"
 #import "CumulativeCashFlowXYPlotDataGenerator.h"
 #import "RelativeNetWorthXYPlotDataGenerator.h"
+#import "TotalDebtXYPlotDataGenerator.h"
 
 #import "MBProgressHUD.h"
 
@@ -177,6 +178,11 @@
 				andContentDescription:nil
 				andSubViewFactory:cashBalViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:cashBalFieldEditInfo];
+        
+        [self populateXYPlotDataResults:formPopulator
+                   andPlotDataGenerator:[[[TotalDebtXYPlotDataGenerator alloc] init] autorelease]
+                        andResultsTitle:LOCALIZED_STR(@"RESULTS_SUMMARY_TOTAL_DEBT_TITLE")
+                     andResultsSubtitle:LOCALIZED_STR(@"RESULTS_SUMMARY_TOTAL_DEBT_SUBTITLE")];
 
 		ResultsViewInfo *deficitBalViewInfo = [[[ResultsViewInfo alloc] 
 			initWithSimResultsController:simResultsController 
