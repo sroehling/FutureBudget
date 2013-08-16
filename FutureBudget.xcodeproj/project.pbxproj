@@ -1434,6 +1434,8 @@
 		00DC49F914D73F40006BDF61 /* variableValueChange.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueChange.md; sourceTree = "<group>"; };
 		00DC49FE14D8820F006BDF61 /* DateSensitiveValueChangeFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFormInfoCreator.h; sourceTree = "<group>"; };
 		00DC49FF14D88217006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeFormInfoCreator.m; sourceTree = "<group>"; };
+		00DD853817BE97880048A162 /* AppStoreReleaseChecklist.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppStoreReleaseChecklist.md; sourceTree = "<group>"; };
+		00DD853917BE9CA90048A162 /* ReleaseManifest.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = ReleaseManifest.md; path = ../ReleaseManifest.md; sourceTree = "<group>"; };
 		00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestTest.h; sourceTree = "<group>"; };
 		00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestTest.m; sourceTree = "<group>"; };
 		00E533E714E9635C005C6F6F /* DefaultScenarioFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultScenarioFieldEditInfo.h; sourceTree = "<group>"; };
@@ -2042,20 +2044,11 @@
 		002E7B65167A2DB100713684 /* App Store */ = {
 			isa = PBXGroup;
 			children = (
-				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
-				003F850017B58C5900977E32 /* AppScreenShotsREADME.rtf */,
-				003F84FF17B58C3400977E32 /* AppScreenShotsDocumentsFolder.zip */,
-				003F851817B7D30300977E32 /* AppScreenshot1.png */,
-				003F851317B7D2FF00977E32 /* AppScreenshot2.png */,
-				003F851017B7D2FD00977E32 /* AppScreenshot3.png */,
-				003F851117B7D2FD00977E32 /* AppScreenshot4.png */,
-				003F850F17B7D2FD00977E32 /* AppScreenshot5.png */,
-				003F851717B7D30300977E32 /* AppScreenshot1_iPhone5.png */,
-				003F851517B7D30000977E32 /* AppScreenshot2_iPhone5.png */,
-				003F851617B7D30200977E32 /* AppScreenshot3_iPhone5.png */,
-				003F851417B7D30000977E32 /* AppScreenshot4_iPhone5.png */,
-				003F851217B7D2FE00977E32 /* AppScreenshot5_iPhone5.png */,
 				00F543941781E6A0007AEC16 /* AppStoreLargeIcon.png */,
+				00DD853217BE95C70048A162 /* Screen Shots */,
+				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
+				00DD853817BE97880048A162 /* AppStoreReleaseChecklist.md */,
+				00DD853917BE9CA90048A162 /* ReleaseManifest.md */,
 			);
 			name = "App Store";
 			path = "Retirement Simulator";
@@ -3225,6 +3218,25 @@
 				00590A571745438D00BBF045 /* relEndDateDeferPmt.md */,
 			);
 			name = "Simulation Dates";
+			sourceTree = "<group>";
+		};
+		00DD853217BE95C70048A162 /* Screen Shots */ = {
+			isa = PBXGroup;
+			children = (
+				003F850017B58C5900977E32 /* AppScreenShotsREADME.rtf */,
+				003F84FF17B58C3400977E32 /* AppScreenShotsDocumentsFolder.zip */,
+				003F851817B7D30300977E32 /* AppScreenshot1.png */,
+				003F851317B7D2FF00977E32 /* AppScreenshot2.png */,
+				003F851017B7D2FD00977E32 /* AppScreenshot3.png */,
+				003F851117B7D2FD00977E32 /* AppScreenshot4.png */,
+				003F850F17B7D2FD00977E32 /* AppScreenshot5.png */,
+				003F851717B7D30300977E32 /* AppScreenshot1_iPhone5.png */,
+				003F851517B7D30000977E32 /* AppScreenshot2_iPhone5.png */,
+				003F851617B7D30200977E32 /* AppScreenshot3_iPhone5.png */,
+				003F851417B7D30000977E32 /* AppScreenshot4_iPhone5.png */,
+				003F851217B7D2FE00977E32 /* AppScreenshot5_iPhone5.png */,
+			);
+			name = "Screen Shots";
 			sourceTree = "<group>";
 		};
 		00E9ADDB16DD1EBF00128579 /* Taxes */ = {
