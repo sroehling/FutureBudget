@@ -25,15 +25,16 @@
 
 9. Create a Release Build
 
-  1. In the project settings and in the "Code Signing" section, set the "Code Signing Identity" to "iPhone Distribution: Resultra, LLC".
+  1. Clean the build folder - In Xcode, with the option key pressed, select "Product->Clean" from the menu.
 
-     In the 'Code Signing Identity' section of the Build Settings,
-     select "Automatic Profile Selector - iPhone Distribution".
-     This should set the iPhone distribution to match:
-     
-        iPhone Distribution:Resultra LLC' in 'MailShredder App Store Distribution'
+  2. In the build scheme, make sure "FutureBudget > iOS Device" is selected. Otherwise, the Archive menu items will likely be greyed out.
+  
+  3. Edit the Build Settings for the Project and the Target(s) to use the Distribution code signing. In the code signing section, change the settings for the release build to Distribution.
+  
+  4. In XCode, select "Product -> Archive". XCode should build the archive and create an entry for it in Organizer.
 
-  2. From the organizer, open the archive in the finder. Drag the 
+
+  5. From the Organizer, open the archive in the finder (right click and show package contents). Drag the 
      app to a console window to run the following commands:
      
      codesign -dvvv /path/to/MyGreatApp.app
@@ -46,8 +47,7 @@
      app. Run both commands on the previous version of the app
      to confirm the information is the same.
 
-  3. In XCode, select the project, right click and select "Discard Changes". This will have the effect of reverting the Code Signing back to "iPhone Developer" (Note: there's an open issue to add a "Distribution" target so this isn't necessary, see: https://trello.com/c/3hbwuGMq)
-
+   6. Discard the build settings set in step 3.
 
 10. Validate the Release Build
 
@@ -61,20 +61,32 @@
      which is testing the update to ensure backward compatibility has been preserved.
 
 11. Within the Xcode organizer, validate and distribute/submit the archive for the App Store.
-  
 
-12. Using git, tag the app's project code with the version number
+13. From the archive released build, create an IPA for final testing.
+
+  1. In the Organizer, select the archive, and press the "Distribute..." button.
+  2. Select the "Save for Enterprise or Ad-hoc deployment" option.
+  3. Sign with the Development certificate.
+  4. Save in the folder /Users/sroehling/Development/ReleasedAppIPAs with a name like "FutureBudget-1.0.RC1".
+  
+14. Test with the release build.
+
+  1. Add the final testing IPA created above to iTunes. This is done with the "File->Add to Library..." command within iTunes, and selecting the appropriate IPA file.
+  2. Install on the device via iTunes. This will replicate how the app will be installed from the App store. After adding the IPA to the library. This is done by re-synching the device with iTunes (e.g., via the "Apply" button).
+  3. Perform the manual UI testing steps as described above.
+  
+15. Using git, tag the app's project code with the version number
    (substituting appropriate version number, instead of "1.0.1"): e.g.:
 
     cd /Users/sroehling/Development/Workspace/Retirement\ Simulator
-	git tag -a v1.0.1 -m "Version 1.0.1 submitted for approval"
+	git tag -a v1.0.RC1 -m "Version 1.0.RC1 submitted for approval"
 	
-13. Using git, tag any libraries changed alongside the project code 
-   (substituting appropriate numbers for MailShredder and library code, instead of 1.4 and 1.0.1): e.g.:
+16. Using git, tag any libraries changed alongside the project code 
+   (substituting appropriate numbers for MailShredder and library code, instead of 1.7 and 1.0.RC1): e.g.:
 
     cd /Users/sroehling/Development/Workspace/ResultraGenericLib
-	git tag -a v1.4 -m "Version Released with v1.0.1 of MailShredder"
+	git tag -a v1.7 -m "Version build into FutureBudget 1.0.RC1"
 	
-14. Create an off-site backup of the current source code tree, including library code.
+17. Create an off-site backup of the current source code tree, including library code.
 
-15. Create an off-site backup of the archives used to build the project.
+18. Create an off-site backup of the archives used to build the project.
