@@ -45,7 +45,7 @@
 <!-- Startup (simulation setup) -->
 [deficit]:#deficits
 [cash]:#starting-cash-balance
-[resultsTimeFrame]:resultsTimeFrame.html
+[resultsTimeFrame]:#forecast-time-frame
 [currentBal]:#current-account-balances
 [currentAssetVals]:#current-asset-value
 [outstandingLoanBal]:#outstanding-loan-balance

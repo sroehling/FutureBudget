@@ -1,6 +1,6 @@
 ## Variable Interest Rate
 
-Interest rates can remain [fixed][fixedInterest] or change over time. Variable [loan][loan] interest rates 
+Interest rates can remain fixed or change over time. Variable [loan][loan] interest rates 
 are used when the interest rate is expected
 to change over time. For example, a variable interest rate can be used for an adjustable rate mortgage (ARM) used to [purchase a new home][exampleHomeOwnership].
 
