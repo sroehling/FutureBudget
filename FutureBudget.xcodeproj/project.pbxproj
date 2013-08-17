@@ -4040,7 +4040,11 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/..\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../ResultraGenericLib/\"/**",
+					"\"$(SRCROOT)\"/**",
+					"\"$(SRCROOT)/../CorePlot_0.4\"/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "";
 				"OTHER_LDFLAGS[arch=*]" = (
@@ -4061,7 +4065,11 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/..\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../ResultraGenericLib/\"/**",
+					"\"$(SRCROOT)\"/**",
+					"\"$(SRCROOT)/../CorePlot_0.4\"/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
