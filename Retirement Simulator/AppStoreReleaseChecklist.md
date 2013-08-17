@@ -33,8 +33,9 @@
   
   4. In XCode, select "Product -> Archive". XCode should build the archive and create an entry for it in Organizer.
 
+  5. Add a comment to the Archive in the Organizer, such as "Version 1.0.RC1 submitted to App Store".
 
-  5. From the Organizer, open the archive in the finder (right click and show package contents). Drag the 
+  6. From the Organizer, open the archive in the finder (right click and show package contents). Drag the 
      app to a console window to run the following commands:
      
      codesign -dvvv /path/to/MyGreatApp.app
@@ -47,7 +48,7 @@
      app. Run both commands on the previous version of the app
      to confirm the information is the same.
 
-   6. Discard the build settings set in step 3.
+   7. Discard the build settings set in step 3. Right-click on the build file and select "Source Control->Discard Changes".
 
 10. Validate the Release Build
 
