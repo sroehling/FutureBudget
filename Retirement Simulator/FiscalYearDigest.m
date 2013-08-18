@@ -201,6 +201,13 @@
 	
 	results.cashFlow = sumCashFlow;
 	
+    // A way to think about inflation is that the price of things go up 5% each year. Or in other words if you could
+    // buy something with $100, it will cost $105 after
+    // the first year, $110.25 the second, etc. The original amount would only be worth a fraction of the original value.
+    // To do the inflation adjustment, we can normalize to a single dollar and determine what something that previously
+    // cost a dollar would cost with inflation; i.e. futureValueMultiplier. The fraction to be mutliplied by any amount is thus
+    // 1.0/futureValueMultiplier.
+    
 	double futureValueMultiplier = [self.adjustValueForInflationCalculator  
 		valueMultiplierBetweenStartDate:self.simParams.simStartDate andEndDate:results.endDate];
 	assert(futureValueMultiplier > 0.0);

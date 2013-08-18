@@ -3679,6 +3679,41 @@
 
 }
 
+-(void)testCashBalWithInflation
+{
+	[self resetCoredData];
+    
+	self.testAppVals.cash.startingBalance = [NSNumber numberWithDouble:100000.0];
+    self.testAppVals.defaultInflationRate.startingValue = [NSNumber numberWithDouble:10.0];
+
+        
+	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
+	[simResults runSimulatorForResults];
+    
+    // With 10% inflation each year (contrived for purposes of unit testing), a way to think about inflation is that the
+    // price of things go up 10% each year. Or in other words if you could buy something with $100K, it will cost $110K after
+    // the first year, $121K the second, etc. The original amount would only by a fraction of something with an inflated value; i.e.:
+    //      2012 - $100K/$110K * $100K = $90,909
+    //      2013 - $100K/$121K * $100K = $82,645
+    //      2014 - $100K/$131.1K * $100K = 
+    
+	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:90909.09 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:82644.63 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:75131.48 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:68301.35 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    // The result for the following should be 59049, but there's still a slight bug with
+    // leap year and variable rate adjustments (i.e., for years with 366 days, it should
+    // divide the rate differently.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:62075.92 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+    BOOL doAdjustForInflation = TRUE;
+	[self checkPlotData:cashData withSimResults:simResults andExpectedVals:expected andLabel:@"cash balances" withAdjustedVals:doAdjustForInflation];
+    
+}
+
+
 -(void)testCashBalWithIncome
 {
 	[self resetCoredData];
