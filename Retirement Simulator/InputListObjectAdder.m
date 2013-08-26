@@ -16,6 +16,7 @@
 #import "TableViewHelper.h"
 #import "AppHelper.h"
 #import "Input.h"
+#import "AppDelegate.h"
 
 @implementation InputListObjectAdder
 
@@ -29,14 +30,46 @@
 	[super dealloc];
 }
 
--(void)addObjectFromTableView:(FormContext*)parentContext
-{
 
+- (void)newInputDidSaveNotificationHandler:(NSNotification *)notification
+{    
+    AppDelegate *appDelegate = [AppHelper theAppDelegate];
+	
+	assert(appDelegate.currentPlanDmc != nil);
+    
+	[appDelegate.currentPlanDmc.managedObjectContext
+        mergeChangesFromContextDidSaveNotification:notification];
+}
+
+
+-(void)setupNewInputDmc
+{
 	// Initialize dmcForNewInputs to a new DataModelController, so changes associated with
 	// the new object are kept isolated from other changes, and can
 	// be saved all at once when the new input has been fully populated
 	// and validated.
+    if(self.dmcForNewInputs != nil)
+	{
+        // If ther's an existing data model controller, tear it down
+        // before allocating a new one.
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+            name:NSManagedObjectContextDidSaveNotification
+            object:self.dmcForNewInputs.managedObjectContext];
+		self.dmcForNewInputs = nil;
+	}
+    
 	self.dmcForNewInputs = [AppHelper subDataModelControllerForCurrentPlan];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+           selector:@selector(newInputDidSaveNotificationHandler:)
+           name:NSManagedObjectContextDidSaveNotification
+           object:self.dmcForNewInputs.managedObjectContext];
+}
+
+
+-(void)addObjectFromTableView:(FormContext*)parentContext
+{
+    [self setupNewInputDmc];
 	
 	self.currentContext = parentContext;
 

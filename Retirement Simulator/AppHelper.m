@@ -38,6 +38,13 @@ NSString * const CURRENT_PLAN_NAME_KEY = @"CURRENT_PLAN_FILE_NAME";
 +(DataModelController*)openPlanForPlanName:(NSString*)planName
 {
 	DataModelController *planDmc = [AppHelper appDataModelControllerForPlanName:planName];
+    
+    // Since this method opens a "main" DataModelController (and underlying NSManagedObjectContect),
+    // the merge policy must be set to let the store trump what is in the managed object context.
+    // Changes made for new objects will need to trump any changes in the main object context.
+    [planDmc.managedObjectContext setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
+
+    
 	[SharedAppValues initFromDatabase:planDmc];
 	return planDmc;
 }
