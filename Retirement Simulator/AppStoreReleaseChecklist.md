@@ -2,7 +2,7 @@
 
 1. Update Version Numbers
   1. In AppStoreInfo.md
-  3. In the project settings.
+  2. In the project settings.
 
 3. Add a Release Notes Entry to the bottom of the AppStoreInfo.md file. This will be used to describe "What's Changed" in the App Store submission.
 
@@ -10,20 +10,22 @@
 
 5. Update the copyright information in AppStoreInfo.md, if the year has changed
   
-6. In iTunes Connect, create the new version
-  * Cut and paste the "What's changed" information from AppStoreInfo.md
-  * Use the same version number as was changed in step 1.
-  * Update the copyright, if the year has changed.
+## In iTunes Connect, create the new version
 
-7. Final Testing
-  1. Run the "Analyze" Build phase on the project
-  2. Run the project's unit tests using the "Test" option.
-  3. Install and run on an iOS device.
-  4. Manual UI Testing - Open the file FutureBudgetManualUITesting.ods in OpenOffice, and step through these tests on hardware.
+1. Cut and paste the "What's changed" information from AppStoreInfo.md
+2. Use the same version number as was changed in step 1.
+3. Update the copyright, if the year has changed.
+
+## Final Testing
+
+1. Run the "Analyze" Build phase on the project
+2. Run the project's unit tests using the "Test" option.
+3. Install and run on an iOS device.
+4. Manual UI Testing - Open the file FutureBudgetManualUITesting.ods in OpenOffice, and step through these tests on hardware.
   
-8. Commit changes made to project in steps 1-5 above.
+5. Commit changes made to project in steps 1-5 above.
 
-9. Create a Release Build
+## Create a Release Build
 
   1. Clean the build folder - In Xcode, with the option key pressed, select "Product->Clean" from the menu.
 
@@ -48,9 +50,11 @@
      app. Run both commands on the previous version of the app
      to confirm the information is the same.
 
-   7. Discard the build settings set in step 3. Right-click on the build file and select "Source Control->Discard Changes".
+  7. Discard the build settings set in step 3. Right-click on the build file and select "Source Control->Discard Changes".
+   
+## Validate and Submit App to App Store
 
-10. Validate the Release Build
+1. Validate the Release Build
 
   1. Using the same archived app folder names as the step above,
      perform a folder difference using DiffMerge on the previous
@@ -61,33 +65,41 @@
      be performed on a release build. This notably includes RELTEST-T01,
      which is testing the update to ensure backward compatibility has been preserved.
 
-11. Within the Xcode organizer, validate and distribute/submit the archive for the App Store.
+2. Within the Xcode organizer, validate and distribute/submit the archive for the App Store.
 
-13. From the archive released build, create an IPA for final testing.
+## Test with the Release Build
+
+1. From the archive released build, create an IPA for final testing.
 
   1. In the Organizer, select the archive, and press the "Distribute..." button.
   2. Select the "Save for Enterprise or Ad-hoc deployment" option.
   3. Sign with the Development certificate.
   4. Save in the folder /Users/sroehling/Development/ReleasedAppIPAs with a name like "FutureBudget-1.0.RC1".
   
-14. Test with the release build.
+2. Test the release build on a device
 
   1. Add the final testing IPA created above to iTunes. This is done with the "File->Add to Library..." command within iTunes, and selecting the appropriate IPA file.
   2. Install on the device via iTunes. This will replicate how the app will be installed from the App store. After adding the IPA to the library. This is done by re-synching the device with iTunes (e.g., via the "Apply" button).
   3. Perform the manual UI testing steps as described above.
   
-15. Using git, tag the app's project code with the version number
+3. Using git, tag the app's project code with the version number
    (substituting appropriate version number, instead of "1.0.1"): e.g.:
 
     cd /Users/sroehling/Development/Workspace/Retirement\ Simulator
 	git tag -a v1.0.RC1 -m "Version 1.0.RC1 submitted for approval"
 	
-16. Using git, tag any libraries changed alongside the project code 
+4. Using git, tag any libraries changed alongside the project code 
    (substituting appropriate numbers for MailShredder and library code, instead of 1.7 and 1.0.RC1): e.g.:
 
     cd /Users/sroehling/Development/Workspace/ResultraGenericLib
 	git tag -a v1.7 -m "Version build into FutureBudget 1.0.RC1"
 	
-17. Create an off-site backup of the current source code tree, including library code.
+## Backup the Source Code and Archive
+	
+1. Create an off-site backup of the current source code tree, including library code.
 
-18. Create an off-site backup of the archives used to build the project.
+2. Create an off-site backup of the archives used to build the project.
+
+## After App Has Been Approved
+
+After the app has been approved for sale in Apple's app store, tag the project's git repository again with a "golden master" tag, such as "v1.0.GM", signifying this is a released version.
