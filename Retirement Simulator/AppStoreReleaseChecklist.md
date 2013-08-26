@@ -100,6 +100,9 @@
 
 2. Create an off-site backup of the archives used to build the project.
 
-## After App Has Been Approved
+## After App Has Been Approved/Released
 
-After the app has been approved for sale in Apple's app store, tag the project's git repository again with a "golden master" tag, such as "v1.0.GM", signifying this is a released version.
+After the app has been approved for sale in Apple's app store:
+
+1. Tag the project's git repository again with a "golden master" tag, such as "v1.0.GM", signifying this is a released version.
+2. Go back to the Xcode Organizer, and update the comment on the released archive to indicate this version has been approved as version 1.0.
