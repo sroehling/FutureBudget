@@ -272,9 +272,15 @@
 	int currDayIndex=0;
     while([currentDate timeIntervalSinceDate:beginningOfNextDigestYear] < 0)
 	{
-		// Advance all the balances through the current day. This ensures any outstanding
-		// interest is accrued.
-		[self.simParams.workingBalanceMgr advanceBalancesToDate:currentDate];
+        
+        NSDate *nextDate = [DateHelper nextDay:currentDate];
+        if([nextDate timeIntervalSinceDate:beginningOfNextDigestYear]>=0)
+        {
+            // Advance all the balances through the current day. This ensures any outstanding
+            // interest is accrued for the last day of the year, and subsequently taxed
+            // if need be below.
+            [self.simParams.workingBalanceMgr advanceBalancesToDate:currentDate];           
+        }
 
 		DigestEntryCltn *currDayDigestEntries =
 			[self.digestEntries entriesForDayIndex:currDayIndex];
@@ -286,7 +292,12 @@
 		
 		if([currDayDigestEntries.digestEntries count] > 0)
 		{
-			for(id<DigestEntry> digestEntry in currDayDigestEntries.digestEntries)
+            // Advance all balances to the current day. This ensures any outstanding
+            // interest is reflected in the balances before any digest events are processes for
+            // income, expenses, asset sales, etc.
+            [self.simParams.workingBalanceMgr advanceBalancesToDate:currentDate];
+            
+            for(id<DigestEntry> digestEntry in currDayDigestEntries.digestEntries)
 			{
 				[digestEntry processDigestEntry:processingParams];
 			}
@@ -298,7 +309,7 @@
 		// these dependencies.
 		[self.simParams.taxInputCalcs processDailyTaxPmts:processingParams];
 
-		currentDate = [DateHelper nextDay:currentDate];
+		currentDate = nextDate;
 		currDayIndex++;
 		[processingParams release];
 	}
