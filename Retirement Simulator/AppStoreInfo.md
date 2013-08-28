@@ -8,7 +8,7 @@ FUTUREBUDGET_2013_0001
 
 ## Version Number
 
-1.0
+1.0.1
 
 ## Copyright:
 
@@ -76,3 +76,8 @@ http://futurebudget.resultra.com
 ## Review Notes
 
 ## Release Notes
+
+### Version 1.0.1
+
+• Fix a bug related to the saving of budget information.
+• Improve the performance of forecast results generation.

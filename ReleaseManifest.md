@@ -2,7 +2,7 @@
 
 ## Current Released Version
 
-v1.0.RC2
+v1.0.1.RC1
 
 SHA1:0b2b29295b8f3d434a278faf8f4ec7feb78ace9a
 

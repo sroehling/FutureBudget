@@ -1,15 +1,21 @@
 # App Release Checklist
 
+### Update App Information for New Version
+
 1. Update Version Numbers
   1. In AppStoreInfo.md
-  2. In the project settings.
+  2. In the project settings:
+     * For the "FutureBudget" target, go to "Summary" tab in the project settings.
+     * Change both the version and build to the current version number.
 
 3. Add a Release Notes Entry to the bottom of the AppStoreInfo.md file. This will be used to describe "What's Changed" in the App Store submission.
 
-4. Update releaseManifest.md with SHA1 of any libraries changed since last release.
+4. Update releaseManifest.md with SHA1 of any libraries changed since last release, and the version number from above.
 
 5. Update the copyright information in AppStoreInfo.md, if the year has changed
   
+6. Commit changes made to project files above.
+
 ## In iTunes Connect, create the new version
 
 1. Cut and paste the "What's changed" information from AppStoreInfo.md
@@ -23,7 +29,6 @@
 3. Install and run on an iOS device.
 4. Manual UI Testing - Open the file FutureBudgetManualUITesting.ods in OpenOffice, and step through these tests on hardware.
   
-5. Commit changes made to project in steps 1-5 above.
 
 ## Create a Release Build
 
