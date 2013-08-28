@@ -32,11 +32,15 @@
 
 ## Create a Release Build
 
-  1. Clean the build folder - In Xcode, with the option key pressed, select "Product->Clean" from the menu.
+  1. Clean the build folder - In Xcode, with the option key pressed, select "Product->Clean Build Folder" from the menu. This is done by also selecting the option key before accessing the "Product" menu.
 
   2. In the build scheme, make sure "FutureBudget > iOS Device" is selected. Otherwise, the Archive menu items will likely be greyed out.
   
-  3. Edit the Build Settings for the Project and the Target(s) to use the Distribution code signing. In the code signing section, change the settings for the release build to Distribution.
+  3. Edit the Build Settings for the Project and the Target(s) to use the Distribution code signing. 
+     1. Select the top-level "FutureBudget" project file from the XCode file list pane.
+     2. Select "FutureBudget" from the Targets list.
+     3. Select the "Build Settings" tab.
+     4. In the "Code Signing" section, change the "Code Signing Identity" settings for the release build to "iPhone Distribution".
   
   4. In XCode, select "Product -> Archive". XCode should build the archive and create an entry for it in Organizer.
 
