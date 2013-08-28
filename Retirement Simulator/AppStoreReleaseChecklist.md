@@ -76,28 +76,28 @@
 
 2. Within the Xcode organizer, validate and distribute/submit the archive for the App Store.
 
-## Test with the Release Build
+## Create an IPA for Final Testing.
 
-1. From the archive released build, create an IPA for final testing.
-
-  1. In the Organizer, select the archive, and press the "Distribute..." button.
-  2. Select the "Save for Enterprise or Ad-hoc deployment" option.
-  3. Sign with the Development certificate.
-  4. Save in the folder /Users/sroehling/Development/ReleasedAppIPAs with a name like "FutureBudget-1.0.RC1".
+1. In the Organizer, select the archive, and press the "Distribute..." button.
+2. Select the "Save for Enterprise or Ad-hoc deployment" option.
+3. Sign with the Development certificate.
+4. Save in the folder /Users/sroehling/Development/ReleasedAppIPAs with a name like "FutureBudget-1.0.RC1".
   
-2. Test the release build on a device
+## Test the Release Build on an iOS Device
 
   1. Add the final testing IPA created above to iTunes. This is done with the "File->Add to Library..." command within iTunes, and selecting the appropriate IPA file.
   2. Install on the device via iTunes. This will replicate how the app will be installed from the App store. After adding the IPA to the library. This is done by re-synching the device with iTunes (e.g., via the "Apply" button).
   3. Perform the manual UI testing steps as described above.
   
-3. Using git, tag the app's project code with the version number
+## Tag the Released Version in Git
+  
+1. Using git, tag the app's project code with the version number
    (substituting appropriate version number, instead of "1.0.1"): e.g.:
 
-    cd /Users/sroehling/Development/Workspace/Retirement\ Simulator
+	cd /Users/sroehling/Development/Workspace/Retirement\ Simulator
 	git tag -a v1.0.RC1 -m "Version 1.0.RC1 submitted for approval"
 	
-4. Using git, tag any libraries changed alongside the project code 
+2. Using git, tag any libraries changed alongside the project code 
    (substituting appropriate numbers for MailShredder and library code, instead of 1.7 and 1.0.RC1): e.g.:
 
     cd /Users/sroehling/Development/Workspace/ResultraGenericLib
