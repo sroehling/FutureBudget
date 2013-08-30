@@ -207,7 +207,6 @@
 		003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D41485531F00837D02 /* InvestmentReturnRate.m */; };
 		003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D714855EBA00837D02 /* AssetApprecRate.m */; };
 		003085DB148599A200837D02 /* ScenarioInputValBacktracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */; };
-		003611A6166800CD00A6FB76 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003611A3166800AE00A6FB76 /* libCorePlot-CocoaTouch.a */; };
 		0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1513BE19F20043F3A5 /* Scenario.m */; };
 		0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1913BE1A370043F3A5 /* UserScenario.m */; };
 		0036DE1D13BE1A690043F3A5 /* DefaultScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */; };
@@ -541,6 +540,7 @@
 		00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D0140F06AD00FA73AA /* CoreData.framework */; };
 		00F217D3140F073300FA73AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F217D2140F073300FA73AA /* CoreData.framework */; };
 		00F42097137B510A00980A88 /* EventRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F42096137B510A00980A88 /* EventRepeater.m */; };
+		00FEF4DB17D102C400AC7448 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00FEF4D817D0FF3E00AC7448 /* libCorePlot-CocoaTouch.a */; };
 		00FF1928147C0BF0000787B5 /* SimDateSubtitleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FF1927147C0BF0000787B5 /* SimDateSubtitleFormatter.m */; };
 /* End PBXBuildFile section */
 
@@ -559,20 +559,6 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		003611A2166800AE00A6FB76 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
-		003611A4166800C800A6FB76 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
 		00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00A36BC8136C6CAD008A5C4C /* Project object */;
@@ -607,6 +593,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0041072F14EEE8300063E307;
 			remoteInfo = ResultraGenericLib;
+		};
+		00FEF4D717D0FF3E00AC7448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		00FEF4D917D101AC00AC7448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		00FEF4DC17D1094300AC7448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 004E287A14EF1B060025D89E;
+			remoteInfo = ResultraGenericLibResources;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -906,7 +913,7 @@
 		003085D714855EBA00837D02 /* AssetApprecRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetApprecRate.m; sourceTree = "<group>"; };
 		003085D9148599A100837D02 /* ScenarioInputValBacktracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioInputValBacktracer.h; sourceTree = "<group>"; };
 		003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioInputValBacktracer.m; sourceTree = "<group>"; };
-		00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../CorePlot_0.4/Source/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
+		00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		0036DE1413BE19F20043F3A5 /* Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scenario.h; sourceTree = "<group>"; };
 		0036DE1513BE19F20043F3A5 /* Scenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scenario.m; sourceTree = "<group>"; };
 		0036DE1813BE1A370043F3A5 /* UserScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScenario.h; sourceTree = "<group>"; };
@@ -1513,10 +1520,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				003611A6166800CD00A6FB76 /* libCorePlot-CocoaTouch.a in Frameworks */,
 				00C3DCD01667F3E900F1F490 /* SystemConfiguration.framework in Frameworks */,
 				00C3DCCE1667F29900F1F490 /* CFNetwork.framework in Frameworks */,
 				00C3DCC91667F0EE00F1F490 /* libResultraGenericLib.a in Frameworks */,
+				00FEF4DB17D102C400AC7448 /* libCorePlot-CocoaTouch.a in Frameworks */,
 				00C3DCCB1667F15A00F1F490 /* Security.framework in Frameworks */,
 				00A8A3191545F595003C6D73 /* StoreKit.framework in Frameworks */,
 				00F217D1140F06AD00FA73AA /* CoreData.framework in Frameworks */,
@@ -2113,14 +2120,6 @@
 				00590A49173D62C000BBF045 /* ItemizedAccountCapitalLossTaxAmtCreator.m */,
 			);
 			name = "Itemized Tax Amt Creators";
-			sourceTree = "<group>";
-		};
-		0036119A166800AD00A6FB76 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				003611A3166800AE00A6FB76 /* libCorePlot-CocoaTouch.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		0036DE2113BE1AF90043F3A5 /* Input Values */ = {
@@ -3303,6 +3302,14 @@
 			name = "App Icons";
 			sourceTree = "<group>";
 		};
+		00FEF4D217D0FF3E00AC7448 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00FEF4D817D0FF3E00AC7448 /* libCorePlot-CocoaTouch.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3318,7 +3325,8 @@
 				00D6848814CF625400E3AC9F /* PBXBuildRule */,
 			);
 			dependencies = (
-				003611A5166800C800A6FB76 /* PBXTargetDependency */,
+				00FEF4DD17D1094300AC7448 /* PBXTargetDependency */,
+				00FEF4DA17D101AC00AC7448 /* PBXTargetDependency */,
 				00C3DCAC1667EFF800F1F490 /* PBXTargetDependency */,
 			);
 			name = FutureBudget;
@@ -3365,7 +3373,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 0036119A166800AD00A6FB76 /* Products */;
+					ProductGroup = 00FEF4D217D0FF3E00AC7448 /* Products */;
 					ProjectRef = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
 				},
 				{
@@ -3382,13 +3390,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		003611A3166800AE00A6FB76 /* libCorePlot-CocoaTouch.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libCorePlot-CocoaTouch.a";
-			remoteRef = 003611A2166800AE00A6FB76 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		00C3DCA61667EFDB00F1F490 /* libResultraGenericLib.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -3408,6 +3409,13 @@
 			fileType = wrapper.cfbundle;
 			path = ResultraGenericLibResources.bundle;
 			remoteRef = 00C3DCA91667EFDB00F1F490 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00FEF4D817D0FF3E00AC7448 /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = 00FEF4D717D0FF3E00AC7448 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -3983,11 +3991,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		003611A5166800C800A6FB76 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "CorePlot-CocoaTouch";
-			targetProxy = 003611A4166800C800A6FB76 /* PBXContainerItemProxy */;
-		};
 		00A36C00136C6CAE008A5C4C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 00A36BD0136C6CAE008A5C4C /* FutureBudget */;
@@ -3997,6 +4000,16 @@
 			isa = PBXTargetDependency;
 			name = ResultraGenericLib;
 			targetProxy = 00C3DCAB1667EFF800F1F490 /* PBXContainerItemProxy */;
+		};
+		00FEF4DA17D101AC00AC7448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = 00FEF4D917D101AC00AC7448 /* PBXContainerItemProxy */;
+		};
+		00FEF4DD17D1094300AC7448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResultraGenericLibResources;
+			targetProxy = 00FEF4DC17D1094300AC7448 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4093,11 +4106,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement Simulator/FutureBudget-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../ResultraGenericLib/\"/**",
+					"\"$(SRCROOT)\"/**",
+					"\"$(SRCROOT)/../core-plot\"/**",
+				);
 				INFOPLIST_FILE = "Retirement Simulator/FutureBudget-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = FutureBudget;
@@ -4117,11 +4134,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retirement Simulator/FutureBudget-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../ResultraGenericLib/\"/**",
+					"\"$(SRCROOT)\"/**",
+					"\"$(SRCROOT)/../core-plot\"/**",
+				);
 				INFOPLIST_FILE = "Retirement Simulator/FutureBudget-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../CorePlot_0.4/Binaries/iOS\"",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = FutureBudget;
