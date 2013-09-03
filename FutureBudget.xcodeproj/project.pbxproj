@@ -1115,6 +1115,7 @@
 		005EF68F178A311200F0591F /* variableTaxRate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableTaxRate.md; sourceTree = "<group>"; };
 		005EF691178A32F500F0591F /* TaxRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxRate.h; sourceTree = "<group>"; };
 		005EF692178A32F500F0591F /* TaxRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxRate.m; sourceTree = "<group>"; };
+		005F828717D69721001B475E /* ManualUIRegressionTests.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = ManualUIRegressionTests.md; sourceTree = "<group>"; };
 		005F8AF7167B877D00148BBE /* AppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppHelper.h; sourceTree = "<group>"; };
 		005F8AF8167B877D00148BBE /* AppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppHelper.m; sourceTree = "<group>"; };
 		005F8AFA167B8BF900148BBE /* thirdPartyLibs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = thirdPartyLibs.md; sourceTree = "<group>"; };
@@ -2638,6 +2639,15 @@
 			name = Contribution;
 			sourceTree = "<group>";
 		};
+		005F828317D696FA001B475E /* Manual Testing */ = {
+			isa = PBXGroup;
+			children = (
+				003F84EF17B1599200977E32 /* FutureBudgetManualUITesting.ods */,
+				005F828717D69721001B475E /* ManualUIRegressionTests.md */,
+			);
+			name = "Manual Testing";
+			sourceTree = "<group>";
+		};
 		006572CF14338DCE0062C00C /* Deferred Withdrawals */ = {
 			isa = PBXGroup;
 			children = (
@@ -2937,7 +2947,7 @@
 		00A36C01136C6CAE008A5C4C /* FutureBudget Tests */ = {
 			isa = PBXGroup;
 			children = (
-				003F84EF17B1599200977E32 /* FutureBudgetManualUITesting.ods */,
+				005F828317D696FA001B475E /* Manual Testing */,
 				0018A4CB17AAEDF20062C9C9 /* Sim Engine Integration Tests */,
 				00F217D2140F073300FA73AA /* CoreData.framework */,
 				0025777313B438E000D15232 /* Test Helper Code */,
