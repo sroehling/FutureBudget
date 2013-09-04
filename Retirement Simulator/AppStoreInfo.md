@@ -8,7 +8,7 @@ FUTUREBUDGET_2013_0001
 
 ## Version Number
 
-1.0.1
+1.0.2
 
 ## Copyright:
 
@@ -81,3 +81,9 @@ http://futurebudget.resultra.com
 
 • Fix a bug related to the saving of budget information.
 • Improve the performance of forecast results generation.
+
+### Version 1.0.2
+
+• Fix a bug related to setting inputs' dates in alternate scenarios (e.g., expense stop dates).
+• Update documentation of third party software libaries.
+

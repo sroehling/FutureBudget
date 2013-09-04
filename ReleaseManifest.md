@@ -12,8 +12,8 @@ The following is a list of libraries depended upon from this project and their S
 
 Library              | SHA1/Version
 ---------------------|-----------------------------------------
-ResultraGenericLib   | 	83d33dc044633aa7565587d65b96f526aab5497c (v1.8)
-CorePlot | Version 0.4
+ResultraGenericLib   | 	e67e6045d829e7ef6e35d007d983930917d614bb (v1.9)
+CorePlot | c02cfb8245f5dbcf89147652c068c7e369faa8a9 (Version 0.4)
 
 If newer versions of the libraries are integrated, this list should be updated. 
 The SHA1 for a library can be shown by going to the top-level directory of 
