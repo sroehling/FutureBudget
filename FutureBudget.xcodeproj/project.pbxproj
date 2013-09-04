@@ -1116,6 +1116,7 @@
 		005EF691178A32F500F0591F /* TaxRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxRate.h; sourceTree = "<group>"; };
 		005EF692178A32F500F0591F /* TaxRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxRate.m; sourceTree = "<group>"; };
 		005F828717D69721001B475E /* ManualUIRegressionTests.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = ManualUIRegressionTests.md; sourceTree = "<group>"; };
+		005F828917D79EB3001B475E /* DevelopmentWorkspaceSetup.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = DevelopmentWorkspaceSetup.md; sourceTree = "<group>"; };
 		005F8AF7167B877D00148BBE /* AppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppHelper.h; sourceTree = "<group>"; };
 		005F8AF8167B877D00148BBE /* AppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppHelper.m; sourceTree = "<group>"; };
 		005F8AFA167B8BF900148BBE /* thirdPartyLibs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = thirdPartyLibs.md; sourceTree = "<group>"; };
@@ -1442,8 +1443,8 @@
 		00DC49F914D73F40006BDF61 /* variableValueChange.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableValueChange.md; sourceTree = "<group>"; };
 		00DC49FE14D8820F006BDF61 /* DateSensitiveValueChangeFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSensitiveValueChangeFormInfoCreator.h; sourceTree = "<group>"; };
 		00DC49FF14D88217006BDF61 /* DateSensitiveValueChangeFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSensitiveValueChangeFormInfoCreator.m; sourceTree = "<group>"; };
-		00DD853817BE97880048A162 /* AppStoreReleaseChecklist.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppStoreReleaseChecklist.md; sourceTree = "<group>"; };
-		00DD853917BE9CA90048A162 /* ReleaseManifest.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = ReleaseManifest.md; path = ../ReleaseManifest.md; sourceTree = "<group>"; };
+		00DD853817BE97880048A162 /* AppStoreReleaseChecklist.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = AppStoreReleaseChecklist.md; path = "Retirement Simulator/AppStoreReleaseChecklist.md"; sourceTree = "<group>"; };
+		00DD853917BE9CA90048A162 /* ReleaseManifest.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReleaseManifest.md; sourceTree = "<group>"; };
 		00E0C8E9140E98EE00BC269E /* FiscalYearDigestTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiscalYearDigestTest.h; sourceTree = "<group>"; };
 		00E0C8EA140E98EE00BC269E /* FiscalYearDigestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiscalYearDigestTest.m; sourceTree = "<group>"; };
 		00E533E714E9635C005C6F6F /* DefaultScenarioFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultScenarioFieldEditInfo.h; sourceTree = "<group>"; };
@@ -2055,8 +2056,6 @@
 				00F543941781E6A0007AEC16 /* AppStoreLargeIcon.png */,
 				00DD853217BE95C70048A162 /* Screen Shots */,
 				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
-				00DD853817BE97880048A162 /* AppStoreReleaseChecklist.md */,
-				00DD853917BE9CA90048A162 /* ReleaseManifest.md */,
 			);
 			name = "App Store";
 			path = "Retirement Simulator";
@@ -2648,6 +2647,16 @@
 			name = "Manual Testing";
 			sourceTree = "<group>";
 		};
+		005F828817D79E61001B475E /* Configuration & Release Management */ = {
+			isa = PBXGroup;
+			children = (
+				00DD853817BE97880048A162 /* AppStoreReleaseChecklist.md */,
+				00DD853917BE9CA90048A162 /* ReleaseManifest.md */,
+				005F828917D79EB3001B475E /* DevelopmentWorkspaceSetup.md */,
+			);
+			name = "Configuration & Release Management";
+			sourceTree = "<group>";
+		};
 		006572CF14338DCE0062C00C /* Deferred Withdrawals */ = {
 			isa = PBXGroup;
 			children = (
@@ -2877,6 +2886,7 @@
 		00A36BC6136C6CAD008A5C4C = {
 			isa = PBXGroup;
 			children = (
+				005F828817D79E61001B475E /* Configuration & Release Management */,
 				00EF7A3516A8619F0006F805 /* App Icons */,
 				00A9CAC916A60EA600AF69B2 /* Launch Images */,
 				002E7B65167A2DB100713684 /* App Store */,

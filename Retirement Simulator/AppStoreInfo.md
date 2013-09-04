@@ -85,5 +85,6 @@ http://futurebudget.resultra.com
 ### Version 1.0.2
 
 • Fix a bug related to setting inputs' dates in alternate scenarios (e.g., expense stop dates).
+• More frequently save budget information.
 • Update documentation of third party software libaries.
 
