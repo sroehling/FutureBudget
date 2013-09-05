@@ -1,0 +1,9 @@
+[submodule "lib/ResultraGenericLib"]
+	path = lib/ResultraGenericLib
+	url = git@macmini.local:/Users/git/ResultraGenericLib.git
+[submodule "lib/MarkdownHelpGeneration"]
+	path = lib/MarkdownHelpGeneration
+	url = git@macmini.local:/Users/git/MarkdownHelpGeneration.git
+[submodule "lib/core-plot"]
+	path = lib/core-plot
+	url = git@macmini.local:/Users/git/core-plot.git
