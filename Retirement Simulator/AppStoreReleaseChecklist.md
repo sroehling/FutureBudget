@@ -29,7 +29,6 @@
 3. Install and run on an iOS device.
 4. Manual UI Testing - Open the file FutureBudgetManualUITesting.ods in OpenOffice, and step through these tests on hardware.
   
-
 ## Create a Release Build
 
   1. Clean the build folder - In Xcode, with the option key pressed, select "Product->Clean Build Folder" from the menu. This is done by also selecting the option key before accessing the "Product" menu.
@@ -44,37 +43,9 @@
   
   4. In XCode, select "Product -> Archive". XCode should build the archive and create an entry for it in Organizer.
 
-  5. Add a comment to the Archive in the Organizer, such as "Version 1.0.RC1 submitted to App Store".
+  5. Add a comment to the Archive in the Organizer, such as "Version 1.0.RC1".
 
-  6. From the Organizer, open the archive in the finder (right click and show package contents). Drag the 
-     app to a console window to run the following commands:
-     
-     codesign -dvvv /path/to/MyGreatApp.app
-     
-     and:
-     
-     codesign -d --entitlements - /path/to/MyGreatApp.app
-     
-     The above will confirm the signature and entitlements for the
-     app. Run both commands on the previous version of the app
-     to confirm the information is the same.
-
-  7. Discard the build settings set in step 3. Right-click on the build file and select "Source Control->Discard Changes".
-   
-## Validate and Submit App to App Store
-
-1. Validate the Release Build
-
-  1. Using the same archived app folder names as the step above,
-     perform a folder difference using DiffMerge on the previous
-     and current app folders. The differences should correspond to
-     the expected changes.
-
-  2. Refer to the document "ManualTesting.md", which includes tests to
-     be performed on a release build. This notably includes RELTEST-T01,
-     which is testing the update to ensure backward compatibility has been preserved.
-
-2. Within the Xcode organizer, validate and distribute/submit the archive for the App Store.
+  6. Discard the build settings set in step 3. Right-click on the build file and select "Source Control->Discard Changes".
 
 ## Create an IPA for Final Testing.
 
@@ -82,20 +53,14 @@
 2. Select the "Save for Enterprise or Ad-hoc deployment" option.
 3. Sign with the Development certificate.
 4. Save in the folder /Users/sroehling/Development/ReleasedAppIPAs with a name like "FutureBudget-1.0.RC1".
-  
-## Test the Release Build on an iOS Device
 
-  1. Add the final testing IPA created above to iTunes. This is done with the "File->Add to Library..." command within iTunes, and selecting the appropriate IPA file.
-  2. Install on the device via iTunes. This will replicate how the app will be installed from the App store. After adding the IPA to the library. This is done by re-synching the device with iTunes (e.g., via the "Apply" button).
-  3. Perform the manual UI testing steps as described above.
-  
 ## Tag the Released Version in Git
   
 1. Using git, tag the app's project code with the version number
    (substituting appropriate version number, instead of "1.0.1"), then push that tag to the remote server: e.g.:
 
 	cd /Users/sroehling/Development/Workspace/Retirement\ Simulator
-	git tag -a v1.0.RC1 -m "Version 1.0.RC1 submitted for approval"
+	git tag -a v1.0.RC1 -m "Version 1.0.RC1"
     git push origin v1.0.RC1 
 	
 2. Using git, tag any libraries changed alongside the project code 
@@ -104,6 +69,16 @@
     cd /Users/sroehling/Development/Workspace/ResultraGenericLib
 	git tag -a v1.7 -m "Version build into FutureBudget 1.0.RC1"
     git push origin v1.7 
+  
+## Test the Release Build on an iOS Device
+
+  1. Add the final testing IPA created above to iTunes. This is done with the "File->Add to Library..." command within iTunes, and selecting the appropriate IPA file.
+  2. Install on the device via iTunes. This will replicate how the app will be installed from the App store. After adding the IPA to the library. This is done by re-synching the device with iTunes (e.g., via the "Apply" button).
+  3. Perform the manual UI testing steps as described above.
+   
+## Validate and Submit App to App Store
+
+Within the Xcode organizer, validate and distribute/submit the archive for the App Store.
 	
 ## Backup the Source Code and Archive
 	
