@@ -31,9 +31,9 @@
   
 ## Create a Release Build
 
-  1. Clean the build folder - In Xcode, with the option key pressed, select "Product->Clean Build Folder" from the menu. This is done by also selecting the option key before accessing the "Product" menu.
+  1. In the build scheme, make sure "FutureBudget > iOS Device" is selected. Otherwise, the Archive menu items will likely be greyed out.
 
-  2. In the build scheme, make sure "FutureBudget > iOS Device" is selected. Otherwise, the Archive menu items will likely be greyed out.
+  2. Clean the build folder - In Xcode, with the option key pressed, select "Product->Clean Build Folder" from the menu. This is done by also selecting the option key before accessing the "Product" menu.
   
   3. Edit the Build Settings for the Project and the Target(s) to use the Distribution code signing. 
      1. Select the top-level "FutureBudget" project file from the XCode file list pane.
@@ -54,7 +54,7 @@
 3. Sign with the Development certificate.
 4. Save in the folder /Users/sroehling/Development/ReleasedAppIPAs with a name like "FutureBudget-1.0.RC1".
 
-## Tag the Released Version in Git
+## Tag the Version in Git
   
 1. Using git, tag the app's project code with the version number
    (substituting appropriate version number, instead of "1.0.1"), then push that tag to the remote server: e.g.:
