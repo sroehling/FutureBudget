@@ -14,10 +14,12 @@
 	
 ## Set the CorePlot Library to the Appropriate Version
 
-Note for core-plot, since this is a 3rd party library, FutureBudget will be integrated with specific versions of the library. So, after making the clone, the checked out files from the library need to be set to the appropriate reference. For example, to reference version 0.4 of the library:
+Note for core-plot, since this is a 3rd party library, FutureBudget will be integrated with specific versions of the library. So, after making the clone, the checked out files from the library need to be set to the appropriate reference. This library may also contain some Resultra specific "localizations" for project settings, which are placed on a branch from a CorePlot release.
+
+For example, to reference version 0.4 of the library:
 
 	cd core-plot
-	git checkout alpharelease_0.4 
+	git checkout alpharelease_0.4_resultra_patch 
 	
 ## Note About Build Settings for CorePlot
 
