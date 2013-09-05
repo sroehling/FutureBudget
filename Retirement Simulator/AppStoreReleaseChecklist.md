@@ -54,20 +54,13 @@
 
 ## Tag the Version in Git
   
-1. Using git, tag the app's project code with the version number
+Using git, tag the app's project code with the version number
    (substituting appropriate version number, instead of "1.0.1"), then push that tag to the remote server: e.g.:
 
-	cd /Users/sroehling/Development/Workspace/Retirement\ Simulator
+	cd /Users/sroehling/Development/PROJECT-FOLDER
 	git tag -a v1.0.RC1 -m "Version 1.0.RC1"
     git push origin v1.0.RC1 
-	
-2. Using git, tag any libraries changed alongside the project code 
-   (substituting appropriate numbers for MailShredder and library code, instead of 1.7 and 1.0.RC1), then push that tag to the remote server: e.g.:
-
-    cd /Users/sroehling/Development/Workspace/ResultraGenericLib
-	git tag -a v1.7 -m "Version build into FutureBudget 1.0.RC1"
-    git push origin v1.7 
-  
+	  
 ## Test the Release Build on an iOS Device
 
   1. Add the final testing IPA created above to iTunes. This is done with the "File->Add to Library..." command within iTunes, and selecting the appropriate IPA file.
