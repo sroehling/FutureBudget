@@ -7,3 +7,4 @@
 [submodule "lib/core-plot"]
 	path = lib/core-plot
 	url = git@macmini.local:/Users/git/core-plot.git
+	ignore = dirty
