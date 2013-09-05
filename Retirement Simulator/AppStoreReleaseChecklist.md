@@ -10,11 +10,9 @@
 
 3. Add a Release Notes Entry to the bottom of the AppStoreInfo.md file. This will be used to describe "What's Changed" in the App Store submission.
 
-4. Update releaseManifest.md with SHA1 of any libraries changed since last release, and the version number from above.
-
-5. Update the copyright information in AppStoreInfo.md, if the year has changed
+4. Update the copyright information in AppStoreInfo.md, if the year has changed
   
-6. Commit changes made to project files above.
+5. Commit changes made to project files above.
 
 ## In iTunes Connect, create the new version
 

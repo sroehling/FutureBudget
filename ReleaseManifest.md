@@ -8,12 +8,9 @@ SHA1:0b2b29295b8f3d434a278faf8f4ec7feb78ace9a
 
 ## Depended Upon Libraries
 
-The following is a list of libraries depended upon from this project and their SHA1's. 
+The list of depended upon libraries and their SHA1's can be generated using:
 
-Library              | SHA1/Version
----------------------|-----------------------------------------
-ResultraGenericLib   | 	e67e6045d829e7ef6e35d007d983930917d614bb (v1.9)
-CorePlot | c02cfb8245f5dbcf89147652c068c7e369faa8a9 (Version 0.4)
+    git submodule status
 
 If newer versions of the libraries are integrated, this list should be updated. 
 The SHA1 for a library can be shown by going to the top-level directory of 
