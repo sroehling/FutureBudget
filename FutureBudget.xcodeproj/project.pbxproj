@@ -593,6 +593,27 @@
 			remoteGlobalIDString = 00A36BD0136C6CAE008A5C4C;
 			remoteInfo = "Retirement Simulator";
 		};
+		00AAD60517D93668000EA491 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0041072F14EEE8300063E307;
+			remoteInfo = ResultraGenericLib;
+		};
+		00AAD60717D9366D000EA491 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 004E287A14EF1B060025D89E;
+			remoteInfo = ResultraGenericLibResources;
+		};
+		00AAD60917D93672000EA491 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -3323,6 +3344,9 @@
 				00D6848814CF625400E3AC9F /* PBXBuildRule */,
 			);
 			dependencies = (
+				00AAD60A17D93672000EA491 /* PBXTargetDependency */,
+				00AAD60817D9366D000EA491 /* PBXTargetDependency */,
+				00AAD60617D93668000EA491 /* PBXTargetDependency */,
 			);
 			name = FutureBudget;
 			productName = "Retirement Simulator";
@@ -3989,6 +4013,21 @@
 			isa = PBXTargetDependency;
 			target = 00A36BD0136C6CAE008A5C4C /* FutureBudget */;
 			targetProxy = 00A36BFF136C6CAE008A5C4C /* PBXContainerItemProxy */;
+		};
+		00AAD60617D93668000EA491 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResultraGenericLib;
+			targetProxy = 00AAD60517D93668000EA491 /* PBXContainerItemProxy */;
+		};
+		00AAD60817D9366D000EA491 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResultraGenericLibResources;
+			targetProxy = 00AAD60717D9366D000EA491 /* PBXContainerItemProxy */;
+		};
+		00AAD60A17D93672000EA491 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = 00AAD60917D93672000EA491 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
