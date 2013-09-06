@@ -83,5 +83,5 @@ http://futurebudget.resultra.com
 • Improve the performance of forecast results generation.
 • Fix a bug related to setting inputs' dates in alternate scenarios (e.g., expense stop dates).
 • More frequently save budget information.
-• Update documentation of third party software libaries.
+• Update documentation of third party software libraries.
 
