@@ -433,6 +433,7 @@
 		00AA79BB1441E8AF00FED301 /* TaxBracketFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BA1441E8AF00FED301 /* TaxBracketFormInfoCreator.m */; };
 		00AA79BE1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79BD1441EA9D00FED301 /* TaxBracketEntryObjectAdder.m */; };
 		00AA79C11441F07400FED301 /* TaxBracketEntryFormInfoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA79C01441F07400FED301 /* TaxBracketEntryFormInfoCreator.m */; };
+		00AAD61917DA5C0F000EA491 /* ResultraGenericLibResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 007ED73717D91CE900360001 /* ResultraGenericLibResources.bundle */; };
 		00ADB2ED138191B700064651 /* RepeatFrequencyFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB2EC138191B700064651 /* RepeatFrequencyFieldEditInfo.m */; };
 		00ADB3031382D1BF00064651 /* DetailInputViewCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB3021382D1BE00064651 /* DetailInputViewCreator.m */; };
 		00ADB3111383220E00064651 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00ADB30F1383220E00064651 /* DataModel.xcdatamodeld */; };
@@ -3640,6 +3641,7 @@
 				005EF68E178A30EF00F0591F /* fixedTaxRate.md in Resources */,
 				005EF690178A311200F0591F /* variableTaxRate.md in Resources */,
 				00A9C0D317AC52F800DB8F6C /* buttonhelp-doc.png in Resources */,
+				00AAD61917DA5C0F000EA491 /* ResultraGenericLibResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
