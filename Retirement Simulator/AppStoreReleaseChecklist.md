@@ -14,6 +14,8 @@
   
 5. Commit changes made to project files above.
 
+6. Push the changes to the remote Git development server.
+
 ## In iTunes Connect, create the new version
 
 1. Cut and paste the "What's changed" information from AppStoreInfo.md
@@ -52,6 +54,14 @@
 3. Sign with the Development certificate.
 4. Save in the folder /Users/sroehling/Development/ReleasedAppIPAs with a name like "FutureBudget-1.0.RC1".
 
+## Test the Release Build on an iOS Device
+
+This is an absolutely essential step, because it ensures that what was archived will actually load on an iOS device.
+
+  1. Add the final testing IPA created above to iTunes. This is done with the "File->Add to Library..." command within iTunes, and selecting the appropriate IPA file.
+  2. Install on the device via iTunes. This will replicate how the app will be installed from the App store. After adding the IPA to the library. This is done by re-synching the device with iTunes (e.g., via the "Apply" button).
+  3. Perform the manual UI testing steps as described above.
+
 ## Tag the Version in Git
   
 Using git, tag the app's project code with the version number
@@ -60,12 +70,6 @@ Using git, tag the app's project code with the version number
 	cd /Users/sroehling/Development/PROJECT-FOLDER
 	git tag -a v1.0.RC1 -m "Version 1.0.RC1"
     git push origin v1.0.RC1 
-	  
-## Test the Release Build on an iOS Device
-
-  1. Add the final testing IPA created above to iTunes. This is done with the "File->Add to Library..." command within iTunes, and selecting the appropriate IPA file.
-  2. Install on the device via iTunes. This will replicate how the app will be installed from the App store. After adding the IPA to the library. This is done by re-synching the device with iTunes (e.g., via the "Apply" button).
-  3. Perform the manual UI testing steps as described above.
    
 ## Validate and Submit App to App Store
 
