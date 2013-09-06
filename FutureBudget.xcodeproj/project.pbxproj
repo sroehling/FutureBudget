@@ -2904,9 +2904,9 @@
 			isa = PBXGroup;
 			children = (
 				005F828817D79E61001B475E /* Configuration & Release Management */,
+				002E7B65167A2DB100713684 /* App Store */,
 				00EF7A3516A8619F0006F805 /* App Icons */,
 				00A9CAC916A60EA600AF69B2 /* Launch Images */,
-				002E7B65167A2DB100713684 /* App Store */,
 				00A36BDB136C6CAE008A5C4C /* FutureBudget Source */,
 				00A36C01136C6CAE008A5C4C /* FutureBudget Tests */,
 				00A36BD4136C6CAE008A5C4C /* Frameworks */,
