@@ -14,6 +14,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <UIKit/UIKit.h>
+#import "ProgressUpdateDelegate.h"
 //#import "application_headers" as required
 
 @class DataModelController;
@@ -21,7 +22,7 @@
 @class InputCreationHelper;
 
 
-@interface TestSimEngine : SenTestCase {
+@interface TestSimEngine : SenTestCase <ProgressUpdateDelegate> {
     @private
 		DataModelController *coreData;
 		SharedAppValues *testAppVals;

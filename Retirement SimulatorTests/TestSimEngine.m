@@ -23,7 +23,6 @@
 #import "InputTypeSelectionInfo.h"
 
 #import "ExpenseInput.h"
-#import "SimResultsController.h"
 #import "ExpenseXYPlotDataGenerator.h"
 #import "AllExpenseXYPlotDataGenerator.h"
 #import "YearValXYPlotDataGenerator.h"
@@ -133,19 +132,35 @@
 	[inputCreationHelper release];
 }
 
--(void)checkPlotData:(id<YearValXYPlotDataGenerator>)plotDataGen withSimResults:(SimResultsController*)simResultsCtlr
+-(void)updateProgress:(CGFloat)currentProgress
+{
+    // no-op - Just for running the SimEngine
+}
+
+-(SimResults*)genTestSimResults
+{
+    SimEngine *simEngine = [[SimEngine alloc]
+                            initWithDataModelController:self.coreData
+                            andSharedAppValues:self.testAppVals];
+    
+    [simEngine runSim:self];
+    
+    
+    SimResults *simResults = [[[SimResults alloc] initWithSimEngine:simEngine] autorelease];
+    [[simResults retain] autorelease];
+    
+    
+    [simEngine release];
+
+    return simResults;
+
+}
+
+-(void)checkPlotData:(id<YearValXYPlotDataGenerator>)plotDataGen withSimResults:(SimResults*)simResults
 	andExpectedVals:(NSArray*)expectedVals
 	andLabel:(NSString*)label
 	withAdjustedVals:(BOOL)checkAgainstInflationAdjustedVals
 {
-    
-    // TODO - Need to rethink how we hold onto the simResults and
-    // verify the results are current
-    assert(!simResultsCtlr.resultsOutOfDate);
-    SimResults *simResults = simResultsCtlr.currentSimResults;
-    [simResults retain];
-    assert(simResults != nil);
-
     
 	assert(simResults != nil);
 	assert(plotDataGen != nil);
@@ -178,8 +193,6 @@
 		
 	}
     
-    [simResults release];
-
 }
 
 - (void)testExpenseWithoutInflationAdjustment {
@@ -205,8 +218,7 @@
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 //	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	ExpenseXYPlotDataGenerator *expenseData = [[[ExpenseXYPlotDataGenerator alloc] initWithExpense:expense01] autorelease];
 	
@@ -251,8 +263,7 @@
 	// Keep the expense's amount growth rate the same as the default inflation rate.
 //	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	ExpenseXYPlotDataGenerator *expenseData = [[[ExpenseXYPlotDataGenerator alloc] initWithExpense:expense01] autorelease];
 	
@@ -297,8 +308,7 @@
 	expense02.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	ExpenseXYPlotDataGenerator *expenseData = [[[ExpenseXYPlotDataGenerator alloc] initWithExpense:expense01] autorelease];
 	
@@ -348,8 +358,7 @@
 		andInputValue:[self.inputCreationHelper fixedValueForValue:300.0]];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	ExpenseXYPlotDataGenerator *expenseData = [[[ExpenseXYPlotDataGenerator alloc] initWithExpense:expense01] autorelease];
 	
@@ -361,8 +370,9 @@
 	[self checkPlotData:expenseData withSimResults:simResults andExpectedVals:expected andLabel:@"expense01" withAdjustedVals:FALSE];
 
 	self.testAppVals.currentInputScenario = userScen;
-	[simResults runSimulatorForResults];
-
+    
+    simResults = [self genTestSimResults];
+    
 	expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:300.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:300.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
@@ -397,8 +407,7 @@
 	income02.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	IncomeXYPlotDataGenerator *incomeData = [[[IncomeXYPlotDataGenerator alloc] initWithIncome:income01] autorelease];
 
@@ -468,8 +477,7 @@
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:kInflationRate];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	IncomeXYPlotDataGenerator *incomeData = [[[IncomeXYPlotDataGenerator alloc] initWithIncome:income01] autorelease];
 
@@ -514,8 +522,7 @@
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
     
     
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -578,9 +585,8 @@
 	asset02.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
    
     
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
-    	
+    SimResults *simResults = [self genTestSimResults];
+    
    
     AllAssetValueXYPlotDataGenerator *allAssetData = [[[AllAssetValueXYPlotDataGenerator alloc] init] autorelease];
  	NSMutableArray *expected = [[[NSMutableArray alloc]init] autorelease];
@@ -616,8 +622,7 @@
 	// used as a baseline value to use as te asset's value going into the simulation.
 	asset01.startingValue = [NSNumber numberWithDouble:1000.0];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -673,8 +678,7 @@
     // rate.
 	asset01.startingValue = nil;
     
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
     
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -710,8 +714,7 @@
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2016-01-01"]];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -762,8 +765,7 @@
 	// should take on it's starting value.
 	asset01.startingValue = [NSNumber numberWithDouble:10000];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -796,8 +798,7 @@
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -832,8 +833,7 @@
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
     
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
     
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -890,8 +890,7 @@
 		
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedAssetGain];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -954,8 +953,7 @@
 		
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedAssetGain];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1034,8 +1032,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 		
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 	AssetValueXYPlotDataGenerator *assetData = [[[AssetValueXYPlotDataGenerator alloc] initWithAsset:asset01]autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1092,8 +1089,7 @@
 	loan02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1143,8 +1139,7 @@
 
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1209,9 +1204,7 @@
 
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] 
-		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1256,9 +1249,7 @@
 
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] 
-		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1318,9 +1309,7 @@
 
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] 
-		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1378,8 +1367,7 @@
 	
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1438,8 +1426,7 @@
 	loan01.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1465,7 +1452,7 @@
 	// Re-run the simulator, but with extra payments disabled
 	
 	loan01.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 
 
 	expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1526,8 +1513,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1604,8 +1590,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1657,9 +1642,7 @@
 
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] 
-		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1702,9 +1685,7 @@
 	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2015-02-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] 
-		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1773,8 +1754,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1821,8 +1801,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1883,8 +1862,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1930,8 +1908,7 @@
 	loan01.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -1976,8 +1953,7 @@
 	loan01.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2025,8 +2001,7 @@
 	loan01.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2068,8 +2043,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2109,8 +2083,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2154,8 +2127,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2204,8 +2176,7 @@
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	LoanBalXYPlotDataGenerator *loanData = [[[LoanBalXYPlotDataGenerator alloc] initWithLoan:loan01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2266,8 +2237,7 @@
 	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
 	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctBalanceXYPlotDataGenerator *acctData = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2322,8 +2292,7 @@
 	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
     	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctBalanceXYPlotDataGenerator *acctData = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2392,8 +2361,7 @@
 	[acct01 addLimitWithdrawalExpensesObject:expense01];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// Withdrawals for expense01 should be permitted from acct01
 	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -2455,8 +2423,7 @@
 	[acct01 addLimitWithdrawalExpensesObject:expense01];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// Withdrawals for expense01 should be permitted from acct01
 	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -2515,8 +2482,7 @@
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// Withdrawals for expense01 should be permitted from acct01
 	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -2591,8 +2557,7 @@
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// Withdrawals for expense01 should be permitted from acct01
 	AcctBalanceXYPlotDataGenerator *acctData01 = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -2658,8 +2623,7 @@
 
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctContribXYPlotGenerator *acctContribData = [[[AcctContribXYPlotGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -2714,8 +2678,7 @@
 	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// The following results assume the dividend is reinvested, then the reinvested dividend also becomes part of the
 	// basis for calculatig the future dividends. The quarterly dividend is also assumed to be 1/4 of the yearly
@@ -2734,7 +2697,7 @@
 	// Re-run the simulator with dividends disabled for the account. This should result in a $0 dividend payout.
 
 	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 
 	acctDividendData =
 		[[[AcctDividendXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -2770,9 +2733,7 @@
 	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc]
-		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// The following results assume the dividend is reinvested, then the reinvested dividend also becomes part of the
 	// basis for calculatig the future dividends. The quarterly dividend is also assumed to be 1/4 of the yearly
@@ -2832,9 +2793,7 @@
 	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc]
-		initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// The following results assume the dividend is reinvested, then the reinvested dividend also becomes part of the
 	// basis for calculatig the future dividends. The quarterly dividend is also assumed to be 1/4 of the yearly
@@ -2926,9 +2885,7 @@
 	
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:taxableWithdrawal];
     
-   
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctWithdrawalXYPlotDataGenerator *acctWithdrawalData = [[[AcctWithdrawalXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -3010,8 +2967,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
     
     
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
     
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init] autorelease];
@@ -3097,8 +3053,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedCapitalGain];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
 		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -3152,8 +3107,7 @@
 	acctTransfer.toEndpoint = self.testAppVals.cash.transferEndpointCash;
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
 		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -3211,8 +3165,7 @@
 	acctTransfer.toEndpoint = self.testAppVals.cash.transferEndpointCash;
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
 		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -3271,8 +3224,7 @@
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// The following results assume the dividend is reinvested, then the reinvested dividend also becomes part of the
 	// basis for calculatig the future dividends. The quarterly dividend is also assumed to be 1/4 of the yearly
@@ -3301,7 +3253,7 @@
 	
 	// Re-run with the dividend disabled. The capital gains should now be $0.
 	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 	expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0
 		andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
@@ -3351,8 +3303,7 @@
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctCapitalGainsXYPlotDataGenerator *acctGainsData =
 		[[[AcctCapitalGainsXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -3440,8 +3391,7 @@
 	itemizedCapitalLoss.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
 	[flatTax.itemizedDeductions addItemizedAmtsObject:itemizedCapitalLoss];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctCapitalLossXYPlotDataGenerator *acctLossData =
 		[[[AcctCapitalLossXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -3493,8 +3443,7 @@
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctCapitalLossXYPlotDataGenerator *acctLossData =
 		[[[AcctCapitalLossXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -3551,8 +3500,7 @@
 
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctWithdrawalXYPlotDataGenerator *acctWithdrawalData = [[[AcctWithdrawalXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -3624,8 +3572,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizeAcctInterest];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -3675,8 +3622,7 @@
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 
 	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
@@ -3699,8 +3645,7 @@
     self.testAppVals.defaultInflationRate.startingValue = [NSNumber numberWithDouble:10.0];
 
         
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
     
     // With 10% inflation each year (contrived for purposes of unit testing), a way to think about inflation is that the
     // price of things go up 10% each year. Or in other words if you could buy something with $100K, it will cost $110K after
@@ -3742,8 +3687,7 @@
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 
 	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
@@ -3778,8 +3722,7 @@
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 
 	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
@@ -3827,8 +3770,7 @@
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
 
 	DeficitBalXYPlotDataGenerator *deficitData= [[[DeficitBalXYPlotDataGenerator alloc] init] autorelease];
@@ -3900,8 +3842,7 @@
 	
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	IncomeXYPlotDataGenerator *incomeData = [[[IncomeXYPlotDataGenerator alloc] initWithIncome:income01] autorelease];
 
@@ -3980,9 +3921,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
-		andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4055,9 +3994,7 @@
 	[flatTax.itemizedDeductions addItemizedAmtsObject:itemizedExpenseDeduction];
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
-		andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4132,9 +4069,7 @@
 	[flatTax.itemizedDeductions addItemizedAmtsObject:itemizedTaxesPaid];
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
-		andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	// The flat tax rate is 25%. The deductable tax rate is also 25%, or %50. Since the deductable tax is listed as 
 	// a deduction for the flat tax, it should cut the flat taxable income to $150. Then, 25% of $150 is $37.5.
@@ -4211,9 +4146,7 @@
 	[flatTax.itemizedDeductions addItemizedAmtsObject:itemizedExpenseDeduction];
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
-		andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4230,7 +4163,7 @@
 	// deduction, the tax should be 25% of $50, whith is $12.50.
 	expense01.cashFlowEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 
 	expected = [[[NSMutableArray alloc]init] autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:12.5 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
@@ -4299,9 +4232,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
-		andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4329,7 +4260,7 @@
 	[flatTax.itemizedDeductions addItemizedAmtsObject:itemizedExpenseDeduction];
 	
 	// Rerun the simulator. This time the decution of $100/year is applicable.
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 	
 	expected = [[[NSMutableArray alloc]init] autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
@@ -4389,8 +4320,7 @@
 	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:50.0];
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 		
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4452,8 +4382,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 
 		
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 		
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4524,8 +4453,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 
 		
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 		
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4591,8 +4519,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 
 		
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 		
 	// Since the income is not going up each year, the amount of taxes paid will actually go down
@@ -4655,8 +4582,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 
 		
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 		
 	// Since the income is not going up each year, the amount of taxes paid will actually go down
@@ -4731,9 +4657,7 @@
 	[flatTax.itemizedCredits addItemizedAmtsObject:itemizedExpenseDeduction];
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
-		andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4805,9 +4729,7 @@
 	[flatTax.itemizedAdjustments addItemizedAmtsObject:itemizedExpenseDeduction];
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
-		andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4867,9 +4789,7 @@
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 	
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData 
-		andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
@@ -4961,8 +4881,7 @@
 	
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:taxableWithdrawal];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctWithdrawalXYPlotDataGenerator *acctWithdrawalData = [[[AcctWithdrawalXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -5032,8 +4951,7 @@
 	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 		
 	TaxesPaidXYPlotDataGenerator *flatTaxData = [[[TaxesPaidXYPlotDataGenerator alloc] initWithTax:flatTax] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init] autorelease];
@@ -5098,8 +5016,7 @@
 	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
 	acctTransfer.toEndpoint = acct02.acctTransferEndpointAcct;
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	
 	AcctWithdrawalXYPlotDataGenerator *acctWithdrawalData = [[[AcctWithdrawalXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
@@ -5157,8 +5074,7 @@
 	acctTransfer.fromEndpoint = self.testAppVals.cash.transferEndpointCash;
 	acctTransfer.toEndpoint = acct01.acctTransferEndpointAcct;
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	
 	CashBalXYPlotDataGenerator *cashData = [[[CashBalXYPlotDataGenerator alloc] init] autorelease];
@@ -5228,8 +5144,7 @@
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	AcctBalanceXYPlotDataGenerator *acctData = [[[AcctBalanceXYPlotDataGenerator alloc] initWithAccount:acct01] autorelease];
 	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
@@ -5268,8 +5183,7 @@
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
 	CumulativeCashFlowXYPlotDataGenerator *cumCashFlowData =
@@ -5307,7 +5221,7 @@
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 
 	expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
@@ -5333,7 +5247,7 @@
 	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
 	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-06-15"]];
 
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 
 	expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:50.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
@@ -5364,7 +5278,7 @@
 	itemizedIncome.multiScenarioApplicablePercent = [self.inputCreationHelper multiScenFixedValWithDefault:100.0];
 	[flatTax.itemizedIncomeSources addItemizedAmtsObject:itemizedIncome];
 
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 
 	expected = [[[NSMutableArray alloc]init]autorelease];
 	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:40.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
@@ -5388,7 +5302,7 @@
 	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 
 	expected = [[[NSMutableArray alloc]init]autorelease];
 	// Loan originates on 12/15/2012, so the origination amount should appear in the cash flow for 2012
@@ -5420,7 +5334,7 @@
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acct01.dividendEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
-	[simResults runSimulatorForResults];
+    simResults = [self genTestSimResults];
 
 	// The results should be the same as for the loan data, but the cash flow is increased by $100.
 	expected = [[[NSMutableArray alloc]init]autorelease];
@@ -5472,8 +5386,7 @@
 	loan01.extraPmtAmt = [inputCreationHelper multiScenAmountWithDefault:10.0];
 	loan01.extraPmtGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
 
@@ -5516,8 +5429,7 @@
 	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
 			[DateHelper dateFromStr:@"2015-01-15"]];
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
 
@@ -5564,8 +5476,7 @@
 
 		
 
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
 
@@ -5617,8 +5528,7 @@
 	loan01.multiScenarioDownPmtPercent = [inputCreationHelper multiScenInputValueWithDefaultFixedVal:
 		loan01.multiScenarioDownPmtPercentFixed];
 		
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 	
 	CashFlowXYPlotDataGenerator *cashFlowData = [[[CashFlowXYPlotDataGenerator alloc] init] autorelease];
 
@@ -5704,8 +5614,7 @@
 
     
     
-	SimResultsController *simResults = [[[SimResultsController alloc] initWithDataModelController:self.coreData andSharedAppValues:self.testAppVals] autorelease];
-	[simResults runSimulatorForResults];
+    SimResults *simResults = [self genTestSimResults];
 
     
     // loan01 has a $10/month payment, and loan02 has a $20/month payment
