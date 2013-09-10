@@ -63,11 +63,6 @@ static SimResultsController *theSimResultsControllerSingleton;
 	
 }
 
-- (void)runSimulatorForResults
-{
-	[self runSimulatorForResults:self];
-}
-
 -(void)updateProgress:(CGFloat)currentProgress
 {
 	// no-op

@@ -35,6 +35,5 @@
 +(SimResultsController*)theSimResultsController;
 
 - (void) runSimulatorForResults:(id<ProgressUpdateDelegate>)simProgressDelegate;
-- (void)runSimulatorForResults;
 
 @end
