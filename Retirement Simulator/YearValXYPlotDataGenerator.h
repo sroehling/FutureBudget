@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @class YearValXYPlotData;
-@class SimResultsController;
+@class SimResults;
 
 @protocol YearValXYPlotDataGenerator <NSObject>
 
--(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults;
+-(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResults*)simResults;
 -(NSString*)dataLabel;
 -(NSString*)dataYearlyUnitLabel;
--(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults;
+-(BOOL)resultsDefinedInSimResults:(SimResults*)simResults;
 
 @end

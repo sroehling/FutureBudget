@@ -95,6 +95,7 @@
 #import "CashFlowXYPlotDataGenerator.h"
 #import "CumulativeCashFlowXYPlotDataGenerator.h"
 #import "TotalDebtXYPlotDataGenerator.h"
+#import "SimResults.h"
 
 @implementation TestSimEngine
 
@@ -132,11 +133,20 @@
 	[inputCreationHelper release];
 }
 
--(void)checkPlotData:(id<YearValXYPlotDataGenerator>)plotDataGen withSimResults:(SimResultsController*)simResults
+-(void)checkPlotData:(id<YearValXYPlotDataGenerator>)plotDataGen withSimResults:(SimResultsController*)simResultsCtlr
 	andExpectedVals:(NSArray*)expectedVals
 	andLabel:(NSString*)label
 	withAdjustedVals:(BOOL)checkAgainstInflationAdjustedVals
 {
+    
+    // TODO - Need to rethink how we hold onto the simResults and
+    // verify the results are current
+    assert(!simResultsCtlr.resultsOutOfDate);
+    SimResults *simResults = simResultsCtlr.currentSimResults;
+    [simResults retain];
+    assert(simResults != nil);
+
+    
 	assert(simResults != nil);
 	assert(plotDataGen != nil);
 	assert(label != nil);
@@ -167,6 +177,8 @@
 			label,year, expectedVal,resultVal);
 		
 	}
+    
+    [simResults release];
 
 }
 

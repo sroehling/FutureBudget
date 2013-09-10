@@ -16,6 +16,7 @@
 
 
 #import "SimResultsController.h"
+#import "SimResults.h"
 #import "StringValidation.h"
 #import "ResultsViewInfo.h"
 #import "YearValXYPlotData.h"
@@ -65,8 +66,16 @@
 
 -(void)generateResults
 {
-	if([self.plotDataGenerator resultsDefinedInSimResults:
-			self.viewInfo.simResultsController])
+    
+    // TODO - Need to rethink how we hold onto the simResults and
+    // verify the results are current
+    assert(!self.viewInfo.simResultsController.resultsOutOfDate);
+    SimResults *simResults = self.viewInfo.simResultsController.currentSimResults;
+    assert(simResults != nil);
+    [[simResults retain] autorelease];
+
+    
+	if([self.plotDataGenerator resultsDefinedInSimResults:simResults])
 	{
 		[self.resultsView generateResults];
 	}

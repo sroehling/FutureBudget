@@ -10,13 +10,13 @@
 
 #import "YearValXYPlotDataGenerator.h"
 #import "YearValXYPlotData.h"
-#import "SimResultsController.h"
 #import "LocalizationHelper.h"
 #import "EndOfYearDigestResult.h"
+#import "SimResults.h"
 
 @implementation NetWorthXYPlotDataGenerator
 
--(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults
+-(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResults*)simResults
 {
 	YearValXYPlotData *plotData = [[[YearValXYPlotData alloc] init] autorelease];
 
@@ -32,7 +32,7 @@
 	return plotData;
 }
 
--(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+-(BOOL)resultsDefinedInSimResults:(SimResults*)simResults
 {
 	return TRUE;
 }

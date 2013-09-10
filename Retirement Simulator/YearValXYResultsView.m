@@ -13,6 +13,7 @@
 #import "LocalizationHelper.h"
 #import "YearValXYPlotData.h"
 #import "SimResultsController.h"
+#import "SimResults.h"
 #import "YearValPlotDataVal.h"
 #import "SharedAppValues.h"
 #import "YearValXYResultsCell.h"
@@ -135,11 +136,11 @@
 	}
 }
 
--(void)generatePlot:(BOOL)adjustResultsToSimStartDate
-{	
+-(void)generatePlot:(BOOL)adjustResultsToSimStartDate withSimResults:(SimResults*)simResults
+{
+     
 
-	if([self.plotDataGenerator resultsDefinedInSimResults:
-			self.resultsViewInfo.simResultsController])
+	if([self.plotDataGenerator resultsDefinedInSimResults:simResults])
 	{
 	
 		self.graphView = [[[CPTGraphHostingView alloc] 
@@ -147,7 +148,7 @@
 	
 		self.currentData = 
 			[self.plotDataGenerator 
-				generatePlotDataFromSimResults:self.resultsViewInfo.simResultsController];
+				generatePlotDataFromSimResults:simResults];
 		assert(self.currentData != nil);
 		
 		
@@ -177,8 +178,8 @@
 		graph.plotAreaFrame.paddingRight = 20.0;
 		graph.plotAreaFrame.cornerRadius = 5.0;
 		
-		NSInteger resultMinYear = self.resultsViewInfo.simResultsController.resultMinYear;
-		NSInteger resultMaxYear = self.resultsViewInfo.simResultsController.resultMaxYear;
+		NSInteger resultMinYear = simResults.resultMinYear;
+		NSInteger resultMaxYear = simResults.resultMaxYear;
 
 		// Setup plot space
 		CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
@@ -317,13 +318,22 @@
 -(void)generateResults
 {
 
+    // TODO - Need to rethink how we hold onto the simResults and
+    // verify the results are current
+    assert(!self.resultsViewInfo.simResultsController.resultsOutOfDate);
+    SimResults *simResults = self.resultsViewInfo.simResultsController.currentSimResults;
+    assert(simResults != nil);
+    [[simResults retain] autorelease];
+   
+    
+    
 	SharedAppValues *sharedAppVals = [SharedAppValues 
 		getUsingDataModelController:self.resultsViewInfo.simResultsController.dataModelController];
 		
 	BOOL adjustResultsToSimStartDate = [sharedAppVals.adjustResultsForSimStartDate boolValue];
 
 
-	[self generatePlot:adjustResultsToSimStartDate];
+	[self generatePlot:adjustResultsToSimStartDate withSimResults:simResults];
 	[self.tabularDataView reloadData];
 	
 	NSString *inflationAdjustText = adjustResultsToSimStartDate?
@@ -332,7 +342,7 @@
 		
 	NSString *footerText = [NSString stringWithFormat:@"%@     %@:%@",inflationAdjustText,
 		LOCALIZED_STR(@"SCENARIO_DETAIL_VIEW_TITLE"),
-		self.resultsViewInfo.simResultsController.scenarioSimulated.scenarioName];
+		simResults.scenarioSimulated.scenarioName];
 	
 	self.footerLabel.text = footerText;
 }

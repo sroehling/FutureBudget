@@ -12,51 +12,22 @@
 
 @class DataModelController;
 @class SharedAppValues;
-@class Scenario;
+@class SimResults;
 
 @interface SimResultsController : NSObject <ProgressUpdateDelegate> {
 	@private
-		NSMutableArray *endOfYearResults;
-		NSInteger resultMinYear;
-		NSInteger resultMaxYear;
-		
-		NSSet *assetsSimulated;
-		NSSet *loansSimulated;
-		NSSet *acctsSimulated;
-		NSSet *incomesSimulated;
-		NSSet *expensesSimulated;
-		NSSet *taxesSimulated;
-		
-		Scenario *scenarioSimulated;
 		
 		DataModelController *dataModelController;
 		SharedAppValues *sharedAppVals;
 		
 		BOOL resultsOutOfDate;
-		
-		// Optional - exclude results from years where only 
-		// part of the year is simulated.
-		BOOL excludePartialYearResults;
-    
+        SimResults *currentSimResults;
 }
-
-@property(nonatomic,retain) NSMutableArray *endOfYearResults;
-@property NSInteger resultMinYear;
-@property NSInteger resultMaxYear;
-@property BOOL excludePartialYearResults;
-
-@property(nonatomic,retain) NSSet *assetsSimulated;
-@property(nonatomic,retain) NSSet *loansSimulated;
-@property(nonatomic,retain) NSSet *acctsSimulated;
-@property(nonatomic,retain) NSSet *incomesSimulated;
-@property(nonatomic,retain) NSSet *expensesSimulated;
-@property(nonatomic,retain) NSSet *taxesSimulated;
-
-@property(nonatomic,retain) Scenario *scenarioSimulated;
 
 @property(nonatomic,retain) DataModelController *dataModelController;
 @property(nonatomic,retain) SharedAppValues *sharedAppVals;
 @property(readonly) BOOL resultsOutOfDate;
+@property(nonatomic,retain) SimResults *currentSimResults;
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
 	andSharedAppValues:(SharedAppValues *)theSharedAppVals;

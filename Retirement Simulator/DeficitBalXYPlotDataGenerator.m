@@ -10,14 +10,14 @@
 
 #import "YearValXYPlotDataGenerator.h"
 #import "YearValXYPlotData.h"
-#import "SimResultsController.h"
+#import "SimResults.h"
 #import "EndOfYearDigestResult.h"
 #import "LocalizationHelper.h"
 
 @implementation DeficitBalXYPlotDataGenerator
 
 
--(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults
+-(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResults*)simResults
 {
 	YearValXYPlotData *plotData = [[[YearValXYPlotData alloc] init] autorelease];
 
@@ -44,7 +44,7 @@
 }
 
 
--(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+-(BOOL)resultsDefinedInSimResults:(SimResults*)simResults
 {
 	return TRUE;
 }

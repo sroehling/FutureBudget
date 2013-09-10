@@ -13,6 +13,7 @@
 #import "StaticNavFieldEditInfo.h"
 #import "ResultsViewFactory.h"
 #import "SimResultsController.h"
+#import "SimResults.h"
 #import "ResultsViewInfo.h"
 #import "YearValXYPlotResultsViewFactory.h"
 #import "NetWorthXYPlotDataGenerator.h"
@@ -132,6 +133,14 @@
 	sectionInfo.title = LOCALIZED_STR(@"RESULTS_SUMMARY_SECTION_TITLE");
 	
 	SimResultsController *simResultsController = [SimResultsController theSimResultsController];
+    
+    // TODO - Need to rethink how we hold onto the simResults and
+    // verify the results are current
+    assert(!simResultsController.resultsOutOfDate);
+    SimResults *simResults = simResultsController.currentSimResults;
+    [[simResults retain] autorelease];
+    assert(simResults != nil);
+    
 	
 	if(true)
 	{
@@ -219,7 +228,7 @@
 				andSubViewFactory:allAcctViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allIncomeFieldEditInfo];
 		
-		for(IncomeInput *income in simResultsController.incomesSimulated)
+		for(IncomeInput *income in simResults.incomesSimulated)
 		{
 			ResultsViewInfo *incomeViewInfo = [[[ResultsViewInfo alloc] 
 				initWithSimResultsController:simResultsController 
@@ -256,7 +265,7 @@
 				andSubViewFactory:allExpenseViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allExpenseFieldEditInfo];
 		
-		for(ExpenseInput *expense in simResultsController.expensesSimulated)
+		for(ExpenseInput *expense in simResults.expensesSimulated)
 		{
 			ResultsViewInfo *expenseViewInfo = [[[ResultsViewInfo alloc] 
 				initWithSimResultsController:simResultsController 
@@ -295,7 +304,7 @@
 		
 		
 		
-		for(AssetInput *asset in simResultsController.assetsSimulated)
+		for(AssetInput *asset in simResults.assetsSimulated)
 		{
 			ResultsViewInfo *assetViewInfo = [[[ResultsViewInfo alloc] 
 				initWithSimResultsController:simResultsController 
@@ -332,7 +341,7 @@
 		[sectionInfo addFieldEditInfo:allLoanFieldEditInfo];
 		
 		
-		for(LoanInput *loan in simResultsController.loansSimulated)
+		for(LoanInput *loan in simResults.loansSimulated)
 		{
 			ResultsViewInfo *loanViewInfo = [[[ResultsViewInfo alloc] 
 				initWithSimResultsController:simResultsController 
@@ -369,7 +378,7 @@
 				andSubViewFactory:allAcctViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allAcctFieldEditInfo];
 		
-		for(Account *acct in simResultsController.acctsSimulated)
+		for(Account *acct in simResults.acctsSimulated)
 		{
 			ResultsViewInfo *acctViewInfo = [[[ResultsViewInfo alloc] 
 				initWithSimResultsController:simResultsController 
@@ -407,7 +416,7 @@
 				andSubViewFactory:allAcctContribViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allAcctContribFieldEditInfo];
 		
-		for(Account *acct in simResultsController.acctsSimulated)
+		for(Account *acct in simResults.acctsSimulated)
 		{
 			ResultsViewInfo *acctContribViewInfo = [[[ResultsViewInfo alloc] 
 				initWithSimResultsController:simResultsController 
@@ -445,7 +454,7 @@
 				andSubViewFactory:allAcctWithdrawViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allAcctWithdrawFieldEditInfo];
 		
-		for(Account *acct in simResultsController.acctsSimulated)
+		for(Account *acct in simResults.acctsSimulated)
 		{
 			ResultsViewInfo *acctWithdrawViewInfo = [[[ResultsViewInfo alloc] 
 				initWithSimResultsController:simResultsController 
@@ -486,7 +495,7 @@
 				andSubViewFactory:allTaxesViewFactory] autorelease];
 		[sectionInfo addFieldEditInfo:allTaxesFieldEditInfo];
 		
-		for(TaxInput *tax in simResultsController.taxesSimulated)
+		for(TaxInput *tax in simResults.taxesSimulated)
 		{
 			ResultsViewInfo *taxViewInfo = [[[ResultsViewInfo alloc] 
 				initWithSimResultsController:simResultsController 
@@ -504,7 +513,6 @@
 			[sectionInfo addFieldEditInfo:taxFieldEditInfo];
 		}
 	}
-
 	
 	return formPopulator.formInfo;
 	

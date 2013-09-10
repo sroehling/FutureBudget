@@ -10,7 +10,7 @@
 
 #import "YearValXYPlotDataGenerator.h"
 #import "YearValXYPlotData.h"
-#import "SimResultsController.h"
+#import "SimResults.h"
 #import "EndOfYearDigestResult.h"
 #import "EndOfYearInputResults.h"
 #import "Account.h"
@@ -20,7 +20,7 @@
 
 
 
--(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults
+-(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResults*)simResults
 {
 	YearValXYPlotData *plotData = [[[YearValXYPlotData alloc] init] autorelease];
 

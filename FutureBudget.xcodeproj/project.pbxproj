@@ -214,6 +214,8 @@
 		0036DE2413BE2C5C0043F3A5 /* ScenarioValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2313BE2C5C0043F3A5 /* ScenarioValue.m */; };
 		0036DE2713BE2D710043F3A5 /* MultiScenarioInputValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */; };
 		0036DE2E13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */; };
+		003CCC3F17DF8EF0007B524A /* SimResultsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CCC3E17DF8EF0007B524A /* SimResultsOperation.m */; };
+		003CCC4517DF91D9007B524A /* SimResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CCC4417DF91D9007B524A /* SimResults.m */; };
 		003CFD1313C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */; };
 		003F84F717B2EFC600977E32 /* AssetSaleDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 003F84F617B2EFC600977E32 /* AssetSaleDateFormatter.m */; };
 		003FFA3B16D5348300B83067 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 003FFA3916D5348200B83067 /* search.png */; };
@@ -733,11 +735,11 @@
 		001AE1E517186EC3000F461D /* links_external.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = links_external.md; sourceTree = "<group>"; };
 		001AE1E71718A116000F461D /* links_internal.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = links_internal.md; sourceTree = "<group>"; };
 		001E5C2414A240D4008A672E /* AllAcctContribXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctContribXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctContribXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		001E5C2514A240D4008A672E /* AllAcctContribXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AllAcctContribXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		001E5C2814A240F6008A672E /* AcctContribXYPlotGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctContribXYPlotGenerator.h; sourceTree = "<group>"; };
 		001E5C2914A240F6008A672E /* AcctContribXYPlotGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctContribXYPlotGenerator.m; sourceTree = "<group>"; };
 		001E5C2B14A24219008A672E /* AcctResultGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctResultGenerator.h; sourceTree = "<group>"; };
-		001E5C2C14A24219008A672E /* AcctResultGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctResultGenerator.m; sourceTree = "<group>"; };
+		001E5C2C14A24219008A672E /* AcctResultGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AcctResultGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00210FA514BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtFieldEditInfo.h; sourceTree = "<group>"; };
 		00210FA614BE5C6500E1D394 /* ItemizedTaxAmtFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedTaxAmtFieldEditInfo.m; sourceTree = "<group>"; };
 		00210FA914BE964400E1D394 /* ItemizedTaxAmtsSelectionFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedTaxAmtsSelectionFormInfoCreator.h; sourceTree = "<group>"; };
@@ -928,6 +930,10 @@
 		0036DE2613BE2D710043F3A5 /* MultiScenarioInputValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValue.m; sourceTree = "<group>"; };
 		0036DE2C13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiScenarioInputValueFieldInfo.h; sourceTree = "<group>"; };
 		0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiScenarioInputValueFieldInfo.m; sourceTree = "<group>"; };
+		003CCC3D17DF8EF0007B524A /* SimResultsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimResultsOperation.h; sourceTree = "<group>"; };
+		003CCC3E17DF8EF0007B524A /* SimResultsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimResultsOperation.m; sourceTree = "<group>"; };
+		003CCC4317DF91D9007B524A /* SimResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimResults.h; sourceTree = "<group>"; };
+		003CCC4417DF91D9007B524A /* SimResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimResults.m; sourceTree = "<group>"; };
 		003CFD1113C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectScenarioTableHeaderButtonDelegate.h; sourceTree = "<group>"; };
 		003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectScenarioTableHeaderButtonDelegate.m; sourceTree = "<group>"; };
 		003F84EF17B1599200977E32 /* FutureBudgetManualUITesting.ods */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureBudgetManualUITesting.ods; sourceTree = "<group>"; };
@@ -1157,9 +1163,9 @@
 		006B012C16DD4FE300416F54 /* TaxInputBlankOrPresetFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxInputBlankOrPresetFormInfoCreator.m; sourceTree = "<group>"; };
 		006B012E16DE742400416F54 /* taxPresets.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = taxPresets.md; sourceTree = "<group>"; };
 		006B086F14C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTaxesPaidXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTaxesPaidXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		006B087014C5E5EE0042FE8E /* AllTaxesPaidXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AllTaxesPaidXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		006B087214C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxesPaidXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxesPaidXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		006B087314C5E7800042FE8E /* TaxesPaidXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TaxesPaidXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		006D3A58145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedExpenseTaxAmtCreator.h; sourceTree = "<group>"; };
 		006D3A59145EFEC1004AF798 /* ItemizedExpenseTaxAmtCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedExpenseTaxAmtCreator.m; sourceTree = "<group>"; };
 		006D3A5C145F006A004AF798 /* ItemizedAccountTaxAmtCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAccountTaxAmtCreator.h; sourceTree = "<group>"; };
@@ -1199,7 +1205,7 @@
 		007D0CD9176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemizedAssetLossTaxFormInfoCreator.h; sourceTree = "<group>"; };
 		007D0CDA176F71D200D1CD7B /* ItemizedAssetLossTaxFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemizedAssetLossTaxFormInfoCreator.m; sourceTree = "<group>"; };
 		007EE907178E01AF0035FB86 /* CashFlowXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		007EE908178E01AF0035FB86 /* CashFlowXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		007EE908178E01AF0035FB86 /* CashFlowXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CashFlowXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0086C07F14279A3B00148785 /* LoanOrigSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanOrigSimEventCreator.h; sourceTree = "<group>"; };
 		0086C08014279A3B00148785 /* LoanOrigSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanOrigSimEventCreator.m; sourceTree = "<group>"; };
 		0086C08314279B7D00148785 /* SimInputHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimInputHelper.h; sourceTree = "<group>"; };
@@ -1241,7 +1247,7 @@
 		008DD4AF14B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		008DD4B014B365F1000AAEA5 /* AcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		008DD4B314B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctWithdrawalXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		008DD4B414B3674E000AAEA5 /* AllAcctWithdrawalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AllAcctWithdrawalXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		008DD4B614B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanEarlyPayoffSimEventCreator.h; sourceTree = "<group>"; };
 		008DD4B714B3A90D000AAEA5 /* LoanEarlyPayoffSimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanEarlyPayoffSimEventCreator.m; sourceTree = "<group>"; };
 		008DD4B914B3AB22000AAEA5 /* LoanEarlyPayoffSimEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanEarlyPayoffSimEvent.h; sourceTree = "<group>"; };
@@ -1349,11 +1355,11 @@
 		00AF85F81499313F00AE734B /* YearValPlotDataVal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearValPlotDataVal.h; sourceTree = "<group>"; };
 		00AF85F91499314000AE734B /* YearValPlotDataVal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearValPlotDataVal.m; sourceTree = "<group>"; };
 		00AF85FC149A6C4F00AE734B /* CashBalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashBalXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00AF85FD149A6C5300AE734B /* CashBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashBalXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00AF85FD149A6C5300AE734B /* CashBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CashBalXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00AF85FF149A81CA00AE734B /* DeficitBalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeficitBalXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00AF8600149A81D200AE734B /* DeficitBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeficitBalXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00AF8600149A81D200AE734B /* DeficitBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DeficitBalXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00B4468417BD47CB00093381 /* TotalDebtXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalDebtXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00B4468517BD47CB00093381 /* TotalDebtXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalDebtXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00B4468517BD47CB00093381 /* TotalDebtXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TotalDebtXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00BC35BC140C588300D79F78 /* YearlySimEventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearlySimEventCreator.h; sourceTree = "<group>"; };
 		00BC35BD140C588300D79F78 /* YearlySimEventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearlySimEventCreator.m; sourceTree = "<group>"; };
 		00BC35C6140D42DD00D79F78 /* SimEventList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimEventList.h; sourceTree = "<group>"; };
@@ -1361,9 +1367,9 @@
 		00BC35C9140DA3B400D79F78 /* EventListTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListTest.h; sourceTree = "<group>"; };
 		00BC35CA140DA3B600D79F78 /* EventListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListTest.m; sourceTree = "<group>"; };
 		00C012AB178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CumulativeCashFlowXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00C012AC178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CumulativeCashFlowXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00C012AC178F56E2003269D5 /* CumulativeCashFlowXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CumulativeCashFlowXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00C012AE179061AB003269D5 /* RelativeNetWorthXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeNetWorthXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00C012AF179061AB003269D5 /* RelativeNetWorthXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeNetWorthXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00C012AF179061AB003269D5 /* RelativeNetWorthXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RelativeNetWorthXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00C3DC9C1667EFDB00F1F490 /* ResultraGenericLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResultraGenericLib.xcodeproj; path = lib/ResultraGenericLib/ResultraGenericLib.xcodeproj; sourceTree = "<group>"; };
 		00C3DCCA1667F15A00F1F490 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		00C3DCCC1667F1C600F1F490 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1371,25 +1377,25 @@
 		00CB5E541491282F00C4654A /* EndOfYearInputResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndOfYearInputResults.h; sourceTree = "<group>"; };
 		00CB5E551491282F00C4654A /* EndOfYearInputResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfYearInputResults.m; sourceTree = "<group>"; };
 		00CB5E591491337900C4654A /* AssetValueXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetValueXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetValueXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E5A1491337900C4654A /* AssetValueXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AssetValueXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00CB5E5C149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAssetValueXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAssetValueXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E5D149137AA00C4654A /* AllAssetValueXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AllAssetValueXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00CB5E5F1491622C00C4654A /* AllLoanBalanceXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllLoanBalanceXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E601491622D00C4654A /* AllLoanBalanceXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllLoanBalanceXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E601491622D00C4654A /* AllLoanBalanceXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AllLoanBalanceXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00CB5E621491628C00C4654A /* LoanBalXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoanBalXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E631491628D00C4654A /* LoanBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoanBalXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E631491628D00C4654A /* LoanBalXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LoanBalXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00CB5E6514926F1300C4654A /* AllAcctBalanceXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAcctBalanceXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E6614926F1500C4654A /* AllAcctBalanceXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAcctBalanceXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E6614926F1500C4654A /* AllAcctBalanceXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AllAcctBalanceXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00CB5E6814926F4100C4654A /* AcctBalanceXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcctBalanceXYPlotDataGenerator.h; sourceTree = "<group>"; };
 		00CB5E6914926F4200C4654A /* AcctBalanceXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcctBalanceXYPlotDataGenerator.m; sourceTree = "<group>"; };
 		00CB5E6B14927DD600C4654A /* AllIncomeXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllIncomeXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E6C14927DD900C4654A /* AllIncomeXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllIncomeXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E6C14927DD900C4654A /* AllIncomeXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AllIncomeXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00CB5E6E14927E6300C4654A /* IncomeXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E6F14927E6500C4654A /* IncomeXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E6F14927E6500C4654A /* IncomeXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = IncomeXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00CB5E711492AF1A00C4654A /* AllExpenseXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllExpenseXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E721492AF1E00C4654A /* AllExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AllExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00CB5E741492AF3C00C4654A /* ExpenseXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00CB5E751492AF3F00C4654A /* ExpenseXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ExpenseXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00D071C817809F640099E3C2 /* budgetList.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = budgetList.md; sourceTree = "<group>"; };
 		00D6845314CDC99700E3AC9F /* MoreFormInfoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreFormInfoCreator.h; sourceTree = "<group>"; };
 		00D6845414CDC99700E3AC9F /* MoreFormInfoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreFormInfoCreator.m; sourceTree = "<group>"; };
@@ -1417,7 +1423,7 @@
 		00D8D27F149007A200B0314D /* YearValXYPlotData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearValXYPlotData.h; sourceTree = "<group>"; };
 		00D8D280149007A200B0314D /* YearValXYPlotData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearValXYPlotData.m; sourceTree = "<group>"; };
 		00D8D28214900A2100B0314D /* NetWorthXYPlotDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorthXYPlotDataGenerator.h; sourceTree = "<group>"; };
-		00D8D28314900A2200B0314D /* NetWorthXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorthXYPlotDataGenerator.m; sourceTree = "<group>"; };
+		00D8D28314900A2200B0314D /* NetWorthXYPlotDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NetWorthXYPlotDataGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		00DC49C914D6F363006BDF61 /* variableInterest.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableInterest.md; sourceTree = "<group>"; };
 		00DC49CC14D6F624006BDF61 /* variableInflation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableInflation.md; sourceTree = "<group>"; };
 		00DC49CE14D6F747006BDF61 /* variableAmount.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variableAmount.md; sourceTree = "<group>"; };
@@ -2504,6 +2510,10 @@
 				00D8D272148FE34300B0314D /* SimResultsController.m */,
 				004F5D7E13733BC100E0C4A3 /* SimEngine.h */,
 				004F5D7F13733BC100E0C4A3 /* SimEngine.m */,
+				003CCC3D17DF8EF0007B524A /* SimResultsOperation.h */,
+				003CCC3E17DF8EF0007B524A /* SimResultsOperation.m */,
+				003CCC4317DF91D9007B524A /* SimResults.h */,
+				003CCC4417DF91D9007B524A /* SimResults.m */,
 			);
 			name = "Simulator Engine";
 			sourceTree = "<group>";
@@ -3982,6 +3992,8 @@
 				00C012B0179061AB003269D5 /* RelativeNetWorthXYPlotDataGenerator.m in Sources */,
 				003F84F717B2EFC600977E32 /* AssetSaleDateFormatter.m in Sources */,
 				00B4468617BD47CC00093381 /* TotalDebtXYPlotDataGenerator.m in Sources */,
+				003CCC3F17DF8EF0007B524A /* SimResultsOperation.m in Sources */,
+				003CCC4517DF91D9007B524A /* SimResults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

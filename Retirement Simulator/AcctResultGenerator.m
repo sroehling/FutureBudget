@@ -7,7 +7,7 @@
 //
 
 #import "AcctResultGenerator.h"
-#import "SimResultsController.h"
+#import "SimResults.h"
 
 #import "Account.h"
 
@@ -38,7 +38,7 @@
 	[super dealloc];
 }
 
--(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResultsController*)simResults
+-(YearValXYPlotData*)generatePlotDataFromSimResults:(SimResults*)simResults
 {
 	assert(0); // must be overridden
 	return nil;
@@ -57,7 +57,7 @@
 }
 
 
--(BOOL)resultsDefinedInSimResults:(SimResultsController*)simResults
+-(BOOL)resultsDefinedInSimResults:(SimResults*)simResults
 {
 	return [simResults.acctsSimulated containsObject:self.account];
 }
