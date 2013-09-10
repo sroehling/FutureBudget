@@ -146,9 +146,7 @@
     [simEngine runSim:self];
     
     
-    SimResults *simResults = [[[SimResults alloc] initWithSimEngine:simEngine] autorelease];
-    [[simResults retain] autorelease];
-    
+    SimResults *simResults = [[[SimResults alloc] initWithSimEngine:simEngine] autorelease];    
     
     [simEngine release];
 
