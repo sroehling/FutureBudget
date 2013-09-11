@@ -224,7 +224,7 @@
 		
 		self.currentPlanDmc = [AppHelper openPlanForPlanName:defaultPlanName];
 	}
-	[SimResultsController initSingletonFromDataModelController:self.currentPlanDmc];
+	[SimResultsController initSingletonFromMainDataModelController:self.currentPlanDmc];
 
 }
 
@@ -250,7 +250,7 @@
 	
 	self.currentPlanDmc = [AppHelper openPlanForPlanName:newPlanName];
 	
-	[SimResultsController initSingletonFromDataModelController:self.currentPlanDmc];
+	[SimResultsController initSingletonFromMainDataModelController:self.currentPlanDmc];
 
 	
 	// Update the dataModelController ("file handle" for the current plan) for

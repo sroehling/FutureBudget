@@ -19,22 +19,26 @@
 
 @implementation SimResultsController
 
-@synthesize dataModelController;
-@synthesize sharedAppVals;
+@synthesize simResultsCalcDmc;
+@synthesize mainDmc;
 
 @synthesize resultsOutOfDate;
 @synthesize currentSimResults;
+@synthesize simResultsGenQueue;
 
 static SimResultsController *theSimResultsControllerSingleton;
 
 
 -(void)dealloc
 {
-	[self.dataModelController stopObservingAnyContextChanges:self];
+	[self.mainDmc stopObservingAnyContextChanges:self];
     
-	[dataModelController release];
-	[sharedAppVals release];
+	[simResultsCalcDmc release];
+    [mainDmc release];
+    
     [currentSimResults release];
+    
+    [simResultsGenQueue release];
     
 	[super dealloc];
 }
@@ -47,17 +51,15 @@ static SimResultsController *theSimResultsControllerSingleton;
     NSLog(@"Starting simulation run...");
     
     SimEngine *simEngine = [[SimEngine alloc] 
-		initWithDataModelController:self.dataModelController 
-		andSharedAppValues:self.sharedAppVals ];
+		initWithDataModelController:self.simResultsCalcDmc 
+		andSharedAppValues:[SharedAppValues getUsingDataModelController:self.simResultsCalcDmc] ];
            
     [simEngine runSim:simProgressDelegate];
     
     self.currentSimResults = [[[SimResults alloc] initWithSimEngine:simEngine] autorelease];
     
      NSLog(@"... Done running simulation");
-    
-    // TODO - Allocate SimResults
-    
+        
     [simEngine release];
 	resultsOutOfDate = FALSE;
 	
@@ -70,26 +72,34 @@ static SimResultsController *theSimResultsControllerSingleton;
 
 - (void)managedObjectsChanged
 {
+    // TODO - Launch a thread to calculate results, stopping the other thread first.
+
+    
     NSLog(@"SimResultsController - Managed Objects Changed - marking results out of date");
 	resultsOutOfDate = TRUE;
     self.currentSimResults = nil;
 }
 
 
--(id)initWithDataModelController:(DataModelController*)theDataModelController 
-	andSharedAppValues:(SharedAppValues *)theSharedAppVals
+-(id)initWithDataModelController:(DataModelController*)mainDataModelController
 {
 	self = [super init];
 	if(self)
 	{
-		// Default to run the simulation on the data in database file.
-		self.dataModelController = theDataModelController;
-		self.sharedAppVals = theSharedAppVals;
+        self.mainDmc = mainDataModelController;
+        
+        // TODO - simResultsCalcDmc needs to have its NSManagedObjectContext be a child of the
+        // self.mainDmc's NSManagedObjectContext, ensuring any unsaved changes in self.mainDmc
+        // are seen in the object's fetched from self.simResultsCalcDmc
+        self.simResultsCalcDmc = [[[DataModelController alloc]
+               initWithPersistentStoreCoord:mainDataModelController.persistentStoreCoordinator] autorelease];
+        self.simResultsCalcDmc.saveEnabled = FALSE;
 				
-		// TODO - Need to observe changes to any data model controller.
-		[self.dataModelController startObservingAnyContextChanges:self 
+		[self.mainDmc startObservingAnyContextChanges:self 
 			withSelector:@selector(managedObjectsChanged)];
 		resultsOutOfDate = TRUE;
+        
+        self.simResultsGenQueue = [[[NSOperationQueue alloc] init] autorelease];
 
 	}
 	return self;
@@ -119,11 +129,10 @@ static SimResultsController *theSimResultsControllerSingleton;
 	return theSimResultsControllerSingleton;
 }
 
-+(void)initSingletonFromDataModelController:(DataModelController*)dataModelController
++(void)initSingletonFromMainDataModelController:(DataModelController*)mainDataModelController
 {
 	SimResultsController *theResultsController = [[[SimResultsController alloc] 
-		initWithDataModelController:dataModelController 
-		andSharedAppValues:[SharedAppValues getUsingDataModelController:dataModelController]] autorelease];
+		initWithDataModelController:mainDataModelController] autorelease];
 	[SimResultsController initSingleton:theResultsController];	
 }
 

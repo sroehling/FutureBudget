@@ -114,6 +114,8 @@
 	
 	[super viewWillAppear:animated];	
 
+    // TODO - Need to trigger the generation of results from SimResultsController
+    
 	if(!self.viewInfo.simResultsController.resultsOutOfDate)
 	{
 		[self generateResults];

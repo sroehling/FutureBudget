@@ -17,21 +17,26 @@
 @interface SimResultsController : NSObject <ProgressUpdateDelegate> {
 	@private
 		
-		DataModelController *dataModelController;
-		SharedAppValues *sharedAppVals;
-		
+        DataModelController *mainDmc;
+        DataModelController *simResultsCalcDmc;
+    
 		BOOL resultsOutOfDate;
         SimResults *currentSimResults;
+    
+        NSOperationQueue *simResultsGenQueue;
+
 }
 
-@property(nonatomic,retain) DataModelController *dataModelController;
-@property(nonatomic,retain) SharedAppValues *sharedAppVals;
+@property(nonatomic,retain) DataModelController *mainDmc;
+@property(nonatomic,retain) DataModelController *simResultsCalcDmc;
+
+
 @property(readonly) BOOL resultsOutOfDate;
 @property(nonatomic,retain) SimResults *currentSimResults;
+@property(nonatomic,retain) NSOperationQueue *simResultsGenQueue;
 
--(id)initWithDataModelController:(DataModelController*)theDataModelController 
-	andSharedAppValues:(SharedAppValues *)theSharedAppVals;
-+(void)initSingletonFromDataModelController:(DataModelController*)dataModelController;
++(void)initSingletonFromMainDataModelController:(DataModelController*)mainDataModelController;
+
 +(SimResultsController*)theSimResultsController;
 
 - (void) runSimulatorForResults:(id<ProgressUpdateDelegate>)simProgressDelegate;

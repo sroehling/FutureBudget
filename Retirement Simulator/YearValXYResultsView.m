@@ -328,7 +328,7 @@
     
     
 	SharedAppValues *sharedAppVals = [SharedAppValues 
-		getUsingDataModelController:self.resultsViewInfo.simResultsController.dataModelController];
+		getUsingDataModelController:self.resultsViewInfo.simResultsController.simResultsCalcDmc];
 		
 	BOOL adjustResultsToSimStartDate = [sharedAppVals.adjustResultsForSimStartDate boolValue];
 
@@ -396,7 +396,7 @@
 	else
 	{
 		SharedAppValues *sharedAppVals = [SharedAppValues 
-			getUsingDataModelController:self.resultsViewInfo.simResultsController.dataModelController];
+			getUsingDataModelController:self.resultsViewInfo.simResultsController.simResultsCalcDmc];
 			
 		if([sharedAppVals.adjustResultsForSimStartDate boolValue])
 		{
@@ -430,7 +430,7 @@
 	YearValPlotDataVal *plotDataVal = [currentData.plotData objectAtIndex:indexPath.row];
 	
 	SharedAppValues *sharedAppVals = [SharedAppValues 
-			getUsingDataModelController:self.resultsViewInfo.simResultsController.dataModelController];
+			getUsingDataModelController:self.resultsViewInfo.simResultsController.simResultsCalcDmc];
 			
 	NSNumber *plotResult;
 	if([sharedAppVals.adjustResultsForSimStartDate boolValue])

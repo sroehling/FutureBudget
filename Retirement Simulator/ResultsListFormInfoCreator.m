@@ -67,6 +67,7 @@
 
 -(BOOL)needsToPreprocessFormData
 {
+    // TODO - Need to trigger results generation from the SimResultsController
 	if([SimResultsController theSimResultsController].resultsOutOfDate)
 	{
 		return TRUE;
