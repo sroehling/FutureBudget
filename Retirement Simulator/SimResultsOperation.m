@@ -69,9 +69,8 @@
     // self.mainDmc's NSManagedObjectContext, ensuring any unsaved changes in self.mainDmc
     // are seen in the object's fetched from self.simResultsCalcDmc
     DataModelController *simResultsCalcDmc = [[[DataModelController alloc]
-            initWithPersistentStoreCoord:self.mainDmc.persistentStoreCoordinator] autorelease];
- //   simResultsCalcDmc.managedObjectContext.parentContext = self.mainDmc.managedObjectContext;
-    simResultsCalcDmc.saveEnabled = FALSE;
+           initWithParentContext:self.mainDmc.managedObjectContext andConcurrencyType:NSConfinementConcurrencyType]autorelease];
+     simResultsCalcDmc.saveEnabled = FALSE;
     
     
     SimEngine *simEngine = [[SimEngine alloc] initWithDataModelController:simResultsCalcDmc

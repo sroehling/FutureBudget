@@ -27,10 +27,14 @@ NSString * const CURRENT_PLAN_NAME_KEY = @"CURRENT_PLAN_FILE_NAME";
 	// Each plan resides in a separate SQL lite database file
 	NSString *planFileName = [NSString stringWithFormat:@"%@.%@",planName,PLAN_DATA_FILE_EXTENSION];
 
+    // Init with a NSMainQueueConcurrencyType, since a child
+    // NSManagedObjectContext will be used for the forecast
+    // results generation.
 	DataModelController *appDmc = 
 		[[[DataModelController alloc] 
 			initForDatabaseUsageWithDataModelNamed:APP_DATA_DATA_MODEL_NAME
-			andStoreNamed:planFileName] autorelease];
+			andStoreNamed:planFileName
+            andConcurrencyType:NSMainQueueConcurrencyType] autorelease];
 			
 	return appDmc;
 }
