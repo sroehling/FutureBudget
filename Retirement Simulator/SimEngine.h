@@ -36,6 +36,11 @@
 	SharedAppValues *sharedAppVals;
 	
 	SimParams *simParams;
+    
+    // Optional - Operation under which the simulatino is executing.
+    // The simulator will inspect this operation from time to time to
+    // see if the operation has been canceled.
+    NSOperation *simExecutionOperation;  
 
     
 }
@@ -51,6 +56,8 @@
 @property(nonatomic,retain) SimParams *simParams;
 @property(nonatomic,retain) DataModelController *dataModelController;
 @property(nonatomic,retain) SharedAppValues *sharedAppVals;
+
+@property(nonatomic,assign) NSOperation *simExecutionOperation;
 
 
 

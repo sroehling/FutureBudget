@@ -22,15 +22,7 @@
 @synthesize contributionAmount;
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
-{
-	NSString *currencyAmount = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:self.contributionAmount]];
-    
-    NSLog(@"Doing savings contribution event: %@ %@ %@",
-          self.acctSimInfo.account.name,
-          [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		  currencyAmount);
-		  
+{    		  
 	AccountContribDigestEntry *acctContrib = 
 		[[[AccountContribDigestEntry alloc] 
 		initWithAcctSimInfo:self.acctSimInfo

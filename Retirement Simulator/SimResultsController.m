@@ -36,9 +36,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 	[self.mainDmc stopObservingAnyContextChanges:self];
     
     [mainDmc release];
-    
     [currentSimResults release];
-    
     [simResultsGenQueue release];
     
 	[super dealloc];
@@ -57,60 +55,40 @@ static SimResultsController *theSimResultsControllerSingleton;
     return progressFloat;
 }
 
-
--(void)updateProgress:(CGFloat)currentProgress
+-(void)updateSimProgress:(CGFloat)currentProgress
 {
-    // Progress updates need to be received on the main thread, since these progress
-    // updates can results in UI updates.
-    assert(currentProgress>=0.0);
-    assert(currentProgress <= 100.0);
-    dispatch_async(dispatch_get_main_queue(),^{
-        NSNumber *progressNum = [NSNumber numberWithFloat:currentProgress];
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:progressNum forKey:SIM_RESULTS_PROGRESS_VAL_KEY];
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:SIM_RESULTS_PROGRESS_NOTIFICATION_NAME object:nil userInfo:userInfo];
-    });
+    NSNumber *progressNum = [NSNumber numberWithFloat:currentProgress];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:progressNum forKey:SIM_RESULTS_PROGRESS_VAL_KEY];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:SIM_RESULTS_PROGRESS_NOTIFICATION_NAME object:nil userInfo:userInfo];
 }
 
--(void)runSimulatorForResultsInBackground
+-(void)simResultsGenerated:(SimResults *)simResults
+{
+    assert(simResults != nil);
+    self.currentSimResults = simResults;
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME object:nil];
+}
+
+
+-(void)runSimulatorForResults
 {
     NSLog(@"Starting simulation run...");
     
-    // TODO - simResultsCalcDmc needs to have its NSManagedObjectContext be a child of the
-    // self.mainDmc's NSManagedObjectContext, ensuring any unsaved changes in self.mainDmc
-    // are seen in the object's fetched from self.simResultsCalcDmc
-    DataModelController *simResultsCalcDmc = [[[DataModelController alloc]
-                initWithPersistentStoreCoord:self.mainDmc.persistentStoreCoordinator] autorelease];
-    simResultsCalcDmc.saveEnabled = FALSE;
-
+    SimResultsOperation *simResultsOperation = [[[SimResultsOperation alloc]
+                initWithDataModelController:self.mainDmc andResultsDelegate:self]autorelease];
+    [self.simResultsGenQueue cancelAllOperations]; // Cancel any ongoing simulator runs (if any)
+    [self.simResultsGenQueue addOperation:simResultsOperation];
     
-    SimEngine *simEngine = [[SimEngine alloc] initWithDataModelController:simResultsCalcDmc
-          andSharedAppValues:[SharedAppValues getUsingDataModelController:simResultsCalcDmc] ];
-        
-    [simEngine runSim:self];
-        
-    self.currentSimResults = [[[SimResults alloc] initWithSimEngine:simEngine] autorelease];
-        
-    NSLog(@"... Done running simulation");
-        
-    [simEngine release];
-    
-    [self performSelectorOnMainThread:@selector(sendUpdatedSimResultsNotification)
-                           withObject:nil waitUntilDone:FALSE];
-}
-
--(void)sendUpdatedSimResultsNotification
-{
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME object:nil];
 }
 
 - (void)managedObjectsChanged
 {
     // TODO - Launch a thread to calculate results, stopping the other thread first.
     NSLog(@"SimResultsController - Managed Objects Changed - regenerating results");
-    [self performSelectorInBackground:
-        @selector(runSimulatorForResultsInBackground) withObject:nil];
+    
+    [self runSimulatorForResults];
 }
 
 
@@ -126,15 +104,13 @@ static SimResultsController *theSimResultsControllerSingleton;
 			withSelector:@selector(managedObjectsChanged)];
         
         self.simResultsGenQueue = [[[NSOperationQueue alloc] init] autorelease];
+        self.simResultsGenQueue.maxConcurrentOperationCount = 1;
+
         
         // Invalidate the current results. It doesn't make sense to
         // show any old results, since they'll be from a different plan.
         self.currentSimResults = nil;
         
-        // Run the simulator to get an initial set of results
-        [self performSelectorInBackground:
-            @selector(runSimulatorForResultsInBackground) withObject:nil];
-
 	}
 	return self;
 
@@ -167,7 +143,10 @@ static SimResultsController *theSimResultsControllerSingleton;
 {
 	SimResultsController *theResultsController = [[[SimResultsController alloc] 
 		initWithDataModelController:mainDataModelController] autorelease];
-	[SimResultsController initSingleton:theResultsController];	
+	[SimResultsController initSingleton:theResultsController];
+    
+    // Run the simulator to get an initial set of results
+   [theResultsController runSimulatorForResults];
 }
 
 

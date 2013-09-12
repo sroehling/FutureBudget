@@ -16,9 +16,6 @@
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
-	NSLog(@"Digest Update: %@ %@",
-		[[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		[self.eventDate description]);
 	[digest advanceToNextYear];
 }
 

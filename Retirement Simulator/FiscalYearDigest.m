@@ -380,9 +380,6 @@
 
 - (void)advanceToNextYear
 {
-	NSLog(@"Advancing digest to next year from last year start = %@",
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.currentYearDigestStartDate]);
-
 	// Carry the balances forward from the prior year to the current. This
 	// will have the result of adding any interest from December 31st to
 	// the January 1st digest entry. We "snapshot" the digest sums after

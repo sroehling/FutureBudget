@@ -77,6 +77,7 @@
 @synthesize simParams;
 @synthesize dataModelController;
 @synthesize sharedAppVals;
+@synthesize simExecutionOperation;
 
 - (id)initWithDataModelController:(DataModelController*)theDataModelController
 	andSharedAppValues:(SharedAppValues*)theSharedAppVals
@@ -365,7 +366,7 @@
 
 - (void)runSim:(id<ProgressUpdateDelegate>)simProgressDelegate
 {
-    NSLog(@"Running Simulator");
+    NSLog(@"Running Simulator ...");
 	assert(simProgressDelegate != nil);
     
     [self resetSimulator];
@@ -393,10 +394,22 @@
 			currentProgress = eventProgress;
 			[simProgressDelegate updateProgress:currentProgress];
 		}
+        
+        if(self.simExecutionOperation != nil)
+        {
+            if(self.simExecutionOperation.isCancelled)
+            {
+                NSLog(@"... Sim execution canceled.");
+                return; // abort the simulation
+            }
+        }
 		
 		nextEventToProcess = [self.eventList nextEvent];
     } // while planEndDate is in the future w.r.t. currentSimDate
-     
+    
+    NSLog(@"... Done running simulation");
+    
+    
 }
 
 @end

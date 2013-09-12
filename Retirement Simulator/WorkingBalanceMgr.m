@@ -118,12 +118,7 @@ static const CGFloat kBalanceDecrementComparisonTolerance = 0.001;
 	
 	[self.deficitBalance carryBalanceForward:newDate];
 	[self.accruedEstimatedTaxes carryBalanceForward:newDate];
-	[self.nextEstimatedTaxPayment carryBalanceForward:newDate];
-	
-	NSString *currentCashCurrency = [[NumberHelper theHelper].currencyFormatter 
-				stringFromNumber:[NSNumber numberWithDouble:[self.cashWorkingBalance currentBalanceForDate:newDate]]];
-	NSLog(@"Total Cash balance: %@",currentCashCurrency);
-
+	[self.nextEstimatedTaxPayment carryBalanceForward:newDate];	
 }
 
 

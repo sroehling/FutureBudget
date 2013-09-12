@@ -11,19 +11,30 @@
 
 @class DataModelController;
 
+@protocol SimExecutionResultsDelegate;
+@class SimResults;
 
 @interface SimResultsOperation : NSOperation  <ProgressUpdateDelegate> {
     @private
-        DataModelController *resultsDmc;
-        id<ProgressUpdateDelegate> mainThreadProgressDelegate;
+        DataModelController *mainDmc;
+        id<SimExecutionResultsDelegate> resultsDelegate;
+    
         CGFloat currentSimProgress;
+        SimResults *simResults;
 }
 
-@property(nonatomic,retain) DataModelController *resultsDmc;
-@property(nonatomic,retain) id<ProgressUpdateDelegate> mainThreadProgressDelegate;
+@property(nonatomic,retain) DataModelController *mainDmc;
+@property(nonatomic,assign) id<SimExecutionResultsDelegate> resultsDelegate;
+@property(nonatomic,retain) SimResults *simResults;
 
--(id)initWithDataModelController:(DataModelController*)theResultsDataModelController
-             andProgressDelegate:(id<ProgressUpdateDelegate>)theMainThreadProgressDelegate;
+-(id)initWithDataModelController:(DataModelController*)theMainDataModelController
+              andResultsDelegate:(id<SimExecutionResultsDelegate>)theResultsDelegate;
 
+@end
+
+@protocol SimExecutionResultsDelegate <NSObject>
+
+-(void)simResultsGenerated:(SimResults*)simResults;
+-(void)updateSimProgress:(CGFloat)currentProgress;
 
 @end

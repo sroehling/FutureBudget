@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "ProgressUpdateDelegate.h"
+#import "SimResultsOperation.h"
 
 @class DataModelController;
 @class SharedAppValues;
@@ -17,7 +18,7 @@
 extern NSString * const SIM_RESULTS_PROGRESS_NOTIFICATION_NAME;
 extern NSString * const SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME;
 
-@interface SimResultsController : NSObject <ProgressUpdateDelegate> {
+@interface SimResultsController : NSObject <SimExecutionResultsDelegate> {
 	@private
         DataModelController *mainDmc;
         SimResults *currentSimResults;
