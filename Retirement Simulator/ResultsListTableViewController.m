@@ -7,32 +7,84 @@
 //
 
 #import "ResultsListTableViewController.h"
-
-@interface ResultsListTableViewController ()
-
-@end
+#import "SimResultsController.h"
+#import "MBProgressHUD.h"
+#import "LocalizationHelper.h"
 
 @implementation ResultsListTableViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize simProgressHUD;
+
+-(void)dealloc
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    [simProgressHUD release];
+    [super dealloc];
+}
+
+
+-(void)showSimProgressHUD
+{
+    self.simProgressHUD = [[[MBProgressHUD alloc]
+                            initWithView:self.navigationController.view] autorelease];
+    self.simProgressHUD.dimBackground = YES;
+    self.simProgressHUD.mode = MBProgressHUDModeDeterminate;
+    self.simProgressHUD.labelText = LOCALIZED_STR(@"RESULTS_PROGRESS_LABEL");
+    
+    [self.navigationController.view addSubview:self.simProgressHUD];
+    [self.simProgressHUD show:TRUE];
+}
+
+- (void)updateSimProgress:(NSNotification *)progressInfo
+{
+    if(self.simProgressHUD == nil)
+    {
+        [self showSimProgressHUD];
     }
-    return self;
+    self.simProgressHUD.progress = [SimResultsController progressValFromSimProgressUpdate:progressInfo];
 }
 
-- (void)viewDidLoad
+-(void)updatedSimResultsAvailable:(NSNotification*)resultsInfo
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self.simProgressHUD removeFromSuperview];
+    self.simProgressHUD = nil;
+    
+    [self reloadTableView];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - View lifecycle
+
+
+- (void)viewWillAppear:(BOOL)animated {
+	
+	[super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(updateSimProgress:)
+            name:SIM_RESULTS_PROGRESS_NOTIFICATION_NAME object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+         selector:@selector(updatedSimResultsAvailable:)
+          name:SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [super viewWillDisappear:animated];
+}
+
+- (void)generateFormInfo
+{
+    SimResultsController *simResultsController = [SimResultsController theSimResultsController];
+    
+    // Only generate results if an initial set of results have been generated
+    SimResults *simResults = simResultsController.currentSimResults;
+    if(simResults != nil)
+    {
+        [super generateFormInfo];        
+    }
+    
 }
 
 @end

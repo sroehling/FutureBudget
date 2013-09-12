@@ -12,14 +12,11 @@
 
 @interface ResultsViewInfo : NSObject {
 	@private
-		SimResultsController *simResultsController;
 		NSString *viewTitle;
 }
 
-@property(nonatomic,retain) SimResultsController *simResultsController;
 @property(nonatomic,retain) NSString *viewTitle;
 
--(id)initWithSimResultsController:(SimResultsController*)theSimResultsController
-	andViewTitle:(NSString*)theViewTitle;
+-(id)initWithViewTitle:(NSString*)theViewTitle;
 
 @end

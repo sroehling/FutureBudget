@@ -14,31 +14,22 @@
 @class SharedAppValues;
 @class SimResults;
 
+extern NSString * const SIM_RESULTS_PROGRESS_NOTIFICATION_NAME;
+extern NSString * const SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME;
+
 @interface SimResultsController : NSObject <ProgressUpdateDelegate> {
 	@private
-		
         DataModelController *mainDmc;
-        DataModelController *simResultsCalcDmc;
-    
-		BOOL resultsOutOfDate;
         SimResults *currentSimResults;
-    
         NSOperationQueue *simResultsGenQueue;
-
 }
 
 @property(nonatomic,retain) DataModelController *mainDmc;
-@property(nonatomic,retain) DataModelController *simResultsCalcDmc;
-
-
-@property(readonly) BOOL resultsOutOfDate;
 @property(nonatomic,retain) SimResults *currentSimResults;
 @property(nonatomic,retain) NSOperationQueue *simResultsGenQueue;
 
 +(void)initSingletonFromMainDataModelController:(DataModelController*)mainDataModelController;
-
 +(SimResultsController*)theSimResultsController;
-
-- (void) runSimulatorForResults:(id<ProgressUpdateDelegate>)simProgressDelegate;
++(CGFloat)progressValFromSimProgressUpdate:(NSNotification*)simProgressNotification;
 
 @end

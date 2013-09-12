@@ -17,12 +17,14 @@
 #import "ProgressUpdateDelegate.h"
 #import "SimResults.h"
 
+NSString * const SIM_RESULTS_PROGRESS_NOTIFICATION_NAME = @"SIM_RESULTS_PROGRESS_NOTIFICATION";
+NSString * const SIM_RESULTS_PROGRESS_VAL_KEY = @"SIM_RESULTS_PROGRESS_VAL";
+NSString * const SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME = @"SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME";
+
 @implementation SimResultsController
 
-@synthesize simResultsCalcDmc;
 @synthesize mainDmc;
 
-@synthesize resultsOutOfDate;
 @synthesize currentSimResults;
 @synthesize simResultsGenQueue;
 
@@ -33,7 +35,6 @@ static SimResultsController *theSimResultsControllerSingleton;
 {
 	[self.mainDmc stopObservingAnyContextChanges:self];
     
-	[simResultsCalcDmc release];
     [mainDmc release];
     
     [currentSimResults release];
@@ -43,41 +44,73 @@ static SimResultsController *theSimResultsControllerSingleton;
 	[super dealloc];
 }
 
-
-
-- (void) runSimulatorForResults:(id<ProgressUpdateDelegate>)simProgressDelegate
+// Helper method to retrieve progress value sent by updateProgress
++(CGFloat)progressValFromSimProgressUpdate:(NSNotification*)simProgressNotification
 {
-     
-    NSLog(@"Starting simulation run...");
-    
-    SimEngine *simEngine = [[SimEngine alloc] 
-		initWithDataModelController:self.simResultsCalcDmc 
-		andSharedAppValues:[SharedAppValues getUsingDataModelController:self.simResultsCalcDmc] ];
-           
-    [simEngine runSim:simProgressDelegate];
-    
-    self.currentSimResults = [[[SimResults alloc] initWithSimEngine:simEngine] autorelease];
-    
-     NSLog(@"... Done running simulation");
-        
-    [simEngine release];
-	resultsOutOfDate = FALSE;
-	
+    NSDictionary *userInfo = simProgressNotification.userInfo;
+    assert(userInfo != nil);
+    NSNumber *progressVal = [userInfo objectForKey:SIM_RESULTS_PROGRESS_VAL_KEY];
+    assert(progressVal != nil);
+    CGFloat progressFloat = [progressVal floatValue];
+    assert(progressFloat >= 0.0);
+    assert(progressFloat <= 100.0);
+    return progressFloat;
 }
+
 
 -(void)updateProgress:(CGFloat)currentProgress
 {
-	// no-op
+    // Progress updates need to be received on the main thread, since these progress
+    // updates can results in UI updates.
+    assert(currentProgress>=0.0);
+    assert(currentProgress <= 100.0);
+    dispatch_async(dispatch_get_main_queue(),^{
+        NSNumber *progressNum = [NSNumber numberWithFloat:currentProgress];
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:progressNum forKey:SIM_RESULTS_PROGRESS_VAL_KEY];
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:SIM_RESULTS_PROGRESS_NOTIFICATION_NAME object:nil userInfo:userInfo];
+    });
+}
+
+-(void)runSimulatorForResultsInBackground
+{
+    NSLog(@"Starting simulation run...");
+    
+    // TODO - simResultsCalcDmc needs to have its NSManagedObjectContext be a child of the
+    // self.mainDmc's NSManagedObjectContext, ensuring any unsaved changes in self.mainDmc
+    // are seen in the object's fetched from self.simResultsCalcDmc
+    DataModelController *simResultsCalcDmc = [[[DataModelController alloc]
+                initWithPersistentStoreCoord:self.mainDmc.persistentStoreCoordinator] autorelease];
+    simResultsCalcDmc.saveEnabled = FALSE;
+
+    
+    SimEngine *simEngine = [[SimEngine alloc] initWithDataModelController:simResultsCalcDmc
+          andSharedAppValues:[SharedAppValues getUsingDataModelController:simResultsCalcDmc] ];
+        
+    [simEngine runSim:self];
+        
+    self.currentSimResults = [[[SimResults alloc] initWithSimEngine:simEngine] autorelease];
+        
+    NSLog(@"... Done running simulation");
+        
+    [simEngine release];
+    
+    [self performSelectorOnMainThread:@selector(sendUpdatedSimResultsNotification)
+                           withObject:nil waitUntilDone:FALSE];
+}
+
+-(void)sendUpdatedSimResultsNotification
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME object:nil];
 }
 
 - (void)managedObjectsChanged
 {
     // TODO - Launch a thread to calculate results, stopping the other thread first.
-
-    
-    NSLog(@"SimResultsController - Managed Objects Changed - marking results out of date");
-	resultsOutOfDate = TRUE;
-    self.currentSimResults = nil;
+    NSLog(@"SimResultsController - Managed Objects Changed - regenerating results");
+    [self performSelectorInBackground:
+        @selector(runSimulatorForResultsInBackground) withObject:nil];
 }
 
 
@@ -88,18 +121,19 @@ static SimResultsController *theSimResultsControllerSingleton;
 	{
         self.mainDmc = mainDataModelController;
         
-        // TODO - simResultsCalcDmc needs to have its NSManagedObjectContext be a child of the
-        // self.mainDmc's NSManagedObjectContext, ensuring any unsaved changes in self.mainDmc
-        // are seen in the object's fetched from self.simResultsCalcDmc
-        self.simResultsCalcDmc = [[[DataModelController alloc]
-               initWithPersistentStoreCoord:mainDataModelController.persistentStoreCoordinator] autorelease];
-        self.simResultsCalcDmc.saveEnabled = FALSE;
 				
 		[self.mainDmc startObservingAnyContextChanges:self 
 			withSelector:@selector(managedObjectsChanged)];
-		resultsOutOfDate = TRUE;
         
         self.simResultsGenQueue = [[[NSOperationQueue alloc] init] autorelease];
+        
+        // Invalidate the current results. It doesn't make sense to
+        // show any old results, since they'll be from a different plan.
+        self.currentSimResults = nil;
+        
+        // Run the simulator to get an initial set of results
+        [self performSelectorInBackground:
+            @selector(runSimulatorForResultsInBackground) withObject:nil];
 
 	}
 	return self;

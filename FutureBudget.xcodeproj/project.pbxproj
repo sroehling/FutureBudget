@@ -216,6 +216,7 @@
 		0036DE2E13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE2D13BE34F10043F3A5 /* MultiScenarioInputValueFieldInfo.m */; };
 		003CCC3F17DF8EF0007B524A /* SimResultsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CCC3E17DF8EF0007B524A /* SimResultsOperation.m */; };
 		003CCC4517DF91D9007B524A /* SimResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CCC4417DF91D9007B524A /* SimResults.m */; };
+		003CCC4F17E16715007B524A /* ResultsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CCC4E17E16713007B524A /* ResultsListTableViewController.m */; };
 		003CFD1313C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */; };
 		003F84F717B2EFC600977E32 /* AssetSaleDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 003F84F617B2EFC600977E32 /* AssetSaleDateFormatter.m */; };
 		003FFA3B16D5348300B83067 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 003FFA3916D5348200B83067 /* search.png */; };
@@ -934,6 +935,8 @@
 		003CCC3E17DF8EF0007B524A /* SimResultsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimResultsOperation.m; sourceTree = "<group>"; };
 		003CCC4317DF91D9007B524A /* SimResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimResults.h; sourceTree = "<group>"; };
 		003CCC4417DF91D9007B524A /* SimResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimResults.m; sourceTree = "<group>"; };
+		003CCC4D17E16711007B524A /* ResultsListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsListTableViewController.h; sourceTree = "<group>"; };
+		003CCC4E17E16713007B524A /* ResultsListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsListTableViewController.m; sourceTree = "<group>"; };
 		003CFD1113C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectScenarioTableHeaderButtonDelegate.h; sourceTree = "<group>"; };
 		003CFD1213C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectScenarioTableHeaderButtonDelegate.m; sourceTree = "<group>"; };
 		003F84EF17B1599200977E32 /* FutureBudgetManualUITesting.ods */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureBudgetManualUITesting.ods; sourceTree = "<group>"; };
@@ -2166,6 +2169,17 @@
 			name = "Scenario List";
 			sourceTree = "<group>";
 		};
+		003CCC5017E168FC007B524A /* Results List Table */ = {
+			isa = PBXGroup;
+			children = (
+				003CCC4D17E16711007B524A /* ResultsListTableViewController.h */,
+				003CCC4E17E16713007B524A /* ResultsListTableViewController.m */,
+				00D8D26B148FCC3F00B0314D /* ResultsListFormInfoCreator.h */,
+				00D8D26C148FCC3F00B0314D /* ResultsListFormInfoCreator.m */,
+			);
+			name = "Results List Table";
+			sourceTree = "<group>";
+		};
 		003F84F417B2EF9500977E32 /* Input List Descriptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2475,10 +2489,9 @@
 		004F5D701373188900E0C4A3 /* Results View */ = {
 			isa = PBXGroup;
 			children = (
+				003CCC5017E168FC007B524A /* Results List Table */,
 				00CB5E581491331500C4654A /* Results Data Generators */,
 				00D8D27E1490076D00B0314D /* Year Val XY Results Plot */,
-				00D8D26B148FCC3F00B0314D /* ResultsListFormInfoCreator.h */,
-				00D8D26C148FCC3F00B0314D /* ResultsListFormInfoCreator.m */,
 				004F5D711373191600E0C4A3 /* ResultsViewController.h */,
 				004F5D721373191600E0C4A3 /* ResultsViewController.m */,
 				00D8D26E148FD41000B0314D /* ResultsViewFactory.h */,
@@ -3994,6 +4007,7 @@
 				00B4468617BD47CC00093381 /* TotalDebtXYPlotDataGenerator.m in Sources */,
 				003CCC3F17DF8EF0007B524A /* SimResultsOperation.m in Sources */,
 				003CCC4517DF91D9007B524A /* SimResults.m in Sources */,
+				003CCC4F17E16715007B524A /* ResultsListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

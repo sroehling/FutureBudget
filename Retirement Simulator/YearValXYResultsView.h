@@ -34,6 +34,8 @@
 		UILabel *yearColLabel;
 		UILabel *valColLabel;
 		UIView *headerView;
+    
+        BOOL adjustResultsToSimStartDate;
 
 }
 

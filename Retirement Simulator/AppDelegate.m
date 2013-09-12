@@ -26,6 +26,7 @@
 #import "PasscodeHelper.h"
 #import "Appirater.h"
 #import "AppHelper.h"
+#import "ResultsListTableViewController.h"
 
 #import "FormPopulator.h"
 #import "FormContext.h"
@@ -116,7 +117,8 @@
 {
 	ResultsListFormInfoCreator *resultsListFormInfoCreator = 
 		[[[ResultsListFormInfoCreator alloc] init] autorelease];
-	GenericFieldBasedTableViewController *theResultsController = [[[GenericFieldBasedTableViewController alloc]
+     
+	ResultsListTableViewController *theResultsController = [[[ResultsListTableViewController alloc]
 		initWithFormInfoCreator:resultsListFormInfoCreator andDataModelController:self.currentPlanDmc] autorelease];
 	
 	return theResultsController;

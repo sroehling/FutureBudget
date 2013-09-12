@@ -136,7 +136,7 @@
 	}
 }
 
--(void)generatePlot:(BOOL)adjustResultsToSimStartDate withSimResults:(SimResults*)simResults
+-(void)generatePlotWithSimResults:(SimResults*)simResults
 {
      
 
@@ -320,20 +320,16 @@
 
     // TODO - Need to rethink how we hold onto the simResults and
     // verify the results are current
-    assert(!self.resultsViewInfo.simResultsController.resultsOutOfDate);
-    SimResults *simResults = self.resultsViewInfo.simResultsController.currentSimResults;
+    SimResults *simResults = [SimResultsController theSimResultsController].currentSimResults;
     assert(simResults != nil);
     [[simResults retain] autorelease];
-   
-    
-    
+
 	SharedAppValues *sharedAppVals = [SharedAppValues 
-		getUsingDataModelController:self.resultsViewInfo.simResultsController.simResultsCalcDmc];
-		
-	BOOL adjustResultsToSimStartDate = [sharedAppVals.adjustResultsForSimStartDate boolValue];
+		getUsingDataModelController:simResults.simResultsDmc];
+	adjustResultsToSimStartDate = [sharedAppVals.adjustResultsForSimStartDate boolValue];
 
 
-	[self generatePlot:adjustResultsToSimStartDate withSimResults:simResults];
+	[self generatePlotWithSimResults:simResults];
 	[self.tabularDataView reloadData];
 	
 	NSString *inflationAdjustText = adjustResultsToSimStartDate?
@@ -395,10 +391,7 @@
 	}
 	else
 	{
-		SharedAppValues *sharedAppVals = [SharedAppValues 
-			getUsingDataModelController:self.resultsViewInfo.simResultsController.simResultsCalcDmc];
-			
-		if([sharedAppVals.adjustResultsForSimStartDate boolValue])
+		if(adjustResultsToSimStartDate)
 		{
 			plotResult = plotDataVal.inflationAdjustedVal;
 		}
@@ -428,12 +421,9 @@
     }
 
 	YearValPlotDataVal *plotDataVal = [currentData.plotData objectAtIndex:indexPath.row];
-	
-	SharedAppValues *sharedAppVals = [SharedAppValues 
-			getUsingDataModelController:self.resultsViewInfo.simResultsController.simResultsCalcDmc];
-			
+				
 	NSNumber *plotResult;
-	if([sharedAppVals.adjustResultsForSimStartDate boolValue])
+	if(adjustResultsToSimStartDate)
 	{
 		plotResult = plotDataVal.inflationAdjustedVal;
 	}

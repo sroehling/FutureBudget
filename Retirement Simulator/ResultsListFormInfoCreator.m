@@ -49,12 +49,14 @@
 #import "RelativeNetWorthXYPlotDataGenerator.h"
 #import "TotalDebtXYPlotDataGenerator.h"
 
-#import "MBProgressHUD.h"
 
 @implementation ResultsListFormInfoCreator
 
-@synthesize simProgressHUD;
-@synthesize simResultsCompleteDelegate;
+-(void)dealloc
+{
+	[super dealloc];
+}
+
 
 -(id)init
 {
@@ -65,48 +67,13 @@
 	return self;
 }
 
--(BOOL)needsToPreprocessFormData
-{
-    // TODO - Need to trigger results generation from the SimResultsController
-	if([SimResultsController theSimResultsController].resultsOutOfDate)
-	{
-		return TRUE;
-	}
-	else 
-	{
-		return FALSE;
-	}
-}
-
--(void)preprocessFormData:(FormContext*)parentContext 
-	withProgressCompletionDelegate:(id<ProgressCompleteDelegate>)preprocessingCompleteDelegate;
-{
-	self.simProgressHUD = [[[MBProgressHUD alloc] 
-			initWithView:parentContext.parentController.navigationController.view] autorelease];
-	self.simResultsCompleteDelegate = preprocessingCompleteDelegate;
-
-	[parentContext.parentController.navigationController.view addSubview:self.simProgressHUD];
-	
-	self.simProgressHUD.dimBackground = YES;
-	self.simProgressHUD.mode = MBProgressHUDModeDeterminate;
-	
-	self.simProgressHUD.labelText = LOCALIZED_STR(@"RESULTS_PROGRESS_LABEL");
-	
-	// Regiser for HUD callbacks so we can remove it from the window at the right time
-	self.simProgressHUD.delegate = self;
-	
-	// Show the HUD while the provided method executes in a new thread
-	[self.simProgressHUD showWhileExecuting:@selector(runSimulatorForResults:) 
-			onTarget:[SimResultsController theSimResultsController] withObject:self animated:YES];
-}
 
 -(void)populateXYPlotDataResults:(FormPopulator*)formPopulator
 	andPlotDataGenerator:(id<YearValXYPlotDataGenerator>)plotDataGen
 	andResultsTitle:(NSString*)title andResultsSubtitle:(NSString*)subTitle
 {
 	ResultsViewInfo *resultsViewInfo = [[[ResultsViewInfo alloc]
-		initWithSimResultsController:[SimResultsController theSimResultsController]
-		andViewTitle:title] autorelease];
+		initWithViewTitle:title] autorelease];
 
 	ResultsViewFactory *resultsViewFactory =
 		[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:resultsViewInfo
@@ -137,17 +104,15 @@
     
     // TODO - Need to rethink how we hold onto the simResults and
     // verify the results are current
-    assert(!simResultsController.resultsOutOfDate);
     SimResults *simResults = simResultsController.currentSimResults;
-    [[simResults retain] autorelease];
     assert(simResults != nil);
+    [[simResults retain] autorelease];
     
 	
 	if(true)
 	{
 		ResultsViewInfo *netWorthViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController
-			andViewTitle:LOCALIZED_STR(@"RESULTS_SUMMARY_NET_WORTH_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_SUMMARY_NET_WORTH_TITLE")] autorelease];
 		ResultsViewFactory *netWorthViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:netWorthViewInfo
 				andPlotDataGenerator:[[[NetWorthXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -176,8 +141,7 @@
 
 
 		ResultsViewInfo *cashBalViewInfo = [[[ResultsViewInfo alloc]
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_CASH_BALANCE_TITLE")] autorelease];
 		ResultsViewFactory *cashBalViewFactory =
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:cashBalViewInfo
 				andPlotDataGenerator:[[[CashBalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -195,8 +159,7 @@
                      andResultsSubtitle:LOCALIZED_STR(@"RESULTS_SUMMARY_TOTAL_DEBT_SUBTITLE")];
 
 		ResultsViewInfo *deficitBalViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_DEFICIT_BALANCE_TITLE")] autorelease];
 		ResultsViewFactory *deficitBalViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:deficitBalViewInfo
 				andPlotDataGenerator:[[[DeficitBalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -216,8 +179,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allIncomeViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_INCOME_ALL_INCOME_TITLE")] autorelease];
 		ResultsViewFactory *allAcctViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allIncomeViewInfo
 				andPlotDataGenerator:[[[AllIncomeXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -232,8 +194,7 @@
 		for(IncomeInput *income in simResults.incomesSimulated)
 		{
 			ResultsViewInfo *incomeViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:simResultsController 
-				andViewTitle:income.name] autorelease];
+				initWithViewTitle:income.name] autorelease];
 			ResultsViewFactory *incomeViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:incomeViewInfo
 					andPlotDataGenerator:[[[IncomeXYPlotDataGenerator alloc]
@@ -253,8 +214,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allExpenseViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_EXPENSE_ALL_EXPENSE_TITLE")] autorelease];
 		ResultsViewFactory *allExpenseViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allExpenseViewInfo
 				andPlotDataGenerator:[[[AllExpenseXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -269,8 +229,7 @@
 		for(ExpenseInput *expense in simResults.expensesSimulated)
 		{
 			ResultsViewInfo *expenseViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:simResultsController 
-				andViewTitle:expense.name] autorelease];
+				initWithViewTitle:expense.name] autorelease];
 			ResultsViewFactory *expenseViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:expenseViewInfo
 					andPlotDataGenerator:[[[ExpenseXYPlotDataGenerator alloc]
@@ -290,8 +249,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allAssetsViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_ASSET_ALL_ASSET_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_ASSET_ALL_ASSET_TITLE")] autorelease];
 		ResultsViewFactory *allAssetsViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAssetsViewInfo
 				andPlotDataGenerator:[[[AllAssetValueXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -308,8 +266,7 @@
 		for(AssetInput *asset in simResults.assetsSimulated)
 		{
 			ResultsViewInfo *assetViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:simResultsController 
-				andViewTitle:asset.name] autorelease];
+				initWithViewTitle:asset.name] autorelease];
 			ResultsViewFactory *assetViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:assetViewInfo
 					andPlotDataGenerator:[[[AssetValueXYPlotDataGenerator alloc]initWithAsset:asset]autorelease]] autorelease];
@@ -328,8 +285,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allLoanViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_LOAN_ALL_LOAN_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_LOAN_ALL_LOAN_TITLE")] autorelease];
 		ResultsViewFactory *allLoanViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allLoanViewInfo
 				andPlotDataGenerator:[[[AllLoanBalanceXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -345,8 +301,7 @@
 		for(LoanInput *loan in simResults.loansSimulated)
 		{
 			ResultsViewInfo *loanViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:simResultsController 
-				andViewTitle:loan.name] autorelease];
+				initWithViewTitle:loan.name] autorelease];
 			ResultsViewFactory *loanViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:loanViewInfo
 					andPlotDataGenerator:[[[LoanBalXYPlotDataGenerator alloc]initWithLoan:loan]autorelease]] autorelease];
@@ -366,8 +321,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allAcctViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
 		ResultsViewFactory *allAcctViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAcctViewInfo
 				andPlotDataGenerator:[[[AllAcctBalanceXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -382,8 +336,7 @@
 		for(Account *acct in simResults.acctsSimulated)
 		{
 			ResultsViewInfo *acctViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:simResultsController 
-				andViewTitle:acct.name] autorelease];
+				initWithViewTitle:acct.name] autorelease];
 			ResultsViewFactory *acctViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:acctViewInfo
 					andPlotDataGenerator:[[[AcctBalanceXYPlotDataGenerator alloc]
@@ -404,8 +357,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allAcctContribViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
 		ResultsViewFactory *allAcctContribViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAcctContribViewInfo
 				andPlotDataGenerator:[[[AllAcctContribXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -420,8 +372,7 @@
 		for(Account *acct in simResults.acctsSimulated)
 		{
 			ResultsViewInfo *acctContribViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:simResultsController 
-				andViewTitle:acct.name] autorelease];
+				initWithViewTitle:acct.name] autorelease];
 			ResultsViewFactory *acctContribViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:acctContribViewInfo
 					andPlotDataGenerator:[[[AcctContribXYPlotGenerator alloc]
@@ -442,8 +393,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allAcctWithdrawViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_ACCT_ALL_ACCT_TITLE")] autorelease];
 		ResultsViewFactory *allAcctWithdrawViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allAcctWithdrawViewInfo
 				andPlotDataGenerator:[[[AllAcctWithdrawalXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -458,8 +408,7 @@
 		for(Account *acct in simResults.acctsSimulated)
 		{
 			ResultsViewInfo *acctWithdrawViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:simResultsController 
-				andViewTitle:acct.name] autorelease];
+				initWithViewTitle:acct.name] autorelease];
 			ResultsViewFactory *acctWithdrawViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:acctWithdrawViewInfo
 					andPlotDataGenerator:[[[AcctWithdrawalXYPlotDataGenerator alloc]
@@ -483,8 +432,7 @@
 	if(true)
 	{
 		ResultsViewInfo *allTaxesViewInfo = [[[ResultsViewInfo alloc] 
-			initWithSimResultsController:simResultsController 
-			andViewTitle:LOCALIZED_STR(@"RESULTS_TAXES_ALL_TAXES_TITLE")] autorelease];
+			initWithViewTitle:LOCALIZED_STR(@"RESULTS_TAXES_ALL_TAXES_TITLE")] autorelease];
 		ResultsViewFactory *allTaxesViewFactory = 
 			[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:allTaxesViewInfo
 				andPlotDataGenerator:[[[AllTaxesPaidXYPlotDataGenerator alloc]init]autorelease]] autorelease];
@@ -499,8 +447,7 @@
 		for(TaxInput *tax in simResults.taxesSimulated)
 		{
 			ResultsViewInfo *taxViewInfo = [[[ResultsViewInfo alloc] 
-				initWithSimResultsController:simResultsController 
-				andViewTitle:tax.name] autorelease];
+				initWithViewTitle:tax.name] autorelease];
 			ResultsViewFactory *taxViewFactory = 
 				[[[YearValXYPlotResultsViewFactory alloc] initWithResultsViewInfo:taxViewInfo
 					andPlotDataGenerator:[[[TaxesPaidXYPlotDataGenerator alloc]
@@ -518,33 +465,5 @@
 	return formPopulator.formInfo;
 	
 }
-
--(void)dealloc
-{
-	[simProgressHUD release];
-	[super dealloc];
-}
-
-- (void)updateProgress:(CGFloat)currentProgress
-{
-	assert(self.simProgressHUD != nil);
-	self.simProgressHUD.progress = currentProgress;
-}
-
-#pragma mark -
-#pragma mark MBProgressHUDDelegate methods
-
-- (void)hudWasHidden:(MBProgressHUD *)hud {
-	// Remove HUD from screen when the HUD was hidded
-	[hud removeFromSuperview];
-	
-	if(self.simResultsCompleteDelegate != nil)
-	{
-		[self.simResultsCompleteDelegate progressComplete];
-	}
-}
-
-
-
 
 @end

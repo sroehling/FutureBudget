@@ -12,20 +12,15 @@
 
 @implementation ResultsViewInfo
 
-@synthesize simResultsController;
 @synthesize viewTitle;
 
--(id)initWithSimResultsController:(SimResultsController*)theSimResultsController
-	andViewTitle:(NSString*)theViewTitle
+-(id)initWithViewTitle:(NSString*)theViewTitle
 {
 	self = [super init];
 	if(self)
 	{
-		
 		assert([StringValidation nonEmptyString:theViewTitle]);
-		self.viewTitle = theViewTitle;
-		self.simResultsController = theSimResultsController;
-		
+		self.viewTitle = theViewTitle;		
 	}
 	return self;
 }
@@ -38,7 +33,6 @@
 
 -(void)dealloc
 {
-	[simResultsController release];
 	[viewTitle release];
 	[super dealloc];
 }

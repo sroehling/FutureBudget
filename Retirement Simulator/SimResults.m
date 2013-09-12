@@ -29,9 +29,12 @@
 @synthesize expensesSimulated;
 @synthesize taxesSimulated;
 
+@synthesize simResultsDmc;
+
 
 -(void)dealloc
 {
+    [simResultsDmc release];
 	
 	[endOfYearResults release];
  	[scenarioSimulated release];
@@ -75,6 +78,8 @@
         self.incomesSimulated = simEngine.simParams.incomeInfo.inputsSimulated;
         self.expensesSimulated = simEngine.simParams.expenseInfo.inputsSimulated;
         self.taxesSimulated = [simEngine.simParams.taxInputCalcs taxesSimulated];
+        
+        self.simResultsDmc = simEngine.dataModelController;
         
     }
     return self;

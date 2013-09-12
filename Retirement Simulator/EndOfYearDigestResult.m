@@ -124,7 +124,15 @@
 
 - (NSInteger)yearNumber
 {
-	return [DateHelper yearOfDate:self.endDate];
+    // The calendar classes are not thread safe. Since the simulator itself uses DateUtil
+    // and this method is called from the results views & plots (being executed in separate
+    // threads), a dedicated NSCalendar is needed to return the year number.
+    NSCalendar *cal = [[[NSCalendar alloc]
+                        initWithCalendarIdentifier:NSGregorianCalendar] autorelease];    
+    NSUInteger componentFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	NSDateComponents *components = [cal components:componentFlags fromDate:self.endDate];
+
+    return [components year];    
 }
 
 - (void)logResults

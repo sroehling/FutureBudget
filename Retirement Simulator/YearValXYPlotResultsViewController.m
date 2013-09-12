@@ -31,6 +31,7 @@
 @synthesize simProgressHUD;
 @synthesize resultsView;
 @synthesize plotDataGenerator;
+@synthesize currentSimResults;
 
 
 -(id)initWithResultsViewInfo:(ResultsViewInfo *)theViewInfo 
@@ -42,6 +43,8 @@
 		self.resultsView = [[[YearValXYResultsView alloc] initWithResultsViewInfo:theViewInfo andPlotDataGenerator:thePlotDataGenerator] autorelease];
 		self.plotDataGenerator = thePlotDataGenerator;
 		self.view = self.resultsView;
+        
+        self.currentSimResults = [SimResultsController theSimResultsController].currentSimResults;
 	}
 	return self;
 }
@@ -67,15 +70,9 @@
 -(void)generateResults
 {
     
-    // TODO - Need to rethink how we hold onto the simResults and
-    // verify the results are current
-    assert(!self.viewInfo.simResultsController.resultsOutOfDate);
-    SimResults *simResults = self.viewInfo.simResultsController.currentSimResults;
-    assert(simResults != nil);
-    [[simResults retain] autorelease];
-
+    assert(self.currentSimResults != nil);
     
-	if([self.plotDataGenerator resultsDefinedInSimResults:simResults])
+	if([self.plotDataGenerator resultsDefinedInSimResults:self.currentSimResults])
 	{
 		[self.resultsView generateResults];
 	}
@@ -99,12 +96,36 @@
 	[self generateResults];
 
 }
-#pragma mark ProgressUpdateDelegate
 
--(void)updateProgress:(CGFloat)currentProgress
+-(void)showSimProgressHUD
 {
-	assert(self.simProgressHUD != nil);
-	self.simProgressHUD.progress = currentProgress;
+    self.simProgressHUD = [[[MBProgressHUD alloc]
+                            initWithView:self.navigationController.view] autorelease];
+    self.simProgressHUD.dimBackground = YES;
+    self.simProgressHUD.mode = MBProgressHUDModeDeterminate;
+    self.simProgressHUD.labelText = LOCALIZED_STR(@"RESULTS_PROGRESS_LABEL");
+    
+    [self.navigationController.view addSubview:self.simProgressHUD];
+    [self.simProgressHUD show:TRUE];
+}
+
+- (void)updateSimProgress:(NSNotification *)progressInfo
+{
+    if(self.simProgressHUD == nil)
+    {
+        [self showSimProgressHUD];
+    }
+    self.simProgressHUD.progress = [SimResultsController progressValFromSimProgressUpdate:progressInfo];
+}
+
+-(void)updatedSimResultsAvailable:(NSNotification*)resultsInfo
+{
+    self.currentSimResults = [SimResultsController theSimResultsController].currentSimResults;
+    
+    [self.simProgressHUD removeFromSuperview];
+    self.simProgressHUD = nil;
+    
+    [self generateResults];
 }
 
 #pragma mark - View lifecycle
@@ -114,46 +135,26 @@
 	
 	[super viewWillAppear:animated];	
 
-    // TODO - Need to trigger the generation of results from SimResultsController
+    [[NSNotificationCenter defaultCenter] addObserver:self
+          selector:@selector(updateSimProgress:)
+          name:SIM_RESULTS_PROGRESS_NOTIFICATION_NAME object:nil];
     
-	if(!self.viewInfo.simResultsController.resultsOutOfDate)
+    [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(updatedSimResultsAvailable:)
+        name:SIM_RESULTS_NEW_RESULTS_AVAILABLE_NOTIFICATION_NAME object:nil];
+
+	if(self.currentSimResults != nil)
 	{
 		[self generateResults];
 	}
 }
 
--(void)generateSimResults
+-(void)viewWillDisappear:(BOOL)animated
 {
-	self.simProgressHUD = [[[MBProgressHUD alloc] 
-			initWithView:self.navigationController.view] autorelease];
-
-	[self.navigationController.view addSubview:self.simProgressHUD];
-	
-	self.simProgressHUD.dimBackground = YES;
-	self.simProgressHUD.mode = MBProgressHUDModeDeterminate;
-	
-	self.simProgressHUD.labelText = LOCALIZED_STR(@"RESULTS_PROGRESS_LABEL");
-	
-	// Regiser for HUD callbacks so we can remove it from the window at the right time
-	self.simProgressHUD.delegate = self;
-	
-	// Show the HUD while the provided method executes in a new thread
-	[self.simProgressHUD showWhileExecuting:@selector(runSimulatorForResults:) 
-			onTarget:self.viewInfo.simResultsController withObject:self animated:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [super viewWillDisappear:animated];
 }
-
--(void)viewDidAppear:(BOOL)animated
-{
-	
-	[super viewDidAppear:animated];
-	
-	if(self.viewInfo.simResultsController.resultsOutOfDate)
-	{
-		[self generateSimResults];
-	}
-	
-}
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

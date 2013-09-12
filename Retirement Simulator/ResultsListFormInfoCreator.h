@@ -15,15 +15,8 @@
 
 @class SimResultsController;
 
-@interface ResultsListFormInfoCreator : NSObject <FormInfoCreator,
-	MBProgressHUDDelegate,ProgressUpdateDelegate> {
-    @private		
-		id<ProgressCompleteDelegate> simResultsCompleteDelegate;
-		MBProgressHUD *simProgressHUD;
+@interface ResultsListFormInfoCreator : NSObject <FormInfoCreator> {
 }
-
-@property(nonatomic,retain) MBProgressHUD *simProgressHUD;
-@property(nonatomic,assign) id<ProgressCompleteDelegate> simResultsCompleteDelegate;
 
 
 @end

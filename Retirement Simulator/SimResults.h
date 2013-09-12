@@ -10,6 +10,7 @@
 
 @class Scenario;
 @class SimEngine;
+@class DataModelController;
 
 @interface SimResults : NSObject {
     @private
@@ -26,6 +27,7 @@
         NSSet *expensesSimulated;
         NSSet *taxesSimulated;
     
+        DataModelController *simResultsDmc;
 }
 
 @property(nonatomic,retain) NSMutableArray *endOfYearResults;
@@ -41,6 +43,7 @@
 @property(nonatomic,retain) NSSet *expensesSimulated;
 @property(nonatomic,retain) NSSet *taxesSimulated;
 
+@property(nonatomic,retain) DataModelController *simResultsDmc;
 
 -(id)initWithSimEngine:(SimEngine*)simEngine;
 

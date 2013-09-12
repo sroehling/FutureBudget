@@ -8,6 +8,14 @@
 
 #import "GenericFieldBasedTableViewController.h"
 
-@interface ResultsListTableViewController : GenericFieldBasedTableViewController
+@class MBProgressHUD;
+
+@interface ResultsListTableViewController : GenericFieldBasedTableViewController {
+    @private
+        MBProgressHUD *simProgressHUD;
+}
+
+@property(nonatomic,retain) MBProgressHUD *simProgressHUD;
+
 
 @end
