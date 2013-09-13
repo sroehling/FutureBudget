@@ -74,17 +74,4 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)generateFormInfo
-{
-    SimResultsController *simResultsController = [SimResultsController theSimResultsController];
-    
-    // Only generate results if an initial set of results have been generated
-    SimResults *simResults = simResultsController.currentSimResults;
-    if(simResults != nil)
-    {
-        [super generateFormInfo];        
-    }
-    
-}
-
 @end

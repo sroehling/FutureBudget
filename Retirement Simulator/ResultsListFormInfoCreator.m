@@ -67,6 +67,17 @@
 	return self;
 }
 
+-(BOOL)canGenerateFormInfo
+{
+    if([SimResultsController theSimResultsController].currentSimResults != nil)
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
 
 -(void)populateXYPlotDataResults:(FormPopulator*)formPopulator
 	andPlotDataGenerator:(id<YearValXYPlotDataGenerator>)plotDataGen
