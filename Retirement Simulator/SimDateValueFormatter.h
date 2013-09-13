@@ -12,15 +12,18 @@
 
 @class SimDate;
 @class SimDateRuntimeInfo;
+@class DateHelper;
 
 @interface SimDateValueFormatter : NSObject <SimDateVisitor> {
     @private
 		NSString *formattedVal;
 		SimDateRuntimeInfo *simDateRuntimeInfo;
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) NSString *formattedVal;
 @property(nonatomic,retain) SimDateRuntimeInfo *simDateRuntimeInfo;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 -(id)initWithSimDateRuntimeInfo:(SimDateRuntimeInfo*)sdRuntimeInfo;
 

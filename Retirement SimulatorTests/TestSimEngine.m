@@ -102,12 +102,22 @@
 @synthesize testAppVals;
 @synthesize inputCreationHelper;
 
+@synthesize dateHelper;
+
+
+-(void)dealloc
+{
+    [dateHelper release];
+    [super dealloc];
+}
+
+
 - (void)resetCoredData
 {
 	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
 	self.testAppVals = [SharedAppValues createWithDataModelInterface:self.coreData];
 	
-	self.testAppVals.simStartDate = [DateHelper dateFromStr:@"2012-01-01"];
+	self.testAppVals.simStartDate = [self.dateHelper dateFromStr:@"2012-01-01"];
 	
 	// For testing purposes, default to 5 years (instead of 50). By setting the sim end date to 59
 	// weeks, the simulator will round up to 5 years (instead of rounding up to 6 years).
@@ -123,6 +133,8 @@
 - (void)setUp
 {
 	[self resetCoredData];
+    self.dateHelper = [[[DateHelper alloc] init] autorelease];
+
 }
 
 - (void)tearDown
@@ -212,7 +224,7 @@
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-01"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-01"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 //	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -255,7 +267,7 @@
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-31"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	
 	// Keep the expense's amount growth rate the same as the default inflation rate.
@@ -295,13 +307,13 @@
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	ExpenseInput *expense02 = (ExpenseInput*)[expenseCreator createInput];
 	expense02.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	expense02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-20"]];
+	expense02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-20"]];
 	expense02.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense02.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -344,7 +356,7 @@
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -394,13 +406,13 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	IncomeInput *income02 = (IncomeInput*)[incomeCreator createInput];
 	income02.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-20"]];
+	income02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-20"]];
 	income02.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income02.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -470,7 +482,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:incomeStartDate]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:incomeStartDate]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:kInflationRate];
 
@@ -516,8 +528,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
     
     
     SimResults *simResults = [self genTestSimResults];
@@ -570,8 +582,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
     
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
     
     // asset02 is identical to asset01, and is used to test AllAssetValueXYPlotDataGenerator
  	AssetInput *asset02 = (AssetInput*)[assetCreator createInput];
@@ -579,8 +591,8 @@
 	asset02.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset02.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
     
-	asset02.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
-	asset02.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset02.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
+	asset02.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
    
     
     SimResults *simResults = [self genTestSimResults];
@@ -613,8 +625,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
 	
 	// If the asset purchase date is before the simulation start, 'startingValue' is
 	// used as a baseline value to use as te asset's value going into the simulation.
@@ -667,8 +679,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:5.0];
     
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
 	
 	// If the asset purchase date is before the simulation start, 'startingValue' is
 	// used as a baseline value to use as te asset's value going into the simulation.
@@ -709,8 +721,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2016-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2016-01-01"]];
 
     SimResults *simResults = [self genTestSimResults];
 
@@ -757,8 +769,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-15"]];	
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-15"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-15"]];	
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-15"]];
 	// If the asset is purchased before the simulation start date of 2012-01-01, then the asset value
 	// should take on it's starting value.
 	asset01.startingValue = [NSNumber numberWithDouble:10000];
@@ -793,8 +805,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
 
     SimResults *simResults = [self genTestSimResults];
 
@@ -828,8 +840,8 @@
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
     
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-31"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
     
     SimResults *simResults = [self genTestSimResults];
     
@@ -867,8 +879,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
 	
 	
 	TaxInputTypeSelectionInfo *taxCreator = 
@@ -930,8 +942,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:-10.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
 	
 	
 	TaxInputTypeSelectionInfo *taxCreator = 
@@ -988,7 +1000,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:1000.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -1002,8 +1014,8 @@
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:-50.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:-50.0];
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-01"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-01"]];
 	
 	
 	TaxInputTypeSelectionInfo *taxCreator = 
@@ -1075,7 +1087,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
@@ -1083,7 +1095,7 @@
 	loan02.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
 	loan02.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan02.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan02.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan02.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
@@ -1132,7 +1144,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
@@ -1195,10 +1207,10 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:600.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:60];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
-			[DateHelper dateFromStr:@"2015-01-15"]];
+			[self.dateHelper dateFromStr:@"2015-01-15"]];
 
 
 
@@ -1239,11 +1251,11 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:10000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	// Use a high interest rate, so the prorated interest amount is easily discerned.
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:12.0];
 	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
-			[DateHelper dateFromStr:@"2014-01-01"]];
+			[self.dateHelper dateFromStr:@"2014-01-01"]];
 
 
 
@@ -1294,7 +1306,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:10000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	// Use a high interest rate, so the prorated interest amount is easily discerned.
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:12.0];
 	
@@ -1303,7 +1315,7 @@
 	// but the payment happens in the middle of the year, which also further tests the logic for advancing the
 	// start date for prorated interest calculation (within the PeriodicInterestBearingWorkingBalance class).
 	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
-			[DateHelper dateFromStr:@"2014-06-14"]];
+			[self.dateHelper dateFromStr:@"2014-06-14"]];
 
 
 
@@ -1354,7 +1366,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	loan01.downPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
@@ -1416,7 +1428,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	loan01.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
@@ -1495,7 +1507,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	loan01.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
@@ -1506,7 +1518,7 @@
 	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
 	// payment needs to be include the interest.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2013-02-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2013-02-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	
@@ -1558,7 +1570,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	loan01.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
@@ -1583,7 +1595,7 @@
 	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
 	// payment needs to be include the interest.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:deferredPmtDateStr]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:deferredPmtDateStr]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	
@@ -1635,7 +1647,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:600.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:60];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-02-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-02-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
@@ -1680,7 +1692,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:6000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:60];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2015-02-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2015-02-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
     SimResults *simResults = [self genTestSimResults];
@@ -1740,14 +1752,14 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
 	// payment needs to be include the interest.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -1787,14 +1799,14 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
 	// payment needs to be include the interest.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -1849,13 +1861,13 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments until one year after simulation start.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -1891,13 +1903,13 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments until one year after simulation start.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -1936,13 +1948,13 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments until one year after simulation start.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -1981,7 +1993,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	loan01.startingBalance = [NSNumber numberWithDouble:900.0];
@@ -1990,7 +2002,7 @@
 	
 	// Defer the loan payments until one year after simulation start.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -2030,13 +2042,13 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2008-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2008-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments until one year after simulation start.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2009-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2009-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -2070,13 +2082,13 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2009-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2009-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments until one year after simulation start.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -2114,13 +2126,13 @@
 
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2009-01-01"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2009-01-01"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments until one year after simulation start.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2011-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2011-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -2162,14 +2174,14 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:1000.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-31"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 	
 	
 	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
 	// payment needs to be include the interest.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2016-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2016-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
@@ -2219,9 +2231,9 @@
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
-	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-20"]];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	// acct02 is identical to acct01, but is used to verify that summing up the account balances works properly.
@@ -2230,9 +2242,9 @@
 	acct02.startingBalance = [NSNumber numberWithDouble:1000.0];
 	acct02.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	acct02.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
-	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	acct02.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-20"]];
 	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
     SimResults *simResults = [self genTestSimResults];
@@ -2285,9 +2297,9 @@
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
     
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-01"]];
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-20"]];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
     	
     SimResults *simResults = [self genTestSimResults];
@@ -2339,7 +2351,7 @@
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
 	expense01.name = @"expense01";
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -2388,7 +2400,7 @@
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
 	expense01.name = @"expense01";
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -2402,8 +2414,8 @@
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-15"]];	
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-15"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-15"]];	
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-15"]];
 	
 	
 	
@@ -2448,14 +2460,14 @@
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
 	expense01.name = @"expense01";
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	ExpenseInput *expense02 = (ExpenseInput*)[expenseCreator createInput];
 	expense02.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
 	expense02.name = @"expense02";
-	expense02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense02.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense02.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -2525,7 +2537,7 @@
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
 	expense01.name = @"expense01";
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -2542,7 +2554,7 @@
 	acct01.withdrawalPriority = [inputCreationHelper multiScenFixedValWithDefault:1.0];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acct01.deferredWithdrawalsEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	acct01.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2014-1-01"]];
+	acct01.deferredWithdrawalDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2014-1-01"]];
 
 
 	[acct01 addLimitWithdrawalExpensesObject:expense01];
@@ -2603,9 +2615,9 @@
 	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
-	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-20"]];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
@@ -2614,9 +2626,9 @@
 	acct02.startingBalance = [NSNumber numberWithDouble:1000.0];
 	acct02.contribAmount = [inputCreationHelper multiScenAmountWithDefault:200.0];	
 	acct02.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	acct02.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-20"]];
+	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-20"]];
 	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
@@ -2859,7 +2871,7 @@
                                                         initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
@@ -2914,7 +2926,7 @@
                                                 andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -2934,7 +2946,7 @@
                                                         initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-15"]];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-15"]];
     acctTransfer.endDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
@@ -3027,7 +3039,7 @@
 		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
@@ -3098,7 +3110,7 @@
 		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-31"]];
 	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
@@ -3156,7 +3168,7 @@
 		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-31"]];
 	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
@@ -3218,7 +3230,7 @@
 	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -3297,7 +3309,7 @@
 	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-31"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -3346,7 +3358,7 @@
 		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:2500.0];
-	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-31"]];
 	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
@@ -3361,7 +3373,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:1000.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -3437,7 +3449,7 @@
 	// Use a 1 time expense to trigger a withdrawal from the account - A transfer would work just as well.
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:500];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-31"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-31"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -3474,7 +3486,7 @@
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:500.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -3616,7 +3628,7 @@
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:400.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -3681,7 +3693,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -3716,7 +3728,7 @@
 		
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:400.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -3764,7 +3776,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:1000.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -3798,13 +3810,13 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	IncomeInput *income02 = (IncomeInput*)[incomeCreator createInput];
 	income02.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-20"]];
+	income02.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-20"]];
 	income02.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income02.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -3894,7 +3906,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -3952,7 +3964,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:150.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -3962,7 +3974,7 @@
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:50.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-01"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-01"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4023,7 +4035,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4103,7 +4115,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4114,7 +4126,7 @@
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:50.0];
 	expense01.cashFlowEnabled = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-01"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-01"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4195,7 +4207,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4205,7 +4217,7 @@
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-01"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-01"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4297,7 +4309,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4350,7 +4362,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4413,7 +4425,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4487,7 +4499,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4550,7 +4562,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 
@@ -4615,7 +4627,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4625,7 +4637,7 @@
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:10.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-01"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-01"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4687,7 +4699,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4697,7 +4709,7 @@
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-01"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-01"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4762,7 +4774,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -4845,7 +4857,7 @@
 
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -4908,7 +4920,7 @@
 		andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:200.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -4922,7 +4934,7 @@
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acct01.contribGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefaultNeverEndDate];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 
@@ -4988,9 +5000,9 @@
 	acct01.startingBalance = [NSNumber numberWithDouble:450.0];
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:0.0];	
-	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-20"]];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 
@@ -4999,16 +5011,16 @@
 	acct02.startingBalance = [NSNumber numberWithDouble:1000.0];
 	acct02.contribAmount = [inputCreationHelper multiScenAmountWithDefault:0.0];	
 	acct02.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct02.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	acct02.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2015-01-20"]];
+	acct02.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2015-01-20"]];
 	acct02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	TransferInputTypeSelectionInfo *transferCreator = [[[TransferInputTypeSelectionInfo alloc]
 		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acctTransfer.fromEndpoint = acct01.acctTransferEndpointAcct;
@@ -5056,9 +5068,9 @@
 	acct01.startingBalance = [NSNumber numberWithDouble:1000.0];
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:0.0];	
-	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-20"]];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
@@ -5066,7 +5078,7 @@
 		initWithInputCreationHelper:self.inputCreationHelper andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
 	TransferInput *acctTransfer = (TransferInput*)[transferCreator createInput];
 	acctTransfer.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	acctTransfer.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	acctTransfer.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	acctTransfer.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	acctTransfer.fromEndpoint = self.testAppVals.cash.transferEndpointCash;
@@ -5118,7 +5130,7 @@
 	// and having this start date in the middle of the year introduces interesting behavior w.r.t.
 	// the first year of results calculation, starting account balances, etc.
 	[self resetCoredData];
-	self.testAppVals.simStartDate = [DateHelper dateFromStr:@"2012-05-15"];
+	self.testAppVals.simStartDate = [self.dateHelper dateFromStr:@"2012-05-15"];
 
 	
 	
@@ -5136,9 +5148,9 @@
 	acct01.contribEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 
 	acct01.contribAmount = [inputCreationHelper multiScenAmountWithDefault:100.0];	
-	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	acct01.contribStartDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	acct01.contribRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
-	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-20"]];
+	acct01.contribEndDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-20"]];
 	acct01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
 	
@@ -5176,7 +5188,7 @@
 		
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
@@ -5215,7 +5227,7 @@
 	
 	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
 	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:50.0];
-	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-15"]];
+	expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-15"]];
 	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
@@ -5242,8 +5254,8 @@
 	asset01.cost = [inputCreationHelper multiScenAmountWithDefault:25.0];
 	asset01.apprecRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	asset01.apprecRateBeforePurchase = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2013-01-01"]];
-	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-06-15"]];
+	asset01.purchaseDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2013-01-01"]];
+	asset01.saleDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-06-15"]];
 
     simResults = [self genTestSimResults];
 
@@ -5297,7 +5309,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 
     simResults = [self genTestSimResults];
@@ -5377,7 +5389,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	loan01.extraPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
@@ -5422,10 +5434,10 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:600.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:60];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	loan01.earlyPayoffDate = [inputCreationHelper multiScenSimEndDateWithDefault:
-			[DateHelper dateFromStr:@"2015-01-15"]];
+			[self.dateHelper dateFromStr:@"2015-01-15"]];
 
     SimResults *simResults = [self genTestSimResults];
 	
@@ -5461,14 +5473,14 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:10.0];
 			
 	
 	// Defer the loan payments by one year, don't pay the interest during this year. The resulting
 	// payment needs to be include the interest.
 	loan01.deferredPaymentEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
-	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[DateHelper dateFromStr:@"2014-01-01"]];
+	loan01.deferredPaymentDate = [inputCreationHelper multiScenSimEndDateWithDefault:[self.dateHelper dateFromStr:@"2014-01-01"]];
 	loan01.deferredPaymentPayInterest = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
 	loan01.deferredPaymentSubsizedInterest = [inputCreationHelper multiScenBoolValWithDefault:FALSE];
 
@@ -5517,7 +5529,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];	
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-12-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-12-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 	
 	loan01.downPmtEnabled = [inputCreationHelper multiScenBoolValWithDefault:TRUE];
@@ -5570,7 +5582,7 @@
 	loan01.loanCost = [inputCreationHelper multiScenAmountWithDefault:360.0];
 	loan01.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan01.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan01.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan01.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
     
     
@@ -5578,7 +5590,7 @@
 	loan02.loanCost = [inputCreationHelper multiScenAmountWithDefault:720.0];
 	loan02.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:36];
 	loan02.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	loan02.origDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-01-15"]];
+	loan02.origDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-01-15"]];
 	loan02.interestRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
     
 
@@ -5591,7 +5603,7 @@
     // instead of running a deficit. So, expense01 is designed to spend the loan origination right away. 
      ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
      expense01.amount = [inputCreationHelper multiScenAmountWithDefault:1080.0]; // = 720 + 360
-     expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-1-16"]];
+     expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-1-16"]];
      expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyOnce];
      expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
     
@@ -5606,7 +5618,7 @@
     
 	IncomeInput *income01 = (IncomeInput*)[incomeCreator createInput];
 	income01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
-	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[DateHelper dateFromStr:@"2012-6-15"]];
+	income01.startDate = [inputCreationHelper multiScenSimDateWithDefault:[self.dateHelper dateFromStr:@"2012-6-15"]];
 	income01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
 	income01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
 

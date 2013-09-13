@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class EventRepeatFrequency;
+@class DateHelper;
 
 @interface EventRepeater : NSObject {
     @private
@@ -19,6 +20,7 @@
         NSDate *startDate;
 		NSDate *endDate;
         NSDate *currentDate;
+        DateHelper *dateHelper;
     
 }
 
@@ -40,5 +42,6 @@
 @property(nonatomic,retain) NSDate *startDate;
 @property(nonatomic,retain) NSDate *endDate;
 @property(nonatomic,retain) NSDate *currentDate;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 @end

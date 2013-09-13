@@ -30,10 +30,12 @@
 	self = [super init];
 	if(self)
 	{
+        DateHelper *dateHelperForInit = [[[DateHelper alloc] init] autorelease];
+        
 		self.simStartDate = simStart;
-		NSDate *startDate = [DateHelper sameYearDifferentDay:simStartDate 
+		NSDate *startDate = [dateHelperForInit sameYearDifferentDay:simStartDate 
 			andMonth:monthNum andDay:dayNum];
-		NSDate *neverEndDate = [DateHelper dateFromStr:NEVER_END_PSEUDO_END_DATE];
+		NSDate *neverEndDate = [dateHelperForInit dateFromStr:NEVER_END_PSEUDO_END_DATE];
 			
 		NSDateComponents *periodicRepeat = [EventRepeatFrequency periodicDateComponentFromPeriod:periodEnum];
 		

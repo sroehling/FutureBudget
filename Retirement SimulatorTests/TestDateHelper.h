@@ -16,9 +16,15 @@
 #import <UIKit/UIKit.h>
 //#import "application_headers" as required
 
+@class DateHelper;
+
 
 @interface TestDateHelper : SenTestCase {
+    @private
+        DateHelper *dateHelper;
     
 }
+
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 @end

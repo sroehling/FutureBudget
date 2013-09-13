@@ -22,6 +22,7 @@ extern NSString * const ASSET_INPUT_DEFAULT_ICON_NAME;
 @class AssetGainItemizedTaxAmt;
 @class AssetLossItemizedTaxAmt;
 @class Scenario;
+@class DateHelper;
 
 @interface AssetInput : Input {
 @private
@@ -36,7 +37,7 @@ extern NSString * const ASSET_INPUT_DEFAULT_ICON_NAME;
 @property (nonatomic, retain) NSSet *assetGainItemizedTaxAmts;
 @property (nonatomic, retain) NSSet *assetLossItemizedTaxAmts;
 
--(BOOL)purchaseDateDefinedAndInThePastForScenario:(Scenario*)currentScenario;
+-(BOOL)purchaseDateDefinedAndInThePastForScenario:(Scenario*)currentScenario usingDateHelper:(DateHelper*)dateHelper;
 
 @end
 

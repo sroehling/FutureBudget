@@ -86,6 +86,17 @@
 @synthesize isForNewObject;
 @synthesize formPopulator;
 @synthesize formContext;
+@synthesize dateHelper;
+
+- (void)dealloc
+{
+    [formPopulator release];
+	[formContext release];
+    [dateHelper release];
+    
+    [super dealloc];
+}
+
 
 -(id) initWithInput:(Input*)theInput andIsForNewObject:(BOOL)forNewObject
 {
@@ -96,6 +107,7 @@
         self.input = theInput;
 		
 		self.isForNewObject = forNewObject;
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
     }
     return self;
 }
@@ -630,7 +642,7 @@
     // Only show the starting/outstanding balance if the loan originates
     // in the past. A starting balance for a future loan doesn't make
 	// sense, so it would only be confusing to show this to the user.
-    if([loan originationDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
+    if([loan originationDateDefinedAndInThePastForScenario:formPopulator.inputScenario usingDateHelper:self.dateHelper])
     {
         [formPopulator nextSection];
         [self.formPopulator populateCurrencyField:loan andValKey:INPUT_LOAN_STARTING_BALANCE_KEY
@@ -661,7 +673,7 @@
     // loan originates in the future. To show this value when it is not applicable
     // will cause unnecessary confusion. The loanCostGrowthRate field is initialized
     // with a default growth rate, so there is no conflict to not showing this value.
-    if([loan originationDateDefinedAndInTheFutureForScenario:formPopulator.inputScenario])
+    if([loan originationDateDefinedAndInTheFutureForScenario:formPopulator.inputScenario usingDateHelper:self.dateHelper])
     {
         [self.formPopulator populateMultiScenarioGrowthRate:loan.loanCostGrowthRate
               withLabel:LOCALIZED_STR(@"INPUT_LOAN_COST_GROWTH_RATE_FIELD_LABEL")
@@ -766,7 +778,7 @@
 			withLabel:LOCALIZED_STR(@"INPUT_ASSET_ENABLED_FIELD_LABEL")];
 	
 	
-    if([asset purchaseDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
+    if([asset purchaseDateDefinedAndInThePastForScenario:formPopulator.inputScenario usingDateHelper:self.dateHelper])
     {
  		[formPopulator nextSectionWithTitle:LOCALIZED_STR(@"INPUT_ASSET_VALUE_SECTION_TITLE")
                                 andHelpFile:@"asset" andAnchorWithinHelpFile:@"current-asset-value"];       
@@ -951,12 +963,6 @@
 }
 
 
-- (void)dealloc
-{
-    [formPopulator release];
-	[formContext release];
-    [super dealloc];
-}
 
 
 @end

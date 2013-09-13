@@ -103,7 +103,7 @@
 	// Advancing to the current date is a no-op if the newDate is before the current date.
 	// If the current date is in the future, then this working balance is typically for 
 	// an input such as a loan or asset which is originated or purchased in the future. 
-	if([DateHelper dateIsLater:newDate otherDate:self.currentBalanceDate])
+	if([self.dateHelper dateIsLater:newDate otherDate:self.currentBalanceDate])
 	{
 		double balanceMultiplier = [self.interestRateCalc 
 			valueMultiplierBetweenStartDate:self.currentBalanceDate andEndDate:newDate];
@@ -111,7 +111,7 @@
 		double newBalance = currentBalance * balanceMultiplier;
 		double interestAmount = newBalance - currentBalance;
 		
-		NSUInteger dayIndex = [DateHelper daysOffset:newDate vsEarlierDate:self.balanceStartDate];
+		NSUInteger dayIndex = [self.dateHelper daysOffset:newDate vsEarlierDate:self.balanceStartDate];
 		[self.accruedInterest adjustSum:interestAmount onDay:dayIndex];
 
 		currentBalance = newBalance;

@@ -74,13 +74,11 @@ static SimResultsController *theSimResultsControllerSingleton;
 
 -(void)runSimulatorForResults
 {
-    NSLog(@"Starting simulation run...");
+    [self.simResultsGenQueue cancelAllOperations]; // Cancel any ongoing simulator runs (if any)
     
     SimResultsOperation *simResultsOperation = [[[SimResultsOperation alloc]
-                initWithDataModelController:self.mainDmc andResultsDelegate:self]autorelease];
-    [self.simResultsGenQueue cancelAllOperations]; // Cancel any ongoing simulator runs (if any)
+                                                 initWithDataModelController:self.mainDmc andResultsDelegate:self]autorelease];
     [self.simResultsGenQueue addOperation:simResultsOperation];
-    
 }
 
 - (void)managedObjectsChanged
@@ -92,21 +90,33 @@ static SimResultsController *theSimResultsControllerSingleton;
 }
 
 
+-(void)updateMainDataModelController:(DataModelController*)mainDataModelController
+{
+    
+    assert(mainDataModelController != nil);
+    
+    if(self.mainDmc != nil)
+    {
+        [self.mainDmc stopObservingAnyContextChanges:self];
+    }
+    
+    self.mainDmc = mainDataModelController;
+
+    [self.mainDmc startObservingAnyContextChanges:self
+            withSelector:@selector(managedObjectsChanged)];
+
+}
+
 -(id)initWithDataModelController:(DataModelController*)mainDataModelController
 {
 	self = [super init];
 	if(self)
-	{
-        self.mainDmc = mainDataModelController;
-        
-				
-		[self.mainDmc startObservingAnyContextChanges:self 
-			withSelector:@selector(managedObjectsChanged)];
+	{     
+        [self updateMainDataModelController:mainDataModelController];
         
         self.simResultsGenQueue = [[[NSOperationQueue alloc] init] autorelease];
         self.simResultsGenQueue.maxConcurrentOperationCount = 1;
 
-        
         // Invalidate the current results. It doesn't make sense to
         // show any old results, since they'll be from a different plan.
         self.currentSimResults = nil;
@@ -125,10 +135,7 @@ static SimResultsController *theSimResultsControllerSingleton;
 +(void)initSingleton:(SimResultsController*)theSimResultsCtrl
 {
 	assert(theSimResultsCtrl != nil);
-	if(theSimResultsControllerSingleton != nil)
-	{
-		[theSimResultsControllerSingleton release];
-	}
+	assert(theSimResultsControllerSingleton == nil); // initSingleton should only be called once
 	[theSimResultsCtrl retain];
 	theSimResultsControllerSingleton = theSimResultsCtrl;
 }
@@ -137,6 +144,16 @@ static SimResultsController *theSimResultsControllerSingleton;
 {
 	assert(theSimResultsControllerSingleton != nil);
 	return theSimResultsControllerSingleton;
+}
+
++(void)updateSingletonWithMainDataModelController:(DataModelController*)mainDataModelController
+{
+    SimResultsController *theResultsController = [SimResultsController theSimResultsController];
+    
+    [theResultsController updateMainDataModelController:mainDataModelController];
+    
+    // Run the simulator to get an updated set of results
+    [theResultsController runSimulatorForResults];
 }
 
 +(void)initSingletonFromMainDataModelController:(DataModelController*)mainDataModelController

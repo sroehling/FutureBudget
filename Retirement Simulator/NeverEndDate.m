@@ -41,7 +41,9 @@ NSString * const NEVER_END_PSEUDO_END_DATE = @"2500-12-31";
 
 - (NSDate*)endDateWithStartDate:(NSDate*)startDate
 {
-	return [DateHelper dateFromStr:NEVER_END_PSEUDO_END_DATE];
+    DateHelper *dateHelper = [[[DateHelper alloc] init] autorelease];
+    
+	return [dateHelper dateFromStr:NEVER_END_PSEUDO_END_DATE];
 }
 
 @end

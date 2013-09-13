@@ -17,13 +17,16 @@
 //#import "application_headers" as required
 
 @class DataModelController;
+@class DateHelper;
 
 @interface WorkingBalanceTest : SenTestCase {
 	@private
 		DataModelController *coreData;
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) DataModelController *coreData;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 
 @end

@@ -77,9 +77,6 @@
 			getValueForCurrentOrDefaultScenario];
 	NSDate *resolvedEndDate = [endDate endDateWithStartDate:resolvedStartDate];
 	
-	NSLog(@"Savings contribution: start = %@, end = %@",
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedStartDate],
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedEndDate]);
 
 	EventRepeatFrequency *repeatFreq = (EventRepeatFrequency*)
 		[self.acctSimInfo.account.contribRepeatFrequency getValueForCurrentOrDefaultScenario];

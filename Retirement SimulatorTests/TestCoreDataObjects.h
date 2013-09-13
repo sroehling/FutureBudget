@@ -12,16 +12,19 @@
 @class DateSensitiveValueChange;
 @class MultiScenarioInputValue;
 @class Scenario;
+@class DateHelper;
 
 @interface TestCoreDataObjects : NSObject {
 	@private
 		DataModelController *coreData;
 		Scenario *testScenario;
+        DateHelper *dateHelper;
     
 }
 
 @property(nonatomic,retain) DataModelController *coreData;
 @property(nonatomic,retain) Scenario *testScenario;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 - (id) initWithCoreData:(DataModelController*)theCoreData;
 

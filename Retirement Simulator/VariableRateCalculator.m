@@ -16,11 +16,13 @@
 
 @synthesize variableRates;
 @synthesize startDate;
+@synthesize dateHelper;
 
 - (void) dealloc
 {
 	[variableRates release];
 	[startDate release];
+    [dateHelper release];
 	[super dealloc];
 }
 
@@ -37,6 +39,8 @@
 		
 		assert(theStart != nil);
 		self.startDate = theStart;
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 	}
 	return self;
 }
@@ -118,12 +122,12 @@
 		// If the start date for value changes is later than the 
 		// given date, we return a value of 1.0, meaning the 
 		// value is unchanged.
-		if([DateHelper dateIsLater:self.startDate otherDate:theDate])
+		if([self.dateHelper dateIsLater:self.startDate otherDate:theDate])
 		{
 			return 1.0;
 		}
 
-		NSInteger daysSinceStart = [DateHelper daysOffset:theDate vsEarlierDate:self.startDate];
+		NSInteger daysSinceStart = [self.dateHelper daysOffset:theDate vsEarlierDate:self.startDate];
 		double amountMultiplier = [self valueMultiplierForDay:daysSinceStart];
 		assert(amountMultiplier >= 0.0);
 		return amountMultiplier;
@@ -133,7 +137,7 @@
 {
 	assert(theStartDate!=nil);
 	assert(theEndDate!=nil);
-	assert([DateHelper dateIsEqualOrLater:theEndDate otherDate:theStartDate]);
+	assert([self.dateHelper dateIsEqualOrLater:theEndDate otherDate:theStartDate]);
 	
 	
 	// There are 3 basic variations of where self.startDate can be in relation to
@@ -151,7 +155,7 @@
 	// given end date, we return a value of 1.0, meaning the 
 	// value is unchanged because the rate multiplier does not change 
 	// before the start date.
-	if([DateHelper dateIsLater:self.startDate otherDate:theEndDate])
+	if([self.dateHelper dateIsLater:self.startDate otherDate:theEndDate])
 	{
 		return 1.0;
 	} 
@@ -161,7 +165,7 @@
 	// in cases where an input such as a loan has an origination date which starts
 	// after the theStartDate, or an asset which has a purchase date in the future. 
 	NSDate *multiplierStartDate;
-	if([DateHelper dateIsEqualOrLater:theStartDate otherDate:self.startDate])
+	if([self.dateHelper dateIsEqualOrLater:theStartDate otherDate:self.startDate])
 	{
 		// V1 (see above)
 		multiplierStartDate = theStartDate;
@@ -183,7 +187,7 @@
 
 -(NSUInteger)daysSinceStart:(NSDate*)timeAfterStart
 {
-    assert([DateHelper dateIsEqualOrLater:timeAfterStart otherDate:self.startDate]);
+    assert([self.dateHelper dateIsEqualOrLater:timeAfterStart otherDate:self.startDate]);
     NSTimeInterval secondsVsStart = [timeAfterStart timeIntervalSinceDate:self.startDate];
     NSUInteger daysVsStart = floor(secondsVsStart/SECONDS_PER_DAY);
     return daysVsStart;
@@ -194,11 +198,11 @@
                                     usingCutoffDate:(NSDate*)cutoffDateOtherRateCalc
 {
     // This method is constrained to work with calculator with equal start dates.
-    assert([DateHelper dateIsEqual:self.startDate otherDate:otherVarRateCalc.startDate]);
+    assert([self.dateHelper dateIsEqual:self.startDate otherDate:otherVarRateCalc.startDate]);
     
     assert(cutoffDateOtherRateCalc != nil);
     
-    if([DateHelper dateIsEqualOrLater:self.startDate otherDate:cutoffDateOtherRateCalc])
+    if([self.dateHelper dateIsEqualOrLater:self.startDate otherDate:cutoffDateOtherRateCalc])
     {
         // The cutoff date is before the start date. In this case, the rate calculations from
         // otherVarRateCalc are always used.

@@ -186,9 +186,9 @@
 
 -(bool)ownedForAtLeastOneDay
 {
-	NSDate *beginningOfPurchaseDate = [DateHelper beginningOfDay:self.purchaseDate];
-	NSDate *begginningOfSaleDate = [DateHelper beginningOfDay:self.saleDate];
-	if([DateHelper dateIsLater:begginningOfSaleDate otherDate:beginningOfPurchaseDate])
+	NSDate *beginningOfPurchaseDate = [self.simParams.dateHelper beginningOfDay:self.purchaseDate];
+	NSDate *begginningOfSaleDate = [self.simParams.dateHelper beginningOfDay:self.saleDate];
+	if([self.simParams.dateHelper dateIsLater:begginningOfSaleDate otherDate:beginningOfPurchaseDate])
 	{
 		return true;
 	}
@@ -200,7 +200,7 @@
 
 -(bool)purchasedAfterSimStart
 {
-	if([DateHelper dateIsEqualOrLater:self.purchaseDate otherDate:self.simParams.simStartDate])
+	if([self.simParams.dateHelper dateIsEqualOrLater:self.purchaseDate otherDate:self.simParams.simStartDate])
 	{
 		return true;
 	}
@@ -212,7 +212,7 @@
 
 - (bool)soldAfterSimStart
 {
-	if([DateHelper dateIsEqualOrLater:self.saleDate otherDate:self.simParams.simStartDate])
+	if([self.simParams.dateHelper dateIsEqualOrLater:self.saleDate otherDate:self.simParams.simStartDate])
 	{
 		return true;
 	}

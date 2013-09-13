@@ -13,6 +13,7 @@
 @class Account;
 @class ValueSubtitleTableCell;
 @class DataModelController;
+@class DateHelper;
 
 @interface DeferredWithdrawalFieldEditInfo : NSObject <FieldEditInfo> {
     @private
@@ -21,6 +22,7 @@
 		ValueSubtitleTableCell *valueCell;
 		NSString *fieldLabel;
 		DataModelController *dataModelController;
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) Account *account;
@@ -28,6 +30,7 @@
 @property(nonatomic,retain) ValueSubtitleTableCell *valueCell;
 @property(nonatomic,retain) NSString *fieldLabel;
 @property(nonatomic,retain) DataModelController *dataModelController;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController 
 	andAccount:(Account*)theAccount andFieldLabel:(NSString*)theFieldLabel

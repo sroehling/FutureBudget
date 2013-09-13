@@ -38,6 +38,7 @@
 #import "FormContext.h"
 #import "AccountWithdrawalOrderInfo.h"
 #import "AccountWithdrawalOrderFieldEditInfo.h"
+#import "DateHelper.h"
 
 @implementation WhatIfFormInfoCreator
 
@@ -619,9 +620,10 @@
         // loan originates in the future. To show this value when it is not applicable
         // would cause unnecessary confusion.
         NSMutableSet *futureLoanInputs = [[[NSMutableSet alloc] init] autorelease];
+        DateHelper *dateHelper = [[[DateHelper alloc] init] autorelease];
  		for(LoanInput *loan in inputs)
         {
-            if([loan originationDateDefinedAndInTheFutureForScenario:formPopulator.inputScenario])
+            if([loan originationDateDefinedAndInTheFutureForScenario:formPopulator.inputScenario usingDateHelper:dateHelper])
             {
                 [futureLoanInputs addObject:loan];
             }

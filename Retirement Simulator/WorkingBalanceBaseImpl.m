@@ -24,6 +24,19 @@
 @synthesize contribs;
 @synthesize withdrawals;
 @synthesize currentBalance;
+@synthesize dateHelper;
+
+- (void) dealloc
+{
+	[balanceStartDate release];
+	[currentBalanceDate release];
+	[contribs release];
+	[withdrawals release];
+    [dateHelper release];
+    
+	[super dealloc];
+}
+
 
 
 - (id) initWithStartingBalance:(double)theStartBalance 
@@ -42,6 +55,8 @@
 		
 		self.contribs = [[[InputValDigestSummation alloc] init] autorelease];
 		self.withdrawals = [[[InputValDigestSummation alloc] init] autorelease];
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 
 	}
 	return self;
@@ -58,14 +73,6 @@
 	self.currentBalanceDate = self.balanceStartDate;
 }
 
-- (void) dealloc
-{
-	[balanceStartDate release];
-	[currentBalanceDate release];
-	[contribs release];
-	[withdrawals release];
-	[super dealloc];
-}
 
 - (void)advanceCurrentBalanceToDate:(NSDate*)newDate
 {
@@ -84,7 +91,7 @@
 	
 	// There is only a need to advance the balance if the newDate is greater
 	// than the balance start date.
-	if(![DateHelper dateIsEqualOrLater:newStartDate otherDate:self.balanceStartDate])
+	if(![self.dateHelper dateIsEqualOrLater:newStartDate otherDate:self.balanceStartDate])
 	{
 		return;
 	}
@@ -93,7 +100,7 @@
 	// current balance is before the newStartDate. A currentBalanceDate in 
 	// the future could occur for inputs such as loans originating in the future
 	// or assets purchased in the future.
-	if([DateHelper dateIsEqualOrLater:newStartDate otherDate:self.currentBalanceDate])
+	if([self.dateHelper dateIsEqualOrLater:newStartDate otherDate:self.currentBalanceDate])
 	{
 		// Advance the balanceStartDate first. This is used by the advanceCurrentBalanceToDate
 		// method to calculate an relative index in which to place the accrued interest.
@@ -113,14 +120,14 @@
 	assert(amount >= 0.0);
 	currentBalance += amount;
 	
-	NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
+	NSInteger daysSinceStartDate = [self.dateHelper daysOffset:newDate
 		vsEarlierDate:self.balanceStartDate];
 	[self.contribs adjustSum:amount onDay:daysSinceStartDate];
 }
 
 - (double)currentBalanceForDate:(NSDate*)balanceDate
 {
-	if([DateHelper dateIsEqualOrLater:balanceDate otherDate:self.balanceStartDate])
+	if([self.dateHelper dateIsEqualOrLater:balanceDate otherDate:self.balanceStartDate])
 	{
 		return currentBalance;
 	}
@@ -157,7 +164,7 @@
 		decrementAmount = 0.0;
 	}
 	
-	NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
+	NSInteger daysSinceStartDate = [self.dateHelper daysOffset:newDate
 		vsEarlierDate:self.balanceStartDate];
 	[self.withdrawals adjustSum:decrementAmount onDay:daysSinceStartDate];
 	
@@ -189,7 +196,7 @@
 
 	currentBalance = 0.0;
 
-	NSInteger daysSinceStartDate = [DateHelper daysOffset:newDate 
+	NSInteger daysSinceStartDate = [self.dateHelper daysOffset:newDate 
 		vsEarlierDate:self.balanceStartDate];
 	[self.withdrawals adjustSum:remainingBalance onDay:daysSinceStartDate];
 

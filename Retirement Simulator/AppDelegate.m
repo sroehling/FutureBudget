@@ -252,7 +252,7 @@
 	
 	self.currentPlanDmc = [AppHelper openPlanForPlanName:newPlanName];
 	
-	[SimResultsController initSingletonFromMainDataModelController:self.currentPlanDmc];
+	[SimResultsController updateSingletonWithMainDataModelController:self.currentPlanDmc];
 
 	
 	// Update the dataModelController ("file handle" for the current plan) for

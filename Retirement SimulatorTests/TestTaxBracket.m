@@ -27,7 +27,9 @@
 	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
 	self.sharedAppVals = [SharedAppValues createWithDataModelInterface:self.coreData];
 	
-	self.sharedAppVals.simStartDate = [DateHelper dateFromStr:@"2012-01-01"];
+    DateHelper *dateHelper = [[[DateHelper alloc] init] autorelease];
+    
+	self.sharedAppVals.simStartDate = [dateHelper dateFromStr:@"2012-01-01"];
 	
 	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc]
 		initWithDataModelController:self.coreData

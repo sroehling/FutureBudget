@@ -290,9 +290,11 @@
     // Reset the event list
 	self.eventList = [[[SimEventList alloc] init] autorelease];
 	
-	NSDate *simStartDate = [self.sharedAppVals beginningOfSimStartDate];
 	self.simParams = [[[SimParams alloc] 
 			initWithSharedAppVals:self.sharedAppVals] autorelease];
+    
+    NSDate *simStartDate = [self.simParams.dateHelper beginningOfDay:self.sharedAppVals.simStartDate];
+
 
 	[self populateEventCreators];
 	    
@@ -372,13 +374,10 @@
     [self resetSimulator];
 	
 	[simProgressDelegate updateProgress:0.0];
-    
-    NSLog(@"Plan end date: %@",[[DateHelper theHelper].mediumDateFormatter 
-		stringFromDate:self.simParams.simEndDate]);
-    
+        
 	SimEvent* nextEventToProcess = [self.eventList nextEvent];
 	
-	assert([DateHelper dateIsEqualOrLater:[nextEventToProcess eventDate] 
+	assert([self.simParams.dateHelper dateIsEqualOrLater:[nextEventToProcess eventDate]
 		otherDate:self.simParams.simStartDate]);
 	
 	CGFloat currentProgress = 0.0;
@@ -387,6 +386,16 @@
 		[self eventEarlierOrSameTimeAsSimEnd:nextEventToProcess]) 
     {
 		[self processEvent:nextEventToProcess];
+        
+        if(self.simExecutionOperation != nil)
+        {
+            if(self.simExecutionOperation.isCancelled)
+            {
+                NSLog(@"... Sim execution canceled.");
+                return; // abort the simulation
+            }
+        }
+
 		
 		CGFloat eventProgress = [self eventProgressVal:nextEventToProcess];
 		if((eventProgress - currentProgress) > UPDATE_SIM_PROGRESS_THRESHOLD)

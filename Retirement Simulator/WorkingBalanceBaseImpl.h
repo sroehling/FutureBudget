@@ -14,6 +14,7 @@
 @class WorkingBalanceAdjustment;
 @class InputValDigestSummation;
 @class ExpenseInput;
+@class DateHelper;
 
 #define WORKING_BALANCE_WITHDRAW_PRIORITY_MAX 0.0
 
@@ -29,6 +30,8 @@
 		
 		InputValDigestSummation *contribs;
 		InputValDigestSummation *withdrawals;
+    @private
+        DateHelper *dateHelper;
 
 
 }
@@ -54,6 +57,7 @@
 
 @property(nonatomic,retain) NSDate *balanceStartDate;
 @property(nonatomic,retain) NSDate *currentBalanceDate;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 
 @property(readonly) double startingBalance;

@@ -20,18 +20,20 @@
 @class DataModelController;
 @class SharedAppValues;
 @class InputCreationHelper;
-
+@class DateHelper;
 
 @interface TestSimEngine : SenTestCase <ProgressUpdateDelegate> {
     @private
 		DataModelController *coreData;
 		SharedAppValues *testAppVals;
 		InputCreationHelper *inputCreationHelper;
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) DataModelController *coreData;
 @property(nonatomic,retain) SharedAppValues *testAppVals;
 @property(nonatomic,retain) InputCreationHelper *inputCreationHelper;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 
 @end

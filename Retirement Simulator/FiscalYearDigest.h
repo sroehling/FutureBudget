@@ -12,6 +12,7 @@
 @class FiscalYearDigestEntries;
 @class SimParams;
 @class VariableRateCalculator;
+@class DateHelper;
 
 @interface FiscalYearDigest : NSObject {
     @private
@@ -20,6 +21,7 @@
 		NSMutableArray *savedEndOfYearResults;
 		VariableRateCalculator *adjustValueForInflationCalculator;
 		SimParams *simParams;
+        DateHelper *dateHelper;
 }
 
 -(id)initWithSimParams:(SimParams*)theSimParams;
@@ -32,5 +34,6 @@
 @property(nonatomic,retain) SimParams *simParams;
 @property(nonatomic,retain) NSDate *currentYearDigestStartDate;
 @property(nonatomic,retain) VariableRateCalculator *adjustValueForInflationCalculator;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 @end

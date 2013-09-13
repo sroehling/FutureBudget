@@ -16,6 +16,19 @@
 @synthesize startDate;
 @synthesize endDate;
 @synthesize currentDate;
+@synthesize dateHelper;
+
+-(void)dealloc {
+    [dateFormatter release];
+    [repeatOffsetComponents release];
+    [startDate release];
+	[currentDate release];
+	[endDate release];
+    [dateHelper release];
+    
+    [super dealloc];
+}
+
 
 - (id) initWithRepeatOffset:(NSDateComponents*)theRepeatOffset andRepeatOnce:(bool)doRepeatOnce
 	 andStartDate:(NSDate*)theStartDate andEndDate:(NSDate*)theEndDate
@@ -32,6 +45,8 @@
 		self.startDate = theStartDate;
         self.endDate = theEndDate;
 		repeatOnce = doRepeatOnce;
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 
         [self reset];
 
@@ -122,7 +137,7 @@
            return currentDate;
         }
         else{
- 			self.currentDate = [[DateHelper theHelper].gregorian dateByAddingComponents:repeatOffsetComponents 
+ 			self.currentDate = [self.dateHelper.gregorian dateByAddingComponents:repeatOffsetComponents 
                  toDate:self.currentDate options:0];
 				 
 			NSComparisonResult eventComparedToResultsCheckpoint = 
@@ -150,7 +165,7 @@
 	assert(minimumDate != nil);
 	NSDate *nextDateOnOrAfter = [self nextDate];
 	while((nextDateOnOrAfter != nil) && 
-		[DateHelper dateIsLater:minimumDate otherDate:nextDateOnOrAfter])
+		[self.dateHelper dateIsLater:minimumDate otherDate:nextDateOnOrAfter])
 	{
 		nextDateOnOrAfter = [self nextDate];
 	}
@@ -172,14 +187,6 @@
 }
 
 
--(void)dealloc {
-    [dateFormatter release];
-    [repeatOffsetComponents release];
-    [startDate release];
-	[currentDate release];
-	[endDate release];
-    [super dealloc];
-}
 
 
 

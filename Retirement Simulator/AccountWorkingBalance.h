@@ -16,6 +16,7 @@
 @class DateSensitiveValue;
 @class InputValDigestSummation;
 @class SimParams;
+@class DateHelper;
 
 @interface AccountWorkingBalance : NSObject <WorkingBalance> {
 	@private
@@ -36,6 +37,8 @@
 		NSSet *limitWithdrawalsToExpense;
 		
 		double withdrawPriority;
+    
+        DateHelper *dateHelper;
 	
 }
 
@@ -45,6 +48,8 @@
 @property(nonatomic,retain) CashWorkingBalance *costBasis;
 @property(nonatomic,retain) NSDate *deferWithdrawalsUntil;
 @property(nonatomic,retain) NSSet *limitWithdrawalsToExpense;
+@property(nonatomic,retain) DateHelper *dateHelper;
+
 @property double withdrawPriority;
 
 - (id) initWithAcct:(Account*)theAcct andSimParams:(SimParams*)simParams;

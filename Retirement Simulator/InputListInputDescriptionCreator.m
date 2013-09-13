@@ -47,6 +47,18 @@
 @synthesize generatedDesc;
 @synthesize dataModelController;
 @synthesize sharedAppVals;
+@synthesize dateHelper;
+
+- (void)dealloc
+{
+	[generatedDesc release];
+	[dataModelController release];
+	[sharedAppVals release];
+    [dateHelper release];
+	
+    [super dealloc];
+}
+
 
 -(id)initWithDataModelController:(DataModelController*)theDataModelController
 {
@@ -57,6 +69,7 @@
 		self.dataModelController = theDataModelController;
 		
 		self.sharedAppVals = [SharedAppValues getUsingDataModelController:self.dataModelController];
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 	}
 	return self;
 }
@@ -98,7 +111,7 @@
 {
 	SimDate *theDate = (SimDate*)[cashFlowDate.simDate getValueForCurrentOrDefaultScenario]; 
 	NSString *dateDisplay = [theDate
-		inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+		inlineDescription:self.dateHelper.mediumDateFormatter];
 	return dateDisplay;
 }
 
@@ -118,7 +131,7 @@
 {
 	SimDate *endDate = (SimDate*)[simEndDate.simDate getValueForCurrentOrDefaultScenario];
 	NSString *endDateDisplay = [endDate 
-			inlineDescription:[DateHelper theHelper].mediumDateFormatter];;
+			inlineDescription:self.dateHelper.mediumDateFormatter];;
 			
 	NSString *endDateDesc = [NSString stringWithFormat:@" %@ %@",endDate.endDatePrefix,endDateDisplay];
 	
@@ -247,7 +260,7 @@
 			amountDisplay,originationDateDisplay,interestRateDisplay];
 	self.generatedDesc = loanDescWithoutStartingBal;
 		
-	if([loan originationDateDefinedAndInThePastForScenario:self.sharedAppVals.currentInputScenario] &&
+	if([loan originationDateDefinedAndInThePastForScenario:self.sharedAppVals.currentInputScenario usingDateHelper:self.dateHelper] &&
 		(loan.startingBalance != nil))
 	{
 		NSString *startingBalDisplay = 	[[NumberHelper theHelper]
@@ -322,12 +335,5 @@
 	return self.generatedDesc;
 }
 
-- (void)dealloc
-{
-	[generatedDesc release];
-	[dataModelController release];
-	[sharedAppVals release];
-	[super dealloc];
-}
 
 @end

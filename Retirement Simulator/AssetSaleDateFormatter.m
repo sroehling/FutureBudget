@@ -15,7 +15,24 @@
 
 @implementation AssetSaleDateFormatter
 
+@synthesize dateHelper;
 @synthesize formattedEndDate;
+
+-(void)dealloc
+{
+    [dateHelper release];
+    [super dealloc];
+}
+
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
+    }
+    return self;
+}
 
 -(NSString*)formatSimDate:(SimDate*)theSimDate
 {
@@ -29,7 +46,7 @@
 
 - (void)visitMilestoneDate:(MilestoneDate*)milestoneDate
 {
-    self.formattedEndDate = [milestoneDate inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+    self.formattedEndDate = [milestoneDate inlineDescription:self.dateHelper.mediumDateFormatter];
     
 }
 
@@ -40,13 +57,13 @@
 
 - (void)visitFixedDate:(FixedDate*)fixedDate
 {
-    self.formattedEndDate = [fixedDate inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+    self.formattedEndDate = [fixedDate inlineDescription:self.dateHelper.mediumDateFormatter];
     
 }
 
 - (void)visitRelativeEndDate:(RelativeEndDate*)relEndDate
 {
-   self.formattedEndDate = [relEndDate inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+   self.formattedEndDate = [relEndDate inlineDescription:self.dateHelper.mediumDateFormatter];
 }
 
 

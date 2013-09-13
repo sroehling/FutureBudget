@@ -26,6 +26,7 @@
 
 @synthesize coreData;
 @synthesize testScenario;
+@synthesize dateHelper;
 
 - (id) initWithCoreData:(DataModelController*)theCoreData
 {
@@ -39,6 +40,7 @@
 			createDataModelObject:USER_SCENARIO_ENTITY_NAME];
 		theScenario.name = @"test";
 		self.testScenario = theScenario;
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 	}
 	return self;
 }
@@ -53,6 +55,7 @@
 {
 	[coreData release];
 	[testScenario release];
+    [dateHelper release];
 	[super dealloc];
 }
 
@@ -76,7 +79,9 @@
 + (DateSensitiveValueChange*)createTestValueChange:(DataModelController*)coreData 
 										   andDate:(NSString*)dateStr andVal:(double)val
 {
-	NSDate *theDate = [DateHelper dateFromStr:dateStr];
+    DateHelper *dateHelperForChangeDate = [[[DateHelper alloc] init] autorelease];
+    
+	NSDate *theDate = [dateHelperForChangeDate dateFromStr:dateStr];
 	return [TestCoreDataObjects createTestValueChange:coreData 
 		andDateObj:theDate andVal:val];
 }
@@ -110,7 +115,7 @@
 {
 	MultiScenarioInputValue *msFixedEndDate = [self createTestMultiScenInputVal];
     FixedDate *fixedEndDate = (FixedDate*)[self.coreData createDataModelObject:FIXED_DATE_ENTITY_NAME];
-    fixedEndDate.date = [DateHelper dateFromStr:defaultDate];
+    fixedEndDate.date = [dateHelper dateFromStr:defaultDate];
 	[msFixedEndDate setValueForScenario:self.testScenario andInputValue:fixedEndDate];
 	return msFixedEndDate;
 

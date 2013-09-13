@@ -58,11 +58,6 @@
 
 	double dividendAmount = quarterlyDividendRate * currentAcctBal;
 
-	
-	NSLog(@"Dividend for acct=%@, rate/yield = %0.2f, current balance = %f, dividend amount = %0.2f, date = %@",
-		self.acctSimInfo.account.name,annualDividendRateAsOfEventDate,
-		currentAcctBal,dividendAmount, [[DateHelper theHelper].longDateFormatter stringFromDate:processingParams.currentDate]);
-
 
 	if(dividendAmount>0.0)
 	{

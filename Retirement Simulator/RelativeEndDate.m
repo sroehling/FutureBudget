@@ -54,7 +54,8 @@ NSString * const RELATIVE_END_DATE_MONTHS_OFFSET_KEY = @"monthsOffset";
 {
     NSDateComponents *repeatOffsetComponents = [[[NSDateComponents alloc] init] autorelease];
 	[repeatOffsetComponents setMonth:[self.monthsOffset intValue]];
-	NSDate *endDate = [[DateHelper theHelper].gregorian dateByAddingComponents:repeatOffsetComponents 
+    DateHelper *dateHelper = [[[DateHelper alloc] init] autorelease];
+	NSDate *endDate = [dateHelper.gregorian dateByAddingComponents:repeatOffsetComponents 
                  toDate:startDate options:0];
 	return endDate;
 

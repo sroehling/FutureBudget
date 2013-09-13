@@ -16,11 +16,23 @@
 
 @synthesize eventList;
 @synthesize eventCreator;
+@synthesize dateHelper;
+
+-(void)dealloc
+{
+    [eventList release];
+    [eventCreator release];
+    [dateHelper release];
+    
+    [super dealloc];
+}
+
 
 - (void)setUp
 {
 	self.eventCreator = [[[TestSimEventCreator alloc] init] autorelease];
 	self.eventList = [[[SimEventList alloc] init] autorelease];
+    self.dateHelper = [[[DateHelper alloc] init] autorelease];
 }
 
 - (void)tearDown
@@ -58,11 +70,11 @@
 {
 	[self.eventList removeAllEvents];
 
-	[self addEvent:[DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-01"]]
+	[self addEvent:[self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2011-01-01"]]
 		withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_LOW andLabel:@"D1"];
-	[self addEvent:[DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-04-15"]]
+	[self addEvent:[self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2012-04-15"]]
 		withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_LOW andLabel:@"D3"];
-	[self addEvent:[DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-02"]] 
+	[self addEvent:[self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2011-01-02"]] 
 		withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_LOW andLabel:@"D2"];
 
 	[self checkNextEvent:@"D1"];
@@ -77,11 +89,11 @@
 {
 	[self.eventList removeAllEvents];
 
-	[self addEvent:[DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-01"]]
+	[self addEvent:[self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2011-01-01"]]
 		withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_LOW andLabel:@"D1_PL"];
-	[self addEvent:[DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-01"]] 
+	[self addEvent:[self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2011-01-01"]] 
 		withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_HIGHEST andLabel:@"D1_PH"];
-	[self addEvent:[DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-01"]]
+	[self addEvent:[self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2011-01-01"]]
 		withPriority:SIM_EVENT_TIE_BREAK_PRIORITY_MEDIUM andLabel:@"D1_PM"];
 
 	[self checkNextEvent:@"D1_PH"];
@@ -133,12 +145,5 @@
 	
 }
 
-
--(void)dealloc
-{
-	[eventList release];
-	[eventCreator release];
-	[super dealloc];
-}
 
 @end

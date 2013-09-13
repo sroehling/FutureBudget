@@ -26,11 +26,24 @@
 @synthesize valChangeCell;
 @synthesize variableVal;
 @synthesize parentController;
+@synthesize dateHelper;
+
+
+- (void) dealloc
+{
+	[varValInfo release];
+	[valChange release];
+	[valChangeCell release];
+	[variableVal release];
+    [dateHelper release];
+    
+	[super dealloc];
+}
 
 - (void) configureCell
 {
 	self.valChangeCell.caption.text = 
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate.date];
+		[self.dateHelper.mediumDateFormatter stringFromDate:self.valChange.startDate.date];
 	self.valChangeCell.valueDescription.text = [[NumberHelper theHelper] displayStrFromStoredVal:self.valChange.valueAfterChange andFormatter:self.varValInfo.valueFormatter];;
 
 }
@@ -55,6 +68,9 @@ andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewContr
 			
 			self.valChangeCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 			self.valChangeCell.supportsDelete = TRUE;
+            
+            self.dateHelper = [[[DateHelper alloc] init] autorelease];
+            
 			[self configureCell];
 			
 
@@ -68,21 +84,13 @@ andVariableValue:(VariableValue*)theVariableVal andParentController:(UIViewContr
 	return nil;
 }
 
-- (void) dealloc
-{
-	[varValInfo release];
-	[valChange release];
-	[valChangeCell release];
-	[variableVal release];
-	[super dealloc];
-}
 
 - (NSString*)detailTextLabel
 {
 	NSNumber *displayVal = [[NumberHelper theHelper] displayValFromStoredVal:self.valChange.valueAfterChange andFormatter:self.varValInfo.valueFormatter];
 	return [NSString stringWithFormat:@"%@ - %@",
 			[self.varValInfo.valueFormatter stringFromNumber:displayVal],
-			[[DateHelper theHelper].mediumDateFormatter stringFromDate:self.valChange.startDate.date] ];
+			[self.dateHelper.mediumDateFormatter stringFromDate:self.valChange.startDate.date] ];
 }
 
 - (NSString*)textLabel

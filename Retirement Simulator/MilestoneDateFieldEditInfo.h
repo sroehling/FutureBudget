@@ -14,6 +14,7 @@
 @class MilestoneDate;
 @class ValueSubtitleTableCell;
 @class SimDateRuntimeInfo;
+@class DateHelper;
 
 @interface MilestoneDateFieldEditInfo : NSObject <FieldEditInfo> {
     @private
@@ -21,6 +22,7 @@
 		ValueSubtitleTableCell *milestoneCell;
 		SimDateRuntimeInfo *varDateRuntimeInfo;
 		UIViewController *parentController;
+        DateHelper *dateHelper;
 }
 
 
@@ -32,5 +34,6 @@
 @property(nonatomic,retain) ValueSubtitleTableCell *milestoneCell;
 @property(nonatomic,retain) SimDateRuntimeInfo *varDateRuntimeInfo;
 @property(nonatomic,assign) UIViewController *parentController;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 @end

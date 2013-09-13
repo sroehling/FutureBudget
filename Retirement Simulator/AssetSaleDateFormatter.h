@@ -10,14 +10,17 @@
 
 #import "SimDateVisitor.h"
 @class SimDate;
+@class DateHelper;
 
 @interface AssetSaleDateFormatter : NSObject <SimDateVisitor>
 {
     @private
         NSString *formattedEndDate;
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) NSString *formattedEndDate;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 -(NSString*)formatSimDate:(SimDate*)theSimDate;
 

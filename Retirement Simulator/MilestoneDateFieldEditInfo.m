@@ -25,6 +25,18 @@
 @synthesize milestoneCell;
 @synthesize varDateRuntimeInfo;
 @synthesize parentController;
+@synthesize dateHelper;
+
+- (void) dealloc
+{
+    [milestoneDate release];
+	[milestoneCell release];
+	[varDateRuntimeInfo release];
+    [dateHelper release];
+    
+    [super dealloc];
+}
+
 
 - (void) configureCell
 {
@@ -48,22 +60,18 @@
 		self.parentController = theParentController;
 		
 		self.milestoneCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
+        
 		[self configureCell];
     }
     return self;
 }
 
-- (void) dealloc
-{
-    [milestoneDate release];
-	[milestoneCell release];
-	[varDateRuntimeInfo release];
-    [super dealloc];
-}
 
 - (NSString*)detailTextLabel
 {
-    return [[[DateHelper theHelper] mediumDateFormatter]
+    return [[self.dateHelper mediumDateFormatter]
             stringFromDate:self.milestoneDate.date];
 }
 

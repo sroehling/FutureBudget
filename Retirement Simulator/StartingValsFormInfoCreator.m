@@ -32,6 +32,7 @@
 #import "AssetInput.h"
 #import "LoanInput.h"
 #import "FormContext.h"
+#import "DateHelper.h"
 
 @implementation StartingValsFormInfoCreator
 
@@ -39,6 +40,7 @@
 {
     InputFormPopulator *formPopulator = [[[InputFormPopulator alloc] initForNewObject:FALSE
 		andFormContext:parentContext] autorelease];
+    DateHelper *dateHelper = [[[DateHelper alloc] init] autorelease];
 		
 	[formPopulator populateWithHeader:LOCALIZED_STR(@"STARTUP_VALS_TABLE_TITLE")
 		andSubHeader:LOCALIZED_STR(@"STARTUP_VALS_TABLE_SUBTITLE") andHelpFile:@"sectionStartup"
@@ -103,7 +105,7 @@
 		for(AssetInput *asset in assets)
 		{
             // Only show the (explicit) starting asset value if the purchase date is in the past
-            if([asset purchaseDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
+            if([asset purchaseDateDefinedAndInThePastForScenario:formPopulator.inputScenario usingDateHelper:dateHelper])
             {
                 [formPopulator populateCurrencyField:asset andValKey:INPUT_ASSET_STARTING_VALUE_KEY
                                             andLabel:asset.name
@@ -124,7 +126,7 @@
         NSMutableArray *loansOriginatingInPast = [[[NSMutableArray alloc] init] autorelease];
 		for(LoanInput *loan in loans)
         {
-            if([loan originationDateDefinedAndInThePastForScenario:formPopulator.inputScenario])
+            if([loan originationDateDefinedAndInThePastForScenario:formPopulator.inputScenario usingDateHelper:dateHelper])
             {
                 [loansOriginatingInPast addObject:loan];
             }

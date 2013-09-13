@@ -51,7 +51,7 @@ NSString * const ASSET_INPUT_DEFAULT_ICON_NAME = @"input-icon-moneybag.png";
 	return LOCALIZED_STR(@"INPUT_ASSET_TITLE");
 }
 
--(BOOL)purchaseDateDefinedAndInThePastForScenario:(Scenario*)currentScenario
+-(BOOL)purchaseDateDefinedAndInThePastForScenario:(Scenario*)currentScenario usingDateHelper:(DateHelper*)dateHelper
 {
     if([self.purchaseDate.simDate
         findInputValueForScenarioOrDefault:currentScenario] != nil)
@@ -59,7 +59,7 @@ NSString * const ASSET_INPUT_DEFAULT_ICON_NAME = @"input-icon-moneybag.png";
         NSDate *currentScenarioPurchaseDate =
             [SimInputHelper multiScenFixedDate:self.purchaseDate.simDate
                         andScenario:currentScenario];
-        if([DateHelper dateIsLater:[DateHelper today] otherDate:currentScenarioPurchaseDate])
+        if([dateHelper dateIsLater:[dateHelper today] otherDate:currentScenarioPurchaseDate])
         {
             return TRUE;
         }

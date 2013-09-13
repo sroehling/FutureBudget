@@ -28,6 +28,19 @@
 @synthesize valueCell;
 @synthesize fieldLabel;
 @synthesize dataModelController;
+@synthesize dateHelper;
+
+- (void)dealloc
+{
+	[account release];
+	[valueCell release];
+	[fieldLabel release];
+	[dataModelController release];
+    [dateHelper release];
+
+	[super dealloc];
+}
+
 
 -(bool)deferredWithdrawalsEnabled
 {
@@ -52,7 +65,7 @@
 		assert(deferDate != nil);
 		
 	    NSString *deferDateDisplay = [deferDate 
-					inlineDescription:[DateHelper theHelper].mediumDateFormatter];
+					inlineDescription:self.dateHelper.mediumDateFormatter];
 
 		self.valueCell.valueSubtitle.text = [NSString stringWithFormat:
 			LOCALIZED_STR(@"INPUT_ACCOUNT_WITHDRAWAL_DEFER_DATE_SUBTITLE_FORMAT"),deferDateDisplay];
@@ -86,6 +99,8 @@
 		self.valueCell = [[[ValueSubtitleTableCell alloc] init] autorelease];
 		self.valueCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		self.valueCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 		
 		[self configureValueCell];
 
@@ -159,14 +174,6 @@
     return self.account;
 }
 
-- (void)dealloc
-{
-	[account release];
-	[valueCell release];
-	[fieldLabel release];
-	[dataModelController release];
-	[super dealloc];
-}
 
 
 

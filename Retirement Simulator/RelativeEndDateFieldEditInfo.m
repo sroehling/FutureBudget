@@ -20,6 +20,18 @@
 @synthesize relEndDateFieldInfo;
 @synthesize relEndDateCell;
 @synthesize simDateRuntimeInfo;
+@synthesize dateHelper;
+
+- (void) dealloc
+{
+	[relEndDateFieldInfo release];
+	[relEndDateCell release];
+	[simDateRuntimeInfo release];
+    [dateHelper release];
+    
+    [super dealloc];
+}
+
 
 - (id)initWithRelativeEndDateFieldInfo:(FieldInfo*)theRelEndDateFieldInfo
 	andSimDateRuntimeInfo:(SimDateRuntimeInfo*)theRuntimeInfo
@@ -36,6 +48,8 @@
 		[[[ValueSubtitleTableCell alloc] initWithFrame:CGRectZero] autorelease];
 		self.relEndDateCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;   
 		self.relEndDateCell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 
     }
     return self;
@@ -49,13 +63,6 @@
 }
 
 
-- (void) dealloc
-{
-	[relEndDateFieldInfo release];
-	[relEndDateCell release];
-	[simDateRuntimeInfo release];
-    [super dealloc];
-}
 
 - (void)configureRelEndDateCell
 {
@@ -73,7 +80,7 @@
 - (NSString*)detailTextLabel
 {
 	RelativeEndDate *relEndDate = (RelativeEndDate *)[self.relEndDateFieldInfo fieldObject];
-    return [relEndDate inlineDescription:[[DateHelper theHelper] mediumDateFormatter]];;
+    return [relEndDate inlineDescription:self.dateHelper.mediumDateFormatter];
 }
 
 - (NSString*)textLabel

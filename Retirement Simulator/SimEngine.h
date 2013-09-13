@@ -40,7 +40,7 @@
     // Optional - Operation under which the simulatino is executing.
     // The simulator will inspect this operation from time to time to
     // see if the operation has been canceled.
-    NSOperation *simExecutionOperation;  
+    NSOperation *simExecutionOperation;
 
     
 }

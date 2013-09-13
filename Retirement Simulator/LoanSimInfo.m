@@ -65,7 +65,7 @@
 
 -(bool)earlyPayoffAfterOrigination
 {
-	if([DateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:[self loanOrigDate]])
+	if([self.simParams.dateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:[self loanOrigDate]])
 	{
 		return true;
 	}
@@ -77,7 +77,7 @@
 
 - (bool)earlyPayoffAfterSimStart
 {
-	if([DateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:self.simParams.simStartDate])
+	if([self.simParams.dateHelper dateIsEqualOrLater:[self earlyPayoffDate] otherDate:self.simParams.simStartDate])
 	{
 		return true;
 	}
@@ -93,7 +93,7 @@
 {
 	NSDate *loanOrigDate = [self loanOrigDate];
 		
-	if([DateHelper dateIsEqualOrLater:loanOrigDate otherDate:self.simParams.simStartDate])
+	if([self.simParams.dateHelper dateIsEqualOrLater:loanOrigDate otherDate:self.simParams.simStartDate])
 	{
 		return true;
 	}
@@ -166,7 +166,7 @@
 {
 	NSDate *deferredPaymentDate = [self deferredPaymentDate];
 	
-	if([DateHelper dateIsLater:deferredPaymentDate otherDate:pmtDate])
+	if([self.simParams.dateHelper dateIsLater:deferredPaymentDate otherDate:pmtDate])
 	{
 		return TRUE;
 	}
@@ -222,7 +222,7 @@
 	NSDate *resolvedEndDate = self.simParams.simEndDate;
 	
 	NSLog(@"Loan origination date: date = %@",
-		[[DateHelper theHelper].mediumDateFormatter stringFromDate:resolvedStartDate]);
+		[self.simParams.dateHelper.mediumDateFormatter stringFromDate:resolvedStartDate]);
 	
     EventRepeater *pmtRepeater =
 		[EventRepeater monthlyEventRepeaterWithStartDate:resolvedStartDate andEndDate:resolvedEndDate];
@@ -367,7 +367,7 @@
 	BOOL payInterestUnderDeferrment = [self deferredPaymentPayInterestWhileInDeferrment];
 	BOOL firstDeferredPaymentMade = FALSE;
 	
-	while([DateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
+	while([self.simParams.dateHelper dateIsLater:self.simParams.simStartDate otherDate:pmtDate])
 	{
 		[loanBalanceBeforeSimStart carryBalanceForward:pmtDate];
 				

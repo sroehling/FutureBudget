@@ -36,7 +36,9 @@
 - (void)checkOneValueAsOfWithCalc:(id<ValueAsOfCalculator>)valueCalc
 		andAsOfDate:(NSString*)asOfDateStr andExpectedVal:(double)expectedVal
 {
-	NSDate *asOfDate = [DateHelper dateFromStr:asOfDateStr];
+    DateHelper *dateHelper = [[[DateHelper alloc] init] autorelease];
+    
+	NSDate *asOfDate = [dateHelper dateFromStr:asOfDateStr];
 	
 	double asOfValue = [valueCalc valueAsOfDate:asOfDate];
 	STAssertEqualsWithAccuracy(asOfValue, expectedVal, 0.01,

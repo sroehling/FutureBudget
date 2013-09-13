@@ -20,6 +20,16 @@
 
 @synthesize formattedVal;
 @synthesize simDateRuntimeInfo;
+@synthesize dateHelper;
+
+- (void) dealloc
+{
+	[formattedVal release];
+	[simDateRuntimeInfo release];
+    [dateHelper release];
+	
+    [super dealloc];
+}
 
 -(id)initWithSimDateRuntimeInfo:(SimDateRuntimeInfo*)sdRuntimeInfo
 {
@@ -28,6 +38,7 @@
 	{
 		assert(sdRuntimeInfo != nil);
 		self.simDateRuntimeInfo = sdRuntimeInfo;
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 		
 	}
 	return self;
@@ -49,7 +60,7 @@
 - (void)visitMilestoneDate:(MilestoneDate*)milestoneDate
 {
 	self.formattedVal = 
-		[[[DateHelper theHelper] mediumDateFormatter] stringFromDate:milestoneDate.date];
+		[[self.dateHelper mediumDateFormatter] stringFromDate:milestoneDate.date];
 }
 
 - (void)visitNeverEndDate:(NeverEndDate*)neverEndDate
@@ -67,15 +78,7 @@
 - (void)visitFixedDate:(FixedDate*)fixedDate;
 {
 	self.formattedVal = 
-		[[[DateHelper theHelper] mediumDateFormatter] stringFromDate:fixedDate.date];
-
-}
-
-- (void) dealloc
-{
-	[formattedVal release];
-	[simDateRuntimeInfo release];
-	[super dealloc];
+		[[self.dateHelper mediumDateFormatter] stringFromDate:fixedDate.date];
 }
 
 

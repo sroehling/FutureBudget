@@ -20,6 +20,7 @@
 @class MultiScenarioSimEndDate;
 @class Scenario;
 @class LoanInterestItemizedTaxAmt;
+@class DateHelper;
 
 extern NSString * const LOAN_INPUT_ENTITY_NAME;
 extern NSString * const LOAN_INPUT_DEFAULT_ICON_NAME;
@@ -60,8 +61,8 @@ extern NSString * const INPUT_LOAN_STARTING_BALANCE_KEY;
 // Convenience/Helper methods - These are used by forms which display
 // loan properties whose applicability depends on whether the loan
 // originated in the past or will originate in the future.
--(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario;
--(BOOL)originationDateDefinedAndInThePastForScenario:(Scenario*)currentScenario;
+-(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario usingDateHelper:(DateHelper*)dateHelper;
+-(BOOL)originationDateDefinedAndInThePastForScenario:(Scenario*)currentScenario usingDateHelper:(DateHelper*)dateHelper;
 
 @end
 

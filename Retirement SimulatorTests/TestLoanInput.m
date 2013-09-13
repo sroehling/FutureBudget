@@ -28,18 +28,21 @@
 
 @synthesize coreData;
 @synthesize testAppVals;
+@synthesize dateHelper;
 
 
 - (void)setUp
 {
 	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
 	self.testAppVals = [SharedAppValues createWithDataModelInterface:self.coreData];
+    self.dateHelper = [[[DateHelper alloc] init] autorelease];
 }
 
 - (void)tearDown
 {
 	[coreData release];
 	[testAppVals release];
+    [dateHelper release];
 }
 
 - (LoanInput*)createTestLoanWithLoanCost:(double)loanCost 
@@ -60,7 +63,7 @@
 	theLoan.loanCost = [inputCreationHelper multiScenAmountWithDefault:loanCost];
 	theLoan.loanDuration = [inputCreationHelper multiScenFixedValWithDefault:durationMonths];
 	theLoan.loanCostGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
-	NSDate *origDate = [DateHelper dateFromStr:@"2012-01-01"];
+	NSDate *origDate = [self.dateHelper dateFromStr:@"2012-01-01"];
 	theLoan.origDate = [inputCreationHelper multiScenSimDateWithDefault:origDate];
 	
 	// Interest
@@ -101,7 +104,7 @@
 
 - (void)checkDate:(NSDate*)theDate vsExpected:(NSString*)expectedDateStr inContext:(NSString*)context
 {
-	NSString *dateStr = [DateHelper stringFromDate:theDate];
+	NSString *dateStr = [self.dateHelper  stringFromDate:theDate];
 	assert(dateStr != nil);
 	
 	NSLog(@"%@: expecting date = %@, got date = %@",
@@ -137,7 +140,7 @@
 		andDuration:12 andInterestRate:10 andDownPmtPercent:0 andExtraPmtAmt:0];
 		
 		
-	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"] andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"]
+	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[self.dateHelper  dateFromStr:@"2012-01-01"] andDigestStartDate:[self.dateHelper  dateFromStr:@"2012-01-01"] andSimEndDate:[self.dateHelper  dateFromStr:@"2013-01-01"]
 		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 
 			andDeficitRate:self.testAppVals.deficitInterestRate andDeficitBalance:0.0
 		andInflationRate:testAppVals.defaultInflationRate] autorelease];	
@@ -201,7 +204,7 @@
 	// a "day index" from 0 to 365. Therefore, when testing with working balances,
 	// it is necessary to advance the working balance if dates in a new year are
 	// being tested.
-	[loanInfo.loanBalance carryBalanceForward:[DateHelper dateFromStr:@"2013-01-01"]];
+	[loanInfo.loanBalance carryBalanceForward:[self.dateHelper  dateFromStr:@"2013-01-01"]];
 		
 	[self checkPmt:loanInfo andPmtRepeater:pmtRepeater 
 		expectedPmtDate:@"2013-01-01" inContext:@"testSimpleLoan: pmt 12" andExpectedBalAfterPmt:0.0];
@@ -221,14 +224,14 @@
 	InputCreationHelper *inputCreationHelper = [[[InputCreationHelper alloc] 
 		initWithDataModelController:self.coreData andSharedAppVals:testAppVals] autorelease];
 	theLoan.startingBalance = nil;
-	NSDate *origDate = [DateHelper dateFromStr:@"2011-06-01"];
+	NSDate *origDate = [self.dateHelper  dateFromStr:@"2011-06-01"];
 	theLoan.origDate = [inputCreationHelper multiScenSimDateWithDefault:origDate];
 		
 		
 	SimParams *simParams = [[[SimParams alloc]
-		initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"]
-		andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"]
-		andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"]
+		initWithStartDate:[self.dateHelper  dateFromStr:@"2012-01-01"]
+		andDigestStartDate:[self.dateHelper  dateFromStr:@"2012-01-01"]
+		andSimEndDate:[self.dateHelper  dateFromStr:@"2013-01-01"]
 		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 
 			andDeficitRate:self.testAppVals.deficitInterestRate andDeficitBalance:0.0
 		andInflationRate:testAppVals.defaultInflationRate] autorelease];
@@ -295,7 +298,7 @@
 		andDuration:12 andInterestRate:10 andDownPmtPercent:0 andExtraPmtAmt:0];
 		
 		
-	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[DateHelper dateFromStr:@"2012-01-01"] andDigestStartDate:[DateHelper dateFromStr:@"2012-01-01"] andSimEndDate:[DateHelper dateFromStr:@"2013-01-01"] 
+	SimParams *simParams = [[[SimParams alloc] initWithStartDate:[self.dateHelper  dateFromStr:@"2012-01-01"] andDigestStartDate:[self.dateHelper  dateFromStr:@"2012-01-01"] andSimEndDate:[self.dateHelper  dateFromStr:@"2013-01-01"] 
 		andScenario:self.testAppVals.defaultScenario andCashBal:0.0 
 			andDeficitRate:self.testAppVals.deficitInterestRate andDeficitBalance:0.0
 		andInflationRate:testAppVals.defaultInflationRate] autorelease];	

@@ -14,6 +14,15 @@
 @implementation SimEventList
 
 @synthesize eventList;
+@synthesize dateHelper;
+
+- (void)dealloc
+{
+	[eventList release];
+    [dateHelper release];
+	[super dealloc];
+}
+
 
 -(id)init
 {
@@ -21,6 +30,7 @@
 	if(self)
 	{
 		self.eventList = [[[NSMutableArray alloc] init]autorelease];
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 	}
 	return self;
 }
@@ -58,14 +68,14 @@
             // For comparison purposes, keep the granularity of the comparison at the day level,
             // then use tie breaking priority.
             
-            else if([DateHelper dateIsLaterWithDayResolution:[nextEventToProcess eventDate]
+            else if([self.dateHelper dateIsLaterWithDayResolution:[nextEventToProcess eventDate]
                                 otherDate:[candidateEvent eventDate]])
             {
   				// The date  of candidateEvent is earlier/sooner than the nextEventToProcess
 				nextEventToProcess = candidateEvent;
 				nextEventIndex = eventIndex;              
             }
-            else if([DateHelper dateIsEqual:[candidateEvent eventDate] otherDate:[nextEventToProcess eventDate]])
+            else if([self.dateHelper dateIsEqual:[candidateEvent eventDate] otherDate:[nextEventToProcess eventDate]])
             {
  				if(candidateEvent.tieBreakPriority > nextEventToProcess.tieBreakPriority)
 				{
@@ -89,10 +99,5 @@
 
 }
 
-- (void)dealloc
-{
-	[eventList release];
-	[super dealloc];
-}
 
 @end

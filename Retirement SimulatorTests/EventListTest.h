@@ -18,16 +18,18 @@
 
 @class TestSimEventCreator;
 @class SimEventList;
-
+@class DateHelper;
 
 @interface EventListTest : SenTestCase {
     @private
 		SimEventList *eventList;
 		TestSimEventCreator *eventCreator;
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) SimEventList *eventList;
 @property(nonatomic,retain) TestSimEventCreator *eventCreator;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 
 

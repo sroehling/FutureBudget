@@ -41,6 +41,38 @@
 
 @synthesize taxInputCalcs;
 
+@synthesize dateHelper;
+
+- (void)dealloc
+{
+    
+	[simStartDate release];
+	[digestStartDate release];
+	[simEndDate release];
+	
+	[simScenario release];
+	
+	[incomeInfo release];
+	[expenseInfo release];
+	[acctInfo release];
+	[assetInfo release];
+	[loanInfo release];
+	[taxInfo release];
+	[transferInfo release];
+	
+	[digestSums release];
+	
+	[taxInputCalcs release];
+	
+	[workingBalanceMgr release];
+	[inflationRate release];
+    
+    [dateHelper release];
+    
+	[super dealloc];
+}
+
+
 -(id)initWithStartDate:(NSDate*)simStart andDigestStartDate:(NSDate*)digestStart
 	andSimEndDate:(NSDate*)simEnd andScenario:(Scenario*)scen andCashBal:(double)cashBal
 	andDeficitRate:(FixedValue*)deficitRate andDeficitBalance:(double)startingDeficitBal
@@ -74,6 +106,8 @@
 			andCashBal:cashBal 
 			andDeficitInterestRate:deficitRate
 			andDeficitBalance:startingDeficitBal] autorelease];
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 
 	}
 	return self;
@@ -81,22 +115,25 @@
 
 -(id)initWithSharedAppVals:(SharedAppValues*)sharedAppVals
 {
-	NSDate *simStart = [sharedAppVals beginningOfSimStartDate];
+    
+    DateHelper *dateHelperForInit = [[[DateHelper alloc] init] autorelease];
+
+    NSDate *simStart = [dateHelperForInit beginningOfDay:sharedAppVals.simStartDate];
 	
-	// Since the granularity of simulation results is 1 year, we round the end date to the 
+	// Since the granularity of simulation results is 1 year, we round the end date to the
 	// beginning of the next year, ensuring that the last year is complete. We also ensure
 	// there is at least 1 full year after the start date to simulate.
 	NSDate *unroundedSimEnd = [sharedAppVals.simEndDate endDateWithStartDate:simStart];
-	NSDate *partialYearAfterSimStart = [DateHelper beginningOfNextYear:simStart];
-	NSDate *fullYearAfterSimStart = [DateHelper beginningOfNextYear:partialYearAfterSimStart];
-	NSDate *yearAfterSimEnd = [DateHelper beginningOfNextYear:unroundedSimEnd];
+	NSDate *partialYearAfterSimStart = [dateHelperForInit beginningOfNextYear:simStart];
+	NSDate *fullYearAfterSimStart = [dateHelperForInit beginningOfNextYear:partialYearAfterSimStart];
+	NSDate *yearAfterSimEnd = [dateHelperForInit beginningOfNextYear:unroundedSimEnd];
 	
 	
 	
-	NSDate *simEnd = [DateHelper dateIsLater:fullYearAfterSimStart otherDate:yearAfterSimEnd]?
+	NSDate *simEnd = [dateHelperForInit dateIsLater:fullYearAfterSimStart otherDate:yearAfterSimEnd]?
 		fullYearAfterSimStart:yearAfterSimEnd;
 	
-	NSDate *digestStart = [DateHelper beginningOfYear:simStart];
+	NSDate *digestStart = [dateHelperForInit beginningOfYear:simStart];
 	Scenario *simScen = sharedAppVals.currentInputScenario;
 	double cashBal = [sharedAppVals.cash.startingBalance doubleValue];
 	FixedValue *deficitRate = sharedAppVals.deficitInterestRate;
@@ -117,30 +154,5 @@
 	return nil;
 }
 
-- (void)dealloc
-{
-
-	[simStartDate release];
-	[digestStartDate release];
-	[simEndDate release];
-	
-	[simScenario release];
-	
-	[incomeInfo release];
-	[expenseInfo release];
-	[acctInfo release];
-	[assetInfo release];
-	[loanInfo release];
-	[taxInfo release];
-	[transferInfo release];
-	
-	[digestSums release];
-	
-	[taxInputCalcs release];
-	
-	[workingBalanceMgr release];
-	[inflationRate release];
-	[super dealloc];
-}
 
 @end

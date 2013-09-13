@@ -17,14 +17,17 @@
 
 @class DataModelController;
 @class SharedAppValues;
+@class DateHelper;
 
 @interface TestLoanInput : SenTestCase {
     @private
 		DataModelController *coreData;
 		SharedAppValues *testAppVals;
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) DataModelController *coreData;
 @property(nonatomic,retain) SharedAppValues *testAppVals;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 @end

@@ -16,12 +16,15 @@
 #import <UIKit/UIKit.h>
 
 @class DataModelController;
+@class DateHelper;
 
 @interface EventRepeaterTest : SenTestCase {
 @private
 	DataModelController *coreData;
+    DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) DataModelController *coreData;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 @end

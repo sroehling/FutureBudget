@@ -13,12 +13,14 @@
 @class Input;
 @class DataModelController;
 @class SharedAppValues;
+@class DateHelper;
 
 @interface InputListInputDescriptionCreator : NSObject <InputVisitor> {
 	@private
 		NSString *generatedDesc;
 		DataModelController *dataModelController;
 		SharedAppValues *sharedAppVals;
+        DateHelper *dateHelper;
 		
     
 }
@@ -26,6 +28,7 @@
 @property(nonatomic,retain) NSString *generatedDesc;
 @property(nonatomic,retain) DataModelController *dataModelController;
 @property(nonatomic,retain) SharedAppValues *sharedAppVals;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 - (NSString*)descripionForInput:(Input*)theInput;
 

@@ -17,16 +17,19 @@
 //#import "application_headers" as required
 #import "DataModelController.h"
 
+@class DateHelper;
 
 
 
 @interface VariableRateCalculatorTest : SenTestCase {
     @private
 		DataModelController *coreData;
+        DateHelper *dateHelper;
 }
 
 
 @property(nonatomic,retain) DataModelController *coreData;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 - (void)testVariableRateCalcWithDSV; 
 

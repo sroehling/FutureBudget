@@ -8,15 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@class DateHelper;
+
 
 @interface VariableRateCalculator : NSObject {
     @private
 		NSArray *variableRates;
 		NSDate *startDate;
+        DateHelper *dateHelper;
 }
 
-@property(nonatomic,retain) NSArray *variableRates; 
+@property(nonatomic,retain) NSArray *variableRates;
 @property(nonatomic,retain) NSDate *startDate;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 - (id)initWithRates:(NSMutableSet*)rates andStartDate:(NSDate*)theStart;
 - (id)initWithSingleAnnualRate:(double)theRate andStartDate:(NSDate*)theStart;

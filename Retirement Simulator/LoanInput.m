@@ -75,14 +75,16 @@ NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"input-icon-loan.png";
 	return LOCALIZED_STR(@"INPUT_LOAN_TITLE");
 }
 
--(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario
+-(BOOL)originationDateDefinedAndInTheFutureForScenario:(Scenario*)currentScenario usingDateHelper:(DateHelper*)dateHelper
 {
+    assert(dateHelper != nil);
+    
     if([self.origDate.simDate
         findInputValueForScenarioOrDefault:currentScenario] != nil)
     {
         NSDate *currentScenarioOrigDate = [SimInputHelper multiScenFixedDate:self.origDate.simDate
                                                                  andScenario:currentScenario];
-        if([DateHelper dateIsLater:currentScenarioOrigDate otherDate:[DateHelper today]])
+        if([dateHelper dateIsLater:currentScenarioOrigDate otherDate:[dateHelper today]])
         {
             return TRUE;
         }
@@ -98,14 +100,14 @@ NSString * const LOAN_INPUT_DEFAULT_ICON_NAME = @"input-icon-loan.png";
  
 }
 
--(BOOL)originationDateDefinedAndInThePastForScenario:(Scenario*)currentScenario
+-(BOOL)originationDateDefinedAndInThePastForScenario:(Scenario*)currentScenario usingDateHelper:(DateHelper*)dateHelper
 {
     if([self.origDate.simDate
         findInputValueForScenarioOrDefault:currentScenario] != nil)
     {
         NSDate *currentScenarioOrigDate = [SimInputHelper multiScenFixedDate:self.origDate.simDate
                                                                  andScenario:currentScenario];
-        if([DateHelper dateIsLater:[DateHelper today] otherDate:currentScenarioOrigDate])
+        if([dateHelper dateIsLater:[dateHelper today] otherDate:currentScenarioOrigDate])
         {
             return TRUE;
         }

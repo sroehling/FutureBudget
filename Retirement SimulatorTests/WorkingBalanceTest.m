@@ -26,10 +26,20 @@
 
 @synthesize coreData;
 
+@synthesize dateHelper;
+
+
+-(void)dealloc
+{
+    [dateHelper release];
+    [super dealloc];
+}
+
 
 - (void)setUp
 {
 	self.coreData = [[[DataModelController alloc] initForInMemoryStorage] autorelease];
+    self.dateHelper = [[[DateHelper alloc] init] autorelease];
 }
 
 - (void)tearDown
@@ -91,39 +101,39 @@
 
 - (void)doZeroInterestTests:(id<WorkingBalance>)bal
 {
-	[self checkCurrentBalance:bal withExpectedBalance:1000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:bal withExpectedBalance:1000 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	
-	[bal incrementBalance:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:2000.0 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[bal incrementBalance:1000.0 asOfDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:bal withExpectedBalance:2000.0 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
 
-	[bal carryBalanceForward:[DateHelper dateFromStr:@"2013-01-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:2000.0 andDate:[DateHelper dateFromStr:@"2013-01-01"]];
+	[bal carryBalanceForward:[self.dateHelper dateFromStr:@"2013-01-01"]];
+	[self checkCurrentBalance:bal withExpectedBalance:2000.0 andDate:[self.dateHelper dateFromStr:@"2013-01-01"]];
 
-	[bal decrementAvailableBalanceForNonExpense:500.0 asOfDate:[DateHelper dateFromStr:@"2013-05-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:1500.0 andDate:[DateHelper dateFromStr:@"2013-05-01"]];
+	[bal decrementAvailableBalanceForNonExpense:500.0 asOfDate:[self.dateHelper dateFromStr:@"2013-05-01"]];
+	[self checkCurrentBalance:bal withExpectedBalance:1500.0 andDate:[self.dateHelper dateFromStr:@"2013-05-01"]];
 	
 	[self checkAvailableBalanceDecrement:bal 
-		decrementAmount:500 onDate:[DateHelper dateFromStr:@"2013-05-02"]
+		decrementAmount:500 onDate:[self.dateHelper dateFromStr:@"2013-05-02"]
 		andExpectedAvailAmt:500
 		withExpectedBalanceBefore:1500 andExpectedBalanceAfter:1000 ];
 
 	[self checkAvailableBalanceDecrement:bal 
-		decrementAmount:0 onDate:[DateHelper dateFromStr:@"2013-05-02"]
+		decrementAmount:0 onDate:[self.dateHelper dateFromStr:@"2013-05-02"]
 		andExpectedAvailAmt:0
 		withExpectedBalanceBefore:1000 andExpectedBalanceAfter:1000 ];
 
 	[self checkAvailableBalanceDecrement:bal 
-		decrementAmount:1200 onDate:[DateHelper dateFromStr:@"2013-05-02"]
+		decrementAmount:1200 onDate:[self.dateHelper dateFromStr:@"2013-05-02"]
 		andExpectedAvailAmt:1000
 		withExpectedBalanceBefore:1000 andExpectedBalanceAfter:0 ];
 
 	[self checkAvailableBalanceDecrement:bal 
-		decrementAmount:1000 onDate:[DateHelper dateFromStr:@"2013-05-02"]
+		decrementAmount:1000 onDate:[self.dateHelper dateFromStr:@"2013-05-02"]
 		andExpectedAvailAmt:0
 		withExpectedBalanceBefore:0 andExpectedBalanceAfter:0 ];
 
 	[self checkAvailableBalanceDecrement:bal 
-		decrementAmount:0 onDate:[DateHelper dateFromStr:@"2013-05-02"]
+		decrementAmount:0 onDate:[self.dateHelper dateFromStr:@"2013-05-02"]
 		andExpectedAvailAmt:0
 		withExpectedBalanceBefore:0 andExpectedBalanceAfter:0 ];
 
@@ -132,24 +142,24 @@
 
 - (void)test100InterestSavingsBalance
 {
-	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-01"]];
+	NSDate *startDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2011-01-01"]];
 	InterestBearingWorkingBalance *bal = [self createInterestBearingWorkingAccountWithRate:100 andStartDate:startDate andStartingBal:1000];
 	
-	[bal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
+	[bal carryBalanceForward:[self.dateHelper dateFromStr:@"2012-01-01"]];
 
-	[self checkCurrentBalance:bal withExpectedBalance:2000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:bal withExpectedBalance:2000 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
 
-	[bal incrementBalance:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:3000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[bal incrementBalance:1000.0 asOfDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:bal withExpectedBalance:3000 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
 
-	[bal decrementAvailableBalanceForNonExpense:1000.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:bal withExpectedBalance:2000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[bal decrementAvailableBalanceForNonExpense:1000.0 asOfDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:bal withExpectedBalance:2000 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	
 }
 
 - (void)testZeroInterestSavingsBalance
 {
-	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-01-01"]];
+	NSDate *startDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	InterestBearingWorkingBalance *bal = [self createInterestBearingWorkingAccountWithRate:0 andStartDate:startDate andStartingBal:1000];
 	
 	[self doZeroInterestTests:bal];
@@ -158,51 +168,51 @@
 - (void)testDeferredWithdrawals
 {
 
-	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2011-01-01"]];
+	NSDate *startDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2011-01-01"]];
 	double startingBal = 1000.0;
-	NSDate *deferUntilDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-01-01"]];
+	NSDate *deferUntilDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	
 	
 	AccountWorkingBalance *acctBal = [[[AccountWorkingBalance alloc] initWithWithdrawalPriority:1.0
 	andStartDate:startDate andStartingBal:startingBal andInterestRate:[self createInterestRate:0.0]
 		andStartingCostBasis:startingBal andDeferWithdrawDate:deferUntilDate andLimitedExpense:nil] autorelease];
 	
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-01-01"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-01-01"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2011-01-01"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[self.dateHelper dateFromStr:@"2011-01-01"]];
 
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-07-01"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-07-01"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2011-07-01"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[self.dateHelper dateFromStr:@"2011-07-01"]];
 
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:750.0 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:750.0 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	
-	[acctBal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
+	[acctBal carryBalanceForward:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2012-08-01"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:500.0 andDate:[DateHelper dateFromStr:@"2012-08-01"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2012-08-01"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:500.0 andDate:[self.dateHelper dateFromStr:@"2012-08-01"]];
 	
 		
 	acctBal = [[[AccountWorkingBalance alloc] initWithWithdrawalPriority:1.0
 	andStartDate:startDate andStartingBal:startingBal andInterestRate:[self createInterestRate:0.0]
 		andStartingCostBasis:startingBal andDeferWithdrawDate:deferUntilDate andLimitedExpense:nil] autorelease];
 	
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-01-01"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-01-01"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2011-01-01"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[self.dateHelper dateFromStr:@"2011-01-01"]];
 
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-07-01"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-07-01"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2011-07-01"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[self.dateHelper dateFromStr:@"2011-07-01"]];
 	
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2011-12-31"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[DateHelper dateFromStr:@"2011-12-31"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2011-12-31"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:startingBal andDate:[self.dateHelper dateFromStr:@"2011-12-31"]];
 
-	[acctBal carryBalanceForward:[DateHelper dateFromStr:@"2012-01-01"]];
+	[acctBal carryBalanceForward:[self.dateHelper dateFromStr:@"2012-01-01"]];
 
 
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:750.0 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:750.0 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	
-	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[DateHelper dateFromStr:@"2012-08-01"]];
-	[self checkCurrentBalance:acctBal withExpectedBalance:500.0 andDate:[DateHelper dateFromStr:@"2012-08-01"]];
+	[acctBal decrementAvailableBalanceForNonExpense:250.0 asOfDate:[self.dateHelper dateFromStr:@"2012-08-01"]];
+	[self checkCurrentBalance:acctBal withExpectedBalance:500.0 andDate:[self.dateHelper dateFromStr:@"2012-08-01"]];
 
 }
 
@@ -212,7 +222,7 @@
 {
 	CashWorkingBalance *bal = [[[CashWorkingBalance alloc] 
 		initWithStartingBalance:1000.0 
-		andStartDate:[DateHelper dateFromStr:@"2012-01-01"]] autorelease];
+		andStartDate:[self.dateHelper dateFromStr:@"2012-01-01"]] autorelease];
 	[self doZeroInterestTests:bal];
 }
 
@@ -220,7 +230,7 @@
 - (void)testWorkingBalanceMgr
 {
 
-	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-01-01"]];
+	NSDate *startDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	
 	CashWorkingBalance *cashBal = [[[CashWorkingBalance alloc] 
 		initWithStartingBalance:1000.0 
@@ -239,36 +249,36 @@
 	[self checkCurrentBalance:cashBal withExpectedBalance:1000 andDate:startDate];
 	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:startDate];
 	
-	[workingBalMgr incrementCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:2000 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-01"]];
+	[workingBalMgr incrementCashBalance:1000 asOfDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:2000 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[self.dateHelper dateFromStr:@"2012-01-01"]];
 	
-	double decrementCashAmount = [workingBalMgr decrementAvailableCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:1000 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
+	double decrementCashAmount = [workingBalMgr decrementAvailableCashBalance:1000 asOfDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:1000 andDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
 	STAssertEqualsWithAccuracy(decrementCashAmount, 1000.0, 0.001,
 		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for decrement amount",
 							   1000.0,decrementCashAmount);
 
-	[workingBalMgr decrementAvailableCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
+	[workingBalMgr decrementAvailableCashBalance:1000 asOfDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
 
 	double decrementAmount = [workingBalMgr decrementBalanceFromFundingList:1000 
-		asOfDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:1000 andDate:[DateHelper dateFromStr:@"2012-01-02"]];
+		asOfDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:1000 andDate:[self.dateHelper dateFromStr:@"2012-01-02"]];
 	STAssertEqualsWithAccuracy(decrementAmount, 0.0, 0.001,
 		@"testWorkingBalanceMgr: Expecting %0.2f, got %0.2f for decrement amount",
 							   0.0,decrementAmount);
 	
-	[workingBalMgr incrementCashBalance:500 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-03"]];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:500 andDate:[DateHelper dateFromStr:@"2012-01-03"]];
+	[workingBalMgr incrementCashBalance:500 asOfDate:[self.dateHelper dateFromStr:@"2012-01-03"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:0 andDate:[self.dateHelper dateFromStr:@"2012-01-03"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:500 andDate:[self.dateHelper dateFromStr:@"2012-01-03"]];
 	
-	[workingBalMgr incrementCashBalance:1000 asOfDate:[DateHelper dateFromStr:@"2012-01-03"]];
-	[self checkCurrentBalance:cashBal withExpectedBalance:500 andDate:[DateHelper dateFromStr:@"2012-01-03"]];
-	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[DateHelper dateFromStr:@"2012-01-03"]];
+	[workingBalMgr incrementCashBalance:1000 asOfDate:[self.dateHelper dateFromStr:@"2012-01-03"]];
+	[self checkCurrentBalance:cashBal withExpectedBalance:500 andDate:[self.dateHelper dateFromStr:@"2012-01-03"]];
+	[self checkCurrentBalance:deficitBal withExpectedBalance:0 andDate:[self.dateHelper dateFromStr:@"2012-01-03"]];
 
 
 
@@ -277,14 +287,14 @@
 
 - (void)testFutureInterestBearingBal
 {
-	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-05-01"]];
+	NSDate *startDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2013-05-01"]];
 	double startingBal = 1000.0;
 
 	InterestBearingWorkingBalance *interestBal = [self 
 		createInterestBearingWorkingAccountWithRate:0.0 andStartDate:startDate 
 	andStartingBal:startingBal];
 
-	NSDate *advanceDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-01-01"]];
+	NSDate *advanceDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2013-01-01"]];
 	
 	[interestBal advanceCurrentBalanceToDate:advanceDate];
 }
@@ -306,7 +316,7 @@
 	[self checkCurrentBalance:workingBal withExpectedBalance:expectedBal andDate:pmtDate];
 	
 	NSLog(@"checkPeriodicPaymentForWorkingBal: date=%@ balance=%@, got pmt=%0.2f, got bal=%0.02f",
-			[[DateHelper theHelper].mediumDateFormatter stringFromDate:pmtDate],
+			[self.dateHelper.mediumDateFormatter stringFromDate:pmtDate],
 			workingBal.workingBalanceName,actualPmtAmount,[workingBal currentBalance]);
 		
 }
@@ -329,7 +339,7 @@
 	[self checkCurrentBalance:workingBal withExpectedBalance:expectedBal andDate:pmtDate];
 	
 	NSLog(@"checkPeriodicPaymentForWorkingBal: date=%@ balance=%@, got pmt=%0.2f, got bal=%0.02f",
-			[[DateHelper theHelper].mediumDateFormatter stringFromDate:pmtDate],
+			[self.dateHelper.mediumDateFormatter stringFromDate:pmtDate],
 			workingBal.workingBalanceName,actualPmtAmount,[workingBal currentBalance]);
 		
 }
@@ -345,7 +355,7 @@
 	[self checkCurrentBalance:workingBal withExpectedBalance:expectedBal andDate:pmtDate];
 	
 	NSLog(@"checkPeriodicPaymentForWorkingBal: date=%@, balance=%@, got bal=%0.02f",
-			[[DateHelper theHelper].mediumDateFormatter stringFromDate:pmtDate],
+			[self.dateHelper.mediumDateFormatter stringFromDate:pmtDate],
 			workingBal.workingBalanceName,[workingBal currentBalance]);
 		
 }
@@ -368,7 +378,7 @@
 	[self checkCurrentBalance:workingBal withExpectedBalance:expectedBal andDate:pmtDate];
 	
 	NSLog(@"checkInterestOnlyPeriodicPaymentForWorkingBal: date=%@, balance=%@, got bal=%0.02f",
-			[[DateHelper theHelper].mediumDateFormatter stringFromDate:pmtDate],
+			[self.dateHelper.mediumDateFormatter stringFromDate:pmtDate],
 			workingBal.workingBalanceName,[workingBal currentBalance]);
 		
 }
@@ -377,8 +387,8 @@
 
 - (void)testPeriodicInterestBearingBal
 {
-	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-01-01"]];
-	NSDate *endDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2016-01-01"]];
+	NSDate *startDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2013-01-01"]];
+	NSDate *endDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2016-01-01"]];
 	double startingBal = 1000.0;
 	
 	// Start out with extra payment of 0.0, but change it to be 10 at the same time
@@ -424,7 +434,7 @@
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:43.87 andExpectedBal:554.03];
 		
-	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2014-01-01"]];
+	[workingBal carryBalanceForward:[self.dateHelper dateFromStr:@"2014-01-01"]];
 		
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:45.15 andExpectedBal:513.51];
@@ -451,7 +461,7 @@
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:45.15 andExpectedBal:44.77];
 		
-	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2015-01-01"]];
+	[workingBal carryBalanceForward:[self.dateHelper dateFromStr:@"2015-01-01"]];
 		
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:45.15 andExpectedBal:0.0];
@@ -462,8 +472,8 @@
 
 - (void)testPeriodicInterestBearingBalWithDeferredPayment
 {
-	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2013-01-01"]];
-	NSDate *endDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2016-01-01"]];
+	NSDate *startDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2013-01-01"]];
+	NSDate *endDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2016-01-01"]];
 	double startingBal = 1000.0;
 	
 	// Start out with extra payment of 0.0, but change it to be 10 at the same time
@@ -510,7 +520,7 @@
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:45.56 andExpectedBal:691.71];
 
-	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2014-01-01"]];
+	[workingBal carryBalanceForward:[self.dateHelper dateFromStr:@"2014-01-01"]];
 
 
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
@@ -541,7 +551,7 @@
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:46.22 andExpectedBal:181.09];
 
-	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2015-01-01"]];
+	[workingBal carryBalanceForward:[self.dateHelper dateFromStr:@"2015-01-01"]];
 
 
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
@@ -562,8 +572,8 @@
 
 - (void)testPeriodicInterestBearingBalWithInterestOnlyPayment
 {
-	NSDate *startDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2012-10-01"]];
-	NSDate *endDate = [DateHelper beginningOfDay:[DateHelper dateFromStr:@"2016-01-01"]];
+	NSDate *startDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2012-10-01"]];
+	NSDate *endDate = [self.dateHelper beginningOfDay:[self.dateHelper dateFromStr:@"2016-01-01"]];
 	double startingBal = 1000.0;
 	
 	// Start out with extra payment of 0.0, but change it to be 10 at the same time
@@ -600,7 +610,7 @@
 	[self checkInterestOnlyPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedInterst:6.25 andExpectedBal:1000.0];
 
-	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2013-01-01"]];
+	[workingBal carryBalanceForward:[self.dateHelper dateFromStr:@"2013-01-01"]];
 
 	// The interest rate changes back to 
 	[self checkInterestOnlyPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
@@ -630,7 +640,7 @@
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:43.87 andExpectedBal:554.03];
 		
-	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2014-01-01"]];
+	[workingBal carryBalanceForward:[self.dateHelper dateFromStr:@"2014-01-01"]];
 		
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:45.15 andExpectedBal:513.51];
@@ -657,7 +667,7 @@
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:45.15 andExpectedBal:44.77];
 		
-	[workingBal carryBalanceForward:[DateHelper dateFromStr:@"2015-01-01"]];
+	[workingBal carryBalanceForward:[self.dateHelper dateFromStr:@"2015-01-01"]];
 		
 	[self checkPeriodicPaymentForWorkingBal:workingBal WithEventRepeater:pmtRepeater
 		andExpectedPmtAmount:45.15 andExpectedBal:0.0];

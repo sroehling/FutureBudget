@@ -53,8 +53,12 @@
     
     currentSimProgress = currentProgress;
     
-    [self performSelectorOnMainThread:@selector(sendProgressUpdateToMainThread)
-                           withObject:nil waitUntilDone:TRUE];
+    if(!self.isCancelled)
+    {
+        [self performSelectorOnMainThread:@selector(sendProgressUpdateToMainThread)
+                               withObject:nil waitUntilDone:TRUE];        
+    }
+    
 }
 
 -(void)sendResultsToDelegate
@@ -68,8 +72,8 @@
     // TODO - simResultsCalcDmc needs to have its NSManagedObjectContext be a child of the
     // self.mainDmc's NSManagedObjectContext, ensuring any unsaved changes in self.mainDmc
     // are seen in the object's fetched from self.simResultsCalcDmc
-    DataModelController *simResultsCalcDmc = [[[DataModelController alloc]
-           initWithParentContext:self.mainDmc.managedObjectContext andConcurrencyType:NSConfinementConcurrencyType]autorelease];
+    DataModelController *simResultsCalcDmc = [[DataModelController alloc]
+           initWithParentContext:self.mainDmc.managedObjectContext andConcurrencyType:NSConfinementConcurrencyType];
      simResultsCalcDmc.saveEnabled = FALSE;
     
     
@@ -87,6 +91,7 @@
     }
     
     [simEngine release];
+    [simResultsCalcDmc release];
 }
 
 

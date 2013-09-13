@@ -40,11 +40,6 @@
 
 - (void)doSimEvent:(FiscalYearDigest*)digest
 {
-				
-    NSLog(@"Doing loan payoff event: %@  loan=%@",
-          [[DateHelper theHelper].longDateFormatter stringFromDate:self.eventDate],
-		  self.loanInfo.loan.name);
-		  
 	LoanEarlyPayoffDigestEntry *loanPayoff = [[[LoanEarlyPayoffDigestEntry alloc] 
 		initWithLoanInfo:self.loanInfo] autorelease];
 		  

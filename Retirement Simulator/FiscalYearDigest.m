@@ -54,6 +54,18 @@
 @synthesize savedEndOfYearResults;
 @synthesize currentYearDigestStartDate;
 @synthesize adjustValueForInflationCalculator;
+@synthesize dateHelper;
+
+- (void) dealloc
+{
+	[digestEntries release];
+	[currentYearDigestStartDate release];
+	[savedEndOfYearResults release];
+	[simParams release];
+	[adjustValueForInflationCalculator release];
+    [dateHelper release];
+	[super dealloc];
+}
 
 
 -(id)initWithSimParams:(SimParams*)theSimParams
@@ -76,6 +88,8 @@
 		self.adjustValueForInflationCalculator = [calcCreator 
 							createForDateSensitiveValue:self.simParams.inflationRate
 							andStartDate:self.simParams.simStartDate];
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 	}
 	return self;
 }
@@ -184,7 +198,7 @@
 	results.deficitBal = [self.simParams.workingBalanceMgr.deficitBalance currentBalanceForDate:results.endDate];
 	
 	assert(results.endDate != nil);
-	assert([DateHelper dateIsEqualOrLater:results.endDate otherDate:self.simParams.simStartDate]);
+	assert([self.dateHelper dateIsEqualOrLater:results.endDate otherDate:self.simParams.simStartDate]);
 	
 	NSArray *taxInputCalcs = self.simParams.taxInputCalcs.taxInputCalcs;
 	assert(taxInputCalcs != nil);
@@ -218,10 +232,10 @@
 	
 -(BOOL)fullYearSimulated
 {
-	if([DateHelper sameYear:self.simParams.simStartDate otherDate:self.currentYearDigestStartDate])
+	if([self.dateHelper sameYear:self.simParams.simStartDate otherDate:self.currentYearDigestStartDate])
 	{
 		// First year of simulation
-		if([DateHelper dateIsLater:self.simParams.simStartDate 
+		if([self.dateHelper dateIsLater:self.simParams.simStartDate
 			otherDate:self.currentYearDigestStartDate])
 		{
 			return FALSE;
@@ -231,11 +245,11 @@
 			return TRUE;
 		}
 	}
-	else if([DateHelper sameYear:self.simParams.simEndDate 
+	else if([self.dateHelper sameYear:self.simParams.simEndDate
 		otherDate:self.currentYearDigestStartDate])
 	{
-		NSDate *endOfSimEndDate = [DateHelper endOfDay:self.simParams.simEndDate];
-		if([DateHelper dateIsLater:[DateHelper endOfYear:self.simParams.simEndDate]
+		NSDate *endOfSimEndDate = [self.dateHelper endOfDay:self.simParams.simEndDate];
+		if([self.dateHelper dateIsLater:[self.dateHelper endOfYear:self.simParams.simEndDate]
 			otherDate:endOfSimEndDate])
 		{
 			return FALSE;
@@ -256,7 +270,7 @@
 {
 	
 	[self.simParams.workingBalanceMgr resetCurrentBalances];
-	NSDate *endOfYearDate = [DateHelper endOfYear:self.currentYearDigestStartDate];
+	NSDate *endOfYearDate = [self.dateHelper endOfYear:self.currentYearDigestStartDate];
 
 	EndOfYearDigestResult *endOfYearResults = [[[EndOfYearDigestResult alloc] 
 		initWithEndDate:endOfYearDate andFullYearSimulated:[self fullYearSimulated]] autorelease];
@@ -267,13 +281,13 @@
     // processing for the current year. The method 'timeIntervalSinceDate' will
     // return < 0 while the currentDate has not advanced into the next year. This
     // turned out to be about 50% more efficient than using the DateHelper methods.
-    NSDate *beginningOfNextDigestYear = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
+    NSDate *beginningOfNextDigestYear = [self.dateHelper beginningOfNextYear:self.currentYearDigestStartDate];
     
 	int currDayIndex=0;
     while([currentDate timeIntervalSinceDate:beginningOfNextDigestYear] < 0)
 	{
         
-        NSDate *nextDate = [DateHelper nextDay:currentDate];
+        NSDate *nextDate = [self.dateHelper nextDay:currentDate];
         if([nextDate timeIntervalSinceDate:beginningOfNextDigestYear]>=0)
         {
             // Advance all the balances through the current day. This ensures any outstanding
@@ -319,8 +333,8 @@
 	// processing the digest, since all the InputValDigestSummation objects referenced by the
 	// TaxInputCalcs will have been populated with income, interest, etc.
 	// TBD - Should the date passed be the end this year, or the beginning of next year.
-	NSDate *endOfYear = [DateHelper endOfYear:self.currentYearDigestStartDate];
-	NSDate *beginningOfNextYear = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
+	NSDate *endOfYear = [self.dateHelper endOfYear:self.currentYearDigestStartDate];
+	NSDate *beginningOfNextYear = [self.dateHelper beginningOfNextYear:self.currentYearDigestStartDate];
 	[self.simParams.taxInputCalcs updateEffectiveTaxRates:beginningOfNextYear
 		andLastDayOfTaxYear:endOfYear];
 	
@@ -394,7 +408,7 @@
 	[self.savedEndOfYearResults addObject:endOfYearResults];
 
 	// Advance the digest to the next year
-	self.currentYearDigestStartDate = [DateHelper beginningOfNextYear:self.currentYearDigestStartDate];
+	self.currentYearDigestStartDate = [self.dateHelper beginningOfNextYear:self.currentYearDigestStartDate];
 	[self.digestEntries resetEntriesAndAdvanceStartDate:self.currentYearDigestStartDate];
 		[self.simParams.digestSums resetSums];
 
@@ -406,14 +420,5 @@
 	assert(0); // must call init method above
 }
 
-- (void) dealloc
-{
-	[digestEntries release];
-	[currentYearDigestStartDate release];
-	[savedEndOfYearResults release];
-	[simParams release];
-	[adjustValueForInflationCalculator release];
-	[super dealloc];
-}
 
 @end

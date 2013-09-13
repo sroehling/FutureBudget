@@ -41,12 +41,19 @@
 
 }
 
++(BOOL)isValidAsOfDate:(NSDate*)asOfDate vsStartDate:(NSDate*)startDate
+{
+    DateHelper *helperForValidityCheck = [[[DateHelper alloc] init] autorelease];
+    
+    return [helperForValidityCheck dateIsEqualOrLater:asOfDate otherDate:startDate];
+}
+
 + (double)multiScenVariableRateMultiplier:(MultiScenarioInputValue*)multiScenDateSensitiveVal
 	sinceStartDate:(NSDate*)startDate asOfDate:(NSDate*)asOfDate andScenario:(Scenario*)theScenario
 {
 	assert(asOfDate != nil);
 	assert(startDate != nil);
-	assert([DateHelper dateIsEqualOrLater:asOfDate otherDate:startDate]);
+	assert([SimInputHelper isValidAsOfDate:asOfDate vsStartDate:startDate]);
 	assert(multiScenDateSensitiveVal != nil);
 
 	VariableRateCalculator *rateCalc = [DateSensitiveValueVariableRateCalculatorCreator
@@ -64,7 +71,7 @@
 	assert(theScenario != nil);
 	assert(startDate != nil);
 	assert(asOfDate != nil);
-	assert([DateHelper dateIsEqualOrLater:asOfDate otherDate:startDate]);
+	assert([SimInputHelper isValidAsOfDate:asOfDate vsStartDate:startDate]);
 	assert(multiScenGrowthRate != nil);
 	assert(multiScenAmount != nil);
 

@@ -16,6 +16,7 @@
 @class SharedAppValues;
 @class FixedValue;
 @class InflationRate;
+@class DateHelper;
 
 @interface SimParams : NSObject {
 	@private
@@ -40,6 +41,8 @@
 		WorkingBalanceMgr *workingBalanceMgr;
 		
 		InflationRate *inflationRate;
+    
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) NSDate *simStartDate;
@@ -61,6 +64,7 @@
 @property(nonatomic,retain) TaxInputCalcs *taxInputCalcs;
 @property(nonatomic,retain) WorkingBalanceMgr *workingBalanceMgr;
 @property(nonatomic,retain) InflationRate *inflationRate;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 -(id)initWithStartDate:(NSDate*)simStart andDigestStartDate:(NSDate*)digestStart
 	andSimEndDate:(NSDate*)simEnd andScenario:(Scenario*)scen andCashBal:(double)cashBal

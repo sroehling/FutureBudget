@@ -14,19 +14,23 @@
 @class Input;
 @class InputFormPopulator;
 @class FormContext;
+@class DateHelper;
 
 
 @interface DetailInputViewCreator : NSObject <InputVisitor,FormInfoCreator> {
-    InputFormPopulator *formPopulator;
-	FormContext *formContext;
-    Input *input;
-	BOOL isForNewObject;
+    @private
+        InputFormPopulator *formPopulator;
+        FormContext *formContext;
+        Input *input;
+        BOOL isForNewObject;
+        DateHelper *dateHelper;
 }
 
 @property(nonatomic,retain) Input *input;
 @property BOOL isForNewObject;
 @property(nonatomic,retain) InputFormPopulator *formPopulator;
 @property(nonatomic,retain) FormContext *formContext;
+@property(nonatomic,retain) DateHelper *dateHelper;
 
 -(id) initWithInput:(Input*)theInput andIsForNewObject:(BOOL)forNewObject;
 

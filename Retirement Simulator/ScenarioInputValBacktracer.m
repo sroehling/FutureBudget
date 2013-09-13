@@ -22,6 +22,7 @@
 #import "MultiScenarioPercent.h"
 #import "MultiScenarioSimEndDate.h"
 #import "MultiScenarioSimDate.h"
+#import "DateHelper.h"
 
 @implementation ScenarioInputValBacktracer
 
@@ -206,7 +207,8 @@
        if(msGrowthRate.loanCostGrowthRate != nil)
         {
             LoanInput *theLoan = msGrowthRate.loanCostGrowthRate;
-            if([theLoan originationDateDefinedAndInTheFutureForScenario:scenVal.scenario])
+            DateHelper *dateHelper = [[[DateHelper alloc] init] autorelease];
+            if([theLoan originationDateDefinedAndInTheFutureForScenario:scenVal.scenario usingDateHelper:dateHelper])
             {
                 [self populateInputSet:self.loanCostGrowthRate
                              withInput:msGrowthRate.loanCostGrowthRate];

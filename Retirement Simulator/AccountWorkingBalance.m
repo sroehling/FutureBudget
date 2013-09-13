@@ -29,6 +29,7 @@
 @synthesize capitalLosses;
 
 @synthesize withdrawPriority;
+@synthesize dateHelper;
 
 
 -(void)dealloc
@@ -41,6 +42,7 @@
 	
 	[capitalGains release];
 	[capitalLosses release];
+    [dateHelper release];
 	
 	[super dealloc];
 }
@@ -71,6 +73,8 @@
 
 		self.capitalGains = [[[InputValDigestSummation alloc] init] autorelease];
 		self.capitalLosses = [[[InputValDigestSummation alloc] init] autorelease];
+        
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
 
 
 	}
@@ -123,6 +127,8 @@
 		[simParams.digestSums addDigestSum:self.capitalGains];
 		[simParams.digestSums addDigestSum:self.capitalLosses];
 
+        self.dateHelper = [[[DateHelper alloc] init] autorelease];
+
 
 	}
 	return self;
@@ -163,8 +169,8 @@
 	assert(theDate != nil);
 	if(self.deferWithdrawalsUntil != nil)
 	{
-		if([DateHelper dateIsEqualOrLater:theDate 
-			otherDate:[DateHelper beginningOfDay:self.deferWithdrawalsUntil]])
+		if([self.dateHelper dateIsEqualOrLater:theDate 
+			otherDate:[self.dateHelper beginningOfDay:self.deferWithdrawalsUntil]])
 		{
 			return TRUE;
 		}
@@ -207,7 +213,7 @@
 
 			double capitalGainOrLoss = decrementFromOverallAcctBal * percentGainOrLossAtTimeOfDecrement;
 			
-			NSUInteger dayIndex = [DateHelper daysOffset:newDate vsEarlierDate:self.overallBal.balanceStartDate];
+			NSUInteger dayIndex = [self.dateHelper daysOffset:newDate vsEarlierDate:self.overallBal.balanceStartDate];
 			if(capitalGainOrLoss > 0.0)
 			{
 				[self.capitalGains adjustSum:capitalGainOrLoss onDay:dayIndex];

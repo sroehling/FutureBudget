@@ -163,8 +163,10 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 
 	SharedAppValues *sharedVals = [dataModelInterface createDataModelObject:SHARED_APP_VALUES_ENTITY_NAME];
 	
+    DateHelper *dateHelperForInit = [[[DateHelper alloc] init] autorelease];
+    
 	NeverEndDate *theNeverEndDate = [dataModelInterface createDataModelObject:NEVER_END_DATE_ENTITY_NAME];
-	theNeverEndDate.date = [DateHelper dateFromStr:NEVER_END_PSEUDO_END_DATE];
+	theNeverEndDate.date = [dateHelperForInit dateFromStr:NEVER_END_PSEUDO_END_DATE];
 	sharedVals.sharedNeverEndDate = theNeverEndDate;
 	
 	DefaultScenario *defaultScenario = (DefaultScenario*)[dataModelInterface createDataModelObject:DEFAULT_SCENARIO_ENTITY_NAME];
@@ -296,14 +298,6 @@ NSString * const SHARED_APP_VALUES_STARTING_DEFICIT_BALANCE_KEY = @"deficitStart
 	assert(theAppValues != nil);
 	return theAppValues;
 }
-
-
-
--(NSDate*)beginningOfSimStartDate
-{
-	return [DateHelper beginningOfDay:self.simStartDate];
-}
-
 
 
 @end
