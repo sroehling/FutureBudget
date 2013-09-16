@@ -1,4 +1,4 @@
-# App Release Checklist
+# FutureBudget Release Checklist
 
 ### Update App Information for New Version
 
