@@ -55,6 +55,7 @@
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyOnce;
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyMonthly;
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyYearly;
+- (MultiScenarioInputValue*)multiScenarioRepeatFrequencyDaily;
 
 - (MultiScenarioInputValue*)multiScenFixedDateWithDefaultToday;
 - (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault;
@@ -69,6 +70,7 @@
 
 
 - (MultiScenarioSimEndDate*)multiScenSimEndDateWithDefaultNeverEndDate;
+- (MultiScenarioSimEndDate*)multiScenSimEndDateWithRelativeEndDateAndOffsetMonths:(NSInteger)monthsToEnd;
 
 - (MultiScenarioPercent*)multiScenPercentWithDefault:(double)defaultVal;
 -(MultiScenarioPercent*)multiScenDivReinvestmentPercWithDefaultSharedVal;

@@ -5670,6 +5670,95 @@
 
 }
 
+- (void)testExpenseWithRelativeEndDate {
+    
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    
+	ExpenseInputTypeSelectionInfo *expenseCreator =
+    [[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                                 andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+    
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyYearly];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+    
+    NSDate *startDate = [self.dateHelper dateFromStr:@"2012-1-15"];
+    expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:startDate];
+    expense01.endDate = [inputCreationHelper multiScenSimEndDateWithRelativeEndDateAndOffsetMonths:48];
+
+    // Set a relative end date up just for testing (the real one is setup with inputCreationHelper).
+    RelativeEndDate *expenseStopDate = [self.coreData createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
+	expenseStopDate.monthsOffset = [NSNumber numberWithInt:48]; // four years
+    NSDate *expenseEndDate = [expenseStopDate endDateWithStartDate:startDate];
+    NSDate *expectedEndDate = [self.dateHelper dateFromStr:@"2016-01-14"];
+    NSLog(@"Expense stop date: %@",[self.dateHelper stringFromDate:expenseEndDate]);
+
+    STAssertEqualObjects(expectedEndDate,expenseEndDate,@"testExpenseRelativeEndDate: Expecting date %@, got %@",
+                         [self.dateHelper stringFromDate:expectedEndDate],[self.dateHelper stringFromDate:expenseEndDate]);
+
+    SimResults *simResults = [self genTestSimResults];
+	
+	ExpenseXYPlotDataGenerator *expenseData = [[[ExpenseXYPlotDataGenerator alloc] initWithExpense:expense01] autorelease];
+	
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    
+    // The expense only happens for 4 years. Before fixing the "off by one bug" in the RelativeEndDate, the expense was happending 5
+    // times since the relative end date calculation included the day 4 years after the start date, when it should have
+    // only included up until the day before 4 years is up.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:expenseData withSimResults:simResults andExpectedVals:expected andLabel:@"expense01" withAdjustedVals:FALSE];
+    
+}
+
+- (void)testExpenseWithRelativeEndDateAnd1MonthOfDailyExpense {
+    
+	[self resetCoredData];
+    
+    NSLog(@"Starting sim engine test ...");
+    
+	ExpenseInputTypeSelectionInfo *expenseCreator =
+    [[[ExpenseInputTypeSelectionInfo alloc] initWithInputCreationHelper:self.inputCreationHelper
+                                                 andDataModelController:self.coreData andLabel:@"" andSubtitle:@"" andImageName:nil] autorelease];
+    
+	ExpenseInput *expense01 = (ExpenseInput*)[expenseCreator createInput];
+	expense01.amount = [inputCreationHelper multiScenAmountWithDefault:100.0];
+    
+	expense01.eventRepeatFrequency = [inputCreationHelper multiScenarioRepeatFrequencyDaily];
+	expense01.amountGrowthRate = [inputCreationHelper multiScenGrowthRateWithDefault:0.0];
+    
+    NSDate *startDate = [self.dateHelper dateFromStr:@"2012-3-01"];
+    expense01.startDate = [inputCreationHelper multiScenSimDateWithDefault:startDate];
+    expense01.endDate = [inputCreationHelper multiScenSimEndDateWithRelativeEndDateAndOffsetMonths:1];
+        
+    SimResults *simResults = [self genTestSimResults];
+	
+	ExpenseXYPlotDataGenerator *expenseData = [[[ExpenseXYPlotDataGenerator alloc] initWithExpense:expense01] autorelease];
+	
+    // The end date should be March 31'st 2012, so the total expenses in 2012 should be 3100. This tests the boundary
+    // case of relative end dates to ensure the event will occur on both the first and last days.
+	NSMutableArray *expected = [[[NSMutableArray alloc]init]autorelease];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2012 andVal:3100.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2013 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2014 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2015 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+    
+    // The expense only happens for 4 years. Before fixing the "off by one bug" in the RelativeEndDate, the expense was happending 5
+    // times since the relative end date calculation included the day 4 years after the start date, when it should have
+    // only included up until the day before 4 years is up.
+	[expected addObject:[[[YearValPlotDataVal alloc] initWithYear:2016 andVal:0.0 andSimStartValueAdjustmentMultiplier:1.0] autorelease]];
+	
+	[self checkPlotData:expenseData withSimResults:simResults andExpectedVals:expected andLabel:@"expense01" withAdjustedVals:FALSE];
+    
+}
+
 
 
 @end

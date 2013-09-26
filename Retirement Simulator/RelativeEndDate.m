@@ -52,12 +52,31 @@ NSString * const RELATIVE_END_DATE_MONTHS_OFFSET_KEY = @"monthsOffset";
 
 - (NSDate*)endDateWithStartDate:(NSDate*)startDate
 {
+    
+    NSInteger monthsOffset = [self.monthsOffset integerValue];
+    if(monthsOffset <= 0)
+    {
+        return startDate;
+    }
+    
+    // Start by advancing the full number of months.
     NSDateComponents *repeatOffsetComponents = [[[NSDateComponents alloc] init] autorelease];
 	[repeatOffsetComponents setMonth:[self.monthsOffset intValue]];
     DateHelper *dateHelper = [[[DateHelper alloc] init] autorelease];
-	NSDate *endDate = [dateHelper.gregorian dateByAddingComponents:repeatOffsetComponents 
-                 toDate:startDate options:0];
-	return endDate;
+	NSDate *endDate = [dateHelper.gregorian dateByAddingComponents:repeatOffsetComponents
+                          toDate:startDate options:0];
+    
+    // However, the stop date is 1 day before the full number of months. This
+    // results in the range covered by the relative end date to be [startDate, endDate).
+    // Otherwise, there is an "off by one bug" where the range includes the first day
+    // after adding the range of dates.
+    [repeatOffsetComponents setMonth:0];
+    [repeatOffsetComponents setDay:-1];
+    
+    NSDate *adjustedEndDate = [dateHelper.gregorian dateByAddingComponents:repeatOffsetComponents
+                                 toDate:endDate options:0];
+        
+	return adjustedEndDate;
 
 }
 

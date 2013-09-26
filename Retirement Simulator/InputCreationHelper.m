@@ -24,6 +24,7 @@
 #import "MultiScenarioPercent.h"
 #import "DataModelController.h"
 #import "DividendReinvestPercent.h"
+#import "RelativeEndDate.h"
 
 @implementation InputCreationHelper
 
@@ -233,6 +234,17 @@
 
 }
 
+- (MultiScenarioInputValue*)multiScenarioRepeatFrequencyDaily
+{
+	EventRepeatFrequency *repeatDaily = [EventRepeatFrequency createInDataModel:self.dataModel
+                                  andPeriod:kEventPeriodDay andMultiplier:1];
+	assert(repeatDaily != nil);
+	MultiScenarioInputValue *msRepeatFreq = [self multiScenInputValue];
+	[msRepeatFreq setDefaultValue:repeatDaily];
+	return msRepeatFreq;
+}
+
+
 - (MultiScenarioInputValue*)multiScenarioRepeatFrequencyMonthly
 {
 	EventRepeatFrequency *repeatMonthly = self.sharedAppVals.repeatMonthlyFreq;
@@ -272,14 +284,21 @@
 	return [self multiScenFixedDateWithDefault:[NSDate date]];
 }
 
-- (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault
+- (MultiScenarioInputValue*)multiScenRelEndDateWithEndAfterMonths:(NSInteger)monthsOffset
 {
+    
+    assert(monthsOffset >= 0);
 	MultiScenarioInputValue *msFixedRelEndDate = [self multiScenInputValue];
 	
 	RelativeEndDate *fixedRelEndDate = (RelativeEndDate*)[self.dataModel createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
-	fixedRelEndDate.monthsOffset = [NSNumber numberWithInt:0];
+	fixedRelEndDate.monthsOffset = [NSNumber numberWithInt:monthsOffset];
 	[msFixedRelEndDate setDefaultValue:fixedRelEndDate];
 	return msFixedRelEndDate;
+}
+
+- (MultiScenarioInputValue*)multiScenRelEndDateWithImmediateDefault
+{
+    return [self multiScenRelEndDateWithEndAfterMonths:0];
 }
 
 - (MultiScenarioInputValue*)multiScenNeverEndDate
@@ -360,6 +379,27 @@
     msSimEndDate.defaultFixedSimDate = [self multiScenFixedDateWithDefault:defaultDate];
 	msSimEndDate.defaultFixedRelativeEndDate = [self multiScenRelEndDateWithImmediateDefault];
 	msSimEndDate.simDate = [self multiScenInputValueWithDefaultFixedVal:msSimEndDate.defaultFixedSimDate];
+	return msSimEndDate;
+}
+
+
+
+- (MultiScenarioSimEndDate*)multiScenSimEndDateWithRelativeEndDateAndOffsetMonths:(NSInteger)monthsToEnd
+{
+   assert(monthsToEnd >= 0);
+
+	MultiScenarioSimEndDate *msSimEndDate = 
+		[self.dataModel createDataModelObject:MULTI_SCEN_SIM_END_DATE_ENTITY_NAME];
+		
+    msSimEndDate.defaultFixedSimDate = [self multiScenFixedDateWithDefaultToday];
+	msSimEndDate.defaultFixedRelativeEndDate = [self multiScenRelEndDateWithImmediateDefault];
+    
+    RelativeEndDate *expenseStopDate = [self.dataModel createDataModelObject:RELATIVE_END_DATE_ENTITY_NAME];
+	expenseStopDate.monthsOffset = [NSNumber numberWithInt:monthsToEnd];
+
+    
+	msSimEndDate.simDate = [self multiScenRelEndDateWithEndAfterMonths:monthsToEnd];
+    
 	return msSimEndDate;
 }
 
