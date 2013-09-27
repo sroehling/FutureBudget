@@ -125,7 +125,8 @@
 	
 	newInput.costBasis = [NSNumber numberWithDouble:0.0];
 	
-	
+	// Every account is populated with a singleton transfer endpoint object, which serves as a source or
+    // destination for a transfer.
 	TransferEndpointAcct *acctTransferEndpoint = 
 		(TransferEndpointAcct *)[self.dataModelController createDataModelObject:TRANSFER_ENDPOINT_ACCT_ENTITY_NAME];
 	acctTransferEndpoint.account = newInput;

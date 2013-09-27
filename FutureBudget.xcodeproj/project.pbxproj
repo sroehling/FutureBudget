@@ -207,6 +207,7 @@
 		003085D51485531F00837D02 /* InvestmentReturnRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D41485531F00837D02 /* InvestmentReturnRate.m */; };
 		003085D814855EBB00837D02 /* AssetApprecRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085D714855EBA00837D02 /* AssetApprecRate.m */; };
 		003085DB148599A200837D02 /* ScenarioInputValBacktracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */; };
+		0032BCFD17F5FE2200767633 /* AccountInputFieldEditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0032BCFC17F5FE2200767633 /* AccountInputFieldEditInfo.m */; };
 		0036DE1613BE19F20043F3A5 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1513BE19F20043F3A5 /* Scenario.m */; };
 		0036DE1A13BE1A370043F3A5 /* UserScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1913BE1A370043F3A5 /* UserScenario.m */; };
 		0036DE1D13BE1A690043F3A5 /* DefaultScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 0036DE1C13BE1A690043F3A5 /* DefaultScenario.m */; };
@@ -916,6 +917,8 @@
 		003085D714855EBA00837D02 /* AssetApprecRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetApprecRate.m; sourceTree = "<group>"; };
 		003085D9148599A100837D02 /* ScenarioInputValBacktracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioInputValBacktracer.h; sourceTree = "<group>"; };
 		003085DA148599A100837D02 /* ScenarioInputValBacktracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioInputValBacktracer.m; sourceTree = "<group>"; };
+		0032BCFB17F5FE2200767633 /* AccountInputFieldEditInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInputFieldEditInfo.h; sourceTree = "<group>"; };
+		0032BCFC17F5FE2200767633 /* AccountInputFieldEditInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInputFieldEditInfo.m; sourceTree = "<group>"; };
 		00361199166800AD00A6FB76 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "lib/core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		0036DE1413BE19F20043F3A5 /* Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scenario.h; sourceTree = "<group>"; };
 		0036DE1513BE19F20043F3A5 /* Scenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scenario.m; sourceTree = "<group>"; };
@@ -2249,6 +2252,8 @@
 				0041263613A6A653008F0647 /* InputListFormInfoCreator.m */,
 				0041263813A6A744008F0647 /* InputFieldEditInfo.h */,
 				0041263913A6A745008F0647 /* InputFieldEditInfo.m */,
+				0032BCFB17F5FE2200767633 /* AccountInputFieldEditInfo.h */,
+				0032BCFC17F5FE2200767633 /* AccountInputFieldEditInfo.m */,
 				0041263C13A7DED8008F0647 /* InputListObjectAdder.h */,
 				0041263D13A7DED9008F0647 /* InputListObjectAdder.m */,
 				003CFD1113C9324F0006D083 /* SelectScenarioTableHeaderButtonDelegate.h */,
@@ -4008,6 +4013,7 @@
 				003CCC3F17DF8EF0007B524A /* SimResultsOperation.m in Sources */,
 				003CCC4517DF91D9007B524A /* SimResults.m in Sources */,
 				003CCC4F17E16715007B524A /* ResultsListTableViewController.m in Sources */,
+				0032BCFD17F5FE2200767633 /* AccountInputFieldEditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

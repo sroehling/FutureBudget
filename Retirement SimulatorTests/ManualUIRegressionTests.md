@@ -41,4 +41,17 @@ After toggling the enabled flag for an input, the forecast results should automa
 2. Toggle to the second budget
 3. Navigate to the forecast view.
 
-The forecast view should update to show the results from the second budget. You should be able to toggle back and see the results from the first budget. Changing the budget should also make the forecast view toggle back to to the results list (from the chart or graph).
+The forecast view should update to show the results from the second budget. You should be able to toggle back and see the results from the first budget. Changing the budget should also make the forecast view toggle back to the results list (from the chart or graph).
+
+## Account Deletion With Transfers
+
+When a budget includes a transfer into or out of an account, the app should prevent deletion of the account.
+
+1. Create an account.
+2. Create a Transfer from Cash to the account
+3. Create a Transfer from the account to Cash
+4. Try to delete the account, you should be prevented from doing so.
+5. Delete the first transfer.
+6. Try to delete the account, you should be prevented from doing so.
+7. Delete the second transfer. 
+8. Try to delete the account, you be able to delete the account at this point.

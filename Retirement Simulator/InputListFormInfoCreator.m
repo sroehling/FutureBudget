@@ -31,6 +31,7 @@
 #import "InputTag.h"
 #import "StringValidation.h"
 #import "CollectionHelper.h"
+#import "AccountInputFieldEditInfo.h"
 
 @implementation InputListFormInfoCreator
 
@@ -207,8 +208,9 @@
 		for(Account *account in inputs)
 		{    
 			assert(account != nil);
-			InputFieldEditInfo *inputFieldEditInfo =
-				[[[InputFieldEditInfo alloc] initWithInput:account andDataModelController:parentContext.dataModelController] autorelease];
+            AccountInputFieldEditInfo *inputFieldEditInfo =
+                [[[AccountInputFieldEditInfo alloc] initWithAccount:account
+                      andDataModelController:parentContext.dataModelController] autorelease];
 			[sectionInfo addFieldEditInfo:inputFieldEditInfo];
 		}
 	}
