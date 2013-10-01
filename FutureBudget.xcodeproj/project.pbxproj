@@ -2065,9 +2065,9 @@
 		002E7B65167A2DB100713684 /* App Store */ = {
 			isa = PBXGroup;
 			children = (
+				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
 				00F543941781E6A0007AEC16 /* AppStoreLargeIcon.png */,
 				00DD853217BE95C70048A162 /* Screen Shots */,
-				002E7B66167A2DD700713684 /* AppStoreInfo.md */,
 			);
 			name = "App Store";
 			path = "Retirement Simulator";

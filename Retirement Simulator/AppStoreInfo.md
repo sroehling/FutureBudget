@@ -8,7 +8,7 @@ FUTUREBUDGET_2013_0001
 
 ## Version Number
 
-1.1
+1.1.1
 
 ## Copyright:
 
@@ -88,5 +88,15 @@ http://futurebudget.resultra.com
 ### Version 1.1
 
 Improve performance and responsiveness by generating forecast results in the background.
+
+### Version 1.1.1
+
+• In the form to select stop dates for expenses or incomes, fix a bug where the app would sometimes crash if a milestone date was selected.
+• Fix an "off by one bug" with the calculation of relative end dates such as "after 4 years". The end date was previously one day too late.
+• Prevent deletion of an account when there are transfers in or out of the account.
+
+
+
+
 
 
